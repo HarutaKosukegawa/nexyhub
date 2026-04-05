@@ -465,10 +465,51 @@ footer{background:rgba(4,7,16,1);border-top:1px solid rgba(255,255,255,.05);posi
   font-weight:900;transition:opacity .15s!important;
 }
 .nav-apply-btn:hover{opacity:.82!important;}
+  /* ── 申し込みトップバナー ── */
+#apply-banner{
+  position:fixed;top:0;left:0;right:0;z-index:400;
+  background:var(--gold);
+  padding:10px 20px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  text-align:center;
+}
+#apply-banner a{
+  color:var(--night);font-family:'Zen Kaku Gothic New',sans-serif;
+  font-weight:900;font-size:.88rem;letter-spacing:.04em;
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+}
+#apply-banner a:hover{opacity:.8;}
+#apply-banner .banner-arrow{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--night);color:var(--gold);
+  font-size:.75rem;font-weight:900;
+  padding:3px 10px;border-radius:20px;letter-spacing:.04em;
+  flex-shrink:0;
+}
+/* バナー分だけナビとコンテンツをずらす */
+nav{ top:40px; }
+#hero{ margin-top:calc(64px + 40px) !important; }
+@media(max-width:960px){
+  #apply-banner a{ font-size:.8rem; }
+  nav{ top:40px; }
+  #hero{ margin-top:calc(64px + 40px) !important; }
+}
+  .nav-apply-btn{
+  background:var(--gold)!important;color:var(--night)!important;
+  border-radius:6px;padding:7px 16px!important;margin-left:4px;
+  font-weight:900;transition:opacity .15s!important;
+}
+.nav-apply-btn:hover{opacity:.82!important;}
 </style>
 </head>
 <body>
-
+<!-- ── 申し込みバナー ── -->
+<div id="apply-banner">
+  <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener">
+    <span>次回開催 5/16（土）・6/7（日） — 参加申し込みはこちら</span>
+    <span class="banner-arrow">申し込む →</span>
+  </a>
+</div>
 <!-- 星空キャンバス -->
 <canvas id="starfield"></canvas>
 
@@ -481,7 +522,7 @@ footer{background:rgba(4,7,16,1);border-top:1px solid rgba(255,255,255,.05);posi
     <li><a href="index.html#solutions" class="active">事業内容</a></li>
     <li><a href="index.html#members">メンバー紹介</a></li>
     <li><a href="index.html#contact" class="nav-cta-btn">お問い合わせ</a></li>
-    <li><a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener" class="nav-apply-btn">参加申し込み</a></li>
+   <li><a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener" class="nav-apply-btn">参加申し込み</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
@@ -780,15 +821,21 @@ footer{background:rgba(4,7,16,1);border-top:1px solid rgba(255,255,255,.05);posi
         <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.45);margin-bottom:18px;">SAT 2025</div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--gold);flex-shrink:0;">🕓</span>
+           <span style="flex-shrink:0;display:flex;align-items:center;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+</span>
             <span>16:30 〜 20:00</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--gold);flex-shrink:0;">📍</span>
+            <span style="flex-shrink:0;display:flex;align-items:center;padding-top:2px;">
+  <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+</span>
             <span>人形町<br><span style="font-size:.74rem;opacity:.65;">株式会社ラクーンホールディングス</span></span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--gold);flex-shrink:0;">👤</span>
+            <span style="flex-shrink:0;display:flex;align-items:center;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+</span>
             <span>学生（中学生・高校生・大学生）</span>
           </div>
         </div>
@@ -807,15 +854,21 @@ footer{background:rgba(4,7,16,1);border-top:1px solid rgba(255,255,255,.05);posi
         <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.45);margin-bottom:18px;">SUN 2025</div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--teal);flex-shrink:0;">🕓</span>
+            <span style="flex-shrink:0;display:flex;align-items:center;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+</span>
             <span>16:30 〜 19:00</span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--teal);flex-shrink:0;">📍</span>
+            <span style="flex-shrink:0;display:flex;align-items:center;padding-top:2px;">
+  <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+</span>
             <span>渋谷<br><span style="font-size:.74rem;opacity:.65;">孫正義育英財団</span></span>
           </div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="color:var(--teal);flex-shrink:0;">👤</span>
+            <span style="flex-shrink:0;display:flex;align-items:center;">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+</span>
             <span>学生（中学生・高校生・大学生）</span>
           </div>
         </div>
