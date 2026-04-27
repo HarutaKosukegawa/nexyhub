@@ -722,9 +722,11 @@ window.addEventListener('scroll', () => {
 
 // メンバーアコーディオン
 function toggleMem(card) {
-  card.classList.toggle('open');
-  if(card.classList.contains('open')) {
-    setTimeout(() => card.scrollIntoView({behavior:'smooth',block:'nearest'}), 80);
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.mem-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
   }
 }
 </script>
