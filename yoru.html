@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://nexyhub.jp/yoru.html">
 <meta property="og:title" content="深夜の語り場 — 考え途中のことを、そのまま話していい夜 | NEXY">
 <meta property="og:description" content="企業オフィスをひらき、学生が未来について"考え途中"のまま語り合う場。進路・将来・挑戦前の迷いを、安心して話せる深夜のイベント。">
-<meta property="og:image" content="https://nexyhub.jp/ogp_yoru.png">
+<meta property="og:image" content="https://nexyhub.jp/ogp.png">
 <meta property="og:site_name" content="NEXY">
 <meta property="og:locale" content="ja_JP">
 
@@ -26,7 +26,7 @@
 <meta name="twitter:site" content="@nexy_hub">
 <meta name="twitter:title" content="深夜の語り場 — 考え途中のことを、そのまま話していい夜 | NEXY">
 <meta name="twitter:description" content="企業オフィスをひらき、学生が未来について"考え途中"のまま語り合う場。進路・将来・挑戦前の迷いを、安心して話せる深夜のイベント。">
-<meta name="twitter:image" content="https://nexyhub.jp/ogp_yoru.png">
+<meta name="twitter:image" content="https://nexyhub.jp/ogp.png">
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
@@ -44,7 +44,6 @@
   "description": "学生の思いが出会い、未来を創る場所。やりたいをひとりにしない学生コミュニティ。"
 }
 </script>
-<title>深夜の語り場 — NEXY</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -104,7 +103,6 @@ nav{
 .nav-cta-btn:hover{background:var(--orange)!important;border-color:var(--orange)!important;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
 .hamburger span{width:22px;height:2px;background:#fff;display:block;}
-  <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener" style="color:var(--gold);font-weight:900;">参加申し込み →</a>
 .mobile-nav{
   display:none;position:fixed;top:64px;left:0;right:0;
   background:rgba(7,13,31,.97);border-bottom:1px solid rgba(255,255,255,.07);
@@ -459,57 +457,11 @@ footer{background:rgba(4,7,16,1);border-top:1px solid rgba(255,255,255,.05);posi
   .tl-item:not(.tl-last)::after{left:calc(68px + 12px + 9px);}
   .tl-time{font-size:.65rem;}
 }
-.nav-apply-btn{
-  background:var(--gold)!important;color:var(--night)!important;
-  border-radius:6px;padding:7px 16px!important;margin-left:4px;
-  font-weight:900;transition:opacity .15s!important;
-}
-.nav-apply-btn:hover{opacity:.82!important;}
-  /* ── 申し込みトップバナー ── */
-#apply-banner{
-  position:fixed;top:0;left:0;right:0;z-index:400;
-  background:var(--gold);
-  padding:10px 20px;
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  text-align:center;
-}
-#apply-banner a{
-  color:var(--night);font-family:'Zen Kaku Gothic New',sans-serif;
-  font-weight:900;font-size:.88rem;letter-spacing:.04em;
-  text-decoration:none;display:flex;align-items:center;gap:8px;
-}
-#apply-banner a:hover{opacity:.8;}
-#apply-banner .banner-arrow{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:var(--night);color:var(--gold);
-  font-size:.75rem;font-weight:900;
-  padding:3px 10px;border-radius:20px;letter-spacing:.04em;
-  flex-shrink:0;
-}
-/* バナー分だけナビとコンテンツをずらす */
-nav{ top:40px; }
-#hero{ margin-top:calc(64px + 40px) !important; }
-@media(max-width:960px){
-  #apply-banner a{ font-size:.8rem; }
-  nav{ top:40px; }
-  #hero{ margin-top:calc(64px + 40px) !important; }
-}
-  .nav-apply-btn{
-  background:var(--gold)!important;color:var(--night)!important;
-  border-radius:6px;padding:7px 16px!important;margin-left:4px;
-  font-weight:900;transition:opacity .15s!important;
-}
-.nav-apply-btn:hover{opacity:.82!important;}
+
 </style>
 </head>
 <body>
-<!-- ── 申し込みバナー ── -->
-<div id="apply-banner">
-  <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener">
-    <span>次回開催 5/16（土）・6/7（日） — 参加申し込みはこちら</span>
-    <span class="banner-arrow">申し込む →</span>
-  </a>
-</div>
+
 <!-- 星空キャンバス -->
 <canvas id="starfield"></canvas>
 
@@ -521,8 +473,8 @@ nav{ top:40px; }
     <li><a href="index.html#about">NEXYについて</a></li>
     <li><a href="index.html#solutions" class="active">事業内容</a></li>
     <li><a href="index.html#members">メンバー紹介</a></li>
+    <li><a href="news.html">お知らせ</a></li>
     <li><a href="index.html#contact" class="nav-cta-btn">お問い合わせ</a></li>
-   <li><a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener" class="nav-apply-btn">参加申し込み</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
@@ -798,118 +750,24 @@ nav{ top:40px; }
 </section>
 
 <!-- ── NEXT ── -->
-<!-- ── NEXT EVENTS ── -->
-<section id="next" style="background:rgba(13,22,48,.45);">
+<section id="next">
   <div class="wrap">
-    <div class="s-label fi">Upcoming Events</div>
-    <h2 class="s-title fi" style="transition-delay:.05s">次回開催情報</h2>
-    <div class="s-divider fi" style="transition-delay:.09s"></div>
-
-    <!-- 募集中バナー -->
-    <div class="fi" style="transition-delay:.1s;text-align:center;margin-bottom:32px;">
-      <span style="display:inline-block;background:var(--orange);color:#fff;font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.18em;padding:6px 22px;border-radius:20px;">🌙 RECRUITING NOW</span>
+    <div class="next-box fi">
+      <div class="next-badge">COMING SOON</div>
+      <div class="next-title"><span class="pulse"></span>次回開催決定</div>
+      <div class="next-desc">詳細は近日公開。<br>お知らせをお待ちください。</div>
     </div>
-
-    <!-- イベントカード群 -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-bottom:40px;">
-
-      <!-- 第2回 5/16 -->
-      <div class="fi" style="transition-delay:.14s;background:rgba(240,223,160,.05);border:1.5px solid rgba(240,223,160,.28);border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),#e8c840);"></div>
-        <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--gold);margin-bottom:10px;">2nd SESSION</div>
-        <div style="font-size:2rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;">5 <span style="font-size:1rem;opacity:.6;">/</span> 16</div>
-        <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.45);margin-bottom:18px;">SAT 2025</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-           <span style="flex-shrink:0;display:flex;align-items:center;">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-</span>
-            <span>16:30 〜 20:00</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="flex-shrink:0;display:flex;align-items:center;padding-top:2px;">
-  <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-</span>
-            <span>人形町<br><span style="font-size:.74rem;opacity:.65;">株式会社ラクーンホールディングス</span></span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="flex-shrink:0;display:flex;align-items:center;">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(240,223,160,.8)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-</span>
-            <span>学生（中学生・高校生・大学生）</span>
-          </div>
-        </div>
-        <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener"
-          style="display:block;text-align:center;background:var(--gold);color:var(--night);font-weight:900;font-size:.88rem;padding:11px 0;border-radius:8px;transition:opacity .15s;"
-          onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
-          申し込む →
-        </a>
-      </div>
-
-      <!-- 第3回 6/7 -->
-      <div class="fi" style="transition-delay:.2s;background:rgba(42,157,143,.06);border:1.5px solid rgba(42,157,143,.3);border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),#48c9b0);"></div>
-        <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:var(--teal);margin-bottom:10px;">3rd SESSION</div>
-        <div style="font-size:2rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;">6 <span style="font-size:1rem;opacity:.6;">/</span> 7</div>
-        <div style="font-family:'Space Mono',monospace;font-size:.7rem;color:rgba(255,255,255,.45);margin-bottom:18px;">SUN 2025</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="flex-shrink:0;display:flex;align-items:center;">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-</span>
-            <span>16:30 〜 19:00</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="flex-shrink:0;display:flex;align-items:center;padding-top:2px;">
-  <svg width="14" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-</span>
-            <span>渋谷<br><span style="font-size:.74rem;opacity:.65;">孫正義育英財団</span></span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.78);">
-            <span style="flex-shrink:0;display:flex;align-items:center;">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(42,157,143,.9)" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-</span>
-            <span>学生（中学生・高校生・大学生）</span>
-          </div>
-        </div>
-        <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener"
-          style="display:block;text-align:center;background:var(--teal);color:#fff;font-weight:900;font-size:.88rem;padding:11px 0;border-radius:8px;transition:opacity .15s;"
-          onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">
-          申し込む →
-        </a>
-      </div>
-
-    </div><!-- /grid -->
-
-    <!-- こんな人に来て欲しい -->
-    <div class="fi" style="transition-delay:.26s;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:32px 36px;">
-      <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--gold);margin-bottom:14px;text-align:center;">WHO WE WANT TO MEET</div>
-      <h3 style="font-size:1.05rem;font-weight:900;color:#fff;text-align:center;margin-bottom:20px;">こんな学生に来てほしい</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px;">
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">起業家・起業準備中</span>
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">政治家・政策提言志望</span>
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">学生団体を運営している</span>
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">ボランティア・社会活動</span>
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">留学・海外チャレンジ</span>
-        <span style="background:rgba(240,223,160,.09);border:1px solid rgba(240,223,160,.2);border-radius:20px;padding:7px 16px;font-size:.82rem;color:rgba(255,255,255,.8);">何か行動している人</span>
-      </div>
-      <p style="text-align:center;font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.9;">
-        話すこと：自分の活動・悩み・未来のこと。<br>
-        肩書きより、今やっていることを聞かせてください。
-      </p>
-    </div>
-
   </div>
 </section>
+
 <!-- ── CTA ── -->
 <section id="cta">
-  <div class="cta-btns fi" style="transition-delay:.12s">
-      <a href="https://forms.gle/6hLT1CPQWNPZBMLo7" target="_blank" rel="noopener" class="cta-main">参加申し込みはこちら</a>
+  <div class="wrap" style="text-align:center;">
+    <div class="cta-ttl fi">一緒に、深夜を語ろう。</div>
+    <div class="cta-sub fi" style="transition-delay:.06s">考え途中のまま、来てください。</div>
+    <div class="cta-btns fi" style="transition-delay:.12s">
+      <a href="index.html#contact" class="cta-main">参加したい</a>
       <a href="index.html#contact" class="cta-sub-btn">企業として関わりたい</a>
-    </div>
-    <p class="fi" style="transition-delay:.18s;margin-top:20px;font-size:.78rem;color:rgba(255,255,255,.32);">
-      Googleフォームが開きます。1分で完了します。
-    </p>
     </div>
   </div>
 </section>
