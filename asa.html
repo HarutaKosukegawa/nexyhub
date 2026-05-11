@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO Basic -->
-<title>朝食会 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly</title>
-<meta name="description" content="4月3日開催。NEXY × Singerly共同開催・第3回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
-<meta name="keywords" content="NEXY,朝食会,高校生,経営者,Singerly,あさげ,朝食,交流会,4月3日">
+<title>朝食会 第4回 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly</title>
+<meta name="description" content="7月29日（水）朝7:30開催。NEXY × Singerly共同開催・第4回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
+<meta name="keywords" content="NEXY,朝食会,高校生,経営者,Singerly,あさげ,朝食,交流会,7月29日,第4回">
 <meta name="author" content="NEXY">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexyhub.jp/asa.html">
@@ -17,8 +17,8 @@
 <!-- OGP (SNSシェア用) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexyhub.jp/asa.html">
-<meta property="og:title" content="朝食会 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly">
-<meta property="og:description" content="4月3日開催。NEXY × Singerly共同開催・第3回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
+<meta property="og:title" content="朝食会 第4回 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly">
+<meta property="og:description" content="7月29日（水）朝7:30開催。NEXY × Singerly共同開催・第4回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
 <meta property="og:image" content="https://nexyhub.jp/ogp.png">
 <meta property="og:site_name" content="NEXY">
 <meta property="og:locale" content="ja_JP">
@@ -26,8 +26,8 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@nexy_hub">
-<meta name="twitter:title" content="朝食会 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly">
-<meta name="twitter:description" content="4月3日開催。NEXY × Singerly共同開催・第3回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
+<meta name="twitter:title" content="朝食会 第4回 — 高校生と経営者がフラットに交わる朝の90分 | NEXY × Singerly">
+<meta name="twitter:description" content="7月29日（水）朝7:30開催。NEXY × Singerly共同開催・第4回朝食会。高校生と経営者が朝食を囲んでフラットに語り合う90分。実績不問、参加無料。">
 <meta name="twitter:image" content="https://nexyhub.jp/ogp.png">
 
 <!-- Structured Data (JSON-LD) -->
@@ -920,6 +920,69 @@ body {
 
 .faq-item.open .faq-a { display: block; }
 
+
+/* ── PAST EVENTS ── */
+.past { background: var(--bg2); border-top: 1px solid var(--border); }
+.past-list { display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin: 0 auto; }
+.past-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 28px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform .15s, box-shadow .2s, border-color .2s;
+}
+.past-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232,115,42,.3);
+  box-shadow: 0 8px 24px rgba(232,115,42,.1);
+}
+.past-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--orange);
+  flex-shrink: 0;
+  min-width: 56px;
+  line-height: 1;
+}
+.past-body { flex: 1; }
+.past-date {
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--text3);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.past-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.past-desc {
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.past-arrow {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin-top: 10px;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  .past-card { flex-direction: column; gap: 8px; padding: 20px; }
+  .past-num { font-size: 1.2rem; min-width: auto; }
+}
+
 /* ── CTA FINAL ── */
 .cta-final {
   background: linear-gradient(135deg, #FFF3D0, #FFE8A8, var(--bg2));
@@ -1143,7 +1206,7 @@ body {
     <div class="hero-text">
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        第3回 朝食会 &nbsp;|&nbsp; NEXY × Singerly
+        第4回 朝食会 &nbsp;|&nbsp; NEXY × Singerly
       </div>
       <h1 class="hero-title">
         朝、<em>未来が</em><br>少し動き出す。
@@ -1155,7 +1218,7 @@ body {
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">DATE</span>
-          <span class="hero-meta-val">4月3日（木）</span>
+          <span class="hero-meta-val">7月29日（水）</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">TIME</span>
@@ -1167,7 +1230,7 @@ body {
         </div>
       </div>
       <div class="hero-btns">
-        <a href="#apply" class="btn-primary">第3回に参加する</a>
+        <a href="#apply" class="btn-primary">第4回に参加する</a>
         <a href="#about" class="btn-outline-light">詳しく知る</a>
       </div>
     </div>
@@ -1354,11 +1417,11 @@ body {
   <div class="section-inner">
     <div class="first-inner">
       <p class="section-label reveal" style="text-align:center;">Collaboration</p>
-      <div class="first-highlight reveal">第3回 × Singerly 共同開催</div>
+      <div class="first-highlight reveal">第4回 × Singerly 共同開催</div>
       <h2 class="section-title reveal">NEXY × Singerly<br><em>共同開催</em></h2>
       <p class="section-lead reveal" style="margin:0 auto 0; max-width:560px; text-align:center;">
-        「まだ実績がない」ではなく、「初回に立ち会えた人」になれる。<br>
-        第1回のメンバーとして、この場の始まりを一緒につくろう。
+        これまで第1回から第3回まで開催し、高校生と経営者の真剣な対話が積み重ねられてきた場。<br>
+        回を重ねるごとに洗練された「あさげの会」高校生版・第4回。
       </p>
       <div class="first-cards">
         <div class="first-card reveal">
@@ -1370,8 +1433,8 @@ body {
           <div class="first-card-desc">Singerlyが持つ経営者ネットワークが参加。高校生が普段出会えない大人たちと同じテーブルに座れる。</div>
         </div>
         <div class="first-card reveal">
-          <div class="first-card-title">第3回ならではの成熟した場</div>
-          <div class="first-card-desc">回を重ねて洗練された運営と雰囲気。始まりに立ち会いながら、すでに温まった場に入れる。</div>
+          <div class="first-card-title">第4回ならではの成熟した場</div>
+          <div class="first-card-desc">第3回までで磨かれた運営と雰囲気。すでに温まった場に、安心して飛び込める。</div>
         </div>
         <div class="first-card reveal">
           <div class="first-card-title">高校生として特別なポジション</div>
@@ -1470,7 +1533,7 @@ body {
         <div class="info-rows">
           <div class="info-row">
             <div class="info-key">日時</div>
-            <div class="info-val"><strong>4月3日（木）7:30〜9:00</strong></div>
+            <div class="info-val"><strong>7月29日（水）7:30〜9:00</strong></div>
           </div>
           <div class="info-row">
             <div class="info-key">場所</div>
@@ -1490,7 +1553,7 @@ body {
           </div>
           <div class="info-row">
             <div class="info-key">締切</div>
-            <div class="info-val">3月28日（金）23:59</div>
+            <div class="info-val">7月27日（月）23:59</div>
           </div>
         </div>
       </div>
@@ -1523,6 +1586,29 @@ body {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PAST EVENTS -->
+<section class="section past" id="past">
+  <div class="section-inner">
+    <p class="section-label reveal">Past Events</p>
+    <h2 class="section-title reveal">過去の<em>開催実績</em></h2>
+    <p class="section-lead reveal">これまで第1回から第3回まで、高校生と経営者の真剣な対話が積み重ねられてきました。</p>
+    <div class="past-list">
+
+      <a href="news.html#asage3" class="past-card reveal">
+        <div class="past-num">#03</div>
+        <div class="past-body">
+          <div class="past-date">2026.04.03 / 第3回</div>
+          <div class="past-title">第3回「あさげの若き情熱会」（あさげの会 第252回）</div>
+          <div class="past-desc">現役高校生20名と経営者9社が参加。「はたらく意味」「今後のキャリア」「幸せとは」をテーマに、朝一番から世代を越えたガチンコディスカッションを実施。サプライズで元欧州チャンピオン マジシャン DAI 氏も登場。</div>
+          <div class="past-arrow">実施報告を読む →</div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1606,14 +1692,14 @@ body {
 <section class="cta-final" id="apply">
   <div class="cta-inner">
     <p class="section-label" style="text-align:center;">Apply</p>
-    <h2>第3回メンバーとして、<br>朝から始めよう。</h2>
+    <h2>第4回メンバーとして、<br>朝から始めよう。</h2>
     <p>
-      NEXY × Singerly、共同開催の第3回。<br>
-      4月3日（木）7:30〜。<br>
+      NEXY × Singerly、共同開催の第4回。<br>
+      7月29日（水）7:30〜。<br>
       学校では出会えない会話が、ここで始まる。
     </p>
     <div class="cta-btns">
-      <a href="#" class="btn-primary">応募フォームへ</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8qUdsEdx7-r72IX2bDw5UgU1XwFOqprxF0HyrS_5a7GGoSA/viewform" target="_blank" rel="noopener" class="btn-primary">応募フォームへ</a>
       <a href="index.html" class="btn-outline">NEXYトップへ</a>
     </div>
     <div class="cta-links">
