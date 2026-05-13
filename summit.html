@@ -135,22 +135,165 @@ img { max-width: 100%; display: block; }
 .mobile-nav.open { display: flex; }
 .mobile-nav a { color: var(--ink); text-decoration: none; font-size: .92rem; font-weight: 700; }
 
-/* ── HERO ── */
+/* ── HERO (full-viewport recreation) ── */
 .hero {
-  padding: 140px 6% 40px;
-  background: var(--white);
   position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: #F2E9CD;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 5% 80px;
   border-bottom: 1px solid var(--line);
 }
-.hero-art { max-width: 1180px; margin: 0 auto; border: 1px solid var(--line); }
-.hero-art img { width: 100%; height: auto; display: block; }
-.hero-meta-strip { max-width: 1180px; margin: 24px auto 0; display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); }
-.hero-meta-cell { flex: 1 1 200px; padding: 22px 26px; border-right: 1px solid var(--line); background: var(--white); }
+.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #F8F1DC 0%, #F2E9CD 100%); z-index: 0; }
+.hero-deco-circle {
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 200px; height: 200px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: .8;
+  z-index: 1;
+}
+.hero-deco-pink {
+  position: absolute;
+  bottom: 60px; right: -50px;
+  width: 320px; height: 60px;
+  background: #E84A8E;
+  transform: rotate(-3deg);
+  opacity: .85;
+  z-index: 1;
+}
+.hero-deco-lines {
+  position: absolute;
+  top: 30px; right: 50px;
+  width: 280px; height: 220px;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-deco-lines svg { width: 100%; height: 100%; }
+.hero-blue-brush {
+  position: absolute;
+  left: -20px; top: 50px;
+  width: 220px;
+  height: calc(100% - 80px);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-red-bolt {
+  position: absolute;
+  right: -40px; top: 0;
+  width: 320px;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-star {
+  position: absolute;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  font-weight: 900;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-star.s1 { top: 16%; left: 18%; font-size: 1.4rem; }
+.hero-star.s2 { top: 30%; right: 26%; font-size: 1.1rem; }
+.hero-star.s3 { bottom: 30%; left: 12%; font-size: 1.6rem; }
+.hero-star.s4 { top: 60%; right: 35%; font-size: 1rem; }
+.hero-star.s5 { top: 50%; left: 32%; font-size: 1.3rem; }
+.hero-star.s6 { bottom: 18%; right: 12%; font-size: 1.2rem; }
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+.hero-meta-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--gold);
+  padding: 10px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(.78rem, 1.2vw, .92rem);
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  border: 2px solid var(--ink);
+}
+.hero-meta-row .hms { color: rgba(15,23,42,.4); }
+.hero-title-h {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(2.6rem, 8vw, 6.2rem);
+  font-weight: 900;
+  line-height: 0.96;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: 26px;
+}
+.hero-title-h .ht-line { display: block; }
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.hero-pill {
+  background: var(--white);
+  border: 2.5px solid var(--ink);
+  padding: 10px 22px;
+  font-size: clamp(.84rem, 1.4vw, 1rem);
+  font-weight: 800;
+  color: var(--ink);
+}
+.hero-catch {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -.01em;
+  transform: skew(-5deg);
+  display: inline-block;
+}
+.hero-catch .hc-br { display: block; }
+.hero-organizer {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 32px;
+  letter-spacing: .04em;
+}
+.hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.hero-cta-row .btn-primary { background: var(--red); border-color: var(--red); }
+.hero-cta-row .btn-primary:hover { background: var(--ink); border-color: var(--ink); }
+
+/* meta strip below hero */
+.hero-meta-section { background: var(--white); padding: 0; border-bottom: 1px solid var(--line); }
+.hero-meta-inner { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+.hero-meta-cell { flex: 1 1 200px; padding: 22px 26px; border-right: 1px solid var(--line); }
 .hero-meta-cell:last-child { border-right: none; }
 .hero-meta-label { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .18em; color: var(--red); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
 .hero-meta-val { font-size: 1.05rem; font-weight: 800; color: var(--ink); letter-spacing: -.01em; }
-.hero-cta-row { max-width: 1180px; margin: 24px auto 0; display: flex; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 720px) {
+  .hero { min-height: 92vh; padding: 130px 5% 50px; }
+  .hero-deco-circle { width: 120px; height: 120px; top: -40px; left: -40px; }
+  .hero-deco-pink { right: -80px; width: 260px; bottom: 50px; }
+  .hero-deco-lines { display: none; }
+  .hero-blue-brush { width: 140px; left: -50px; }
+  .hero-red-bolt { width: 200px; right: -60px; }
   .hero-meta-cell { flex-basis: 50%; border-right: none; border-top: 1px solid var(--line); }
   .hero-meta-cell:nth-child(2n) { border-left: 1px solid var(--line); }
 }
@@ -317,6 +460,56 @@ img { max-width: 100%; display: block; }
 @media (max-width: 900px) {
   .pd-grid { grid-template-columns: 1fr; gap: 16px; }
 }
+
+
+/* Pitch image gallery */
+.pd-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+.pd-img { margin: 0; overflow: hidden; border: 1px solid var(--line); }
+.pd-img img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.pd-img-note { font-size: .72rem; color: var(--text3); margin-top: 10px; font-style: italic; }
+@media (max-width: 720px) { .pd-gallery { grid-template-columns: 1fr; } }
+
+/* Session theme cards (replaces pd-grid in session detail) */
+.session-themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+.session-theme {
+  background: var(--white);
+  border: 2px solid var(--blue);
+  border-left-width: 6px;
+  padding: 24px 22px;
+}
+.session-theme.t-2 { border-color: var(--gold); border-left-color: var(--gold); }
+.session-theme.t-3 { border-color: var(--red); border-left-color: var(--red); }
+.session-theme-num {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  letter-spacing: .18em;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.session-theme.t-2 .session-theme-num { color: var(--gold); }
+.session-theme.t-3 .session-theme-num { color: var(--red); }
+.session-theme-title { font-size: 1.05rem; font-weight: 900; color: var(--ink); margin-bottom: 12px; line-height: 1.4; }
+.session-theme-mix { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.session-theme-mix .stm {
+  flex: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  background: var(--bg);
+  color: var(--text2);
+  padding: 6px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.session-theme-mix .stm.stu { color: var(--blue); border: 1px solid var(--blue); background: var(--blue-soft); }
+.session-theme.t-2 .session-theme-mix .stm.stu { color: #92611A; border-color: var(--gold); background: var(--gold-soft); }
+.session-theme.t-3 .session-theme-mix .stm.stu { color: var(--red); border-color: var(--red); background: var(--red-soft); }
+.session-theme-mix .stx { color: var(--text3); font-weight: 800; font-size: .9rem; }
+.session-theme-desc { font-size: .82rem; color: var(--text2); line-height: 1.85; }
+@media (max-width: 900px) { .session-themes { grid-template-columns: 1fr; } }
 
 /* ── SPEAKERS (with photos) ── */
 .spk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
@@ -591,20 +784,66 @@ img { max-width: 100%; display: block; }
   <a href="#apply">参加申込</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO (full-viewport HTML recreation) -->
 <section class="hero" id="top">
-  <div class="hero-art reveal">
-    <img src="img/summit/summit_hero.jpg" alt="NEXY SUMMIT 2026 — やりたいを、ぶつけに来い。">
+  <div class="hero-bg"></div>
+  <!-- Decorative elements -->
+  <div class="hero-deco-circle"></div>
+  <div class="hero-deco-pink"></div>
+  <div class="hero-deco-lines">
+    <svg viewBox="0 0 200 200" preserveAspectRatio="none">
+      <line x1="10" y1="20" x2="190" y2="50" stroke="#1E40AF" stroke-width="1" opacity=".35"/>
+      <line x1="30" y1="40" x2="180" y2="80" stroke="#1E40AF" stroke-width="1" opacity=".25"/>
+      <line x1="50" y1="60" x2="170" y2="110" stroke="#1E40AF" stroke-width="1" opacity=".2"/>
+    </svg>
   </div>
-  <div class="hero-meta-strip reveal" style="transition-delay:.08s">
+  <svg class="hero-blue-brush" viewBox="0 0 200 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40,20 Q30,150 60,280 Q50,400 80,560" stroke="#1E40AF" stroke-width="60" fill="none" stroke-linecap="round" opacity=".85"/>
+    <path d="M55,40 Q45,160 70,300 Q60,420 90,540" stroke="#2563EB" stroke-width="25" fill="none" stroke-linecap="round" opacity=".55"/>
+  </svg>
+  <svg class="hero-red-bolt" viewBox="0 0 280 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="180,20 80,250 160,260 60,580 240,290 150,280 220,30" fill="#DC2626"/>
+    <polygon points="170,30 90,240 155,250 75,560 225,290 145,275 210,40" fill="#EF4444" opacity=".6"/>
+  </svg>
+  <!-- Stars -->
+  <span class="hero-star s1">✦</span>
+  <span class="hero-star s2">✦</span>
+  <span class="hero-star s3">✧</span>
+  <span class="hero-star s4">✦</span>
+  <span class="hero-star s5">✧</span>
+  <span class="hero-star s6">✦</span>
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-meta-row">
+      <span>2026.08</span><span class="hms">/</span><span>東京</span><span class="hms">/</span><span>高校生1,000人</span>
+    </div>
+    <h1 class="hero-title-h">
+      <span class="ht-line">NEXY</span>
+      <span class="ht-line">SUMMIT 2026</span>
+    </h1>
+    <div class="hero-pills">
+      <span class="hero-pill">プレゼン大会</span>
+      <span class="hero-pill">登壇セッション</span>
+      <span class="hero-pill">ワークショップ</span>
+    </div>
+    <div class="hero-catch">
+      やりたいを、<span class="hc-br">ぶつけに来い。</span>
+    </div>
+    <div class="hero-organizer">学生団体 NEXY 主催</div>
+    <div class="hero-cta-row">
+      <a href="#apply" class="btn-primary">参加申込はこちら →</a>
+      <a href="#pillars" class="btn-outline">プログラムを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- HERO META STRIP (below hero) -->
+<section class="hero-meta-section">
+  <div class="hero-meta-inner">
     <div class="hero-meta-cell"><div class="hero-meta-label">Date</div><div class="hero-meta-val">2026.08 / TBA</div></div>
     <div class="hero-meta-cell"><div class="hero-meta-label">Venue</div><div class="hero-meta-val">TOKYO / TBA</div></div>
     <div class="hero-meta-cell"><div class="hero-meta-label">Audience</div><div class="hero-meta-val">全国の高校生 1,000人</div></div>
     <div class="hero-meta-cell"><div class="hero-meta-label">Fee</div><div class="hero-meta-val">参加費 無料</div></div>
-  </div>
-  <div class="hero-cta-row reveal" style="transition-delay:.14s">
-    <a href="#apply" class="btn-primary">参加申込はこちら →</a>
-    <a href="#pillars" class="btn-outline">プログラムを見る</a>
   </div>
 </section>
 
@@ -712,6 +951,13 @@ img { max-width: 100%; display: block; }
             </div>
           </div>
         </div>
+        <!-- Pitch image gallery -->
+        <div class="pd-gallery">
+          <figure class="pd-img"><img src="img/summit/pitch_stage.jpg" alt="プレゼン大会イメージ：ステージ"></figure>
+          <figure class="pd-img"><img src="img/summit/pitch_audience.jpg" alt="プレゼン大会イメージ：観客席"></figure>
+          <figure class="pd-img"><img src="img/summit/pitch_speaker.jpg" alt="プレゼン大会イメージ：登壇者"></figure>
+        </div>
+        <div class="pd-img-note">※ イメージ写真（Unsplash 提供のフリー素材）</div>
       </div>
     </div>
 
@@ -719,21 +965,56 @@ img { max-width: 100%; display: block; }
       <div class="pd-color"></div>
       <div class="pillar-detail-body">
         <div class="pd-eyebrow">Pillar 02 ／ 登壇セッション</div>
-        <div class="pd-title">「あの人に聞きたかった」を、その場で実現。</div>
+        <div class="pd-title">学生 × 社会人。<br>分野ごとの本気のトーク。</div>
         <div class="pd-grid">
           <div>
-            <p>当日は3つのセッションを実施。それぞれ異なるテーマで、第一線で活動する若手起業家・大人ゲスト・支援者が登壇します。</p>
-            <p>講演で終わらず、その場で参加者からの質問を受け付ける時間も用意。「あの人にいま直接聞きたい」という疑問を、その場で投げかけられます。</p>
+            <p><strong style="color:var(--blue)">基本方針：「学生として活動している人」と「社会人として活動している人」が、同じテーマで本気で語り合う場。</strong></p>
+            <p>当日は3つのセッションを実施。それぞれ異なる分野（起業／政治・社会／表現・クリエイティブ）で、学生プレイヤーと社会人プレイヤーが混ざり合うクロストーク形式。「あの人にいま直接聞きたい」を、その場で投げかけられます。</p>
           </div>
           <div>
             <div class="pd-stats">
-              <div class="pd-stat"><div class="pd-stat-k">Sessions</div><div class="pd-stat-v">大きく3セッション</div></div>
-              <div class="pd-stat"><div class="pd-stat-k">Format</div><div class="pd-stat-v">トーク + Q&A</div></div>
-              <div class="pd-stat"><div class="pd-stat-k">Speakers</div><div class="pd-stat-v">高校生起業家 + 大人ゲスト</div></div>
-              <div class="pd-stat"><div class="pd-stat-k">Audience</div><div class="pd-stat-v">全参加者対象</div></div>
+              <div class="pd-stat"><div class="pd-stat-k">Sessions</div><div class="pd-stat-v">3セッション（分野別）</div></div>
+              <div class="pd-stat"><div class="pd-stat-k">Format</div><div class="pd-stat-v">学生 × 社会人 クロストーク</div></div>
+              <div class="pd-stat"><div class="pd-stat-k">Structure</div><div class="pd-stat-v">トーク + 観客Q&A</div></div>
+              <div class="pd-stat"><div class="pd-stat-k">Time</div><div class="pd-stat-v">各60〜90分</div></div>
             </div>
           </div>
         </div>
+
+        <!-- 3 themed sessions -->
+        <div class="session-themes">
+          <div class="session-theme">
+            <div class="session-theme-num">Session 01 ／ Entrepreneurship</div>
+            <div class="session-theme-title">起業セッション</div>
+            <div class="session-theme-mix">
+              <span class="stm stu">学生起業家</span>
+              <span class="stx">×</span>
+              <span class="stm">社会人起業家</span>
+            </div>
+            <div class="session-theme-desc">10代で起業した学生と、業界をリードする経営者が、「事業の本質」「資金調達」「組織づくり」を本気で語る。実践している同士だからこそ出る本音。</div>
+          </div>
+          <div class="session-theme t-2">
+            <div class="session-theme-num">Session 02 ／ Politics & Society</div>
+            <div class="session-theme-title">政治・社会セッション</div>
+            <div class="session-theme-mix">
+              <span class="stm stu">社会活動学生</span>
+              <span class="stx">×</span>
+              <span class="stm">政治家・社会起業家</span>
+            </div>
+            <div class="session-theme-desc">10代で政策提言や社会課題に取り組んでいる学生と、現職政治家・社会起業家がクロストーク。「いまの日本」を本気で議論する場。</div>
+          </div>
+          <div class="session-theme t-3">
+            <div class="session-theme-num">Session 03 ／ Expression & Creative</div>
+            <div class="session-theme-title">表現・クリエイティブセッション</div>
+            <div class="session-theme-mix">
+              <span class="stm stu">学生表現者</span>
+              <span class="stx">×</span>
+              <span class="stm">プロクリエイター</span>
+            </div>
+            <div class="session-theme-desc">音楽・映像・デザイン・SNSなど、表現で動いている学生と、第一線のプロクリエイターが「表現で生きる」を語る。世代を越えた創作論。</div>
+          </div>
+        </div>
+        <div class="pd-img-note">※ 各セッションの登壇者は順次発表。各分野で「学生プレイヤー × 社会人プレイヤー」のペア構成を予定。</div>
       </div>
     </div>
 
