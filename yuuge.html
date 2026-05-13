@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO Basic -->
-<title>ゆうげの若き熱論会 — 就活解禁2年前。御社だけが、本気の学生と出会える場所 | NEXY</title>
-<meta name="description" content="東大・早慶・SFC・MARCH以上の大学1〜2年生20名と、御社だけで語り合う2時間のクローズド座談会。就活解禁2年前の早期接点。初期費用ゼロ・成果課金型。">
+<title>ゆうげの若き熱論会 — 就活解禁前。御社だけが、本気の学生と出会える場所 | NEXY</title>
+<meta name="description" content="東大・早慶・SFC・MARCH以上の大学1〜2年生20名と、御社だけで語り合う2時間のクローズド座談会。就活解禁前の早期接点。初期費用ゼロ・成果課金型。">
 <meta name="keywords" content="NEXY,ゆうげの若き熱論会,新卒採用,早期接点,東大,早慶,MARCH,大学1年生,大学2年生,座談会,採用,リクルーティング,B2B">
 <meta name="author" content="NEXY">
 <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
 <!-- OGP -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexyhub.jp/yuuge.html">
-<meta property="og:title" content="ゆうげの若き熱論会 — 就活解禁2年前。御社だけが、本気の学生と出会える場所">
+<meta property="og:title" content="ゆうげの若き熱論会 — 就活解禁前。御社だけが、本気の学生と出会える場所">
 <meta property="og:description" content="東大・早慶・SFC・MARCH以上の大学1〜2年生20名と、御社だけで語り合う2時間のクローズド座談会。初期費用ゼロ・成果課金型。">
 <meta property="og:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
 <meta property="og:site_name" content="NEXY">
@@ -25,7 +25,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@nexy_hub">
-<meta name="twitter:title" content="ゆうげの若き熱論会 — 就活解禁2年前の早期接点">
+<meta name="twitter:title" content="ゆうげの若き熱論会 — 就活解禁前の早期接点">
 <meta name="twitter:description" content="東大・早慶・MARCH以上の大学1〜2年生と、御社だけで語り合うクローズド座談会。">
 <meta name="twitter:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
 
@@ -152,43 +152,45 @@ img { max-width: 100%; display: block; }
 .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .nav-burger span { display: block; width: 22px; height: 2px; background: var(--gold-light); border-radius: 2px; }
 
-/* ── HERO ── */
+/* ── HERO (2-column, yoisho-style) ── */
 .hero {
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
-  overflow: hidden;
-  padding-top: 112px;
+  padding: 130px 6% 60px;
   background: var(--black);
 }
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.02);
-  animation: heroZoom 14s ease-out forwards;
-}
-@keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.0); } }
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10,10,10,0.55) 0%,
-    rgba(10,10,10,0.35) 40%,
-    rgba(10,10,10,0.85) 100%
-  );
-}
 .hero-inner {
-  position: relative;
-  z-index: 2;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 6% 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
   color: #fff;
+}
+.hero-text { text-align: left; }
+.hero-art {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,.55);
+  border: 2px solid rgba(212,168,42,.4);
+  position: relative;
+  background: var(--dark);
+}
+.hero-art img { width: 100%; height: auto; display: block; }
+.hero-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.35) 100%);
+  pointer-events: none;
+}
+@media (min-width: 960px) {
+  .hero-inner { grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .hero-art { order: 2; }
+  .hero-text { order: 1; }
 }
 .hero-badge {
   display: inline-flex;
@@ -227,10 +229,18 @@ img { max-width: 100%; display: block; }
 }
 .hero-meta {
   display: flex;
-  gap: 28px;
-  margin-bottom: 36px;
+  gap: 22px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
+.hero-meta-item {
+  background: rgba(212,168,42,.08);
+  border: 1.5px solid rgba(212,168,42,.3);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+.hero-sub { max-width: 580px; }
+.hero-title em { background: linear-gradient(transparent 65%, rgba(212,168,42,.35) 65%); padding: 0 4px; }
 .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
 .hero-meta-label {
   font-family: 'Space Mono', monospace;
@@ -752,35 +762,40 @@ img { max-width: 100%; display: block; }
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg" style="background-image:url('img/yuuge/yuuge_hero.jpg');"></div>
-  <div class="hero-overlay"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>就活解禁2年前の早期接点プログラム</div>
-    <h1 class="hero-title">
-      就活解禁の2年前。<br>
-      御社だけが、<em>本気の学生</em>と<br>出会える場所。
-    </h1>
-    <p class="hero-sub">
-      東大・早慶・SFC・MARCH以上の大学1〜2年生 20名と、御社だけで語り合う 2時間のクローズド座談会。<br>
-      合同説明会でもナビサイトでもない、テーマ起点の本音対話。
-    </p>
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">TIME</span>
-        <span class="hero-meta-val">19:00〜21:00（2時間）</span>
+    <div class="hero-text">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>就活解禁前の早期接点プログラム</div>
+      <h1 class="hero-title">
+        御社だけが、<br>
+        <em>本気の学生</em>と<br>
+        出会える場所。
+      </h1>
+      <p class="hero-sub">
+        東大・早慶・SFC・MARCH以上の大学1〜2年生 20名と、<br>
+        御社だけで語り合う 2時間のクローズド座談会。<br>
+        合同説明会でもナビサイトでもない、テーマ起点の本音対話。
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">TIME</span>
+          <span class="hero-meta-val">19:00〜21:00（2時間）</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">SCALE</span>
+          <span class="hero-meta-val">学生20名 × 御社5〜10名</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">PRICE</span>
+          <span class="hero-meta-val">初期費用 ¥0 / 成果課金</span>
+        </div>
       </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">SCALE</span>
-        <span class="hero-meta-val">学生20名 × 御社5〜10名</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">PRICE</span>
-        <span class="hero-meta-val">初期費用 ¥0 / 成果課金</span>
+      <div class="hero-btns">
+        <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">資料請求・お問い合わせ →</a>
+        <a href="assets/yuuge_pitch.pdf" target="_blank" rel="noopener" class="btn-outline-light">提案資料をダウンロード（PDF）</a>
       </div>
     </div>
-    <div class="hero-btns">
-      <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">資料請求・お問い合わせ →</a>
-      <a href="assets/yuuge_pitch.pdf" target="_blank" rel="noopener" class="btn-outline-light">提案資料をダウンロード（PDF）</a>
+    <div class="hero-art">
+      <img src="img/yuuge/yuuge_hero.jpg" alt="ゆうげの若き熱論会 — 御社だけが、本気の学生と出会える場所">
     </div>
   </div>
 </section>
@@ -902,7 +917,7 @@ img { max-width: 100%; display: block; }
       <div class="stu-card reveal" style="transition-delay:.16s">
         <div class="stu-num">03 / Timing</div>
         <div class="stu-title">希少性</div>
-        <div class="stu-desc">就活解禁の2年前。まだどの企業とも深い接点を持っていない。この時期に関係を作れるのは、今だけ。</div>
+        <div class="stu-desc">就活解禁の前。まだどの企業とも深い接点を持っていない。この時期に関係を作れるのは、今だけ。</div>
       </div>
     </div>
     <div style="background:rgba(212,168,42,.16);border-left:4px solid var(--gold);padding:22px 28px;border-radius:8px;margin-top:32px;font-size:.92rem;color:var(--gold-light);font-weight:700;line-height:1.85;">
@@ -947,7 +962,7 @@ img { max-width: 100%; display: block; }
     <div class="ben-grid">
       <div class="ben-card reveal">
         <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="10"/></svg></div>
-        <div><div class="ben-title">就活前の早期接点</div><div class="ben-desc">就活解禁2年前から「あの会社が好き」という学生を作れる。解禁後に動く企業より2年早く、関係構築できる。</div></div>
+        <div><div class="ben-title">就活前の早期接点</div><div class="ben-desc">就活解禁前から「あの会社が好き」という学生を作れる。解禁後に動く企業より早く、関係構築できる。</div></div>
       </div>
       <div class="ben-card reveal" style="transition-delay:.08s">
         <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
@@ -983,7 +998,7 @@ img { max-width: 100%; display: block; }
         </thead>
         <tbody>
           <tr><td>対象学年</td><td>大学3〜4年（就活生）</td><td>大学3〜4年（就活生）</td><td class="col-us"><strong>大学1〜2年（就活前）</strong></td></tr>
-          <tr><td>接触タイミング</td><td>就活解禁後</td><td>就活解禁後</td><td class="col-us"><strong>就活解禁2年前</strong></td></tr>
+          <tr><td>接触タイミング</td><td>就活解禁後</td><td>就活解禁後</td><td class="col-us"><strong>就活解禁の前から</strong></td></tr>
           <tr><td>学生の質</td><td>バラバラ</td><td>バラバラ</td><td class="col-us"><strong>東大・早慶・MARCH以上の行動層</strong></td></tr>
           <tr><td>競合他社</td><td>同じ場に複数社</td><td>同じサイトに数百社</td><td class="col-us"><strong>御社だけ・クローズド</strong></td></tr>
           <tr><td>費用相場</td><td>40〜100万円／回</td><td>80万円〜／年</td><td class="col-us"><strong>15万円（インターン採用確定後／税別）</strong></td></tr>
