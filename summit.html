@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<title>NEXY SUMMIT 2026 — やりたいを、ぶつけに来い。 | NEXY</title>
+<meta name="description" content="2026年夏、東京で開催。全国の高校生1,000人が「やりたい」を持ち寄り、ぶつけて、つながる8時間。プレゼン大会・登壇セッション・ワークショップの3本柱。参加費無料・地方学生スカラシップあり。">
+<meta name="keywords" content="NEXY,SUMMIT,サミット,高校生,1000人,東京,プレゼン大会,登壇セッション,ワークショップ,スカラシップ,2026">
+<meta name="author" content="NEXY">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nexyhub.jp/summit.html">
+<link rel="icon" href="/img/icon.jpg" type="image/jpeg">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexyhub.jp/summit.html">
+<meta property="og:title" content="NEXY SUMMIT 2026 — やりたいを、ぶつけに来い。">
+<meta property="og:description" content="2026年夏、東京。全国の高校生1,000人が「やりたい」をぶつけ合う、8時間の本気のサミット。">
+<meta property="og:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
+<meta property="og:site_name" content="NEXY">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nexy_hub">
+<meta name="twitter:title" content="NEXY SUMMIT 2026 — やりたいを、ぶつけに来い。">
+<meta name="twitter:description" content="2026年夏、東京。全国の高校生1,000人が「やりたい」をぶつけ合う、8時間の本気のサミット。">
+<meta name="twitter:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&family=Space+Mono:wght@400;700&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F8F1DC;
+  --cream2: #F2E9CD;
+  --paper: #FDFAF0;
+  --ink: #0F1430;
+  --ink2: #1E2750;
+  --red: #E63A2D;
+  --red-deep: #B82A1F;
+  --blue: #2E5BCF;
+  --blue-deep: #1E3D8F;
+  --yellow: #F2C547;
+  --pink: #E84A8E;
+  --text: #0F1430;
+  --text2: #444A65;
+  --text3: #7E839A;
+  --line: rgba(15,20,48,0.12);
+  --line-strong: rgba(15,20,48,0.25);
+  --shadow: 0 6px 28px rgba(15,20,48,.08);
+  --shadow-card: 5px 5px 0 var(--ink);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+img { max-width: 100%; display: block; }
+
+/* ── ANNOUNCE BAR ── */
+.announce-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 250;
+  height: 46px;
+  background: linear-gradient(90deg, var(--red), var(--red-deep), var(--red));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 24px;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  text-decoration: none;
+}
+.announce-bar:hover { filter: brightness(1.05); }
+.announce-bar .ab-pulse {
+  width: 9px; height: 9px;
+  background: #fff;
+  border-radius: 50%;
+  animation: abPulse 1.6s infinite;
+  flex-shrink: 0;
+}
+@keyframes abPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+  70%  { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+.announce-bar .ab-cta {
+  background: #fff;
+  color: var(--red-deep);
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: .76rem;
+  font-weight: 900;
+}
+@media (max-width: 720px) {
+  .announce-bar { height: auto; min-height: 46px; padding: 8px 14px; font-size: .72rem; flex-wrap: wrap; gap: 8px; }
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 46px; left: 0; right: 0;
+  z-index: 200;
+  height: 64px;
+  background: rgba(248,241,220,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  justify-content: space-between;
+}
+.nav-logo a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 900;
+  font-size: 1.02rem;
+  letter-spacing: .04em;
+}
+.nav-logo .lg-em { color: var(--red); }
+.nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--red); }
+.nav-cta {
+  background: var(--ink) !important;
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 22px;
+  font-size: .78rem !important;
+  font-weight: 900 !important;
+  border: 2px solid var(--ink);
+}
+.nav-cta:hover { background: var(--red) !important; border-color: var(--red-deep) !important; }
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+.mobile-nav { display: none; position: fixed; top: 110px; left: 0; right: 0; background: rgba(248,241,220,.97); backdrop-filter: blur(12px); border-bottom: 2px solid var(--ink); padding: 20px 28px; z-index: 199; flex-direction: column; gap: 16px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--ink); text-decoration: none; font-size: .95rem; font-weight: 700; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 140px 6% 80px;
+  background: var(--cream);
+  overflow: hidden;
+}
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+.hero::before {
+  width: 200px; height: 200px;
+  background: var(--yellow);
+  border-radius: 50%;
+  left: -80px; top: -60px;
+  opacity: .6;
+}
+.hero::after {
+  width: 280px; height: 60px;
+  background: var(--pink);
+  right: -60px; bottom: 60px;
+  transform: rotate(-3deg);
+  opacity: .85;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.hero-text { text-align: left; }
+.hero-art {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 var(--ink);
+  border: 3px solid var(--ink);
+  position: relative;
+  background: var(--paper);
+}
+.hero-art img { width: 100%; height: auto; display: block; }
+.hero-meta-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 8px 18px;
+  border-radius: 28px;
+  font-family: 'Space Mono', monospace;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 22px;
+}
+.hero-meta-row .mr-sep { color: var(--text3); }
+.hero-meta-row strong { color: var(--ink); }
+.hero-title-main {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: 24px;
+}
+.hero-title-main .br { display: block; }
+.hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.hero-pill {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 8px 18px;
+  border-radius: 28px;
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+.hero-catch {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.5rem, 3.8vw, 2.6rem);
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1.2;
+  margin-bottom: 32px;
+  letter-spacing: -.01em;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 32px;
+  font-size: .9rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  transition: .15s;
+  box-shadow: 0 5px 0 var(--blue-deep);
+  border: 2.5px solid var(--ink);
+}
+.btn-primary:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--blue-deep); background: var(--blue-deep); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 32px;
+  font-size: .86rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  transition: .15s;
+  box-shadow: 0 5px 0 var(--red-deep);
+  border: 2.5px solid var(--red-deep);
+}
+.btn-secondary:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--red-deep); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 32px;
+  font-size: .86rem;
+  font-weight: 800;
+  border: 2.5px solid var(--ink);
+  transition: .15s;
+}
+.btn-outline:hover { background: var(--ink); color: #fff; }
+
+@media (min-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .hero-art { order: 2; }
+  .hero-text { order: 1; }
+}
+
+/* ── SECTION BASE ── */
+.section { padding: 96px 6%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  color: var(--red);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--red);
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 18px;
+  color: var(--ink);
+  letter-spacing: -.005em;
+}
+.section-title em {
+  color: var(--red);
+  font-style: normal;
+  font-family: 'Noto Serif JP', serif;
+  background: linear-gradient(transparent 60%, var(--yellow) 60%);
+  padding: 0 4px;
+}
+.section-lead {
+  font-size: .96rem;
+  color: var(--text2);
+  line-height: 2.1;
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+/* ── ABOUT ── */
+.about { background: var(--paper); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: start;
+}
+.about-quote {
+  background: var(--cream);
+  border-left: 5px solid var(--red);
+  padding: 28px 32px;
+  border-radius: 0 16px 16px 0;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.about-body p {
+  font-size: .94rem;
+  color: var(--text2);
+  line-height: 2;
+  margin-bottom: 16px;
+}
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ── NUMBERS ── */
+.nums { background: var(--cream); }
+.nums-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+.num-card {
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+.num-label {
+  font-family: 'Space Mono', monospace;
+  font-size: .66rem;
+  letter-spacing: .14em;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.num-val {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.num-val small { display: block; font-size: .8rem; font-family: 'Zen Kaku Gothic New', sans-serif; color: var(--text3); margin-top: 4px; }
+@media (max-width: 720px) { .nums-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── PILLARS ── */
+.pillars { background: var(--paper); }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+.pillar-card {
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+.pillar-card.c-1 { background: #FFE6E2; }
+.pillar-card.c-2 { background: #DDE5FA; }
+.pillar-card.c-3 { background: #FEF3CC; }
+.pillar-num {
+  font-family: 'Yusei Magic', sans-serif;
+  font-size: 1.8rem;
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.pillar-card.c-2 .pillar-num { color: var(--blue); }
+.pillar-card.c-3 .pillar-num { color: var(--ink); }
+.pillar-title { font-size: 1.1rem; font-weight: 900; margin-bottom: 12px; color: var(--ink); }
+.pillar-desc { font-size: .86rem; color: var(--text2); line-height: 1.95; }
+@media (max-width: 900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+/* ── SPEAKERS ── */
+.speakers { background: var(--cream); }
+.spk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+.spk-card {
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 26px 22px;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+.spk-card.confirmed {
+  background: linear-gradient(135deg, var(--paper), #FFF5DC);
+}
+.spk-card.tbd { opacity: .82; }
+.spk-label {
+  font-family: 'Space Mono', monospace;
+  font-size: .64rem;
+  letter-spacing: .14em;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.spk-card.tbd .spk-label { color: var(--text3); }
+.spk-name { font-size: 1.04rem; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.spk-role { font-size: .8rem; color: var(--text3); line-height: 1.65; }
+@media (max-width: 900px) { .spk-grid { grid-template-columns: 1fr; } }
+
+/* ── SCHEDULE ── */
+.schedule { background: var(--paper); }
+.sched-banner {
+  background: #FFE6E2;
+  border: 2px solid var(--red);
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 28px;
+  font-size: .82rem;
+  color: var(--ink);
+  line-height: 1.7;
+  font-weight: 700;
+}
+.sched-banner strong { color: var(--red-deep); }
+.sched-list { display: grid; gap: 12px; }
+.sched-row {
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 150px 1fr 130px;
+  gap: 20px;
+  align-items: center;
+}
+.sched-time { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--red-deep); font-size: .88rem; }
+.sched-content { font-size: .9rem; font-weight: 800; color: var(--ink); line-height: 1.5; }
+.sched-content small { display: block; font-weight: 400; color: var(--text2); font-size: .78rem; margin-top: 4px; }
+.sched-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: .64rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  letter-spacing: .06em;
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+}
+.sched-tag.pitch { background: var(--red); color: #fff; }
+.sched-tag.session { background: var(--blue); color: #fff; }
+.sched-tag.workshop { background: var(--yellow); color: var(--ink); }
+.sched-note {
+  font-size: .76rem;
+  color: var(--text3);
+  margin-top: 18px;
+  font-style: italic;
+}
+@media (max-width: 720px) {
+  .sched-row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ── SCHOLARSHIP ── */
+.scholarship { background: var(--cream); }
+.sch-card {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  padding: 36px;
+  box-shadow: 8px 8px 0 var(--ink);
+  position: relative;
+}
+.sch-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px 20px;
+  margin: 20px 0;
+}
+.sch-key {
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: .04em;
+  padding-top: 4px;
+}
+.sch-val { font-size: .9rem; color: var(--ink); line-height: 1.75; font-weight: 700; }
+.sch-sub {
+  background: var(--cream);
+  border-left: 4px solid var(--red);
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin-top: 20px;
+  font-size: .88rem;
+  color: var(--ink);
+  line-height: 1.85;
+}
+.sch-sub strong { color: var(--red-deep); font-size: 1rem; display: block; margin-bottom: 6px; }
+@media (max-width: 720px) {
+  .sch-grid { grid-template-columns: 1fr; }
+  .sch-key { padding-top: 0; }
+}
+
+/* ── VENUE ── */
+.venue { background: var(--paper); }
+.venue-placeholder {
+  background: var(--cream);
+  border: 3px dashed var(--ink);
+  border-radius: 22px;
+  padding: 56px 32px;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.venue-soon {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: .16em;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.venue-h { font-family: 'Noto Serif JP', serif; font-size: 1.4rem; font-weight: 900; color: var(--ink); margin-bottom: 14px; }
+.venue-p { font-size: .88rem; color: var(--text2); line-height: 1.9; }
+
+/* ── ORG (sponsors/collaborators) ── */
+.org { background: var(--cream); }
+.org-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+.org-card {
+  background: var(--paper);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+}
+.org-role { font-family: 'Space Mono', monospace; font-size: .68rem; letter-spacing: .14em; color: var(--red); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+.org-status {
+  display: inline-block;
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: .7rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.org-status.open { background: var(--red); color: #fff; border-color: var(--red-deep); }
+.org-desc { font-size: .84rem; color: var(--text2); line-height: 1.85; }
+@media (max-width: 900px) { .org-grid { grid-template-columns: 1fr; } }
+
+/* ── ABOUT NEXY ── */
+.about-nexy { background: var(--paper); }
+.an-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 28px;
+}
+.an-card {
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+}
+.an-card.mission { background: linear-gradient(135deg, #FFE6E2, var(--cream)); }
+.an-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: .66rem;
+  letter-spacing: .14em;
+  color: var(--red);
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.an-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.an-body { font-size: .85rem; color: var(--text2); line-height: 1.95; }
+.an-name { font-size: 1.1rem; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+.an-role { font-size: .78rem; color: var(--red-deep); font-weight: 800; margin-bottom: 16px; }
+@media (max-width: 900px) { .an-grid { grid-template-columns: 1fr; } }
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: linear-gradient(135deg, var(--red), var(--red-deep));
+  color: #fff;
+  padding: 96px 6%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw; height: 70vw;
+  max-width: 720px; max-height: 720px;
+  background: radial-gradient(circle, rgba(242,197,71,.45), transparent 60%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+.cta-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: .8rem;
+  letter-spacing: .22em;
+  color: var(--yellow);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.cta-final h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+.cta-final p { font-size: .95rem; color: rgba(255,255,255,.94); line-height: 2; margin-bottom: 36px; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.cta-final .btn-primary { background: var(--yellow); color: var(--ink); border-color: var(--ink); box-shadow: 0 5px 0 var(--ink); }
+.cta-final .btn-primary:hover { box-shadow: 0 3px 0 var(--ink); background: #fff; }
+.cta-final .btn-outline { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.7); }
+.cta-final .btn-outline:hover { background: #fff; color: var(--red-deep); border-color: #fff; }
+.cta-note { font-size: .76rem; color: rgba(255,255,255,.7); margin-top: 8px; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.5);
+  padding: 56px 6% 28px;
+  font-size: .8rem;
+}
+.f-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 28px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.f-brand-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--yellow);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.f-brand-p { font-size: .78rem; color: rgba(255,255,255,.6); line-height: 1.85; }
+.f-h { font-size: .72rem; letter-spacing: .14em; color: var(--yellow); font-weight: 800; margin-bottom: 14px; text-transform: uppercase; }
+.f-list { list-style: none; padding: 0; }
+.f-list li { padding: 4px 0; font-size: .76rem; color: rgba(255,255,255,.7); line-height: 1.65; }
+.f-list li strong { color: rgba(255,255,255,.45); font-size: .68rem; display: block; }
+.f-list a { color: rgba(255,255,255,.7); text-decoration: none; }
+.f-list a:hover { color: var(--yellow); }
+.f-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: .72rem;
+  color: rgba(255,255,255,.4);
+}
+.f-bottom a { color: rgba(255,255,255,.5); text-decoration: none; margin-right: 14px; }
+.f-bottom a:hover { color: var(--yellow); }
+@media (max-width: 900px) {
+  .f-grid { grid-template-columns: 1fr 1fr; }
+  .f-brand { grid-column: 1 / -1; }
+}
+
+/* canvas effect */
+#sparks { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: .5; }
+.announce-bar, .nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 1; }
+.announce-bar, .nav { z-index: 250; }
+
+.reveal { opacity: 0; transform: translateY(22px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+@media (max-width: 720px) {
+  .nav { top: 56px !important; }
+  .hero { padding: 140px 5% 56px; }
+  .section { padding: 64px 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- canvas effect (energy sparks) -->
+<canvas id="sparks" aria-hidden="true"></canvas>
+
+<!-- ANNOUNCE BAR -->
+<a href="#apply" class="announce-bar">
+  <span class="ab-pulse"></span>
+  <span><strong>NEXY SUMMIT 2026</strong>　— 2026年夏・東京で開催決定</span>
+  <span class="ab-cta">詳細を見る →</span>
+</a>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo"><a href="index.html"><span class="lg-em">NEXY</span> SUMMIT 2026</a></div>
+  <ul class="nav-links">
+    <li><a href="#about">コンセプト</a></li>
+    <li><a href="#pillars">3つの体験</a></li>
+    <li><a href="#speakers">登壇者</a></li>
+    <li><a href="#schedule">タイムテーブル</a></li>
+    <li><a href="#scholarship">スカラシップ</a></li>
+    <li><a href="#org">協賛</a></li>
+    <li><a href="#apply" class="nav-cta">参加申込</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about">コンセプト</a>
+  <a href="#pillars">3つの体験</a>
+  <a href="#speakers">登壇者</a>
+  <a href="#schedule">タイムテーブル</a>
+  <a href="#scholarship">スカラシップ</a>
+  <a href="#org">協賛</a>
+  <a href="#apply">参加申込</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-meta-row">
+        <strong>2026 SUMMER</strong><span class="mr-sep">/</span><strong>TOKYO</strong><span class="mr-sep">/</span><strong>高校生1,000人</strong>
+      </div>
+      <h1 class="hero-title-main">
+        <span class="br">NEXY</span>
+        <span class="br">SUMMIT 2026</span>
+      </h1>
+      <div class="hero-pills">
+        <span class="hero-pill">プレゼン大会</span>
+        <span class="hero-pill">登壇セッション</span>
+        <span class="hero-pill">ワークショップ</span>
+      </div>
+      <div class="hero-catch">やりたいを、<br>ぶつけに来い。</div>
+      <div class="hero-btns">
+        <a href="#apply" class="btn-primary">参加申込はこちら →</a>
+        <a href="#pillars" class="btn-outline">プログラムを見る</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="img/summit/summit_hero.jpg" alt="NEXY SUMMIT 2026 — やりたいを、ぶつけに来い。">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-inner">
+    <span class="section-label reveal">Concept</span>
+    <h2 class="section-title reveal">『やりたい』を、<em>ひとりにしない</em>。</h2>
+    <div class="about-grid">
+      <div class="about-quote reveal">
+        全国の高校生1,000人が、<br>
+        8時間かけて、『やりたい』を<br>
+        交換し合う。
+      </div>
+      <div class="about-body reveal" style="transition-delay:.08s">
+        <p>NEXY Summit は、全国の高校生1,000人が自分の『やりたい』を持ち寄って、ぶつけて、つながる1日。1人で抱えていたアイデアが、誰かと出会うことで動き出す。プレゼン大会も、登壇セッションも、ワークショップも、すべてそのための仕掛けです。</p>
+        <p>主催する学生団体NEXYは2026年2月設立。深夜の語り場・朝食会・Podcast・サミットを通じて、『やりたい』を持つ高校生を一人にしないコミュニティを運営しています。</p>
+        <p>大人ゲストも来ます。でも主役は高校生。<strong style="color:var(--red-deep)">高校生同士が背中を押し合うサミット</strong>を作ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="section nums">
+  <div class="section-inner">
+    <span class="section-label reveal">By the numbers</span>
+    <h2 class="section-title reveal">数字で見る、<em>サミット</em>。</h2>
+    <div class="nums-grid">
+      <div class="num-card reveal"><div class="num-label">Participants</div><div class="num-val">1,000<small>人</small></div></div>
+      <div class="num-card reveal" style="transition-delay:.06s"><div class="num-label">Duration</div><div class="num-val">8<small>時間</small></div></div>
+      <div class="num-card reveal" style="transition-delay:.12s"><div class="num-label">Date</div><div class="num-val">2026<small>夏（DATE TBA）</small></div></div>
+      <div class="num-card reveal" style="transition-delay:.18s"><div class="num-label">Venue</div><div class="num-val">TOKYO<small>VENUE TBA</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section pillars" id="pillars">
+  <div class="section-inner">
+    <span class="section-label reveal">3 Pillars</span>
+    <h2 class="section-title reveal">この1日で手にする、<em>3つの体験</em>。</h2>
+    <p class="section-lead reveal">プレゼン大会・登壇セッション・ワークショップの3本柱。聞いて、対話して、手を動かす。1日で『やりたい』が動き出すように設計しています。</p>
+    <div class="pillars-grid">
+      <div class="pillar-card c-1 reveal">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">プレゼン大会</div>
+        <div class="pillar-desc">事前選考を勝ち上がった全国の高校生が、自分の『やりたい』を1,000人の前でぶつける。午前・午後の2部制。各登壇者7分プレゼン＋3分Q&A。来場者投票＋審査員投票で優勝者決定。次のアクションへの支援も用意。</div>
+      </div>
+      <div class="pillar-card c-2 reveal" style="transition-delay:.08s">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">登壇セッション</div>
+        <div class="pillar-desc">第一線で活動する10代の表現者・若手起業家・大人ゲストとのセッション。聞いて終わらず、その場で質問できる時間も用意。「あの人にいま聞きたい」を実現する場。</div>
+      </div>
+      <div class="pillar-card c-3 reveal" style="transition-delay:.16s">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">ワークショップ</div>
+        <div class="pillar-desc">参加型の体験コンテンツ。テーマ別の小グループで、手を動かしながら『やりたい』を形にする実践型企画。起業・表現・キャリア・コミュニティ等のテーマを予定。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="section speakers" id="speakers">
+  <div class="section-inner">
+    <span class="section-label reveal">Speakers</span>
+    <h2 class="section-title reveal">第一線の<em>登壇者</em>が、勢揃い。</h2>
+    <p class="section-lead reveal">サミットには、いま動き続けている学生・若手の表現者・起業家・支援者が登壇。「あの人に直接話したかった」を実現する場にします。<br>※ 登壇者は順次発表します。</p>
+    <div class="spk-grid">
+      <div class="spk-card confirmed reveal">
+        <div class="spk-label">CONFIRMED</div>
+        <div class="spk-name">近藤 にこる</div>
+        <div class="spk-role">edfusion ／ 10代の表現者</div>
+      </div>
+      <div class="spk-card confirmed reveal" style="transition-delay:.06s">
+        <div class="spk-label">CONFIRMED</div>
+        <div class="spk-name">野田 じゅり</div>
+        <div class="spk-role">jyunihitoeno ／ 10代の表現者</div>
+      </div>
+      <div class="spk-card tbd reveal" style="transition-delay:.12s">
+        <div class="spk-label">COMING SOON</div>
+        <div class="spk-name">大人ゲスト枠</div>
+        <div class="spk-role">追加登壇者を順次発表</div>
+      </div>
+      <div class="spk-card tbd reveal" style="transition-delay:.18s">
+        <div class="spk-label">COMING SOON</div>
+        <div class="spk-name">若手起業家枠</div>
+        <div class="spk-role">追加登壇者を順次発表</div>
+      </div>
+      <div class="spk-card tbd reveal" style="transition-delay:.24s">
+        <div class="spk-label">COMING SOON</div>
+        <div class="spk-name">支援者・実践者枠</div>
+        <div class="spk-role">追加登壇者を順次発表</div>
+      </div>
+      <div class="spk-card tbd reveal" style="transition-delay:.3s">
+        <div class="spk-label">COMING SOON</div>
+        <div class="spk-name">追加登壇者</div>
+        <div class="spk-role">順次発表</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="section schedule" id="schedule">
+  <div class="section-inner">
+    <span class="section-label reveal">Schedule</span>
+    <h2 class="section-title reveal">10:00 - 18:00 / <em>8時間</em>の構成。</h2>
+    <p class="section-lead reveal">プレゼン大会・登壇セッション・ワークショップの3本柱を、5スロットで展開。プレゼン大会は午前と午後の2部制。確定日程は2026年春頃を予定して発表します。</p>
+    <div class="sched-banner reveal">※ <strong>開催日は調整中</strong>です。2026年夏の確定日程（◯月◯日）は決定次第このページで発表します。タイムテーブルは想定構成。</div>
+    <div class="sched-list">
+      <div class="sched-row reveal"><div class="sched-time">10:00 - 10:30</div><div class="sched-content">開場・受付・OPENING SESSION</div><div><span class="sched-tag">Open</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.04s"><div class="sched-time">11:00 - 12:30</div><div class="sched-content">プレゼン大会 ① 午前の部<small>各登壇者7分プレゼン＋3分Q&A</small></div><div><span class="sched-tag pitch">Pitch ①</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.08s"><div class="sched-time">12:30 - 13:30</div><div class="sched-content">ランチタイム（各自）<small>コミュニティブースは引き続きオープン</small></div><div><span class="sched-tag">Lunch</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.12s"><div class="sched-time">13:30 - 14:30</div><div class="sched-content">登壇セッション ①<small>「いまを生きる10代の表現者たち」</small></div><div><span class="sched-tag session">Session ①</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.16s"><div class="sched-time">14:30 - 16:00</div><div class="sched-content">プレゼン大会 ② 午後の部 ＋ 審査</div><div><span class="sched-tag pitch">Pitch ②</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.2s"><div class="sched-time">16:00 - 17:00</div><div class="sched-content">ワークショップ／登壇セッション ②<small>並行開催</small></div><div><span class="sched-tag workshop">Workshop</span></div></div>
+      <div class="sched-row reveal" style="transition-delay:.24s"><div class="sched-time">17:00 - 18:00</div><div class="sched-content">表彰式・クロージング・ネットワーキング</div><div><span class="sched-tag">Close</span></div></div>
+    </div>
+    <div class="sched-note">※ 2026年5月時点の予定。タイムテーブル・スロット内容は変更の可能性があります。</div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIP -->
+<section class="section scholarship" id="scholarship">
+  <div class="section-inner">
+    <span class="section-label reveal">Scholarship</span>
+    <h2 class="section-title reveal">首都圏外の高校生に、<em>交通費スカラシップ</em>。</h2>
+    <p class="section-lead reveal">『やりたい』に物理的距離は関係ない。一都七県以外から参加する高校生に、交通費・宿泊費の一部を補助するスカラシップ枠を用意します。</p>
+    <div class="sch-card reveal">
+      <div class="sch-grid">
+        <div class="sch-key">対象</div><div class="sch-val">一都七県以外の都道府県から参加する高校生</div>
+        <div class="sch-key">補助内容</div><div class="sch-val">交通費（往復実費の一部）／宿泊費（必要に応じて）</div>
+        <div class="sch-key">応募方法</div><div class="sch-val">参加申込時に「スカラシップ希望」を選択</div>
+        <div class="sch-key">選考</div><div class="sch-val">エントリーシート審査＋応募順</div>
+        <div class="sch-key">採択数</div><div class="sch-val">決定次第このページに掲載</div>
+      </div>
+      <div class="sch-sub">
+        <strong>地方の高校生を、東京まで届ける。</strong>
+        交通費・宿泊費の一部を補助することで、東京以外に住む高校生にも、サミットの場で『やりたい』をぶつける機会を開きます。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section class="section venue" id="venue">
+  <div class="section-inner">
+    <span class="section-label reveal">Venue</span>
+    <h2 class="section-title reveal">会場：<em>東京都内</em>。</h2>
+    <div class="venue-placeholder reveal">
+      <div class="venue-soon">VENUE COMING SOON</div>
+      <div class="venue-h">会場 調整中</div>
+      <div class="venue-p">会場は現在調整中です。確定次第このページで発表します。<br>東京都内の主要駅徒歩圏内を予定しています。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ORG -->
+<section class="section org" id="org">
+  <div class="section-inner">
+    <span class="section-label reveal">Partners</span>
+    <h2 class="section-title reveal">共催・特別協賛・<em>協力パートナー</em>。</h2>
+    <p class="section-lead reveal">サミットを共に作るパートナー企業・団体を募集中です。決定次第このページで発表します。協賛のお問い合わせは <a href="mailto:info@nexyhub.jp" style="color:var(--red-deep);font-weight:800;">info@nexyhub.jp</a> まで。</p>
+    <div class="org-grid">
+      <div class="org-card reveal">
+        <div class="org-role">共催</div>
+        <span class="org-status">Coming Soon</span>
+        <div class="org-desc">サミットを学生団体NEXYと共に企画・運営するパートナー。</div>
+      </div>
+      <div class="org-card reveal" style="transition-delay:.06s">
+        <div class="org-role">特別協賛</div>
+        <span class="org-status">Coming Soon</span>
+        <div class="org-desc">サミットの開催を主たる支援で支える企業。</div>
+      </div>
+      <div class="org-card reveal" style="transition-delay:.12s">
+        <div class="org-role">協力</div>
+        <span class="org-status open">募集中</span>
+        <div class="org-desc">企業・教育機関・財団・自治体・メディア等のパートナーを募集しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT NEXY -->
+<section class="section about-nexy">
+  <div class="section-inner">
+    <span class="section-label reveal">Organizer</span>
+    <h2 class="section-title reveal">主催：<em>学生団体 NEXY</em>。</h2>
+    <div class="an-grid">
+      <div class="an-card mission reveal">
+        <div class="an-eyebrow">Our Mission</div>
+        <div class="an-title">『やりたい』を、<br>ひとりにしない。</div>
+        <div class="an-body">NEXYは、高校生の『やりたい』が孤立しがちな現状に対して、コミュニティと場をつくっている学生団体です。深夜の語り場、朝食会、Podcast、そしてサミット。<strong style="color:var(--red-deep)">学生のためだけの、学生がつくる動きです。</strong>2026年2月設立。</div>
+      </div>
+      <div class="an-card reveal" style="transition-delay:.08s">
+        <div class="an-eyebrow">Founder</div>
+        <div class="an-name">小助川 晴大</div>
+        <div class="an-role">NEXY 代表 ／ 高校2年生</div>
+        <div class="an-body">2005年生まれ。神奈川県横浜市出身、現在は富山県富山市に単身移住。孫正義育英財団 3期生。WRO世界大会7位（史上最年少）／Startup Jr.大賞／N高起業部1位／リクルート地方創生インターン最優秀賞 など。「やりたいを、ひとりにしない」を掲げ、NEXYを2026年2月に立ち上げる。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-final" id="apply">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">JOIN US</div>
+    <h2>『やりたい』を、<br>持ってきてくれ。</h2>
+    <p>
+      2026年夏、東京。1,000人の高校生と、本気の1日。<br>
+      参加費無料／地方学生スカラシップあり。<br>
+      申込フォームは開催日程確定後に公開予定です。
+    </p>
+    <div class="cta-btns">
+      <a href="#apply" class="btn-primary">参加申込はこちら →</a>
+      <a href="mailto:info@nexyhub.jp" class="btn-outline">スポンサーお問合せ</a>
+    </div>
+    <div class="cta-note">※ 申込フォームは開催日程確定後に公開予定です</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="f-grid">
+    <div class="f-brand">
+      <div class="f-brand-title">NEXY SUMMIT 2026</div>
+      <div class="f-brand-p">「やりたい」を、ひとりにしない。<br>2026年夏、東京で開催される高校生1,000人規模のサミット。</div>
+    </div>
+    <div>
+      <div class="f-h">Summit Info</div>
+      <ul class="f-list">
+        <li><strong>Date</strong>2026 夏 / TBA</li>
+        <li><strong>Venue</strong>東京都内 / TBA</li>
+        <li><strong>Audience</strong>全国の高校生</li>
+        <li><strong>Capacity</strong>1,000名</li>
+        <li><strong>Fee</strong>無料</li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-h">Organization</div>
+      <ul class="f-list">
+        <li><strong>主催</strong>学生団体 NEXY</li>
+        <li><strong>共催</strong>Coming Soon</li>
+        <li><strong>特別協賛</strong>Coming Soon</li>
+        <li><strong>協力</strong>募集中</li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-h">Contact</div>
+      <ul class="f-list">
+        <li><strong>Email</strong><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></li>
+        <li><strong>Web</strong><a href="index.html">nexyhub.jp</a></li>
+        <li><strong>Instagram</strong><a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener">@nexy.hub</a></li>
+        <li><strong>X</strong><a href="https://x.com/nexy_hub" target="_blank" rel="noopener">@nexy_hub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 NEXY</span>
+    <div>
+      <a href="index.html">TOP</a>
+      <a href="news.html">お知らせ</a>
+      <a href="index.html#contact">お問い合わせ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+if (burger) {
+  burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+}
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.transition = 'opacity .65s ease, transform .65s ease';
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  obs.observe(el);
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* energetic sparks: blue/red/yellow particles with subtle motion */
+(function(){
+  const c = document.getElementById('sparks');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, dots=[], dashes=[];
+  const COLORS = ['#E63A2D','#2E5BCF','#F2C547','#E84A8E'];
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for(let i=0;i<28;i++){
+    dots.push({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*2.2+1.2,
+      vy: -(Math.random()*.22+.08),
+      vx: (Math.random()-.5)*.18,
+      a: Math.random()*.45+.2,
+      ph: Math.random()*Math.PI*2,
+      col: COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  // diagonal brush-stroke dashes drifting
+  for(let i=0;i<5;i++){
+    dashes.push({
+      x: Math.random()*W, y: Math.random()*H,
+      len: Math.random()*60+40,
+      ang: (Math.random()-.5)*Math.PI*.4,
+      vx: (Math.random()-.5)*.4,
+      vy: -(Math.random()*.18+.08),
+      a: Math.random()*.22+.12,
+      col: COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t+=.016;
+    dots.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.y<-10){ p.y=H+10; p.x=Math.random()*W; }
+      if(p.x<-10) p.x=W+10;
+      if(p.x>W+10) p.x=-10;
+      const aa=p.a*(.6+.4*Math.sin(t*1.4+p.ph));
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col;
+      ctx.globalAlpha=aa;
+      ctx.fill();
+    });
+    dashes.forEach(d=>{
+      d.x+=d.vx; d.y+=d.vy;
+      if(d.y<-30){ d.y=H+30; d.x=Math.random()*W; }
+      if(d.x<-50) d.x=W+50;
+      if(d.x>W+50) d.x=-50;
+      ctx.save();
+      ctx.translate(d.x, d.y);
+      ctx.rotate(d.ang);
+      ctx.globalAlpha=d.a;
+      ctx.strokeStyle=d.col;
+      ctx.lineWidth=4;
+      ctx.lineCap='round';
+      ctx.beginPath();
+      ctx.moveTo(-d.len/2, 0);
+      ctx.lineTo(d.len/2, 0);
+      ctx.stroke();
+      ctx.restore();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
