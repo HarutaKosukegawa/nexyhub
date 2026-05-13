@@ -366,21 +366,16 @@ img { max-width: 100%; display: block; }
   margin-bottom: 48px;
 }
 
-/* ── STORY ── */
+/* ── STORY (redesigned) ── */
 .story { background: var(--paper3); }
-.story-quote {
-  background: var(--paper);
-  border-left: 5px solid var(--orange);
-  padding: 28px 32px;
-  border-radius: 0 16px 16px 0;
-  margin-top: 12px;
-  font-size: .96rem;
-  line-height: 2.1;
-  color: var(--text2);
-  font-family: 'Kaisei Decol', serif;
-  font-weight: 400;
-}
-.story-quote strong { color: var(--orange-deep); font-weight: 700; }
+
+/* story redesign */
+.story-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 28px 0 32px; }
+.story-card { background: var(--cream); border: 2px solid var(--text); border-radius: 16px; padding: 24px 22px; text-align: center; box-shadow: 4px 4px 0 var(--text); }
+.story-card-icon { font-size: 1.5rem; color: var(--orange); margin-bottom: 12px; line-height: 1; }
+.story-card-text { font-size: .95rem; line-height: 1.7; font-weight: 800; color: var(--text); }
+.story-quote { background: var(--paper); border-left: 5px solid var(--orange); padding: 24px 32px; border-radius: 0 16px 16px 0; font-family: 'Kaisei Decol', serif; font-size: 1.1rem; font-weight: 700; color: var(--orange-deep); text-align: center; line-height: 1.8; }
+@media(max-width:720px){ .story-cards{grid-template-columns:1fr;} }
 
 /* ── WHAT ── */
 .what { background: var(--paper); }
@@ -757,14 +752,19 @@ img { max-width: 100%; display: block; }
   .section { padding: 64px 5%; }
 }
 
+/* canvas effect */
+#confetti { opacity: .55; }
+.announce-bar, .nav, .mobile-nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
 
+<canvas id="confetti" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+
 <!-- ANNOUNCE BAR -->
-<a href="#cities" class="announce-bar">
+<a href="#cta" class="announce-bar">
   <span class="ab-pulse"></span>
-  <span><strong>開催地・募集中</strong>　— 「自分の地元で開いてほしい」リクエスト受付中</span>
+  <span><strong>地方から一歩を踏み出そう</strong>　— 次回開催情報はInstagramで先行配信</span>
 </a>
 
 <!-- NAV -->
@@ -776,7 +776,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#timeline">4時間の中身</a></li>
     <li><a href="#target">来てほしい人</a></li>
     <li><a href="#past">過去開催</a></li>
-    <li><a href="#cities">開催予定</a></li>
+    
     <li><a href="#fee">参加費</a></li>
     <li><a href="#cta" class="nav-cta">参加する</a></li>
   </ul>
@@ -784,7 +784,7 @@ img { max-width: 100%; display: block; }
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="#story">なぜ</a><a href="#what">何をする</a><a href="#timeline">4時間の中身</a>
-  <a href="#target">来てほしい人</a><a href="#past">過去開催</a><a href="#cities">開催予定</a>
+  <a href="#target">来てほしい人</a><a href="#past">過去開催</a>
   <a href="#fee">参加費</a><a href="#cta">参加する</a>
 </div>
 
@@ -798,10 +798,9 @@ img { max-width: 100%; display: block; }
         <span class="em-green">地方</span>から始めよう。
       </h1>
       <p class="hero-sub">
-        首都圏以外の地方主要都市を巡回する、<br>
+        地方主要都市を巡回する、<br>
         半分ワーク・半分交流の<strong>4時間</strong>。<br>
-        すでに動いている人も、これから動きたい人も、<br>
-        同じテーブルで「やってみたい」を形にしていく場です。
+        「やってみたい」を、地元で形にしよう。
       </p>
       <div class="hero-meta">
         <div class="hero-meta-item"><span class="hero-meta-label">FORMAT</span><span class="hero-meta-val">4時間（ワーク2h + 交流2h）</span></div>
@@ -823,15 +822,23 @@ img { max-width: 100%; display: block; }
 <section class="section story" id="story">
   <div class="section-inner">
     <span class="section-label reveal">Story</span>
-    <h2 class="section-title reveal">なぜ、<em>地方で始めるのか</em></h2>
-    <p class="section-lead reveal">
-      2026年5月10日、徳島で第1回「よいしょ！徳島」を開催したとき、地方にも挑戦意欲のある若者がたくさんいることを実感しました。
-    </p>
-    <div class="story-quote reveal">
-      一方で、「すでに動いている人」だけのコミュニティは、<br>
-      <strong>「まだ動けていないけれどやりたい人」を遠ざけてしまう。</strong><br>
-      地方で「最初の一歩」を踏み出すには、もっと低い段差が必要だと感じました。<br><br>
-      だから、「よいしょ」シリーズを始めます。
+    <h2 class="section-title reveal">地方こそ、<em>日本の宝</em>。</h2>
+    <div class="story-cards reveal">
+      <div class="story-card">
+        <div class="story-card-icon">✦</div>
+        <div class="story-card-text">東京じゃない場所にも、<br>燃えている人はいる。</div>
+      </div>
+      <div class="story-card">
+        <div class="story-card-icon">✦</div>
+        <div class="story-card-text">ただ、その火を<br>見つけてくれる人が少ないだけ。</div>
+      </div>
+      <div class="story-card">
+        <div class="story-card-icon">✦</div>
+        <div class="story-card-text">地方で動こうとしているあなたを、<br>地方で応援したい。</div>
+      </div>
+    </div>
+    <div class="story-quote reveal" style="transition-delay:.1s">
+      地元から、世界を変える一歩を。
     </div>
   </div>
 </section>
@@ -840,28 +847,28 @@ img { max-width: 100%; display: block; }
 <section class="section what" id="what">
   <div class="section-inner">
     <span class="section-label reveal">What we do</span>
-    <h2 class="section-title reveal">よいしょ〇〇！！<em>シリーズ</em>とは</h2>
-    <p class="section-lead reveal">「行動の最初の一段差」を下げる、4時間のローカル・ワーク＆交流イベント。</p>
+    <h2 class="section-title reveal">「やってみたい」を、<em>4時間</em>で形に</h2>
+    <p class="section-lead reveal">行動の最初の一段差を下げる、ローカル・ワーク＆交流イベント。</p>
     <div class="what-grid">
       <div class="what-card reveal">
         <div class="what-card-num">01</div>
-        <div class="what-card-title">半分ワーク／半分交流</div>
-        <div class="what-card-desc">前半2時間は「自分の中身」を可視化するワーク。後半2時間は「他者の中身」と混ざる交流タイム。両方そろって、初めて「やってみたい」が言葉になる。</div>
+        <div class="what-card-title">ワーク 2h ＋ 交流 2h</div>
+        <div class="what-card-desc">前半で「自分」を可視化し、後半で「他者」と混ざる。両方そろって言葉になる。</div>
       </div>
       <div class="what-card reveal" style="transition-delay:.06s">
         <div class="what-card-num">02</div>
-        <div class="what-card-title">地方主要都市を巡回</div>
-        <div class="what-card-desc">徳島・富山・福岡・札幌・仙台・名古屋・金沢・広島・那覇など、首都圏以外の主要都市を順次まわります。地元から動き出せる場を、地元で。</div>
+        <div class="what-card-title">地方都市を巡回</div>
+        <div class="what-card-desc">首都圏以外の主要都市を順次。地元から動き出せる場を、地元で。</div>
       </div>
       <div class="what-card reveal" style="transition-delay:.12s">
         <div class="what-card-num">03</div>
-        <div class="what-card-title">「動いていない」も歓迎</div>
-        <div class="what-card-desc">実績や肩書きは不要。「何かやりたい」と思っている気持ちがあれば、それで十分。すでに動いている人と同じテーブルで、フラットに語り合えます。</div>
+        <div class="what-card-title">実績・肩書き不要</div>
+        <div class="what-card-desc">「やりたい」気持ちがあれば十分。動いている人と同じテーブルで。</div>
       </div>
       <div class="what-card reveal" style="transition-delay:.18s">
         <div class="what-card-num">04</div>
         <div class="what-card-title">地域の食を囲んで</div>
-        <div class="what-card-desc">徳島では阿波尾鶏・玄米おむすび。次の都市では、また別の地域食材を。食を囲むことで、場があたたまる。</div>
+        <div class="what-card-desc">その土地の食材をシェア。食を囲むことで、場があたたまる。</div>
       </div>
     </div>
   </div>
@@ -889,27 +896,20 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">For Who</span>
     <h2 class="section-title reveal">こんな<em>あなた</em>に来てほしい</h2>
-    <p class="section-lead reveal">肩書きも実績も関係ない。「何かやってみたい」の気持ちがあれば、それで十分です。</p>
+    <p class="section-lead reveal">実績・肩書き不要。「何かやってみたい」気持ちがあれば、それで十分。</p>
     <div class="tag-cloud reveal">
       <span class="tag t-o">何か挑戦したい</span>
-      <span class="tag t-g">やりたいけど一歩踏み出せない</span>
-      <span class="tag t-y">同世代の挑戦者と出会いたい</span>
+      <span class="tag t-g">一歩踏み出せない</span>
+      <span class="tag t-y">同世代と出会いたい</span>
       <span class="tag t-o">地元で動きたい</span>
-      <span class="tag t-g">自分の在り方を見つけたい</span>
-      <span class="tag t-y">学校・職場の外で本音で話したい</span>
-      <span class="tag t-o">視野を広げたい</span>
-      <span class="tag t-g">将来について考え始めている</span>
-      <span class="tag t-y">起業に興味がある</span>
+      <span class="tag t-g">自分の軸を見つけたい</span>
+      <span class="tag t-y">視野を広げたい</span>
     </div>
     <div class="age-grid">
       <div class="age-card reveal"><div class="label">JR HIGH</div><div class="age-card-h">中学生</div><div class="age-card-l">歓迎</div></div>
-      <div class="age-card main reveal" style="transition-delay:.06s"><div class="label">HIGH SCHOOL</div><div class="age-card-h">高校生</div><div class="age-card-l">メインターゲット</div></div>
-      <div class="age-card main reveal" style="transition-delay:.12s"><div class="label">UNIVERSITY</div><div class="age-card-h">大学生</div><div class="age-card-l">メインターゲット</div></div>
+      <div class="age-card main reveal" style="transition-delay:.06s"><div class="label">HIGH SCHOOL</div><div class="age-card-h">高校生</div><div class="age-card-l">MAIN</div></div>
+      <div class="age-card main reveal" style="transition-delay:.12s"><div class="label">UNIVERSITY</div><div class="age-card-h">大学生</div><div class="age-card-l">MAIN</div></div>
       <div class="age-card reveal" style="transition-delay:.18s"><div class="label">PROFESSIONAL</div><div class="age-card-h">社会人</div><div class="age-card-l">歓迎</div></div>
-    </div>
-    <div class="target-note reveal" style="transition-delay:.24s">
-      「メインは高校生〜大学生」ですが、中学生・社会人の参加も歓迎します。
-      学生と同じ目線で対話できる方であれば、年齢は問いません。
     </div>
   </div>
 </section>
@@ -935,32 +935,6 @@ img { max-width: 100%; display: block; }
         <div class="past-arrow">実施報告を読む →</div>
       </div>
     </a>
-  </div>
-</section>
-
-<!-- CITIES -->
-<section class="section cities" id="cities">
-  <div class="section-inner">
-    <span class="section-label reveal">Cities</span>
-    <h2 class="section-title reveal">開催<em>予定都市</em></h2>
-    <p class="section-lead reveal">首都圏以外の地方主要都市を巡回します。次回開催地は、現在調整中。</p>
-    <div class="cities-grid">
-      <div class="city-card done reveal"><div class="city-name">徳島</div><div class="city-status">2026.05.10 開催済</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.04s"><div class="city-name">富山</div><div class="city-status">調整中</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.08s"><div class="city-name">福岡</div><div class="city-status">調整中</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.12s"><div class="city-name">札幌</div><div class="city-status">候補</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.16s"><div class="city-name">仙台</div><div class="city-status">候補</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.2s"><div class="city-name">名古屋</div><div class="city-status">候補</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.24s"><div class="city-name">金沢</div><div class="city-status">候補</div></div>
-      <div class="city-card planning reveal" style="transition-delay:.28s"><div class="city-name">広島</div><div class="city-status">候補</div></div>
-    </div>
-    <div class="cities-cta reveal" style="transition-delay:.32s">
-      <div class="cities-cta-text">
-        <div class="cities-cta-h">自分の地元での開催をリクエストする</div>
-        <div class="cities-cta-p">「うちの街で開いてほしい」「会場提供したい」というご相談、随時受付中です。学生・地元企業・行政の方、どなたでも。</div>
-      </div>
-      <a href="index.html#contact" class="btn-outline" style="background:#fff;color:var(--green-deep);border-color:#fff;">問い合わせる →</a>
-    </div>
   </div>
 </section>
 
@@ -993,12 +967,12 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">How to Join</span>
     <h2 class="section-title reveal">参加までの<em>流れ</em></h2>
-    <p class="section-lead reveal">シンプルな4ステップ。気軽にどうぞ。</p>
+    <p class="section-lead reveal">シンプル4ステップ。</p>
     <div class="how-list">
-      <div class="how-step reveal"><div class="how-n">01</div><div class="how-text"><strong>開催予定都市を確認</strong><p>このページの「開催予定都市」セクションから、自分が参加できる回をチェック。</p></div></div>
-      <div class="how-step reveal" style="transition-delay:.05s"><div class="how-n">02</div><div class="how-text"><strong>開催回ごとの応募フォームに記入</strong><p>各開催ごとに専用フォームを発行します。1分で完了。</p></div></div>
-      <div class="how-step reveal" style="transition-delay:.1s"><div class="how-n">03</div><div class="how-text"><strong>結果通知を待つ</strong><p>定員に応じて、先着または抽選でご案内します。</p></div></div>
-      <div class="how-step reveal" style="transition-delay:.15s"><div class="how-n">04</div><div class="how-text"><strong>当日参加</strong><p>参加費はPayPayまたは現金で当日お支払い。手ぶらでOK。</p></div></div>
+      <div class="how-step reveal"><div class="how-n">01</div><div class="how-text"><strong>Instagramで次回開催情報をチェック</strong><p>@nexy.hub をフォローして、開催情報を見逃さない。</p></div></div>
+      <div class="how-step reveal" style="transition-delay:.05s"><div class="how-n">02</div><div class="how-text"><strong>応募フォームに記入</strong><p>各開催ごとの専用フォーム。1分で完了。</p></div></div>
+      <div class="how-step reveal" style="transition-delay:.1s"><div class="how-n">03</div><div class="how-text"><strong>結果通知を待つ</strong><p>先着または抽選でご案内。</p></div></div>
+      <div class="how-step reveal" style="transition-delay:.15s"><div class="how-n">04</div><div class="how-text"><strong>当日参加</strong><p>PayPay or 現金。手ぶらでOK。</p></div></div>
     </div>
   </div>
 </section>
@@ -1076,6 +1050,80 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+/* warm confetti / light particles */
+(function(){
+  const c = document.getElementById('confetti');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, parts=[], flags=[];
+  const COLORS = ['#E8732A','#F2C547','#2E7F4A','#F2872A','#F5B856'];
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  // 24 light particles (slow upward drift)
+  for(let i=0;i<24;i++){
+    parts.push({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      r:Math.random()*2.2+1.2,
+      vy:-(Math.random()*.25+.1),
+      vx:(Math.random()-.5)*.15,
+      a:Math.random()*.5+.25,
+      ph:Math.random()*Math.PI*2,
+      col:COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  // 6 floating flag pieces (triangles)
+  for(let i=0;i<6;i++){
+    flags.push({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      r:Math.random()*9+7,
+      vy:-(Math.random()*.18+.08),
+      vx:(Math.random()-.5)*.18,
+      rot:Math.random()*Math.PI*2,
+      vrot:(Math.random()-.5)*.012,
+      col:COLORS[Math.floor(Math.random()*COLORS.length)],
+      a:Math.random()*.35+.18
+    });
+  }
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t+=.016;
+    parts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.y<-10){ p.y=H+10; p.x=Math.random()*W; }
+      if(p.x<-10) p.x=W+10;
+      if(p.x>W+10) p.x=-10;
+      const aa=p.a*(.55+.45*Math.sin(t*1.6+p.ph));
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col;
+      ctx.globalAlpha=aa;
+      ctx.fill();
+    });
+    flags.forEach(f=>{
+      f.x+=f.vx; f.y+=f.vy; f.rot+=f.vrot;
+      if(f.y<-20){ f.y=H+20; f.x=Math.random()*W; }
+      if(f.x<-20) f.x=W+20;
+      if(f.x>W+20) f.x=-20;
+      ctx.save();
+      ctx.translate(f.x,f.y); ctx.rotate(f.rot);
+      ctx.globalAlpha=f.a;
+      ctx.fillStyle=f.col;
+      ctx.beginPath();
+      ctx.moveTo(-f.r,-f.r); ctx.lineTo(f.r,-f.r); ctx.lineTo(0,f.r);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
 </script>
 </body>
 </html>
