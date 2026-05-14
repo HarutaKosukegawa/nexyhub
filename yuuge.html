@@ -122,8 +122,21 @@ body::before{
 .mobile.open{display:block}
 .hero{
   position:relative;
-  padding:54px 0 44px;
+  padding:54px 0 32px;
   overflow:hidden;
+}
+.hero-stage-label{
+  position:absolute;
+  right:2vw;
+  top:84px;
+  font-family:Inter,sans-serif;
+  font-size:clamp(3.4rem,10vw,9.5rem);
+  line-height:.78;
+  font-weight:900;
+  letter-spacing:-.05em;
+  color:rgba(35,100,232,.055);
+  pointer-events:none;
+  text-align:right;
 }
 .hero::before,.hero::after{
   content:"";
@@ -179,6 +192,79 @@ body::before{
   font-weight:700;
   margin-bottom:24px;
 }
+.impact-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:10px;
+  max-width:680px;
+  margin:0 0 18px;
+}
+.impact-main,.impact-side{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #bcd3ff;
+  border-radius:9px;
+  box-shadow:0 12px 32px rgba(16,49,104,.08);
+}
+.impact-main{
+  min-height:112px;
+  padding:18px 18px 16px;
+}
+.impact-main::after{
+  content:"";
+  position:absolute;
+  right:-30px;
+  top:-48px;
+  width:150px;
+  height:150px;
+  border:18px solid rgba(35,100,232,.12);
+  border-radius:50%;
+}
+.impact-k{
+  display:block;
+  font-family:Inter,sans-serif;
+  color:var(--blue);
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.14em;
+  margin-bottom:4px;
+}
+.impact-main strong{
+  display:block;
+  font-family:Inter,"Noto Sans JP",sans-serif;
+  font-size:clamp(2.15rem,4vw,3.25rem);
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+.impact-main span:last-child{
+  display:block;
+  color:var(--muted);
+  font-size:.8rem;
+  font-weight:800;
+  margin-top:8px;
+}
+.impact-side{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.impact-mini{
+  padding:16px 14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:112px;
+}
+.impact-mini + .impact-mini{border-left:1px solid #d9e4f4}
+.impact-mini b{
+  color:var(--ink);
+  font-size:1.35rem;
+  line-height:1;
+  font-family:Inter,"Noto Sans JP",sans-serif;
+  font-weight:900;
+}
+.impact-mini span{color:var(--muted);font-size:.76rem;font-weight:800;margin-top:7px;line-height:1.45}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}
 .btn{
   display:inline-flex;
@@ -307,6 +393,108 @@ body::before{
 .ticker span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 section{padding:84px 0}
+.concept{
+  padding:58px 0;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+}
+.concept-panel{
+  position:relative;
+  padding:28px;
+  border:1px solid #bcd3ff;
+  border-radius:14px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.96),rgba(234,244,255,.9)),
+    radial-gradient(circle at 90% 0%,rgba(35,100,232,.16),transparent 20rem);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.concept-panel::before{
+  content:"";
+  position:absolute;
+  right:-70px;
+  top:-60px;
+  width:260px;
+  height:180px;
+  border:2px solid rgba(35,100,232,.25);
+  transform:skewX(-18deg);
+}
+.concept-title{
+  position:relative;
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:end;
+  margin-bottom:24px;
+}
+.concept-title h2{max-width:520px;font-size:clamp(1.55rem,2.7vw,2.35rem)}
+.concept-title p{max-width:430px;color:var(--muted);font-weight:700;font-size:.9rem;line-height:1.8}
+.map-flow{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 42px 1fr 42px 1fr;
+  gap:0;
+  align-items:stretch;
+}
+.map-node{
+  position:relative;
+  z-index:1;
+  min-height:150px;
+  padding:22px;
+  background:#fff;
+  border:1px solid #cfe0fa;
+  border-radius:10px;
+  box-shadow:0 12px 28px rgba(16,49,104,.08);
+}
+.map-node.blue{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border-color:transparent;
+}
+.map-node small{
+  display:block;
+  font-family:Inter,sans-serif;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.15em;
+  color:var(--blue);
+  margin-bottom:10px;
+}
+.map-node.blue small{color:#b9d8ff}
+.map-node b{display:block;font-size:1.08rem;line-height:1.45;margin-bottom:8px}
+.map-node p{color:var(--muted);font-size:.82rem;font-weight:700;line-height:1.75}
+.map-node.blue p{color:rgba(255,255,255,.78)}
+.map-arrow{
+  display:grid;
+  place-items:center;
+  color:var(--blue);
+}
+.map-arrow svg{width:28px;height:28px}
+.map-proof{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
+}
+.proof-chip{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border:1px solid #cfe0fa;
+  background:rgba(255,255,255,.72);
+  border-radius:8px;
+  color:var(--blue2);
+  font-size:.76rem;
+  font-weight:900;
+}
+.proof-chip::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--blue);
+}
 .section-head{
   display:grid;
   grid-template-columns:.8fr 1.2fr;
@@ -540,9 +728,15 @@ footer{
   .navlinks{display:none}
   .hamburger{display:block}
   .hero-grid,.section-head,.info-grid,.price-grid{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr}
   .hero{padding-top:34px}
   .cards3,.process{grid-template-columns:1fr 1fr}
   .hero-visual{max-width:720px;margin:0 auto}
+  .concept-title{display:block}
+  .concept-title p{margin-top:12px}
+  .map-flow{grid-template-columns:1fr;gap:10px}
+  .map-arrow{height:26px;transform:rotate(90deg)}
+  .map-proof{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:700px){
   .container{width:min(100% - 28px,1120px)}
@@ -553,11 +747,17 @@ footer{
   .hero-visual::before{left:0}
   .floating-card p{overflow-wrap:anywhere}
   .meta-row,.cards3,.process,.themes{grid-template-columns:1fr}
+  .hero-stage-label{top:74px;font-size:4rem}
+  .impact-side{grid-template-columns:1fr}
+  .impact-mini + .impact-mini{border-left:0;border-top:1px solid #d9e4f4}
   .step::after{display:none}
   .theme{grid-template-columns:1fr}
   .spec-row{grid-template-columns:1fr}
   .spec-k{padding-bottom:4px}
   section{padding:64px 0}
+  .concept{padding:38px 0}
+  .concept-panel{padding:22px 16px}
+  .map-proof{grid-template-columns:1fr}
   .cta-panel{padding:30px 22px}
   .floating-card{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}
 }
@@ -592,6 +792,7 @@ footer{
 
 <main>
   <section class="hero" id="top">
+    <div class="hero-stage-label">YOUNG<br>DEBATE</div>
     <div class="container hero-grid">
       <div class="hero-copy reveal">
         <div class="eyebrow">
@@ -600,6 +801,17 @@ footer{
         </div>
         <h1>就活解禁前。<br><span class="blue">本気の学生</span>と<br><span class="line"><span class="outline">御社だけ</span>で出会う。</span></h1>
         <p class="lead">東大・早慶・SFC・MARCH以上の大学1〜2年生20名と、2時間じっくり語り合う採用接点。合同説明会でもナビサイトでもない、テーマ起点の本音対話を設計します。</p>
+        <div class="impact-grid">
+          <div class="impact-main">
+            <span class="impact-k">CORE FORMAT</span>
+            <strong>20 STUDENTS</strong>
+            <span>就活前の行動層だけを、御社テーマでキャスティング</span>
+          </div>
+          <div class="impact-side">
+            <div class="impact-mini"><span>ONLY</span><b>1社</b><span>競合なしのクローズド開催</span></div>
+            <div class="impact-mini"><span>SESSION</span><b>2H</b><span>説明ではなく、対話で記憶に残す</span></div>
+          </div>
+        </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener">
             無料で相談する
@@ -632,6 +844,49 @@ footer{
       <span>就活前の早期接点</span><span>御社だけのクローズド開催</span><span>大学1〜2年生</span><span>東大・早慶・MARCH以上</span><span>初期費用ゼロ</span>
     </div>
   </div>
+
+  <section class="concept" id="concept">
+    <div class="container">
+      <div class="concept-panel reveal">
+        <div class="concept-title">
+          <div>
+            <span class="label">Why It Works</span>
+            <h2>採用イベントではなく、<em>好きになる体験</em>をつくる。</h2>
+          </div>
+          <p>会社説明を聞かせるのではなく、問いを一緒に考える。だから、学生は企業を「情報」ではなく「人」として覚えます。</p>
+        </div>
+        <div class="map-flow">
+          <div class="map-node">
+            <small>01 / CASTING</small>
+            <b>テーマに反応する学生を集める</b>
+            <p>AI、教育、採用、地方など、御社が話したい問いに興味を持つ学生を集客。</p>
+          </div>
+          <div class="map-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </div>
+          <div class="map-node blue">
+            <small>02 / DEBATE</small>
+            <b>御社だけで2時間、本音で議論</b>
+            <p>説明会の一方通行ではなく、担当者の考えや人柄まで伝わる対話にする。</p>
+          </div>
+          <div class="map-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </div>
+          <div class="map-node">
+            <small>03 / FOLLOW</small>
+            <b>興味学生を次の接点につなげる</b>
+            <p>アンケートと関心度を整理し、インターン案内や個別接点へ進めます。</p>
+          </div>
+        </div>
+        <div class="map-proof" aria-label="提供内容">
+          <div class="proof-chip">テーマ設計</div>
+          <div class="proof-chip">学生集客</div>
+          <div class="proof-chip">当日進行</div>
+          <div class="proof-chip">事後レポート</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="problem">
     <div class="container">

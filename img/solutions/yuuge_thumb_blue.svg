@@ -1,0 +1,46 @@
+<svg width="1400" height="840" viewBox="0 0 1400 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="0.54" stop-color="#EAF4FF"/>
+      <stop offset="1" stop-color="#DCEBFF"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" stroke="#2364E8" stroke-opacity=".12"/>
+    </pattern>
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#2364E8" fill-opacity=".22"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#103168" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="840" fill="url(#bg)"/>
+  <rect width="1400" height="840" fill="url(#grid)"/>
+  <path d="M38 58H670L590 136H38V58Z" fill="white" stroke="#2364E8" stroke-width="4"/>
+  <text x="72" y="113" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="900" fill="#061024">CLOSED DISCUSSION <tspan fill="#2364E8">LP</tspan></text>
+  <text x="70" y="286" font-family="'Noto Sans JP', Arial, sans-serif" font-size="92" font-weight="900" fill="#061024">ゆうげの</text>
+  <text x="70" y="408" font-family="'Noto Sans JP', Arial, sans-serif" font-size="112" font-weight="900" fill="#2364E8">若き熱論会</text>
+  <path d="M70 434H770" stroke="#2364E8" stroke-width="7"/>
+  <text x="76" y="492" font-family="'Noto Sans JP', Arial, sans-serif" font-size="34" font-weight="800" fill="#53627A">就活解禁前の本気の学生と、御社だけで語り合う。</text>
+  <g filter="url(#shadow)">
+    <rect x="70" y="568" width="258" height="118" rx="12" fill="white" stroke="#BCD3FF"/>
+    <text x="106" y="614" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" fill="#2364E8" letter-spacing="2">STUDENTS</text>
+    <text x="106" y="660" font-family="'Noto Sans JP', Arial, sans-serif" font-size="42" font-weight="900" fill="#061024">20名</text>
+    <rect x="360" y="568" width="258" height="118" rx="12" fill="white" stroke="#BCD3FF"/>
+    <text x="396" y="614" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" fill="#2364E8" letter-spacing="2">TIME</text>
+    <text x="396" y="660" font-family="'Noto Sans JP', Arial, sans-serif" font-size="42" font-weight="900" fill="#061024">2時間</text>
+    <rect x="650" y="568" width="258" height="118" rx="12" fill="white" stroke="#BCD3FF"/>
+    <text x="686" y="614" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" fill="#2364E8" letter-spacing="2">STYLE</text>
+    <text x="686" y="660" font-family="'Noto Sans JP', Arial, sans-serif" font-size="42" font-weight="900" fill="#061024">御社だけ</text>
+  </g>
+  <g transform="translate(985 108)">
+    <circle cx="165" cy="165" r="165" stroke="#2364E8" stroke-width="5"/>
+    <circle cx="165" cy="165" r="132" fill="white" fill-opacity=".78" stroke="#BCD3FF"/>
+    <text x="86" y="130" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900" fill="#2364E8">TOP</text>
+    <text x="72" y="184" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="900" fill="#061024">20</text>
+    <text x="154" y="184" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="900" fill="#061024">students</text>
+    <text x="74" y="232" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#53627A">× ONLY YOUR COMPANY</text>
+  </g>
+  <rect x="1052" y="516" width="230" height="180" fill="url(#dots)"/>
+</svg>
