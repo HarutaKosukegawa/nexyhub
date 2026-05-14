@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO -->
-<title>ゆうげの討論会 — 企業と大学生が、特定の議題について議論し合う夕方 | NEXY</title>
-<meta name="description" content="東大・早慶・SFC・MARCH以上の大学1〜2年生20名と、御社だけで語り合う2時間のクローズド討論会。就活解禁前の早期接点。初期費用ゼロ・成果課金型。">
-<meta name="keywords" content="NEXY,ゆうげの討論会,新卒採用,早期接点,東大,早慶,MARCH,大学1年生,大学2年生,討論会,座談会,B2B">
+<title>ゆうげの討論会 — 企業の本気と、学生の本気がぶつかる夕方 | NEXY</title>
+<meta name="description" content="大学1〜2年生限定。第一線で活動する企業のリーダーと、特定のテーマについて議論し合う2時間のクローズド討論会。学生団体NEXY主催。">
+<meta name="keywords" content="NEXY,ゆうげの討論会,大学生,大学1年生,大学2年生,討論会,座談会,企業,議論,学生イベント">
 <meta name="author" content="NEXY">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexyhub.jp/yuuge.html">
@@ -15,16 +15,16 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexyhub.jp/yuuge.html">
-<meta property="og:title" content="ゆうげの討論会 — 企業と大学生が、特定の議題について議論し合う夕方">
-<meta property="og:description" content="東大・早慶・MARCH以上の大学1〜2年生20名と、御社だけで語り合うクローズド討論会。">
+<meta property="og:title" content="ゆうげの討論会 — 企業の本気と、学生の本気がぶつかる夕方">
+<meta property="og:description" content="大学1〜2年生限定。企業のリーダーと、特定のテーマについて議論し合う2時間のクローズド討論会。">
 <meta property="og:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
 <meta property="og:site_name" content="NEXY">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@nexy_hub">
-<meta name="twitter:title" content="ゆうげの討論会 — 企業と大学生が議論し合う夕方">
-<meta name="twitter:description" content="東大・早慶・MARCH以上の大学1〜2年生と、御社だけで語り合うクローズド討論会。">
+<meta name="twitter:title" content="ゆうげの討論会 — 企業の本気と、学生の本気がぶつかる夕方">
+<meta name="twitter:description" content="大学1〜2年生限定。企業と議論し合う2時間のクローズド討論会。">
 <meta name="twitter:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,40 +154,54 @@ img { max-width: 100%; display: block; }
 .mobile-nav.open { display: flex; }
 .mobile-nav a { color: var(--text); text-decoration: none; font-size: .92rem; font-weight: 700; }
 
-/* ── HERO (anime night cityscape style) ── */
+/* ── HERO (image only, no text overlay) ── */
 .hero {
   position: relative;
-  min-height: 100vh;
   width: 100%;
+  margin-top: 108px;
   background: var(--bg-night);
   overflow: hidden;
-  padding: 130px 6% 100px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
 }
-.hero-photo-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('img/yuuge/yuuge_hero.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: .9;
-  animation: bgZoom 30s ease-in-out infinite alternate;
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  animation: heroFade 1.4s ease-out backwards;
 }
-@keyframes bgZoom {
-  0% { transform: scale(1) translateX(0); }
-  100% { transform: scale(1.08) translateX(-2%); }
+@keyframes heroFade {
+  from { opacity: 0; transform: scale(.98); }
+  to { opacity: 1; transform: scale(1); }
 }
-.hero-photo-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(11,24,56,.85) 0%, rgba(11,24,56,.55) 40%, rgba(11,24,56,.75) 100%),
-    linear-gradient(90deg, rgba(11,24,56,.92) 0%, rgba(11,24,56,.55) 45%, rgba(11,24,56,.3) 100%);
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Floating stars */
+/* Floating particles over hero image */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 9s linear infinite;
+  box-shadow: 0 0 10px var(--orange);
+}
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(100%) translateX(0); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10%) translateX(40px); }
+}
 .star {
   position: absolute;
   width: 2px; height: 2px;
@@ -195,7 +209,6 @@ img { max-width: 100%; display: block; }
   border-radius: 50%;
   opacity: 0;
   animation: twinkle 3s ease-in-out infinite;
-  z-index: 2;
 }
 @keyframes twinkle {
   0%, 100% { opacity: 0; transform: scale(.5); }
@@ -204,190 +217,35 @@ img { max-width: 100%; display: block; }
 .star.large { width: 3px; height: 3px; }
 .star.golden { background: var(--gold); }
 
-/* Light particles drifting */
-.particle {
-  position: absolute;
-  width: 3px; height: 3px;
-  background: var(--orange);
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2;
-  animation: particleFloat 9s linear infinite;
-  box-shadow: 0 0 10px var(--orange);
-}
-@keyframes particleFloat {
-  0% { opacity: 0; transform: translateY(100vh) translateX(0); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-10vh) translateX(40px); }
-}
-
-/* Moon glow */
-.moon-glow {
-  position: absolute;
-  top: 15%; right: 18%;
-  width: 80px; height: 80px;
-  background: radial-gradient(circle, rgba(240,230,190,.4) 0%, transparent 70%);
-  border-radius: 50%;
-  z-index: 2;
-  animation: moonPulse 4s ease-in-out infinite;
-}
-@keyframes moonPulse {
-  0%, 100% { opacity: .6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 5;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-}
-.hero-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(.76rem, 1.1vw, .92rem);
-  letter-spacing: .42em;
-  font-weight: 600;
-  color: var(--orange);
-  margin-bottom: 36px;
-  animation: eyebrowSlide 1s ease-out;
-  text-transform: uppercase;
-}
-@keyframes eyebrowSlide {
-  from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.hero-title-main {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: clamp(3.5rem, 11vw, 9rem);
-  font-weight: 900;
-  line-height: 0.95;
-  color: var(--white);
-  letter-spacing: -.02em;
-  margin-bottom: 32px;
-  text-shadow: 0 4px 30px rgba(0,0,0,.4);
-}
-.hero-title-main .htm-line {
-  display: block;
-  animation: titleSlam 1.2s cubic-bezier(.16,1,.3,1) backwards;
-}
-.hero-title-main .htm-line:nth-child(1) { animation-delay: .15s; }
-.hero-title-main .htm-line:nth-child(2) { animation-delay: .35s; }
-.hero-title-main .htm-line:nth-child(3) { animation-delay: .55s; }
-@keyframes titleSlam {
-  from { opacity: 0; transform: translateY(40px) scale(.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.hero-divider {
-  width: 220px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--orange) 0%, var(--orange) 60%, transparent 100%);
-  margin-bottom: 28px;
-  animation: dividerStretch 1.2s ease-out .8s backwards;
-}
-@keyframes dividerStretch {
-  from { width: 0; opacity: 0; }
-  to { width: 220px; opacity: 1; }
-}
-
-.hero-subline {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: clamp(1rem, 1.6vw, 1.4rem);
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 580px;
-  animation: subFade 1s ease-out 1s backwards;
-}
-@keyframes subFade {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.hero-subline strong { color: var(--orange-bright); font-weight: 900; }
-
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 36px;
-  animation: subFade 1s ease-out 1.15s backwards;
-}
-.hero-meta-item {
-  background: rgba(0,0,0,.35);
-  border: 1px solid var(--line-strong);
-  padding: 10px 18px;
-  backdrop-filter: blur(8px);
-}
-.hero-meta-label {
-  font-family: 'Inter', sans-serif;
-  font-size: .62rem;
-  letter-spacing: .16em;
-  color: var(--orange);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.hero-meta-val { font-size: .92rem; font-weight: 800; color: var(--white); }
-
-.hero-cta-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  animation: subFade 1s ease-out 1.3s backwards;
-}
-
-.hero-bottom-label {
-  position: absolute;
-  bottom: 32px;
-  left: 6%;
-  font-family: 'Inter', sans-serif;
-  font-size: .78rem;
-  letter-spacing: .42em;
-  font-weight: 600;
-  color: var(--orange);
-  text-transform: uppercase;
-  z-index: 5;
-  animation: subFade 1s ease-out 1.5s backwards;
-}
-.hero-bottom-label::before {
-  content: '';
-  display: inline-block;
-  width: 30px;
-  height: 1.5px;
-  background: var(--orange);
-  vertical-align: middle;
-  margin-right: 14px;
-}
-
+/* Scroll cue (positioned below hero image) */
 .hero-scroll-cue {
-  position: absolute;
-  bottom: 28px; right: 6%;
+  position: relative;
+  background: var(--bg-night);
+  padding: 28px 6%;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.hero-scroll-cue span {
   font-family: 'Inter', sans-serif;
-  font-size: .64rem;
-  letter-spacing: .26em;
-  color: var(--text2);
-  font-weight: 600;
+  font-size: .68rem;
+  letter-spacing: .3em;
+  color: var(--orange);
+  font-weight: 700;
   text-transform: uppercase;
-  z-index: 5;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   animation: scrollHint 2s ease-in-out infinite;
 }
-.hero-scroll-cue::after {
+.hero-scroll-cue span::after {
   content: '';
   width: 1px;
-  height: 28px;
+  height: 24px;
   background: var(--orange);
 }
 @keyframes scrollHint {
-  0%, 100% { opacity: .55; transform: translateY(0); }
+  0%, 100% { opacity: .6; transform: translateY(0); }
   50% { opacity: 1; transform: translateY(8px); }
 }
 
@@ -451,8 +309,6 @@ img { max-width: 100%; display: block; }
   padding-top: 8px;
   border-top: 2px solid var(--orange);
   display: inline-block;
-  position: relative;
-  overflow: hidden;
 }
 .section-title {
   font-family: 'Noto Sans JP', sans-serif;
@@ -468,8 +324,6 @@ img { max-width: 100%; display: block; }
   .section-head { grid-template-columns: 1fr; gap: 14px; }
   .section { padding: 72px 5%; }
 }
-
-/* Section decorative background lights */
 .section::before {
   content: '';
   position: absolute;
@@ -482,23 +336,18 @@ img { max-width: 100%; display: block; }
 .section:nth-of-type(2n)::before { right: -10%; top: 20%; }
 .section:nth-of-type(2n+1)::before { left: -10%; bottom: 10%; }
 
-/* ── PROBLEMS ── */
-.prob-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 1px solid var(--line-strong);
-  background: var(--bg-night);
-}
-.prob-cell {
+/* ── ABOUT (concept) ── */
+.about-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line-strong); }
+.about-card {
   padding: 36px 30px;
   border-right: 1px solid var(--line-strong);
+  background: var(--bg-card);
+  transition: background .3s, transform .3s;
   position: relative;
-  transition: background .3s;
 }
-.prob-cell:hover { background: var(--bg-card-hover); }
-.prob-cell:last-child { border-right: none; }
-.prob-cell::before {
+.about-card:hover { background: var(--bg-card-hover); transform: translateY(-3px); }
+.about-card:last-child { border-right: none; }
+.about-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
@@ -508,113 +357,65 @@ img { max-width: 100%; display: block; }
   transform-origin: left;
   transition: transform .8s ease;
 }
-.prob-cell.in-view::before { transform: scaleX(1); }
-.prob-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: var(--orange);
-  line-height: 1;
-  margin-bottom: 18px;
-  letter-spacing: -.02em;
-}
-.prob-title { font-size: 1.05rem; font-weight: 900; color: var(--white); margin-bottom: 14px; line-height: 1.5; }
-.prob-desc { font-size: .84rem; color: var(--text2); line-height: 2; }
-.prob-conclusion {
-  margin-top: 28px;
+.about-card.in-view::before { transform: scaleX(1); }
+.about-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 18px; letter-spacing: -.02em; }
+.about-title { font-size: 1.05rem; font-weight: 900; color: var(--white); margin-bottom: 14px; line-height: 1.5; }
+.about-desc { font-size: .85rem; color: var(--text2); line-height: 2; }
+.about-quote {
+  margin-top: 36px;
   background: var(--bg-card);
-  border: 1px solid var(--line-strong);
   border-left: 4px solid var(--orange);
-  padding: 22px 28px;
-  font-size: .98rem;
+  padding: 26px 32px;
+  font-size: 1.04rem;
   color: var(--white);
   font-weight: 800;
   letter-spacing: -.005em;
+  line-height: 1.85;
 }
-.prob-conclusion strong { color: var(--orange); }
+.about-quote strong { color: var(--orange); }
 @media (max-width: 900px) {
-  .prob-grid { grid-template-columns: 1fr; }
-  .prob-cell { border-right: none; border-bottom: 1px solid var(--line-strong); }
-  .prob-cell:last-child { border-bottom: none; }
+  .about-cards { grid-template-columns: 1fr; }
+  .about-card { border-right: none; border-bottom: 1px solid var(--line-strong); }
+  .about-card:last-child { border-bottom: none; }
 }
 
-/* ── LIMITS table ── */
-.limits-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+/* ── INFO (開催概要) ── */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line-strong); }
+.info-cell { background: var(--bg-card); padding: 36px 32px; border-right: 1px solid var(--line-strong); }
+.info-cell:last-child { border-right: none; }
+.info-cell-h { background: var(--orange); color: var(--ink); padding: 12px 18px; font-size: .76rem; font-weight: 900; letter-spacing: .1em; margin: -36px -32px 24px; }
+.info-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.info-row:last-child { border-bottom: none; }
+.info-key { min-width: 90px; font-family: 'Inter', sans-serif; font-size: .68rem; color: var(--orange); font-weight: 700; letter-spacing: .12em; flex-shrink: 0; text-transform: uppercase; padding-top: 4px; }
+.info-val { font-size: .92rem; font-weight: 700; color: var(--white); line-height: 1.7; }
+.info-val strong { color: var(--orange-bright); }
+@media (max-width: 720px) { .info-grid { grid-template-columns: 1fr; } .info-cell { border-right: none; border-bottom: 1px solid var(--line-strong); } }
+
+/* ── WHY (Benefits for students) ── */
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.why-card {
   background: var(--bg-card);
   border: 1px solid var(--line-strong);
+  padding: 32px;
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  transition: background .25s, border-color .25s, transform .25s;
 }
-.limits-table th, .limits-table td {
-  padding: 18px 22px;
-  text-align: left;
-  border-bottom: 1px solid var(--line);
-  font-size: .85rem;
-}
-.limits-table thead th {
-  background: var(--ink);
-  color: var(--orange);
-  font-size: .74rem;
+.why-card:hover { background: var(--bg-card-hover); border-color: var(--orange); transform: translateY(-3px); }
+.why-icon {
+  width: 48px; height: 48px;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Inter', sans-serif;
   font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--ink);
 }
-.limits-table tbody td:first-child {
-  font-weight: 800;
-  color: var(--white);
-  background: var(--bg-night);
-  white-space: nowrap;
-}
-.limits-table tbody td { color: var(--text2); }
-.limits-table tbody tr:last-child td { border-bottom: none; }
-.limits-table tbody tr { transition: background .25s; }
-.limits-table tbody tr:hover { background: var(--bg-card-hover); }
-
-/* ── WHAT ── */
-.what-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; border: 1px solid var(--line-strong); }
-.what-info { background: var(--bg-card); padding: 36px 32px; border-right: 1px solid var(--line-strong); }
-.what-info-h { background: var(--orange); color: var(--ink); padding: 12px 18px; font-size: .76rem; font-weight: 900; letter-spacing: .1em; margin: -36px -32px 24px; }
-.what-info-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.what-info-row:last-child { border-bottom: none; }
-.what-info-key { min-width: 80px; font-family: 'Inter', sans-serif; font-size: .68rem; color: var(--orange); font-weight: 700; letter-spacing: .12em; flex-shrink: 0; text-transform: uppercase; padding-top: 4px; }
-.what-info-val { font-size: .9rem; font-weight: 700; color: var(--white); line-height: 1.7; }
-.what-info-val strong { color: var(--orange-bright); }
-.what-target { padding: 36px 32px; background: var(--bg-night); }
-.what-target h4 { font-size: .82rem; font-weight: 900; color: var(--orange); margin-bottom: 14px; letter-spacing: .04em; }
-.what-target ul { list-style: none; padding: 0; }
-.what-target li { padding: 12px 0 12px 20px; border-bottom: 1px solid var(--line); font-size: .87rem; color: var(--text2); position: relative; line-height: 1.7; }
-.what-target li:last-child { border-bottom: none; }
-.what-target li::before { content: '◇'; color: var(--orange); position: absolute; left: 0; font-size: .7rem; top: 16px; }
-@media (max-width: 900px) {
-  .what-grid { grid-template-columns: 1fr; }
-  .what-info { border-right: none; border-bottom: 1px solid var(--line-strong); }
-}
-
-/* ── STUDENTS ── */
-.stu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.stu-card {
-  background: var(--bg-card);
-  border: 1px solid var(--line-strong);
-  padding: 30px 26px;
-  position: relative;
-  transition: transform .3s, border-color .3s, background .3s;
-}
-.stu-card:hover { transform: translateY(-4px); border-color: var(--orange); background: var(--bg-card-hover); }
-.stu-num { font-family: 'Inter', sans-serif; font-size: .72rem; color: var(--orange); letter-spacing: .14em; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
-.stu-title { font-size: 1.04rem; font-weight: 900; color: var(--white); margin-bottom: 12px; }
-.stu-desc { font-size: .84rem; color: var(--text2); line-height: 2; }
-.stu-callout {
-  margin-top: 30px;
-  background: var(--bg-card);
-  border-left: 4px solid var(--orange);
-  padding: 22px 28px;
-  font-size: .95rem;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.8;
-}
-@media (max-width: 900px) { .stu-grid { grid-template-columns: 1fr; } }
+.why-title { font-size: 1.04rem; font-weight: 900; margin-bottom: 10px; color: var(--white); }
+.why-desc { font-size: .85rem; color: var(--text2); line-height: 1.95; }
+@media (max-width: 720px) { .why-grid { grid-template-columns: 1fr; } }
 
 /* ── THEMES ── */
 .themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -630,166 +431,70 @@ img { max-width: 100%; display: block; }
 .theme-text { font-size: 1rem; font-weight: 800; color: var(--white); line-height: 1.55; }
 @media (max-width: 720px) { .themes-grid { grid-template-columns: 1fr; } }
 
-/* ── BENEFITS ── */
-.ben-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.ben-card {
+/* ── ELIGIBLE ── */
+.eli-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.eli-card {
   background: var(--bg-card);
   border: 1px solid var(--line-strong);
-  padding: 30px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  transition: background .25s, border-color .25s;
+  padding: 30px 26px;
+  transition: transform .3s, border-color .3s, background .3s;
 }
-.ben-card:hover { background: var(--bg-card-hover); border-color: var(--orange); }
-.ben-icon {
-  width: 44px; height: 44px;
-  background: var(--orange);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.ben-icon svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 2; }
-.ben-title { font-size: 1.04rem; font-weight: 900; margin-bottom: 8px; color: var(--white); }
-.ben-desc { font-size: .85rem; color: var(--text2); line-height: 1.95; }
-@media (max-width: 720px) { .ben-grid { grid-template-columns: 1fr; } }
+.eli-card:hover { transform: translateY(-4px); border-color: var(--orange); background: var(--bg-card-hover); }
+.eli-num { font-family: 'Inter', sans-serif; font-size: .72rem; color: var(--orange); letter-spacing: .14em; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+.eli-title { font-size: 1.04rem; font-weight: 900; color: var(--white); margin-bottom: 12px; }
+.eli-desc { font-size: .84rem; color: var(--text2); line-height: 2; }
+@media (max-width: 900px) { .eli-grid { grid-template-columns: 1fr; } }
 
-/* ── COMPARE ── */
-.compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.compare-table {
-  width: 100%; min-width: 760px;
-  border-collapse: separate; border-spacing: 0;
+/* ── FLOW (当日の流れ) ── */
+.flow-list { display: grid; gap: 0; border: 1px solid var(--line-strong); }
+.flow-item {
   background: var(--bg-card);
-  border: 1px solid var(--line-strong);
-}
-.compare-table th, .compare-table td {
-  padding: 16px 18px;
-  text-align: center;
-  border-bottom: 1px solid var(--line);
-  font-size: .82rem;
-  vertical-align: middle;
-}
-.compare-table thead th {
-  background: var(--ink);
-  color: var(--text);
-  font-size: .76rem;
-  font-weight: 800;
-  letter-spacing: .04em;
-}
-.compare-table thead th.col-us {
-  background: var(--orange);
-  color: var(--ink);
-  font-weight: 900;
-}
-.compare-table tbody td { color: var(--text2); }
-.compare-table tbody td:first-child {
-  font-weight: 800; color: var(--white); text-align: left; background: var(--bg-night);
-}
-.compare-table tbody td.col-us {
-  background: rgba(242,135,42,.12); color: var(--white); font-weight: 700;
-}
-.compare-conclusion {
-  background: var(--orange); color: var(--ink);
-  padding: 24px 32px; margin-top: 28px;
-  font-size: 1.04rem; font-weight: 900; text-align: center; letter-spacing: -.005em;
-}
-
-/* ── PRICING ── */
-.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.price-card {
-  background: var(--bg-card);
-  border: 1px solid var(--line-strong);
-  padding: 36px 32px;
-  transition: border-color .3s, transform .3s;
-}
-.price-card.featured {
-  background: linear-gradient(135deg, rgba(242,135,42,.15) 0%, rgba(242,135,42,.05) 100%);
-  border: 2px solid var(--orange);
-  transform: scale(1.02);
-}
-.price-card:hover { border-color: var(--orange); }
-.price-phase { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .16em; color: var(--orange); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
-.price-title { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: 18px; }
-.price-amount {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: var(--orange);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.price-amount small { font-size: .92rem; color: var(--text2); margin-left: 6px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
-.price-note { font-size: .76rem; color: var(--text3); margin-bottom: 20px; }
-.price-incl { background: rgba(0,0,0,.3); padding: 20px; border: 1px solid var(--line); }
-.price-incl-title { font-size: .68rem; font-weight: 800; color: var(--orange); letter-spacing: .08em; margin-bottom: 12px; text-transform: uppercase; }
-.price-incl ul { list-style: none; padding: 0; }
-.price-incl li { font-size: .82rem; color: var(--text2); padding: 5px 0 5px 18px; position: relative; }
-.price-incl li::before { content: '✓'; color: var(--orange); position: absolute; left: 0; font-weight: 700; }
-.price-callout {
-  margin-top: 28px;
-  background: var(--bg-card);
-  border-left: 4px solid var(--orange);
-  padding: 22px 28px;
-  font-size: .9rem;
-  color: var(--text);
-  line-height: 1.85;
-}
-.price-callout strong { color: var(--orange-bright); font-weight: 900; }
-@media (max-width: 720px) {
-  .price-grid { grid-template-columns: 1fr; }
-  .price-card.featured { transform: none; }
-}
-
-/* ── GUARANTEE ── */
-.guar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.guar-card { background: var(--bg-card); border: 1px solid var(--line-strong); padding: 28px 30px; }
-.guar-card.warn { border-left: 4px solid #B85B2E; }
-.guar-card-h { font-size: .82rem; font-weight: 900; color: var(--orange); letter-spacing: .04em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--orange); }
-.guar-card.warn .guar-card-h { color: #FBA56A; border-bottom-color: #B85B2E; }
-.guar-card ul { list-style: none; padding: 0; }
-.guar-card li { padding: 9px 0 9px 22px; position: relative; font-size: .85rem; color: var(--text2); line-height: 1.7; }
-.guar-card li::before { content: ''; position: absolute; left: 0; top: 16px; width: 14px; height: 1.5px; background: var(--orange); }
-@media (max-width: 720px) { .guar-grid { grid-template-columns: 1fr; } }
-
-/* ── SCHEDULE ── */
-.sched-list { display: grid; gap: 0; border: 1px solid var(--line-strong); }
-.sched-item {
-  background: var(--bg-card);
-  padding: 22px 28px;
+  padding: 24px 32px;
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: 140px 1fr;
-  gap: 22px;
+  gap: 24px;
   align-items: center;
-  transition: background .25s;
+  transition: background .25s, padding-left .25s;
 }
-.sched-item:last-child { border-bottom: none; }
-.sched-item:hover { background: var(--bg-card-hover); }
-.sched-week { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--orange); font-size: .82rem; letter-spacing: .04em; }
-.sched-content { font-size: .88rem; color: var(--text2); line-height: 1.75; }
-.sched-content strong { color: var(--white); display: block; font-weight: 900; font-size: .96rem; margin-bottom: 4px; }
-@media (max-width: 720px) { .sched-item { grid-template-columns: 1fr; gap: 6px; } }
+.flow-item:last-child { border-bottom: none; }
+.flow-item:hover { background: var(--bg-card-hover); padding-left: 40px; }
+.flow-time { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--orange); font-size: .85rem; letter-spacing: .04em; }
+.flow-content { font-size: .9rem; color: var(--text2); line-height: 1.75; }
+.flow-content strong { color: var(--white); display: block; font-weight: 900; font-size: 1rem; margin-bottom: 4px; }
+@media (max-width: 720px) { .flow-item { grid-template-columns: 1fr; gap: 6px; padding-left: 24px !important; } }
 
-/* ── TASKS ── */
-.tasks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.task-card { background: var(--bg-card); border: 1px solid var(--line-strong); padding: 30px 28px; transition: border-color .25s, background .25s; }
-.task-card:hover { border-color: var(--orange); background: var(--bg-card-hover); }
-.task-phase { font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .16em; color: var(--orange); font-weight: 700; margin-bottom: 14px; text-transform: uppercase; }
-.task-card h4 { font-size: .98rem; font-weight: 900; margin-bottom: 14px; line-height: 1.5; color: var(--white); }
-.task-card ul { list-style: none; padding: 0; }
-.task-card li { padding: 6px 0 6px 18px; position: relative; font-size: .8rem; color: var(--text2); line-height: 1.65; }
-.task-card li::before { content: '•'; color: var(--orange); position: absolute; left: 4px; font-weight: 700; }
-.task-time { font-size: .72rem; color: var(--text3); margin-top: 8px; font-style: italic; }
-.tasks-note { background: var(--ink); color: var(--moon); padding: 22px 28px; margin-top: 22px; font-size: .9rem; font-weight: 700; line-height: 1.85; border-left: 4px solid var(--orange); }
-.tasks-note strong { color: var(--orange); }
-@media (max-width: 900px) { .tasks-grid { grid-template-columns: 1fr; } }
-
-/* ── COMPLIANCE ── */
-.comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.comp-card { background: var(--bg-card); border: 1px solid var(--line-strong); padding: 28px; transition: background .25s; }
-.comp-card:hover { background: var(--bg-card-hover); }
-.comp-card h4 { font-size: .96rem; font-weight: 900; margin-bottom: 12px; color: var(--white); padding-bottom: 10px; border-bottom: 2px solid var(--orange); display: inline-block; }
-.comp-card p { font-size: .82rem; color: var(--text2); line-height: 1.95; }
-@media (max-width: 720px) { .comp-grid { grid-template-columns: 1fr; } }
+/* ── FAQ ── */
+.faq-list { display: grid; gap: 0; border: 1px solid var(--line-strong); }
+.faq-item { background: var(--bg-card); border-bottom: 1px solid var(--line); transition: background .25s; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item:hover { background: var(--bg-card-hover); }
+.faq-item summary {
+  padding: 22px 28px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  font-size: .96rem;
+  font-weight: 800;
+  color: var(--white);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-icon {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(242,135,42,.15);
+  border: 1px solid var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  color: var(--orange);
+  flex-shrink: 0;
+  transition: transform .3s, background .3s;
+}
+.faq-item[open] .faq-icon { transform: rotate(45deg); background: var(--orange); color: var(--ink); }
+.faq-answer { padding: 0 28px 24px; font-size: .85rem; color: var(--text2); line-height: 2; }
 
 /* ── CTA ── */
 .cta-final {
@@ -819,8 +524,6 @@ img { max-width: 100%; display: block; }
 .cta-final h2 em { color: var(--orange); font-style: normal; }
 .cta-final p { font-size: .96rem; color: rgba(255,255,255,.82); line-height: 2; margin-bottom: 40px; }
 .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.cta-meta { display: inline-flex; gap: 24px; padding: 18px 24px; background: rgba(255,255,255,.04); border: 1px solid var(--line-strong); margin-top: 32px; font-size: .76rem; color: var(--text2); flex-wrap: wrap; justify-content: center; }
-.cta-meta span strong { color: var(--orange); display: block; font-size: .66rem; letter-spacing: .14em; font-family: 'Inter', sans-serif; margin-bottom: 2px; text-transform: uppercase; }
 
 /* FOOTER */
 .footer {
@@ -836,7 +539,6 @@ img { max-width: 100%; display: block; }
 .footer a { color: rgba(255,255,255,.6); text-decoration: none; }
 .footer a:hover { color: var(--orange); }
 
-/* REVEAL */
 .reveal { opacity: 0; transform: translateY(28px); }
 
 @media (max-width: 960px) {
@@ -845,8 +547,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 720px) {
   .nav { top: 56px !important; }
-  .hero { min-height: 92vh; padding: 140px 5% 100px; }
-  .hero-bottom-label { display: none; }
+  .hero { margin-top: 100px; }
 }
 </style>
 </head>
@@ -855,8 +556,8 @@ img { max-width: 100%; display: block; }
 <!-- ANNOUNCE BAR -->
 <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="announce-bar">
   <span class="ab-pulse"></span>
-  <span><strong>資料請求・お問い合わせ受付中</strong>　— 初期費用ゼロ・成果課金型</span>
-  <span class="ab-cta">相談する →</span>
+  <span><strong>参加者募集中</strong>　— 大学1〜2年生限定・参加無料</span>
+  <span class="ab-cta">応募する →</span>
 </a>
 
 <!-- NAV -->
@@ -864,418 +565,246 @@ img { max-width: 100%; display: block; }
   <div class="nav-logo"><a href="index.html"><span class="lg-em">NEXY</span> × ゆうげの討論会</a></div>
   <ul class="nav-links">
     <li><a href="#about">概要</a></li>
-    <li><a href="#students">学生層</a></li>
+    <li><a href="#why">参加する理由</a></li>
     <li><a href="#themes">テーマ</a></li>
-    <li><a href="#pricing">料金</a></li>
-    <li><a href="#compare">比較</a></li>
-    <li><a href="#schedule">スケジュール</a></li>
-    <li><a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="nav-cta">問い合わせる</a></li>
+    <li><a href="#eligible">対象</a></li>
+    <li><a href="#flow">当日の流れ</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="nav-cta">参加申込</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#about">概要</a><a href="#students">学生層</a><a href="#themes">テーマ</a>
-  <a href="#pricing">料金</a><a href="#compare">比較</a><a href="#schedule">スケジュール</a>
-  <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener">問い合わせる</a>
+  <a href="#about">概要</a><a href="#why">参加する理由</a><a href="#themes">テーマ</a>
+  <a href="#eligible">対象</a><a href="#flow">当日の流れ</a><a href="#faq">FAQ</a>
+  <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener">参加申込</a>
 </div>
 
-<!-- HERO (cinematic night cityscape) -->
+<!-- HERO (image only, no text overlay) -->
 <section class="hero" id="top">
-  <div class="hero-photo-bg"></div>
-  <div class="hero-photo-overlay"></div>
-  <div class="moon-glow"></div>
-
-  <!-- Stars (will be populated by JS) -->
-  <div id="starfield"></div>
-  <!-- Particles -->
-  <div id="particlefield"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">YUUGE TOURONKAI ／ NEXY × Corporate</div>
-    <h1 class="hero-title-main">
-      <span class="htm-line">ゆうげの</span>
-      <span class="htm-line">討論会</span>
-    </h1>
-    <div class="hero-divider"></div>
-    <p class="hero-subline">
-      企業と大学生が、<br>
-      特定の議題について<strong>議論し合う</strong>夕方。
-    </p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><div class="hero-meta-label">Time</div><div class="hero-meta-val">19:00 – 21:00</div></div>
-      <div class="hero-meta-item"><div class="hero-meta-label">Scale</div><div class="hero-meta-val">学生20名 × 御社5〜10名</div></div>
-      <div class="hero-meta-item"><div class="hero-meta-label">Price</div><div class="hero-meta-val">初期費用 ¥0 ／ 成果課金</div></div>
-    </div>
-    <div class="hero-cta-row">
-      <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">資料請求・お問い合わせ →</a>
-      <a href="assets/yuuge_pitch.pdf" target="_blank" rel="noopener" class="btn-outline">提案資料 PDF</a>
-    </div>
-  </div>
-
-  <div class="hero-bottom-label">CLOSED DIALOGUE SESSION</div>
-  <div class="hero-scroll-cue">SCROLL</div>
-</section>
-
-<!-- PROBLEMS -->
-<section class="section" id="problems">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Problem</span>
-      <div>
-        <h2 class="section-title">新卒採用の<em>3つの壁</em>。</h2>
-        <p class="section-lead">優秀な学生ほど、就活解禁前にすでに動いている。解禁後に動き出した会社は、構造的に勝てない。</p>
-      </div>
-    </div>
-    <div class="prob-grid">
-      <div class="prob-cell">
-        <div class="prob-num">01</div>
-        <div class="prob-title">優秀な学生は早期に囲い込まれている</div>
-        <div class="prob-desc">東大・早慶・MARCH のトップ層学生は、就活解禁前にすでに複数社と接点を持っている。解禁後では、もう遅い。</div>
-      </div>
-      <div class="prob-cell">
-        <div class="prob-num">02</div>
-        <div class="prob-title">合同説明会では埋もれる</div>
-        <div class="prob-desc">100社以上が並ぶ場では、学生の記憶に残ることすら難しい。出展料40〜100万円をかけても、接触する学生の質はバラバラ。</div>
-      </div>
-      <div class="prob-cell">
-        <div class="prob-num">03</div>
-        <div class="prob-title">採用単価が上がり続けている</div>
-        <div class="prob-desc">新卒採用1名あたりの平均コストは約93万円。大手では200〜400万円。それでも「本当に欲しい学生」に会えているか。</div>
-      </div>
-    </div>
-    <div class="prob-conclusion">本気でやっている学生ほど、<strong>就活前にすでに動いている。</strong></div>
+  <div class="hero-particles" id="particlefield"></div>
+  <div class="hero-image">
+    <img src="img/yuuge/yuuge_hero.jpg" alt="ゆうげの討論会 — 企業と大学生が議論し合う夕方">
   </div>
 </section>
 
-<!-- LIMITS -->
-<section class="section alt">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Limits</span>
-      <div>
-        <h2 class="section-title">既存採用手法の<em>限界</em>。</h2>
-        <p class="section-lead">どの手法も「就活が始まってから」の接触。本当に欲しい学生との接点は、もっと前にある。</p>
-      </div>
-    </div>
-    <table class="limits-table">
-      <thead><tr><th style="width:32%">手法</th><th>問題点</th></tr></thead>
-      <tbody>
-        <tr><td>合同説明会</td><td>学生の質がバラバラ ／ 埋もれる ／ 単発で終わる</td></tr>
-        <tr><td>ナビサイト</td><td>年間80万円〜 ／ ROI が見えにくい ／ 就活生のみ</td></tr>
-        <tr><td>ダイレクト<br>リクルーティング</td><td>工数がかかる ／ 返信率が低い ／ 競合と同じ学生を奪い合う</td></tr>
-        <tr><td>OB・OG訪問</td><td>自社を知っている学生しか来ない ／ 受け身の採用</td></tr>
-      </tbody>
-    </table>
-    <div class="prob-conclusion" style="margin-top:32px;">就活解禁前に、<strong>御社を好きな学生をつくれる場所</strong>が必要だ。</div>
-  </div>
-</section>
+<!-- Scroll cue (below hero) -->
+<div class="hero-scroll-cue">
+  <span>SCROLL TO EXPLORE</span>
+</div>
 
-<!-- WHAT (about) -->
+<!-- ABOUT (concept) -->
 <section class="section" id="about">
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">About</span>
       <div>
         <h2 class="section-title">ゆうげの<em>討論会</em>とは。</h2>
-        <p class="section-lead">就活でも説明会でもない。企業がテーマを設定し、トップ層学生と対等に議論する、御社だけのクローズドな討論会。</p>
+        <p class="section-lead">第一線で活動する企業のリーダーと、特定のテーマについて議論し合う、2時間のクローズド討論会。説明会でも面接でもない、対等な議論の場です。</p>
       </div>
     </div>
-    <div class="what-grid">
-      <div class="what-info">
-        <div class="what-info-h">開催概要</div>
-        <div class="what-info-row"><div class="what-info-key">対象学生</div><div class="what-info-val"><strong>東大・早慶・SFC・MARCH以上</strong>／大学1〜2年生</div></div>
-        <div class="what-info-row"><div class="what-info-key">学生人数</div><div class="what-info-val">20名</div></div>
-        <div class="what-info-row"><div class="what-info-key">企業参加</div><div class="what-info-val">5名以上推奨・MAX10名</div></div>
-        <div class="what-info-row"><div class="what-info-key">時間</div><div class="what-info-val"><strong>19:00 – 21:00（2時間）</strong></div></div>
-        <div class="what-info-row"><div class="what-info-key">場所</div><div class="what-info-val">御社オフィス提供 or 会場手配（会場費別途）</div></div>
-        <div class="what-info-row"><div class="what-info-key">開催日</div><div class="what-info-val">未定／<strong>御社のテーマ・出席者に合わせて個別調整</strong></div></div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-num">01</div>
+        <div class="about-title">クローズドな場</div>
+        <div class="about-desc">企業1社 × 大学生20名の少人数構成。合同説明会では味わえない、密度の濃い対話ができます。</div>
       </div>
-      <div class="what-target">
-        <h4>集まる学生のタイプ</h4>
-        <ul>
-          <li>特定のテーマに興味がある学生</li>
-          <li>インターンや社会との接続に興味がある層</li>
-          <li>起業・学生団体・研究・社会活動などで動いている学生</li>
-          <li>動いている学生の周りにいる、行動意欲の高い層</li>
-        </ul>
+      <div class="about-card">
+        <div class="about-num">02</div>
+        <div class="about-title">テーマ起点の議論</div>
+        <div class="about-desc">企業が設定した社会テーマ（AI／教育／地方／キャリア等）について、対等に意見を交わします。</div>
+      </div>
+      <div class="about-card">
+        <div class="about-num">03</div>
+        <div class="about-title">2時間の本気</div>
+        <div class="about-desc">19:00〜21:00、夕方の2時間。一方通行の講演ではなく、双方向のディスカッション形式です。</div>
+      </div>
+    </div>
+    <div class="about-quote">
+      説明会でも、面接でもない。<br>
+      <strong>「あなたはどう思う？」と、本気で聞かれる場所。</strong>
+    </div>
+  </div>
+</section>
+
+<!-- INFO (開催概要) -->
+<section class="section alt" id="info">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Info</span>
+      <div>
+        <h2 class="section-title">開催<em>概要</em>。</h2>
+        <p class="section-lead">回ごとに異なる企業・テーマで開催します。次回開催の詳細は応募フォームからご確認ください。</p>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell">
+        <div class="info-cell-h">開催情報</div>
+        <div class="info-row"><div class="info-key">時間</div><div class="info-val"><strong>19:00 – 21:00（2時間）</strong></div></div>
+        <div class="info-row"><div class="info-key">場所</div><div class="info-val">東京都内（参加企業のオフィス or 会場手配）</div></div>
+        <div class="info-row"><div class="info-key">開催日</div><div class="info-val">未定／<strong>参加企業のテーマに合わせて個別調整</strong></div></div>
+        <div class="info-row"><div class="info-key">形式</div><div class="info-val">クローズドな討論会（テーブル型）</div></div>
+      </div>
+      <div class="info-cell">
+        <div class="info-cell-h">参加について</div>
+        <div class="info-row"><div class="info-key">対象</div><div class="info-val"><strong>大学1〜2年生</strong>（東大・早慶・SFC・MARCH 以上）</div></div>
+        <div class="info-row"><div class="info-key">定員</div><div class="info-val">学生20名（毎回／選考あり）</div></div>
+        <div class="info-row"><div class="info-key">参加費</div><div class="info-val"><strong>無料</strong></div></div>
+        <div class="info-row"><div class="info-key">主催</div><div class="info-val">学生団体 NEXY</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STUDENTS -->
-<section class="section alt" id="students">
+<!-- WHY (Benefits for students) -->
+<section class="section" id="why">
   <div class="section-inner">
     <div class="section-head reveal">
-      <span class="section-tag">Attendees</span>
+      <span class="section-tag">Why Join</span>
       <div>
-        <h2 class="section-title">採用市場で最も価値の<em>高い層</em>。</h2>
-        <p class="section-lead">自ら動き、自ら考える行動層。企業が採用で本当に出会いたい層が、ここにいる。</p>
+        <h2 class="section-title">なぜ、いま参加すべきか。</h2>
+        <p class="section-lead">就活が始まる前の今だからこそ得られる、4つの価値。</p>
       </div>
     </div>
-    <div class="stu-grid">
-      <div class="stu-card">
-        <div class="stu-num">01 ／ Academic</div>
-        <div class="stu-title">学歴</div>
-        <div class="stu-desc">東京大学・慶應義塾大学・早稲田大学・上智大学・MARCH以上に在籍する大学1〜2年生。</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">01</div>
+        <div>
+          <div class="why-title">経営層と直接議論できる</div>
+          <div class="why-desc">第一線で動いている経営者・役員クラスと、5〜10名の近い距離で議論。「あの人にいま聞きたいこと」を、その場で投げかけられます。</div>
+        </div>
       </div>
-      <div class="stu-card">
-        <div class="stu-num">02 ／ Behavior</div>
-        <div class="stu-title">行動特性</div>
-        <div class="stu-desc">起業・学生団体・研究・社会活動など、何らかのプロジェクトを動かしている学生。就活意識ではなく、行動意識が高い層。</div>
+      <div class="why-card">
+        <div class="why-icon">02</div>
+        <div>
+          <div class="why-title">就活より前に企業を知れる</div>
+          <div class="why-desc">解禁後では受けられない深さで、企業の事業・カルチャー・課題を理解できます。同世代より2年早い情報収集。</div>
+        </div>
       </div>
-      <div class="stu-card">
-        <div class="stu-num">03 ／ Timing</div>
-        <div class="stu-title">希少性</div>
-        <div class="stu-desc">就活解禁の前。まだどの企業とも深い接点を持っていない。この時期に関係を作れるのは、今だけ。</div>
+      <div class="why-card">
+        <div class="why-icon">03</div>
+        <div>
+          <div class="why-title">同じ熱量の同期と出会える</div>
+          <div class="why-desc">「就活前から動いている大学生」が集まる場。学校や学年を超えた、刺激的な横のつながりが手に入ります。</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">04</div>
+        <div>
+          <div class="why-title">自分の言葉で語る練習</div>
+          <div class="why-desc">テーマに対する自分の考えを、社会人の前で言語化する経験。プレゼン力・思考力が一段引き上がる場です。</div>
+        </div>
       </div>
     </div>
-    <div class="stu-callout">合同説明会では会えない。ナビサイトにも登録していない。この層と会える場所は、ここだけ。</div>
   </div>
 </section>
 
 <!-- THEMES -->
-<section class="section" id="themes">
+<section class="section alt" id="themes">
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">Themes</span>
       <div>
-        <h2 class="section-title">テーマ<em>事例</em>。</h2>
-        <p class="section-lead">企業と学生が対等に議論し、その中で接点を作る。御社のニーズに合わせて、事前ミーティングで最終決定します。</p>
+        <h2 class="section-title">どんな<em>テーマ</em>を議論する？</h2>
+        <p class="section-lead">企業ごとに異なるテーマを、事前に告知します。社会の本質に切り込むテーマを中心に展開します。</p>
       </div>
     </div>
     <div class="themes-grid">
       <div class="theme-card"><div class="theme-tag">教育</div><div class="theme-text">AI時代に、学校という装置はまだ機能するのか</div></div>
-      <div class="theme-card"><div class="theme-tag">採用 / 就活市場</div><div class="theme-text">就活というシステムの賞味期限</div></div>
+      <div class="theme-card"><div class="theme-tag">就活市場</div><div class="theme-text">就活というシステムの賞味期限</div></div>
       <div class="theme-card"><div class="theme-tag">地方</div><div class="theme-text">AI時代における地方の在り方とは？</div></div>
       <div class="theme-card"><div class="theme-tag">AI</div><div class="theme-text">AI時代に、人間が残すべきもの</div></div>
     </div>
   </div>
 </section>
 
-<!-- BENEFITS -->
-<section class="section alt">
+<!-- ELIGIBLE (対象) -->
+<section class="section" id="eligible">
   <div class="section-inner">
     <div class="section-head reveal">
-      <span class="section-tag">Benefits</span>
+      <span class="section-tag">Eligible</span>
       <div>
-        <h2 class="section-title">採用・ブランディング・リサーチ、<em>すべてに使える</em>。</h2>
-        <p class="section-lead">広告費ではなく、関係構築への投資として設計されています。</p>
+        <h2 class="section-title">こんな<em>大学生</em>に来てほしい。</h2>
+        <p class="section-lead">学年・大学・行動意欲、3つの観点で参加対象を絞っています。</p>
       </div>
     </div>
-    <div class="ben-grid">
-      <div class="ben-card">
-        <div class="ben-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg></div>
-        <div><div class="ben-title">就活前の早期接点</div><div class="ben-desc">就活解禁前から「あの会社が好き」という学生を作れる。解禁後に動く企業より早く、関係構築できる。</div></div>
+    <div class="eli-grid">
+      <div class="eli-card">
+        <div class="eli-num">01 ／ Year</div>
+        <div class="eli-title">学年</div>
+        <div class="eli-desc">大学1年生・2年生。就活が始まる前のタイミングだからこそ、本気の議論ができます。</div>
       </div>
-      <div class="ben-card">
-        <div class="ben-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-        <div><div class="ben-title">テーマ起点の自発参加</div><div class="ben-desc">テーマに興味を持って自発的に集まった学生。構えていない素の状態で話せるため、人柄・思考力・熱量が自然と見える。</div></div>
+      <div class="eli-card">
+        <div class="eli-num">02 ／ University</div>
+        <div class="eli-title">学歴</div>
+        <div class="eli-desc">東京大学・慶應義塾大学・早稲田大学・上智大学・MARCH 以上に在籍する学生。質の高い議論を担保するため。</div>
       </div>
-      <div class="ben-card">
-        <div class="ben-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6m11-11h-6m-10 0H1"/></svg></div>
-        <div><div class="ben-title">御社だけのクローズドな場</div><div class="ben-desc">合同説明会のように他社と並ばない。御社だけのイベントだから、学生の記憶に強く残る。</div></div>
-      </div>
-      <div class="ben-card">
-        <div class="ben-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <div><div class="ben-title">興味学生の把握</div><div class="ben-desc">イベント後のアンケートで「御社に興味あり」と回答した学生数を把握。次のアクションに直結。</div></div>
+      <div class="eli-card">
+        <div class="eli-num">03 ／ Mindset</div>
+        <div class="eli-title">行動意欲</div>
+        <div class="eli-desc">起業・学生団体・研究・社会活動など、何かしら動いている／動きたい学生。「就活意識」ではなく「行動意欲」を重視します。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPARE -->
-<section class="section" id="compare">
+<!-- FLOW (当日の流れ) -->
+<section class="section alt" id="flow">
   <div class="section-inner">
     <div class="section-head reveal">
-      <span class="section-tag">Comparison</span>
+      <span class="section-tag">Flow</span>
       <div>
-        <h2 class="section-title">他の採用手法と、<em>何が違うのか</em>。</h2>
-        <p class="section-lead">就活前の、トップ層学生と、御社だけで話せる。この3つが揃う場所は他にない。</p>
+        <h2 class="section-title">当日の<em>流れ</em>。</h2>
+        <p class="section-lead">事前準備不要。当日その場で議論に参加できます。</p>
       </div>
     </div>
-    <div class="compare-wrap">
-      <table class="compare-table">
-        <thead>
-          <tr><th style="text-align:left">観点</th><th>合同説明会</th><th>ナビサイト</th><th class="col-us">ゆうげの討論会</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>対象学年</td><td>大学3〜4年</td><td>大学3〜4年</td><td class="col-us"><strong>大学1〜2年</strong></td></tr>
-          <tr><td>接触タイミング</td><td>就活解禁後</td><td>就活解禁後</td><td class="col-us"><strong>就活解禁の前から</strong></td></tr>
-          <tr><td>学生の質</td><td>バラバラ</td><td>バラバラ</td><td class="col-us"><strong>東大・早慶・MARCH以上</strong></td></tr>
-          <tr><td>競合他社</td><td>同じ場に複数社</td><td>同じサイトに数百社</td><td class="col-us"><strong>御社だけ・クローズド</strong></td></tr>
-          <tr><td>費用相場</td><td>40〜100万円／回</td><td>80万円〜／年</td><td class="col-us"><strong>15万円（採用確定後）</strong></td></tr>
-          <tr><td>学生との関係</td><td>当日限り</td><td>メッセージのみ</td><td class="col-us"><strong>対面・2時間の深い議論</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="compare-conclusion">就活前 × トップ層学生 × 御社だけ — この3条件を満たす採用接点は、他にない。</div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="section alt deep" id="pricing">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Pricing</span>
-      <div>
-        <h2 class="section-title">料金体系（<em>成果課金型</em>）。</h2>
-        <p class="section-lead">まず試す。採用が決まった分だけお支払いいただく設計。1名でも採用につながれば投資回収できます。</p>
-      </div>
-    </div>
-    <div class="price-grid">
-      <div class="price-card">
-        <div class="price-phase">Phase 1 — イベント実施</div>
-        <div class="price-title">初期費用ゼロ</div>
-        <div class="price-amount">¥0</div>
-        <div class="price-note">外部会場使用の場合は実費を別途請求</div>
-        <div class="price-incl">
-          <div class="price-incl-title">含まれるもの</div>
-          <ul>
-            <li>学生20名の集客・告知</li>
-            <li>テーマ設計サポート</li>
-            <li>当日司会・進行</li>
-            <li>事後アンケート実施</li>
-            <li>興味あり学生リスト共有</li>
-          </ul>
-        </div>
-      </div>
-      <div class="price-card featured">
-        <div class="price-phase">Phase 2 — 採用確定後</div>
-        <div class="price-title">採用1名あたり</div>
-        <div class="price-amount">¥150,000<small>（税別）</small></div>
-        <div class="price-note">出勤開始から30日後、インタビュー実施後に請求</div>
-        <div class="price-incl">
-          <div class="price-incl-title">含まれるもの</div>
-          <ul>
-            <li>採用学生インタビュー記事制作</li>
-            <li>採用企業インタビュー記事制作</li>
-            <li>SNS拡散（Instagram・X・Podcast）</li>
-            <li>採用成功事例レポート</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="price-callout"><strong>1ヶ月保証付き。</strong>採用学生が出勤開始から30日以内に離脱した場合は請求発生なし（学生からの辞退も NEXY 側で保証）。</div>
-  </div>
-</section>
-
-<!-- GUARANTEE -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Guarantee</span>
-      <div>
-        <h2 class="section-title">1ヶ月<em>保証</em>付き。</h2>
-        <p class="section-lead">採用学生が30日以上勤務した場合にのみ請求が発生。それ以前の離脱は、原因を問わず請求なし。</p>
-      </div>
-    </div>
-    <div class="guar-grid">
-      <div class="guar-card">
-        <div class="guar-card-h">請求発生条件</div>
-        <ul>
-          <li>起点：採用学生の出勤開始日</li>
-          <li>経過：出勤開始から 30 暦日</li>
-          <li>請求金額：¥150,000（税別）</li>
-          <li>請求タイミング：インタビュー完了後</li>
-        </ul>
-      </div>
-      <div class="guar-card warn">
-        <div class="guar-card-h">保証対象外（請求なし）</div>
-        <ul>
-          <li>30日以内に学生が離脱（辞退・無断欠勤含む）</li>
-          <li>30日以内に企業判断で契約終了</li>
-          <li>学生・企業双方の合意で契約終了（ミスマッチ）</li>
-          <li>不可抗力による離脱（病気・天災等）</li>
-          <li>採用条件の一方的変更による離脱</li>
-          <li>採用そのものが成立しなかった場合</li>
-        </ul>
-      </div>
+    <div class="flow-list">
+      <div class="flow-item"><div class="flow-time">18:45 – 19:00</div><div class="flow-content"><strong>受付・着席</strong>会場に到着次第、テーブルに着席。軽食・ドリンク提供あり。</div></div>
+      <div class="flow-item"><div class="flow-time">19:00 – 19:15</div><div class="flow-content"><strong>オープニング</strong>NEXY 司会からの場の説明、参加企業の紹介、テーマの提示。</div></div>
+      <div class="flow-item"><div class="flow-time">19:15 – 20:45</div><div class="flow-content"><strong>クローズド討論</strong>テーマに沿って、企業担当者と学生で議論。自由発言・モデレートあり。</div></div>
+      <div class="flow-item"><div class="flow-time">20:45 – 21:00</div><div class="flow-content"><strong>クロージング・自由交流</strong>議論のまとめ、感想シェア、企業担当者との個別対話・名刺交換。</div></div>
     </div>
   </div>
 </section>
 
-<!-- SCHEDULE -->
-<section class="section alt" id="schedule">
+<!-- FAQ -->
+<section class="section" id="faq">
   <div class="section-inner">
     <div class="section-head reveal">
-      <span class="section-tag">Schedule</span>
+      <span class="section-tag">FAQ</span>
       <div>
-        <h2 class="section-title">商談から実施まで、<em>最短6週間</em>。</h2>
-        <p class="section-lead">スムーズな進行をサポートします。</p>
+        <h2 class="section-title">よくある<em>質問</em>。</h2>
       </div>
     </div>
-    <div class="sched-list">
-      <div class="sched-item"><div class="sched-week">Week 1〜2</div><div class="sched-content"><strong>商談・合意</strong>初回ヒアリング／契約締結／企業紹介資料の受領</div></div>
-      <div class="sched-item"><div class="sched-week">Week 2〜4</div><div class="sched-content"><strong>集客・設計</strong>学生への告知開始／テーマ設計・当日台本作成／参加者確定</div></div>
-      <div class="sched-item"><div class="sched-week">Week 4</div><div class="sched-content"><strong>イベント当日</strong>前後1時間の準備・撤収含む／2時間の討論実施／アンケート実施</div></div>
-      <div class="sched-item"><div class="sched-week">Day +3以内</div><div class="sched-content"><strong>事後・レポート</strong>アンケート集計／興味あり学生リスト共有／フォローアップ</div></div>
-      <div class="sched-item"><div class="sched-week">Day +30日後</div><div class="sched-content"><strong>インタビュー実施・記事制作・請求</strong>採用が発生した場合のみ。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TASKS -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Your Tasks</span>
-      <div>
-        <h2 class="section-title">企業様にしていただくこと（<em>最小工数</em>）。</h2>
-        <p class="section-lead">NEXYが学生集客・当日進行をサポート。企業様は最小の工数で参加できます。</p>
-      </div>
-    </div>
-    <div class="tasks-grid">
-      <div class="task-card">
-        <div class="task-phase">Before — 事前</div>
-        <h4>テーマ決定とフォーム承認</h4>
-        <ul><li>ミーティングでテーマ選定（約30分）</li><li>参加フォームの確認・承認（約15分）</li></ul>
-        <p class="task-time">所要時間：約45分</p>
-      </div>
-      <div class="task-card">
-        <div class="task-phase">During — 当日</div>
-        <h4>イベント出席</h4>
-        <ul><li>担当者5〜10名が参加（2時間）</li><li>前後30分の準備・移動含め実質約3時間</li></ul>
-        <p class="task-time">所要時間：約3時間</p>
-      </div>
-      <div class="task-card">
-        <div class="task-phase">After — 採用後</div>
-        <h4>採用報告とインタビュー対応</h4>
-        <ul><li>採用決定の報告（約5分）</li><li>初出勤日の共有（約5分）</li><li>30日後のインタビュー対応（30〜60分）</li></ul>
-        <p class="task-time">所要時間：合計 約1.5〜2時間</p>
-      </div>
-    </div>
-    <div class="tasks-note"><strong>NEXYが代行：</strong>学生集客・告知 ／ 当日の司会・進行 ／ アンケート設計・集計 ／ インタビュー記事制作・掲載</div>
-  </div>
-</section>
-
-<!-- COMPLIANCE -->
-<section class="section alt" id="compliance">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Compliance</span>
-      <div>
-        <h2 class="section-title">契約条件・<em>コンプライアンス</em>。</h2>
-        <p class="section-lead">法的にクリーンな取引設計で、安心してご導入いただけます。</p>
-      </div>
-    </div>
-    <div class="comp-grid">
-      <div class="comp-card">
-        <h4>取引内容</h4>
-        <p>本サービスは「採用学生インタビュー記事制作」の業務委託契約として提供されます。請求発生は、採用学生が出勤開始から30日継続勤務した後、記事を制作・公開する成果物に対して行われます。</p>
-      </div>
-      <div class="comp-card">
-        <h4>専属交渉条項</h4>
-        <p>イベント参加学生への採用関連連絡は、イベント終了後 6ヶ月間、NEXYを経由するものとします。NEXYを介さず直接連絡し採用が成立した場合、違約金として 40万円（税別）を申し受けます。</p>
-      </div>
-      <div class="comp-card">
-        <h4>個人情報・守秘義務</h4>
-        <p>参加学生の個人情報は、御社内部の採用検討目的のみに使用。第三者提供禁止。本イベントで知り得た情報の守秘義務は 5年間。個人情報保護法に準拠した取扱いを行います。</p>
-      </div>
-      <div class="comp-card">
-        <h4>知的財産権</h4>
-        <p>インタビュー記事の著作権は NEXY に帰属。御社による二次利用（採用広報・社内報等）は無償で許諾。参加者の個人名・所属を特定した形での外部公開は、事前合意制。</p>
-      </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>これは就活イベントですか？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">いいえ、就活説明会ではありません。テーマについて議論する「対等な対話の場」です。とはいえ、参加企業はあなたを見ています。将来の進路選択につながる出会いが生まれる可能性は十分にあります。</div>
+      </details>
+      <details class="faq-item">
+        <summary>議論についていけるか不安です。<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">「正解を出す場」ではなく「自分の意見を投げる場」です。NEXY のモデレーターが場を整え、誰でも発言できる雰囲気を作ります。準備は不要、思っていることを話してください。</div>
+      </details>
+      <details class="faq-item">
+        <summary>大学1年生ですが参加できますか？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">はい、大学1〜2年生限定のイベントです。むしろ就活が始まる前の今、参加する価値が最も高いタイミングです。</div>
+      </details>
+      <details class="faq-item">
+        <summary>参加費はかかりますか？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">参加費は無料です。軽食・ドリンクも企業負担で提供されます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>選考はありますか？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">はい、毎回20名定員のため、応募フォームから簡単な書類選考があります。学歴・所属・行動歴を見て、議論の質を担保できる方を選定しています。</div>
+      </details>
+      <details class="faq-item">
+        <summary>服装は？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">自由です。スーツである必要はありません。リクルートではなく、議論の場なので、普段の格好で来てください。</div>
+      </details>
+      <details class="faq-item">
+        <summary>参加後にスカウトされたりしますか？<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">企業からの直接的なスカウトは原則ありません。希望される場合のみ、NEXY を経由して企業からの個別連絡が届くことがあります。プライバシーは厳重に守られます。</div>
+      </details>
     </div>
   </div>
 </section>
@@ -1283,17 +812,15 @@ img { max-width: 100%; display: block; }
 <!-- CTA -->
 <section class="cta-final" id="apply">
   <div class="cta-inner">
-    <div class="cta-eyebrow">Contact</div>
-    <h2>御社の<em>採用ニーズ</em>を、<br>まずヒアリングさせてください。</h2>
-    <p>事前打ち合わせで御社の採用ニーズをヒアリングした上で、<br>テーマ設計・学生キャスティングを行います。</p>
+    <div class="cta-eyebrow">Apply</div>
+    <h2>本気で議論する<em>夕方</em>を、<br>体験してみよう。</h2>
+    <p>
+      大学1〜2年生限定。<br>
+      参加無料。次回開催情報・応募はフォームから。
+    </p>
     <div class="cta-btns">
-      <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">資料請求・お問い合わせ →</a>
-      <a href="assets/yuuge_pitch.pdf" target="_blank" rel="noopener" class="btn-outline">提案資料 PDF</a>
-    </div>
-    <div class="cta-meta">
-      <span><strong>Run by</strong>NEXY（ネクシー）</span>
-      <span><strong>Representative</strong>小助川 晴大</span>
-      <span><strong>Email</strong>info@nexyhub.jp</span>
+      <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">参加申込はこちら →</a>
+      <a href="index.html#contact" class="btn-outline">お問い合わせ</a>
     </div>
   </div>
 </section>
@@ -1317,24 +844,21 @@ if (burger) {
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 }
 
-/* Generate starfield */
-const starField = document.getElementById('starfield');
-if (starField) {
-  for (let i = 0; i < 80; i++) {
+/* Generate particles overlay on hero image */
+const partField = document.getElementById('particlefield');
+if (partField) {
+  // Stars
+  for (let i = 0; i < 50; i++) {
     const s = document.createElement('span');
     s.className = 'star' + (Math.random() > .85 ? ' large' : '') + (Math.random() > .9 ? ' golden' : '');
     s.style.left = Math.random() * 100 + '%';
-    s.style.top = Math.random() * 70 + '%';
+    s.style.top = Math.random() * 60 + '%';
     s.style.animationDelay = (Math.random() * 3) + 's';
     s.style.animationDuration = (2 + Math.random() * 3) + 's';
-    starField.appendChild(s);
+    partField.appendChild(s);
   }
-}
-
-/* Generate particles */
-const partField = document.getElementById('particlefield');
-if (partField) {
-  for (let i = 0; i < 12; i++) {
+  // Light particles
+  for (let i = 0; i < 10; i++) {
     const p = document.createElement('span');
     p.className = 'particle';
     p.style.left = Math.random() * 100 + '%';
@@ -1363,12 +887,12 @@ document.querySelectorAll('.reveal').forEach(el => {
 });
 
 /* Auto-reveal grid items with stagger */
-const autoTargets = document.querySelectorAll('.section-head, .prob-cell, .stu-card, .theme-card, .ben-card, .price-card, .guar-card, .sched-item, .task-card, .comp-card');
+const autoTargets = document.querySelectorAll('.about-card, .info-cell, .why-card, .theme-card, .eli-card, .flow-item, .faq-item');
 autoTargets.forEach(el => {
   if (el.classList.contains('reveal')) return;
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
+  el.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), background .25s, border-color .25s';
 });
 const autoObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1376,7 +900,7 @@ const autoObs = new IntersectionObserver((entries) => {
       e.target.classList.add('in-view');
       const siblings = e.target.parentElement ? Array.from(e.target.parentElement.children).indexOf(e.target) : 0;
       const delay = Math.min(siblings * 0.08, 0.5);
-      e.target.style.transitionDelay = delay + 's, ' + delay + 's';
+      e.target.style.transitionDelay = delay + 's, ' + delay + 's, 0s, 0s';
       e.target.style.opacity = '1';
       e.target.style.transform = 'translateY(0)';
       autoObs.unobserve(e.target);
@@ -1386,12 +910,10 @@ const autoObs = new IntersectionObserver((entries) => {
 autoTargets.forEach(el => autoObs.observe(el));
 
 /* Hero parallax */
-const heroBg = document.querySelector('.hero-photo-bg');
-const moonG = document.querySelector('.moon-glow');
+const heroImg = document.querySelector('.hero-image img');
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
-  if (heroBg && y < window.innerHeight * 1.2) heroBg.style.transform = `translateY(${y * 0.25}px) scale(${1 + y * 0.0003})`;
-  if (moonG && y < window.innerHeight) moonG.style.transform = `translateY(${y * -0.15}px)`;
+  if (heroImg && y < window.innerHeight * 1.5) heroImg.style.transform = `translateY(${y * 0.18}px) scale(${1 + y * 0.0002})`;
 }, { passive: true });
 
 /* Smooth scroll */
@@ -1401,16 +923,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
-
-/* Mousemove parallax on hero */
-const hero = document.querySelector('.hero');
-if (hero) {
-  hero.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - .5) * 12;
-    const y = (e.clientY / window.innerHeight - .5) * 12;
-    if (heroBg) heroBg.style.backgroundPosition = `calc(50% + ${x}px) calc(30% + ${y}px)`;
-  });
-}
 </script>
 </body>
 </html>
