@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <style>
+    @import url("https://fontsapi.zeoseven.com/98/main/result.css");
+
     :root {
       --ink: #07111f;
       --ink2: #121b2b;
@@ -34,7 +36,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Tsunagi Gothic Black", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--ink);
       background: var(--paper);
       overflow-x: hidden;
@@ -99,7 +101,7 @@
       border-bottom: 1px solid var(--line);
     }
     .brand {
-      font-family: "Inter", sans-serif;
+      font-family: "Tsunagi Gothic Black", "Inter", sans-serif;
       font-size: 18px;
       font-weight: 900;
       letter-spacing: -.04em;
@@ -215,7 +217,7 @@
       box-shadow: 18px 0 0 var(--blue);
     }
     .hero h1 {
-      font-family: "Archivo Black", "Inter", sans-serif;
+      font-family: "Tsunagi Gothic Black", "Archivo Black", "Inter", sans-serif;
       font-size: clamp(4.6rem, 13.5vw, 13rem);
       line-height: .72;
       letter-spacing: -.065em;
@@ -722,7 +724,7 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      font-family: "Archivo Black", sans-serif;
+      font-family: "Tsunagi Gothic Black", "Archivo Black", sans-serif;
       font-size: 12vw;
       line-height: .8;
       white-space: nowrap;
@@ -774,6 +776,8 @@
     body { background: #fff; }
     .site-shell {
       background:
+        radial-gradient(circle at 8% 8%, rgba(7,87,255,.16), transparent 24%),
+        radial-gradient(circle at 96% 18%, rgba(239,45,45,.16), transparent 26%),
         linear-gradient(90deg, rgba(7,17,31,.045) 1px, transparent 1px),
         linear-gradient(180deg, rgba(7,17,31,.045) 1px, transparent 1px),
         #fff;
@@ -785,8 +789,10 @@
     .hero {
       color: var(--ink);
       background:
-        radial-gradient(circle at 18% 20%, rgba(7,87,255,.10), transparent 30%),
-        radial-gradient(circle at 86% 16%, rgba(239,45,45,.10), transparent 28%),
+        linear-gradient(120deg, rgba(7,87,255,.18) 0 24%, transparent 24% 100%),
+        linear-gradient(300deg, rgba(239,45,45,.16) 0 18%, transparent 18% 100%),
+        radial-gradient(circle at 18% 20%, rgba(7,87,255,.16), transparent 30%),
+        radial-gradient(circle at 86% 16%, rgba(239,45,45,.16), transparent 28%),
         #fff;
       border-bottom: 1px solid var(--line);
     }
@@ -808,13 +814,13 @@
     }
     .hero::before {
       background: var(--blue);
-      opacity: .12;
+      opacity: .22;
       mix-blend-mode: normal;
       left: -16vw;
     }
     .hero::after {
       background: var(--red);
-      opacity: .12;
+      opacity: .22;
       mix-blend-mode: normal;
       right: -14vw;
     }
@@ -929,7 +935,10 @@
       letter-spacing: -.07em;
     }
     .section.dark {
-      background: #fff;
+      background:
+        linear-gradient(135deg, rgba(7,87,255,.12), transparent 34%),
+        linear-gradient(315deg, rgba(239,45,45,.12), transparent 36%),
+        #fff;
       color: var(--ink);
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -942,13 +951,18 @@
     .speaker-role,
     .tag { color: var(--red); }
     .speaker {
-      background: #fff;
+      background:
+        linear-gradient(90deg, rgba(7,87,255,.10), transparent 42%),
+        #fff;
       color: var(--ink);
       border-color: var(--line);
     }
     .speaker-body { background: #fff; }
     .schedule {
-      background: #fff;
+      background:
+        linear-gradient(90deg, rgba(7,87,255,.08), transparent 44%),
+        linear-gradient(270deg, rgba(239,45,45,.08), transparent 44%),
+        #fff;
       border-color: var(--line);
     }
     .schedule-row { border-color: var(--line); }
@@ -991,6 +1005,53 @@
       color: var(--red);
     }
     .cta h2 { font-size: clamp(2.1rem, 5vw, 5.4rem); }
+    .section.white:nth-of-type(1) {
+      background:
+        linear-gradient(180deg, #fff 0%, rgba(7,87,255,.07) 100%);
+    }
+    .section.white:nth-of-type(3) {
+      background:
+        linear-gradient(135deg, rgba(239,45,45,.10), transparent 32%),
+        linear-gradient(315deg, rgba(7,87,255,.10), transparent 36%),
+        #fff;
+    }
+    .section.white:nth-of-type(7) {
+      background:
+        linear-gradient(90deg, rgba(7,87,255,.10), transparent 38%),
+        linear-gradient(270deg, rgba(239,45,45,.10), transparent 38%),
+        #fff;
+    }
+    .concept-system {
+      background:
+        linear-gradient(135deg, rgba(7,87,255,.11), transparent 42%),
+        linear-gradient(315deg, rgba(239,45,45,.10), transparent 42%),
+        #fff;
+    }
+    .concept-main {
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(8px);
+    }
+    .concept-step:nth-child(1) { background: rgba(7,87,255,.08); }
+    .concept-step:nth-child(2) { background: rgba(239,45,45,.08); }
+    .concept-step:nth-child(3) { background: rgba(7,17,31,.035); }
+    .program-card:nth-child(1) { border-top: 8px solid var(--blue); }
+    .program-card:nth-child(2) { border-top: 8px solid var(--red); }
+    .program-card:nth-child(3) { border-top: 8px solid var(--blue2); }
+    .track:nth-child(1) { background: rgba(7,87,255,.09); }
+    .track:nth-child(2) { background: rgba(239,45,45,.08); }
+    .track:nth-child(3) { background: rgba(7,87,255,.06); }
+    .info-panel:not(.blue) {
+      background:
+        linear-gradient(135deg, rgba(239,45,45,.10), transparent 42%),
+        #fff;
+    }
+    .sponsor-wall {
+      background:
+        linear-gradient(135deg, rgba(7,87,255,.10), transparent 42%),
+        linear-gradient(315deg, rgba(239,45,45,.08), transparent 42%),
+        #fff;
+    }
+    .sponsor-cell { background: rgba(255,255,255,.72); }
 
     @media (max-width: 1060px) {
       .navlinks { display: none; }
