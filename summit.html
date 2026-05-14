@@ -127,7 +127,7 @@
       min-height: 100svh;
       position: relative;
       display: grid;
-      align-items: end;
+      align-items: center;
       padding: 142px clamp(18px, 5vw, 72px) 46px;
       overflow: hidden;
       color: #fff;
@@ -190,7 +190,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 342px;
       gap: clamp(30px, 5vw, 70px);
-      align-items: end;
+      align-items: center;
     }
     .hero-kicker {
       display: inline-flex;
@@ -770,6 +770,228 @@
     }
     .reveal.in { opacity: 1; transform: translateY(0); }
 
+    /* SPIKES-inspired refinement: white canvas, thin rules, technical modules */
+    body { background: #fff; }
+    .site-shell {
+      background:
+        linear-gradient(90deg, rgba(7,17,31,.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(7,17,31,.045) 1px, transparent 1px),
+        #fff;
+      background-size: 80px 80px;
+    }
+    .topline { background: #fff; color: var(--ink); border-bottom: 1px solid var(--line); }
+    .topline span:last-child { color: rgba(7,17,31,.58); }
+    .nav { background: rgba(255,255,255,.86); }
+    .hero {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(7,87,255,.10), transparent 30%),
+        radial-gradient(circle at 86% 16%, rgba(239,45,45,.10), transparent 28%),
+        #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-photo {
+      inset: 150px 5vw 70px auto;
+      width: min(42vw, 600px);
+      border: 1px solid var(--line);
+      background: url("img/summit/summit_hero.jpg") center / cover no-repeat;
+      clip-path: polygon(9% 0, 100% 0, 91% 100%, 0 100%);
+      filter: saturate(.95) contrast(1.04);
+      opacity: .92;
+      box-shadow: 28px 28px 0 rgba(7,87,255,.12), -28px -28px 0 rgba(239,45,45,.10);
+    }
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,.55));
+    }
+    .hero::before {
+      background: var(--blue);
+      opacity: .12;
+      mix-blend-mode: normal;
+      left: -16vw;
+    }
+    .hero::after {
+      background: var(--red);
+      opacity: .12;
+      mix-blend-mode: normal;
+      right: -14vw;
+    }
+    .hero-inner {
+      grid-template-columns: minmax(0, .94fr) 330px;
+      align-items: center;
+    }
+    .hero h1 {
+      color: var(--ink);
+      font-size: clamp(5.4rem, 12.6vw, 12rem);
+      text-shadow: 6px 0 0 rgba(239,45,45,.16), -6px 0 0 rgba(7,87,255,.18);
+      max-width: 860px;
+    }
+    .hero-kicker {
+      color: var(--ink);
+      background: #fff;
+      border-color: var(--line);
+      backdrop-filter: none;
+    }
+    .hero-lead { color: var(--ink); }
+    .hero-desc { color: #4c586b; }
+    .btn-ghost { color: var(--ink); background: #fff; border-color: var(--line); backdrop-filter: none; }
+    .btn-ghost:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .hero-card {
+      background: rgba(255,255,255,.88);
+      color: var(--ink);
+      border-color: var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 70px rgba(7,17,31,.10);
+    }
+    .hero-card-title,
+    .fact-label { color: rgba(7,17,31,.48); }
+    .hero-fact { border-color: var(--line); }
+    .fact-value { color: var(--ink); }
+    .hero-scroll { color: rgba(7,17,31,.4); }
+    .system-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .system-label::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: currentColor;
+    }
+    .concept-system {
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .concept-main {
+      padding: clamp(30px, 5vw, 58px);
+      border-right: 1px solid var(--line);
+    }
+    .concept-main h3 {
+      font-size: clamp(2rem, 4.6vw, 4.8rem);
+      line-height: 1.04;
+      letter-spacing: -.065em;
+      font-weight: 900;
+    }
+    .concept-main h3 strong { color: var(--red); }
+    .concept-main p {
+      margin-top: 24px;
+      max-width: 620px;
+      color: #566276;
+      font-weight: 700;
+    }
+    .concept-steps {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+    }
+    .concept-step {
+      padding: 28px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .concept-step:last-child { border-bottom: none; }
+    .concept-step b {
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      letter-spacing: .16em;
+      color: var(--red);
+    }
+    .concept-step h4 {
+      font-size: 1.28rem;
+      letter-spacing: -.03em;
+      line-height: 1.35;
+    }
+    .concept-step span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .intro-grid { box-shadow: none; }
+    .intro-quote {
+      font-size: clamp(2.1rem, 4.2vw, 4.7rem);
+      letter-spacing: -.07em;
+    }
+    .section.dark {
+      background: #fff;
+      color: var(--ink);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .dark .section-lead,
+    .speaker-text,
+    .slot { color: #566276; }
+    .dark .section-title strong,
+    .dark .eyebrow,
+    .speaker-role,
+    .tag { color: var(--red); }
+    .speaker {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .speaker-body { background: #fff; }
+    .schedule {
+      background: #fff;
+      border-color: var(--line);
+    }
+    .schedule-row { border-color: var(--line); }
+    .time {
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .slot { border-color: var(--line); }
+    .sponsor-wall {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: #fff;
+    }
+    .sponsor-cell {
+      min-height: 150px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      color: rgba(7,17,31,.38);
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .sponsor-cell.platinum {
+      grid-column: span 2;
+      min-height: 190px;
+      background: linear-gradient(135deg, rgba(7,87,255,.06), rgba(239,45,45,.05));
+    }
+    .sponsor-cell img { max-height: 96px; object-fit: contain; }
+    .sponsor-cell small {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--red);
+    }
+    .cta h2 { font-size: clamp(2.1rem, 5vw, 5.4rem); }
+
     @media (max-width: 1060px) {
       .navlinks { display: none; }
       .hero-inner,
@@ -792,10 +1014,16 @@
         padding: 130px 18px 58px;
       }
       .hero-photo {
-        background:
-          linear-gradient(180deg, rgba(7,17,31,.88) 0%, rgba(7,17,31,.54) 48%, rgba(7,17,31,.92) 100%),
-          url("img/summit/summit_thumb.jpg") center top / cover no-repeat;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 240px;
+        order: 2;
+        clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+        background: url("img/summit/summit_thumb.jpg") center / cover no-repeat;
+        box-shadow: 10px 10px 0 rgba(7,87,255,.12), -10px -10px 0 rgba(239,45,45,.10);
       }
+      .hero-photo::after { background: rgba(255,255,255,.25); }
       .hero::before { width: 240px; left: -128px; opacity: .58; }
       .hero::after { width: 220px; right: -132px; opacity: .62; }
       .hero-inner { gap: 32px; min-width: 0; }
@@ -871,6 +1099,11 @@
       .time, .slot { border-bottom: 1px solid var(--line-dark); }
       .sponsor-box { grid-template-columns: 1fr; }
       .sponsor-rank { min-height: 88px; }
+      .concept-system { grid-template-columns: 1fr; }
+      .concept-main { border-right: none; border-bottom: 1px solid var(--line); }
+      .concept-step { grid-template-columns: 1fr; gap: 10px; }
+      .sponsor-wall { grid-template-columns: 1fr 1fr; }
+      .sponsor-cell.platinum { grid-column: span 2; }
       .footer-inner { display: grid; }
     }
   </style>
@@ -932,9 +1165,30 @@
               <p class="section-lead">NEXY Summitは、ただ話を聞くイベントではありません。自分の考えを持ち寄り、同世代とぶつけ合い、動き出すための仲間と出会うサミットです。</p>
             </div>
           </div>
+          <div class="concept-system reveal">
+            <div class="concept-main">
+              <div class="system-label">S/00 Concept System</div>
+              <h3>やりたいを、<br><strong>次の一歩</strong>に変える。</h3>
+              <p>プレゼンを聞くだけでも、交流して終わりでもない。自分の考えを外に出し、同世代の熱量に触れ、実際に動き出すための設計にします。</p>
+            </div>
+            <div class="concept-steps">
+              <div class="concept-step">
+                <b>01 / INPUT</b>
+                <div><h4>全国の同世代と出会う</h4><span>学校や地域を越えて、同じ温度で動く高校生に出会う。</span></div>
+              </div>
+              <div class="concept-step">
+                <b>02 / CLASH</b>
+                <div><h4>自分の考えをぶつける</h4><span>プレゼン・対話・質問を通じて、アイデアを磨き込む。</span></div>
+              </div>
+              <div class="concept-step">
+                <b>03 / ACTION</b>
+                <div><h4>次の行動へ接続する</h4><span>仲間、支援者、プロジェクトの種を持ち帰る。</span></div>
+              </div>
+            </div>
+          </div>
           <div class="intro-grid reveal">
             <div class="intro-copy">
-              <div class="intro-quote">Bring your<br><span>“Yaritai”</span><br>to Tokyo.</div>
+              <div class="intro-quote">やりたいを、<br><span>東京で</span><br>動かす。</div>
               <p class="intro-text">ひとりで抱えていたアイデアが、誰かと出会うことでプロジェクトになる。高校生同士が背中を押し合う場所を、東京に作ります。</p>
             </div>
             <div class="intro-photo">
@@ -1119,11 +1373,37 @@
 
       <section class="section cta" id="apply">
         <div class="section-inner reveal">
-          <h2>Bring your<br>“Yaritai”.</h2>
+          <h2>やりたいを、<br>持ってきてくれ。</h2>
           <p>2026年夏、東京。1,000人の高校生と、本気の1日をつくります。申込フォームは開催日程確定後に公開予定です。</p>
           <div class="hero-actions" style="justify-content:center">
             <a class="btn" href="https://www.instagram.com/nexy_official/" target="_blank" rel="noopener">Instagramで最新情報を見る</a>
             <a class="btn" href="mailto:info@nexyhub.jp">協賛のお問い合わせ</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section white" id="sponsors">
+        <div class="section-inner">
+          <div class="section-head reveal">
+            <span class="eyebrow">Sponsors</span>
+            <div>
+              <h2 class="section-title">サミットを支える、<strong>協賛企業</strong>。</h2>
+              <p class="section-lead">協賛・共催・協力パートナーを順次掲載します。高校生の挑戦を支える企業・団体との接点を、このページ下部に集約します。</p>
+            </div>
+          </div>
+          <div class="sponsor-wall reveal">
+            <div class="sponsor-cell platinum">
+              <div>
+                <small>PLATINUM SPONSOR</small>
+                <img src="img/summit/sponsor_cheers.jpg" alt="CHEERS!">
+              </div>
+            </div>
+            <div class="sponsor-cell">Gold Sponsor<br>Coming Soon</div>
+            <div class="sponsor-cell">Gold Sponsor<br>Coming Soon</div>
+            <div class="sponsor-cell">Partner<br>Coming Soon</div>
+            <div class="sponsor-cell">Partner<br>Coming Soon</div>
+            <div class="sponsor-cell">Media Partner<br>Coming Soon</div>
+            <div class="sponsor-cell">Supporter<br>Coming Soon</div>
           </div>
         </div>
       </section>
