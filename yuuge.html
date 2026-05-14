@@ -495,6 +495,114 @@ section{padding:84px 0}
   border-radius:50%;
   background:var(--blue);
 }
+.student-value{
+  background:
+    linear-gradient(180deg,#fff 0%,#f4f8ff 100%);
+}
+.value-layout{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:22px;
+  align-items:stretch;
+}
+.value-board{
+  position:relative;
+  min-height:420px;
+  padding:28px;
+  border-radius:14px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 82% 18%,rgba(255,255,255,.22),transparent 18rem),
+    linear-gradient(135deg,#061b4f,#2364e8);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.value-board::before{
+  content:"";
+  position:absolute;
+  right:-72px;
+  bottom:-72px;
+  width:250px;
+  height:250px;
+  border:28px solid rgba(255,255,255,.1);
+  border-radius:50%;
+}
+.value-board .label{color:#b9d8ff}
+.value-board h2{position:relative;max-width:420px;font-size:clamp(1.8rem,3.2vw,3rem)}
+.value-board p{position:relative;margin-top:18px;max-width:440px;color:rgba(255,255,255,.78);font-weight:700;line-height:1.95}
+.student-path{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:28px;
+}
+.path-card{
+  min-height:112px;
+  padding:16px 14px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:9px;
+  background:rgba(255,255,255,.1);
+}
+.path-card small{
+  display:block;
+  font-family:Inter,sans-serif;
+  color:#b9d8ff;
+  font-size:.66rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  margin-bottom:8px;
+}
+.path-card b{display:block;font-size:.95rem;line-height:1.45}
+.value-cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.value-card{
+  position:relative;
+  min-height:200px;
+  padding:22px;
+  border:1px solid #cfe0fa;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 10px 26px rgba(16,49,104,.07);
+  overflow:hidden;
+}
+.value-card::after{
+  content:"";
+  position:absolute;
+  right:-32px;
+  top:-32px;
+  width:96px;
+  height:96px;
+  background:rgba(35,100,232,.08);
+  border-radius:50%;
+}
+.value-icon{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  margin-bottom:14px;
+  color:var(--blue);
+  background:var(--sky);
+  border:1px solid #bcd3ff;
+  border-radius:9px;
+}
+.value-icon svg{width:22px;height:22px}
+.value-card h3{font-size:1rem;line-height:1.5;margin-bottom:8px;font-weight:900}
+.value-card p{color:var(--muted);font-size:.84rem;font-weight:700;line-height:1.8}
+.student-note{
+  margin-top:14px;
+  padding:16px 18px;
+  border:1px solid #bcd3ff;
+  border-radius:10px;
+  background:#ecf5ff;
+  color:var(--blue2);
+  font-weight:900;
+  line-height:1.75;
+}
 .section-head{
   display:grid;
   grid-template-columns:.8fr 1.2fr;
@@ -517,6 +625,7 @@ h2{
   line-height:1.16;
   font-weight:900;
   letter-spacing:0;
+  overflow-wrap:anywhere;
 }
 h2 em{color:var(--blue);font-style:normal}
 .section-head p{color:var(--muted);font-size:.96rem;font-weight:700;line-height:1.95}
@@ -566,6 +675,7 @@ h2 em{color:var(--blue);font-style:normal}
 .info-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start}
 .spec{
   background:#fff;
+  color:var(--ink);
   border:1px solid var(--line);
   border-radius:var(--radius);
   overflow:hidden;
@@ -603,6 +713,7 @@ h2 em{color:var(--blue);font-style:normal}
   gap:12px;
   align-items:flex-start;
   background:#fff;
+  color:var(--ink);
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:15px 16px;
@@ -737,6 +848,7 @@ footer{
   .map-flow{grid-template-columns:1fr;gap:10px}
   .map-arrow{height:26px;transform:rotate(90deg)}
   .map-proof{grid-template-columns:repeat(2,1fr)}
+  .value-layout{grid-template-columns:1fr}
 }
 @media (max-width:700px){
   .container{width:min(100% - 28px,1120px)}
@@ -744,6 +856,19 @@ footer{
   .brand span{font-size:.82rem}
   .hero h1{font-size:2.45rem}
   .hero h1 .line{white-space:normal}
+  h1,h2,h3,p,b,td,th,.lead,.section-head p,.map-node p,.value-card p,.spec-v,.check span{
+    max-width:100%;
+    white-space:normal;
+    word-break:break-all;
+    overflow-wrap:anywhere;
+  }
+  h2{font-size:1.62rem;line-height:1.22}
+  .ticker span{
+    white-space:nowrap;
+    word-break:normal;
+    overflow-wrap:normal;
+    max-width:none;
+  }
   .hero-visual::before{left:0}
   .floating-card p{overflow-wrap:anywhere}
   .meta-row,.cards3,.process,.themes{grid-template-columns:1fr}
@@ -757,7 +882,10 @@ footer{
   section{padding:64px 0}
   .concept{padding:38px 0}
   .concept-panel{padding:22px 16px}
+  .concept-title h2{font-size:1.72rem;line-height:1.18}
   .map-proof{grid-template-columns:1fr}
+  .student-path,.value-cards{grid-template-columns:1fr}
+  .value-board{min-height:auto;padding:24px 18px}
   .cta-panel{padding:30px 22px}
   .floating-card{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}
 }
@@ -773,7 +901,7 @@ footer{
     <ul class="navlinks">
       <li><a href="#problem">課題</a></li>
       <li><a href="#about">概要</a></li>
-      <li><a href="#students">学生層</a></li>
+      <li><a href="#student-value">学生の価値</a></li>
       <li><a href="#flow">進行</a></li>
       <li><a href="#pricing">料金</a></li>
       <li><a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="nav-cta">相談する</a></li>
@@ -783,7 +911,7 @@ footer{
   <div class="container mobile" id="mobileNav">
     <a href="#problem">課題</a>
     <a href="#about">概要</a>
-    <a href="#students">学生層</a>
+    <a href="#student-value">学生の価値</a>
     <a href="#flow">進行</a>
     <a href="#pricing">料金</a>
     <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener">相談する</a>
@@ -957,14 +1085,56 @@ footer{
     </div>
   </section>
 
+  <section class="student-value" id="student-value">
+    <div class="container">
+      <div class="value-layout">
+        <div class="value-board reveal">
+          <span class="label">For Students</span>
+          <h2>参加する学生にとって、<em style="color:#b9d8ff;font-style:normal">何が価値なのか。</em></h2>
+          <p>ただ企業の話を聞く場ではありません。自分の考えをぶつけ、社会人の本音に触れ、自分の進路やテーマを深めるための実践的な対話の場です。</p>
+          <div class="student-path">
+            <div class="path-card"><small>BEFORE</small><b>興味あるテーマで参加</b></div>
+            <div class="path-card"><small>DURING</small><b>企業と対等に議論</b></div>
+            <div class="path-card"><small>AFTER</small><b>次の挑戦につながる</b></div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:.1s">
+          <div class="value-cards">
+            <article class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg></div>
+              <h3>社会人と、きれいごと抜きで話せる</h3>
+              <p>説明会では聞きにくい仕事のリアル、意思決定、失敗談まで、少人数だから深く聞けます。</p>
+            </article>
+            <article class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c.6.5 1 1.2 1 2h6c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg></div>
+              <h3>自分の考えが整理される</h3>
+              <p>テーマに対して発言し、他者の視点を受けることで、進路や関心領域の輪郭がはっきりします。</p>
+            </article>
+            <article class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+              <h3>同じ熱量の学生とつながる</h3>
+              <p>就活目的だけではない、テーマに惹かれて来た学生同士で横のつながりができます。</p>
+            </article>
+            <article class="value-card">
+              <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+              <h3>インターンや挑戦の入口になる</h3>
+              <p>企業との接点が自然に生まれるため、興味が合えば次の面談やインターンにつながります。</p>
+            </article>
+          </div>
+          <div class="student-note">学生にとっての価値は「企業を知る」だけではなく、「自分の考えを試す」「仲間と出会う」「次の一歩が見える」ことです。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="students">
     <div class="container">
       <div class="section-head">
         <div>
           <span class="label">Attendees</span>
-          <h2>採用市場で価値の高い<em>行動層</em>に会う。</h2>
+          <h2>こんな学生に、<em>特に価値がある</em>。</h2>
         </div>
-        <p>早期から社会との接点を持ち、自分のテーマで動いている学生。まだ就活色が強くない時期だからこそ、自然な関係を作れます。</p>
+        <p>早期から社会との接点を持ち、自分のテーマで動いている学生ほど、深い対話から得られるものが大きい場です。</p>
       </div>
       <div class="cards3">
         <article class="card reveal">
