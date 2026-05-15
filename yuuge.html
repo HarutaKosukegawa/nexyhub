@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ゆうげの討論会 — 大学生×企業、夕方の本気の2時間 | NEXY</title>
-<meta name="description" content="大学1〜2年生限定。企業の方々と社会のテーマについて議論する、夕方19時からの2時間。クローズドな場で本音を語り合う特別な体験を。">
+<meta name="description" content="大学1〜2年生向け。企業の方々と社会のテーマについて議論する、夕方19時からの2時間。クローズドな場で本音を語り合う特別な体験を。">
 <meta name="keywords" content="NEXY,ゆうげの討論会,大学生イベント,議論,座談会,大学1年生,大学2年生,東京">
 <meta name="author" content="NEXY">
 <meta name="robots" content="index, follow">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexyhub.jp/yuuge.html">
 <meta property="og:title" content="ゆうげの討論会 — 大学生×企業、夕方の本気の2時間">
-<meta property="og:description" content="大学1〜2年生限定。社会のテーマで本気の議論を。">
+<meta property="og:description" content="大学1〜2年生向け。社会のテーマで本気の議論を。">
 <meta property="og:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
 <meta property="og:site_name" content="NEXY">
 <meta property="og:locale" content="ja_JP">
@@ -254,6 +254,34 @@ svg { display: block; }
   margin-bottom: 6px;
 }
 .about-node-big small { font-size: .76rem; color: var(--text2); display: block; margin-top: 4px; font-weight: 600; }
+.about-node-list {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.about-node-list > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+}
+.about-node-list .dot {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  fill: var(--orange);
+  stroke: var(--orange);
+}
+.about-node.alt .about-node-list .dot { fill: var(--gold); stroke: var(--gold); }
 .about-arrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1.5rem;
@@ -434,68 +462,60 @@ svg { display: block; }
 .theme-text { font-size: 1.04rem; font-weight: 800; color: var(--white); line-height: 1.55; padding-right: 60px; }
 @media (max-width: 720px) { .themes-grid { grid-template-columns: 1fr; } }
 
-/* ── ELIGIBLE (visual Venn-style diagram) ── */
-.eli-visual {
-  background: var(--bg-card); border: 1px solid var(--line-strong);
-  padding: 56px 40px; margin-bottom: 28px;
-  display: flex; align-items: center; justify-content: center;
+/* ── ELIGIBLE (3-card layout) ── */
+.eli-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
-.eli-venn {
+.eli-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  padding: 36px 30px;
   position: relative;
-  width: 100%; max-width: 520px;
-  aspect-ratio: 1.4 / 1;
+  transition: background .3s, transform .3s, border-color .3s;
 }
-.eli-venn-circle {
-  position: absolute;
-  width: 56%; aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2.5px solid;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 6%;
+.eli-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--orange);
+  transform: scaleX(0); transform-origin: left;
   transition: transform .4s ease;
 }
-.eli-venn-circle:hover { transform: scale(1.05); z-index: 10; }
-.eli-venn-circle.c1 { top: 0; left: 6%; border-color: var(--orange); background: rgba(242,135,42,0.12); }
-.eli-venn-circle.c2 { top: 0; right: 6%; border-color: var(--gold); background: rgba(244,185,90,0.12); }
-.eli-venn-circle.c3 { bottom: 4%; left: 50%; transform: translateX(-50%); border-color: var(--orange-bright); background: rgba(255,169,77,0.12); }
-.eli-venn-circle.c3:hover { transform: translateX(-50%) scale(1.05); }
-.eli-venn-label {
-  font-family: 'Inter', sans-serif; font-size: .62rem; letter-spacing: .14em;
-  font-weight: 700; text-transform: uppercase; margin-bottom: 4px;
+.eli-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-6px);
+  border-color: var(--orange);
 }
-.eli-venn-circle.c1 .eli-venn-label { color: var(--orange); }
-.eli-venn-circle.c2 .eli-venn-label { color: var(--gold); }
-.eli-venn-circle.c3 .eli-venn-label { color: var(--orange-bright); }
-.eli-venn-title { font-size: 1rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
-.eli-venn-sub { font-size: .72rem; color: var(--text2); line-height: 1.4; }
-.eli-venn-center {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px; height: 100px;
-  border-radius: 50%;
-  background: var(--orange);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 5;
-  box-shadow: 0 0 30px rgba(242,135,42,0.5);
-  animation: centerPulse 2.5s ease-in-out infinite;
+.eli-card:hover::before { transform: scaleX(1); }
+.eli-card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .66rem;
+  letter-spacing: .18em;
+  color: var(--orange);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
-@keyframes centerPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 30px rgba(242,135,42,0.5); } 50% { transform: translate(-50%, -50%) scale(1.06); box-shadow: 0 0 40px rgba(242,135,42,0.7); } }
-.eli-venn-center-text {
-  text-align: center;
-  color: var(--ink);
-  font-size: .68rem;
+.eli-card-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.5rem;
   font-weight: 900;
-  letter-spacing: .04em;
-  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.eli-card-desc {
+  font-size: .92rem;
+  color: var(--text2);
+  line-height: 1.7;
+  font-weight: 500;
 }
 @media (max-width: 720px) {
-  .eli-venn-circle { width: 70%; }
-  .eli-venn-title { font-size: .82rem; }
-  .eli-venn-sub { font-size: .62rem; }
-  .eli-venn-center { width: 70px; height: 70px; }
-  .eli-venn-center-text { font-size: .56rem; }
+  .eli-grid { grid-template-columns: 1fr; }
+  .eli-card { padding: 28px 22px; }
+  .eli-card-title { font-size: 1.3rem; }
 }
 
 /* ── FLOW (timeline with icons) ── */
@@ -633,13 +653,14 @@ svg { display: block; }
     <symbol id="ico-ai" viewBox="0 0 32 32"><path d="M16 4v4M16 24v4M4 16h4M24 16h4M9 9l3 3M20 20l3 3M23 9l-3 3M12 20l-3 3"/><circle cx="16" cy="16" r="5"/></symbol>
     <symbol id="ico-flag" viewBox="0 0 32 32"><path d="M6 4v24"/><path d="M6 5l18-1v12l-18 1z"/></symbol>
     <symbol id="ico-school" viewBox="0 0 32 32"><path d="M2 12l14-6 14 6-14 6z"/><path d="M8 14v8c0 2 4 4 8 4s8-2 8-4v-8"/><path d="M30 12v10"/></symbol>
+    <symbol id="ico-check" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </defs>
 </svg>
 
 <!-- ANNOUNCE BAR -->
 <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="announce-bar">
   <span class="ab-pulse"></span>
-  <span><strong>大学1〜2年生限定・参加無料</strong>　— 募集中</span>
+  <span><strong>大学1〜2年生のあなたへ・参加無料</strong>　— 募集中</span>
   <span class="ab-cta">応募する →</span>
 </a>
 
@@ -689,16 +710,31 @@ svg { display: block; }
         <div class="about-node">
           <div class="about-node-label">Student</div>
           <div class="about-node-big">20<small>名の大学生</small></div>
+          <div class="about-node-list">
+            <div><svg class="dot"><use href="#ico-check"/></svg>大学1〜2年生</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>東大・早慶・MARCH 以上</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>行動意欲のある層</div>
+          </div>
         </div>
         <div class="about-arrow">×</div>
         <div class="about-node alt">
           <div class="about-node-label">Corporate</div>
           <div class="about-node-big">1<small>社の企業</small></div>
+          <div class="about-node-list">
+            <div><svg class="dot"><use href="#ico-check"/></svg>各回1社のクローズド開催</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>社会人・若手社員が参加</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>説明会でも面接でもない場</div>
+          </div>
         </div>
         <div class="about-arrow">→</div>
         <div class="about-node">
           <div class="about-node-label">Time</div>
           <div class="about-node-big">2<small>時間の議論</small></div>
+          <div class="about-node-list">
+            <div><svg class="dot"><use href="#ico-check"/></svg>19:00〜21:00 の夕方</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>テーマ起点のディスカッション</div>
+            <div><svg class="dot"><use href="#ico-check"/></svg>対等に意見を交わす場</div>
+          </div>
         </div>
       </div>
     </div>
@@ -885,38 +921,32 @@ svg { display: block; }
   </div>
 </section>
 
-<!-- ELIGIBLE (Venn diagram visual) -->
+<!-- ELIGIBLE (3-card layout) -->
 <section class="section alt" id="eligible">
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">For Who</span>
       <div>
         <h2 class="section-title">こんな<em>大学生</em>に、来てほしい。</h2>
-        <p class="section-lead">3つの条件が交わる場所が、ゆうげの参加者像です。</p>
+        <p class="section-lead">以下の3つにあてはまる大学生の方は、ぜひ。</p>
       </div>
     </div>
 
-    <!-- Venn diagram visual -->
-    <div class="eli-visual">
-      <div class="eli-venn">
-        <div class="eli-venn-circle c1">
-          <div class="eli-venn-label">Year</div>
-          <div class="eli-venn-title">大学1〜2年</div>
-          <div class="eli-venn-sub">就活前のタイミング</div>
-        </div>
-        <div class="eli-venn-circle c2">
-          <div class="eli-venn-label">University</div>
-          <div class="eli-venn-title">トップ層大学</div>
-          <div class="eli-venn-sub">東大・早慶・MARCH 以上</div>
-        </div>
-        <div class="eli-venn-circle c3">
-          <div class="eli-venn-label">Mindset</div>
-          <div class="eli-venn-title">行動意欲</div>
-          <div class="eli-venn-sub">動いてる／動きたい</div>
-        </div>
-        <div class="eli-venn-center">
-          <div class="eli-venn-center-text">参加者像<br>YUUGE</div>
-        </div>
+    <div class="eli-grid">
+      <div class="eli-card">
+        <div class="eli-card-label">Year</div>
+        <div class="eli-card-title">大学1〜2年</div>
+        <div class="eli-card-desc">就活が本格化する前の今だからこそ、社会と接続する意味がある。</div>
+      </div>
+      <div class="eli-card">
+        <div class="eli-card-label">University</div>
+        <div class="eli-card-title">トップ層大学</div>
+        <div class="eli-card-desc">東大・早慶・MARCH 以上を対象に、議論の質を担保しています。</div>
+      </div>
+      <div class="eli-card">
+        <div class="eli-card-label">Mindset</div>
+        <div class="eli-card-title">行動意欲がある</div>
+        <div class="eli-card-desc">すでに動いている、あるいは動き出したい。受け身ではない大学生。</div>
       </div>
     </div>
   </div>
@@ -967,7 +997,7 @@ svg { display: block; }
     <div class="faq-list">
       <details class="faq-item"><summary>これは就活イベントですか？<span class="faq-icon"></span></summary><div class="faq-answer">いいえ、就活説明会ではありません。テーマについて議論する「対等な対話の場」です。とはいえ参加企業はあなたを見ています。将来の進路選択につながる出会いが生まれる可能性は十分にあります。</div></details>
       <details class="faq-item"><summary>議論についていけるか不安です<span class="faq-icon"></span></summary><div class="faq-answer">「正解を出す場」ではなく「自分の意見を投げる場」です。NEXY のモデレーターが場を整え、誰でも発言できる雰囲気を作ります。準備は不要、思っていることを話してください。</div></details>
-      <details class="faq-item"><summary>大学1年生ですが参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">はい、大学1〜2年生限定のイベントです。むしろ就活が始まる前の今、参加する価値が最も高いタイミングです。</div></details>
+      <details class="faq-item"><summary>大学1年生ですが参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">はい、大学1〜2年生向けのイベントです。むしろ就活が始まる前の今、参加する価値が最も高いタイミングです。</div></details>
       <details class="faq-item"><summary>参加費はかかりますか？<span class="faq-icon"></span></summary><div class="faq-answer">参加費は無料です。軽食・ドリンクも企業負担で提供されます。</div></details>
       <details class="faq-item"><summary>選考はありますか？<span class="faq-icon"></span></summary><div class="faq-answer">はい、毎回20名定員のため、応募フォームから簡単な書類選考があります。学歴・所属・行動歴を見て、議論の質を担保できる方を選定しています。</div></details>
       <details class="faq-item"><summary>服装は？<span class="faq-icon"></span></summary><div class="faq-answer">自由です。スーツである必要はありません。リクルートではなく、議論の場なので、普段の格好で来てください。</div></details>
@@ -981,7 +1011,7 @@ svg { display: block; }
   <div class="cta-inner">
     <div class="cta-eyebrow">Apply</div>
     <h2>夕方の本気の2時間、<br><em>体験しに来てください</em>。</h2>
-    <p>大学1〜2年生限定・参加無料・東京開催。<br>応募はフォームから、1分で完了します。</p>
+    <p>大学1〜2年生のあなたへ・参加無料・東京開催。<br>応募はフォームから、1分で完了します。</p>
     <div class="cta-btns">
       <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener" class="btn-primary">参加申込はこちら →</a>
       <a href="index.html#contact" class="btn-outline">お問い合わせ</a>
@@ -1120,7 +1150,7 @@ document.querySelectorAll('.reveal').forEach(el => {
   revObs.observe(el);
 });
 
-const autoTargets = document.querySelectorAll('.about-card, .info-cell, .why-card, .why-stat, .voice-card, .theme-card, .eli-venn, .flow-item, .faq-item, .about-quote, .about-visual, .themes-intro');
+const autoTargets = document.querySelectorAll('.about-card, .info-cell, .why-card, .why-stat, .voice-card, .theme-card, .eli-card, .flow-item, .faq-item, .about-quote, .about-visual, .themes-intro');
 autoTargets.forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(28px)';
