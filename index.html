@@ -207,9 +207,9 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 .stat-card.is-hero .stat-unit{color:rgba(255,255,255,.6);}
 .stat-note{font-size:.62rem;color:#888;margin-top:10px;letter-spacing:.02em;line-height:1.5;}
 .stat-card.is-hero .stat-note{color:rgba(255,255,255,.55);}
-.photo-strip{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:10px;}
-.photo-strip a{position:relative;border-radius:var(--radius);overflow:hidden;display:block;aspect-ratio:16/10;background:#ddd;}
-.photo-strip a:nth-child(n+2){aspect-ratio:1/1;}
+.photo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.photo-strip a{position:relative;border-radius:var(--radius);overflow:hidden;display:block;aspect-ratio:4/3;background:#ddd;}
+.photo-strip a:first-child{grid-column:span 2;aspect-ratio:16/10;}
 .photo-strip img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s;}
 .photo-strip a:hover img{transform:scale(1.05);}
 .photo-strip a::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:14px 12px 9px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:.64rem;font-weight:700;letter-spacing:.04em;}
@@ -351,6 +351,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   .mission-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .photo-strip{grid-template-columns:1fr 1fr;}
+  .photo-strip a{aspect-ratio:1/1;}
   .photo-strip a:first-child{grid-column:1/-1;aspect-ratio:16/9;}
   .about-network-card{padding:36px 20px 28px;}
   footer .footer-inner{grid-template-columns:1fr 1fr;gap:28px;padding:40px 24px 24px;}
@@ -458,7 +459,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
       <div class="about-stats-head">
         <div class="about-stats-eyebrow fi">DATA — 設立3.5ヶ月のリアル</div>
         <div class="about-stats-title fi" style="transition-delay:.06s">数字で見るNEXY</div>
-        <div class="about-stats-sub fi" style="transition-delay:.1s">2026年2月設立。挑戦は、もう動き始めている。</div>
+        <div class="about-stats-sub fi" style="transition-delay:.1s">2026年2月の設立から、これまでの3.5ヶ月の歩み。</div>
       </div>
       <div class="stats-grid">
         <div class="stat-card fi">
@@ -483,9 +484,10 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
         </div>
       </div>
       <div class="photo-strip fi" style="transition-delay:.18s">
-        <a href="news.html#yoru2" data-caption="深夜の語り場 第2回（5/16）"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回 集合写真" loading="lazy"></a>
-        <a href="news.html#asage3" data-caption="あさげの会 第3回"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
-        <a href="news.html#yoisho1" data-caption="よいしょ徳島 第1回"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
+        <a href="news.html#yoru2" data-caption="深夜の語り場 第2回（2026.05.16）"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回 集合写真" loading="lazy"></a>
+        <a href="news.html#yoru1" data-caption="深夜の語り場 第1回（2026.02.22）"><img src="img/news_yoru1/group.jpg" alt="深夜の語り場 第1回 集合写真" loading="lazy"></a>
+        <a href="news.html#yoisho1" data-caption="よいしょ徳島 第1回（2026.05.10）"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
+        <a href="news.html#asage3" data-caption="あさげの会 第3回（2026.04.03）"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
       </div>
     </div>
 
@@ -495,53 +497,74 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
         <div class="about-network-eyebrow fi">CONCEPT — 思いの連鎖</div>
         <div class="about-network-title fi" style="transition-delay:.06s">ひとりの「やりたい」が、<br>つながって、次の挑戦になる。</div>
         <div class="about-network-sub fi" style="transition-delay:.1s">NEXYは、挑戦したい学生の交差点。ここで生まれた出会いが、また別の挑戦を呼ぶ。</div>
-        <svg class="about-network-svg fi" style="transition-delay:.14s" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="rgba(255,255,255,0.25)" stroke-width="0.8" fill="none" stroke-dasharray="3 3">
-            <path d="M 300 50 L 510 130"/>
-            <path d="M 510 130 L 510 230"/>
-            <path d="M 510 230 L 300 310"/>
-            <path d="M 300 310 L 90 230"/>
-            <path d="M 90 230 L 90 130"/>
-            <path d="M 90 130 L 300 50"/>
-            <path d="M 300 50 L 510 230"/>
-            <path d="M 90 130 L 510 230"/>
-            <path d="M 90 230 L 510 130"/>
+        <svg class="about-network-svg fi" style="transition-delay:.14s" viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="nexyGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFB36A" stop-opacity="0.6"/>
+              <stop offset="60%" stop-color="#D4622A" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#D4622A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g opacity="0.7">
+            <circle cx="310" cy="190" r="100" fill="url(#nexyGlow)"/>
           </g>
-          <g stroke="#D4622A" stroke-width="1.4" fill="none" opacity="0.9">
-            <line x1="300" y1="180" x2="300" y2="50"/>
-            <line x1="300" y1="180" x2="510" y2="130"/>
-            <line x1="300" y1="180" x2="510" y2="230"/>
-            <line x1="300" y1="180" x2="300" y2="310"/>
-            <line x1="300" y1="180" x2="90" y2="230"/>
-            <line x1="300" y1="180" x2="90" y2="130"/>
+          <g opacity="0.45">
+            <circle cx="310" cy="190" r="62" fill="none" stroke="#FFB36A" stroke-width="1">
+              <animate attributeName="r" values="55;115;55" dur="3.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.55;0;0.55" dur="3.6s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="310" cy="190" r="62" fill="none" stroke="#FFB36A" stroke-width="1">
+              <animate attributeName="r" values="55;130;55" dur="3.6s" begin="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.45;0;0.45" dur="3.6s" begin="1.2s" repeatCount="indefinite"/>
+            </circle>
           </g>
-          <g fill="#111" stroke="#fff" stroke-width="1.4">
-            <circle cx="300" cy="50" r="26"/>
-            <circle cx="510" cy="130" r="26"/>
-            <circle cx="510" cy="230" r="26"/>
-            <circle cx="300" cy="310" r="26"/>
-            <circle cx="90" cy="230" r="26"/>
-            <circle cx="90" cy="130" r="26"/>
+          <g stroke="rgba(255,255,255,0.18)" stroke-width="0.7" fill="none" stroke-dasharray="4 4">
+            <path d="M 310 60 L 530 140"/>
+            <path d="M 530 140 L 530 240"/>
+            <path d="M 530 240 L 310 320"/>
+            <path d="M 310 320 L 90 240"/>
+            <path d="M 90 240 L 90 140"/>
+            <path d="M 90 140 L 310 60"/>
+            <path d="M 310 60 L 530 240"/>
+            <path d="M 90 140 L 530 240"/>
+            <path d="M 90 240 L 530 140"/>
+            <path d="M 310 60 L 310 320"/>
           </g>
-          <g fill="#fff">
-            <circle cx="300" cy="50" r="3"/>
-            <circle cx="510" cy="130" r="3"/>
-            <circle cx="510" cy="230" r="3"/>
-            <circle cx="300" cy="310" r="3"/>
-            <circle cx="90" cy="230" r="3"/>
-            <circle cx="90" cy="130" r="3"/>
+          <g stroke-width="1.6" fill="none" stroke-linecap="round">
+            <line stroke="#F2C9A8" x1="310" y1="190" x2="310" y2="60" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2s" repeatCount="indefinite"/></line>
+            <line stroke="#4B6FD4" x1="310" y1="190" x2="530" y2="140" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.4s" repeatCount="indefinite"/></line>
+            <line stroke="#3A9E6F" x1="310" y1="190" x2="530" y2="240" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.2s" repeatCount="indefinite"/></line>
+            <line stroke="#9B6CC4" x1="310" y1="190" x2="310" y2="320" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.6s" repeatCount="indefinite"/></line>
+            <line stroke="#D4A82A" x1="310" y1="190" x2="90" y2="240" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.3s" repeatCount="indefinite"/></line>
+            <line stroke="#2A8FB0" x1="310" y1="190" x2="90" y2="140" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.5s" repeatCount="indefinite"/></line>
           </g>
-          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="11" fill="#fff" text-anchor="middle">
-            <text x="300" y="22">中学生</text>
-            <text x="560" y="134">N高 / S高生</text>
-            <text x="560" y="234">学生起業家</text>
-            <text x="300" y="340">海外進学・留学</text>
-            <text x="40" y="234">クリエイター</text>
-            <text x="40" y="134">都内大学生</text>
+          <g stroke="#fff" stroke-width="2.5">
+            <circle cx="310" cy="60" r="28" fill="#F2C9A8"/>
+            <circle cx="530" cy="140" r="28" fill="#4B6FD4"/>
+            <circle cx="530" cy="240" r="28" fill="#3A9E6F"/>
+            <circle cx="310" cy="320" r="28" fill="#9B6CC4"/>
+            <circle cx="90" cy="240" r="28" fill="#D4A82A"/>
+            <circle cx="90" cy="140" r="28" fill="#2A8FB0"/>
           </g>
-          <circle cx="300" cy="180" r="50" fill="#D4622A"/>
-          <text x="300" y="178" font-family="'Space Mono',monospace" font-size="22" font-weight="700" fill="#111" text-anchor="middle" letter-spacing="0.04em">NEXY</text>
-          <text x="300" y="198" font-family="'Zen Kaku Gothic New',sans-serif" font-size="10" font-weight="700" fill="#111" text-anchor="middle">思いの交差点</text>
+          <g fill="#fff" opacity="0.95">
+            <circle cx="310" cy="60" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" repeatCount="indefinite"/></circle>
+            <circle cx="530" cy="140" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" begin="0.4s" repeatCount="indefinite"/></circle>
+            <circle cx="530" cy="240" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" begin="0.8s" repeatCount="indefinite"/></circle>
+            <circle cx="310" cy="320" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
+            <circle cx="90" cy="240" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" begin="1.6s" repeatCount="indefinite"/></circle>
+            <circle cx="90" cy="140" r="4"><animate attributeName="r" values="3;6;3" dur="2.4s" begin="2.0s" repeatCount="indefinite"/></circle>
+          </g>
+          <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">
+            <text x="310" y="30">中学生</text>
+            <text x="582" y="144">N高 / S高生</text>
+            <text x="582" y="244">学生起業家</text>
+            <text x="310" y="352">海外進学・留学</text>
+            <text x="38" y="244">クリエイター</text>
+            <text x="38" y="144">都内大学生</text>
+          </g>
+          <circle cx="310" cy="190" r="54" fill="#D4622A" stroke="#fff" stroke-width="2.5"/>
+          <text x="310" y="187" font-family="'Space Mono',monospace" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="0.04em">NEXY</text>
+          <text x="310" y="208" font-family="'Zen Kaku Gothic New',sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">思いの交差点</text>
         </svg>
         <div class="about-network-legend">
           <span><span class="lg-solid"></span>NEXYでの出会い</span>
@@ -635,7 +658,12 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
     <div class="s-label fi">最新情報</div>
     <div class="s-title fi" style="transition-delay:.06s">News</div>
     <div class="news-list">
-      <a href="news.html#yoisho1" class="news-item fi">
+      <a href="news.html#yoru2" class="news-item fi">
+        <span class="ni-date">2026.05.16</span>
+        <span class="ni-tag">報告</span>
+        <span class="ni-title">「深夜の語り場」第2回 実施報告 — 26名参加・満足度4.86／5・NPS9.33／10</span>
+      </a>
+      <a href="news.html#yoisho1" class="news-item fi" style="transition-delay:.04s">
         <span class="ni-date">2026.05.10</span>
         <span class="ni-tag">報告</span>
         <span class="ni-title">「よいしょ！徳島」第1回 実施報告 — 満足度4.6／5・NPS9.1／10</span>
