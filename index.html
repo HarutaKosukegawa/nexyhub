@@ -120,9 +120,48 @@ section{padding:80px 64px;}
 .card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
 .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12);}
 
-/* FADE */
-.fi{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+/* FADE — direction variations (P2) */
+.fi{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
 .fi.on{opacity:1;transform:translateY(0);}
+.fi-l{opacity:0;transform:translateX(-32px);transition:opacity .6s ease,transform .6s ease;}
+.fi-l.on{opacity:1;transform:translateX(0);}
+.fi-r{opacity:0;transform:translateX(32px);transition:opacity .6s ease,transform .6s ease;}
+.fi-r.on{opacity:1;transform:translateX(0);}
+.fi-s{opacity:0;transform:scale(.92);transition:opacity .6s ease,transform .6s ease;}
+.fi-s.on{opacity:1;transform:scale(1);}
+
+/* TITLE UNDERLINE (P3) */
+.title-underline{display:block;width:96px;height:11px;margin:6px auto 0;overflow:visible;}
+.title-underline path{stroke:var(--orange);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;transition:stroke-dashoffset 1.2s ease .35s;}
+.fi.on .title-underline path,.fi-l.on .title-underline path,.fi-r.on .title-underline path,.fi-s.on .title-underline path{stroke-dashoffset:0;}
+
+/* HERO PARTICLES (P4) — performance-tuned: only 15 dots, CSS-only, paused on reduced motion */
+.hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+.hero-particles span{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;opacity:0;animation:hp-float 16s linear infinite;will-change:transform,opacity;}
+.hero-particles span:nth-child(1){left:6%;background:var(--orange);animation-delay:-1s;}
+.hero-particles span:nth-child(2){left:13%;background:var(--blue);animation-delay:-4s;width:4px;height:4px;}
+.hero-particles span:nth-child(3){left:19%;background:var(--yellow);animation-delay:-7s;}
+.hero-particles span:nth-child(4){left:26%;background:var(--teal);animation-delay:-10s;width:6px;height:6px;}
+.hero-particles span:nth-child(5){left:32%;background:var(--green);animation-delay:-13s;}
+.hero-particles span:nth-child(6){left:39%;background:var(--orange);animation-delay:-2s;width:4px;height:4px;}
+.hero-particles span:nth-child(7){left:45%;background:var(--purple);animation-delay:-6s;}
+.hero-particles span:nth-child(8){left:52%;background:var(--peach);animation-delay:-9s;width:6px;height:6px;}
+.hero-particles span:nth-child(9){left:58%;background:var(--blue);animation-delay:-12s;}
+.hero-particles span:nth-child(10){left:65%;background:var(--yellow);animation-delay:-15s;width:4px;height:4px;}
+.hero-particles span:nth-child(11){left:71%;background:var(--teal);animation-delay:-3s;}
+.hero-particles span:nth-child(12){left:78%;background:var(--orange);animation-delay:-5s;}
+.hero-particles span:nth-child(13){left:84%;background:var(--green);animation-delay:-8s;width:4px;height:4px;}
+.hero-particles span:nth-child(14){left:91%;background:var(--purple);animation-delay:-11s;}
+.hero-particles span:nth-child(15){left:97%;background:var(--peach);animation-delay:-14s;width:6px;height:6px;}
+@keyframes hp-float{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  10%{opacity:.45;}
+  50%{transform:translateY(-50vh) translateX(20px);}
+  90%{opacity:.45;}
+  100%{transform:translateY(-105vh) translateX(0);opacity:0;}
+}
+@media(max-width:960px){.hero-particles{display:none;}}
+@media(prefers-reduced-motion:reduce){.hero-particles span,.tri{animation:none;}.fi,.fi-l,.fi-r,.fi-s{transition:opacity .2s;transform:none;}}
 
 /* FOOTER */
 footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
@@ -439,6 +478,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 <section id="home">
   <div class="tri t1"></div><div class="tri t2"></div><div class="tri t3"></div>
   <div class="tri t4"></div><div class="tri t5"></div><div class="tri t6"></div><div class="tri t7"></div>
+  <div class="hero-particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="hero-inner">
     <div class="hero-eyebrow fi">学生主体のコミュニティ事業</div>
     <img src="img/site/nexy_logo_hero.png" alt="NEXY" class="hero-logo fi" style="transition-delay:.06s">
@@ -459,7 +499,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   </div>
 
   <aside class="hero-right">
-    <div class="next-event-card fi" style="transition-delay:.20s">
+    <div class="next-event-card fi-r" style="transition-delay:.20s">
       <div class="ne-eyebrow">NEXT EVENT — 募集中</div>
       <div class="ne-tag">深夜の語り場 第3回</div>
       <div class="ne-date-row">
@@ -471,7 +511,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
         <span>申し込む</span><span class="ne-arrow">→</span>
       </a>
     </div>
-    <div class="hero-photo-grid fi" style="transition-delay:.28s">
+    <div class="hero-photo-grid fi-r" style="transition-delay:.32s">
       <a href="news.html#yoru2" aria-label="深夜の語り場 第2回"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回" loading="lazy"></a>
       <a href="news.html#yoisho1" aria-label="よいしょ徳島 第1回"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
       <a href="news.html#asage3" aria-label="あさげの会 第3回"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
@@ -485,7 +525,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
     <div class="s-label fi">NEXYとは</div>
     <div class="s-title fi" style="transition-delay:.06s">About</div>
     <div class="about-center">
-      <div class="about-catch fi" style="transition-delay:.1s">
+      <div class="about-catch fi-l" style="transition-delay:.1s">
         「やりたい」をひとりにしない。<br>挑戦が次の挑戦を生む場をつくる。
       </div>
       <div class="about-body fi" style="transition-delay:.14s">
@@ -523,28 +563,28 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
         <div class="about-stats-sub fi" style="transition-delay:.1s">2026年2月の設立から、これまでの3.5ヶ月の歩み。</div>
       </div>
       <div class="stats-grid">
-        <div class="stat-card fi">
+        <div class="stat-card fi-s">
           <div class="stat-lbl">EVENTS</div>
-          <div class="stat-num"><strong>5</strong><span class="stat-unit">回</span></div>
+          <div class="stat-num"><strong data-count="5">0</strong><span class="stat-unit">回</span></div>
           <div class="stat-note">深夜の語り場 / 朝食会 / よいしょ</div>
         </div>
-        <div class="stat-card fi" style="transition-delay:.05s">
+        <div class="stat-card fi-s" style="transition-delay:.05s">
           <div class="stat-lbl">PARTICIPANTS</div>
-          <div class="stat-num"><strong>100</strong><span class="stat-unit">+名</span></div>
+          <div class="stat-num"><strong data-count="100">0</strong><span class="stat-unit">+名</span></div>
           <div class="stat-note">中学生〜大学院生まで</div>
         </div>
-        <div class="stat-card fi" style="transition-delay:.1s">
+        <div class="stat-card fi-s" style="transition-delay:.1s">
           <div class="stat-lbl">CITIES</div>
-          <div class="stat-num"><strong>3</strong><span class="stat-unit">都市</span></div>
+          <div class="stat-num"><strong data-count="3">0</strong><span class="stat-unit">都市</span></div>
           <div class="stat-note">東京・徳島・富山</div>
         </div>
-        <div class="stat-card is-hero fi" style="transition-delay:.15s">
+        <div class="stat-card is-hero fi-s" style="transition-delay:.15s">
           <div class="stat-lbl">SATISFACTION</div>
-          <div class="stat-num"><strong>4.85</strong><span class="stat-unit">/ 5.0</span></div>
+          <div class="stat-num"><strong data-count="4.85">0</strong><span class="stat-unit">/ 5.0</span></div>
           <div class="stat-note">推奨度 9.3 / 10（n=47）</div>
         </div>
       </div>
-      <div class="photo-strip fi" style="transition-delay:.18s">
+      <div class="photo-strip fi-s" style="transition-delay:.18s">
         <a href="news.html#yoru1" data-caption="深夜の語り場 第1回（2026.02.22）"><img src="img/news_yoru1/group.jpg" alt="深夜の語り場 第1回 集合写真" loading="lazy"></a>
         <a href="news.html#asage3" data-caption="あさげの会 第3回（2026.04.03）"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
         <a href="news.html#yoisho1" data-caption="よいしょ徳島 第1回（2026.05.10）"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
@@ -1133,9 +1173,40 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 // ローダー
 window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hide'), 2600));
 
-// スクロールフェードイン
-const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }), {threshold:.08});
-document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+// スクロールフェードイン（P2: 方向バリエーション対応）
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target);} }), {threshold:.08});
+document.querySelectorAll('.fi,.fi-l,.fi-r,.fi-s').forEach(el => obs.observe(el));
+
+// P3: タイトル下線SVGを自動挿入
+const underlinePath = '<svg class="title-underline" viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 6 Q 25 1, 50 5 T 97 4"/></svg>';
+document.querySelectorAll('.s-title,.about-stats-title,.about-voices-title,.about-network-title').forEach(el => {
+  el.insertAdjacentHTML('beforeend', underlinePath);
+});
+
+// P1: 数字カウントアップ
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+function animateCount(el){
+  const target = parseFloat(el.dataset.count);
+  const isDec = target % 1 !== 0;
+  const dur = 1400;
+  const start = performance.now();
+  const step = now => {
+    const p = Math.min((now - start) / dur, 1);
+    const v = target * easeOutCubic(p);
+    el.textContent = isDec ? v.toFixed(2) : Math.floor(v);
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = isDec ? target.toFixed(2) : target;
+  };
+  requestAnimationFrame(step);
+}
+const numObs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting && !e.target.dataset.animated){
+    e.target.dataset.animated = '1';
+    animateCount(e.target);
+    numObs.unobserve(e.target);
+  }
+}), {threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el => numObs.observe(el));
 
 // ハンバーガー
 function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
