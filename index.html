@@ -139,7 +139,26 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 .footer-bottom{max-width:1100px;margin:0 auto;padding:16px 64px;border-top:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:#aaa;}
 
 /* ===== HERO ===== */
-#home{min-height:100vh;padding:80px 64px 80px;display:flex;flex-direction:column;justify-content:center;background:var(--bg);position:relative;overflow:hidden;}
+#home{min-height:100vh;padding:80px 64px 80px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:56px;align-items:center;background:var(--bg);position:relative;overflow:hidden;}
+.hero-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:18px;}
+.next-event-card{background:var(--black);color:#fff;border-radius:var(--radius);padding:26px 26px 24px;position:relative;overflow:hidden;}
+.next-event-card::before{content:"";position:absolute;top:-30px;right:-30px;width:110px;height:110px;background:var(--orange);border-radius:50%;opacity:.18;}
+.next-event-card::after{content:"";position:absolute;bottom:-40px;left:-30px;width:80px;height:80px;background:var(--yellow);border-radius:50%;opacity:.1;}
+.ne-eyebrow{font-family:"Space Mono",monospace;font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--orange);margin-bottom:10px;position:relative;z-index:1;}
+.ne-tag{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:6px;position:relative;z-index:1;}
+.ne-title{font-size:1.05rem;font-weight:900;margin-bottom:14px;letter-spacing:.02em;position:relative;z-index:1;}
+.ne-date-row{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;position:relative;z-index:1;}
+.ne-day{font-family:"Space Mono",monospace;font-size:2.4rem;font-weight:700;letter-spacing:-.02em;line-height:1;}
+.ne-dow{font-family:"Space Mono",monospace;font-size:.85rem;color:rgba(255,255,255,.55);letter-spacing:.14em;}
+.ne-venue{font-size:.78rem;color:rgba(255,255,255,.75);margin-bottom:18px;padding-bottom:16px;border-bottom:1px dashed rgba(255,255,255,.18);position:relative;z-index:1;}
+.ne-cta{display:flex;align-items:center;justify-content:space-between;background:var(--orange);color:#fff;font-weight:900;font-size:.9rem;padding:12px 18px;border-radius:8px;letter-spacing:.04em;transition:.15s;position:relative;z-index:1;}
+.ne-cta:hover{background:#E67333;transform:translateY(-1px);}
+.ne-cta .ne-arrow{font-size:1rem;transition:transform .2s;}
+.ne-cta:hover .ne-arrow{transform:translateX(4px);}
+.hero-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.hero-photo-grid a{position:relative;display:block;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#ddd;}
+.hero-photo-grid img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .3s;}
+.hero-photo-grid a:hover img{transform:scale(1.08);}
 .tri{position:absolute;pointer-events:none;width:0;height:0;border-style:solid;}
 .t1{top:8%;right:10%;border-width:0 0 80px 80px;border-color:transparent transparent var(--yellow) transparent;animation:fl 7s ease-in-out infinite;}
 .t2{top:18%;right:4%;border-width:55px 55px 0 0;border-color:var(--blue) transparent transparent transparent;animation:fl 9s ease-in-out infinite 1s;}
@@ -362,7 +381,10 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   .nav-links{display:none;}
   .hamburger{display:flex;}
   section{padding:60px 24px;}
-  #home{padding:96px 24px 72px;}
+  #home{padding:96px 24px 72px;grid-template-columns:1fr;gap:32px;}
+  .hero-right{margin-top:8px;}
+  .hero-photo-grid{display:none;}
+  .next-event-card{padding:22px 20px 20px;}
   .sol-grid3,.sns-grid{grid-template-columns:1fr;}
   .thought-grid,.members-grid{grid-template-columns:1fr;}
   .mem-grid{grid-template-columns:1fr;}
@@ -415,8 +437,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 
 <!-- ===== HERO ===== -->
 <section id="home">
-  <div class="tri t1"></div><div class="tri t2"></div><div class="tri t3"></div>
-  <div class="tri t4"></div><div class="tri t5"></div><div class="tri t6"></div><div class="tri t7"></div>
+  <div class="tri t5"></div><div class="tri t6"></div><div class="tri t7"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow fi">学生主体のコミュニティ事業</div>
     <img src="img/site/nexy_logo_hero.png" alt="NEXY" class="hero-logo fi" style="transition-delay:.06s">
@@ -435,6 +456,26 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
       <div class="scroll-line"></div>ページを下へスクロール
     </div>
   </div>
+
+  <aside class="hero-right">
+    <div class="next-event-card fi" style="transition-delay:.20s">
+      <div class="ne-eyebrow">NEXT EVENT — 募集中</div>
+      <div class="ne-tag">深夜の語り場 第3回</div>
+      <div class="ne-date-row">
+        <span class="ne-day">06.07</span>
+        <span class="ne-dow">SAT</span>
+      </div>
+      <div class="ne-venue">@ 孫正義育英財団・渋谷</div>
+      <a href="https://forms.gle/ZbRopm3FCPeBKUjV7" target="_blank" rel="noopener" class="ne-cta">
+        <span>申し込む</span><span class="ne-arrow">→</span>
+      </a>
+    </div>
+    <div class="hero-photo-grid fi" style="transition-delay:.28s">
+      <a href="news.html#yoru2" aria-label="深夜の語り場 第2回"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回" loading="lazy"></a>
+      <a href="news.html#yoisho1" aria-label="よいしょ徳島 第1回"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
+      <a href="news.html#asage3" aria-label="あさげの会 第3回"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
+    </div>
+  </aside>
 </section>
 
 <!-- ===== ABOUT ===== -->
