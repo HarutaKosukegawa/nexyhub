@@ -208,11 +208,34 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 .stat-note{font-size:.62rem;color:#888;margin-top:10px;letter-spacing:.02em;line-height:1.5;}
 .stat-card.is-hero .stat-note{color:rgba(255,255,255,.55);}
 .photo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.photo-strip a{position:relative;border-radius:var(--radius);overflow:hidden;display:block;aspect-ratio:4/3;background:#ddd;}
-.photo-strip a:first-child{grid-column:span 2;aspect-ratio:16/10;}
+.photo-strip a{position:relative;border-radius:var(--radius);overflow:hidden;display:block;aspect-ratio:1/1;background:#ddd;}
 .photo-strip img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s;}
 .photo-strip a:hover img{transform:scale(1.05);}
 .photo-strip a::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:14px 12px 9px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:.64rem;font-weight:700;letter-spacing:.04em;}
+
+/* ===== ABOUT: 参加者の声 ===== */
+.about-voices-wrap{max-width:900px;margin:48px auto 0;}
+.about-voices-head{text-align:center;margin-bottom:28px;}
+.about-voices-eyebrow{font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.22em;color:var(--orange);margin-bottom:8px;}
+.about-voices-title{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;line-height:1.3;}
+.about-voices-sub{font-size:.78rem;color:#666;margin-top:8px;line-height:1.7;}
+.voices-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.voice-card{background:#fff;border-radius:var(--radius);padding:24px 22px 20px;border:1px solid rgba(0,0,0,.06);position:relative;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s;}
+.voice-card:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.07);}
+.voice-card.is-hidden{display:none;}
+.voices-grid.is-expanded .voice-card.is-hidden{display:flex;}
+.voice-card::before{content:'\201C';position:absolute;top:6px;left:18px;font-size:3.4rem;font-family:Georgia,serif;color:rgba(212,98,42,.18);line-height:1;font-weight:400;}
+.voice-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.08em;color:var(--orange);background:rgba(212,98,42,.08);padding:3px 9px;border-radius:3px;align-self:flex-start;margin-top:14px;}
+.voice-quote{font-size:.92rem;font-weight:700;line-height:1.7;color:#222;}
+.voice-after{font-size:.76rem;color:#666;line-height:1.7;padding-top:10px;border-top:1px dashed rgba(0,0,0,.1);}
+.voice-after::before{content:'\2192 ';color:var(--orange);font-weight:700;}
+.voice-meta{display:flex;flex-direction:column;gap:2px;margin-top:6px;}
+.voice-name{font-size:.82rem;font-weight:900;color:var(--black);}
+.voice-attr{font-size:.62rem;color:#888;font-family:'Space Mono',monospace;letter-spacing:.02em;}
+.voices-toggle{display:flex;align-items:center;justify-content:center;gap:8px;margin:22px auto 0;background:transparent;border:2px solid var(--black);color:var(--black);font-weight:700;font-size:.85rem;padding:11px 28px;border-radius:8px;cursor:pointer;transition:.15s;font-family:inherit;letter-spacing:.04em;}
+.voices-toggle:hover{background:var(--black);color:#fff;}
+.voices-toggle .vt-icon{display:inline-block;transition:transform .2s;font-size:.7rem;}
+.voices-toggle.is-open .vt-icon{transform:rotate(180deg);}
 
 /* ===== ABOUT: 思いの連鎖 ===== */
 .about-network-wrap{max-width:900px;margin:48px auto 0;}
@@ -351,8 +374,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   .mission-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .photo-strip{grid-template-columns:1fr 1fr;}
-  .photo-strip a{aspect-ratio:1/1;}
-  .photo-strip a:first-child{grid-column:1/-1;aspect-ratio:16/9;}
+  .voices-grid{grid-template-columns:1fr;}
   .about-network-card{padding:36px 20px 28px;}
   footer .footer-inner{grid-template-columns:1fr 1fr;gap:28px;padding:40px 24px 24px;}
   .footer-bottom{padding:14px 24px;flex-direction:column;gap:6px;}
@@ -489,6 +511,110 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
         <a href="news.html#yoisho1" data-caption="よいしょ徳島 第1回（2026.05.10）"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
         <a href="news.html#asage3" data-caption="あさげの会 第3回（2026.04.03）"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
       </div>
+    </div>
+
+    <!-- 参加者の声 -->
+    <div class="about-voices-wrap">
+      <div class="about-voices-head">
+        <div class="about-voices-eyebrow fi">VOICES — 参加者の声</div>
+        <div class="about-voices-title fi" style="transition-delay:.06s">この場で生まれたもの</div>
+        <div class="about-voices-sub fi" style="transition-delay:.1s">「深夜の語り場」第1回・第2回のアンケートより。本人の言葉のまま。</div>
+      </div>
+      <div class="voices-grid" id="voicesGrid">
+
+        <article class="voice-card fi">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">みんな若い！若いを理由に進むことを放棄してた自分、だめじゃんって思えた。</div>
+          <div class="voice-after">もっと進化したい、って思える空間に居続けたい。</div>
+          <div class="voice-meta"><span class="voice-name">小泉芽生</span><span class="voice-attr">大学2年生 / 東洋大学</span></div>
+        </article>
+
+        <article class="voice-card fi" style="transition-delay:.04s">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">高校三年生からでも、全然行動できると思う。</div>
+          <div class="voice-after">気になってる企業のインターンに申し込んでみようと思った。</div>
+          <div class="voice-meta"><span class="voice-name">平山純也</span><span class="voice-attr">高校3年生 / N高等学校</span></div>
+        </article>
+
+        <article class="voice-card fi" style="transition-delay:.08s">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">一回考えるのやめたら、解放された。</div>
+          <div class="voice-after">とにかくたくさんaction。</div>
+          <div class="voice-meta"><span class="voice-name">大屋りょう</span><span class="voice-attr">高校1年生 / S高等学校</span></div>
+        </article>
+
+        <article class="voice-card fi" style="transition-delay:.12s">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">環境は、意識を変えないと変わらない。</div>
+          <div class="voice-after">SNSを頑張ろうと思った。</div>
+          <div class="voice-meta"><span class="voice-name">細井愛茉</span><span class="voice-attr">中学生 / 株式会社moco Earth</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">互いの夢をシェアして、それを全員が真剣に聞いている、その瞬間。</div>
+          <div class="voice-after">将来の夢に向かって、より勉強に取り組みたいと思った。</div>
+          <div class="voice-meta"><span class="voice-name">滝澤 明優葉</span><span class="voice-attr">大学1年生 / 早稲田大学</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">全く違う人間が集まっているように見えて、ひとりひとり絶対に共通点がある。それが面白かった。</div>
+          <div class="voice-after">やっぱりいろんな人と繋がりたいなーと思った。</div>
+          <div class="voice-meta"><span class="voice-name">大久保舞桜</span><span class="voice-attr">高校3年生 / N高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">キャリアで上の人がいても、あなたが勉強して得た知識は取られない。</div>
+          <div class="voice-after">明日からも資格勉強を頑張ろうと思った。</div>
+          <div class="voice-meta"><span class="voice-name">鈴木 愛恵</span><span class="voice-attr">高校1年生 / N高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">自語りさせてもらって、新しい視点ももらえた。</div>
+          <div class="voice-after">社会に何を提供できるかを考えて、自分のやりたいことをよりブラッシュアップしていく。</div>
+          <div class="voice-meta"><span class="voice-name">大濱裕輝</span><span class="voice-attr">高校2年生 / 徳島文理高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">「否定しない」⇒私の好きな言葉です！響きます！</div>
+          <div class="voice-after">Facebook始めます！大人と繋がるにはFacebook！</div>
+          <div class="voice-meta"><span class="voice-name">松岡優芽</span><span class="voice-attr">高校2年生 / 二松学舎大学附属柏高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第1回 / 2026.02.22</span>
+          <div class="voice-quote">AIの時代だからこそ、コミュニケーション能力が生き抜く道になる。人は人同士であることに惹かれる。</div>
+          <div class="voice-after">コミュニケーションにアプローチした演劇と教育をやってみよう。</div>
+          <div class="voice-meta"><span class="voice-name">佐藤一志</span><span class="voice-attr">高校1年生 / 神奈川総合高校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">AIや教育について、思う存分話せた。</div>
+          <div class="voice-after">もっとアグレッシブに、企業などにアポイントメントを取ってみようと思った。</div>
+          <div class="voice-meta"><span class="voice-name">草刈陽輝</span><span class="voice-attr">高校2年生 / S高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">高2なら、まだ遅くない。活動できる！</div>
+          <div class="voice-after">アイデアを固めて、事業を起こしたい。</div>
+          <div class="voice-meta"><span class="voice-name">佐藤和</span><span class="voice-attr">高校2年生 / 東京都立豊多摩高等学校</span></div>
+        </article>
+
+        <article class="voice-card is-hidden">
+          <span class="voice-badge">深夜の語り場 第2回 / 2026.05.16</span>
+          <div class="voice-quote">若い子なら、なんでもチャレンジできる。</div>
+          <div class="voice-after">自分が興味ある分野を積極的に調べる。</div>
+          <div class="voice-meta"><span class="voice-name">中沢倖彰</span><span class="voice-attr">高校3年生 / 横浜創学館</span></div>
+        </article>
+
+      </div>
+      <button type="button" class="voices-toggle" id="voicesToggle" data-open-text="もっと見る（+9件）" data-close-text="閉じる">もっと見る（+9件）<span class="vt-icon">▼</span></button>
     </div>
 
     <!-- 思いの連鎖ネットワーク -->
@@ -961,6 +1087,18 @@ window.addEventListener('scroll', () => {
     a.classList.toggle('active', a.dataset.sec === current);
   });
 }, {passive: true});
+
+// 参加者の声トグル
+(function(){
+  const btn = document.getElementById('voicesToggle');
+  const grid = document.getElementById('voicesGrid');
+  if (!btn || !grid) return;
+  btn.addEventListener('click', () => {
+    const isOpen = grid.classList.toggle('is-expanded');
+    btn.classList.toggle('is-open', isOpen);
+    btn.firstChild.textContent = isOpen ? btn.dataset.closeText : btn.dataset.openText;
+  });
+})();
 
 // メンバーアコーディオン
 function toggleMem(card) {
