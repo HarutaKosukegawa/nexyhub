@@ -62,7 +62,7 @@ body {
   background: var(--bg-night);
   color: var(--text);
   overflow-x: hidden;
-  line-height: 1.85;
+  line-height: 1.75;
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -110,8 +110,8 @@ img { max-width: 100%; display: block; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--orange); color: var(--ink);
-  text-decoration: none; padding: 16px 32px;
-  font-size: .88rem; font-weight: 900; letter-spacing: .04em;
+  text-decoration: none; padding: 12px 24px;
+  font-size: .82rem; font-weight: 900; letter-spacing: .04em;
   border: 2px solid var(--orange); transition: .25s;
   position: relative; overflow: hidden;
 }
@@ -125,14 +125,14 @@ img { max-width: 100%; display: block; }
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
   background: transparent; color: var(--white);
-  text-decoration: none; padding: 16px 32px;
-  font-size: .88rem; font-weight: 800; letter-spacing: .04em;
+  text-decoration: none; padding: 12px 24px;
+  font-size: .82rem; font-weight: 800; letter-spacing: .04em;
   border: 2px solid var(--white); transition: .25s;
 }
 .btn-outline:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
 
 /* HERO */
-.hero-corp { padding: 168px 6% 96px; background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-night) 100%); border-bottom: 1px solid var(--line); }
+.hero-corp { padding: 132px 6% 64px; background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-night) 100%); border-bottom: 1px solid var(--line); }
 .hero-corp-inner { max-width: 1180px; margin: 0 auto; }
 .hero-eyebrow {
   font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .28em;
@@ -142,72 +142,72 @@ img { max-width: 100%; display: block; }
 }
 .hero-corp h1 {
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: clamp(2.2rem, 5.6vw, 4.2rem); font-weight: 900;
-  line-height: 1.32; letter-spacing: -.012em; color: var(--white);
-  margin-bottom: 32px;
+  font-size: clamp(1.7rem, 4.2vw, 3.0rem); font-weight: 900;
+  line-height: 1.36; letter-spacing: -.012em; color: var(--white);
+  margin-bottom: 24px;
 }
 .hero-corp h1 em { color: var(--orange); font-style: normal; }
 .hero-corp-sub {
-  font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 2.05; color: var(--text);
-  max-width: 760px; margin-bottom: 40px; font-weight: 500;
+  font-size: clamp(.86rem, 1.1vw, 1rem); line-height: 1.9; color: var(--text);
+  max-width: 720px; margin-bottom: 28px; font-weight: 500;
 }
 .price-tag {
   display: inline-flex; align-items: baseline; gap: 14px;
   background: rgba(242,135,42,.08); border: 1.5px solid var(--orange);
-  padding: 18px 28px; margin-bottom: 40px;
+  padding: 14px 22px; margin-bottom: 28px;
 }
 .price-tag-label { font-family: 'Inter', sans-serif; font-size: .74rem; letter-spacing: .14em; color: var(--orange); font-weight: 800; text-transform: uppercase; }
-.price-tag-price { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--white); letter-spacing: .01em; }
+.price-tag-price { font-family: 'Inter', sans-serif; font-size: 1.32rem; font-weight: 900; color: var(--white); letter-spacing: .01em; }
 .price-tag-note { font-size: .78rem; color: var(--text2); }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* SECTION BASE */
-.section { padding: 110px 6%; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+.section { padding: 80px 6%; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
 .section.alt { background: rgba(15,31,68,0.5); }
 .section.deep { background: rgba(5,13,36,0.6); }
 .section-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
-.section-head { display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-bottom: 56px; align-items: start; }
+.section-head { display: grid; grid-template-columns: 160px 1fr; gap: 28px; margin-bottom: 40px; align-items: start; }
 .section-tag {
   font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .22em;
   color: var(--orange); font-weight: 800; text-transform: uppercase;
   padding-top: 8px; border-top: 2px solid var(--orange); display: inline-block;
 }
 .section-title {
-  font-family: 'Noto Sans JP', sans-serif; font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-family: 'Noto Sans JP', sans-serif; font-size: clamp(1.4rem, 2.8vw, 2.0rem);
   font-weight: 900; line-height: 1.4; color: var(--white); letter-spacing: -.005em;
 }
 .section-title em { color: var(--orange); font-style: normal; }
-.section-lead { font-size: .96rem; color: var(--text2); line-height: 2.05; max-width: 760px; font-weight: 500; }
+.section-lead { font-size: .88rem; color: var(--text2); line-height: 1.85; max-width: 760px; font-weight: 500; }
 @media (max-width: 900px) {
   .section-head { grid-template-columns: 1fr; gap: 14px; }
-  .section { padding: 72px 5%; }
+  .section { padding: 56px 5%; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
 }
 
 /* 3 column cards */
-.card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 @media (max-width: 900px) {
   .card-grid-3 { grid-template-columns: 1fr; }
   .card-grid-2 { grid-template-columns: 1fr; }
 }
 .card {
-  background: var(--bg-card); border: 1px solid var(--line); padding: 32px 28px;
+  background: var(--bg-card); border: 1px solid var(--line); padding: 24px 22px;
   transition: background .25s, border-color .25s, transform .25s;
 }
 .card:hover { background: var(--bg-card-hover); border-color: var(--line-strong); }
 .card-num { font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: var(--orange); letter-spacing: .12em; margin-bottom: 14px; font-weight: 700; }
-.card-title { font-size: 1.08rem; font-weight: 800; color: var(--white); line-height: 1.55; margin-bottom: 14px; }
-.card-body { font-size: .88rem; color: var(--text2); line-height: 1.95; }
+.card-title { font-size: .98rem; font-weight: 800; color: var(--white); line-height: 1.5; margin-bottom: 10px; }
+.card-body { font-size: .82rem; color: var(--text2); line-height: 1.8; }
 .card-body strong { color: var(--text); font-weight: 700; }
 
 /* Table */
 .tbl-wrap { overflow-x: auto; }
 .tbl {
-  width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 640px;
+  width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 580px;
 }
-.tbl th, .tbl td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+.tbl th, .tbl td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
 .tbl thead th { background: rgba(242,135,42,.08); color: var(--orange); font-weight: 800; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; border-bottom: 2px solid var(--orange); }
 .tbl tbody tr:hover { background: rgba(255,255,255,.02); }
 .tbl td strong { color: var(--white); }
@@ -215,32 +215,32 @@ img { max-width: 100%; display: block; }
 /* Inline KPI / point box */
 .point {
   background: rgba(242,135,42,.06); border-left: 4px solid var(--orange);
-  padding: 24px 28px; margin-top: 32px; font-size: .94rem; line-height: 1.95;
+  padding: 18px 22px; margin-top: 24px; font-size: .88rem; line-height: 1.8;
   color: var(--text);
 }
 .point strong { color: var(--orange); font-weight: 800; }
 
 .note {
   background: rgba(255,255,255,.03); border-left: 3px solid var(--line-strong);
-  padding: 18px 24px; margin-top: 20px; font-size: .82rem; line-height: 1.85;
+  padding: 14px 20px; margin-top: 16px; font-size: .78rem; line-height: 1.75;
   color: var(--text2);
 }
 
 /* Price card */
-.price-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; margin-bottom: 32px; }
+.price-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; margin-bottom: 24px; }
 @media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; } }
-.price-card { background: var(--bg-card); border: 1.5px solid var(--orange); padding: 36px 32px; }
+.price-card { background: var(--bg-card); border: 1.5px solid var(--orange); padding: 26px 24px; }
 .price-card.opt { border-color: var(--line-strong); }
 .price-card-eyebrow { font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
 .price-card.opt .price-card-eyebrow { color: var(--text2); }
-.price-card-title { font-size: 1.32rem; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+.price-card-title { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: 6px; }
 .price-card-must { display: inline-block; background: var(--orange); color: var(--ink); font-size: .68rem; font-weight: 900; letter-spacing: .1em; padding: 3px 10px; margin-bottom: 14px; }
 .price-card-opt-tag { display: inline-block; background: rgba(255,255,255,.1); color: var(--text); font-size: .68rem; font-weight: 900; letter-spacing: .1em; padding: 3px 10px; margin-bottom: 14px; }
-.price-card-price { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 6px; }
+.price-card-price { font-family: 'Inter', sans-serif; font-size: 1.9rem; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 6px; }
 .price-card-price small { font-size: .9rem; color: var(--text2); font-weight: 600; }
 .price-card-tax { font-size: .74rem; color: var(--text3); margin-bottom: 20px; }
 .price-card-list { list-style: none; padding: 0; margin-top: 20px; }
-.price-card-list li { padding: 10px 0; padding-left: 24px; position: relative; font-size: .9rem; color: var(--text); line-height: 1.65; border-bottom: 1px dashed var(--line); }
+.price-card-list li { padding: 8px 0; padding-left: 22px; position: relative; font-size: .82rem; color: var(--text); line-height: 1.6; border-bottom: 1px dashed var(--line); }
 .price-card-list li:last-child { border-bottom: none; }
 .price-card-list li::before {
   content: ''; position: absolute; left: 0; top: 16px;
@@ -250,19 +250,19 @@ img { max-width: 100%; display: block; }
 
 /* Timeline (当日の流れ) */
 .tline { list-style: none; padding: 0; margin: 0; }
-.tline-item { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px dashed var(--line); }
-.tline-time { font-family: 'JetBrains Mono', monospace; font-size: .94rem; color: var(--orange); font-weight: 700; letter-spacing: .04em; }
-.tline-event { font-size: .96rem; color: var(--text); font-weight: 700; }
-.tline-event small { display: block; color: var(--text2); font-size: .82rem; font-weight: 500; margin-top: 4px; }
+.tline-item { display: grid; grid-template-columns: 160px 1fr; gap: 18px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.tline-time { font-family: 'JetBrains Mono', monospace; font-size: .86rem; color: var(--orange); font-weight: 700; letter-spacing: .04em; }
+.tline-event { font-size: .88rem; color: var(--text); font-weight: 700; }
+.tline-event small { display: block; color: var(--text2); font-size: .76rem; font-weight: 500; margin-top: 3px; }
 @media (max-width: 700px) {
   .tline-item { grid-template-columns: 1fr; gap: 4px; }
 }
 
 /* FAQ */
-.faq-group { margin-bottom: 36px; }
+.faq-group { margin-bottom: 28px; }
 .faq-group h3 {
-  font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.08rem;
-  color: var(--orange); margin-bottom: 18px; padding-left: 14px;
+  font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1rem;
+  color: var(--orange); margin-bottom: 14px; padding-left: 12px;
   border-left: 3px solid var(--orange);
 }
 .faq-item {
@@ -270,8 +270,8 @@ img { max-width: 100%; display: block; }
   margin-bottom: 8px; padding: 0;
 }
 .faq-item summary {
-  list-style: none; cursor: pointer; padding: 20px 56px 20px 24px;
-  font-weight: 700; color: var(--white); font-size: .94rem; line-height: 1.6;
+  list-style: none; cursor: pointer; padding: 16px 50px 16px 20px;
+  font-weight: 700; color: var(--white); font-size: .88rem; line-height: 1.55;
   position: relative; user-select: none;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
@@ -285,13 +285,13 @@ img { max-width: 100%; display: block; }
 .faq-item .faq-icon::before { width: 16px; height: 2px; top: 7px; left: 0; }
 .faq-item .faq-icon::after { width: 2px; height: 16px; left: 7px; top: 0; }
 .faq-item[open] .faq-icon::after { transform: rotate(90deg); }
-.faq-answer { padding: 0 24px 20px; color: var(--text2); font-size: .88rem; line-height: 2; }
+.faq-answer { padding: 0 20px 18px; color: var(--text2); font-size: .82rem; line-height: 1.85; }
 .faq-answer strong { color: var(--text); }
 
 /* Phase boxes (3階層) */
 .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 900px) { .phase-grid { grid-template-columns: 1fr; } }
-.phase-card { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 26px; position: relative; }
+.phase-card { background: var(--bg-card); border: 1px solid var(--line); padding: 22px 22px; position: relative; }
 .phase-card::before {
   content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 60px;
   background: var(--orange);
@@ -301,13 +301,13 @@ img { max-width: 100%; display: block; }
 .phase-eyebrow { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .18em; font-weight: 800; color: var(--orange); margin-bottom: 6px; }
 .phase-card.p2 .phase-eyebrow { color: var(--gold); }
 .phase-card.p3 .phase-eyebrow { color: var(--moon); }
-.phase-title { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+.phase-title { font-size: .94rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
 .phase-list { list-style: none; padding: 0; }
-.phase-list li { padding: 8px 0; padding-left: 16px; position: relative; font-size: .86rem; color: var(--text); line-height: 1.75; }
+.phase-list li { padding: 6px 0; padding-left: 14px; position: relative; font-size: .8rem; color: var(--text); line-height: 1.7; }
 .phase-list li::before { content: '—'; position: absolute; left: 0; color: var(--orange); }
 
 /* Info disclosure 3-tier (A/B/C) */
-.tier { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 30px; margin-bottom: 16px; }
+.tier { background: var(--bg-card); border: 1px solid var(--line); padding: 22px 24px; margin-bottom: 14px; }
 .tier-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .tier-badge {
   font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
@@ -316,8 +316,8 @@ img { max-width: 100%; display: block; }
 .tier.a .tier-badge { background: var(--orange); color: var(--ink); }
 .tier.b .tier-badge { background: var(--gold); color: var(--ink); }
 .tier.c .tier-badge { background: rgba(255,255,255,.15); color: var(--text); }
-.tier-name { font-size: 1.02rem; font-weight: 800; color: var(--white); }
-.tier-rows { display: grid; grid-template-columns: 160px 1fr; gap: 12px 24px; font-size: .86rem; line-height: 1.85; }
+.tier-name { font-size: .94rem; font-weight: 800; color: var(--white); }
+.tier-rows { display: grid; grid-template-columns: 150px 1fr; gap: 10px 20px; font-size: .82rem; line-height: 1.75; }
 .tier-rows dt { color: var(--text2); font-weight: 700; }
 .tier-rows dd { color: var(--text); }
 @media (max-width: 700px) {
@@ -326,9 +326,9 @@ img { max-width: 100%; display: block; }
 }
 
 /* Legal box */
-.legal-block { background: rgba(15,31,68,.5); border: 1px solid var(--line); padding: 28px 32px; margin-bottom: 18px; }
-.legal-block h4 { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
-.legal-block p, .legal-block ul { font-size: .9rem; color: var(--text); line-height: 2; }
+.legal-block { background: rgba(15,31,68,.5); border: 1px solid var(--line); padding: 22px 26px; margin-bottom: 14px; }
+.legal-block h4 { font-size: .94rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.legal-block p, .legal-block ul { font-size: .84rem; color: var(--text); line-height: 1.85; }
 .legal-block ul { padding-left: 18px; }
 .legal-block ul li { margin: 4px 0; }
 
@@ -341,21 +341,21 @@ img { max-width: 100%; display: block; }
 }
 
 /* Theme cards (テーマ事例) */
-.theme-card-c { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 28px; }
+.theme-card-c { background: var(--bg-card); border: 1px solid var(--line); padding: 22px 24px; }
 .theme-tag { font-family: 'Inter', sans-serif; font-size: .7rem; letter-spacing: .18em; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 10px; }
-.theme-h { font-family: 'Noto Serif JP', serif; font-size: 1.06rem; font-weight: 700; color: var(--white); line-height: 1.7; }
+.theme-h { font-family: 'Noto Serif JP', serif; font-size: .98rem; font-weight: 700; color: var(--white); line-height: 1.6; }
 
 /* CTA Final */
 .cta-final {
-  padding: 110px 6%; text-align: center;
+  padding: 80px 6%; text-align: center;
   background: linear-gradient(180deg, var(--bg-night) 0%, var(--bg-deep) 100%);
   border-bottom: 1px solid var(--line);
 }
 .cta-final .cta-inner { max-width: 880px; margin: 0 auto; }
 .cta-eyebrow { font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .28em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 24px; }
-.cta-final h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+.cta-final h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 900; color: var(--white); margin-bottom: 20px; line-height: 1.5; }
 .cta-final h2 em { color: var(--orange); font-style: normal; }
-.cta-final p { font-size: 1rem; color: var(--text2); margin-bottom: 36px; line-height: 1.9; }
+.cta-final p { font-size: .9rem; color: var(--text2); margin-bottom: 28px; line-height: 1.8; }
 .cta-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
 .footer { padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; font-size: .82rem; color: var(--text3); border-top: 1px solid var(--line); }
@@ -411,7 +411,7 @@ img { max-width: 100%; display: block; }
     <h1>就活解禁<em>1〜2年前</em>のトップ層と、<br>御社だけで語り合う<em>2時間</em>。</h1>
     <p class="hero-corp-sub">
       合同説明会でもナビサイトでも会えない学生が、ここにいます。<br>
-      東大・早慶・SFC・MARCH 以上の大学2〜3年生 25〜30名と、御社5〜10名のクローズドな対話の場を、NEXYがイベント運営事業者として設計・運営します。
+      東大・早慶・SFC・MARCH 以上の大学2〜3年生 25名と、御社5〜10名のクローズドな対話の場を、NEXYがイベント運営事業者として設計・運営します。
     </p>
     <div class="price-tag">
       <div>
@@ -500,7 +500,7 @@ img { max-width: 100%; display: block; }
         <div class="card-title">開催概要</div>
         <div class="card-body">
           <p style="margin-bottom:10px;"><strong>対象学生</strong>　東大・早慶・SFC・MARCH 以上、大学2〜3年生</p>
-          <p style="margin-bottom:10px;"><strong>学生人数</strong>　25〜30名（最低保証10名）</p>
+          <p style="margin-bottom:10px;"><strong>学生人数</strong>　25名（最低保証10名）</p>
           <p style="margin-bottom:10px;"><strong>企業参加</strong>　5〜10名（推奨：学生4名につき社員1名）</p>
           <p style="margin-bottom:10px;"><strong>時間</strong>　2時間（19:00〜21:00推奨）</p>
           <p><strong>会場</strong>　御社オフィス提供 or NEXYが会場手配（会場費別途）</p>
@@ -517,7 +517,7 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
     </div>
-    <div style="margin-top:40px;text-align:center;" class="reveal">
+    <div style="margin-top:28px;text-align:center;" class="reveal">
       <a href="#contact" class="btn-primary">商談予約はこちら →</a>
     </div>
   </div>
@@ -601,7 +601,7 @@ img { max-width: 100%; display: block; }
         <li><strong>企業ヒアリング</strong>：希望学生像（学年・専攻・志向性）を確認</li>
         <li><strong>NEXYコミュニティ200名以上</strong>から、希望条件に合致する学生50〜100名を抽出</li>
         <li><strong>学生告知</strong>、参加意思確認</li>
-        <li><strong>抽選または先着</strong>で25〜30名を選定</li>
+        <li><strong>抽選または先着</strong>で25名を選定</li>
       </ol>
     </div>
   </div>
@@ -652,7 +652,7 @@ img { max-width: 100%; display: block; }
     <ul class="tline reveal">
       <li class="tline-item">
         <div class="tline-time">18:45 — 19:00</div>
-        <div class="tline-event">受付・着席<small>軽食・ドリンク提供</small></div>
+        <div class="tline-event">受付・着席<small>軽食・ドリンクは企業判断（任意）</small></div>
       </li>
       <li class="tline-item">
         <div class="tline-time">19:00 — 19:15</div>
@@ -709,7 +709,7 @@ img { max-width: 100%; display: block; }
           <strong style="color:var(--text);">支払いタイミング</strong>：イベント実施日に請求書発行、翌月末払い
         </div>
         <ul class="price-card-list">
-          <li>学生25〜30名集客（最低保証10名）</li>
+          <li>学生25名集客（最低保証10名）</li>
           <li>告知・DM配信</li>
           <li>テーマ設計サポート</li>
           <li>当日司会・進行・モデレート</li>
@@ -744,7 +744,7 @@ img { max-width: 100%; display: block; }
       ・採用成功事例記事制作オプションは、御社の採用ブランディング目的での任意購入です<br>
       ・採用が起きてもオプションを購入しない選択も可能です
     </div>
-    <div style="margin-top:40px;text-align:center;" class="reveal">
+    <div style="margin-top:28px;text-align:center;" class="reveal">
       <a href="#contact" class="btn-primary">商談予約はこちら →</a>
     </div>
   </div>
@@ -757,7 +757,7 @@ img { max-width: 100%; display: block; }
       <span class="section-tag">Guarantee</span>
       <div>
         <h2 class="section-title">集客<em>保証</em>と返金規定。</h2>
-        <p class="section-lead">学生25〜30名集客を目標とし、集客状況に応じて料金を調整します。<strong>採用に関する保証はありません。NEXYはイベント運営に責任を負います。</strong></p>
+        <p class="section-lead">学生25名集客を目標とし、集客状況に応じて料金を調整します。<strong>採用に関する保証はありません。NEXYはイベント運営に責任を負います。</strong></p>
       </div>
     </div>
     <div class="tbl-wrap reveal">
@@ -896,7 +896,7 @@ img { max-width: 100%; display: block; }
       <p style="margin-top:14px;"><strong>業務内容</strong></p>
       <ul>
         <li>学生コミュニティを活用したイベントの企画・運営</li>
-        <li>集客（25〜30名目標、最低保証10名）</li>
+        <li>集客（25名目標、最低保証10名）</li>
         <li>テーマ設計・当日進行・モデレート</li>
         <li>アンケート集計・事後レポート作成</li>
       </ul>
@@ -960,7 +960,7 @@ img { max-width: 100%; display: block; }
     <div class="legal-block reveal">
       <h4>集客プロセス</h4>
       <ol style="padding-left:20px;font-size:.9rem;color:var(--text);line-height:2;">
-        <li>企業との契約締結後、<strong>最短4週間で25〜30名集客</strong></li>
+        <li>企業との契約締結後、<strong>最短4週間で25名集客</strong></li>
         <li>NEXYコミュニティ（<strong>200名以上の登録学生</strong>）から、企業ニーズに合致する学生を抽出</li>
         <li>抽出学生に告知、参加意思を確認</li>
         <li>参加確定者を企業と共有</li>
