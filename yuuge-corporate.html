@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ゆうげの若き熱論会 — 企業向け｜採用前のトップ層と出会える2時間 | NEXY</title>
+<meta name="description" content="就活解禁1〜2年前のトップ層大学生と、御社だけで語り合う2時間。実証パートナー特別価格50,000円、採用に関する追加支払いなしの透明な料金体系。">
+<meta name="keywords" content="NEXY,ゆうげの若き熱論会,採用,新卒採用,大学生,イベント運営,業務委託,東京">
+<meta name="author" content="NEXY">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://nexyhub.jp/yuuge-corporate.html">
+<link rel="icon" href="/img/icon.jpg" type="image/jpeg">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexyhub.jp/yuuge-corporate.html">
+<meta property="og:title" content="ゆうげの若き熱論会 — 企業向け｜実証パートナー価格50,000円">
+<meta property="og:description" content="合同説明会では会えない、ナビサイトには登録していない学生がここにいます。">
+<meta property="og:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
+<meta property="og:site_name" content="NEXY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ゆうげの若き熱論会 — 企業向け｜実証パートナー価格50,000円">
+<meta name="twitter:image" content="https://nexyhub.jp/img/yuuge/yuuge_ogp.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Noto+Serif+JP:wght@500;700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-night: #0B1838;
+  --bg-night-2: #0F1F44;
+  --bg-deep: #050D24;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.07);
+
+  --orange: #F2872A;
+  --orange-bright: #FFA94D;
+  --orange-deep: #D86A12;
+  --gold: #F4B95A;
+  --moon: #F0E6BE;
+
+  --white: #FFFFFF;
+  --text: #E8ECF5;
+  --text2: #A8B0C2;
+  --text3: #6D7689;
+
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.18);
+  --ink: #0F172A;
+
+  --green: #4ADE80;
+  --red: #F87171;
+  --blue: #60A5FA;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg-night);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.85;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+img { max-width: 100%; display: block; }
+
+#starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .65; }
+.announce-bar, .nav, .mobile-nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 2; }
+.announce-bar, .nav { z-index: 250; }
+.mobile-nav { z-index: 199; }
+
+.announce-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 250;
+  height: 44px; background: var(--ink); color: var(--moon);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; padding: 0 24px;
+  font-size: .82rem; font-weight: 700; letter-spacing: .04em;
+  border-bottom: 2px solid var(--orange); text-decoration: none;
+}
+.announce-bar:hover { background: #1A2545; }
+.announce-bar .ab-pulse { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; animation: abPulse 1.6s infinite; flex-shrink: 0; }
+@keyframes abPulse { 0% { box-shadow: 0 0 0 0 rgba(242,135,42,.75); } 70% { box-shadow: 0 0 0 10px rgba(242,135,42,0); } 100% { box-shadow: 0 0 0 0 rgba(242,135,42,0); } }
+.announce-bar .ab-cta { background: var(--orange); color: var(--ink); padding: 4px 12px; font-size: .74rem; font-weight: 900; }
+
+.nav {
+  position: fixed; top: 44px; left: 0; right: 0; z-index: 200;
+  height: 64px; background: rgba(11,24,56,0.92); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; padding: 0 32px; justify-content: space-between;
+}
+.nav-logo a { color: var(--white); text-decoration: none; font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: 1rem; }
+.nav-logo .lg-em { color: var(--orange); }
+.nav-logo .sub { color: var(--text2); font-size: .75rem; font-weight: 700; font-family: 'Inter', sans-serif; margin-left: 4px; }
+.nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: .78rem; font-weight: 700; transition: color .15s; }
+.nav-links a:hover { color: var(--orange); }
+.nav-cta { background: var(--orange) !important; color: var(--ink) !important; padding: 9px 18px !important; font-size: .78rem !important; font-weight: 900 !important; border: 2px solid var(--orange); }
+.nav-cta:hover { background: var(--orange-bright) !important; }
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--white); }
+.mobile-nav { display: none; position: fixed; top: 108px; left: 0; right: 0; background: rgba(11,24,56,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); padding: 20px 28px; flex-direction: column; gap: 14px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--text); text-decoration: none; font-size: .92rem; font-weight: 700; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange); color: var(--ink);
+  text-decoration: none; padding: 16px 32px;
+  font-size: .88rem; font-weight: 900; letter-spacing: .04em;
+  border: 2px solid var(--orange); transition: .25s;
+  position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+  transition: left .6s;
+}
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover { background: var(--orange-bright); border-color: var(--orange-bright); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(242,135,42,.4); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--white);
+  text-decoration: none; padding: 16px 32px;
+  font-size: .88rem; font-weight: 800; letter-spacing: .04em;
+  border: 2px solid var(--white); transition: .25s;
+}
+.btn-outline:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
+
+/* HERO */
+.hero-corp { padding: 168px 6% 96px; background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-night) 100%); border-bottom: 1px solid var(--line); }
+.hero-corp-inner { max-width: 1180px; margin: 0 auto; }
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .28em;
+  color: var(--orange); font-weight: 800; text-transform: uppercase;
+  margin-bottom: 24px; padding-top: 8px; border-top: 2px solid var(--orange);
+  display: inline-block;
+}
+.hero-corp h1 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(2.2rem, 5.6vw, 4.2rem); font-weight: 900;
+  line-height: 1.32; letter-spacing: -.012em; color: var(--white);
+  margin-bottom: 32px;
+}
+.hero-corp h1 em { color: var(--orange); font-style: normal; }
+.hero-corp-sub {
+  font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 2.05; color: var(--text);
+  max-width: 760px; margin-bottom: 40px; font-weight: 500;
+}
+.price-tag {
+  display: inline-flex; align-items: baseline; gap: 14px;
+  background: rgba(242,135,42,.08); border: 1.5px solid var(--orange);
+  padding: 18px 28px; margin-bottom: 40px;
+}
+.price-tag-label { font-family: 'Inter', sans-serif; font-size: .74rem; letter-spacing: .14em; color: var(--orange); font-weight: 800; text-transform: uppercase; }
+.price-tag-price { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--white); letter-spacing: .01em; }
+.price-tag-note { font-size: .78rem; color: var(--text2); }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* SECTION BASE */
+.section { padding: 110px 6%; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+.section.alt { background: rgba(15,31,68,0.5); }
+.section.deep { background: rgba(5,13,36,0.6); }
+.section-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
+.section-head { display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-bottom: 56px; align-items: start; }
+.section-tag {
+  font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .22em;
+  color: var(--orange); font-weight: 800; text-transform: uppercase;
+  padding-top: 8px; border-top: 2px solid var(--orange); display: inline-block;
+}
+.section-title {
+  font-family: 'Noto Sans JP', sans-serif; font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-weight: 900; line-height: 1.4; color: var(--white); letter-spacing: -.005em;
+}
+.section-title em { color: var(--orange); font-style: normal; }
+.section-lead { font-size: .96rem; color: var(--text2); line-height: 2.05; max-width: 760px; font-weight: 500; }
+@media (max-width: 900px) {
+  .section-head { grid-template-columns: 1fr; gap: 14px; }
+  .section { padding: 72px 5%; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+/* 3 column cards */
+.card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+@media (max-width: 900px) {
+  .card-grid-3 { grid-template-columns: 1fr; }
+  .card-grid-2 { grid-template-columns: 1fr; }
+}
+.card {
+  background: var(--bg-card); border: 1px solid var(--line); padding: 32px 28px;
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.card:hover { background: var(--bg-card-hover); border-color: var(--line-strong); }
+.card-num { font-family: 'JetBrains Mono', monospace; font-size: .76rem; color: var(--orange); letter-spacing: .12em; margin-bottom: 14px; font-weight: 700; }
+.card-title { font-size: 1.08rem; font-weight: 800; color: var(--white); line-height: 1.55; margin-bottom: 14px; }
+.card-body { font-size: .88rem; color: var(--text2); line-height: 1.95; }
+.card-body strong { color: var(--text); font-weight: 700; }
+
+/* Table */
+.tbl-wrap { overflow-x: auto; }
+.tbl {
+  width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 640px;
+}
+.tbl th, .tbl td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--line); }
+.tbl thead th { background: rgba(242,135,42,.08); color: var(--orange); font-weight: 800; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; border-bottom: 2px solid var(--orange); }
+.tbl tbody tr:hover { background: rgba(255,255,255,.02); }
+.tbl td strong { color: var(--white); }
+
+/* Inline KPI / point box */
+.point {
+  background: rgba(242,135,42,.06); border-left: 4px solid var(--orange);
+  padding: 24px 28px; margin-top: 32px; font-size: .94rem; line-height: 1.95;
+  color: var(--text);
+}
+.point strong { color: var(--orange); font-weight: 800; }
+
+.note {
+  background: rgba(255,255,255,.03); border-left: 3px solid var(--line-strong);
+  padding: 18px 24px; margin-top: 20px; font-size: .82rem; line-height: 1.85;
+  color: var(--text2);
+}
+
+/* Price card */
+.price-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; margin-bottom: 32px; }
+@media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; } }
+.price-card { background: var(--bg-card); border: 1.5px solid var(--orange); padding: 36px 32px; }
+.price-card.opt { border-color: var(--line-strong); }
+.price-card-eyebrow { font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+.price-card.opt .price-card-eyebrow { color: var(--text2); }
+.price-card-title { font-size: 1.32rem; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+.price-card-must { display: inline-block; background: var(--orange); color: var(--ink); font-size: .68rem; font-weight: 900; letter-spacing: .1em; padding: 3px 10px; margin-bottom: 14px; }
+.price-card-opt-tag { display: inline-block; background: rgba(255,255,255,.1); color: var(--text); font-size: .68rem; font-weight: 900; letter-spacing: .1em; padding: 3px 10px; margin-bottom: 14px; }
+.price-card-price { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 6px; }
+.price-card-price small { font-size: .9rem; color: var(--text2); font-weight: 600; }
+.price-card-tax { font-size: .74rem; color: var(--text3); margin-bottom: 20px; }
+.price-card-list { list-style: none; padding: 0; margin-top: 20px; }
+.price-card-list li { padding: 10px 0; padding-left: 24px; position: relative; font-size: .9rem; color: var(--text); line-height: 1.65; border-bottom: 1px dashed var(--line); }
+.price-card-list li:last-child { border-bottom: none; }
+.price-card-list li::before {
+  content: ''; position: absolute; left: 0; top: 16px;
+  width: 12px; height: 6px; border-left: 2px solid var(--orange); border-bottom: 2px solid var(--orange);
+  transform: rotate(-45deg);
+}
+
+/* Timeline (当日の流れ) */
+.tline { list-style: none; padding: 0; margin: 0; }
+.tline-item { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px dashed var(--line); }
+.tline-time { font-family: 'JetBrains Mono', monospace; font-size: .94rem; color: var(--orange); font-weight: 700; letter-spacing: .04em; }
+.tline-event { font-size: .96rem; color: var(--text); font-weight: 700; }
+.tline-event small { display: block; color: var(--text2); font-size: .82rem; font-weight: 500; margin-top: 4px; }
+@media (max-width: 700px) {
+  .tline-item { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* FAQ */
+.faq-group { margin-bottom: 36px; }
+.faq-group h3 {
+  font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.08rem;
+  color: var(--orange); margin-bottom: 18px; padding-left: 14px;
+  border-left: 3px solid var(--orange);
+}
+.faq-item {
+  background: var(--bg-card); border: 1px solid var(--line);
+  margin-bottom: 8px; padding: 0;
+}
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: 20px 56px 20px 24px;
+  font-weight: 700; color: var(--white); font-size: .94rem; line-height: 1.6;
+  position: relative; user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .faq-icon {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px;
+}
+.faq-item .faq-icon::before, .faq-item .faq-icon::after {
+  content: ''; position: absolute; background: var(--orange); transition: transform .25s;
+}
+.faq-item .faq-icon::before { width: 16px; height: 2px; top: 7px; left: 0; }
+.faq-item .faq-icon::after { width: 2px; height: 16px; left: 7px; top: 0; }
+.faq-item[open] .faq-icon::after { transform: rotate(90deg); }
+.faq-answer { padding: 0 24px 20px; color: var(--text2); font-size: .88rem; line-height: 2; }
+.faq-answer strong { color: var(--text); }
+
+/* Phase boxes (3階層) */
+.phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .phase-grid { grid-template-columns: 1fr; } }
+.phase-card { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 26px; position: relative; }
+.phase-card::before {
+  content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 60px;
+  background: var(--orange);
+}
+.phase-card.p2::before { background: var(--gold); }
+.phase-card.p3::before { background: var(--moon); }
+.phase-eyebrow { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .18em; font-weight: 800; color: var(--orange); margin-bottom: 6px; }
+.phase-card.p2 .phase-eyebrow { color: var(--gold); }
+.phase-card.p3 .phase-eyebrow { color: var(--moon); }
+.phase-title { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+.phase-list { list-style: none; padding: 0; }
+.phase-list li { padding: 8px 0; padding-left: 16px; position: relative; font-size: .86rem; color: var(--text); line-height: 1.75; }
+.phase-list li::before { content: '—'; position: absolute; left: 0; color: var(--orange); }
+
+/* Info disclosure 3-tier (A/B/C) */
+.tier { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 30px; margin-bottom: 16px; }
+.tier-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.tier-badge {
+  font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
+  padding: 6px 12px; letter-spacing: .08em;
+}
+.tier.a .tier-badge { background: var(--orange); color: var(--ink); }
+.tier.b .tier-badge { background: var(--gold); color: var(--ink); }
+.tier.c .tier-badge { background: rgba(255,255,255,.15); color: var(--text); }
+.tier-name { font-size: 1.02rem; font-weight: 800; color: var(--white); }
+.tier-rows { display: grid; grid-template-columns: 160px 1fr; gap: 12px 24px; font-size: .86rem; line-height: 1.85; }
+.tier-rows dt { color: var(--text2); font-weight: 700; }
+.tier-rows dd { color: var(--text); }
+@media (max-width: 700px) {
+  .tier-rows { grid-template-columns: 1fr; gap: 0; }
+  .tier-rows dt { margin-top: 8px; }
+}
+
+/* Legal box */
+.legal-block { background: rgba(15,31,68,.5); border: 1px solid var(--line); padding: 28px 32px; margin-bottom: 18px; }
+.legal-block h4 { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+.legal-block p, .legal-block ul { font-size: .9rem; color: var(--text); line-height: 2; }
+.legal-block ul { padding-left: 18px; }
+.legal-block ul li { margin: 4px 0; }
+
+/* Compliance hero badge */
+.badge-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.badge {
+  font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .12em;
+  font-weight: 800; padding: 8px 14px; border: 1.5px solid var(--line-strong);
+  color: var(--text); text-transform: uppercase;
+}
+
+/* Theme cards (テーマ事例) */
+.theme-card-c { background: var(--bg-card); border: 1px solid var(--line); padding: 28px 28px; }
+.theme-tag { font-family: 'Inter', sans-serif; font-size: .7rem; letter-spacing: .18em; font-weight: 800; color: var(--orange); text-transform: uppercase; margin-bottom: 10px; }
+.theme-h { font-family: 'Noto Serif JP', serif; font-size: 1.06rem; font-weight: 700; color: var(--white); line-height: 1.7; }
+
+/* CTA Final */
+.cta-final {
+  padding: 110px 6%; text-align: center;
+  background: linear-gradient(180deg, var(--bg-night) 0%, var(--bg-deep) 100%);
+  border-bottom: 1px solid var(--line);
+}
+.cta-final .cta-inner { max-width: 880px; margin: 0 auto; }
+.cta-eyebrow { font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .28em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 24px; }
+.cta-final h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.5; }
+.cta-final h2 em { color: var(--orange); font-style: normal; }
+.cta-final p { font-size: 1rem; color: var(--text2); margin-bottom: 36px; line-height: 1.9; }
+.cta-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+.footer { padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; font-size: .82rem; color: var(--text3); border-top: 1px solid var(--line); }
+.footer a { color: var(--text2); text-decoration: none; }
+.footer a:hover { color: var(--orange); }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- ANNOUNCE BAR -->
+<a href="#contact" class="announce-bar">
+  <span class="ab-pulse"></span>
+  <span><strong>実証パートナー価格 50,000円</strong>　— 1〜3社目限定</span>
+  <span class="ab-cta">商談予約 →</span>
+</a>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo"><a href="index.html"><span class="lg-em">NEXY</span> × ゆうげの若き熱論会<span class="sub">／企業向け</span></a></div>
+  <ul class="nav-links">
+    <li><a href="#about">サービス概要</a></li>
+    <li><a href="#price">料金</a></li>
+    <li><a href="#guarantee">集客保証</a></li>
+    <li><a href="#privacy">情報の扱い</a></li>
+    <li><a href="#legal">契約・法務</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="yuuge.html" style="color:var(--text2);">学生の方</a></li>
+    <li><a href="#contact" class="nav-cta">商談予約</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about">サービス概要</a>
+  <a href="#price">料金</a>
+  <a href="#guarantee">集客保証</a>
+  <a href="#privacy">情報の扱い</a>
+  <a href="#legal">契約・法務</a>
+  <a href="#faq">FAQ</a>
+  <a href="yuuge.html">学生の方</a>
+  <a href="#contact">商談予約</a>
+</div>
+
+<!-- SECTION 01: HERO -->
+<section class="hero-corp" id="top">
+  <div class="hero-corp-inner">
+    <span class="hero-eyebrow">For Corporate Partners</span>
+    <h1>就活解禁<em>1〜2年前</em>のトップ層と、<br>御社だけで語り合う<em>2時間</em>。</h1>
+    <p class="hero-corp-sub">
+      合同説明会でもナビサイトでも会えない学生が、ここにいます。<br>
+      東大・早慶・SFC・MARCH 以上の大学2〜3年生 25〜30名と、御社5〜10名のクローズドな対話の場を、NEXYがイベント運営事業者として設計・運営します。
+    </p>
+    <div class="price-tag">
+      <div>
+        <div class="price-tag-label">実証パートナー価格</div>
+        <div class="price-tag-price">¥50,000<small> /回（税別）</small></div>
+      </div>
+      <div class="price-tag-note">1〜3社目限定<br>採用に関する追加支払いなし</div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">商談予約（30分オンライン） →</a>
+      <a href="#contact" class="btn-outline">資料ダウンロード（PDF）</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: 採用の課題 -->
+<section class="section" id="problem">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Problem</span>
+      <div>
+        <h2 class="section-title">御社の採用、こんな<em>課題</em>はありませんか？</h2>
+        <p class="section-lead">就活解禁後では遅い、合同説明会では埋もれる、ナビは高額。「本当に欲しい学生」と早期に接点を持つ手段が見つからない。</p>
+      </div>
+    </div>
+    <div class="card-grid-3">
+      <div class="card reveal">
+        <div class="card-num">01</div>
+        <div class="card-title">優秀な学生は就活前に囲い込まれている</div>
+        <div class="card-body">東大・早慶・MARCHのトップ層学生は、就活解禁前にすでに複数社と接点を持っている。<strong>解禁後に動き出しても、すでに遅い。</strong></div>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">02</div>
+        <div class="card-title">合同説明会では埋もれる</div>
+        <div class="card-body">100社以上が出展する合同説明会では、学生の記憶に残ることすら難しい。<strong>出展料40〜100万円</strong>をかけても、接触できる学生の質はバラバラ。</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">03</div>
+        <div class="card-title">採用単価が上がり続けている</div>
+        <div class="card-body">新卒採用1名あたりの平均コストは約<strong>93万円</strong>。大手では200〜400万円。それでも「本当に欲しい学生」に会えているか。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: 既存手法の限界 -->
+<section class="section alt" id="limits">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Existing Methods</span>
+      <div>
+        <h2 class="section-title">どの手法も、<em>就活が始まってから</em>の接触。</h2>
+        <p class="section-lead">既存採用手法は「就活解禁後の学生」を前提に設計されている。解禁前に、御社を好きな学生を作れる場所がない。</p>
+      </div>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead>
+          <tr><th style="width:30%;">手法</th><th>問題点</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>合同説明会</strong></td><td>学生の質がバラバラ・埋もれる・単発で終わる</td></tr>
+          <tr><td><strong>ナビサイト</strong></td><td>年間80万円〜・ROIが見えにくい・就活生（3〜4年）しか来ない</td></tr>
+          <tr><td><strong>ダイレクトリクルーティング</strong></td><td>工数がかかる・返信率が低い・競合と同じ学生を奪い合う</td></tr>
+          <tr><td><strong>OB・OG訪問</strong></td><td>自社を知っている学生しか来ない・受け身の採用</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="point reveal"><strong>就活解禁前に、御社を好きな学生を作れる場所が必要だ。</strong></div>
+  </div>
+</section>
+
+<!-- SECTION 04: サービス概要 -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">What's this?</span>
+      <div>
+        <h2 class="section-title">ゆうげの<em>若き熱論会</em>とは。</h2>
+        <p class="section-lead">東大・早慶・MARCH 以上の大学2〜3年生と、御社だけで語り合う2時間。NEXYは<strong style="color:var(--orange);">イベント運営事業者</strong>として、企業と学生の対等な対話の場をご提供します。</p>
+      </div>
+    </div>
+    <div class="card-grid-2">
+      <div class="card reveal">
+        <div class="card-num">— Outline</div>
+        <div class="card-title">開催概要</div>
+        <div class="card-body">
+          <p style="margin-bottom:10px;"><strong>対象学生</strong>　東大・早慶・SFC・MARCH 以上、大学2〜3年生</p>
+          <p style="margin-bottom:10px;"><strong>学生人数</strong>　25〜30名（最低保証10名）</p>
+          <p style="margin-bottom:10px;"><strong>企業参加</strong>　5〜10名（推奨：学生4名につき社員1名）</p>
+          <p style="margin-bottom:10px;"><strong>時間</strong>　2時間（19:00〜21:00推奨）</p>
+          <p><strong>会場</strong>　御社オフィス提供 or NEXYが会場手配（会場費別途）</p>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">— Who comes</div>
+        <div class="card-title">参加する学生の特徴</div>
+        <div class="card-body">
+          <p style="margin-bottom:10px;">学生団体・起業・研究等で何らかの<strong>プロジェクトを動かしている層</strong></p>
+          <p style="margin-bottom:10px;">就活意識ではなく、<strong>行動意識が高い</strong></p>
+          <p style="margin-bottom:10px;">解禁後の就活生とは異なる、<strong>「行動量で選ばれた」学生</strong></p>
+          <p><strong>過去参加学生の所属例</strong><br>東京大学、慶應義塾大学、早稲田大学、ICU、中央法、神山高専、N高、S高</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px;text-align:center;" class="reveal">
+      <a href="#contact" class="btn-primary">商談予約はこちら →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: 3階層の価値構造 -->
+<section class="section deep" id="value">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Value Architecture</span>
+      <div>
+        <h2 class="section-title">採用は結果。本質は<em>3階層</em>の価値構造。</h2>
+        <p class="section-lead">ゆうげの若き熱論会は、単発の採用イベントではありません。NEXYはイベント運営事業者として、企業と学生に3階層の価値を提供します。</p>
+      </div>
+    </div>
+    <div class="phase-grid">
+      <div class="phase-card reveal">
+        <div class="phase-eyebrow">PHASE 1 — Short-term</div>
+        <div class="phase-title">短期（イベント当日）</div>
+        <ul class="phase-list">
+          <li>質の高い対話</li>
+          <li>学生の知的刺激</li>
+          <li>企業文化の伝達</li>
+          <li>採用色を抑えた本音の対話</li>
+          <li>企業ブランドの浸透</li>
+        </ul>
+      </div>
+      <div class="phase-card p2 reveal">
+        <div class="phase-eyebrow">PHASE 2 — Mid-term</div>
+        <div class="phase-title">中期（1〜3ヶ月）</div>
+        <ul class="phase-list">
+          <li>学生による自発的な企業選考エントリー</li>
+          <li>インターン応募</li>
+          <li>SNSでの口コミ拡散</li>
+        </ul>
+      </div>
+      <div class="phase-card p3 reveal">
+        <div class="phase-eyebrow">PHASE 3 — Long-term</div>
+        <div class="phase-title">長期（6〜12ヶ月）</div>
+        <ul class="phase-list">
+          <li>新卒採用候補としての継続接点</li>
+          <li>競合より早期のリレーションシップ構築</li>
+          <li>採用ブランディングの定着</li>
+        </ul>
+      </div>
+    </div>
+    <div class="point reveal">採用は<strong>結果としての指標</strong>であり、本質は<strong>質の高い接点と関係構築</strong>です。</div>
+  </div>
+</section>
+
+<!-- SECTION 06: 参加学生の質 -->
+<section class="section" id="students">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Students</span>
+      <div>
+        <h2 class="section-title">採用市場で最も価値の高い層が、<em>ここにいる</em>。</h2>
+        <p class="section-lead">学歴・行動特性・希少性。3つの軸で「採用前に出会う価値の高い学生」をNEXYコミュニティから抽出します。</p>
+      </div>
+    </div>
+    <div class="card-grid-3">
+      <div class="card reveal">
+        <div class="card-num">01</div>
+        <div class="card-title">学歴</div>
+        <div class="card-body">東大・京大・早慶・SFC・MARCH 以上を中心としたトップ層大学・高専・通信制（N高・S高）学生。</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">02</div>
+        <div class="card-title">行動特性</div>
+        <div class="card-body">学生団体運営・起業・研究・スポーツ実績・海外経験など、<strong>就活解禁前から動いている層</strong>。</div>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">03</div>
+        <div class="card-title">就活前という希少性</div>
+        <div class="card-body">大学2〜3年生という、<strong>競合企業がまだ接点を持っていない</strong>タイミングで出会える。</div>
+      </div>
+    </div>
+    <div class="legal-block reveal" style="margin-top:40px;">
+      <h4>学生選定プロセス</h4>
+      <ol style="padding-left:20px;font-size:.9rem;color:var(--text);line-height:2;">
+        <li><strong>企業ヒアリング</strong>：希望学生像（学年・専攻・志向性）を確認</li>
+        <li><strong>NEXYコミュニティ200名以上</strong>から、希望条件に合致する学生50〜100名を抽出</li>
+        <li><strong>学生告知</strong>、参加意思確認</li>
+        <li><strong>抽選または先着</strong>で25〜30名を選定</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07: テーマ事例 -->
+<section class="section alt" id="themes">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Themes</span>
+      <div>
+        <h2 class="section-title">どんな<em>テーマ</em>で議論するか。</h2>
+        <p class="section-lead">企業のニーズに合わせて、事前ミーティングで最終決定。学生の興味を惹きつけやすく、解が一意に定まらないテーマを推奨。</p>
+      </div>
+    </div>
+    <div class="card-grid-2 reveal">
+      <div class="theme-card-c">
+        <div class="theme-tag">Theme 1 — 教育</div>
+        <div class="theme-h">AI時代に、学校という装置はまだ機能するのか</div>
+      </div>
+      <div class="theme-card-c">
+        <div class="theme-tag">Theme 2 — 就活/採用市場</div>
+        <div class="theme-h">就活というシステムの賞味期限</div>
+      </div>
+      <div class="theme-card-c">
+        <div class="theme-tag">Theme 3 — 地方</div>
+        <div class="theme-h">AI時代における地方の在り方とは？</div>
+      </div>
+      <div class="theme-card-c">
+        <div class="theme-tag">Theme 4 — AI</div>
+        <div class="theme-h">AI時代に、人間が残すべきもの</div>
+      </div>
+    </div>
+    <div class="note reveal">過度な事業説明や採用色の強調は避け、学生の知的好奇心に響くトーンを重視。集客を最大化するため、複合テーマ（例：地方×AI）も推奨。</div>
+  </div>
+</section>
+
+<!-- SECTION 08: 当日の流れ -->
+<section class="section" id="flow">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Flow</span>
+      <div>
+        <h2 class="section-title">当日の<em>流れ</em>。</h2>
+        <p class="section-lead">NEXYが集客・進行・アンケート・レポート作成をすべて担当。企業側の準備工数は最小限に。</p>
+      </div>
+    </div>
+    <ul class="tline reveal">
+      <li class="tline-item">
+        <div class="tline-time">18:45 — 19:00</div>
+        <div class="tline-event">受付・着席<small>軽食・ドリンク提供</small></div>
+      </li>
+      <li class="tline-item">
+        <div class="tline-time">19:00 — 19:15</div>
+        <div class="tline-event">オープニング<small>NEXY司会、企業紹介、テーマ提示</small></div>
+      </li>
+      <li class="tline-item">
+        <div class="tline-time">19:15 — 20:45</div>
+        <div class="tline-event">クローズド討論<small>NEXYモデレートあり</small></div>
+      </li>
+      <li class="tline-item">
+        <div class="tline-time">20:45 — 21:00</div>
+        <div class="tline-event">クロージング・自由交流</div>
+      </li>
+    </ul>
+    <div class="card-grid-2 reveal" style="margin-top:40px;">
+      <div class="card">
+        <div class="card-num">— 事前</div>
+        <div class="card-title">企業側の準備工数</div>
+        <div class="card-body">
+          テーマ決定（約30分のミーティング）<br>
+          参加フォーム承認（約15分）
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-num">— 当日 / 採用後</div>
+        <div class="card-title">当日 + 採用後の工数</div>
+        <div class="card-body">
+          <strong>当日</strong>：イベント出席（社員5〜10名、2時間）<br>
+          <strong>採用後</strong>：基本パッケージには含まれない。採用成功事例記事制作オプションご購入時のみ、インタビュー対応あり。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 09: 料金体系 -->
+<section class="section deep" id="price">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Pricing</span>
+      <div>
+        <h2 class="section-title">料金体系（<em>POC実証パートナー価格</em>）</h2>
+        <p class="section-lead">実証パートナー1〜3社目限定の特別価格でご提供します。基本5万円のみで参加可能。採用が起きてもNEXYへの追加支払いは任意のオプションのみ。</p>
+      </div>
+    </div>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div class="price-card-eyebrow">Base Package</div>
+        <div class="price-card-title">イベント運営費</div>
+        <span class="price-card-must">必須</span>
+        <div class="price-card-price">¥50,000<small> /回</small></div>
+        <div class="price-card-tax">税別 ・ 実証パートナー1〜3社目限定</div>
+        <div style="font-size:.84rem;color:var(--text2);line-height:1.85;">
+          <strong style="color:var(--text);">支払いタイミング</strong>：イベント実施日に請求書発行、翌月末払い
+        </div>
+        <ul class="price-card-list">
+          <li>学生25〜30名集客（最低保証10名）</li>
+          <li>告知・DM配信</li>
+          <li>テーマ設計サポート</li>
+          <li>当日司会・進行・モデレート</li>
+          <li>当日アンケート実施</li>
+          <li>興味あり学生リスト共有</li>
+          <li>事後レポート作成（3営業日以内納品）</li>
+        </ul>
+      </div>
+      <div class="price-card opt">
+        <div class="price-card-eyebrow">Optional</div>
+        <div class="price-card-title">採用成功事例<br>記事制作オプション</div>
+        <span class="price-card-opt-tag">任意購入</span>
+        <div class="price-card-price">¥150,000<small> /採用1名分</small></div>
+        <div class="price-card-tax">税別 ・ 採用が起きた場合の任意購入</div>
+        <div style="font-size:.84rem;color:var(--text2);line-height:1.85;">
+          <strong style="color:var(--text);">支払いタイミング</strong>：記事納品時に請求書発行、翌月末払い
+        </div>
+        <ul class="price-card-list">
+          <li>採用学生インタビュー（30〜60分）</li>
+          <li>企業担当者インタビュー（30〜60分）</li>
+          <li>記事制作（NEXY note掲載）</li>
+          <li>SNS拡散（Instagram・X・Podcast）</li>
+          <li>採用成功事例レポート</li>
+        </ul>
+      </div>
+    </div>
+    <div class="point reveal">
+      <strong>基本5万円のみで参加可能。</strong>採用が起きてもNEXYへの追加支払いは任意のオプションのみ。
+    </div>
+    <div class="note reveal">
+      ・採用が起きるかどうかは契約条件と無関係です<br>
+      ・採用成功事例記事制作オプションは、御社の採用ブランディング目的での任意購入です<br>
+      ・採用が起きてもオプションを購入しない選択も可能です
+    </div>
+    <div style="margin-top:40px;text-align:center;" class="reveal">
+      <a href="#contact" class="btn-primary">商談予約はこちら →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: 集客保証 -->
+<section class="section" id="guarantee">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Guarantee</span>
+      <div>
+        <h2 class="section-title">集客<em>保証</em>と返金規定。</h2>
+        <p class="section-lead">学生25〜30名集客を目標とし、集客状況に応じて料金を調整します。<strong>採用に関する保証はありません。NEXYはイベント運営に責任を負います。</strong></p>
+      </div>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="tbl">
+        <thead>
+          <tr><th>集客人数</th><th>料金（税別）</th><th>備考</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>25名以上</strong></td><td><strong>50,000円</strong>（通常価格）</td><td>標準パッケージ</td></tr>
+          <tr><td>20〜24名</td><td>40,000円</td><td>1段階減額</td></tr>
+          <tr><td>15〜19名</td><td>25,000円</td><td>2段階減額</td></tr>
+          <tr><td>10〜14名</td><td><strong style="color:var(--green);">0円（全額返金）</strong></td><td>イベント実施はする</td></tr>
+          <tr><td>9名以下</td><td>—</td><td>NEXY判断でキャンセル可能（請求なし）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-grid-2 reveal" style="margin-top:32px;">
+      <div class="card">
+        <div class="card-num">— Check Point</div>
+        <div class="card-title">判定タイミング</div>
+        <div class="card-body">
+          イベント実施<strong>10日前時点</strong>で集客状況を確認。必要に応じて企業と協議し、開催可否を決定します。
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-num">— Force Majeure</div>
+        <div class="card-title">不可抗力時の対応</div>
+        <div class="card-body">
+          天災・代表の体調不良等、NEXY側の重大な事由でイベント実施不能となった場合は、<strong>全額返金 + 再開催の提案</strong>（再開催費用はNEXY負担）。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: 学生情報の取り扱い -->
+<section class="section alt" id="privacy">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Privacy</span>
+      <div>
+        <h2 class="section-title">学生情報の<em>段階的開示</em>。</h2>
+        <p class="section-lead">学生のプライバシーを守りつつ、企業の採用ニーズに応える3段階の情報開示モデルを採用しています。</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.04rem;font-weight:800;color:var(--white);margin-bottom:20px;" class="reveal">3段階の情報開示モデル</h3>
+
+    <div class="tier a reveal">
+      <div class="tier-head"><span class="tier-badge">A 群</span><span class="tier-name">強い興味を示した学生（アンケートで「興味あり」と回答）</span></div>
+      <dl class="tier-rows">
+        <dt>共有項目</dt><dd>氏名 / 大学 / 学年 / 志望業界 / 連絡先（メール）</dd>
+        <dt>接触方法</dt><dd>企業からの直接連絡を許諾</dd>
+        <dt>活用範囲</dt><dd>採用検討目的のみ</dd>
+      </dl>
+    </div>
+
+    <div class="tier b reveal">
+      <div class="tier-head"><span class="tier-badge">B 群</span><span class="tier-name">どちらでもないと回答した学生</span></div>
+      <dl class="tier-rows">
+        <dt>共有項目</dt><dd>氏名のみ（連絡先は非開示）</dd>
+        <dt>接触方法</dt><dd>企業からの直接接触不可</dd>
+        <dt>活用範囲</dt><dd>将来の継続接点候補として記録（NEXY経由でのみアプローチ可能）</dd>
+      </dl>
+    </div>
+
+    <div class="tier c reveal">
+      <div class="tier-head"><span class="tier-badge">C 群</span><span class="tier-name">興味なしと回答した学生</span></div>
+      <dl class="tier-rows">
+        <dt>共有項目</dt><dd>個人特定情報は一切共有せず</dd>
+        <dt>接触方法</dt><dd>不可</dd>
+        <dt>活用範囲</dt><dd>集計データ（学年比率・興味なしの理由カテゴリ）のみ提供</dd>
+      </dl>
+    </div>
+
+    <div class="legal-block reveal" style="margin-top:36px;">
+      <h4>全体集計</h4>
+      <p>リサーチ目的の集計レポートとして、すべての参加学生のアンケート結果（匿名化済み）を提供します。</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>学生からの同意取得プロセス</h4>
+      <p>NEXYは、イベント参加申込フォームで学生から以下の同意を取得：</p>
+      <ul>
+        <li>アンケート結果の企業への共有</li>
+        <li>「興味あり」時の連絡先共有</li>
+        <li>データ保管期間（イベント参加日から24ヶ月）</li>
+        <li>削除依頼権（学生からの削除依頼に5営業日以内に対応）</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>個人情報取扱契約（DPA）</h4>
+      <p>契約締結時に、以下を含むDPAを別途締結します：</p>
+      <ul>
+        <li>第三者提供禁止</li>
+        <li>採用検討目的以外の利用禁止</li>
+        <li>学生からの削除依頼への協力義務</li>
+        <li>データ漏洩時の通知義務（24時間以内）</li>
+        <li>契約終了後のデータ取り扱い（返却 or 確実な廃棄）</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>セキュリティ体制</h4>
+      <ul>
+        <li><strong>保管</strong>：Notion（暗号化・アクセス権限管理）</li>
+        <li><strong>通信</strong>：暗号化メール・専用フォーム</li>
+        <li><strong>アクセス</strong>：代表1名のみ</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: 契約条件・コンプライアンス -->
+<section class="section deep" id="legal">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Legal &amp; Compliance</span>
+      <div>
+        <h2 class="section-title">契約条件・<em>コンプライアンス</em>。</h2>
+        <p class="section-lead">契約構造を透明に開示し、安心して導入いただける設計を目指しています。法務担当者向けの情報も併記しています。</p>
+      </div>
+    </div>
+
+    <div class="badge-row reveal">
+      <span class="badge">イベント運営業務委託契約</span>
+      <span class="badge">人材紹介事業者ではない</span>
+      <span class="badge">専属交渉条項なし</span>
+      <span class="badge">違約金条項なし</span>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>契約構造</h4>
+      <p>本サービスは<strong>「イベント運営業務委託契約」</strong>として提供されます。NEXYはイベント運営事業者であり、人材紹介事業者ではありません。業務本体はイベントの企画・運営であり、採用に関するあっせん業務は含みません。</p>
+      <p style="margin-top:14px;"><strong>業務内容</strong></p>
+      <ul>
+        <li>学生コミュニティを活用したイベントの企画・運営</li>
+        <li>集客（25〜30名目標、最低保証10名）</li>
+        <li>テーマ設計・当日進行・モデレート</li>
+        <li>アンケート集計・事後レポート作成</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>採用に関する取り扱い</h4>
+      <ul>
+        <li>イベント参加学生の採用は、御社と学生の直接契約となります</li>
+        <li>採用成立にかかわらず、NEXYへの追加支払いは発生しません</li>
+        <li>専属交渉条項・違約金条項はありません</li>
+        <li>採用は契約条件と無関係です</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>採用成功事例記事制作オプション（任意）</h4>
+      <ul>
+        <li>採用が成立し、御社が記事制作をご希望される場合、別途業務委託として承ります</li>
+        <li>このオプションは強制購入ではなく、御社の任意でご検討いただけます</li>
+        <li>採用が起きてもオプションを購入しない選択も可能です</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>法的整理についての開示</h4>
+      <p>NEXYは職業安定法上の人材紹介事業者ではなく、イベント運営事業者として活動しています。本契約は採用のあっせんではなく、イベント運営業務の委託として整理されています。</p>
+      <p style="margin-top:14px;">なお、本契約構造に対して<strong>行政機関から見解が示された場合、両当事者は協議の上で契約条件を変更する</strong>ことができます。</p>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>知的財産権</h4>
+      <ul>
+        <li>イベント中の議論内容は、双方が業務上自由に活用可能</li>
+        <li>学生の発言を特定した形での外部公開は事前合意制</li>
+        <li>採用成功事例記事制作オプションご利用時の著作権は、別契約で規定</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>守秘義務</h4>
+      <ul>
+        <li>本イベントで知り得た情報の守秘義務（5年間）</li>
+        <li>個人情報保護法に準拠した取り扱い</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 13: 運営体制と実績 -->
+<section class="section" id="ops">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Operations</span>
+      <div>
+        <h2 class="section-title">運営<em>体制</em>と実績。</h2>
+        <p class="section-lead">採用支援サービスとしては立ち上げ初期です。1〜3社目を実証パートナーとして位置づけ、特別価格でご提供しています。</p>
+      </div>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>集客プロセス</h4>
+      <ol style="padding-left:20px;font-size:.9rem;color:var(--text);line-height:2;">
+        <li>企業との契約締結後、<strong>最短4週間で25〜30名集客</strong></li>
+        <li>NEXYコミュニティ（<strong>200名以上の登録学生</strong>）から、企業ニーズに合致する学生を抽出</li>
+        <li>抽出学生に告知、参加意思を確認</li>
+        <li>参加確定者を企業と共有</li>
+      </ol>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>NEXYの実績（コミュニティ活動）</h4>
+      <p>過去6回のNEXYイベント実績：</p>
+      <ul>
+        <li><strong>深夜の語り場</strong>：3回・累計100名</li>
+        <li><strong>あさげの若き情熱会</strong>：2回・累計70名</li>
+        <li><strong>よいしょ〇〇</strong>：1回・30名</li>
+      </ul>
+      <p style="margin-top:14px;"><strong>参加学生の所属例</strong>：東京大学、慶應義塾大学、早稲田大学、ICU、中央法、神山高専、N高、S高</p>
+    </div>
+
+    <div class="legal-block reveal" style="border-left:3px solid var(--orange);">
+      <h4>実証パートナー制度について</h4>
+      <p>ゆうげの若き熱論会は、<strong>企業向けサービスとしては立ち上げ初期です</strong>。そのため、1〜3社目の企業を実証パートナーとして位置づけ、特別価格（50,000円）でご提供しています。</p>
+      <p style="margin-top:14px;"><strong>実証パートナーのメリット</strong></p>
+      <ul>
+        <li>通常価格（150,000円予定）の<strong>1/3</strong>で導入可能</li>
+        <li>NEXYと共同でサービス改善を進められる</li>
+        <li>4社目以降の値上げ後も、契約期間中は実証パートナー価格を固定保証</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>運営体制</h4>
+      <p><strong>代表</strong>：小助川晴大（NEXY代表、孫正義育英財団3期生、Tokyo Startup Gateway 3期生）<br>
+      <strong>運営</strong>：パートタイムメンバー数名（イベントごとに役割アサイン）</p>
+      <p style="margin-top:14px;"><strong>代表1名体制のリスクと対応</strong></p>
+      <p>現在の運営体制は代表1名を中心としています。これにより代表の体調不良等のリスクが存在しますが、以下で対応します：</p>
+      <ul>
+        <li>イベント1週間前までに<strong>バックアップ担当を指名・契約書で開示</strong></li>
+        <li>法人化完了時（2026年内予定）に正式運営チーム体制を構築</li>
+      </ul>
+    </div>
+
+    <div class="legal-block reveal">
+      <h4>コミュニティ協賛・パートナー実績</h4>
+      <p>NEXYのコミュニティ活動・イベント協賛における関係企業：</p>
+      <ul>
+        <li>孫正義育英財団</li>
+        <li>Singerly株式会社</li>
+        <li>CHEERS!</li>
+        <li>TOMAP, inc.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 14: FAQ -->
+<section class="section alt" id="faq">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">FAQ</span>
+      <div>
+        <h2 class="section-title">よくある<em>質問</em>。</h2>
+        <p class="section-lead">商談前に解消したい疑問にお答えします。法務担当者向けの質問も含めています。</p>
+      </div>
+    </div>
+
+    <div class="faq-group">
+      <h3>サービスについて</h3>
+      <details class="faq-item"><summary>Q1. これは人材紹介サービスですか？<span class="faq-icon"></span></summary><div class="faq-answer">いいえ。NEXYは<strong>イベント運営事業者</strong>であり、人材紹介事業者ではありません。本サービスは「イベント運営業務委託契約」として提供されます。採用に関するあっせん業務は含みません。</div></details>
+      <details class="faq-item"><summary>Q2. 採用が起きた場合、NEXYに何か支払う必要はありますか？<span class="faq-icon"></span></summary><div class="faq-answer">いいえ。基本パッケージ（50,000円）のみでご利用いただけます。<strong>採用が起きてもNEXYへの追加支払いは発生しません。</strong>ただし、御社が採用成功事例記事制作（任意オプション・150,000円/名）をご希望される場合は、別途承ります。</div></details>
+      <details class="faq-item"><summary>Q3. 採用成功事例記事制作オプションは強制購入ですか？<span class="faq-icon"></span></summary><div class="faq-answer">いいえ。御社の任意でご検討いただけます。採用が起きてもオプションを購入しない選択も可能です。</div></details>
+      <details class="faq-item"><summary>Q4. 弁護士による法務確認は済んでいますか？<span class="faq-icon"></span></summary><div class="faq-answer">契約構造のレビューを実施しています。ただし、御社法務部による独自レビューを推奨いたします。</div></details>
+    </div>
+
+    <div class="faq-group">
+      <h3>料金・支払いについて</h3>
+      <details class="faq-item"><summary>Q5. 採用がゼロの場合、何か支払いは発生しますか？<span class="faq-icon"></span></summary><div class="faq-answer">採用に関する支払いは一切発生しません。基本パッケージの50,000円は、イベント実施に対する業務報酬です。</div></details>
+      <details class="faq-item"><summary>Q6. POC価格はずっと続きますか？<span class="faq-icon"></span></summary><div class="faq-answer">実証パートナー（1〜3社目）の契約期間中は、特別価格を固定保証します。4社目以降の新規契約は標準価格（150,000円予定）に移行します。</div></details>
+      <details class="faq-item"><summary>Q7. 価格が安すぎませんか？品質が心配です。<span class="faq-icon"></span></summary><div class="faq-answer">実証パートナー価格として位置づけています。NEXYのサービス立ち上げ初期に協力いただくことへの対価として、特別価格を設定しています。</div></details>
+    </div>
+
+    <div class="faq-group">
+      <h3>集客・運営について</h3>
+      <details class="faq-item"><summary>Q8. 集客が25名に満たない場合は？<span class="faq-icon"></span></summary><div class="faq-answer">集客人数に応じて料金を調整します。<br>・25名以上：50,000円<br>・20〜24名：40,000円<br>・15〜19名：25,000円<br>・10〜14名：全額返金（イベント実施はする）<br>・9名以下：キャンセル可能（請求なし）</div></details>
+      <details class="faq-item"><summary>Q9. 直前キャンセルの場合の費用負担は？<span class="faq-icon"></span></summary><div class="faq-answer">4週間前まで：0円。2〜4週間前：実費（上限5,000円）。1〜2週間前：上限25,000円。1週間前以降：違約金10,000円。</div></details>
+      <details class="faq-item"><summary>Q10. イベント直前の集客状況は途中報告されますか？<span class="faq-icon"></span></summary><div class="faq-answer">開催3週間前・1週間前の2回、集客状況をご報告します。</div></details>
+    </div>
+
+    <div class="faq-group">
+      <h3>学生情報・個人情報について</h3>
+      <details class="faq-item"><summary>Q11. アンケートで「興味あり」と答えた学生だけリスト共有されますか？「興味なし」の学生情報はどうなりますか？<span class="faq-icon"></span></summary><div class="faq-answer">3段階の情報開示モデルを採用しています。<br>・<strong>A群（興味あり）</strong>：氏名・大学・学年・志望業界・連絡先を共有<br>・<strong>B群（どちらでもない）</strong>：氏名のみ。NEXY経由での再アプローチのみ可能<br>・<strong>C群（興味なし）</strong>：個人特定情報は一切共有せず、集計データのみ提供</div></details>
+      <details class="faq-item"><summary>Q12. 学生からの同意は取れていますか？<span class="faq-icon"></span></summary><div class="faq-answer">イベント参加申込フォームで、アンケート結果の企業共有、興味あり時の連絡先共有、データ保管期間（24ヶ月）、削除権について事前に同意を取得しています。</div></details>
+      <details class="faq-item"><summary>Q13. 学生情報のセキュリティ体制は？<span class="faq-icon"></span></summary><div class="faq-answer">Notion（暗号化・アクセス権限管理）で保管。アクセスは代表1名のみ。契約締結時に個人情報取扱契約（DPA）を別途締結します。</div></details>
+      <details class="faq-item"><summary>Q14. NEXYが解散・廃業した場合、学生データはどうなりますか？<span class="faq-icon"></span></summary><div class="faq-answer">契約書に「契約終了後のデータ取り扱い（返却 or 確実な廃棄）」を明記します。</div></details>
+    </div>
+
+    <div class="faq-group">
+      <h3>イベント運営について</h3>
+      <details class="faq-item"><summary>Q15. 学生がイベント後に企業に応募してきた場合、NEXYに連絡する必要はありますか？<span class="faq-icon"></span></summary><div class="faq-answer">ありません。<strong>専属交渉条項はありません。</strong>御社と学生の直接のやり取りで進めていただけます。</div></details>
+      <details class="faq-item"><summary>Q16. 採用成功事例記事制作オプションを購入した場合のスケジュールは？<span class="faq-icon"></span></summary><div class="faq-answer">採用学生の就業開始から30日後を目処に、インタビュー実施（30〜60分）、記事制作、御社内容確認、NEXY note掲載という流れになります。記事納品時に請求書を発行いたします。</div></details>
+    </div>
+
+    <div class="faq-group">
+      <h3>運営体制について</h3>
+      <details class="faq-item"><summary>Q17. 運営は何名体制ですか？<span class="faq-icon"></span></summary><div class="faq-answer">代表1名 + パートタイム数名です。代表の体調不良等のリスクに対しては、イベント1週間前までにバックアップ担当を指名し、契約書で開示します。</div></details>
+      <details class="faq-item"><summary>Q18. 採用支援サービスとしての過去実績は？<span class="faq-icon"></span></summary><div class="faq-answer">採用支援サービスとしては、ゆうげの若き熱論会は<strong>立ち上げ初期</strong>です。御社が1社目から3社目までの実証パートナーとなります。コミュニティ活動・イベント運営の実績は別途ご紹介できます。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 15: CTA -->
+<section class="cta-final" id="contact">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Contact &amp; Booking</div>
+    <h2>まずは<em>30分</em>のオンライン商談で、<br>御社の課題とサービスのフィット感を。</h2>
+    <p>
+      実証パートナー価格 50,000円 / 採用に関する追加支払いなし。<br>
+      契約構造・個人情報の取扱い・集客保証など、不明点はすべて商談で解消いただけます。
+    </p>
+    <div class="cta-btns">
+      <a href="mailto:info@nexyhub.jp?subject=%E3%82%86%E3%81%86%E3%81%92%E3%81%AE%E8%8B%A5%E3%81%8D%E7%86%B1%E8%AB%96%E4%BC%9A%20%E5%95%86%E8%AB%87%E4%BA%88%E7%B4%84&body=%E5%BE%A1%E7%A4%BE%E5%90%8D%3A%0A%E3%81%94%E6%8B%85%E5%BD%93%E8%80%85%E6%A7%98%3A%0A%E3%81%94%E5%B8%8C%E6%9C%9B%E6%97%A5%E7%A8%8B%E5%80%99%E8%A3%9C%3A%0A%E3%81%94%E8%B3%AA%E5%95%8F%E3%81%AA%E3%81%A9%E3%81%82%E3%82%8C%E3%81%B0%3A%0A" class="btn-primary">商談予約（メール） →</a>
+      <a href="mailto:info@nexyhub.jp?subject=%E3%82%86%E3%81%86%E3%81%92%E3%81%AE%E8%8B%A5%E3%81%8D%E7%86%B1%E8%AB%96%E4%BC%9A%20%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82" class="btn-outline">資料ダウンロード（PDF）</a>
+    </div>
+    <p style="margin-top:36px;font-size:.84rem;color:var(--text3);">
+      お問い合わせ：<a href="mailto:info@nexyhub.jp" style="color:var(--orange);">info@nexyhub.jp</a><br>
+      団体名：NEXY（ネクシー）　／　代表：小助川 晴大
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>© 2026 NEXY</span>
+  <a href="index.html">TOP</a>
+  <a href="asa.html">朝食会</a>
+  <a href="yoru.html">深夜の語り場</a>
+  <a href="yoisho.html">よいしょシリーズ</a>
+  <a href="yuuge.html">学生向け（ゆうげの討論会）</a>
+  <a href="news.html">お知らせ</a>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+if (burger) {
+  burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+}
+
+/* Starfield (yuuge.htmlと同じ) */
+(function(){
+  const c = document.getElementById('starfield');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, stars=[], meteors=[];
+  function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < 180; i++) {
+    stars.push({ x: Math.random(), y: Math.random(), r: Math.random()*1.3 + .2, a: Math.random()*.5 + .1, sp: Math.random()*.004 + .001, ph: Math.random()*Math.PI*2, color: Math.random() > .85 ? 'gold' : 'white' });
+  }
+  function newMeteor() { meteors.push({ x: Math.random()*.75 + .05, y: Math.random()*.4, len: Math.random()*120 + 60, sp: Math.random()*.0018 + .0008, ph: 0, maxA: Math.random()*.5 + .2, done: false, hue: Math.random() > .5 ? 'orange' : 'white' }); }
+  setTimeout(newMeteor, 2000);
+  setInterval(() => { newMeteor(); }, 5500 + Math.random()*4000);
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    t += .016;
+    stars.forEach(s => {
+      const a = s.a * (.7 + .3*Math.sin(t*s.sp*60 + s.ph));
+      ctx.beginPath();
+      ctx.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
+      ctx.fillStyle = s.color === 'gold' ? `rgba(244,185,90,${a})` : `rgba(228,238,255,${a})`;
+      ctx.fill();
+    });
+    meteors.forEach(m => {
+      m.ph += m.sp;
+      let a = 0;
+      if (m.ph < .25) a = m.maxA*(m.ph/.25);
+      else if (m.ph < .75) a = m.maxA;
+      else if (m.ph < 1) a = m.maxA*(1-(m.ph-.75)/.25);
+      else { m.done = true; return; }
+      const px = (m.x + m.ph*.55)*W;
+      const py = (m.y + m.ph*.22)*H;
+      const ang = Math.atan2(.22, .55);
+      const grad = ctx.createLinearGradient(px-Math.cos(ang)*m.len, py-Math.sin(ang)*m.len, px, py);
+      if (m.hue === 'orange') { grad.addColorStop(0, 'rgba(242,135,42,0)'); grad.addColorStop(1, `rgba(255,169,77,${a})`); }
+      else { grad.addColorStop(0, 'rgba(240,230,190,0)'); grad.addColorStop(1, `rgba(255,255,255,${a})`); }
+      ctx.beginPath();
+      ctx.moveTo(px-Math.cos(ang)*m.len, py-Math.sin(ang)*m.len);
+      ctx.lineTo(px, py);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(px, py, 2, 0, Math.PI*2);
+      ctx.fillStyle = m.hue === 'orange' ? `rgba(255,169,77,${a})` : `rgba(255,255,255,${a})`;
+      ctx.fill();
+    });
+    meteors = meteors.filter(m => !m.done);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* Reveal observer */
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
