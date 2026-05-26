@@ -125,9 +125,12 @@ svg { display: block; }
 
 /* ── HERO ── */
 .hero { width: 100%; margin-top: 108px; background: var(--bg-night); }
-.hero-image { width: 100%; display: block; animation: heroFade 1.2s ease-out; }
+.hero-image { width: 100%; display: block; animation: heroFade 1.2s ease-out; max-height: 540px; overflow: hidden; }
 @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
-.hero-image img { width: 100%; height: auto; display: block; }
+.hero-image img { width: 100%; height: auto; display: block; max-height: 540px; object-fit: cover; object-position: center; }
+@media (max-width: 700px) {
+  .hero-image, .hero-image img { max-height: 360px; }
+}
 
 .scroll-cue {
   background: var(--bg-night);
@@ -670,7 +673,6 @@ svg { display: block; }
   <ul class="nav-links">
     <li><a href="#about">どんな場？</a></li>
     <li><a href="#why">参加メリット</a></li>
-    <li><a href="#voice">参加者の声</a></li>
     <li><a href="#themes">テーマ</a></li>
     <li><a href="#flow">当日の流れ</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -680,7 +682,7 @@ svg { display: block; }
   <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#about">どんな場？</a><a href="#why">参加メリット</a><a href="#voice">参加者の声</a>
+  <a href="#about">どんな場？</a><a href="#why">参加メリット</a>
   <a href="#themes">テーマ</a><a href="#flow">当日の流れ</a><a href="#faq">FAQ</a>
   <a href="yuuge-corporate.html" style="color:var(--orange);">企業の方はこちら →</a>
   <a href="https://forms.gle/qL2GLpdrw9MGbjWR9" target="_blank" rel="noopener">参加申込</a>
@@ -711,7 +713,7 @@ svg { display: block; }
       <div class="about-diagram">
         <div class="about-node">
           <div class="about-node-label">Student</div>
-          <div class="about-node-big">20<small>名の大学生</small></div>
+          <div class="about-node-big">25<small>名の大学生</small></div>
           <div class="about-node-list">
             <div><svg class="dot"><use href="#ico-check"/></svg>大学2〜3年生</div>
             <div><svg class="dot"><use href="#ico-check"/></svg>東大・早慶・MARCH 以上</div>
@@ -852,33 +854,6 @@ svg { display: block; }
           <div class="why-title">自分の言葉を磨ける</div>
           <div class="why-desc">テーマに対する自分の考えを言語化する経験。プレゼン力・思考力が一段引き上がる。</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VOICE -->
-<section class="section alt" id="voice">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Voices</span>
-      <div>
-        <h2 class="section-title">こんな<em>体験</em>が、待ってる。</h2>
-        <p class="section-lead">過去参加者・主催側が感じている「ゆうげの討論会らしさ」を、声で。</p>
-      </div>
-    </div>
-    <div class="voice-grid">
-      <div class="voice-card">
-        <div class="voice-quote">説明会では絶対に聞けない、<em>その会社の本音</em>が聞けた。社員の悩みまで話してくれて、人間味にぐっと来た。</div>
-        <div class="voice-author"><div class="voice-avatar">A</div>大学2年・私立大</div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-quote">同世代と社会人が混ざって議論する場って初めて。<em>自分の考えを問われる</em>緊張感が、刺激的だった。</div>
-        <div class="voice-author"><div class="voice-avatar">B</div>大学1年・国立大</div>
-      </div>
-      <div class="voice-card">
-        <div class="voice-quote">学校の勉強じゃ得られない、<em>リアルな社会の問い</em>に触れられる場。自分の進路観が変わった。</div>
-        <div class="voice-author"><div class="voice-avatar">C</div>大学2年・私立大</div>
       </div>
     </div>
   </div>
