@@ -149,6 +149,65 @@ img { max-width: 100%; display: block; }
   content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
   height: 10px; background: var(--mint); z-index: -1;
 }
+
+/* ===== HERO COPY TYPOGRAPHY ===== */
+.hero-copy-typo {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  line-height: 1; letter-spacing: -.02em;
+  margin-bottom: 28px;
+}
+.hc-line { display: inline-flex; transform: skewX(-7deg); }
+.hc-line2 { margin-left: 30px; margin-top: 6px; }
+.hero-copy-typo .ch {
+  display: inline-block;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 8vw, 5.8rem);
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.04);
+  position: relative;
+  animation: heroChar .8s cubic-bezier(.16,1,.3,1) both;
+}
+.hero-copy-typo .ch.o { color: var(--orange); }
+.hero-copy-typo .ch.m { color: var(--mint); }
+
+/* 各文字を1つずつ入場 */
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(1) { animation-delay: .25s; }
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(2) { animation-delay: .31s; }
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(3) { animation-delay: .37s; }
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(4) { animation-delay: .43s; }
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(5) { animation-delay: .49s; }
+.hero-copy-typo .hc-line:nth-child(1) .ch:nth-child(6) { animation-delay: .55s; }
+.hero-copy-typo .hc-line:nth-child(2) .ch:nth-child(1) { animation-delay: .65s; }
+.hero-copy-typo .hc-line:nth-child(2) .ch:nth-child(2) { animation-delay: .71s; }
+.hero-copy-typo .hc-line:nth-child(2) .ch:nth-child(3) { animation-delay: .77s; }
+.hero-copy-typo .hc-line:nth-child(2) .ch:nth-child(4) { animation-delay: .83s; }
+.hero-copy-typo .hc-line:nth-child(2) .ch:nth-child(5) { animation-delay: .89s; }
+
+@keyframes heroChar {
+  from { opacity: 0; transform: translateY(40px) scale(.6); }
+  60%  { opacity: 1; transform: translateY(-8px) scale(1.08); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 既存の .hero-copy アニメ（fadeUp）を hero-copy-typo では無効化 */
+.hero-copy-typo { animation: none; }
+
+/* hover で揺れる */
+.hero-copy-typo .ch:hover {
+  animation: charBounce .5s cubic-bezier(.16,1,.3,1);
+}
+@keyframes charBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px) scale(1.12); }
+}
+
+/* モバイル調整 */
+@media (max-width: 700px) {
+  .hc-line2 { margin-left: 16px; }
+  .hero-copy-typo .ch { font-size: clamp(2.2rem, 11vw, 4rem); }
+}
+
 .hero-sub {
   font-size: clamp(.96rem, 1.4vw, 1.12rem); line-height: 2; color: var(--text2);
   max-width: 720px; margin: 0 auto 40px; font-weight: 600;
@@ -784,7 +843,14 @@ img { max-width: 100%; display: block; }
       <span class="hbadge mint">1DAY / 回遊型フェス</span>
       <span class="hbadge">2026 SUMMER ／ TOKYO</span>
     </div>
-    <h1 class="hero-copy">好きなことを、<em>好きなだけ</em>。</h1>
+    <h1 class="hero-copy hero-copy-typo" aria-label="好きなことを、好きなだけ。">
+      <span class="hc-line">
+        <span class="ch o">好</span><span class="ch m">き</span><span class="ch o">な</span><span class="ch m">こ</span><span class="ch o">と</span><span class="ch m">を</span>
+      </span>
+      <span class="hc-line hc-line2">
+        <span class="ch m">好</span><span class="ch o">き</span><span class="ch m">な</span><span class="ch o">だ</span><span class="ch m">け</span>
+      </span>
+    </h1>
     <p class="hero-sub">
       次世代の挑戦者が集い、自分の可能性が<br>
       遠い未来ではなく、今ここにあると気づく1日。
