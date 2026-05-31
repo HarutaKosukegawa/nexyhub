@@ -127,29 +127,24 @@ img { max-width: 100%; display: block; }
 .btn-ghost:hover { background: var(--moon); color: var(--ink); transform: translateY(-2px); }
 
 /* ===========================
-   HERO (フルブリード画像)
+   HERO (画像全体を必ず表示)
    =========================== */
 .hero {
-  width: 100%; min-height: 100vh;
-  position: relative; overflow: hidden;
-  display: flex; align-items: flex-end; justify-content: center;
-  padding: 0; background: var(--bg-deep);
+  width: 100%; padding-top: 64px;
+  background: var(--bg-deep);
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background-image: url('img/kataribi/hero.png');
-  background-size: cover; background-position: center;
-  z-index: 1;
-}
-.hero-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,15,34,.3) 0%, rgba(10,15,34,.1) 40%, rgba(10,15,34,.85) 100%);
+.hero-image {
+  width: 100%; max-width: 1672px;
+  height: auto; display: block;
+  margin: 0 auto;
 }
 .hero-cta-wrap {
-  position: relative; z-index: 5;
-  padding: 0 6% 60px; text-align: center;
+  width: 100%; max-width: 980px;
+  padding: 36px 6% 56px; text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: 22px;
-  width: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(10,15,34,.4) 100%);
 }
 .hero-ctas {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
@@ -157,21 +152,20 @@ img { max-width: 100%; display: block; }
 }
 @keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 .hero-guard-bottom {
-  font-family: 'Shippori Mincho', serif; font-size: 1rem;
-  color: var(--moon); font-weight: 700; line-height: 1.85;
+  font-family: 'Shippori Mincho', serif; font-size: 1.05rem;
+  color: var(--moon); font-weight: 700; line-height: 1.95;
   max-width: 580px; text-align: center;
   letter-spacing: .02em;
 }
 .scroll-cue {
-  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-  z-index: 5;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
+  margin-top: 12px;
   font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .3em;
   color: var(--moon); font-weight: 700; text-transform: uppercase;
   animation: scrollPulse 2s ease-in-out infinite;
 }
 .scroll-cue::after { content: ''; width: 1.4px; height: 28px; background: var(--moon); }
-@keyframes scrollPulse { 0%, 100% { opacity: .5; transform: translateX(-50%) translateY(0); } 50% { opacity: 1; transform: translateX(-50%) translateY(8px); } }
+@keyframes scrollPulse { 0%, 100% { opacity: .5; transform: translateY(0); } 50% { opacity: 1; transform: translateY(8px); } }
 
 /* ===========================
    STATS BAR
@@ -555,6 +549,118 @@ img { max-width: 100%; display: block; }
 .footer a { color: var(--text2); text-decoration: none; }
 .footer a:hover { color: var(--fire); }
 
+
+/* ===========================
+   SCHEDULE (タイムテーブル)
+   =========================== */
+.schedule-tabs {
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+.schedule-tab {
+  background: transparent; border: none; cursor: pointer;
+  padding: 18px 28px; font-family: 'Shippori Mincho', serif;
+  font-size: 1.04rem; font-weight: 800; color: var(--text2);
+  border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
+}
+.schedule-tab .stab-en { display: block; font-family: 'Inter', sans-serif; font-size: .64rem; letter-spacing: .22em; color: var(--text3); margin-bottom: 4px; }
+.schedule-tab.active { color: var(--fire); border-bottom-color: var(--fire); }
+.schedule-tab.active .stab-en { color: var(--ember); }
+.schedule-tab:hover { color: var(--white); }
+
+.schedule-pane { display: none; max-width: 800px; margin: 0 auto; }
+.schedule-pane.active { display: block; }
+
+.timeline {
+  position: relative;
+  padding-left: 110px;
+}
+.timeline::before {
+  content: ''; position: absolute; top: 0; bottom: 0;
+  left: 76px; width: 2px;
+  background: linear-gradient(180deg, var(--fire) 0%, var(--ember) 50%, var(--moon) 100%);
+}
+.timeline-item {
+  position: relative; padding: 14px 0 14px 28px;
+}
+.timeline-item::before {
+  content: ''; position: absolute;
+  left: -42px; top: 22px;
+  width: 12px; height: 12px; background: var(--fire);
+  border: 3px solid var(--bg-night); border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--fire);
+}
+.timeline-time {
+  position: absolute; left: -110px; top: 14px;
+  width: 70px; text-align: right;
+  font-family: 'JetBrains Mono', monospace; font-size: .88rem;
+  color: var(--fire); font-weight: 700; letter-spacing: .04em;
+}
+.timeline-title {
+  font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.timeline-desc {
+  font-size: .82rem; color: var(--text2); line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .timeline { padding-left: 70px; }
+  .timeline::before { left: 46px; }
+  .timeline-item::before { left: -32px; }
+  .timeline-time { left: -70px; width: 50px; font-size: .78rem; }
+}
+.schedule-note {
+  margin-top: 32px; padding: 16px 22px;
+  background: rgba(240,230,190,.05); border-left: 3px solid var(--moon);
+  font-size: .82rem; color: var(--text2); line-height: 1.85;
+}
+
+/* ===========================
+   WORK FLOW (連鎖図)
+   =========================== */
+.flow-chain {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 10px; max-width: 1000px; margin: 0 auto 32px;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .flow-chain { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
+@media (max-width: 540px) {
+  .flow-chain { grid-template-columns: repeat(2, 1fr); }
+}
+.flow-node {
+  background: var(--bg-card); border: 1px solid var(--line);
+  padding: 18px 14px; text-align: center;
+  position: relative; transition: background .25s, border-color .25s;
+}
+.flow-node:hover { background: var(--bg-card-hover); border-color: var(--fire); }
+.flow-node::after {
+  content: '→';
+  position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+  color: var(--fire); font-weight: 900; font-size: 1.1rem;
+}
+.flow-node:last-child::after { display: none; }
+@media (max-width: 900px) {
+  .flow-node:nth-child(3)::after { display: none; }
+}
+@media (max-width: 540px) {
+  .flow-node:nth-child(2)::after, .flow-node:nth-child(4)::after { display: none; }
+}
+.flow-node-num {
+  font-family: 'Inter', sans-serif; font-size: .62rem; letter-spacing: .18em;
+  color: var(--fire); font-weight: 800; margin-bottom: 6px;
+}
+.flow-node-name {
+  font-family: 'Shippori Mincho', serif; font-size: .82rem;
+  color: var(--white); font-weight: 700; line-height: 1.45;
+}
+.flow-arrow-text {
+  text-align: center; font-family: 'Shippori Mincho', serif;
+  font-size: 1.08rem; color: var(--moon); font-weight: 700;
+  margin-top: 8px;
+}
+.flow-arrow-text em { color: var(--fire); font-style: normal; }
+
 /* Reveal */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
@@ -570,6 +676,7 @@ img { max-width: 100%; display: block; }
   <ul class="nav-links">
     <li><a href="#about">カタリビとは</a></li>
     <li><a href="#days">3日間の流れ</a></li>
+    <li><a href="#schedule">スケジュール</a></li>
     <li><a href="#works">ワーク</a></li>
     <li><a href="#outline">開催概要</a></li>
     <li><a href="#parents">保護者の方へ</a></li>
@@ -581,6 +688,7 @@ img { max-width: 100%; display: block; }
 <div class="mobile-nav" id="mobileNav">
   <a href="#about">カタリビとは</a>
   <a href="#days">3日間の流れ</a>
+  <a href="#schedule">スケジュール</a>
   <a href="#works">ワーク</a>
   <a href="#outline">開催概要</a>
   <a href="#parents">保護者の方へ</a>
@@ -588,9 +696,9 @@ img { max-width: 100%; display: block; }
   <a href="#apply">参加申込</a>
 </div>
 
-<!-- SECTION 01: HERO (フルブリード画像) -->
+<!-- SECTION 01: HERO (画像全体表示) -->
 <section class="hero" id="top">
-  <div class="hero-bg"></div>
+  <img src="img/kataribi/hero.png" alt="カタリビ 2026 サマーキャンプ — 語れ、その先で、夜が明ける" class="hero-image">
   <div class="hero-cta-wrap">
     <div class="hero-ctas">
       <a href="#apply" class="btn-fire">参加を申し込む →</a>
@@ -599,8 +707,8 @@ img { max-width: 100%; display: block; }
     <div class="hero-guard-bottom">
       何かを成し遂げなくても、君の熱には価値がある。
     </div>
+    <div class="scroll-cue">Scroll to read</div>
   </div>
-  <div class="scroll-cue">Scroll to read</div>
 </section>
 
 <!-- STATS BAR -->
@@ -742,6 +850,87 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- SECTION: スケジュール -->
+<section class="section deep" id="schedule">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Schedule</span>
+      <h2 class="section-title">3日間の<em>タイムテーブル</em>。</h2>
+      <p class="section-lead">朝起きてから消灯まで、どんな時間の流れで過ごすのか。下のタブで日ごとに切り替えて確認できます。</p>
+    </div>
+
+    <div class="schedule-tabs reveal">
+      <button class="schedule-tab active" data-day="d1"><span class="stab-en">Day 01 — Mon</span>Unmasking</button>
+      <button class="schedule-tab" data-day="d2"><span class="stab-en">Day 02 — Tue</span>Ignition</button>
+      <button class="schedule-tab" data-day="d3"><span class="stab-en">Day 03 — Wed</span>Dawn</button>
+    </div>
+
+    <div class="schedule-pane active" id="pane-d1">
+      <ol class="timeline">
+        <li class="timeline-item"><span class="timeline-time">10:48</span><div class="timeline-title">大雄山駅 集合</div><div class="timeline-desc">運営が駅で待機。会場までバスでご案内します。</div></li>
+        <li class="timeline-item"><span class="timeline-time">11:00</span><div class="timeline-title">オープニング</div><div class="timeline-desc">3日間の流れと4原則の確認。チェックイン。</div></li>
+        <li class="timeline-item"><span class="timeline-time">12:00</span><div class="timeline-title">昼食</div><div class="timeline-desc">同じBASEの仲間と顔合わせ。</div></li>
+        <li class="timeline-item"><span class="timeline-time">13:30</span><div class="timeline-title">ワーク：感情カード</div><div class="timeline-desc">普段流してしまう感情を拾い上げる。</div></li>
+        <li class="timeline-item"><span class="timeline-time">15:30</span><div class="timeline-title">ワーク：壁カード</div><div class="timeline-desc">自分の前にある「壁」を言葉にしていく。</div></li>
+        <li class="timeline-item"><span class="timeline-time">18:00</span><div class="timeline-title">夕食</div><div class="timeline-desc">仲間と1日を振り返る時間。</div></li>
+        <li class="timeline-item"><span class="timeline-time">19:30</span><div class="timeline-title">焚き火を囲んだ対話</div><div class="timeline-desc">夜の屋外で、火を囲みながら同世代と話す。</div></li>
+        <li class="timeline-item"><span class="timeline-time">22:00</span><div class="timeline-title">消灯</div><div class="timeline-desc">宿泊棟で1日目を終える。</div></li>
+      </ol>
+      <div class="schedule-note">※ タイムテーブルは目安です。当日の進行や参加者の状態に応じて柔軟に調整します。</div>
+    </div>
+
+    <div class="schedule-pane" id="pane-d2">
+      <ol class="timeline">
+        <li class="timeline-item"><span class="timeline-time">07:00</span><div class="timeline-title">起床・朝食</div><div class="timeline-desc">施設内ダイニングで食事。</div></li>
+        <li class="timeline-item"><span class="timeline-time">09:00</span><div class="timeline-title">ワーク：自分の取扱説明書</div><div class="timeline-desc">自分との付き合い方を整理する。</div></li>
+        <li class="timeline-item"><span class="timeline-time">10:30</span><div class="timeline-title">ワーク：ドリームシュレッダー</div><div class="timeline-desc">「言わなきゃいけない夢」をほどく。</div></li>
+        <li class="timeline-item"><span class="timeline-time">12:00</span><div class="timeline-title">昼食</div><div class="timeline-desc">屋外でのびのびと。</div></li>
+        <li class="timeline-item"><span class="timeline-time">13:30</span><div class="timeline-title">ワーク：やりたいの解剖</div><div class="timeline-desc">Do ではなく Be からやりたいを見つける。</div></li>
+        <li class="timeline-item"><span class="timeline-time">15:30</span><div class="timeline-title">ワーク：夢カード・BASE旗</div><div class="timeline-desc">見えてきた願いをかたちにする。</div></li>
+        <li class="timeline-item"><span class="timeline-time">17:30</span><div class="timeline-title">ワーク：ハッシュタグ贈り合い</div><div class="timeline-desc">同じBASEの仲間に「らしさ」を贈り合う。</div></li>
+        <li class="timeline-item"><span class="timeline-time">18:30</span><div class="timeline-title">夕食</div><div class="timeline-desc">今日見えた自分を持ち帰る。</div></li>
+        <li class="timeline-item"><span class="timeline-time">20:00</span><div class="timeline-title">火の間での対話</div><div class="timeline-desc">2日目の夜、深い対話の時間。</div></li>
+        <li class="timeline-item"><span class="timeline-time">22:00</span><div class="timeline-title">消灯</div><div class="timeline-desc">明日の宣言に向けて、静かに眠る。</div></li>
+      </ol>
+      <div class="schedule-note">※ ワーク間には適宜休憩を挟みます。</div>
+    </div>
+
+    <div class="schedule-pane" id="pane-d3">
+      <ol class="timeline">
+        <li class="timeline-item"><span class="timeline-time">07:00</span><div class="timeline-title">起床・朝食</div><div class="timeline-desc">最終日の朝。</div></li>
+        <li class="timeline-item"><span class="timeline-time">08:30</span><div class="timeline-title">荷物整理・部屋清掃</div><div class="timeline-desc">施設を整えてから、最後のワークへ。</div></li>
+        <li class="timeline-item"><span class="timeline-time">09:30</span><div class="timeline-title">ハッシュタグの最終交換</div><div class="timeline-desc">仲間からのハッシュタグを受け取る最後の時間。</div></li>
+        <li class="timeline-item"><span class="timeline-time">10:30</span><div class="timeline-title">Be宣言カード作成</div><div class="timeline-desc">3日間で見つけた言葉で「ありたい姿」を書く。</div></li>
+        <li class="timeline-item"><span class="timeline-time">11:30</span><div class="timeline-title">全体公開宣言</div><div class="timeline-desc">仲間の前で、自分のBeを宣言する。</div></li>
+        <li class="timeline-item"><span class="timeline-time">12:30</span><div class="timeline-title">エンディング・昼食</div><div class="timeline-desc">最後の振り返りと、別れの時間。</div></li>
+        <li class="timeline-item"><span class="timeline-time">13:30</span><div class="timeline-title">解散</div><div class="timeline-desc">大雄山駅まで運営がご案内します。</div></li>
+      </ol>
+      <div class="schedule-note">※ 最終日は施設チェックアウト時間（13:00頃）に合わせた進行となります。</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: ワーク連鎖図 -->
+<section class="section" id="flowchain">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-tag">Work Chain</span>
+      <h2 class="section-title">ワークは、<em>連鎖</em>している。</h2>
+      <p class="section-lead">8つのワークは独立していません。<strong>感情を拾うところから、最後の宣言まで</strong>、ひとつの流れとして設計されています。</p>
+    </div>
+    <div class="flow-chain reveal">
+      <div class="flow-node"><div class="flow-node-num">01</div><div class="flow-node-name">感情<br>カード</div></div>
+      <div class="flow-node"><div class="flow-node-num">02</div><div class="flow-node-name">壁<br>カード</div></div>
+      <div class="flow-node"><div class="flow-node-num">03</div><div class="flow-node-name">取扱<br>説明書</div></div>
+      <div class="flow-node"><div class="flow-node-num">04 - 06</div><div class="flow-node-name">夢<br>カード</div></div>
+      <div class="flow-node"><div class="flow-node-num">07</div><div class="flow-node-name">ハッシュタグ<br>贈り合い</div></div>
+      <div class="flow-node"><div class="flow-node-num">08</div><div class="flow-node-name">Be宣言<br>カード</div></div>
+    </div>
+    <p class="flow-arrow-text reveal"><em>感情</em>を見つけて、<em>壁</em>を理解して、<em>自分</em>を知って、<em>願い</em>を取り出して、<em>仲間</em>から受け取り、最後に<em>宣言</em>する。</p>
   </div>
 </section>
 
@@ -1081,6 +1270,118 @@ window.addEventListener('scroll', () => {
   draw();
 })();
 
+
+/* ===========================
+   SCHEDULE (タイムテーブル)
+   =========================== */
+.schedule-tabs {
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+.schedule-tab {
+  background: transparent; border: none; cursor: pointer;
+  padding: 18px 28px; font-family: 'Shippori Mincho', serif;
+  font-size: 1.04rem; font-weight: 800; color: var(--text2);
+  border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
+}
+.schedule-tab .stab-en { display: block; font-family: 'Inter', sans-serif; font-size: .64rem; letter-spacing: .22em; color: var(--text3); margin-bottom: 4px; }
+.schedule-tab.active { color: var(--fire); border-bottom-color: var(--fire); }
+.schedule-tab.active .stab-en { color: var(--ember); }
+.schedule-tab:hover { color: var(--white); }
+
+.schedule-pane { display: none; max-width: 800px; margin: 0 auto; }
+.schedule-pane.active { display: block; }
+
+.timeline {
+  position: relative;
+  padding-left: 110px;
+}
+.timeline::before {
+  content: ''; position: absolute; top: 0; bottom: 0;
+  left: 76px; width: 2px;
+  background: linear-gradient(180deg, var(--fire) 0%, var(--ember) 50%, var(--moon) 100%);
+}
+.timeline-item {
+  position: relative; padding: 14px 0 14px 28px;
+}
+.timeline-item::before {
+  content: ''; position: absolute;
+  left: -42px; top: 22px;
+  width: 12px; height: 12px; background: var(--fire);
+  border: 3px solid var(--bg-night); border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--fire);
+}
+.timeline-time {
+  position: absolute; left: -110px; top: 14px;
+  width: 70px; text-align: right;
+  font-family: 'JetBrains Mono', monospace; font-size: .88rem;
+  color: var(--fire); font-weight: 700; letter-spacing: .04em;
+}
+.timeline-title {
+  font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.timeline-desc {
+  font-size: .82rem; color: var(--text2); line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .timeline { padding-left: 70px; }
+  .timeline::before { left: 46px; }
+  .timeline-item::before { left: -32px; }
+  .timeline-time { left: -70px; width: 50px; font-size: .78rem; }
+}
+.schedule-note {
+  margin-top: 32px; padding: 16px 22px;
+  background: rgba(240,230,190,.05); border-left: 3px solid var(--moon);
+  font-size: .82rem; color: var(--text2); line-height: 1.85;
+}
+
+/* ===========================
+   WORK FLOW (連鎖図)
+   =========================== */
+.flow-chain {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 10px; max-width: 1000px; margin: 0 auto 32px;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .flow-chain { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
+@media (max-width: 540px) {
+  .flow-chain { grid-template-columns: repeat(2, 1fr); }
+}
+.flow-node {
+  background: var(--bg-card); border: 1px solid var(--line);
+  padding: 18px 14px; text-align: center;
+  position: relative; transition: background .25s, border-color .25s;
+}
+.flow-node:hover { background: var(--bg-card-hover); border-color: var(--fire); }
+.flow-node::after {
+  content: '→';
+  position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+  color: var(--fire); font-weight: 900; font-size: 1.1rem;
+}
+.flow-node:last-child::after { display: none; }
+@media (max-width: 900px) {
+  .flow-node:nth-child(3)::after { display: none; }
+}
+@media (max-width: 540px) {
+  .flow-node:nth-child(2)::after, .flow-node:nth-child(4)::after { display: none; }
+}
+.flow-node-num {
+  font-family: 'Inter', sans-serif; font-size: .62rem; letter-spacing: .18em;
+  color: var(--fire); font-weight: 800; margin-bottom: 6px;
+}
+.flow-node-name {
+  font-family: 'Shippori Mincho', serif; font-size: .82rem;
+  color: var(--white); font-weight: 700; line-height: 1.45;
+}
+.flow-arrow-text {
+  text-align: center; font-family: 'Shippori Mincho', serif;
+  font-size: 1.08rem; color: var(--moon); font-weight: 700;
+  margin-top: 8px;
+}
+.flow-arrow-text em { color: var(--fire); font-style: normal; }
+
 /* Reveal */
 const revObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1115,6 +1416,16 @@ const statObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.3 });
 statNums.forEach(el => statObs.observe(el));
+
+
+/* Schedule tab switching */
+document.querySelectorAll('.schedule-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const day = tab.dataset.day;
+    document.querySelectorAll('.schedule-tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('.schedule-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + day));
+  });
+});
 
 /* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
