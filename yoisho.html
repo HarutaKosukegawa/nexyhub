@@ -755,6 +755,14 @@ img { max-width: 100%; display: block; }
 /* canvas effect */
 #confetti { opacity: .55; }
 .announce-bar, .nav, .mobile-nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 1; }
+
+.city-card { padding: 28px 20px; text-align: center; border-radius: 14px; border: 2px solid var(--orange); transition: transform .25s, box-shadow .25s; }
+.city-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(232,115,42,.18); }
+.city-card .city-name { font-family: 'Noto Serif JP', serif; font-size: 1.18rem; font-weight: 900; margin-bottom: 12px; color: var(--ink); }
+.city-card .city-status { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .12em; padding: 5px 12px; border-radius: 999px; text-transform: uppercase; }
+.btn-secondary { display: inline-block; background: var(--ink); color: #fff; padding: 12px 22px; text-decoration: none; font-size: .82rem; font-weight: 800; border-radius: 8px; transition: opacity .2s; white-space: nowrap; }
+.btn-secondary:hover { opacity: .85; }
+
 </style>
 </head>
 <body>
@@ -865,11 +873,6 @@ img { max-width: 100%; display: block; }
         <div class="what-card-title">実績・肩書き不要</div>
         <div class="what-card-desc">「やりたい」気持ちがあれば十分。動いている人と同じテーブルで。</div>
       </div>
-      <div class="what-card reveal" style="transition-delay:.18s">
-        <div class="what-card-num">04</div>
-        <div class="what-card-title">地域の食を囲んで</div>
-        <div class="what-card-desc">その土地の食材をシェア。食を囲むことで、場があたたまる。</div>
-      </div>
     </div>
   </div>
 </section>
@@ -879,14 +882,18 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">Timeline</span>
     <h2 class="section-title reveal">4時間の<em>中身</em></h2>
-    <p class="section-lead reveal">前半2時間のワーク → 後半2時間の交流。一つの場で、思考と出会いの両方が起きる構造です。<br>※ 実施都市・回によって細部を調整します。</p>
+    <p class="section-lead reveal">前半 内省ワーク（ito → 夢の解剖 → Be宣言 → 逆算 → 共有）→ 後半 型ありグループ交流 → フリー交流。思考と出会いの両方が起きる4時間。<br>※ 実施都市・回によって細部を調整します。</p>
     <div class="tl">
-      <div class="tl-row reveal"><div class="tl-time">13:00〜</div><div><span class="tl-tag open">OPENING</span></div><div class="tl-content">オープニング・乾杯<small>地域の食を囲んで、「よいしょ！」の掛け声で会のスタート。</small></div></div>
-      <div class="tl-row reveal" style="transition-delay:.05s"><div class="tl-time">13:15〜</div><div><span class="tl-tag work">WORK 1</span></div><div class="tl-content">ドリームシュレッダー<small>自分を縛っている言葉を付箋に書き、全員で一斉に破る厄落としワーク。</small></div></div>
-      <div class="tl-row reveal" style="transition-delay:.1s"><div class="tl-time">14:00〜</div><div><span class="tl-tag work">WORK 2</span></div><div class="tl-content">ドリームシート<small>「〇〇な状態で在りたい（Be）」を名刺サイズのカードに書き、首から下げる。</small></div></div>
-      <div class="tl-row reveal" style="transition-delay:.15s"><div class="tl-time">15:00〜</div><div><span class="tl-tag open">BREAK</span></div><div class="tl-content">休憩 ／ 自由トーク</div></div>
-      <div class="tl-row reveal" style="transition-delay:.2s"><div class="tl-time">15:15〜</div><div><span class="tl-tag kouryu">交流会</span></div><div class="tl-content">ドリームシートを起点としたフリートーク<small>ワークで書いたカードを起点に、参加者同士で「在り方」を共有し合う時間。</small></div></div>
-      <div class="tl-row reveal" style="transition-delay:.25s"><div class="tl-time">17:00</div><div><span class="tl-tag open">CLOSE</span></div><div class="tl-content">クロージング・解散</div></div>
+      <div class="tl-row reveal"><div class="tl-time">13:00</div><div><span class="tl-tag open">OPENING</span></div><div class="tl-content">オープニング・乾杯<small>「よいしょ！」の掛け声で会のスタート。（5分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.05s"><div class="tl-time">13:05</div><div><span class="tl-tag work">ICE BREAK</span></div><div class="tl-content">アイスブレイク：ito<small>自分の感覚（数字）を、共通のお題に言葉で翻訳する協力型カードゲーム。言語化トレーニングとして機能。（15分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.1s"><div class="tl-time">13:20</div><div><span class="tl-tag work">W1</span></div><div class="tl-content">夢の解剖<small>「やってみたい」を黄色カードに書きまくる → 「これは自分の願い？誰かの期待？」を問い直して仕分け。（30分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.15s"><div class="tl-time">13:50</div><div><span class="tl-tag work">W2</span></div><div class="tl-content">ドリームシュレッダー<small>全員で青カード（縛り）を一斉に破る厄落とし。手元には本物の夢だけが残る。（10分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.2s"><div class="tl-time">14:00</div><div><span class="tl-tag work">W3</span></div><div class="tl-content">Be宣言<small>残った黄色カードを統合し、「〇〇な状態で在りたい」を1枚のBeシートに書く。（15分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.25s"><div class="tl-time">14:15</div><div><span class="tl-tag work">W4</span></div><div class="tl-content">逆算（Beから明日へ）<small>Beを起点に「何年後？→1年後→半年後→明日」と未来から現在まで降ろしてくる。（30分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.3s"><div class="tl-time">14:45</div><div><span class="tl-tag work">W5</span></div><div class="tl-content">共有・コミットメント<small>4人組でBeと明日の一歩を共有。聞き役は質問1つだけ、否定・アドバイス禁止。（10分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.35s"><div class="tl-time">14:55</div><div><span class="tl-tag kouryu">交流</span></div><div class="tl-content">型を決めたグループ交流<small>新しい4人組へシャッフル、お題カードに沿って対話。内省ワークと交流を繋ぐ役割。（30分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.4s"><div class="tl-time">15:25</div><div><span class="tl-tag kouryu">交流</span></div><div class="tl-content">フリー交流<small>軽食を囲んで自由に動き出す。中盤でBe録画コーナー（任意）も開放。（90分）</small></div></div>
+      <div class="tl-row reveal" style="transition-delay:.45s"><div class="tl-time">16:55</div><div><span class="tl-tag open">CLOSE</span></div><div class="tl-content">NEXY案内・集合写真・解散<small>NEXYコミュニティの案内、集合写真（Beシートを持って）、解散。（5分）</small></div></div>
     </div>
   </div>
 </section>
@@ -914,6 +921,41 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+
+<!-- NEXT CITIES (巡回予定都市) -->
+<section class="section cities" id="cities">
+  <div class="section-inner">
+    <span class="section-label reveal">Next Cities</span>
+    <h2 class="section-title reveal">これから巡回する<em>都市</em></h2>
+    <p class="section-lead reveal">「やってみたい」を地元から始める場を、首都圏以外の主要都市に届けていきます。<br>下記4都市の開催が決定。詳細日程はInstagram @nexy.hub で順次発表します。</p>
+    <div class="cities-grid reveal">
+      <div class="city-card planning">
+        <div class="city-name">岡山</div>
+        <div class="city-status">開催決定</div>
+      </div>
+      <div class="city-card planning">
+        <div class="city-name">愛知（名古屋）</div>
+        <div class="city-status">開催決定</div>
+      </div>
+      <div class="city-card planning">
+        <div class="city-name">金沢</div>
+        <div class="city-status">開催決定</div>
+      </div>
+      <div class="city-card planning">
+        <div class="city-name">大阪</div>
+        <div class="city-status">開催決定</div>
+      </div>
+    </div>
+    <div class="cities-cta reveal">
+      <div class="cities-cta-text">
+        <div class="cities-cta-h">あなたの街でも開催したい</div>
+        <div class="cities-cta-p">ローカルディレクター・会場・共催者・参加者、どんな関わり方でも歓迎です。</div>
+      </div>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-secondary">Instagramで相談する →</a>
+    </div>
+  </div>
+</section>
+
 <!-- PAST -->
 <section class="section past" id="past">
   <div class="section-inner">
@@ -931,7 +973,7 @@ img { max-width: 100%; display: block; }
           <div class="past-stat">NPS <strong>9.1 / 10</strong></div>
           <div class="past-stat">14名中 <strong>12名</strong>が9点以上</div>
         </div>
-        <div class="past-desc">中学生〜社会人 22名が、神山まるごと高専・徳島文理高校・鳥取城北高校・立命館宇治中・四国大学・徳島大学などから参加。阿波尾鶏の唐揚げ・玄米おむすびを囲み、ドリームシュレッダー／ドリームシートのワークから深いフリートークへと続いた回。</div>
+        <div class="past-desc">中学生〜社会人 22名が、神山まるごと高専・徳島文理高校・鳥取城北高校・立命館宇治中・四国大学・徳島大学などから参加。ドリームシュレッダー／ドリームシートのワークから深いフリートークへと続いた回。</div>
         <div class="past-arrow">実施報告を読む →</div>
       </div>
     </a>
@@ -943,7 +985,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">Fee</span>
     <h2 class="section-title reveal">参加費（<em>会場・運営の実費水準</em>）</h2>
-    <p class="section-lead reveal">会場費・運営費・地域食材費の一部を賄うための、最小限の参加費です。</p>
+    <p class="section-lead reveal">会場費・運営費の一部を賄うための、最小限の参加費です。</p>
     <div class="fee-grid">
       <div class="fee-card reveal">
         <div class="fee-target">中学生・高校生</div>
