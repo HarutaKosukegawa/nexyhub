@@ -62,9 +62,16 @@ img { max-width: 100%; display: block; }
 .nav-logo a { color: var(--text); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .02em; }
 .nav-logo .lg-em { color: var(--orange); }
 .nav-logo .sub { color: var(--text3); font-size: .66rem; font-weight: 700; margin-left: 8px; letter-spacing: .14em; }
-.nav-links { display: flex; gap: 18px; list-style: none; align-items: center; }
-.nav-links a { color: var(--text2); text-decoration: none; font-size: .76rem; font-weight: 800; transition: color .15s; white-space: nowrap; }
+.nav-links { display: flex; gap: 16px; list-style: none; align-items: center; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: .76rem; font-weight: 800; transition: color .15s; white-space: nowrap; padding: 6px 0; }
 .nav-links a:hover { color: var(--orange); }
+.nav-links li:not(:last-child):not(:nth-last-child(2))::after {
+  content: ''; display: inline-block;
+  width: 1px; height: 14px;
+  background: rgba(0,0,0,0.18);
+  margin-left: 18px;
+  vertical-align: middle;
+}
 .nav-cta { background: var(--orange) !important; color: #fff !important; padding: 9px 18px !important; font-size: .76rem !important; font-weight: 900 !important; }
 .nav-cta:hover { background: #e07a2e !important; }
 .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
@@ -393,6 +400,18 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 800px) { .scholar-grid { grid-template-columns: 1fr; gap: 24px; } }
 .scholar-map-wrap { text-align: center; }
+.map-legend {
+  display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
+  margin-top: 10px;
+}
+.ml-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+}
+.ml-swatch { display: inline-block; width: 14px; height: 14px; }
+.ml-orange { background: var(--orange); }
+.ml-gray { background: #D0D0D0; }
+
 .japan-map { width: 100%; max-width: 360px; height: auto; }
 .scholar-map-note {
   margin-top: 10px; font-size: .72rem; color: var(--text3);
@@ -415,6 +434,18 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 800px) { .scholar-grid { grid-template-columns: 1fr; gap: 24px; } }
 .scholar-map-wrap { text-align: center; }
+.map-legend {
+  display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
+  margin-top: 10px;
+}
+.ml-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+}
+.ml-swatch { display: inline-block; width: 14px; height: 14px; }
+.ml-orange { background: var(--orange); }
+.ml-gray { background: #D0D0D0; }
+
 .japan-map { width: 100%; max-width: 360px; height: auto; }
 .scholar-map-note {
   margin-top: 10px; font-size: .72rem; color: var(--text3);
@@ -1037,40 +1068,11 @@ img { max-width: 100%; display: block; }
     <div class="scholar-block">
       <div class="scholar-grid">
         <div class="scholar-map-wrap">
-          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" class="japan-map" aria-label="スカラシップ対象地域マップ（1都7県以外オレンジ）">
-  <!-- 北海道 -->
-  <path d="M530 80 Q580 60 620 80 Q680 90 700 130 Q720 170 700 200 Q680 220 660 230 Q620 240 580 220 Q540 200 520 160 Q510 120 530 80 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 東北 -->
-  <path d="M510 280 Q530 270 550 275 Q570 280 575 310 Q578 350 570 390 Q560 430 540 450 Q520 460 500 445 Q485 410 488 360 Q490 320 510 280 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 関東 (1都7県=グレー) -->
-  <path d="M470 460 Q500 455 530 460 Q560 470 565 490 Q570 520 555 540 Q530 555 500 555 Q475 555 460 540 Q450 510 460 480 Q465 465 470 460 Z" fill="#D0D0D0" stroke="#fff" stroke-width="2"/>
-  <!-- 中部 -->
-  <path d="M340 460 Q380 455 420 460 Q450 470 460 485 Q455 510 440 530 Q420 545 390 545 Q360 540 340 525 Q320 510 320 485 Q325 465 340 460 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 近畿 -->
-  <path d="M270 510 Q310 505 340 515 Q355 530 350 555 Q340 575 315 580 Q285 580 265 570 Q250 555 255 535 Q260 520 270 510 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 中国 -->
-  <path d="M170 540 Q210 535 250 545 Q275 555 270 575 Q260 590 235 595 Q200 595 175 590 Q155 580 155 565 Q160 548 170 540 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 四国 -->
-  <path d="M210 620 Q250 615 285 620 Q300 630 295 645 Q285 655 260 660 Q230 660 210 655 Q195 645 195 635 Q200 625 210 620 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 九州 -->
-  <path d="M100 600 Q140 595 165 615 Q180 640 175 680 Q170 720 145 740 Q115 750 90 735 Q70 715 70 680 Q72 640 85 615 Q92 605 100 600 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
-  <!-- 沖縄 -->
-  <rect x="40" y="700" width="80" height="80" fill="none" stroke="#999" stroke-width="1.5"/>
-  <circle cx="65" cy="745" r="12" fill="#F28B3D"/>
-  <circle cx="90" cy="755" r="8" fill="#F28B3D"/>
-  
-  <!-- ラベル -->
-  <text x="555" y="510" font-family="Noto Sans JP" font-size="14" font-weight="900" fill="#333" text-anchor="middle">1都7県</text>
-  <text x="555" y="528" font-family="Noto Sans JP" font-size="11" font-weight="700" fill="#666" text-anchor="middle">対象外</text>
-  
-  <!-- 凡例 -->
-  <g transform="translate(40,40)">
-    <rect x="0" y="0" width="18" height="18" fill="#F28B3D"/>
-    <text x="26" y="14" font-family="Noto Sans JP" font-size="13" font-weight="700" fill="#000">スカラシップ対象</text>
-    <rect x="0" y="28" width="18" height="18" fill="#D0D0D0"/>
-    <text x="26" y="42" font-family="Noto Sans JP" font-size="13" font-weight="700" fill="#000">1都7県（対象外）</text>
-  </g>
-</svg>
+          <img src="img/summit/japan_map.png" alt="スカラシップ対象地域マップ：1都7県以外がオレンジ、関東1都7県はグレー" class="japan-map">
+          <div class="map-legend">
+            <span class="ml-item"><span class="ml-swatch ml-orange"></span>スカラシップ対象</span>
+            <span class="ml-item"><span class="ml-swatch ml-gray"></span>1都7県（対象外）</span>
+          </div>
           <p class="scholar-map-note">※ 1都7県：東京・神奈川・千葉・埼玉・茨城・栃木・群馬・山梨</p>
         </div>
         <div class="scholar-text">
