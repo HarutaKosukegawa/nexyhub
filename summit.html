@@ -1092,7 +1092,7 @@ img { max-width: 100%; display: block; }
             </div>
             <div class="scholar-item">
               <div class="si-l">Support</div>
-              <div class="si-v">交通費 / 宿泊費 支援予定</div>
+              <div class="si-v">最大 5万円 支援予定<br><span style="font-size:.74rem;color:var(--text3);font-weight:600;">交通費 / 宿泊費 として</span></div>
             </div>
           </div>
         </div>
@@ -1223,6 +1223,63 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+/* Scroll-triggered reveal */
+const animEls = [];
+document.querySelectorAll('.card, .prog-acc, .speaker-card, .target-card, .num-cell, .sch-item, .scholar-item, .sponsor-card, .faq-item, .map-legend, .japan-map, .overview-grid > div, .concept-emphasis, .p-strong, .scholar-block, .pair-block, .about-block p, .about-block .concept-emphasis').forEach((el, i) => {
+  el.classList.add('anim', 'up');
+  // 同じ親内の要素はstagger delay
+  const idx = Array.from(el.parentElement?.children || []).indexOf(el);
+  el.style.transitionDelay = Math.min(idx, 6) * 0.06 + 's';
+  animEls.push(el);
+});
+
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+animEls.forEach(el => revObs.observe(el));
+
+/* Number counter animation */
+const numEls = document.querySelectorAll('.num-num');
+const numObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const text = el.textContent.trim();
+    const m = text.match(/^([¥]?)([0-9,]+)(.*)/);
+    if (!m) { numObs.unobserve(el); return; }
+    const prefix = m[1];
+    const target = parseInt(m[2].replace(/,/g, ''));
+    const suffix = m[3];
+    const dur = 1200;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const cur = Math.floor(target * eased);
+      const formatted = cur.toLocaleString();
+      el.innerHTML = prefix + formatted + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    numObs.unobserve(el);
+  });
+}, { threshold: 0.3 });
+numEls.forEach(el => numObs.observe(el));
+
+/* Parallax on hero (subtle) */
+const heroImg = document.querySelector('.hero-image');
+if (heroImg) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < 600) heroImg.style.transform = `translateY(${y * 0.18}px) scale(${1 + y * 0.0002})`;
+  }, { passive: true });
+}
 </script>
 </body>
 </html>
