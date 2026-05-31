@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" role="img" aria-label="好きなことを、好きなだけ。">
+  <defs>
+    <style>
+      .ftxt {
+        font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+        font-weight: 900;
+        font-size: 200px;
+      }
+    </style>
+  </defs>
+  
+  <!-- 1行目「好きなことを」 -->
+  <g transform="translate(640 280) skewX(-8) translate(-640 -200)">
+    <text x="125" y="240" class="ftxt" fill="#F28B3D">好</text>
+    <text x="330" y="240" class="ftxt" fill="#2EBDB6">き</text>
+    <text x="510" y="240" class="ftxt" fill="#F28B3D">な</text>
+    <text x="700" y="240" class="ftxt" fill="#2EBDB6">こ</text>
+    <text x="880" y="240" class="ftxt" fill="#F28B3D">と</text>
+    <text x="1050" y="240" class="ftxt" fill="#2EBDB6">を</text>
+  </g>
+  
+  <!-- 2行目「好きなだけ」 -->
+  <g transform="translate(640 540) skewX(-8) translate(-640 -460)">
+    <text x="200" y="500" class="ftxt" fill="#2EBDB6">好</text>
+    <text x="400" y="500" class="ftxt" fill="#F28B3D">き</text>
+    <text x="580" y="500" class="ftxt" fill="#2EBDB6">な</text>
+    <text x="770" y="500" class="ftxt" fill="#F28B3D">だ</text>
+    <text x="960" y="500" class="ftxt" fill="#2EBDB6">け</text>
+  </g>
+</svg>
