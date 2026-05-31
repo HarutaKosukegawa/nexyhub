@@ -26,74 +26,58 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
+  /* テーマカラー：オレンジ + ミント + 白 + 黒 のみ */
   --orange: #F28B3D;
-  --orange-deep: #E8523B;
   --mint: #74D4C3;
-  --mint-deep: #4CB0A0;
-  --navy: #0F2A4F;
-  --navy-deep: #081A33;
-  --bg: #FAFAF7;
-  --bg-2: #FFFFFF;
-  --paper: #F3EFE6;
-
-  --text: #0F172A;
-  --text2: #4A5568;
-  --text3: #8B95A8;
-  --white: #FFFFFF;
-
-  --line: rgba(15,42,79,0.08);
-  --line-strong: rgba(15,42,79,0.18);
-  --ink: #0F2A4F;
+  --bg: #FFFFFF;
+  --paper: #FAFAF7;
+  --text: #000000;
+  --text2: #333333;
+  --text3: #777777;
+  --line: rgba(0,0,0,0.08);
+  --line-strong: rgba(0,0,0,0.16);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  line-height: 1.85;
-  font-weight: 500;
+  background: var(--bg); color: var(--text);
+  overflow-x: hidden; line-height: 1.85; font-weight: 500;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
 
-/* ===== Paint splash background ===== */
-.paint-bg {
-  position: absolute; pointer-events: none; z-index: 0;
-}
-.paint-bg svg { width: 100%; height: 100%; }
-
 /* ===== NAV ===== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 250;
-  height: 64px; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+  height: 64px; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
-  display: flex; align-items: center; padding: 0 32px; justify-content: space-between;
+  display: flex; align-items: center; padding: 0 28px; justify-content: space-between;
 }
-.nav-logo a { color: var(--navy); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.04rem; letter-spacing: .02em; }
+.nav-logo a { color: var(--text); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .02em; }
 .nav-logo .lg-em { color: var(--orange); }
-.nav-logo .sub { color: var(--text3); font-size: .68rem; font-weight: 700; margin-left: 8px; letter-spacing: .12em; }
-.nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
-.nav-links a { color: var(--text2); text-decoration: none; font-size: .78rem; font-weight: 800; transition: color .15s; }
+.nav-logo .sub { color: var(--text3); font-size: .66rem; font-weight: 700; margin-left: 8px; letter-spacing: .14em; }
+.nav-links { display: flex; gap: 18px; list-style: none; align-items: center; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: .76rem; font-weight: 800; transition: color .15s; white-space: nowrap; }
 .nav-links a:hover { color: var(--orange); }
-.nav-cta { background: var(--orange) !important; color: var(--white) !important; padding: 9px 18px !important; font-size: .78rem !important; font-weight: 900 !important; border-radius: 0 !important; }
-.nav-cta:hover { background: var(--orange-deep) !important; }
+.nav-cta { background: var(--orange) !important; color: #fff !important; padding: 9px 18px !important; font-size: .76rem !important; font-weight: 900 !important; }
+.nav-cta:hover { background: #e07a2e !important; }
 .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.nav-burger span { display: block; width: 22px; height: 2px; background: var(--navy); }
-.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(255,255,255,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); padding: 20px 28px; flex-direction: column; gap: 14px; z-index: 199; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--text); }
+.mobile-nav { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); padding: 20px 28px; flex-direction: column; gap: 14px; z-index: 199; }
 .mobile-nav.open { display: flex; }
 .mobile-nav a { color: var(--text); text-decoration: none; font-size: .92rem; font-weight: 800; }
+.mobile-nav a.cta { background: var(--orange); color: #fff; padding: 12px 18px; font-weight: 900; text-align: center; }
 
 /* ===== BUTTONS ===== */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--orange); color: var(--white);
+  background: var(--orange); color: #fff;
   text-decoration: none; padding: 16px 32px;
   font-size: .92rem; font-weight: 900; letter-spacing: .04em;
   border: 2px solid var(--orange); transition: .25s;
@@ -105,45 +89,35 @@ img { max-width: 100%; display: block; }
   transition: left .6s;
 }
 .btn-primary:hover::before { left: 100%; }
-.btn-primary:hover { background: var(--orange-deep); border-color: var(--orange-deep); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(242,139,61,.45); }
-
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: transparent; color: var(--navy);
-  text-decoration: none; padding: 16px 32px;
-  font-size: .88rem; font-weight: 800; letter-spacing: .04em;
-  border: 2px solid var(--navy); transition: .25s;
-}
-.btn-ghost:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); }
-
+.btn-primary:hover { background: #e07a2e; border-color: #e07a2e; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(242,139,61,.45); }
 .btn-mint {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--mint); color: var(--navy);
-  text-decoration: none; padding: 14px 26px;
-  font-size: .86rem; font-weight: 900; letter-spacing: .04em;
+  background: var(--mint); color: var(--text);
+  text-decoration: none; padding: 16px 32px;
+  font-size: .92rem; font-weight: 900; letter-spacing: .04em;
   border: 2px solid var(--mint); transition: .25s;
 }
-.btn-mint:hover { background: var(--mint-deep); border-color: var(--mint-deep); transform: translateY(-2px); }
+.btn-mint:hover { background: #60c2b1; border-color: #60c2b1; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(116,212,195,.45); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--text);
+  text-decoration: none; padding: 16px 32px;
+  font-size: .88rem; font-weight: 800; letter-spacing: .04em;
+  border: 2px solid var(--text); transition: .25s;
+}
+.btn-ghost:hover { background: var(--text); color: #fff; transform: translateY(-2px); }
 
 /* ===== HERO ===== */
 .hero {
   width: 100%; padding-top: 64px;
-  background: var(--bg);
-  position: relative;
+  background: var(--bg); position: relative;
   display: flex; flex-direction: column; align-items: center;
 }
-.hero-image-wrap {
-  width: 100%; max-width: 1672px;
-  margin: 0 auto;
-  position: relative;
-}
-.hero-image {
-  width: 100%; height: auto; display: block;
-}
+.hero-image-wrap { width: 100%; max-width: 1672px; margin: 0 auto; }
+.hero-image { width: 100%; height: auto; display: block; }
 .hero-body {
   width: 100%; max-width: 1080px;
   padding: 56px 6% 80px; text-align: center;
-  position: relative;
 }
 .hero-badges {
   display: inline-flex; flex-wrap: wrap; gap: 8px;
@@ -152,36 +126,31 @@ img { max-width: 100%; display: block; }
 .hbadge {
   font-family: 'Inter', sans-serif; font-size: .72rem;
   letter-spacing: .14em; font-weight: 800;
-  padding: 8px 14px; border: 1.5px solid var(--navy); color: var(--navy);
+  padding: 8px 14px; border: 1.5px solid var(--text); color: var(--text);
   text-transform: uppercase;
 }
-.hbadge.fill { background: var(--orange); color: var(--white); border-color: var(--orange); }
-.hbadge.mint { background: var(--mint); color: var(--navy); border-color: var(--mint); }
+.hbadge.fill { background: var(--orange); color: #fff; border-color: var(--orange); }
+.hbadge.mint { background: var(--mint); color: var(--text); border-color: var(--mint); }
 .hero-copy {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: clamp(2.2rem, 6vw, 4.6rem); font-weight: 900;
-  line-height: 1.25; letter-spacing: -.01em; color: var(--navy);
+  line-height: 1.25; letter-spacing: -.01em; color: var(--text);
   margin-bottom: 24px;
 }
-.hero-copy em { color: var(--orange); font-style: normal; position: relative; }
+.hero-copy em { color: var(--orange); font-style: normal; position: relative; z-index: 1; }
 .hero-copy em::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -4px;
-  height: 8px; background: var(--mint); z-index: -1;
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 10px; background: var(--mint); z-index: -1;
 }
 .hero-sub {
   font-size: clamp(.96rem, 1.4vw, 1.12rem); line-height: 2; color: var(--text2);
-  max-width: 720px; margin: 0 auto 40px;
-  font-weight: 600;
+  max-width: 720px; margin: 0 auto 40px; font-weight: 600;
 }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* ===== SECTION BASE ===== */
-.section { padding: 110px 6%; position: relative; overflow: hidden; }
-.section.alt { background: var(--bg-2); }
-.section.navy { background: var(--navy); color: var(--white); }
-.section.navy .section-title { color: var(--white); }
-.section.navy .section-lead { color: rgba(255,255,255,.78); }
-.section.paper { background: var(--paper); }
+.section { padding: 100px 6%; position: relative; overflow: hidden; }
+.section.alt { background: var(--paper); }
 .section-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
 .section-head { margin-bottom: 56px; text-align: center; }
 .section-tag {
@@ -190,170 +159,229 @@ img { max-width: 100%; display: block; }
   margin-bottom: 18px; display: inline-block;
   padding: 6px 16px; background: rgba(242,139,61,.1); border: 1.5px solid var(--orange);
 }
-.section.navy .section-tag { color: var(--mint); border-color: var(--mint); background: rgba(116,212,195,.12); }
 .section-title {
   font-family: 'Noto Sans JP', sans-serif; font-size: clamp(1.6rem, 3.6vw, 2.6rem);
-  font-weight: 900; line-height: 1.45; color: var(--navy); letter-spacing: -.01em;
+  font-weight: 900; line-height: 1.45; color: var(--text); letter-spacing: -.01em;
 }
-.section-title em { color: var(--orange); font-style: normal; }
-.section.navy .section-title em { color: var(--mint); }
+.section-title em { color: var(--orange); font-style: normal; position: relative; }
+.section-title em::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -3px;
+  height: 8px; background: var(--mint); z-index: -1;
+}
 .section-lead {
   margin-top: 20px; font-size: .96rem; color: var(--text2); line-height: 2.05;
   max-width: 720px; margin-left: auto; margin-right: auto; font-weight: 600;
 }
-@media (max-width: 800px) {
-  .section { padding: 72px 5%; }
+@media (max-width: 1100px) {
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: .72rem; }
+}
+@media (max-width: 900px) {
+  .section { padding: 64px 5%; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
 }
 
-/* ===== PROBLEM ===== */
-.problem-block {
-  max-width: 760px; margin: 0 auto;
-  text-align: center;
-}
-.problem-block .p-line {
-  font-family: 'Noto Sans JP', sans-serif;
+/* ===== PROBLEM / CONCEPT (About) ===== */
+.about-block { max-width: 800px; margin: 0 auto; text-align: center; }
+.about-block .p-line {
   font-size: clamp(1rem, 1.6vw, 1.18rem); line-height: 2.1;
-  color: var(--text); font-weight: 700;
-  padding: 10px 0;
+  color: var(--text); font-weight: 700; padding: 10px 0;
 }
-.problem-block .p-strong {
-  margin-top: 32px; padding: 20px 28px;
-  background: var(--navy); color: var(--white);
+.about-block .p-line strong { color: var(--orange); }
+.about-block .p-strong {
+  margin-top: 36px; padding: 22px 28px;
+  background: var(--text); color: #fff;
   font-weight: 800; font-size: 1.04rem; line-height: 1.85;
   display: inline-block;
 }
-
-/* ===== CONCEPT ===== */
-.concept-quote {
-  max-width: 760px; margin: 0 auto 36px;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: clamp(1.04rem, 1.6vw, 1.24rem); line-height: 2.15;
-  color: rgba(255,255,255,.92); font-weight: 600; text-align: center;
-}
-.concept-quote strong { color: var(--mint); }
-.concept-emphasis {
-  max-width: 640px; margin: 0 auto;
-  text-align: center; padding: 28px 32px;
-  border: 2px solid var(--mint);
+.about-block .concept-emphasis {
+  margin-top: 40px; padding: 28px 32px;
+  border: 2px solid var(--orange);
   font-family: 'Noto Sans JP', sans-serif; font-size: 1.18rem;
-  color: var(--white); font-weight: 900; line-height: 1.7;
+  color: var(--text); font-weight: 900; line-height: 1.7;
+  text-align: center;
 }
-.concept-emphasis em { color: var(--orange); font-style: normal; }
+.about-block .concept-emphasis em { color: var(--orange); font-style: normal; position: relative; }
+.about-block .concept-emphasis em::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 8px; background: var(--mint); z-index: -1;
+}
 
 /* ===== OVERVIEW ===== */
 .overview-grid {
   max-width: 920px; margin: 0 auto;
   display: grid; grid-template-columns: 200px 1fr;
-  gap: 0; border-top: 2px solid var(--navy);
+  gap: 0; border-top: 2px solid var(--text);
 }
-@media (max-width: 700px) {
-  .overview-grid { grid-template-columns: 1fr; }
-}
-.overview-grid > div {
-  padding: 18px 24px; border-bottom: 1px solid var(--line);
-}
+@media (max-width: 700px) { .overview-grid { grid-template-columns: 1fr; } }
+.overview-grid > div { padding: 18px 24px; border-bottom: 1px solid var(--line); }
 .ov-key {
   background: var(--paper); font-family: 'Inter', sans-serif;
   font-size: .72rem; letter-spacing: .16em; color: var(--text2);
   font-weight: 800; text-transform: uppercase; display: flex; align-items: center;
 }
 .ov-val { font-size: .96rem; color: var(--text); font-weight: 600; }
-.ov-val strong { color: var(--navy); font-weight: 900; }
+.ov-val strong { color: var(--text); font-weight: 900; }
 
-/* Numbers block */
 .num-row {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   max-width: 880px; margin: 48px auto 0;
 }
 @media (max-width: 700px) { .num-row { grid-template-columns: 1fr; } }
 .num-cell {
-  text-align: center; padding: 28px 18px; background: var(--bg-2);
+  text-align: center; padding: 28px 18px; background: #fff;
   border-top: 4px solid var(--orange);
 }
 .num-cell:nth-child(2) { border-top-color: var(--mint); }
-.num-cell:nth-child(3) { border-top-color: var(--orange-deep); }
+.num-cell:nth-child(3) { border-top-color: var(--orange); }
 .num-num {
   font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 8px;
+  font-weight: 900; color: var(--text); line-height: 1; margin-bottom: 8px;
   letter-spacing: -.02em;
 }
 .num-num small { font-size: .54em; color: var(--text2); font-weight: 700; margin-left: 4px; }
 .num-label { font-size: .8rem; color: var(--text2); font-weight: 800; letter-spacing: .04em; }
 
-/* ===== PROGRAM ===== */
+/* ===== PROGRAM (accordion型 6ボックス) ===== */
 .program-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  max-width: 1080px; margin: 0 auto;
 }
-@media (max-width: 900px) { .program-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
-@media (max-width: 600px) { .program-grid { grid-template-columns: 1fr; } }
-.prog-card {
-  background: var(--bg-2); border: 1px solid var(--line);
-  padding: 0; overflow: hidden; transition: transform .3s, box-shadow .3s;
-  display: flex; flex-direction: column;
+@media (max-width: 800px) { .program-grid { grid-template-columns: 1fr; } }
+.prog-acc {
+  background: #fff; border: 2px solid var(--line); padding: 0;
+  overflow: hidden; transition: border-color .25s, box-shadow .25s;
 }
-.prog-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(15,42,79,.1); border-color: var(--orange); }
-.prog-img {
-  height: 180px; background-size: cover; background-position: center;
+.prog-acc[open] { border-color: var(--orange); box-shadow: 0 18px 40px rgba(242,139,61,.18); }
+.prog-acc summary {
+  list-style: none; cursor: pointer;
+  padding: 0; user-select: none;
   position: relative;
 }
-.prog-img::after {
+.prog-acc summary::-webkit-details-marker { display: none; }
+.prog-acc-img {
+  width: 100%; aspect-ratio: 16/9;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.prog-acc-img::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(15,42,79,.4) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 100%);
 }
-.prog-img-label {
-  position: absolute; left: 22px; bottom: 18px; z-index: 2;
-  background: var(--orange); color: var(--white);
-  font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .2em;
-  padding: 6px 12px; font-weight: 900; text-transform: uppercase;
+.prog-acc-label {
+  position: absolute; left: 20px; bottom: 16px; z-index: 2;
+  background: var(--orange); color: #fff;
+  font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .22em;
+  padding: 5px 12px; font-weight: 900; text-transform: uppercase;
 }
-.prog-card.cat-mint .prog-img-label { background: var(--mint); color: var(--navy); }
-.prog-card.cat-navy .prog-img-label { background: var(--navy); color: var(--white); }
-.prog-body { padding: 24px 22px 26px; flex: 1; display: flex; flex-direction: column; }
-.prog-name { font-size: 1.16rem; font-weight: 900; color: var(--navy); margin-bottom: 12px; line-height: 1.45; }
-.prog-list { list-style: none; padding: 0; font-size: .84rem; color: var(--text2); line-height: 1.85; flex: 1; }
-.prog-list li { padding: 4px 0 4px 18px; position: relative; }
-.prog-list li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 2px; background: var(--orange); }
+.prog-acc.cat-mint .prog-acc-label { background: var(--mint); color: var(--text); }
+.prog-acc-summary {
+  padding: 22px 24px; display: flex; align-items: center; justify-content: space-between;
+  gap: 14px;
+}
+.prog-acc-name { font-size: 1.12rem; font-weight: 900; color: var(--text); }
+.prog-acc-toggle {
+  font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .14em;
+  color: var(--orange); font-weight: 900; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+}
+.prog-acc-toggle::after {
+  content: '+'; display: inline-block; width: 20px; height: 20px; line-height: 18px;
+  text-align: center; border: 1.5px solid var(--orange); border-radius: 50%;
+  font-weight: 900; font-size: .82rem; transition: transform .25s;
+}
+.prog-acc[open] .prog-acc-toggle::after { content: '×'; transform: rotate(0); }
+.prog-acc-body { padding: 0 24px 24px; }
+.prog-acc-desc {
+  font-size: .92rem; color: var(--text2); line-height: 1.95; margin-bottom: 14px;
+}
+.prog-acc-list { list-style: none; padding: 0; }
+.prog-acc-list li {
+  font-size: .86rem; color: var(--text); padding: 6px 0 6px 18px; position: relative;
+  line-height: 1.85;
+}
+.prog-acc-list li::before {
+  content: ''; position: absolute; left: 0; top: 14px;
+  width: 8px; height: 8px; background: var(--orange);
+}
+.prog-acc.cat-mint .prog-acc-list li::before { background: var(--mint); }
 
-/* ===== TARGET ===== */
+/* ===== SPEAKERS (登壇者) ===== */
+.speakers-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  max-width: 1080px; margin: 0 auto;
+}
+@media (max-width: 800px) { .speakers-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .speakers-grid { grid-template-columns: 1fr; } }
+.speaker-card {
+  background: #fff; border: 1px solid var(--line); padding: 0; overflow: hidden;
+  transition: transform .3s, border-color .3s;
+}
+.speaker-card:hover { transform: translateY(-3px); border-color: var(--orange); }
+.speaker-img {
+  width: 100%; aspect-ratio: 1; background-size: cover; background-position: center top;
+  background-color: var(--paper);
+}
+.speaker-img.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--paper); color: var(--text3);
+  font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em;
+  font-weight: 800; text-transform: uppercase;
+}
+.speaker-body { padding: 18px 20px 22px; }
+.speaker-name { font-size: 1.04rem; font-weight: 900; color: var(--text); margin-bottom: 4px; }
+.speaker-title { font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .14em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+.speaker-desc { font-size: .82rem; color: var(--text2); line-height: 1.85; }
+.speakers-note {
+  margin-top: 32px; text-align: center; font-size: .84rem;
+  color: var(--text3); font-style: italic;
+}
+
+/* ===== TARGET (参加者) ===== */
+.target-section { position: relative; overflow: hidden; }
+.target-hero {
+  width: 100%; max-width: 1080px; aspect-ratio: 21/9;
+  margin: 0 auto 48px; background-size: cover; background-position: center 30%;
+  position: relative;
+}
+.target-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(255,255,255,.85) 100%);
+}
 .target-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   max-width: 1080px; margin: 0 auto;
 }
 @media (max-width: 800px) { .target-grid { grid-template-columns: 1fr; } }
 .target-card {
-  background: var(--bg-2); padding: 32px 30px;
+  background: #fff; padding: 28px 28px;
   border-left: 6px solid var(--orange); position: relative;
   transition: transform .3s, box-shadow .3s;
 }
-.target-card:hover { transform: translateX(4px); box-shadow: 0 12px 28px rgba(15,42,79,.08); }
+.target-card:hover { transform: translateX(4px); box-shadow: 0 12px 28px rgba(0,0,0,.06); }
 .target-card.t2 { border-left-color: var(--mint); }
-.target-card.t3 { border-left-color: var(--orange-deep); }
-.target-card.t4 { border-left-color: var(--navy); }
+.target-card.t3 { border-left-color: var(--orange); }
+.target-card.t4 { border-left-color: var(--mint); }
 .target-tag {
-  font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em;
+  font-family: 'Inter', sans-serif; font-size: .7rem; letter-spacing: .18em;
   color: var(--orange); font-weight: 900; text-transform: uppercase; margin-bottom: 10px;
 }
-.target-card.t2 .target-tag { color: var(--mint-deep); }
-.target-card.t3 .target-tag { color: var(--orange-deep); }
-.target-card.t4 .target-tag { color: var(--navy); }
-.target-name { font-size: 1.24rem; font-weight: 900; color: var(--navy); margin-bottom: 14px; }
-.target-list { list-style: none; padding: 0; font-size: .9rem; color: var(--text2); line-height: 1.95; }
+.target-card.t2 .target-tag, .target-card.t4 .target-tag { color: #4cb0a0; }
+.target-name { font-size: 1.2rem; font-weight: 900; color: var(--text); margin-bottom: 12px; }
+.target-list { list-style: none; padding: 0; font-size: .88rem; color: var(--text2); line-height: 1.95; }
 .target-list li { padding: 4px 0 4px 18px; position: relative; }
 .target-list li::before {
   content: ''; position: absolute; left: 0; top: 13px;
   width: 10px; height: 6px; border-left: 2px solid var(--orange); border-bottom: 2px solid var(--orange);
   transform: rotate(-45deg);
 }
-.target-card.t2 .target-list li::before { border-color: var(--mint-deep); }
-.target-card.t3 .target-list li::before { border-color: var(--orange-deep); }
-.target-card.t4 .target-list li::before { border-color: var(--navy); }
+.target-card.t2 .target-list li::before, .target-card.t4 .target-list li::before { border-color: #4cb0a0; }
 
 /* ===== SCHOLARSHIP ===== */
 .scholar-block {
   max-width: 800px; margin: 0 auto;
-  background: var(--bg-2); padding: 44px 40px;
+  background: #fff; padding: 44px 40px;
   border: 2px dashed var(--orange);
   text-align: center;
 }
@@ -365,51 +393,20 @@ img { max-width: 100%; display: block; }
 @media (max-width: 700px) { .scholar-list { grid-template-columns: 1fr; } }
 .scholar-item {
   background: var(--paper); padding: 18px 20px;
-  border-left: 3px solid var(--orange);
+  border-left: 3px solid var(--mint);
 }
 .scholar-item .si-l { font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .14em; color: var(--text2); font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
-.scholar-item .si-v { font-size: .96rem; font-weight: 900; color: var(--navy); }
-
-/* ===== VOICE ===== */
-.voice-wrap {
-  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px;
-  max-width: 1080px; margin: 0 auto;
-}
-@media (max-width: 800px) { .voice-wrap { grid-template-columns: 1fr; gap: 24px; } }
-.voice-ok h3 {
-  font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .26em;
-  color: var(--orange); font-weight: 900; text-transform: uppercase; margin-bottom: 20px;
-}
-.voice-ok ul { list-style: none; padding: 0; }
-.voice-ok li {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: clamp(1.2rem, 2.4vw, 1.8rem); font-weight: 900;
-  line-height: 1.5; color: var(--navy); padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-}
-.voice-ok li::before {
-  content: ''; display: inline-block; width: 22px; height: 4px;
-  background: var(--orange); margin-right: 14px; vertical-align: middle;
-}
-.voice-ng h3 {
-  font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .22em;
-  color: var(--text3); font-weight: 800; text-transform: uppercase; margin-bottom: 16px;
-}
-.voice-ng ul { list-style: none; padding: 0; }
-.voice-ng li {
-  font-size: .8rem; color: var(--text3); padding: 6px 0;
-  text-decoration: line-through; line-height: 1.6;
-}
+.scholar-item .si-v { font-size: .96rem; font-weight: 900; color: var(--text); }
 
 /* ===== FAQ ===== */
 .faq-list { max-width: 760px; margin: 0 auto; }
 .faq-item {
-  background: var(--bg-2); border: 1px solid var(--line);
+  background: #fff; border: 1px solid var(--line);
   margin-bottom: 8px;
 }
 .faq-item summary {
   list-style: none; cursor: pointer; padding: 18px 50px 18px 24px;
-  font-weight: 800; color: var(--navy); font-size: .94rem; line-height: 1.55;
+  font-weight: 800; color: var(--text); font-size: .94rem; line-height: 1.55;
   position: relative; user-select: none;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
@@ -425,22 +422,69 @@ img { max-width: 100%; display: block; }
 .faq-item[open] .faq-icon::after { transform: rotate(90deg); }
 .faq-answer { padding: 0 24px 20px; color: var(--text2); font-size: .88rem; line-height: 2; font-weight: 500; }
 
+/* ===== SPONSORS ===== */
+.sponsors-section {
+  background: var(--paper); padding: 100px 6%; border-top: 1px solid var(--line);
+}
+.sponsors-inner { max-width: 1100px; margin: 0 auto; }
+.sponsor-tier { margin-bottom: 56px; }
+.sponsor-tier:last-child { margin-bottom: 0; }
+.sponsor-tier-head {
+  text-align: center; margin-bottom: 24px;
+}
+.sponsor-tier-name {
+  font-family: 'Inter', sans-serif; font-weight: 900; letter-spacing: .24em;
+  text-transform: uppercase; display: inline-block; padding: 4px 16px;
+}
+.sponsor-tier.diamond .sponsor-tier-name { font-size: 1.1rem; color: var(--orange); border: 2px solid var(--orange); }
+.sponsor-tier.platinum .sponsor-tier-name { font-size: .96rem; color: var(--text); border: 2px solid var(--text); }
+.sponsor-tier.gold .sponsor-tier-name { font-size: .86rem; color: var(--orange); border: 1.5px solid var(--orange); }
+.sponsor-tier.silver .sponsor-tier-name { font-size: .76rem; color: var(--text2); border: 1px solid var(--text2); }
+
+.sponsor-grid { display: grid; gap: 16px; }
+.sponsor-tier.diamond .sponsor-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+.sponsor-tier.platinum .sponsor-grid { grid-template-columns: repeat(3, 1fr); max-width: 880px; margin: 0 auto; }
+.sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(5, 1fr); }
+.sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 900px) {
+  .sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
+  .sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .sponsor-tier.platinum .sponsor-grid { grid-template-columns: 1fr 1fr; }
+  .sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+  .sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.sponsor-card {
+  background: #fff; border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  color: var(--text3); text-align: center; padding: 16px;
+}
+.sponsor-tier.diamond .sponsor-card { aspect-ratio: 16/6; font-size: 1.16rem; border-width: 2px; border-color: var(--orange); }
+.sponsor-tier.platinum .sponsor-card { aspect-ratio: 16/9; font-size: 1rem; }
+.sponsor-tier.gold .sponsor-card { aspect-ratio: 4/3; font-size: .86rem; }
+.sponsor-tier.silver .sponsor-card { aspect-ratio: 4/3; font-size: .76rem; }
+.sponsors-note {
+  margin-top: 32px; text-align: center; font-size: .78rem;
+  color: var(--text3); font-style: italic;
+}
+
 /* ===== CTA FINAL ===== */
 .cta-final {
   padding: 120px 6%; text-align: center;
-  background: var(--navy); color: var(--white);
+  background: var(--text); color: #fff;
   position: relative; overflow: hidden;
 }
-.cta-final::before, .cta-final::after {
-  content: ''; position: absolute; pointer-events: none;
-}
 .cta-final::before {
-  top: -40px; left: -30px; width: 180px; height: 180px;
-  background: var(--orange); opacity: .12; transform: rotate(-12deg);
+  content: ''; position: absolute; top: -50px; left: -30px;
+  width: 200px; height: 200px; background: var(--orange); opacity: .14;
+  transform: rotate(-12deg);
 }
 .cta-final::after {
-  bottom: -60px; right: -40px; width: 220px; height: 220px;
-  background: var(--mint); opacity: .12; transform: rotate(8deg);
+  content: ''; position: absolute; bottom: -60px; right: -40px;
+  width: 240px; height: 240px; background: var(--mint); opacity: .14;
+  transform: rotate(8deg);
 }
 .cta-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
 .cta-eyebrow {
@@ -449,19 +493,18 @@ img { max-width: 100%; display: block; }
 }
 .cta-final h2 {
   font-family: 'Noto Sans JP', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
-  color: var(--white); font-weight: 900; line-height: 1.55; margin-bottom: 28px;
+  color: #fff; font-weight: 900; line-height: 1.55; margin-bottom: 28px;
 }
 .cta-final h2 em { color: var(--orange); font-style: normal; }
 .cta-final p {
-  font-size: 1.04rem; color: rgba(255,255,255,.85); line-height: 2.1;
+  font-size: 1.04rem; color: rgba(255,255,255,.88); line-height: 2.1;
   margin-bottom: 40px; font-weight: 600;
 }
-.cta-final .btn-primary { background: var(--orange); border-color: var(--orange); color: var(--white); }
-.cta-final .btn-primary:hover { background: var(--orange-deep); border-color: var(--orange-deep); }
-.cta-final .btn-ghost { color: var(--white); border-color: var(--white); }
-.cta-final .btn-ghost:hover { background: var(--white); color: var(--navy); }
+.cta-final .btn-primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+.cta-final .btn-primary:hover { background: #e07a2e; border-color: #e07a2e; }
+.cta-final .btn-mint { background: var(--mint); border-color: var(--mint); color: var(--text); }
+.cta-final .btn-mint:hover { background: #60c2b1; border-color: #60c2b1; }
 
-/* ===== FOOTER ===== */
 .footer {
   padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 28px;
   justify-content: center; font-size: .78rem; color: var(--text3);
@@ -475,29 +518,31 @@ img { max-width: 100%; display: block; }
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo"><a href="index.html"><span class="lg-em">NEXY</span> Summit<span class="sub">2026</span></a></div>
+  <div class="nav-logo"><a href="#top"><span class="lg-em">NEXY</span> Summit<span class="sub">2026</span></a></div>
   <ul class="nav-links">
-    <li><a href="#concept">コンセプト</a></li>
-    <li><a href="#overview">開催概要</a></li>
+    <li><a href="#top">TOP</a></li>
+    <li><a href="#about">NEXYサミットとは？</a></li>
     <li><a href="#program">プログラム</a></li>
-    <li><a href="#target">対象</a></li>
-    <li><a href="#scholarship">スカラシップ</a></li>
+    <li><a href="#speakers">登壇者</a></li>
+    <li><a href="#target">参加者</a></li>
+    <li><a href="#scholarship">スカラシップ制度</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#apply" class="nav-cta">参加申込</a></li>
+    <li><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="nav-cta">申込</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#concept">コンセプト</a>
-  <a href="#overview">開催概要</a>
+  <a href="#top">TOP</a>
+  <a href="#about">NEXYサミットとは？</a>
   <a href="#program">プログラム</a>
-  <a href="#target">対象</a>
-  <a href="#scholarship">スカラシップ</a>
+  <a href="#speakers">登壇者</a>
+  <a href="#target">参加者</a>
+  <a href="#scholarship">スカラシップ制度</a>
   <a href="#faq">FAQ</a>
-  <a href="#apply">参加申込</a>
+  <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="cta">申込</a>
 </div>
 
-<!-- SECTION 01: HERO -->
+<!-- SECTION 01: HERO (1枚目KV) -->
 <section class="hero" id="top">
   <div class="hero-image-wrap">
     <img src="img/summit/summit_hero.jpg" alt="NEXY Summit 2026 — 好きなことを、好きなだけ。 / 2026 SUMMER / TOKYO / 高校生1,000人" class="hero-image">
@@ -516,52 +561,40 @@ img { max-width: 100%; display: block; }
     </p>
     <div class="hero-ctas">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-ghost">Instagramで相談する</a>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
     </div>
   </div>
 </section>
 
-<!-- SECTION 02: PROBLEM -->
-<section class="section" id="problem">
+<!-- SECTION 02: ABOUT (NEXYサミットとは？) -->
+<section class="section" id="about">
   <div class="section-inner">
     <div class="section-head">
-      <span class="section-tag">Problem</span>
-      <h2 class="section-title">「やりたい」が生まれる前に、<em>消されていないか</em>。</h2>
+      <span class="section-tag">About</span>
+      <h2 class="section-title">NEXYサミット<em>とは</em>？</h2>
     </div>
-    <div class="problem-block">
+    <div class="about-block">
       <p class="p-line">今の時代は、「やりたいこと」を求められる。</p>
       <p class="p-line">でも、やりたいことを話す前に、リスクや実現可能性で測られてしまう。</p>
-      <div style="margin-top:32px;display:flex;flex-direction:column;gap:8px;">
-        <p class="p-line">親に言うと、<strong style="color:var(--orange);">リスクの話</strong>になる。</p>
-        <p class="p-line">学校で言うと、<strong style="color:var(--orange);">浮く</strong>。</p>
-        <p class="p-line">同世代では、<strong style="color:var(--orange);">話が続かない</strong>。</p>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:6px;">
+        <p class="p-line">親に言うと、<strong>リスクの話</strong>になる。</p>
+        <p class="p-line">学校で言うと、<strong>浮く</strong>。</p>
+        <p class="p-line">同世代では、<strong>話が続かない</strong>。</p>
       </div>
       <p class="p-strong">だから、誰も口に出さなくなる。「やりたい」が生まれる前に、消されている。</p>
+
+      <p class="p-line" style="margin-top:48px;">NEXY Summit は、<strong>すごい誰かを見るだけのイベントではありません</strong>。</p>
+      <p class="p-line">未完成の違和感や好奇心を持ち寄り、一歩先の同世代や大人と出会い、<br>自分の中にある可能性に気づくための場所です。</p>
+
+      <div class="concept-emphasis">
+        自分の可能性は、<br>遠い未来ではなく、<em>今ここにある</em>。
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 03: CONCEPT -->
-<section class="section navy" id="concept">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="section-tag">Concept</span>
-      <h2 class="section-title">「やりたい」を求める社会から、<br><em>「やりたい」が生まれる社会へ</em>。</h2>
-    </div>
-    <p class="concept-quote">
-      NEXY Summit は、<strong>すごい誰かを見るだけのイベントではありません</strong>。<br>
-      未完成の違和感や好奇心を持ち寄り、一歩先の同世代や大人と出会い、<br>
-      自分の中にある可能性に気づくための場所です。
-    </p>
-    <div class="concept-emphasis">
-      自分の可能性は、<br>
-      遠い未来ではなく、<em>今ここにある</em>。
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 04: OVERVIEW -->
-<section class="section paper" id="overview">
+<!-- SECTION 03: OVERVIEW -->
+<section class="section alt" id="overview">
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Overview</span>
@@ -605,32 +638,46 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- SECTION 05: PROGRAM -->
+<!-- SECTION 04: PROGRAM (6ボックス accordion) -->
 <section class="section" id="program">
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Program</span>
       <h2 class="section-title">聞いて、考えて、話して、<em>動き出す</em>。</h2>
-      <p class="section-lead">一方通行の講演ではなく、聞き、考え、話し、動き出すための6つの場所が並ぶ回遊型フェスです。</p>
+      <p class="section-lead">6つの体験が並ぶ回遊型フェス。気になるボックスを開いて、当日の中身を確認してください。</p>
     </div>
     <div class="program-grid">
-      <div class="prog-card">
-        <div class="prog-img" style="background-image:url('img/summit/pitch_keynote.jpg');"><span class="prog-img-label">Main Stage</span></div>
-        <div class="prog-body">
-          <div class="prog-name">プレゼン大会・登壇セッション</div>
-          <ul class="prog-list">
-            <li>テーマ：やりたいをぶつけろ</li>
-            <li>1→100：すでに事業・プロジェクトを動かしている学生</li>
-            <li>0→1：まだ形になっていない夢を語る高校生</li>
-            <li>オープニング／クロージング</li>
+
+      <details class="prog-acc">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/pitch_speaker.jpg');"><span class="prog-acc-label">Main Stage</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">プレゼン大会</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">テーマは「やりたいをぶつけろ」。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る。</p>
+          <ul class="prog-acc-list">
+            <li>1→100 部門：すでに事業・プロジェクトを動かしている学生</li>
+            <li>0→1 部門：まだ形になっていない夢を語る高校生</li>
+            <li>オープニング / クロージング セッション</li>
+            <li>1,000人の前で「やりたい」を宣言する場</li>
           </ul>
         </div>
-      </div>
-      <div class="prog-card cat-mint">
-        <div class="prog-img" style="background-image:url('img/summit/pitch_speaker.jpg');"><span class="prog-img-label">Session</span></div>
-        <div class="prog-body">
-          <div class="prog-name">パネル / トークセッション</div>
-          <ul class="prog-list">
+      </details>
+
+      <details class="prog-acc cat-mint">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/pitch_keynote.jpg');"><span class="prog-acc-label">Session</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">登壇セッション</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">挑戦のはじめ方を、一歩先の挑戦者と社会人が語るパネル / トーク。</p>
+          <ul class="prog-acc-list">
             <li>挑戦のはじめ方</li>
             <li>自分を知るとは？</li>
             <li>学生挑戦者 × 社会人挑戦者</li>
@@ -638,52 +685,82 @@ img { max-width: 100%; display: block; }
             <li>いい大人との出会い方</li>
           </ul>
         </div>
-      </div>
-      <div class="prog-card">
-        <div class="prog-img" style="background-image:url('img/summit/hero_accent.jpg');"><span class="prog-img-label">Workshop</span></div>
-        <div class="prog-body">
-          <div class="prog-name">ワークショップ</div>
-          <ul class="prog-list">
+      </details>
+
+      <details class="prog-acc">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/hero_accent.jpg');"><span class="prog-acc-label">Workshop</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">ワークショップ</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">「やりたい」が生まれる前のモヤモヤを、手を動かして整理する時間。</p>
+          <ul class="prog-acc-list">
             <li>違和感の言語化</li>
-            <li>「やりたい」が生まれる前のモヤモヤを整理</li>
             <li>30秒で自分のテーマを語る</li>
             <li>明日からの3アクションを決める</li>
+            <li>同世代との対話を通じて自分を見つめ直す</li>
           </ul>
         </div>
-      </div>
-      <div class="prog-card cat-mint">
-        <div class="prog-img" style="background-image:url('img/summit/pitch_handshake.jpg');"><span class="prog-img-label">Booth</span></div>
-        <div class="prog-body">
-          <div class="prog-name">ブース</div>
-          <ul class="prog-list">
-            <li>企業</li>
-            <li>教育機関</li>
-            <li>起業支援団体</li>
-            <li>探究／留学／奨学金団体</li>
-            <li>社会との接点を作る場所</li>
+      </details>
+
+      <details class="prog-acc cat-mint">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/pitch_handshake.jpg');"><span class="prog-acc-label">Booth</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">ブース出店</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">企業・教育機関・支援団体のブースが並ぶ、社会との接点を作る場所。</p>
+          <ul class="prog-acc-list">
+            <li>企業ブース</li>
+            <li>教育機関ブース</li>
+            <li>起業支援団体ブース</li>
+            <li>探究 / 留学 / 奨学金団体ブース</li>
           </ul>
         </div>
-      </div>
-      <div class="prog-card cat-navy">
-        <div class="prog-img" style="background-image:url('img/summit/pitch_stage.jpg');"><span class="prog-img-label">Story Show</span></div>
-        <div class="prog-body">
-          <div class="prog-name">ストーリー展</div>
-          <ul class="prog-list">
-            <li>一歩先の挑戦者の「はじまり」を展示</li>
-            <li>完成された成功ではなく、<br>未完成からどう動き始めたかを見せる</li>
+      </details>
+
+      <details class="prog-acc">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/pitch_audience.jpg');"><span class="prog-acc-label">Community</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">交流ブース</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">同じ熱量やモヤモヤを持つ仲間と出会う、コミュニティの場所。</p>
+          <ul class="prog-acc-list">
+            <li>少人数での対話セッション</li>
+            <li>テーマ別グループ交流</li>
+            <li>イベント後もつながりが続くコミュニティ</li>
           </ul>
         </div>
-      </div>
-      <div class="prog-card cat-navy">
-        <div class="prog-img" style="background-image:url('img/summit/pitch_audience.jpg');"><span class="prog-img-label">Community</span></div>
-        <div class="prog-body">
-          <div class="prog-name">コミュニティ</div>
-          <ul class="prog-list">
-            <li>同じ熱量やモヤモヤを持つ仲間と出会う</li>
-            <li>イベント後もつながりが続く場所</li>
+      </details>
+
+      <details class="prog-acc cat-mint">
+        <summary>
+          <div class="prog-acc-img" style="background-image:url('img/summit/pitch_stage.jpg');"><span class="prog-acc-label">Story Show</span></div>
+          <div class="prog-acc-summary">
+            <span class="prog-acc-name">ストーリー展</span>
+            <span class="prog-acc-toggle">詳細</span>
+          </div>
+        </summary>
+        <div class="prog-acc-body">
+          <p class="prog-acc-desc">一歩先の挑戦者の「はじまり」を展示する。完成された成功ではなく、未完成からどう動き始めたかを見せる場所。</p>
+          <ul class="prog-acc-list">
+            <li>挑戦者の最初の一歩を写真と言葉で展示</li>
+            <li>失敗・違和感・モヤモヤ・小さなはじまり</li>
+            <li>「自分にもできる」を体感する展示</li>
           </ul>
         </div>
-      </div>
+      </details>
+
     </div>
     <div style="text-align:center;margin-top:48px;">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
@@ -691,8 +768,71 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- SECTION 06: TARGET -->
-<section class="section alt" id="target">
+<!-- SECTION 05: SPEAKERS (登壇者) -->
+<section class="section alt" id="speakers">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">Speakers</span>
+      <h2 class="section-title">登<em>壇者</em>。</h2>
+      <p class="section-lead">学生挑戦者・社会人挑戦者・各業界の一歩先を歩く方々が登壇予定。順次発表します。</p>
+    </div>
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <div class="speaker-img" style="background-image:url('img/summit/speaker_kondo.jpg');"></div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者A</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img" style="background-image:url('img/summit/speaker_noda.jpg');"></div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者B</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img placeholder">Coming Soon</div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者C</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img placeholder">Coming Soon</div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者D</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img placeholder">Coming Soon</div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者E</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img placeholder">Coming Soon</div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者F</div>
+          <div class="speaker-desc">詳細は順次発表予定です。</div>
+        </div>
+      </div>
+    </div>
+    <p class="speakers-note">※ 登壇者は順次発表予定です。最新情報は Instagram @nexy.hub にて。</p>
+  </div>
+</section>
+
+<!-- SECTION 06: TARGET (参加者 / 6枚目を背景に) -->
+<section class="section target-section" id="target">
+  <div class="target-hero" style="background-image:url('img/summit/summit_thumb.jpg');"></div>
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">For Who</span>
@@ -743,7 +883,7 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- SECTION 07: SCHOLARSHIP -->
-<section class="section paper" id="scholarship">
+<section class="section alt" id="scholarship">
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Scholarship</span>
@@ -773,39 +913,8 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- SECTION 08: VOICE -->
-<section class="section" id="voice">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="section-tag">Voice</span>
-      <h2 class="section-title">帰るころには、<em>言葉が変わっている</em>。</h2>
-      <p class="section-lead">「見る人」から「動く人」へ。NEXY Summit から帰る高校生の口から、自然に出てくるであろう言葉です。</p>
-    </div>
-    <div class="voice-wrap">
-      <div class="voice-ok">
-        <h3>こうなって帰ってほしい</h3>
-        <ul>
-          <li>〇〇やります。</li>
-          <li>やりたいこと、決まった。</li>
-          <li>来たときの自分と、もう違う。</li>
-          <li>来年は登壇者として来る。</li>
-        </ul>
-      </div>
-      <div class="voice-ng">
-        <h3>こうではない</h3>
-        <ul>
-          <li>自分もできると思いました。</li>
-          <li>あの人、すごいなぁ。</li>
-          <li>いつか、やりたいです。</li>
-          <li>楽しかったです。</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 09: FAQ -->
-<section class="section alt" id="faq">
+<!-- SECTION 08: FAQ -->
+<section class="section" id="faq">
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">FAQ</span>
@@ -818,12 +927,12 @@ img { max-width: 100%; display: block; }
       <details class="faq-item"><summary>地方からでも参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">参加できます。1都7県以外の高校生向けに、交通費・宿泊費を支援するスカラシップ制度（最大50名予定）を準備中です。</div></details>
       <details class="faq-item"><summary>保護者の同意は必要ですか？<span class="faq-icon"></span></summary><div class="faq-answer">未成年の方は保護者同意が必要になる可能性があります。必要に応じて、申込後に案内します。</div></details>
       <details class="faq-item"><summary>大学生／社会人は参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">本サミットは高校生のためのイベントです。大学生・社会人の方は、運営・登壇者・メンター・ブース出展などの形で関わっていただけます。お問い合わせは Instagram DM までお願いします。</div></details>
-      <details class="faq-item"><summary>申込はいつから？<span class="faq-icon"></span></summary><div class="faq-answer">事前申込フォームは公開中です。本ページ上部または下部の「参加申込する」ボタンからお進みください。日程・会場の詳細は順次案内します。</div></details>
+      <details class="faq-item"><summary>申込はいつから？<span class="faq-icon"></span></summary><div class="faq-answer">事前申込フォームは公開中です。ヘッダーの「申込」ボタンからお進みください。日程・会場の詳細は順次案内します。</div></details>
     </div>
   </div>
 </section>
 
-<!-- SECTION 10: FINAL CTA -->
+<!-- SECTION 09: FINAL CTA -->
 <section class="cta-final" id="apply">
   <div class="cta-inner">
     <div class="cta-eyebrow">Join NEXY Summit 2026</div>
@@ -836,12 +945,68 @@ img { max-width: 100%; display: block; }
     </p>
     <div class="hero-ctas" style="justify-content:center;">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-ghost">Instagramで相談する</a>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
     </div>
-    <p style="margin-top:48px;font-size:.78rem;color:rgba(255,255,255,.55);font-family:'Inter',sans-serif;letter-spacing:.06em;">
+    <p style="margin-top:48px;font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;letter-spacing:.06em;">
       主催：学生団体 NEXY ／ 代表：小助川 晴大<br>
       Powered by NEXY Community
     </p>
+  </div>
+</section>
+
+<!-- SECTION 10: SPONSORS (協賛一覧) -->
+<section class="sponsors-section" id="sponsors">
+  <div class="sponsors-inner">
+    <div class="section-head">
+      <span class="section-tag">Sponsors</span>
+      <h2 class="section-title">協賛企業<em>一覧</em>。</h2>
+      <p class="section-lead">NEXY Summit 2026 は、次世代の挑戦者を応援する企業・団体の支援によって実現されます。</p>
+    </div>
+
+    <div class="sponsor-tier diamond">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Diamond</span></div>
+      <div class="sponsor-grid">
+        <div class="sponsor-card">Coming Soon</div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier platinum">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Platinum</span></div>
+      <div class="sponsor-grid">
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier gold">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Gold</span></div>
+      <div class="sponsor-grid">
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+      </div>
+    </div>
+
+    <div class="sponsor-tier silver">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Silver</span></div>
+      <div class="sponsor-grid">
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+        <div class="sponsor-card">Coming Soon</div>
+      </div>
+    </div>
+
+    <p class="sponsors-note">※ 協賛企業は順次発表予定です。協賛のご相談は info@nexyhub.jp まで。</p>
   </div>
 </section>
 
