@@ -113,8 +113,8 @@ img { max-width: 100%; display: block; }
   background: var(--bg); position: relative;
   display: flex; flex-direction: column; align-items: center;
 }
-.hero-image-wrap { width: 100%; max-width: 1672px; margin: 0 auto; }
-.hero-image { width: 100%; height: auto; display: block; }
+.hero-image-wrap { width: 100%; margin: 0 auto; overflow: hidden; }
+.hero-image { width: 100%; height: auto; display: block; min-width: 100%; }
 .hero-body {
   width: 100%; max-width: 1080px;
   padding: 56px 6% 80px; text-align: center;
@@ -422,6 +422,50 @@ img { max-width: 100%; display: block; }
 .faq-item[open] .faq-icon::after { transform: rotate(90deg); }
 .faq-answer { padding: 0 24px 20px; color: var(--text2); font-size: .88rem; line-height: 2; font-weight: 500; }
 
+
+/* ===== SCHEDULE ===== */
+.schedule-wrap {
+  max-width: 800px; margin: 0 auto;
+  position: relative; padding-left: 100px;
+}
+.schedule-wrap::before {
+  content: ''; position: absolute; top: 0; bottom: 0;
+  left: 70px; width: 2px;
+  background: linear-gradient(180deg, var(--orange) 0%, var(--mint) 100%);
+}
+.sch-item {
+  position: relative; padding: 18px 0 18px 24px;
+  border-bottom: 1px dashed var(--line);
+}
+.sch-item:last-child { border-bottom: none; }
+.sch-item::before {
+  content: ''; position: absolute;
+  left: -36px; top: 26px;
+  width: 12px; height: 12px; background: var(--orange);
+  border: 3px solid #fff; border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--orange);
+}
+.sch-item.mint::before { background: var(--mint); box-shadow: 0 0 0 2px var(--mint); }
+.sch-time {
+  position: absolute; left: -100px; top: 20px;
+  width: 60px; text-align: right;
+  font-family: 'Inter', sans-serif; font-size: .92rem;
+  color: var(--orange); font-weight: 900; letter-spacing: .04em;
+}
+.sch-title { font-size: 1.02rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.sch-desc { font-size: .84rem; color: var(--text2); line-height: 1.85; }
+.sch-note {
+  margin-top: 32px; padding: 16px 22px;
+  background: rgba(116,212,195,.12); border-left: 3px solid var(--mint);
+  font-size: .82rem; color: var(--text2); line-height: 1.85;
+}
+@media (max-width: 600px) {
+  .schedule-wrap { padding-left: 70px; }
+  .schedule-wrap::before { left: 46px; }
+  .sch-item::before { left: -32px; }
+  .sch-time { left: -70px; width: 50px; font-size: .82rem; }
+}
+
 /* ===== SPONSORS ===== */
 .sponsors-section {
   background: var(--paper); padding: 100px 6%; border-top: 1px solid var(--line);
@@ -523,6 +567,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#top">TOP</a></li>
     <li><a href="#about">NEXYサミットとは？</a></li>
     <li><a href="#program">プログラム</a></li>
+    <li><a href="#schedule">スケジュール</a></li>
     <li><a href="#speakers">登壇者</a></li>
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
@@ -535,6 +580,7 @@ img { max-width: 100%; display: block; }
   <a href="#top">TOP</a>
   <a href="#about">NEXYサミットとは？</a>
   <a href="#program">プログラム</a>
+  <a href="#schedule">スケジュール</a>
   <a href="#speakers">登壇者</a>
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
@@ -768,6 +814,66 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+
+<!-- SECTION: SCHEDULE -->
+<section class="section alt" id="schedule">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">Schedule</span>
+      <h2 class="section-title">当日の<em>スケジュール</em>。</h2>
+      <p class="section-lead">1日の流れを時間軸で確認できます。プログラム内容は調整中・順次発表予定です。</p>
+    </div>
+    <div class="schedule-wrap">
+      <div class="sch-item">
+        <span class="sch-time">10:00</span>
+        <div class="sch-title">開場・受付</div>
+        <div class="sch-desc">参加者の受付・チェックイン。会場マップとプログラム案内を配布。</div>
+      </div>
+      <div class="sch-item mint">
+        <span class="sch-time">10:30</span>
+        <div class="sch-title">オープニング</div>
+        <div class="sch-desc">1日の流れと過ごし方の説明。NEXY代表からの挨拶。</div>
+      </div>
+      <div class="sch-item">
+        <span class="sch-time">11:00</span>
+        <div class="sch-title">登壇セッション ① / ワークショップ ① / ブース開始</div>
+        <div class="sch-desc">回遊型フェスとして、ステージ・ワーク・ブースが並行で進行。</div>
+      </div>
+      <div class="sch-item mint">
+        <span class="sch-time">12:30</span>
+        <div class="sch-title">ランチ・交流タイム</div>
+        <div class="sch-desc">同世代と話せる昼休憩。交流ブースも開放。</div>
+      </div>
+      <div class="sch-item">
+        <span class="sch-time">13:30</span>
+        <div class="sch-title">プレゼン大会 / 登壇セッション ②</div>
+        <div class="sch-desc">「やりたいをぶつけろ」。1→100部門・0→1部門のプレゼン。</div>
+      </div>
+      <div class="sch-item mint">
+        <span class="sch-time">15:00</span>
+        <div class="sch-title">ワークショップ ② / ストーリー展</div>
+        <div class="sch-desc">違和感の言語化、明日のアクション設計などのワーク。</div>
+      </div>
+      <div class="sch-item">
+        <span class="sch-time">16:30</span>
+        <div class="sch-title">クロージングセッション</div>
+        <div class="sch-desc">1日のまとめ、参加者の宣言、ネクストアクション共有。</div>
+      </div>
+      <div class="sch-item mint">
+        <span class="sch-time">17:30</span>
+        <div class="sch-title">アフター交流</div>
+        <div class="sch-desc">フリー交流・コミュニティ加入案内。希望者のみ。</div>
+      </div>
+      <div class="sch-item">
+        <span class="sch-time">18:00</span>
+        <div class="sch-title">終了・解散</div>
+        <div class="sch-desc">お疲れさまでした。</div>
+      </div>
+    </div>
+    <div class="sch-note">※ プログラム内容・時間は調整中です。最終確定版は本ページに反映します。</div>
+  </div>
+</section>
+
 <!-- SECTION 05: SPEAKERS (登壇者) -->
 <section class="section alt" id="speakers">
   <div class="section-inner">
@@ -778,51 +884,51 @@ img { max-width: 100%; display: block; }
     </div>
     <div class="speakers-grid">
       <div class="speaker-card">
-        <div class="speaker-img" style="background-image:url('img/summit/speaker_kondo.jpg');"></div>
+        <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
           <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者A</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img" style="background-image:url('img/summit/speaker_noda.jpg');"></div>
-        <div class="speaker-body">
-          <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者B</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
         </div>
       </div>
       <div class="speaker-card">
         <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
           <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者C</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
         </div>
       </div>
       <div class="speaker-card">
         <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
           <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者D</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
         </div>
       </div>
       <div class="speaker-card">
         <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
           <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者E</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
         </div>
       </div>
       <div class="speaker-card">
         <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
           <div class="speaker-title">Speaker</div>
-          <div class="speaker-name">登壇者F</div>
-          <div class="speaker-desc">詳細は順次発表予定です。</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-img placeholder">Coming Soon</div>
+        <div class="speaker-body">
+          <div class="speaker-title">Speaker</div>
+          <div class="speaker-name">登壇者は順次発表</div>
+          <div class="speaker-desc">決まり次第、本ページに掲載します。</div>
         </div>
       </div>
     </div>
