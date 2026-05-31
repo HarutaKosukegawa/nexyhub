@@ -56,7 +56,7 @@ body::before {
   background-image: url('img/summit/bg_paint.png');
   background-size: cover; background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.35;
+  opacity: 0.55;
   z-index: 0; pointer-events: none;
 }
 body > * { position: relative; z-index: 1; }
@@ -69,6 +69,11 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; padding: 0 28px; justify-content: space-between;
 }
+
+.nav-logo-img { height: 36px; width: auto; display: block; transition: transform .25s; }
+.nav-logo-img:hover { transform: scale(1.06); }
+@media (max-width: 700px) { .nav-logo-img { height: 30px; } }
+
 .nav-logo a { color: var(--text); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .02em; }
 .nav-logo .lg-em { color: var(--orange); }
 .nav-logo .sub { color: var(--text3); font-size: .66rem; font-weight: 700; margin-left: 8px; letter-spacing: .14em; }
@@ -347,10 +352,11 @@ img { max-width: 100%; display: block; }
 }
 
 .about-info-card.about-info-wide {
-  background: transparent;
+  background: #FAFAF7;
   padding: 8px;
   box-shadow: 0 18px 40px rgba(0,0,0,.08);
   border-radius: 16px;
+  border: 1px solid var(--line);
 }
 .about-info-card.about-info-wide .about-info-img {
   border-radius: 12px;
@@ -898,7 +904,7 @@ img { max-width: 100%; display: block; }
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo"><a href="#top"><span class="lg-em">NEXY</span> Summit<span class="sub">2026</span></a></div>
+  <div class="nav-logo"><a href="https://www.nexyhub.jp/index.html#home"><img src="img/summit/nexy_logo.png" alt="NEXY Summit 2026 - NEXYトップへ" class="nav-logo-img"></a></div>
   <ul class="nav-links">
     <li><a href="#top">TOP</a></li>
     <li><a href="#about">NEXYサミットとは？</a></li>
@@ -979,7 +985,10 @@ img { max-width: 100%; display: block; }
 
     <div class="about-infographics">
       <figure class="about-info-card about-info-wide">
-        <img src="img/summit/about_combined.jpg" alt="NEXY Summitの構造とできるの基準が上がる体験設計" class="about-info-img">
+        <img src="img/summit/about_structure.png" alt="『やりたい』を求められる社会から、『やりたい』が生まれる場へ。NEXY Summitの構造" class="about-info-img">
+      </figure>
+      <figure class="about-info-card about-info-wide">
+        <img src="img/summit/about_graph_new.png" alt="『できる』の基準が上がる体験設計。出会う→話す→動く→なっちゃう のグラフ" class="about-info-img">
       </figure>
     </div>
   </div>
