@@ -59,7 +59,16 @@ body::before {
   opacity: 0.55;
   z-index: 0; pointer-events: none;
 }
-body > * { position: relative; z-index: 1; }
+body > * { position: relative; z-index: 2; }
+/* ===== PARTICLES CANVAS ===== */
+#particles {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
 img { max-width: 100%; display: block; }
 
 /* ===== NAV ===== */
@@ -902,6 +911,8 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<canvas id="particles" aria-hidden="true"></canvas>
+
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo"><a href="https://www.nexyhub.jp/index.html#home"><img src="img/summit/nexy_logo.png" alt="NEXY Summit 2026 - NEXYトップへ" class="nav-logo-img"></a></div>
@@ -909,7 +920,6 @@ img { max-width: 100%; display: block; }
     <li><a href="#top">TOP</a></li>
     <li><a href="#about">NEXYサミットとは？</a></li>
     <li><a href="#program">プログラム</a></li>
-    <li><a href="#schedule">スケジュール</a></li>
     <li><a href="#speakers">登壇者</a></li>
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
@@ -923,7 +933,6 @@ img { max-width: 100%; display: block; }
   <a href="#top">TOP</a>
   <a href="#about">NEXYサミットとは？</a>
   <a href="#program">プログラム</a>
-  <a href="#schedule">スケジュール</a>
   <a href="#speakers">登壇者</a>
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
@@ -1627,6 +1636,134 @@ if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     });
   }, { passive: true });
 }
+
+
+/* ===== Particles animation ===== */
+(function(){
+  const c = document.getElementById('particles');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, particles = [], rafId;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    c.width = W * dpr;
+    c.height = H * dpr;
+    c.style.width = W + 'px';
+    c.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = [
+    { r: 242, g: 139, b: 61 },    // orange
+    { r: 46,  g: 189, b: 182 },   // mint
+    { r: 242, g: 139, b: 61 },    // orange (重複で出現率UP)
+    { r: 116, g: 212, b: 195 },   // mint light
+    { r: 15,  g: 42,  b: 79 },    // navy (少なめに)
+  ];
+  const NUM = Math.min(60, Math.floor((W * H) / 30000));
+
+  for (let i = 0; i < NUM; i++) {
+    const col = COLORS[Math.floor(Math.random() * (i % 8 === 0 ? COLORS.length : COLORS.length - 1))];
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 4 + 1.5,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      a: Math.random() * 0.5 + 0.18,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.015 + 0.005,
+      color: col,
+    });
+  }
+
+  // マウス追従（軽く反発）
+  const mouse = { x: -1000, y: -1000, active: false };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
+  }, { passive: true });
+  window.addEventListener('mouseout', () => { mouse.active = false; });
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.016;
+
+    // パーティクル間の線（近い同士を結ぶ）
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          const op = (1 - dist / 120) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},${op})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // パーティクル本体
+    particles.forEach(p => {
+      p.phase += p.speed;
+      p.x += p.vx + Math.sin(p.phase) * 0.15;
+      p.y += p.vy + Math.cos(p.phase * 0.7) * 0.1;
+
+      // 画面ループ
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+
+      // マウス反発
+      if (mouse.active) {
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 110) {
+          const force = (110 - dist) / 110 * 1.4;
+          p.x += (dx / dist) * force;
+          p.y += (dy / dist) * force;
+        }
+      }
+
+      const a = p.a * (0.7 + 0.3 * Math.sin(p.phase * 1.5));
+      // グロー
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 2.4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},${a * 0.15})`;
+      ctx.fill();
+      // 本体
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},${a})`;
+      ctx.fill();
+    });
+
+    rafId = requestAnimationFrame(draw);
+  }
+  draw();
+
+  // タブが非表示なら止める（バッテリー配慮）
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+    } else {
+      draw();
+    }
+  });
+})();
 </script>
 </body>
 </html>
