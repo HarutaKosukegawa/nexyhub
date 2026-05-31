@@ -616,6 +616,121 @@ img { max-width: 100%; display: block; }
 .cta-final .btn-mint { background: var(--mint); border-color: var(--mint); color: var(--text); }
 .cta-final .btn-mint:hover { background: #60c2b1; border-color: #60c2b1; }
 
+/* ========== ANIMATIONS ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes paintMove {
+  0%, 100% { transform: rotate(-12deg) translate(0,0); }
+  50% { transform: rotate(-10deg) translate(8px, 6px); }
+}
+@keyframes paintMove2 {
+  0%, 100% { transform: rotate(8deg) translate(0,0); }
+  50% { transform: rotate(6deg) translate(-8px, -6px); }
+}
+@keyframes badgePop {
+  0% { opacity: 0; transform: translateY(20px) scale(.8); }
+  60% { opacity: 1; transform: translateY(-4px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Reveal on scroll (JSで .in-view 追加) */
+.anim { opacity: 0; transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); will-change: opacity, transform; }
+.anim.up { transform: translateY(40px); }
+.anim.left { transform: translateX(-40px); }
+.anim.right { transform: translateX(40px); }
+.anim.scale { transform: scale(.92); }
+.anim.in-view { opacity: 1; transform: none; }
+
+/* Section heads入場 */
+.section-head { animation: fadeUp .9s cubic-bezier(.16,1,.3,1) both; }
+
+/* Hero entrance */
+.hero-image { animation: scaleIn 1.2s cubic-bezier(.16,1,.3,1) both; }
+.hero-copy { animation: fadeUp 1.1s cubic-bezier(.16,1,.3,1) .25s both; }
+.hero-sub { animation: fadeUp 1.1s cubic-bezier(.16,1,.3,1) .45s both; }
+.hero-badges .hbadge { animation: badgePop .8s cubic-bezier(.16,1,.3,1) both; }
+.hero-badges .hbadge:nth-child(1) { animation-delay: .1s; }
+.hero-badges .hbadge:nth-child(2) { animation-delay: .2s; }
+.hero-badges .hbadge:nth-child(3) { animation-delay: .3s; }
+.hero-badges .hbadge:nth-child(4) { animation-delay: .4s; }
+.hero-ctas .btn-primary { animation: fadeUp 1s cubic-bezier(.16,1,.3,1) .6s both, float 3.2s ease-in-out 2s infinite; }
+.hero-ctas .btn-mint { animation: fadeUp 1s cubic-bezier(.16,1,.3,1) .75s both; }
+
+/* Number cells hover */
+.num-cell { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+.num-cell:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(242,139,61,.18); }
+.num-num { transition: color .25s; }
+.num-cell:hover .num-num { color: var(--orange); }
+
+/* Target cards hover */
+.target-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s cubic-bezier(.16,1,.3,1); }
+.target-card:hover { transform: translateY(-6px) translateX(2px); box-shadow: 0 20px 40px rgba(0,0,0,.08); }
+
+/* Speaker cards */
+.speaker-card { transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s; }
+.speaker-card:hover { transform: translateY(-5px) scale(1.02); }
+
+/* Sponsor cards */
+.sponsor-card { transition: transform .25s, border-color .25s; }
+.sponsor-card:hover { transform: scale(1.04); border-color: var(--orange); }
+
+/* Schedule items dot pulse */
+.sch-item::before { transition: transform .25s, box-shadow .25s; }
+.sch-item:hover::before { transform: scale(1.4); box-shadow: 0 0 0 4px rgba(242,139,61,.3); }
+
+/* Program acc subtle scale */
+.prog-acc:not([open]):hover { transform: scale(1.012); transition: transform .25s; }
+
+/* CTA final paint移動 */
+.cta-final::before { animation: paintMove 8s ease-in-out infinite; }
+.cta-final::after { animation: paintMove2 9s ease-in-out infinite; }
+
+/* Section-title em underline grow on hover */
+.section-title em::after { transition: height .4s cubic-bezier(.16,1,.3,1); }
+.section-title:hover em::after { height: 14px; }
+
+/* Japan map hover */
+.japan-map { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+.japan-map:hover { transform: scale(1.04); }
+
+/* FAQ */
+.faq-item summary { transition: background .25s; }
+.faq-item summary:hover { background: rgba(242,139,61,.05); }
+
+/* Buttons transitions */
+.btn-primary, .btn-mint, .btn-ghost { will-change: transform; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
 .footer {
   padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 28px;
   justify-content: center; font-size: .78rem; color: var(--text3);
@@ -1014,6 +1129,16 @@ img { max-width: 100%; display: block; }
       <h2 class="section-title">こんな高校生に<em>来てほしい</em>。</h2>
     </div>
     <div class="target-grid">
+      <div class="target-card t3">
+        <div class="target-tag">Type 03 — Active</div>
+        <div class="target-name">アクティブ層</div>
+        <ul class="target-list">
+          <li>すでに活動している</li>
+          <li>もっと本気の人と出会いたい</li>
+          <li>次の打席がほしい</li>
+          <li>自分を本気でぶつけられる場所がほしい</li>
+        </ul>
+      </div>
       <div class="target-card t1">
         <div class="target-tag">Type 01 — Starter</div>
         <div class="target-name">スターター層</div>
@@ -1032,16 +1157,6 @@ img { max-width: 100%; display: block; }
           <li>でも何かわからない</li>
           <li>同世代の本気を見てみたい</li>
           <li>自分の輪郭を描くきっかけがほしい</li>
-        </ul>
-      </div>
-      <div class="target-card t3">
-        <div class="target-tag">Type 03 — Active</div>
-        <div class="target-name">アクティブ層</div>
-        <ul class="target-list">
-          <li>すでに活動している</li>
-          <li>もっと本気の人と出会いたい</li>
-          <li>次の打席がほしい</li>
-          <li>自分を本気でぶつけられる場所がほしい</li>
         </ul>
       </div>
       <div class="target-card t4">
@@ -1278,6 +1393,67 @@ if (heroImg) {
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (y < 600) heroImg.style.transform = `translateY(${y * 0.18}px) scale(${1 + y * 0.0002})`;
+  }, { passive: true });
+}
+
+
+/* Scroll-triggered reveal */
+const animSelectors = '.card, .prog-acc, .speaker-card, .target-card, .num-cell, .sch-item, .scholar-item, .sponsor-card, .faq-item, .overview-grid > div, .scholar-block, .pair-block';
+const animEls = document.querySelectorAll(animSelectors);
+animEls.forEach((el) => {
+  el.classList.add('anim', 'up');
+  const idx = Array.from(el.parentElement?.children || []).indexOf(el);
+  el.style.transitionDelay = Math.min(idx, 6) * 0.06 + 's';
+});
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+animEls.forEach(el => revObs.observe(el));
+
+/* Number counter animation */
+const numEls = document.querySelectorAll('.num-num');
+const numObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const text = el.textContent.trim();
+    const m = text.match(/^([¥]?)([0-9,]+)(.*)/);
+    if (!m) { numObs.unobserve(el); return; }
+    const prefix = m[1];
+    const target = parseInt(m[2].replace(/,/g, ''));
+    const suffix = m[3];
+    const dur = 1400;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const cur = Math.floor(target * eased);
+      el.innerHTML = prefix + cur.toLocaleString() + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    numObs.unobserve(el);
+  });
+}, { threshold: 0.3 });
+numEls.forEach(el => numObs.observe(el));
+
+/* Hero subtle parallax on scroll */
+const heroImg = document.querySelector('.hero-image');
+if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y < 700) heroImg.style.transform = `translateY(${y * 0.15}px) scale(${1 + y * 0.00012})`;
+      ticking = false;
+    });
   }, { passive: true });
 }
 </script>
