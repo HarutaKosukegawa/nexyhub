@@ -319,10 +319,11 @@ img { max-width: 100%; display: block; }
 
 /* ===== PROGRAM (accordion型 6ボックス) ===== */
 .program-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  max-width: 1180px; margin: 0 auto;
 }
-@media (max-width: 800px) { .program-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1000px) { .program-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .program-grid { grid-template-columns: 1fr; } }
 .prog-acc {
   background: #fff; border: 2px solid var(--line); padding: 0;
   overflow: hidden; transition: border-color .25s, box-shadow .25s;
@@ -335,7 +336,7 @@ img { max-width: 100%; display: block; }
 }
 .prog-acc summary::-webkit-details-marker { display: none; }
 .prog-acc-img {
-  width: 100%; aspect-ratio: 16/9;
+  width: 100%; aspect-ratio: 4/3;
   background-size: cover; background-position: center;
   position: relative;
 }
@@ -351,10 +352,10 @@ img { max-width: 100%; display: block; }
 }
 .prog-acc.cat-mint .prog-acc-label { background: var(--mint); color: var(--text); }
 .prog-acc-summary {
-  padding: 22px 24px; display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px; display: flex; align-items: center; justify-content: space-between;
   gap: 14px;
 }
-.prog-acc-name { font-size: 1.12rem; font-weight: 900; color: var(--text); }
+.prog-acc-name { font-size: 1rem; font-weight: 900; color: var(--text); }
 .prog-acc-toggle {
   font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .14em;
   color: var(--orange); font-weight: 900; text-transform: uppercase;
