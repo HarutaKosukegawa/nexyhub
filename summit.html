@@ -380,17 +380,53 @@ img { max-width: 100%; display: block; }
 
 /* ===== SCHOLARSHIP ===== */
 .scholar-block {
-  max-width: 800px; margin: 0 auto;
-  background: #fff; padding: 44px 40px;
+  max-width: 1040px; margin: 0 auto;
+  background: #fff; padding: 48px 44px;
   border: 2px dashed var(--orange);
-  text-align: center;
+  text-align: left;
 }
 .scholar-block p { font-size: .96rem; line-height: 2.05; color: var(--text); margin-bottom: 24px; font-weight: 600; }
+
+/* ===== SCHOLARSHIP MAP ===== */
+.scholar-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+}
+@media (max-width: 800px) { .scholar-grid { grid-template-columns: 1fr; gap: 24px; } }
+.scholar-map-wrap { text-align: center; }
+.japan-map { width: 100%; max-width: 360px; height: auto; }
+.scholar-map-note {
+  margin-top: 10px; font-size: .72rem; color: var(--text3);
+  font-style: italic; line-height: 1.7;
+}
+.scholar-text { text-align: left; }
+.scholar-text p { font-size: 1rem; line-height: 2; color: var(--text); font-weight: 700; margin-bottom: 20px; }
+.scholar-text .scholar-list {
+  display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0;
+}
+
 .scholar-list {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
   margin-top: 24px; text-align: left;
 }
-@media (max-width: 700px) { .scholar-list { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { 
+/* ===== SCHOLARSHIP MAP ===== */
+.scholar-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+}
+@media (max-width: 800px) { .scholar-grid { grid-template-columns: 1fr; gap: 24px; } }
+.scholar-map-wrap { text-align: center; }
+.japan-map { width: 100%; max-width: 360px; height: auto; }
+.scholar-map-note {
+  margin-top: 10px; font-size: .72rem; color: var(--text3);
+  font-style: italic; line-height: 1.7;
+}
+.scholar-text { text-align: left; }
+.scholar-text p { font-size: 1rem; line-height: 2; color: var(--text); font-weight: 700; margin-bottom: 20px; }
+.scholar-text .scholar-list {
+  display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0;
+}
+
+.scholar-list { grid-template-columns: 1fr; } }
 .scholar-item {
   background: var(--paper); padding: 18px 20px;
   border-left: 3px solid var(--mint);
@@ -571,6 +607,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#speakers">登壇者</a></li>
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
+    <li><a href="#sponsors">協賛企業</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="nav-cta">申込</a></li>
   </ul>
@@ -584,6 +621,7 @@ img { max-width: 100%; display: block; }
   <a href="#speakers">登壇者</a>
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
+  <a href="#sponsors">協賛企業</a>
   <a href="#faq">FAQ</a>
   <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="cta">申込</a>
 </div>
@@ -997,66 +1035,67 @@ img { max-width: 100%; display: block; }
       <p class="section-lead">地理的な距離が、機会の差にならないように。地方で孤独に挑戦している高校生が、東京の同世代と対等に出会えるように、スカラシップ制度を準備中です。</p>
     </div>
     <div class="scholar-block">
-      <p>
-        交通費・宿泊費の支援によって、<br>
-        「東京は遠い」「お金がない」を、参加できない理由にしない。
-      </p>
-      <div class="scholar-list">
-        <div class="scholar-item">
-          <div class="si-l">Target</div>
-          <div class="si-v">1都7県以外の高校生予定</div>
+      <div class="scholar-grid">
+        <div class="scholar-map-wrap">
+          <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" class="japan-map" aria-label="スカラシップ対象地域マップ（1都7県以外オレンジ）">
+  <!-- 北海道 -->
+  <path d="M530 80 Q580 60 620 80 Q680 90 700 130 Q720 170 700 200 Q680 220 660 230 Q620 240 580 220 Q540 200 520 160 Q510 120 530 80 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 東北 -->
+  <path d="M510 280 Q530 270 550 275 Q570 280 575 310 Q578 350 570 390 Q560 430 540 450 Q520 460 500 445 Q485 410 488 360 Q490 320 510 280 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 関東 (1都7県=グレー) -->
+  <path d="M470 460 Q500 455 530 460 Q560 470 565 490 Q570 520 555 540 Q530 555 500 555 Q475 555 460 540 Q450 510 460 480 Q465 465 470 460 Z" fill="#D0D0D0" stroke="#fff" stroke-width="2"/>
+  <!-- 中部 -->
+  <path d="M340 460 Q380 455 420 460 Q450 470 460 485 Q455 510 440 530 Q420 545 390 545 Q360 540 340 525 Q320 510 320 485 Q325 465 340 460 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 近畿 -->
+  <path d="M270 510 Q310 505 340 515 Q355 530 350 555 Q340 575 315 580 Q285 580 265 570 Q250 555 255 535 Q260 520 270 510 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 中国 -->
+  <path d="M170 540 Q210 535 250 545 Q275 555 270 575 Q260 590 235 595 Q200 595 175 590 Q155 580 155 565 Q160 548 170 540 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 四国 -->
+  <path d="M210 620 Q250 615 285 620 Q300 630 295 645 Q285 655 260 660 Q230 660 210 655 Q195 645 195 635 Q200 625 210 620 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 九州 -->
+  <path d="M100 600 Q140 595 165 615 Q180 640 175 680 Q170 720 145 740 Q115 750 90 735 Q70 715 70 680 Q72 640 85 615 Q92 605 100 600 Z" fill="#F28B3D" stroke="#fff" stroke-width="2"/>
+  <!-- 沖縄 -->
+  <rect x="40" y="700" width="80" height="80" fill="none" stroke="#999" stroke-width="1.5"/>
+  <circle cx="65" cy="745" r="12" fill="#F28B3D"/>
+  <circle cx="90" cy="755" r="8" fill="#F28B3D"/>
+  
+  <!-- ラベル -->
+  <text x="555" y="510" font-family="Noto Sans JP" font-size="14" font-weight="900" fill="#333" text-anchor="middle">1都7県</text>
+  <text x="555" y="528" font-family="Noto Sans JP" font-size="11" font-weight="700" fill="#666" text-anchor="middle">対象外</text>
+  
+  <!-- 凡例 -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="18" height="18" fill="#F28B3D"/>
+    <text x="26" y="14" font-family="Noto Sans JP" font-size="13" font-weight="700" fill="#000">スカラシップ対象</text>
+    <rect x="0" y="28" width="18" height="18" fill="#D0D0D0"/>
+    <text x="26" y="42" font-family="Noto Sans JP" font-size="13" font-weight="700" fill="#000">1都7県（対象外）</text>
+  </g>
+</svg>
+          <p class="scholar-map-note">※ 1都7県：東京・神奈川・千葉・埼玉・茨城・栃木・群馬・山梨</p>
         </div>
-        <div class="scholar-item">
-          <div class="si-l">Slots</div>
-          <div class="si-v">最大 50 名予定</div>
-        </div>
-        <div class="scholar-item">
-          <div class="si-l">Support</div>
-          <div class="si-v">交通費 / 宿泊費 支援予定</div>
+        <div class="scholar-text">
+          <p>
+            交通費・宿泊費の支援によって、<br>
+            「東京は遠い」「お金がない」を、<br>
+            参加できない理由にしない。
+          </p>
+          <div class="scholar-list">
+            <div class="scholar-item">
+              <div class="si-l">Target</div>
+              <div class="si-v">1都7県以外の高校生予定</div>
+            </div>
+            <div class="scholar-item">
+              <div class="si-l">Slots</div>
+              <div class="si-v">最大 50 名予定</div>
+            </div>
+            <div class="scholar-item">
+              <div class="si-l">Support</div>
+              <div class="si-v">交通費 / 宿泊費 支援予定</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- SECTION 08: FAQ -->
-<section class="section" id="faq">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="section-tag">FAQ</span>
-      <h2 class="section-title">よくある<em>質問</em>。</h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item"><summary>参加費はかかりますか？<span class="faq-icon"></span></summary><div class="faq-answer">高校生は無料予定です。詳細が確定次第、本ページに反映します。</div></details>
-      <details class="faq-item"><summary>ひとりで参加しても大丈夫ですか？<span class="faq-icon"></span></summary><div class="faq-answer">大丈夫です。ひとりで来る高校生も参加しやすいように、交流やワークショップを設計しています。むしろ「知り合いがいない状態」で来た方が、新しい同世代と出会いやすい場です。</div></details>
-      <details class="faq-item"><summary>まだやりたいことが決まっていなくても参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">むしろそういう人に来てほしいです。「やりたいことがある人」だけのイベントではありません。違和感や好奇心の段階で、十分です。</div></details>
-      <details class="faq-item"><summary>地方からでも参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">参加できます。1都7県以外の高校生向けに、交通費・宿泊費を支援するスカラシップ制度（最大50名予定）を準備中です。</div></details>
-      <details class="faq-item"><summary>保護者の同意は必要ですか？<span class="faq-icon"></span></summary><div class="faq-answer">未成年の方は保護者同意が必要になる可能性があります。必要に応じて、申込後に案内します。</div></details>
-      <details class="faq-item"><summary>大学生／社会人は参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">本サミットは高校生のためのイベントです。大学生・社会人の方は、運営・登壇者・メンター・ブース出展などの形で関わっていただけます。お問い合わせは Instagram DM までお願いします。</div></details>
-      <details class="faq-item"><summary>申込はいつから？<span class="faq-icon"></span></summary><div class="faq-answer">事前申込フォームは公開中です。ヘッダーの「申込」ボタンからお進みください。日程・会場の詳細は順次案内します。</div></details>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 09: FINAL CTA -->
-<section class="cta-final" id="apply">
-  <div class="cta-inner">
-    <div class="cta-eyebrow">Join NEXY Summit 2026</div>
-    <h2>まだ何者でもないまま、<em>来ていい</em>。</h2>
-    <p>
-      完成していなくていい。<br>
-      言葉になっていなくていい。<br>
-      ただ、何かが引っかかっているなら、<br>
-      その違和感を持ってきてください。
-    </p>
-    <div class="hero-ctas" style="justify-content:center;">
-      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
-    </div>
-    <p style="margin-top:48px;font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;letter-spacing:.06em;">
-      主催：学生団体 NEXY ／ 代表：小助川 晴大<br>
-      Powered by NEXY Community
-    </p>
   </div>
 </section>
 
@@ -1113,6 +1152,47 @@ img { max-width: 100%; display: block; }
     </div>
 
     <p class="sponsors-note">※ 協賛企業は順次発表予定です。協賛のご相談は info@nexyhub.jp まで。</p>
+  </div>
+</section>
+
+<!-- SECTION 08: FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">よくある<em>質問</em>。</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>参加費はかかりますか？<span class="faq-icon"></span></summary><div class="faq-answer">高校生は無料予定です。詳細が確定次第、本ページに反映します。</div></details>
+      <details class="faq-item"><summary>ひとりで参加しても大丈夫ですか？<span class="faq-icon"></span></summary><div class="faq-answer">大丈夫です。ひとりで来る高校生も参加しやすいように、交流やワークショップを設計しています。むしろ「知り合いがいない状態」で来た方が、新しい同世代と出会いやすい場です。</div></details>
+      <details class="faq-item"><summary>まだやりたいことが決まっていなくても参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">むしろそういう人に来てほしいです。「やりたいことがある人」だけのイベントではありません。違和感や好奇心の段階で、十分です。</div></details>
+      <details class="faq-item"><summary>地方からでも参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">参加できます。1都7県以外の高校生向けに、交通費・宿泊費を支援するスカラシップ制度（最大50名予定）を準備中です。</div></details>
+      <details class="faq-item"><summary>保護者の同意は必要ですか？<span class="faq-icon"></span></summary><div class="faq-answer">未成年の方は保護者同意が必要になる可能性があります。必要に応じて、申込後に案内します。</div></details>
+      <details class="faq-item"><summary>大学生／社会人は参加できますか？<span class="faq-icon"></span></summary><div class="faq-answer">本サミットは高校生のためのイベントです。大学生・社会人の方は、運営・登壇者・メンター・ブース出展などの形で関わっていただけます。お問い合わせは Instagram DM までお願いします。</div></details>
+      <details class="faq-item"><summary>申込はいつから？<span class="faq-icon"></span></summary><div class="faq-answer">事前申込フォームは公開中です。ヘッダーの「申込」ボタンからお進みください。日程・会場の詳細は順次案内します。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 09: FINAL CTA -->
+<section class="cta-final" id="apply">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Join NEXY Summit 2026</div>
+    <h2>まだ何者でもないまま、<em>来ていい</em>。</h2>
+    <p>
+      完成していなくていい。<br>
+      言葉になっていなくていい。<br>
+      ただ、何かが引っかかっているなら、<br>
+      その違和感を持ってきてください。
+    </p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
+    </div>
+    <p style="margin-top:48px;font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;letter-spacing:.06em;">
+      主催：学生団体 NEXY ／ 代表：小助川 晴大<br>
+      Powered by NEXY Community
+    </p>
   </div>
 </section>
 
