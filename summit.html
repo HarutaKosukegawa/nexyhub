@@ -345,6 +345,20 @@ img { max-width: 100%; display: block; }
   width: 100%; height: auto; display: block;
   border-radius: 8px;
 }
+
+.about-info-card.about-info-wide {
+  background: transparent;
+  padding: 8px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.08);
+  border-radius: 16px;
+}
+.about-info-card.about-info-wide .about-info-img {
+  border-radius: 12px;
+}
+@media (max-width: 700px) {
+  .about-info-card.about-info-wide { padding: 4px; }
+}
+
 .about-info-cap {
   margin-top: 16px; text-align: center;
   font-size: .88rem; color: rgba(255,255,255,.7); font-weight: 700;
@@ -964,13 +978,8 @@ img { max-width: 100%; display: block; }
     </div>
 
     <div class="about-infographics">
-      <figure class="about-info-card">
-        <img src="img/summit/about_flow.png" alt="『やりたい』を求められる社会から、『やりたい』が生まれる場へ。NEXY Summitの構造図" class="about-info-img">
-        <figcaption class="about-info-cap">「やりたい」を求められる社会から、「やりたい」が生まれる場へ。</figcaption>
-      </figure>
-      <figure class="about-info-card">
-        <img src="img/summit/about_graph.png" alt="『できる』の基準が上がる体験設計。出会う→話す→動く→なっちゃう のグラフ" class="about-info-img">
-        <figcaption class="about-info-cap">「できる」の基準が上がる体験設計。</figcaption>
+      <figure class="about-info-card about-info-wide">
+        <img src="img/summit/about_combined.jpg" alt="NEXY Summitの構造とできるの基準が上がる体験設計" class="about-info-img">
       </figure>
     </div>
   </div>
