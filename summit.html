@@ -56,7 +56,7 @@ body::before {
   background-image: url('img/summit/bg_paint.png');
   background-size: cover; background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55;
+  opacity: 1;
   z-index: 0; pointer-events: none;
 }
 body > * { position: relative; z-index: 2; }
@@ -74,7 +74,7 @@ img { max-width: 100%; display: block; }
 /* ===== NAV ===== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 250;
-  height: 64px; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  height: 64px; background: rgba(255,255,255,0.88); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; padding: 0 28px; justify-content: space-between;
 }
@@ -281,9 +281,16 @@ img { max-width: 100%; display: block; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* ===== SECTION BASE ===== */
-.section { padding: 100px 6%; position: relative; overflow: hidden; background: rgba(255,255,255,0.92); }
-.section.alt { background: rgba(243,239,230,0.94); }
-.section-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
+.section { padding: 100px 6%; position: relative; overflow: hidden; background: transparent; }
+.section.alt { background: transparent; }
+.section.alt .section-inner { background: rgba(250,250,247,0.94); }
+.section-inner {
+  max-width: 1180px; margin: 0 auto; position: relative; z-index: 2;
+  background: rgba(255,255,255,0.92);
+  padding: 56px 48px; border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.06);
+  backdrop-filter: blur(6px);
+}
 .section-head { margin-bottom: 56px; text-align: center; }
 .section-tag {
   font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .3em;
@@ -309,7 +316,8 @@ img { max-width: 100%; display: block; }
   .nav-links a { font-size: .72rem; }
 }
 @media (max-width: 900px) {
-  .section { padding: 64px 5%; }
+  .section { padding: 64px 4%; }
+  .section-inner { padding: 36px 22px; border-radius: 18px; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
 }
