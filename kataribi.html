@@ -664,11 +664,35 @@ img { max-width: 100%; display: block; }
 /* Reveal */
 .reveal { opacity: 1; transform: translateY(0); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ===== CAMPFIRE GLOW（画面下中央に焚き火の明るさ） ===== */
+.campfire-glow {
+  position: fixed;
+  bottom: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse at center bottom,
+    rgba(255, 122, 31, 0.45) 0%,
+    rgba(255, 122, 31, 0.25) 25%,
+    rgba(255, 178, 61, 0.15) 45%,
+    rgba(255, 178, 61, 0) 70%);
+  z-index: 2; pointer-events: none;
+  animation: campfireBreath 4s ease-in-out infinite;
+  filter: blur(20px);
+}
+@keyframes campfireBreath {
+  0%, 100% { opacity: 0.85; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+}
+@media (max-width: 800px) {
+  .campfire-glow { width: 500px; height: 400px; }
+}
+
 </style>
 </head>
 <body>
 
 <canvas id="embers"></canvas>
+<div class="campfire-glow" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -803,8 +827,7 @@ img { max-width: 100%; display: block; }
       <div class="day-card day-1 reveal">
         <div class="day-img"><span class="day-img-label">DAY 01</span></div>
         <div class="day-content">
-          <div class="day-name">Unmasking</div>
-          <div class="day-en">感情を掘る日</div>
+          <div class="day-name">感情を掘る日</div>
           <div class="day-desc">普段はしまっている感情や違和感を、少しずつ言葉にしていく。自分が何に傷ついたのか、何に怒ったのか、何に寂しさを感じてきたのか。まずは「本当はあった気持ち」を見つける。</div>
           <div class="day-work-label">主なワーク</div>
           <ul class="day-works">
@@ -819,8 +842,7 @@ img { max-width: 100%; display: block; }
       <div class="day-card day-2 reveal">
         <div class="day-img"><span class="day-img-label">DAY 02</span></div>
         <div class="day-content">
-          <div class="day-name">Ignition</div>
-          <div class="day-en">やりたいを見つける日</div>
+          <div class="day-name">やりたいを見つける日</div>
           <div class="day-desc">いきなり「夢」を決めるのではなく、自分が何に反応する人間なのかを見つめる。自分の扱い方、願い、怖さ、憧れを言葉にしていく。同世代との対話を通して、自分では気づかなかった自分にも出会う。</div>
           <div class="day-work-label">主なワーク</div>
           <ul class="day-works">
@@ -837,8 +859,7 @@ img { max-width: 100%; display: block; }
       <div class="day-card day-3 reveal">
         <div class="day-img"><span class="day-img-label">DAY 03</span></div>
         <div class="day-content">
-          <div class="day-name">Dawn</div>
-          <div class="day-en">宣言する日</div>
+          <div class="day-name">宣言する日</div>
           <div class="day-desc">3日間で見つけた言葉を、自分の声で置いて帰る。これは目標発表ではなく、成果発表でもない。「私はこうありたい」「この熱を大事にしたい」というBeの宣言。</div>
           <div class="day-work-label">主なワーク</div>
           <ul class="day-works">
@@ -864,9 +885,9 @@ img { max-width: 100%; display: block; }
     </div>
 
     <div class="schedule-tabs reveal">
-      <button class="schedule-tab active" data-day="d1"><span class="stab-en">Day 01 — Mon</span>Unmasking</button>
-      <button class="schedule-tab" data-day="d2"><span class="stab-en">Day 02 — Tue</span>Ignition</button>
-      <button class="schedule-tab" data-day="d3"><span class="stab-en">Day 03 — Wed</span>Dawn</button>
+      <button class="schedule-tab active" data-day="d1"><span class="stab-en">8/17 月</span>1日目</button>
+      <button class="schedule-tab" data-day="d2"><span class="stab-en">8/18 火</span>2日目</button>
+      <button class="schedule-tab" data-day="d3"><span class="stab-en">8/19 水</span>3日目</button>
     </div>
 
     <div class="schedule-pane active" id="pane-d1">
@@ -914,32 +935,12 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- SECTION: ワーク連鎖図 -->
-<section class="section" id="flowchain">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Work Chain</span>
-      <h2 class="section-title">ワークは、<em>連鎖</em>している。</h2>
-      <p class="section-lead">8つのワークは独立していません。<strong>感情を拾うところから、最後の宣言まで</strong>、ひとつの流れとして設計されています。</p>
-    </div>
-    <div class="flow-chain reveal">
-      <div class="flow-node"><div class="flow-node-num">01</div><div class="flow-node-name">感情<br>カード</div></div>
-      <div class="flow-node"><div class="flow-node-num">02</div><div class="flow-node-name">壁<br>カード</div></div>
-      <div class="flow-node"><div class="flow-node-num">03</div><div class="flow-node-name">取扱<br>説明書</div></div>
-      <div class="flow-node"><div class="flow-node-num">04 - 06</div><div class="flow-node-name">夢<br>カード</div></div>
-      <div class="flow-node"><div class="flow-node-num">07</div><div class="flow-node-name">ハッシュタグ<br>贈り合い</div></div>
-      <div class="flow-node"><div class="flow-node-num">08</div><div class="flow-node-name">Be宣言<br>カード</div></div>
-    </div>
-    <p class="flow-arrow-text reveal"><em>感情</em>を見つけて、<em>壁</em>を理解して、<em>自分</em>を知って、<em>願い</em>を取り出して、<em>仲間</em>から受け取り、最後に<em>宣言</em>する。</p>
-  </div>
-</section>
-
 <!-- SECTION 05: ワーク詳細 -->
 <section class="section alt" id="works">
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">Works</span>
-      <h2 class="section-title">最後の宣言は、<em>急につくらない</em>。</h2>
+      <h2 class="section-title">3日間で行う<em>ワーク</em>。</h2>
       <p class="section-lead">3日間を通じて、感情 → 壁 → 取扱説明書 → 夢 → ハッシュタグ → Be宣言、と少しずつ積み重ねる。</p>
     </div>
     <div class="works-grid">
@@ -960,7 +961,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">Our Rules</span>
-      <h2 class="section-title">ここでは、<em>評価しない</em>。急かさない。</h2>
+      <h2 class="section-title">ここで守る、<em>4つの原則</em>。</h2>
     </div>
     <div class="rules-grid reveal">
       <div class="rule-card"><div class="rule-en">Rule 01</div><div class="rule-jp">評価しない</div></div>
@@ -984,7 +985,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">For Who</span>
-      <h2 class="section-title">ひとつでも当てはまったら、<em>たぶん来ていい</em>。</h2>
+      <h2 class="section-title"><em>こんな人</em>に来てほしい。</h2>
     </div>
     <ul class="target-list reveal">
       <li>夢や目標がまだはっきりしていない</li>
@@ -1005,7 +1006,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head reveal">
       <span class="section-tag">Pair Discount</span>
-      <h2 class="section-title">ひとりが不安なら、<em>誰かと来てもいい</em>。</h2>
+      <h2 class="section-title"><em>ペア割</em>。</h2>
     </div>
     <div class="pair-block reveal">
       <div class="pair-prices">
@@ -1032,24 +1033,6 @@ img { max-width: 100%; display: block; }
         そんな一歩も、カタリビでは大切にします。
       </div>
     </div>
-  </div>
-</section>
-
-<!-- SECTION 09: 合わない人 -->
-<section class="section deep" id="mismatch">
-  <div class="section-inner">
-    <div class="section-head reveal">
-      <span class="section-tag">Maybe Not</span>
-      <h2 class="section-title">逆に、こういう人には<em>合わない</em>かもしれません。</h2>
-    </div>
-    <ul class="mismatch-list reveal">
-      <li>すぐに成果を出したい人</li>
-      <li>明確なスキルを学びたい人</li>
-      <li>起業やビジネスプランを作りたい人</li>
-      <li>誰かに正解を教えてほしい人</li>
-      <li>深く話す時間が苦手な人</li>
-      <li>ただ遊ぶだけのキャンプを期待している人</li>
-    </ul>
   </div>
 </section>
 
@@ -1232,9 +1215,10 @@ window.addEventListener('scroll', () => {
   resize();
   window.addEventListener('resize', resize);
   function spawn() {
-    const fromLeft = Math.random() < .5;
+    // 画面下中央付近から上昇させる（焚き火位置）
+    const cx = W * (0.3 + Math.random() * 0.4); // 画面中央30-70%
     particles.push({
-      x: fromLeft ? Math.random()*W*.4 : W*.6 + Math.random()*W*.4,
+      x: cx,
       y: H + Math.random()*30,
       vx: (Math.random()-.5)*.3,
       vy: -(Math.random()*.5 + .35),
@@ -1245,8 +1229,8 @@ window.addEventListener('scroll', () => {
       hue: Math.random() > .3 ? 'orange' : 'gold'
     });
   }
-  for (let i = 0; i < 18; i++) spawn();
-  setInterval(spawn, 320);
+  for (let i = 0; i < 40; i++) spawn();
+  setInterval(spawn, 180);
   function draw() {
     ctx.clearRect(0,0,W,H);
     particles.forEach(p => {
@@ -1419,12 +1403,20 @@ statNums.forEach(el => statObs.observe(el));
 
 
 /* Schedule tab switching */
-document.querySelectorAll('.schedule-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
+document.querySelectorAll('.schedule-tab').forEach((tab) => {
+  tab.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
     const day = tab.dataset.day;
-    document.querySelectorAll('.schedule-tab').forEach(t => t.classList.toggle('active', t === tab));
-    document.querySelectorAll('.schedule-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + day));
-  });
+    document.querySelectorAll('.schedule-tab').forEach(t => {
+      if (t === tab) { t.classList.add('active'); }
+      else { t.classList.remove('active'); }
+    });
+    document.querySelectorAll('.schedule-pane').forEach(p => {
+      if (p.id === 'pane-' + day) { p.classList.add('active'); }
+      else { p.classList.remove('active'); }
+    });
+  }, { passive: false });
 });
 
 /* Smooth scroll */
