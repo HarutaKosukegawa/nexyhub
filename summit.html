@@ -46,52 +46,12 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: #000;
-  color: var(--text);
+  background: var(--bg); color: var(--text);
   overflow-x: hidden; line-height: 1.85; font-weight: 500;
   -webkit-font-smoothing: antialiased;
   position: relative;
 }
-body::before {
-  content: ''; position: fixed; inset: 0;
-  background-color: #000;
-  background-image:
-    url('img/summit/bg_p1_tl.png'),
-    url('img/summit/bg_p2_tr.png'),
-    url('img/summit/bg_p3_lm.png'),
-    url('img/summit/bg_p4_rm.png'),
-    url('img/summit/bg_p5_bl.png'),
-    url('img/summit/bg_p6_br.png');
-  background-position:
-    top left,
-    top right,
-    left center,
-    right center,
-    bottom left,
-    bottom right;
-  background-size:
-    340px auto,
-    320px auto,
-    260px auto,
-    220px auto,
-    340px auto,
-    300px auto;
-  background-repeat: no-repeat;
-  z-index: 0; pointer-events: none;
-  opacity: 1;
-}
-@media (max-width: 800px) {
-  body::before {
-    background-size:
-      180px auto,
-      170px auto,
-      140px auto,
-      120px auto,
-      180px auto,
-      160px auto;
-  }
-}
-body > * { position: relative; z-index: 2; }
+body > * { position: relative; z-index: 1; }
 /* ===== PARTICLES CANVAS ===== */
 #particles {
   position: fixed; top: 0; left: 0;
@@ -106,7 +66,7 @@ img { max-width: 100%; display: block; }
 /* ===== NAV ===== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 250;
-  height: 64px; background: rgba(255,255,255,0.88); backdrop-filter: blur(16px);
+  height: 64px; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
   display: flex; align-items: center; padding: 0 28px; justify-content: space-between;
 }
@@ -214,15 +174,7 @@ img { max-width: 100%; display: block; }
 .hero-image { width: 100%; height: auto; display: block; min-width: 100%; }
 .hero-body {
   width: 100%; max-width: 1080px;
-  padding: 56px 48px 80px; text-align: center;
-  background: rgba(255,255,255,0.97);
-  border-radius: 24px;
-  box-shadow: 0 28px 70px rgba(0,0,0,0.35);
-  margin-top: -40px;
-  position: relative; z-index: 5;
-}
-@media (max-width: 800px) {
-  .hero-body { padding: 36px 22px 50px; border-radius: 18px; margin-top: -24px; }
+  padding: 56px 6% 80px; text-align: center;
 }
 .hero-badges {
   display: inline-flex; flex-wrap: wrap; gap: 8px;
@@ -321,15 +273,11 @@ img { max-width: 100%; display: block; }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
 /* ===== SECTION BASE ===== */
-.section { padding: 100px 6%; position: relative; overflow: hidden; background: transparent; }
-.section.alt { background: transparent; }
-.section.alt .section-inner { background: rgba(250,250,247,0.97); }
+.section { padding: 100px 6%; position: relative; overflow: hidden; }
+.section.alt { background: var(--paper); }
+
 .section-inner {
   max-width: 1180px; margin: 0 auto; position: relative; z-index: 2;
-  background: rgba(255,255,255,0.97);
-  padding: 56px 48px; border-radius: 24px;
-  box-shadow: 0 28px 70px rgba(0,0,0,0.35);
-  backdrop-filter: blur(8px);
 }
 .section-head { margin-bottom: 56px; text-align: center; }
 .section-tag {
@@ -950,10 +898,10 @@ img { max-width: 100%; display: block; }
 
 .footer {
   padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 28px;
-  justify-content: center; font-size: .78rem; color: rgba(255,255,255,0.55);
-  border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+  justify-content: center; font-size: .78rem; color: var(--text3);
+  border-top: 1px solid var(--line); background: var(--bg);
 }
-.footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+.footer a { color: var(--text2); text-decoration: none; }
 .footer a:hover { color: var(--orange); }
 </style>
 </head>
