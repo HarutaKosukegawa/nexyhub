@@ -615,21 +615,23 @@ img { max-width: 100%; display: block; }
 @media (max-width: 800px) { .speakers-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .speakers-grid { grid-template-columns: 1fr; } }
 .speaker-card {
-  background: #fff; border: 1px solid var(--line); padding: 0; overflow: hidden;
-  transition: transform .3s, border-color .3s;
+  background: #fff; border: 2px solid var(--orange); padding: 0; overflow: hidden;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+  border-top: 6px solid var(--orange);
+  box-shadow: 0 4px 12px rgba(242,139,61,.12);
 }
-.speaker-card:hover { transform: translateY(-3px); border-color: var(--orange); }
+.speaker-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(242,139,61,.25); border-color: var(--orange); }
 .speaker-img {
   width: 100%; aspect-ratio: 1; background-size: cover; background-position: center top;
   background-color: var(--paper);
 }
 .speaker-img.placeholder {
   display: flex; align-items: center; justify-content: center;
-  background: var(--paper); color: var(--text3);
+  background: linear-gradient(135deg, rgba(242,139,61,0.08), rgba(242,139,61,0.18)); color: var(--orange);
   font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em;
   font-weight: 800; text-transform: uppercase;
 }
-.speaker-body { padding: 18px 20px 22px; }
+.speaker-body { padding: 18px 20px 22px; border-top: 1px dashed var(--orange); background: rgba(242,139,61,0.03); }
 .speaker-name { font-size: 1.04rem; font-weight: 900; color: var(--text); margin-bottom: 4px; }
 .speaker-title { font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .14em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
 .speaker-desc { font-size: .82rem; color: var(--text2); line-height: 1.85; }
@@ -1178,7 +1180,7 @@ img { max-width: 100%; display: block; }
   <div class="benefits-inner">
     <div class="benefits-head">
       <span class="benefits-tag">What you get</span>
-      <h2 class="benefits-title">このイベントで、<em>得られる3つのこと</em>。</h2>
+      <h2 class="benefits-title">このイベントで、<em>得られる3つのこと</em></h2>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card">
@@ -1256,7 +1258,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Access</span>
-      <h2 class="section-title">会場・<em>アクセス</em>。</h2>
+      <h2 class="section-title">会場・<em>アクセス</em></h2>
       <p class="section-lead">東京たま未来メッセ（東京都立多摩産業交流センター）にて開催。最寄駅はJR「八王子駅」。</p>
     </div>
     <div class="access-grid">
@@ -1316,7 +1318,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Program</span>
-      <h2 class="section-title">当日の<em>プログラム</em>。</h2>
+      <h2 class="section-title">当日の<em>プログラム</em></h2>
       <p class="section-lead">6つの体験が並ぶ回遊型フェス。気になるボックスを開いて、当日の中身を確認してください。</p>
     </div>
     <div class="program-grid">
@@ -1383,7 +1385,7 @@ img { max-width: 100%; display: block; }
         <summary>
           <div class="prog-acc-img" style="background-image:url('img/summit/booth.png');"><span class="prog-acc-label">Booth</span></div>
           <div class="prog-acc-summary">
-            <span class="prog-acc-name">ブース出店</span>
+            <span class="prog-acc-name">ブース出展</span>
             <span class="prog-acc-toggle">詳細</span>
           </div>
         </summary>
@@ -1448,7 +1450,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Schedule</span>
-      <h2 class="section-title">当日の<em>タイムテーブル</em>。</h2>
+      <h2 class="section-title">当日の<em>タイムテーブル</em></h2>
       <p class="section-lead">3つの会場で同時並行進行。気になるプログラムへ自由に行き来できる回遊型フェスです。</p>
     </div>
 
@@ -1520,7 +1522,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Speakers</span>
-      <h2 class="section-title">登<em>壇者</em>。</h2>
+      <h2 class="section-title">登<em>壇者</em></h2>
       <p class="section-lead">学生挑戦者・社会人挑戦者・各業界の一歩先を歩く方々が登壇予定。順次発表します。</p>
     </div>
     <div class="speakers-grid">
@@ -1582,7 +1584,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">For Who</span>
-      <h2 class="section-title">こんな高校生に<em>来てほしい</em>。</h2>
+      <h2 class="section-title">こんな高校生に<em>来てほしい</em></h2>
     </div>
     <div class="target-layout">
       <div class="target-main">
@@ -1656,7 +1658,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Scholarship</span>
-      <h2 class="section-title">地方の挑戦者を、<em>東京へ</em>。</h2>
+      <h2 class="section-title">地方の挑戦者を、<em>東京へ</em></h2>
       <p class="section-lead">地理的な距離が、機会の差にならないように。地方で孤独に挑戦している高校生が、東京の同世代と対等に出会えるように、スカラシップ制度を準備中です。</p>
     </div>
     <div class="scholar-block">
@@ -1700,7 +1702,7 @@ img { max-width: 100%; display: block; }
   <div class="sponsors-inner">
     <div class="section-head">
       <span class="section-tag">Sponsors</span>
-      <h2 class="section-title">協賛企業<em>一覧</em>。</h2>
+      <h2 class="section-title">協賛企業<em>一覧</em></h2>
       <p class="section-lead">NEXY Summit 2026 は、次世代の挑戦者を応援する企業・団体の支援によって実現されます。</p>
     </div>
 
@@ -1756,7 +1758,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">FAQ</span>
-      <h2 class="section-title">よくある<em>質問</em>。</h2>
+      <h2 class="section-title">よくある<em>質問</em></h2>
     </div>
     <div class="faq-list">
       <details class="faq-item"><summary>参加費はかかりますか？<span class="faq-icon"></span></summary><div class="faq-answer">高校生・大学生は<strong>無料</strong>でご参加いただけます。大人（社会人）の方は<strong>3,000円</strong>です。</div></details>
