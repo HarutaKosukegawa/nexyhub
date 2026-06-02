@@ -615,23 +615,21 @@ img { max-width: 100%; display: block; }
 @media (max-width: 800px) { .speakers-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .speakers-grid { grid-template-columns: 1fr; } }
 .speaker-card {
-  background: #fff; border: 2px solid var(--orange); padding: 0; overflow: hidden;
-  transition: transform .3s, border-color .3s, box-shadow .3s;
-  border-top: 6px solid var(--orange);
-  box-shadow: 0 4px 12px rgba(242,139,61,.12);
+  background: #fff; border: 1px solid var(--line); padding: 0; overflow: hidden;
+  transition: transform .3s, border-color .3s;
 }
-.speaker-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(242,139,61,.25); border-color: var(--orange); }
+.speaker-card:hover { transform: translateY(-3px); border-color: var(--orange); }
 .speaker-img {
   width: 100%; aspect-ratio: 1; background-size: cover; background-position: center top;
   background-color: var(--paper);
 }
 .speaker-img.placeholder {
   display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, rgba(242,139,61,0.08), rgba(242,139,61,0.18)); color: var(--orange);
+  background: var(--paper); color: var(--text3);
   font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .18em;
   font-weight: 800; text-transform: uppercase;
 }
-.speaker-body { padding: 18px 20px 22px; border-top: 1px dashed var(--orange); background: rgba(242,139,61,0.03); }
+.speaker-body { padding: 18px 20px 22px; }
 .speaker-name { font-size: 1.04rem; font-weight: 900; color: var(--text); margin-bottom: 4px; }
 .speaker-title { font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .14em; color: var(--orange); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
 .speaker-desc { font-size: .82rem; color: var(--text2); line-height: 1.85; }
@@ -1522,7 +1520,7 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Speakers</span>
-      <h2 class="section-title">登<em>壇者</em></h2>
+      <h2 class="section-title">登壇者</h2>
       <p class="section-lead">学生挑戦者・社会人挑戦者・各業界の一歩先を歩く方々が登壇予定。順次発表します。</p>
     </div>
     <div class="speakers-grid">
