@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NEXY Summit 2026 — 好きなことを、好きなだけ。 | 日本最大級の高校生サミット</title>
-<meta name="description" content="2026年夏・東京。高校生1,000人が集う1DAYサミット。完成された誰かを見るだけのイベントではなく、未完成の違和感や好奇心を持ち寄り、自分の可能性が今ここにあると気づく場所。高校生・大学生無料。">
-<meta name="keywords" content="NEXY Summit 2026,NEXYサミット,高校生サミット,1,000人,東京,2026夏,挑戦,プレゼン大会,登壇セッション,ワークショップ,高校生イベント">
+<title>NEXY Summit 2026（ネクシーサミット）｜日本最大級の高校生サミット｜2026年夏・東京</title>
+<meta name="description" content="NEXY Summit 2026（ネクシーサミット）｜日本最大級の高校生サミット。2026年夏・東京たま未来メッセで高校生1,000人が集う1DAYイベント。プレゼン大会・登壇セッション・ワークショップ・ブース出展。高校生・大学生は無料。地方の挑戦者を支援するスカラシップ制度あり。">
+<meta name="keywords" content="NEXY Summit 2026,NEXYサミット,ネクシーサミット,NEXY summit,NEXYsummit,高校生サミット,高校生イベント,1,000人,東京,2026夏,挑戦,プレゼン大会,登壇セッション,ワークショップ,ブース出展,高校生フェス,学生団体NEXY,小助川晴大,孫正義育英財団,東京たま未来メッセ,八王子,スカラシップ">
 <meta name="author" content="NEXY">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexyhub.jp/summit.html">
@@ -14,14 +14,14 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexyhub.jp/summit.html">
-<meta property="og:title" content="NEXY Summit 2026 — 好きなことを、好きなだけ。">
-<meta property="og:description" content="2026年夏・東京・高校生1,000人。日本最大級の高校生サミット。完成していなくていい。違和感を持ってきてください。">
+<meta property="og:title" content="NEXY Summit 2026（ネクシーサミット）｜日本最大級の高校生サミット">
+<meta property="og:description" content="2026年夏・東京・高校生1,000人。プレゼン大会・登壇セッション・ワークショップ・ブース出展。高校生・大学生は無料。完成していなくていい、違和感を持ってきてください。">
 <meta property="og:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
 <meta property="og:site_name" content="NEXY">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@nexy_hub">
-<meta name="twitter:title" content="NEXY Summit 2026 — 好きなことを、好きなだけ。">
+<meta name="twitter:title" content="NEXY Summit 2026 ｜ 日本最大級の高校生サミット">
 <meta name="twitter:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -607,6 +607,37 @@ img { max-width: 100%; display: block; }
 }
 .prog-acc.cat-mint .prog-acc-list li::before { background: var(--mint); }
 
+
+/* ===== PROGRAM LINK CARDS ===== */
+.prog-link {
+  background: #fff; border: 2px solid var(--line); padding: 0;
+  overflow: hidden; transition: transform .3s, border-color .3s, box-shadow .3s;
+  text-decoration: none; color: var(--text); display: block;
+}
+.prog-link:hover { transform: translateY(-4px); border-color: var(--orange); box-shadow: 0 18px 40px rgba(242,139,61,.18); }
+.prog-link-img {
+  width: 100%; aspect-ratio: 4/3;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.prog-link-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 100%);
+}
+.prog-link-label {
+  position: absolute; left: 20px; bottom: 16px; z-index: 2;
+  background: var(--orange); color: #fff;
+  font-family: 'Inter', sans-serif; font-size: .66rem; letter-spacing: .22em;
+  padding: 5px 12px; font-weight: 900; text-transform: uppercase;
+}
+.prog-link-body { padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.prog-link-name { font-size: 1.04rem; font-weight: 900; color: var(--text); }
+.prog-link-arrow {
+  font-family: 'Inter', sans-serif; font-size: .76rem; font-weight: 900;
+  color: var(--orange); letter-spacing: .04em; white-space: nowrap;
+}
+.prog-link:hover .prog-link-arrow { transform: translateX(4px); }
+
 /* ===== SPEAKERS (登壇者) ===== */
 .speakers-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
@@ -1116,6 +1147,76 @@ img { max-width: 100%; display: block; }
 }
 
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "NEXY Summit 2026",
+  "alternateName": ["ネクシーサミット", "NEXYサミット", "NEXY summit"],
+  "startDate": "2026-08-01T10:00",
+  "endDate": "2026-08-31T18:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "東京たま未来メッセ（東京都立多摩産業交流センター）",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "別所2-65",
+      "addressLocality": "八王子市",
+      "addressRegion": "東京都",
+      "postalCode": "192-0364",
+      "addressCountry": "JP"
+    }
+  },
+  "description": "日本最大級の高校生サミット。2026年夏、高校生1,000人が東京たま未来メッセに集う1DAYイベント。プレゼン大会、登壇セッション、ワークショップ、ブース出展、ストーリー展示、コミュニティ交流。",
+  "image": "https://nexyhub.jp/img/summit/summit_ogp.jpg",
+  "url": "https://nexyhub.jp/summit.html",
+  "organizer": {
+    "@type": "Organization",
+    "name": "学生団体 NEXY",
+    "url": "https://nexyhub.jp",
+    "sameAs": ["https://www.instagram.com/nexy.hub/", "https://x.com/nexy_hub"]
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "高校生",
+      "price": "0",
+      "priceCurrency": "JPY",
+      "availability": "https://schema.org/InStock",
+      "url": "https://forms.gle/2zACzKb6H3JshrJz8"
+    },
+    {
+      "@type": "Offer",
+      "name": "大学生",
+      "price": "0",
+      "priceCurrency": "JPY",
+      "availability": "https://schema.org/InStock",
+      "url": "https://forms.gle/2zACzKb6H3JshrJz8"
+    },
+    {
+      "@type": "Offer",
+      "name": "社会人",
+      "price": "3000",
+      "priceCurrency": "JPY",
+      "availability": "https://schema.org/InStock",
+      "url": "https://forms.gle/2zACzKb6H3JshrJz8"
+    }
+  ],
+  "performer": {
+    "@type": "Organization",
+    "name": "学生団体 NEXY"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "高校生・大学生・社会人",
+    "suggestedMinAge": 15
+  }
+}
+</script>
+
 </head>
 <body>
 
@@ -1321,118 +1422,53 @@ img { max-width: 100%; display: block; }
     </div>
     <div class="program-grid">
 
-      <details class="prog-acc">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/presentation.png');"><span class="prog-acc-label">Main Stage</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">プレゼン大会</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">テーマは「やりたいをぶつけろ」。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る。</p>
-          <ul class="prog-acc-list">
-            <li>1→100 部門：すでに事業・プロジェクトを動かしている学生</li>
-            <li>0→1 部門：まだ形になっていない夢を語る高校生</li>
-            <li>オープニング / クロージング セッション</li>
-            <li>1,000人の前で「やりたい」を宣言する場</li>
-          </ul>
+      <a href="summit-presentation.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/presentation.png');"><span class="prog-link-label">Main Stage</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">プレゼン大会</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
-      <details class="prog-acc cat-mint">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/session.png');"><span class="prog-acc-label">Session</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">登壇セッション</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">挑戦のはじめ方を、一歩先の挑戦者と社会人が語るパネル / トーク。</p>
-          <ul class="prog-acc-list">
-            <li>挑戦のはじめ方</li>
-            <li>自分を知るとは？</li>
-            <li>学生挑戦者 × 社会人挑戦者</li>
-            <li>AI時代における生き方</li>
-            <li>いい大人との出会い方</li>
-          </ul>
+      <a href="summit-session.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/session.png');"><span class="prog-link-label">Sub Stage</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">登壇セッション</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
-      <details class="prog-acc">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/workshop.png');"><span class="prog-acc-label">Workshop</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">ワークショップ</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">「やりたい」が生まれる前のモヤモヤを、手を動かして整理する時間。</p>
-          <ul class="prog-acc-list">
-            <li>違和感の言語化</li>
-            <li>30秒で自分のテーマを語る</li>
-            <li>明日からの3アクションを決める</li>
-            <li>同世代との対話を通じて自分を見つめ直す</li>
-          </ul>
+      <a href="summit-workshop.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/workshop.png');"><span class="prog-link-label">Workshop</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">ワークショップ</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
-      <details class="prog-acc cat-mint">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/booth.png');"><span class="prog-acc-label">Booth</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">ブース出展</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">企業・教育機関・支援団体のブースが並ぶ、社会との接点を作る場所。</p>
-          <ul class="prog-acc-list">
-            <li>企業ブース</li>
-            <li>教育機関ブース</li>
-            <li>起業支援団体ブース</li>
-            <li>探究 / 留学 / 奨学金団体ブース</li>
-          </ul>
+      <a href="summit-booth.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/booth.png');"><span class="prog-link-label">Booth</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">ブース出展</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
-      <details class="prog-acc">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/community.png');"><span class="prog-acc-label">Community</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">交流ブース</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">同じ熱量やモヤモヤを持つ仲間と出会う、コミュニティの場所。</p>
-          <ul class="prog-acc-list">
-            <li>少人数での対話セッション</li>
-            <li>テーマ別グループ交流</li>
-            <li>イベント後もつながりが続くコミュニティ</li>
-          </ul>
+      <a href="summit-community.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/community.png');"><span class="prog-link-label">Community</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">交流ブース</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
-      <details class="prog-acc cat-mint">
-        <summary>
-          <div class="prog-acc-img" style="background-image:url('img/summit/story.png');"><span class="prog-acc-label">Story Show</span></div>
-          <div class="prog-acc-summary">
-            <span class="prog-acc-name">ストーリー展</span>
-            <span class="prog-acc-toggle">詳細</span>
-          </div>
-        </summary>
-        <div class="prog-acc-body">
-          <p class="prog-acc-desc">一歩先の挑戦者の「はじまり」を展示する。完成された成功ではなく、未完成からどう動き始めたかを見せる場所。</p>
-          <ul class="prog-acc-list">
-            <li>挑戦者の最初の一歩を写真と言葉で展示</li>
-            <li>失敗・違和感・モヤモヤ・小さなはじまり</li>
-            <li>「自分にもできる」を体感する展示</li>
-          </ul>
+      <a href="summit-story.html" class="prog-link">
+        <div class="prog-link-img" style="background-image:url('img/summit/story.png');"><span class="prog-link-label">Story Show</span></div>
+        <div class="prog-link-body">
+          <span class="prog-link-name">ストーリー展</span>
+          <span class="prog-link-arrow">詳細を見る →</span>
         </div>
-      </details>
+      </a>
 
     </div>
     <div style="text-align:center;margin-top:48px;">
