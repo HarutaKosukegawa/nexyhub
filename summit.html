@@ -669,6 +669,15 @@ img { max-width: 100%; display: block; }
 .target-card.t2 .target-list li::before, .target-card.t4 .target-list li::before { border-color: #4cb0a0; }
 
 
+
+.target-card { overflow: hidden; }
+.target-img {
+  margin: -28px -28px 18px; aspect-ratio: 16/9;
+  overflow: hidden; background: var(--paper);
+}
+.target-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.target-card:hover .target-img img { transform: scale(1.04); }
+
 /* ===== TARGET SECTION (2カラム+価格) ===== */
 .target-layout {
   display: grid; grid-template-columns: 1fr 380px; gap: 32px;
@@ -1589,6 +1598,7 @@ img { max-width: 100%; display: block; }
       <div class="target-main">
         <div class="target-grid">
           <div class="target-card t3">
+            <div class="target-img"><img src="img/summit/target_active.png" alt="アクティブ層"></div>
             <div class="target-tag">Type 01 — Active</div>
             <div class="target-name">アクティブ層</div>
             <ul class="target-list">
@@ -1599,6 +1609,7 @@ img { max-width: 100%; display: block; }
             </ul>
           </div>
           <div class="target-card t1">
+            <div class="target-img"><img src="img/summit/target_starter.png" alt="スターター層"></div>
             <div class="target-tag">Type 02 — Starter</div>
             <div class="target-name">スターター層</div>
             <ul class="target-list">
@@ -1609,6 +1620,7 @@ img { max-width: 100%; display: block; }
             </ul>
           </div>
           <div class="target-card t2">
+            <div class="target-img"><img src="img/summit/target_wandering.png" alt="モヤモヤ層"></div>
             <div class="target-tag">Type 03 — Wandering</div>
             <div class="target-name">モヤモヤ層</div>
             <ul class="target-list">
@@ -1619,6 +1631,7 @@ img { max-width: 100%; display: block; }
             </ul>
           </div>
           <div class="target-card t4">
+            <div class="target-img"><img src="img/summit/target_local.png" alt="ローカル層"></div>
             <div class="target-tag">Type 04 — Local</div>
             <div class="target-name">ローカル層</div>
             <ul class="target-list">
