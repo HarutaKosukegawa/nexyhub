@@ -82,30 +82,7 @@ body::after {
   opacity: 0.9;
 }
 
-/* SVGペイントブラシ装飾（左上＋右下） */
-.bg-brush-tl, .bg-brush-br {
-  position: fixed; pointer-events: none; z-index: 0;
-}
-.bg-brush-tl { top: 80px; left: -40px; width: 280px; height: 120px; }
-.bg-brush-br { bottom: 40px; right: -40px; width: 320px; height: 140px; }
-.bg-brush-tl svg, .bg-brush-br svg { width: 100%; height: 100%; }
 
-/* ふわっと揺れるアニメ */
-@keyframes brushFloat {
-  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
-  50% { transform: translate(8px, -6px) rotate(-4deg); }
-}
-@keyframes brushFloat2 {
-  0%, 100% { transform: translate(0, 0) rotate(6deg); }
-  50% { transform: translate(-8px, 6px) rotate(4deg); }
-}
-.bg-brush-tl { animation: brushFloat 12s ease-in-out infinite; }
-.bg-brush-br { animation: brushFloat2 14s ease-in-out infinite; }
-
-@media (max-width: 800px) {
-  .bg-brush-tl { width: 180px; height: 80px; top: 70px; }
-  .bg-brush-br { width: 200px; height: 90px; }
-}
 body > * { position: relative; z-index: 1; }
 /* ===== PARTICLES CANVAS ===== */
 #particles {
@@ -958,45 +935,334 @@ img { max-width: 100%; display: block; }
 }
 .footer a { color: var(--text2); text-decoration: none; }
 .footer a:hover { color: var(--orange); }
+/* ===== PAINT DECORATIONS (大規模ペンキ装飾) ===== */
+.paint-deco { position: fixed; pointer-events: none; z-index: 0; }
+.paint-deco svg { width: 100%; height: 100%; display: block; }
+
+/* SVGフィルター: ペンキざらつき */
+.paint-deco svg path { mix-blend-mode: multiply; }
+
+/* 配置 */
+.pd-tl1 { top: 80px;   left: -60px;   width: 360px; height: 160px; }
+.pd-tr1 { top: 100px;  right: -80px;  width: 380px; height: 180px; }
+.pd-tl2 { top: 240px;  left: -30px;   width: 200px; height: 100px; }
+.pd-tr2 { top: 280px;  right: -20px;  width: 220px; height: 110px; }
+.pd-ml1 { top: 45%;    left: -100px;  width: 320px; height: 200px; }
+.pd-mr1 { top: 50%;    right: -100px; width: 340px; height: 220px; }
+.pd-bl1 { bottom: 180px; left: -60px; width: 380px; height: 200px; }
+.pd-br1 { bottom: 220px; right: -80px; width: 400px; height: 220px; }
+.pd-bl2 { bottom: 40px;  left: -40px;  width: 240px; height: 120px; }
+.pd-br2 { bottom: 60px;  right: -30px; width: 260px; height: 130px; }
+
+/* 揺れアニメ */
+@keyframes paintFloatA { 0%,100%{transform:translate(0,0) rotate(-6deg);} 50%{transform:translate(10px,-8px) rotate(-3deg);} }
+@keyframes paintFloatB { 0%,100%{transform:translate(0,0) rotate(8deg);}  50%{transform:translate(-10px,8px) rotate(5deg);} }
+@keyframes paintFloatC { 0%,100%{transform:translate(0,0) rotate(-3deg);} 50%{transform:translate(6px,12px) rotate(-1deg);} }
+@keyframes paintFloatD { 0%,100%{transform:translate(0,0) rotate(4deg);}  50%{transform:translate(-6px,-12px) rotate(7deg);} }
+@keyframes paintFloatE { 0%,100%{transform:translate(0,0) rotate(-9deg);} 50%{transform:translate(-8px,6px) rotate(-12deg);} }
+@keyframes paintFloatF { 0%,100%{transform:translate(0,0) rotate(11deg);} 50%{transform:translate(8px,-6px) rotate(14deg);} }
+
+.pd-tl1 { animation: paintFloatA 13s ease-in-out infinite; }
+.pd-tr1 { animation: paintFloatB 15s ease-in-out infinite; }
+.pd-tl2 { animation: paintFloatC 18s ease-in-out infinite; }
+.pd-tr2 { animation: paintFloatD 16s ease-in-out infinite; }
+.pd-ml1 { animation: paintFloatE 20s ease-in-out infinite; }
+.pd-mr1 { animation: paintFloatF 19s ease-in-out infinite; }
+.pd-bl1 { animation: paintFloatA 17s ease-in-out infinite reverse; }
+.pd-br1 { animation: paintFloatB 21s ease-in-out infinite reverse; }
+.pd-bl2 { animation: paintFloatC 14s ease-in-out infinite reverse; }
+.pd-br2 { animation: paintFloatD 12s ease-in-out infinite reverse; }
+
+@media (max-width: 800px) {
+  .pd-tl1, .pd-tr1, .pd-bl1, .pd-br1 { width: 200px; height: 100px; }
+  .pd-tl2, .pd-tr2, .pd-bl2, .pd-br2 { width: 140px; height: 70px; }
+  .pd-ml1, .pd-mr1 { width: 180px; height: 110px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paint-deco { animation: none !important; }
+}
+
 </style>
 </head>
 <body>
 
 <canvas id="particles" aria-hidden="true"></canvas>
 
-<div class="bg-brush-tl" aria-hidden="true">
-  <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bg-grad-tl" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#F28B3D"/>
-        <stop offset="100%" stop-color="#FFB05E"/>
-      </linearGradient>
-    </defs>
-    <path d="M0,40 Q40,18 90,30 T200,28 Q250,28 295,22 L295,40 Q250,46 200,42 T90,46 Q40,46 0,52 Z" fill="url(#bg-grad-tl)" opacity="0.55"/>
-    <path d="M10,80 Q60,68 120,72 T235,68 Q270,68 295,62 L295,82 Q270,86 235,84 T120,90 Q60,90 10,96 Z" fill="#2EBDB6" opacity="0.42"/>
-    <circle cx="40" cy="60" r="3" fill="#F28B3D" opacity="0.6"/>
-    <circle cx="70" cy="55" r="2" fill="#2EBDB6" opacity="0.6"/>
-    <circle cx="180" cy="65" r="2.5" fill="#F28B3D" opacity="0.5"/>
-    <circle cx="220" cy="55" r="2" fill="#2EBDB6" opacity="0.5"/>
-  </svg>
-</div>
+<!-- ===== PAINT DECORATIONS ===== -->
+<div class="paint-deco pd-tl1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-tl1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F28B3D"/>
+      <stop offset="100%" stop-color="#FFB05E"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-tl1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#2EBDB6" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-tr1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-tr1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2EBDB6"/>
+      <stop offset="100%" stop-color="#74D4C3"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-tr1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#F28B3D" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-tl2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-tl2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2EBDB6"/>
+      <stop offset="100%" stop-color="#74D4C3"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-tl2)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#F28B3D" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-tr2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-tr2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F28B3D"/>
+      <stop offset="100%" stop-color="#FFB05E"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-tr2)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#2EBDB6" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-ml1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-ml1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F28B3D"/>
+      <stop offset="100%" stop-color="#E8523B"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-ml1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#2EBDB6" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#E8523B" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#E8523B" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#E8523B" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-mr1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-mr1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2EBDB6"/>
+      <stop offset="100%" stop-color="#74D4C3"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-mr1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#F28B3D" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-bl1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-bl1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2EBDB6"/>
+      <stop offset="100%" stop-color="#74D4C3"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-bl1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#F28B3D" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-br1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-br1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F28B3D"/>
+      <stop offset="100%" stop-color="#FFB05E"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-br1)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#2EBDB6" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-bl2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-bl2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F28B3D"/>
+      <stop offset="100%" stop-color="#E8523B"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-bl2)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#2EBDB6" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#E8523B" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#E8523B" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#E8523B" opacity="0.5"/>
+  
+</svg></div>
+<div class="paint-deco pd-br2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g-br2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2EBDB6"/>
+      <stop offset="100%" stop-color="#74D4C3"/>
+    </linearGradient>
+  </defs>
+  <!-- 主ストローク（ジグザグペンキ） -->
+  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
+        fill="url(#g-br2)" opacity="0.62"/>
+  <!-- アクセントブラシ（細） -->
+  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
+        fill="#F28B3D" opacity="0.5"/>
+  <!-- 飛び散る粒 -->
+  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
+  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
+  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
+  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
+  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
+  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
+  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
+  <!-- ドリップ（垂れ） -->
+  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
+  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
+  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
+  
+</svg></div>
 
-<div class="bg-brush-br" aria-hidden="true">
-  <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bg-grad-br" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#2EBDB6"/>
-        <stop offset="100%" stop-color="#74D4C3"/>
-      </linearGradient>
-    </defs>
-    <path d="M0,60 Q50,40 110,46 T230,44 Q280,44 335,38 L335,60 Q280,64 230,60 T110,64 Q50,64 0,72 Z" fill="url(#bg-grad-br)" opacity="0.5"/>
-    <path d="M10,100 Q70,86 140,92 T270,88 Q310,88 335,82 L335,104 Q310,108 270,106 T140,110 Q70,110 10,116 Z" fill="#F28B3D" opacity="0.42"/>
-    <circle cx="60" cy="78" r="3" fill="#2EBDB6" opacity="0.6"/>
-    <circle cx="100" cy="74" r="2" fill="#F28B3D" opacity="0.55"/>
-    <circle cx="220" cy="80" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-    <circle cx="270" cy="76" r="2" fill="#F28B3D" opacity="0.5"/>
-  </svg>
-</div>
+
+
 
 <!-- NAV -->
 <nav class="nav">
