@@ -935,52 +935,50 @@ img { max-width: 100%; display: block; }
 }
 .footer a { color: var(--text2); text-decoration: none; }
 .footer a:hover { color: var(--orange); }
-/* ===== PAINT DECORATIONS (大規模ペンキ装飾) ===== */
-.paint-deco { position: fixed; pointer-events: none; z-index: 0; }
-.paint-deco svg { width: 100%; height: 100%; display: block; }
 
-/* SVGフィルター: ペンキざらつき */
-.paint-deco svg path { mix-blend-mode: multiply; }
 
-/* 配置 */
-.pd-tl1 { top: 80px;   left: -60px;   width: 360px; height: 160px; }
-.pd-tr1 { top: 100px;  right: -80px;  width: 380px; height: 180px; }
-.pd-tl2 { top: 240px;  left: -30px;   width: 200px; height: 100px; }
-.pd-tr2 { top: 280px;  right: -20px;  width: 220px; height: 110px; }
-.pd-ml1 { top: 45%;    left: -100px;  width: 320px; height: 200px; }
-.pd-mr1 { top: 50%;    right: -100px; width: 340px; height: 220px; }
-.pd-bl1 { bottom: 180px; left: -60px; width: 380px; height: 200px; }
-.pd-br1 { bottom: 220px; right: -80px; width: 400px; height: 220px; }
-.pd-bl2 { bottom: 40px;  left: -40px;  width: 240px; height: 120px; }
-.pd-br2 { bottom: 60px;  right: -30px; width: 260px; height: 130px; }
+/* ===== CANVA PAINT DECORATIONS (リアル本物ペンキ装飾) ===== */
+.canva-paint { position: fixed; pointer-events: none; z-index: 0; }
+.canva-paint img { width: 100%; height: auto; display: block; }
 
-/* 揺れアニメ */
-@keyframes paintFloatA { 0%,100%{transform:translate(0,0) rotate(-6deg);} 50%{transform:translate(10px,-8px) rotate(-3deg);} }
-@keyframes paintFloatB { 0%,100%{transform:translate(0,0) rotate(8deg);}  50%{transform:translate(-10px,8px) rotate(5deg);} }
-@keyframes paintFloatC { 0%,100%{transform:translate(0,0) rotate(-3deg);} 50%{transform:translate(6px,12px) rotate(-1deg);} }
-@keyframes paintFloatD { 0%,100%{transform:translate(0,0) rotate(4deg);}  50%{transform:translate(-6px,-12px) rotate(7deg);} }
-@keyframes paintFloatE { 0%,100%{transform:translate(0,0) rotate(-9deg);} 50%{transform:translate(-8px,6px) rotate(-12deg);} }
-@keyframes paintFloatF { 0%,100%{transform:translate(0,0) rotate(11deg);} 50%{transform:translate(8px,-6px) rotate(14deg);} }
+/* 四辺＋スプラッタ配置 */
+.cp-tl    { top: 60px;   left: 0;      width: 380px; opacity: 0.95; }
+.cp-tr    { top: 80px;   right: 0;     width: 360px; opacity: 0.92; transform: scaleX(-1); }
+.cp-left  { top: 30%;    left: -20px;  width: 260px; opacity: 0.85; }
+.cp-right { top: 35%;    right: -20px; width: 280px; opacity: 0.88; }
+.cp-bl    { bottom: 40px; left: 0;     width: 360px; opacity: 0.9; transform: scaleY(-1); }
+.cp-br    { bottom: 60px; right: 0;    width: 400px; opacity: 0.95; }
+.cp-sp-tl { top: 20%; left: 28%; width: 200px; opacity: 0.75; }
+.cp-sp-tr { top: 22%; right: 26%; width: 220px; opacity: 0.78; transform: scaleX(-1); }
+.cp-sp-bl { bottom: 28%; left: 20%; width: 200px; opacity: 0.72; transform: scaleY(-1); }
+.cp-sp-br { bottom: 30%; right: 22%; width: 220px; opacity: 0.75; transform: rotate(180deg); }
 
-.pd-tl1 { animation: paintFloatA 13s ease-in-out infinite; }
-.pd-tr1 { animation: paintFloatB 15s ease-in-out infinite; }
-.pd-tl2 { animation: paintFloatC 18s ease-in-out infinite; }
-.pd-tr2 { animation: paintFloatD 16s ease-in-out infinite; }
-.pd-ml1 { animation: paintFloatE 20s ease-in-out infinite; }
-.pd-mr1 { animation: paintFloatF 19s ease-in-out infinite; }
-.pd-bl1 { animation: paintFloatA 17s ease-in-out infinite reverse; }
-.pd-br1 { animation: paintFloatB 21s ease-in-out infinite reverse; }
-.pd-bl2 { animation: paintFloatC 14s ease-in-out infinite reverse; }
-.pd-br2 { animation: paintFloatD 12s ease-in-out infinite reverse; }
+/* ふんわり揺れ */
+@keyframes paintBreath { 0%,100%{transform:translate(0,0);} 50%{transform:translate(6px,-4px);} }
+@keyframes paintBreath2 { 0%,100%{transform:scaleX(-1) translate(0,0);} 50%{transform:scaleX(-1) translate(-6px,4px);} }
+@keyframes paintBreath3 { 0%,100%{transform:scaleY(-1) translate(0,0);} 50%{transform:scaleY(-1) translate(6px,4px);} }
+@keyframes paintBreath4 { 0%,100%{transform:rotate(180deg) translate(0,0);} 50%{transform:rotate(180deg) translate(-6px,-4px);} }
+@keyframes paintBreathSimple { 0%,100%{opacity: var(--op, 1);} 50%{opacity: calc(var(--op, 1) * 0.85);} }
+
+.cp-tl    { animation: paintBreath 14s ease-in-out infinite; }
+.cp-tr    { animation: paintBreath2 16s ease-in-out infinite; }
+.cp-left  { animation: paintBreathSimple 12s ease-in-out infinite; --op: 0.85; }
+.cp-right { animation: paintBreathSimple 13s ease-in-out infinite; --op: 0.88; }
+.cp-bl    { animation: paintBreath3 17s ease-in-out infinite; }
+.cp-br    { animation: paintBreath 18s ease-in-out infinite; }
+.cp-sp-tl { animation: paintBreathSimple 9s  ease-in-out infinite; --op: 0.75; }
+.cp-sp-tr { animation: paintBreathSimple 10s ease-in-out infinite; --op: 0.78; }
+.cp-sp-bl { animation: paintBreathSimple 11s ease-in-out infinite; --op: 0.72; }
+.cp-sp-br { animation: paintBreathSimple 8s  ease-in-out infinite; --op: 0.75; }
 
 @media (max-width: 800px) {
-  .pd-tl1, .pd-tr1, .pd-bl1, .pd-br1 { width: 200px; height: 100px; }
-  .pd-tl2, .pd-tr2, .pd-bl2, .pd-br2 { width: 140px; height: 70px; }
-  .pd-ml1, .pd-mr1 { width: 180px; height: 110px; }
+  .cp-tl, .cp-tr, .cp-bl, .cp-br { width: 220px; }
+  .cp-left, .cp-right { width: 160px; }
+  .cp-sp-tl, .cp-sp-tr, .cp-sp-bl, .cp-sp-br { width: 130px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .paint-deco { animation: none !important; }
+  .canva-paint { animation: none !important; }
 }
 
 </style>
@@ -989,279 +987,17 @@ img { max-width: 100%; display: block; }
 
 <canvas id="particles" aria-hidden="true"></canvas>
 
-<!-- ===== PAINT DECORATIONS ===== -->
-<div class="paint-deco pd-tl1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-tl1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F28B3D"/>
-      <stop offset="100%" stop-color="#FFB05E"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-tl1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#2EBDB6" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-tr1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-tr1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2EBDB6"/>
-      <stop offset="100%" stop-color="#74D4C3"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-tr1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#F28B3D" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-tl2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-tl2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2EBDB6"/>
-      <stop offset="100%" stop-color="#74D4C3"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-tl2)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#F28B3D" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-tr2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-tr2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F28B3D"/>
-      <stop offset="100%" stop-color="#FFB05E"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-tr2)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#2EBDB6" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-ml1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-ml1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F28B3D"/>
-      <stop offset="100%" stop-color="#E8523B"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-ml1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#2EBDB6" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#E8523B" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#E8523B" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#E8523B" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-mr1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-mr1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2EBDB6"/>
-      <stop offset="100%" stop-color="#74D4C3"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-mr1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#F28B3D" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-bl1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-bl1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2EBDB6"/>
-      <stop offset="100%" stop-color="#74D4C3"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-bl1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#F28B3D" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-br1" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-br1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F28B3D"/>
-      <stop offset="100%" stop-color="#FFB05E"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-br1)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#2EBDB6" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#FFB05E" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#FFB05E" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#FFB05E" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-bl2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-bl2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F28B3D"/>
-      <stop offset="100%" stop-color="#E8523B"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-bl2)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#2EBDB6" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#F28B3D" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#E8523B" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#2EBDB6" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#E8523B" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#F28B3D" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#F28B3D" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#2EBDB6" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#E8523B" opacity="0.5"/>
-  
-</svg></div>
-<div class="paint-deco pd-br2" aria-hidden="true"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g-br2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2EBDB6"/>
-      <stop offset="100%" stop-color="#74D4C3"/>
-    </linearGradient>
-  </defs>
-  <!-- 主ストローク（ジグザグペンキ） -->
-  <path d="M0,40 Q60,18 130,30 Q200,42 280,28 Q340,18 395,30 L395,55 Q340,46 280,52 Q200,68 130,58 Q60,46 0,62 Z"
-        fill="url(#g-br2)" opacity="0.62"/>
-  <!-- アクセントブラシ（細） -->
-  <path d="M20,90 Q90,80 170,86 Q250,92 320,82 L320,98 Q250,108 170,102 Q90,96 20,108 Z"
-        fill="#F28B3D" opacity="0.5"/>
-  <!-- 飛び散る粒 -->
-  <circle cx="30"  cy="70" r="4"   fill="#2EBDB6" opacity="0.7"/>
-  <circle cx="55"  cy="75" r="2.5" fill="#F28B3D" opacity="0.65"/>
-  <circle cx="100" cy="68" r="3"   fill="#74D4C3" opacity="0.6"/>
-  <circle cx="170" cy="115" r="3.5" fill="#2EBDB6" opacity="0.65"/>
-  <circle cx="230" cy="72" r="2.5" fill="#F28B3D" opacity="0.55"/>
-  <circle cx="290" cy="118" r="3"   fill="#74D4C3" opacity="0.55"/>
-  <circle cx="355" cy="78" r="3.5" fill="#2EBDB6" opacity="0.55"/>
-  <!-- ドリップ（垂れ） -->
-  <path d="M85,60 L83,82 L86,82 Z" fill="#2EBDB6" opacity="0.5"/>
-  <path d="M200,60 L198,86 L201,86 Z" fill="#F28B3D" opacity="0.45"/>
-  <path d="M320,60 L318,80 L321,80 Z" fill="#74D4C3" opacity="0.5"/>
-  
-</svg></div>
-
-
+<!-- ===== CANVA PAINT DECORATIONS ===== -->
+<div class="canva-paint cp-tl" aria-hidden="true"><img src="img/summit/paint/p_tl.png" alt=""></div>
+<div class="canva-paint cp-tr" aria-hidden="true"><img src="img/summit/paint/p_tl.png" alt=""></div>
+<div class="canva-paint cp-left" aria-hidden="true"><img src="img/summit/paint/p_left.png" alt=""></div>
+<div class="canva-paint cp-right" aria-hidden="true"><img src="img/summit/paint/p_right.png" alt=""></div>
+<div class="canva-paint cp-bl" aria-hidden="true"><img src="img/summit/paint/p_br.png" alt=""></div>
+<div class="canva-paint cp-br" aria-hidden="true"><img src="img/summit/paint/p_br.png" alt=""></div>
+<div class="canva-paint cp-sp-tl" aria-hidden="true"><img src="img/summit/paint/sp_left.png" alt=""></div>
+<div class="canva-paint cp-sp-tr" aria-hidden="true"><img src="img/summit/paint/sp_right.png" alt=""></div>
+<div class="canva-paint cp-sp-bl" aria-hidden="true"><img src="img/summit/paint/sp_left.png" alt=""></div>
+<div class="canva-paint cp-sp-br" aria-hidden="true"><img src="img/summit/paint/sp_right.png" alt=""></div>
 
 
 <!-- NAV -->
