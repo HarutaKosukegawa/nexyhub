@@ -450,8 +450,8 @@ img { max-width: 100%; display: block; }
 .ov-val strong { color: var(--text); font-weight: 900; }
 
 .num-row {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  max-width: 880px; margin: 48px auto 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  max-width: 880px; margin: 32px auto 0;
 }
 @media (max-width: 700px) { .num-row { grid-template-columns: 1fr; } }
 .num-cell {
@@ -614,16 +614,6 @@ img { max-width: 100%; display: block; }
 }
 
 /* ===== TARGET (参加者) ===== */
-.target-section { position: relative; overflow: hidden; }
-.target-hero {
-  width: 100%; max-width: 1080px; aspect-ratio: 21/9;
-  margin: 0 auto 48px; background-size: cover; background-position: center 30%;
-  position: relative;
-}
-.target-hero::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(255,255,255,.85) 100%);
-}
 .target-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   max-width: 1080px; margin: 0 auto;
@@ -652,6 +642,41 @@ img { max-width: 100%; display: block; }
   transform: rotate(-45deg);
 }
 .target-card.t2 .target-list li::before, .target-card.t4 .target-list li::before { border-color: #4cb0a0; }
+
+
+/* ===== TARGET SECTION (2カラム+価格) ===== */
+.target-layout {
+  display: grid; grid-template-columns: 1fr 380px; gap: 32px;
+  max-width: 1100px; margin: 0 auto; align-items: start;
+}
+@media (max-width: 900px) {
+  .target-layout { grid-template-columns: 1fr; }
+}
+.target-main { display: flex; flex-direction: column; gap: 22px; }
+.target-photo {
+  position: sticky; top: 100px;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.1);
+}
+.target-photo img { width: 100%; height: auto; display: block; }
+@media (max-width: 900px) { .target-photo { position: static; max-width: 480px; margin: 0 auto; } }
+
+.target-pricing {
+  background: #fff; border: 2px solid var(--orange);
+  border-radius: 14px; padding: 22px 26px;
+}
+.price-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px dashed var(--line);
+}
+.price-row:last-child { border-bottom: none; }
+.price-label { font-size: .96rem; font-weight: 800; color: var(--text); }
+.price-value {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: 1.18rem; letter-spacing: .02em;
+}
+.price-free { color: var(--mint-deep, #4cb0a0); }
+.price-paid { color: var(--orange); }
 
 /* ===== SCHOLARSHIP ===== */
 .scholar-block {
@@ -1081,7 +1106,6 @@ img { max-width: 100%; display: block; }
     <li><a href="#access">アクセス</a></li>
     <li><a href="#access">アクセス</a>
   <a href="#program">プログラム</a></li>
-    <li><a href="#schedule">スケジュール</a></li>
     <li><a href="#speakers">登壇者</a></li>
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
@@ -1095,8 +1119,7 @@ img { max-width: 100%; display: block; }
   <a href="#top">TOP</a>
   <a href="#about">NEXYサミットとは？</a>
   <a href="#access">アクセス</a>
-  <a href="#program">プログラム</a>
-  <a href="#schedule">スケジュール</a>
+  <a href="#program">コンテンツ</a>
   <a href="#speakers">登壇者</a>
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
@@ -1155,6 +1178,21 @@ img { max-width: 100%; display: block; }
         <div class="benefit-desc">地方も都市も関係ない。同じ熱量を持つ高校生が一堂に集う場。イベント後もコミュニティでつながり続けられる。</div>
       </div>
     </div>
+
+    <div class="num-row">
+      <div class="num-cell">
+        <div class="num-num">1,000<small>名</small></div>
+        <div class="num-label">参加予定高校生</div>
+      </div>
+      <div class="num-cell">
+        <div class="num-num">1<small>DAY</small></div>
+        <div class="num-label">開催形式</div>
+      </div>
+      <div class="num-cell">
+        <div class="num-num">100<small>名</small></div>
+        <div class="num-label">地方学生支援 最大予定</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1193,52 +1231,6 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
-
-<!-- SECTION 03: OVERVIEW -->
-<section class="section alt" id="overview">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="section-tag">Overview</span>
-      <h2 class="section-title">開催<em>概要</em>。</h2>
-    </div>
-    <div class="overview-grid">
-      <div class="ov-key">Event</div>
-      <div class="ov-val"><strong>NEXY Summit 2026</strong></div>
-      <div class="ov-key">Date</div>
-      <div class="ov-val"><strong>2026年夏予定</strong></div>
-      <div class="ov-key">Time</div>
-      <div class="ov-val">10:00 〜 18:00</div>
-      <div class="ov-key">Venue</div>
-      <div class="ov-val"><strong>東京たま未来メッセ</strong><br><span style="font-size:.8rem;color:var(--text2);">（東京都立多摩産業交流センター・東京都八王子市）</span></div>
-      <div class="ov-key">Target</div>
-      <div class="ov-val">全国の高校生</div>
-      <div class="ov-key">Capacity</div>
-      <div class="ov-val">目標 <strong>1,000名</strong></div>
-      <div class="ov-key">Fee</div>
-      <div class="ov-val"><strong>高校生・大学生 無料</strong> ／ 大人 <strong>3,000円</strong></div>
-      <div class="ov-key">Format</div>
-      <div class="ov-val">1DAY ／ 回遊型フェス</div>
-      <div class="ov-key">Host</div>
-      <div class="ov-val">学生団体 NEXY</div>
-    </div>
-
-    <div class="num-row">
-      <div class="num-cell">
-        <div class="num-num">1,000<small>名</small></div>
-        <div class="num-label">参加予定高校生</div>
-      </div>
-      <div class="num-cell">
-        <div class="num-num">1<small>DAY</small></div>
-        <div class="num-label">開催形式</div>
-      </div>
-      <div class="num-cell">
-        <div class="num-num">100<small>名</small></div>
-        <div class="num-label">地方学生支援 最大予定</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- SECTION: ACCESS -->
 <section class="section" id="access">
@@ -1299,8 +1291,8 @@ img { max-width: 100%; display: block; }
 <section class="section" id="program">
   <div class="section-inner">
     <div class="section-head">
-      <span class="section-tag">Program</span>
-      <h2 class="section-title">聞いて、考えて、話して、<em>動き出す</em>。</h2>
+      <span class="section-tag">Contents</span>
+      <h2 class="section-title">当日の<em>コンテンツ</em>。</h2>
       <p class="section-lead">6つの体験が並ぶ回遊型フェス。気になるボックスを開いて、当日の中身を確認してください。</p>
     </div>
     <div class="program-grid">
@@ -1561,54 +1553,74 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- SECTION 06: TARGET (参加者 / 6枚目を背景に) -->
+<!-- SECTION 06: TARGET (参加者) -->
 <section class="section target-section" id="target">
-  <div class="target-hero" style="background-image:url('img/summit/audience.png');"></div>
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">For Who</span>
       <h2 class="section-title">こんな高校生に<em>来てほしい</em>。</h2>
     </div>
-    <div class="target-grid">
-      <div class="target-card t3">
-        <div class="target-tag">Type 03 — Active</div>
-        <div class="target-name">アクティブ層</div>
-        <ul class="target-list">
-          <li>すでに活動している</li>
-          <li>もっと本気の人と出会いたい</li>
-          <li>次の打席がほしい</li>
-          <li>自分を本気でぶつけられる場所がほしい</li>
-        </ul>
+    <div class="target-layout">
+      <div class="target-main">
+        <div class="target-grid">
+          <div class="target-card t3">
+            <div class="target-tag">Type 01 — Active</div>
+            <div class="target-name">アクティブ層</div>
+            <ul class="target-list">
+              <li>すでに活動している</li>
+              <li>もっと本気の人と出会いたい</li>
+              <li>次の打席がほしい</li>
+              <li>自分を本気でぶつけられる場所がほしい</li>
+            </ul>
+          </div>
+          <div class="target-card t1">
+            <div class="target-tag">Type 02 — Starter</div>
+            <div class="target-name">スターター層</div>
+            <ul class="target-list">
+              <li>総合型選抜／AOを考えている</li>
+              <li>課外活動を始めたい</li>
+              <li>でも自分のテーマがまだない</li>
+              <li>探究や活動の方向性がぼんやりしている</li>
+            </ul>
+          </div>
+          <div class="target-card t2">
+            <div class="target-tag">Type 03 — Wandering</div>
+            <div class="target-name">モヤモヤ層</div>
+            <ul class="target-list">
+              <li>何かやりたい</li>
+              <li>でも何かわからない</li>
+              <li>同世代の本気を見てみたい</li>
+              <li>自分の輪郭を描くきっかけがほしい</li>
+            </ul>
+          </div>
+          <div class="target-card t4">
+            <div class="target-tag">Type 04 — Local</div>
+            <div class="target-name">ローカル層</div>
+            <ul class="target-list">
+              <li>地方で孤独に挑戦している</li>
+              <li>地元に同じ熱量の人がいない</li>
+              <li>東京の同世代と対等に話してみたい</li>
+            </ul>
+          </div>
+        </div>
+        <div class="target-pricing">
+          <div class="price-row">
+            <span class="price-label">高校生</span>
+            <span class="price-value price-free">無料</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">大学生</span>
+            <span class="price-value price-free">無料</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label">大人（社会人）</span>
+            <span class="price-value price-paid">¥3,000</span>
+          </div>
+        </div>
       </div>
-      <div class="target-card t1">
-        <div class="target-tag">Type 01 — Starter</div>
-        <div class="target-name">スターター層</div>
-        <ul class="target-list">
-          <li>総合型選抜／AOを考えている</li>
-          <li>課外活動を始めたい</li>
-          <li>でも自分のテーマがまだない</li>
-          <li>探究や活動の方向性がぼんやりしている</li>
-        </ul>
-      </div>
-      <div class="target-card t2">
-        <div class="target-tag">Type 02 — Wandering</div>
-        <div class="target-name">モヤモヤ層</div>
-        <ul class="target-list">
-          <li>何かやりたい</li>
-          <li>でも何かわからない</li>
-          <li>同世代の本気を見てみたい</li>
-          <li>自分の輪郭を描くきっかけがほしい</li>
-        </ul>
-      </div>
-      <div class="target-card t4">
-        <div class="target-tag">Type 04 — Local</div>
-        <div class="target-name">ローカル層</div>
-        <ul class="target-list">
-          <li>地方で孤独に挑戦している</li>
-          <li>地元に同じ熱量の人がいない</li>
-          <li>東京の同世代と対等に話してみたい</li>
-        </ul>
-      </div>
+      <aside class="target-photo">
+        <img src="img/summit/audience.png" alt="参加者の表情">
+      </aside>
     </div>
   </div>
 </section>
