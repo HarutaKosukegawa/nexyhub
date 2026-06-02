@@ -52,37 +52,6 @@ body {
   position: relative;
 }
 
-/* ===== 背景デコレーション（CSS only, オレンジ＋シアン） ===== */
-body::before {
-  content: ''; position: fixed; inset: 0;
-  z-index: 0; pointer-events: none;
-  background:
-    /* 四隅の放射状グラデーション */
-    radial-gradient(ellipse 720px 540px at 0% 0%, rgba(242,139,61,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 640px 480px at 100% 0%, rgba(46,189,182,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 640px 480px at 0% 100%, rgba(46,189,182,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 720px 540px at 100% 100%, rgba(242,139,61,0.20) 0%, transparent 60%),
-    /* 中央の薄いベース */
-    linear-gradient(135deg, rgba(255,250,245,0) 0%, rgba(244,255,253,0.4) 100%);
-}
-body::after {
-  content: ''; position: fixed; inset: 0;
-  z-index: 0; pointer-events: none;
-  /* ハーフトーンドットパターン（左上＋右下） */
-  background:
-    radial-gradient(circle, rgba(242,139,61,0.18) 1.4px, transparent 1.8px),
-    radial-gradient(circle, rgba(46,189,182,0.18) 1.4px, transparent 1.8px);
-  background-position: 0 0, 80% 80%;
-  background-size: 28px 28px, 32px 32px;
-  background-repeat: repeat, repeat;
-  mask-image:
-    linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%);
-  -webkit-mask-image:
-    linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%);
-  opacity: 0.9;
-}
-
-
 body > * { position: relative; z-index: 1; }
 /* ===== PARTICLES CANVAS ===== */
 #particles {
@@ -937,68 +906,13 @@ img { max-width: 100%; display: block; }
 .footer a:hover { color: var(--orange); }
 
 
-/* ===== CANVA PAINT DECORATIONS (リアル本物ペンキ装飾) ===== */
-.canva-paint { position: fixed; pointer-events: none; z-index: 0; }
-.canva-paint img { width: 100%; height: auto; display: block; }
 
-/* 四辺＋スプラッタ配置 */
-.cp-tl    { top: 60px;   left: 0;      width: 380px; opacity: 0.95; }
-.cp-tr    { top: 80px;   right: 0;     width: 360px; opacity: 0.92; transform: scaleX(-1); }
-.cp-left  { top: 30%;    left: -20px;  width: 260px; opacity: 0.85; }
-.cp-right { top: 35%;    right: -20px; width: 280px; opacity: 0.88; }
-.cp-bl    { bottom: 40px; left: 0;     width: 360px; opacity: 0.9; transform: scaleY(-1); }
-.cp-br    { bottom: 60px; right: 0;    width: 400px; opacity: 0.95; }
-.cp-sp-tl { top: 20%; left: 28%; width: 200px; opacity: 0.75; }
-.cp-sp-tr { top: 22%; right: 26%; width: 220px; opacity: 0.78; transform: scaleX(-1); }
-.cp-sp-bl { bottom: 28%; left: 20%; width: 200px; opacity: 0.72; transform: scaleY(-1); }
-.cp-sp-br { bottom: 30%; right: 22%; width: 220px; opacity: 0.75; transform: rotate(180deg); }
-
-/* ふんわり揺れ */
-@keyframes paintBreath { 0%,100%{transform:translate(0,0);} 50%{transform:translate(6px,-4px);} }
-@keyframes paintBreath2 { 0%,100%{transform:scaleX(-1) translate(0,0);} 50%{transform:scaleX(-1) translate(-6px,4px);} }
-@keyframes paintBreath3 { 0%,100%{transform:scaleY(-1) translate(0,0);} 50%{transform:scaleY(-1) translate(6px,4px);} }
-@keyframes paintBreath4 { 0%,100%{transform:rotate(180deg) translate(0,0);} 50%{transform:rotate(180deg) translate(-6px,-4px);} }
-@keyframes paintBreathSimple { 0%,100%{opacity: var(--op, 1);} 50%{opacity: calc(var(--op, 1) * 0.85);} }
-
-.cp-tl    { animation: paintBreath 14s ease-in-out infinite; }
-.cp-tr    { animation: paintBreath2 16s ease-in-out infinite; }
-.cp-left  { animation: paintBreathSimple 12s ease-in-out infinite; --op: 0.85; }
-.cp-right { animation: paintBreathSimple 13s ease-in-out infinite; --op: 0.88; }
-.cp-bl    { animation: paintBreath3 17s ease-in-out infinite; }
-.cp-br    { animation: paintBreath 18s ease-in-out infinite; }
-.cp-sp-tl { animation: paintBreathSimple 9s  ease-in-out infinite; --op: 0.75; }
-.cp-sp-tr { animation: paintBreathSimple 10s ease-in-out infinite; --op: 0.78; }
-.cp-sp-bl { animation: paintBreathSimple 11s ease-in-out infinite; --op: 0.72; }
-.cp-sp-br { animation: paintBreathSimple 8s  ease-in-out infinite; --op: 0.75; }
-
-@media (max-width: 800px) {
-  .cp-tl, .cp-tr, .cp-bl, .cp-br { width: 220px; }
-  .cp-left, .cp-right { width: 160px; }
-  .cp-sp-tl, .cp-sp-tr, .cp-sp-bl, .cp-sp-br { width: 130px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .canva-paint { animation: none !important; }
-}
 
 </style>
 </head>
 <body>
 
 <canvas id="particles" aria-hidden="true"></canvas>
-
-<!-- ===== CANVA PAINT DECORATIONS ===== -->
-<div class="canva-paint cp-tl" aria-hidden="true"><img src="img/summit/paint/p_tl.png" alt=""></div>
-<div class="canva-paint cp-tr" aria-hidden="true"><img src="img/summit/paint/p_tl.png" alt=""></div>
-<div class="canva-paint cp-left" aria-hidden="true"><img src="img/summit/paint/p_left.png" alt=""></div>
-<div class="canva-paint cp-right" aria-hidden="true"><img src="img/summit/paint/p_right.png" alt=""></div>
-<div class="canva-paint cp-bl" aria-hidden="true"><img src="img/summit/paint/p_br.png" alt=""></div>
-<div class="canva-paint cp-br" aria-hidden="true"><img src="img/summit/paint/p_br.png" alt=""></div>
-<div class="canva-paint cp-sp-tl" aria-hidden="true"><img src="img/summit/paint/sp_left.png" alt=""></div>
-<div class="canva-paint cp-sp-tr" aria-hidden="true"><img src="img/summit/paint/sp_right.png" alt=""></div>
-<div class="canva-paint cp-sp-bl" aria-hidden="true"><img src="img/summit/paint/sp_left.png" alt=""></div>
-<div class="canva-paint cp-sp-br" aria-hidden="true"><img src="img/summit/paint/sp_right.png" alt=""></div>
-
 
 <!-- NAV -->
 <nav class="nav">
