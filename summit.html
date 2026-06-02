@@ -908,6 +908,62 @@ img { max-width: 100%; display: block; }
 
 
 
+
+/* ===== SCHEDULE TABLE (3会場並行) ===== */
+.sch-table-wrap { overflow-x: auto; max-width: 1100px; margin: 0 auto; }
+.sch-table {
+  width: 100%; min-width: 720px;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.sch-table th, .sch-table td {
+  padding: 14px 16px; text-align: center;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.sch-table thead th {
+  background: var(--text); color: #fff;
+  font-family: 'Inter', sans-serif; font-size: .72rem;
+  letter-spacing: .18em; text-transform: uppercase; font-weight: 900;
+  padding: 18px 16px;
+}
+.sch-table thead th.col-time { background: var(--orange); }
+.sch-table thead th.col-a { background: #F28B3D; }
+.sch-table thead th.col-b { background: #2EBDB6; color: #fff; }
+.sch-table thead th.col-c { background: var(--text); }
+.sch-table tbody td.t-time {
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  color: var(--orange); white-space: nowrap;
+  font-size: .82rem; letter-spacing: .04em;
+  background: rgba(242,139,61,0.06);
+}
+.sch-table tbody td.t-cell { color: var(--text); font-weight: 700; }
+.sch-table tbody td.t-cell.cell-presen {
+  background: rgba(242,139,61,0.12); color: var(--text);
+  font-weight: 800;
+}
+.sch-table tbody td.t-cell.cell-ws {
+  background: rgba(46,189,182,0.12); color: var(--text);
+}
+.sch-table tbody td.t-cell.cell-sp { background: #fff; color: var(--text); }
+.sch-table tbody tr.row-break td { background: rgba(0,0,0,0.04); color: var(--text2); font-weight: 600; }
+.sch-table tbody tr:hover td:not(.t-time) { background: rgba(242,139,61,0.05); }
+.sch-pre {
+  font-size: .68rem; font-weight: 800; color: var(--orange);
+  display: block; letter-spacing: .12em; margin-top: 4px;
+}
+.sch-table .merge-row td { border-bottom: 1px solid var(--line); }
+.sch-note {
+  margin: 24px auto 0; max-width: 720px;
+  padding: 14px 18px;
+  background: rgba(46,189,182,0.08); border-left: 3px solid var(--mint);
+  font-size: .82rem; color: var(--text2); line-height: 1.85;
+}
+@media (max-width: 700px) {
+  .sch-table th, .sch-table td { padding: 10px 8px; font-size: .76rem; }
+  .sch-table tbody td.t-time { font-size: .72rem; }
+}
+
 </style>
 </head>
 <body>
@@ -921,6 +977,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#top">TOP</a></li>
     <li><a href="#about">NEXYサミットとは？</a></li>
     <li><a href="#program">プログラム</a></li>
+    <li><a href="#schedule">スケジュール</a></li>
     <li><a href="#speakers">登壇者</a></li>
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
@@ -934,6 +991,7 @@ img { max-width: 100%; display: block; }
   <a href="#top">TOP</a>
   <a href="#about">NEXYサミットとは？</a>
   <a href="#program">プログラム</a>
+  <a href="#schedule">スケジュール</a>
   <a href="#speakers">登壇者</a>
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
@@ -1180,62 +1238,78 @@ img { max-width: 100%; display: block; }
 </section>
 
 
-<!-- SECTION: SCHEDULE -->
+
+<!-- SECTION: SCHEDULE (3会場並行表) -->
 <section class="section alt" id="schedule">
   <div class="section-inner">
     <div class="section-head">
       <span class="section-tag">Schedule</span>
-      <h2 class="section-title">当日の<em>スケジュール</em>。</h2>
-      <p class="section-lead">1日の流れを時間軸で確認できます。プログラム内容は調整中・順次発表予定です。</p>
+      <h2 class="section-title">当日の<em>タイムテーブル</em>。</h2>
+      <p class="section-lead">3つの会場で同時並行進行。気になるプログラムへ自由に行き来できる回遊型フェスです。</p>
     </div>
-    <div class="schedule-wrap">
-      <div class="sch-item">
-        <span class="sch-time">10:00</span>
-        <div class="sch-title">開場・受付</div>
-        <div class="sch-desc">参加者の受付・チェックイン。会場マップとプログラム案内を配布。</div>
-      </div>
-      <div class="sch-item mint">
-        <span class="sch-time">10:30</span>
-        <div class="sch-title">オープニング</div>
-        <div class="sch-desc">1日の流れと過ごし方の説明。NEXY代表からの挨拶。</div>
-      </div>
-      <div class="sch-item">
-        <span class="sch-time">11:00</span>
-        <div class="sch-title">登壇セッション ① / ワークショップ ① / ブース開始</div>
-        <div class="sch-desc">回遊型フェスとして、ステージ・ワーク・ブースが並行で進行。</div>
-      </div>
-      <div class="sch-item mint">
-        <span class="sch-time">12:30</span>
-        <div class="sch-title">ランチ・交流タイム</div>
-        <div class="sch-desc">同世代と話せる昼休憩。交流ブースも開放。</div>
-      </div>
-      <div class="sch-item">
-        <span class="sch-time">13:30</span>
-        <div class="sch-title">プレゼン大会 / 登壇セッション ②</div>
-        <div class="sch-desc">「やりたいをぶつけろ」。1→100部門・0→1部門のプレゼン。</div>
-      </div>
-      <div class="sch-item mint">
-        <span class="sch-time">15:00</span>
-        <div class="sch-title">ワークショップ ② / ストーリー展</div>
-        <div class="sch-desc">違和感の言語化、明日のアクション設計などのワーク。</div>
-      </div>
-      <div class="sch-item">
-        <span class="sch-time">16:30</span>
-        <div class="sch-title">クロージングセッション</div>
-        <div class="sch-desc">1日のまとめ、参加者の宣言、ネクストアクション共有。</div>
-      </div>
-      <div class="sch-item mint">
-        <span class="sch-time">17:30</span>
-        <div class="sch-title">アフター交流</div>
-        <div class="sch-desc">フリー交流・コミュニティ加入案内。希望者のみ。</div>
-      </div>
-      <div class="sch-item">
-        <span class="sch-time">18:00</span>
-        <div class="sch-title">終了・解散</div>
-        <div class="sch-desc">お疲れさまでした。</div>
-      </div>
+
+    <div class="sch-table-wrap">
+      <table class="sch-table">
+        <thead>
+          <tr>
+            <th class="col-time">時間</th>
+            <th class="col-a">A会場（メインステージ）</th>
+            <th class="col-b">B会場（ワークショップ）</th>
+            <th class="col-c">C会場（セッション）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-time">10:00 – 10:30</td>
+            <td class="t-cell cell-presen" colspan="3">オープニング（全体）</td>
+          </tr>
+          <tr>
+            <td class="t-time">10:30 – 11:20</td>
+            <td class="t-cell cell-presen" rowspan="2">プレゼン大会<span class="sch-pre">1 → 100</span></td>
+            <td class="t-cell cell-ws" rowspan="2">ワークショップ</td>
+            <td class="t-cell cell-sp">セッション ④</td>
+          </tr>
+          <tr>
+            <td class="t-time">11:30 – 12:20</td>
+            <td class="t-cell cell-sp">セッション ⑤</td>
+          </tr>
+          <tr class="row-break">
+            <td class="t-time">12:20 – 13:00</td>
+            <td colspan="3">ご飯休憩</td>
+          </tr>
+          <tr>
+            <td class="t-time">13:00 – 13:50</td>
+            <td class="t-cell cell-sp">セッション ①</td>
+            <td class="t-cell cell-ws" rowspan="3">ワークショップ</td>
+            <td class="t-cell cell-sp">セッション ⑥</td>
+          </tr>
+          <tr>
+            <td class="t-time">14:00 – 14:50</td>
+            <td class="t-cell cell-sp">セッション ②</td>
+            <td class="t-cell cell-sp">セッション ⑦</td>
+          </tr>
+          <tr>
+            <td class="t-time">15:00 – 15:50</td>
+            <td class="t-cell cell-presen" rowspan="2">プレゼン大会<span class="sch-pre">0 → 1</span></td>
+            <td class="t-cell cell-sp">セッション ⑧</td>
+          </tr>
+          <tr>
+            <td class="t-time">16:00 – 16:50</td>
+            <td class="t-cell cell-ws" rowspan="2">ワークショップ</td>
+            <td class="t-cell cell-sp">セッション ⑨</td>
+          </tr>
+          <tr>
+            <td class="t-time">17:00 – 17:50</td>
+            <td class="t-cell cell-sp">セッション ③</td>
+            <td class="t-cell cell-sp">セッション ⑩</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="sch-note">※ プログラム内容・時間は調整中です。最終確定版は本ページに反映します。</div>
+
+    <div class="sch-note">
+      ※ 3会場同時並行のため、参加者は自由に会場を行き来できます。B会場は1日を通して様々なワークショップが行われます。プログラム内容・時間は調整中です。
+    </div>
   </div>
 </section>
 
