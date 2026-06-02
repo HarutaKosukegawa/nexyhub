@@ -680,20 +680,10 @@ img { max-width: 100%; display: block; }
 
 /* ===== TARGET SECTION (2カラム+価格) ===== */
 .target-layout {
-  display: grid; grid-template-columns: 1fr 380px; gap: 32px;
-  max-width: 1100px; margin: 0 auto; align-items: start;
-}
-@media (max-width: 900px) {
-  .target-layout { grid-template-columns: 1fr; }
+  max-width: 1100px; margin: 0 auto;
 }
 .target-main { display: flex; flex-direction: column; gap: 22px; }
-.target-photo {
-  position: sticky; top: 100px;
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 18px 40px rgba(0,0,0,.1);
-}
-.target-photo img { width: 100%; height: auto; display: block; }
-@media (max-width: 900px) { .target-photo { position: static; max-width: 480px; margin: 0 auto; } }
+@media (max-width: 900px) { }
 
 .target-pricing {
   background: #fff; border: 2px solid var(--orange);
@@ -1656,9 +1646,7 @@ img { max-width: 100%; display: block; }
           </div>
         </div>
       </div>
-      <aside class="target-photo">
-        <img src="img/summit/audience.png" alt="参加者の表情">
-      </aside>
+      
     </div>
   </div>
 </section>
