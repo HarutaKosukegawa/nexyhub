@@ -51,6 +51,61 @@ body {
   -webkit-font-smoothing: antialiased;
   position: relative;
 }
+
+/* ===== 背景デコレーション（CSS only, オレンジ＋シアン） ===== */
+body::before {
+  content: ''; position: fixed; inset: 0;
+  z-index: 0; pointer-events: none;
+  background:
+    /* 四隅の放射状グラデーション */
+    radial-gradient(ellipse 720px 540px at 0% 0%, rgba(242,139,61,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 640px 480px at 100% 0%, rgba(46,189,182,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 640px 480px at 0% 100%, rgba(46,189,182,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 720px 540px at 100% 100%, rgba(242,139,61,0.20) 0%, transparent 60%),
+    /* 中央の薄いベース */
+    linear-gradient(135deg, rgba(255,250,245,0) 0%, rgba(244,255,253,0.4) 100%);
+}
+body::after {
+  content: ''; position: fixed; inset: 0;
+  z-index: 0; pointer-events: none;
+  /* ハーフトーンドットパターン（左上＋右下） */
+  background:
+    radial-gradient(circle, rgba(242,139,61,0.18) 1.4px, transparent 1.8px),
+    radial-gradient(circle, rgba(46,189,182,0.18) 1.4px, transparent 1.8px);
+  background-position: 0 0, 80% 80%;
+  background-size: 28px 28px, 32px 32px;
+  background-repeat: repeat, repeat;
+  mask-image:
+    linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%);
+  -webkit-mask-image:
+    linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.55) 100%);
+  opacity: 0.9;
+}
+
+/* SVGペイントブラシ装飾（左上＋右下） */
+.bg-brush-tl, .bg-brush-br {
+  position: fixed; pointer-events: none; z-index: 0;
+}
+.bg-brush-tl { top: 80px; left: -40px; width: 280px; height: 120px; }
+.bg-brush-br { bottom: 40px; right: -40px; width: 320px; height: 140px; }
+.bg-brush-tl svg, .bg-brush-br svg { width: 100%; height: 100%; }
+
+/* ふわっと揺れるアニメ */
+@keyframes brushFloat {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  50% { transform: translate(8px, -6px) rotate(-4deg); }
+}
+@keyframes brushFloat2 {
+  0%, 100% { transform: translate(0, 0) rotate(6deg); }
+  50% { transform: translate(-8px, 6px) rotate(4deg); }
+}
+.bg-brush-tl { animation: brushFloat 12s ease-in-out infinite; }
+.bg-brush-br { animation: brushFloat2 14s ease-in-out infinite; }
+
+@media (max-width: 800px) {
+  .bg-brush-tl { width: 180px; height: 80px; top: 70px; }
+  .bg-brush-br { width: 200px; height: 90px; }
+}
 body > * { position: relative; z-index: 1; }
 /* ===== PARTICLES CANVAS ===== */
 #particles {
@@ -908,6 +963,40 @@ img { max-width: 100%; display: block; }
 <body>
 
 <canvas id="particles" aria-hidden="true"></canvas>
+
+<div class="bg-brush-tl" aria-hidden="true">
+  <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg-grad-tl" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#F28B3D"/>
+        <stop offset="100%" stop-color="#FFB05E"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,40 Q40,18 90,30 T200,28 Q250,28 295,22 L295,40 Q250,46 200,42 T90,46 Q40,46 0,52 Z" fill="url(#bg-grad-tl)" opacity="0.55"/>
+    <path d="M10,80 Q60,68 120,72 T235,68 Q270,68 295,62 L295,82 Q270,86 235,84 T120,90 Q60,90 10,96 Z" fill="#2EBDB6" opacity="0.42"/>
+    <circle cx="40" cy="60" r="3" fill="#F28B3D" opacity="0.6"/>
+    <circle cx="70" cy="55" r="2" fill="#2EBDB6" opacity="0.6"/>
+    <circle cx="180" cy="65" r="2.5" fill="#F28B3D" opacity="0.5"/>
+    <circle cx="220" cy="55" r="2" fill="#2EBDB6" opacity="0.5"/>
+  </svg>
+</div>
+
+<div class="bg-brush-br" aria-hidden="true">
+  <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg-grad-br" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#2EBDB6"/>
+        <stop offset="100%" stop-color="#74D4C3"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,60 Q50,40 110,46 T230,44 Q280,44 335,38 L335,60 Q280,64 230,60 T110,64 Q50,64 0,72 Z" fill="url(#bg-grad-br)" opacity="0.5"/>
+    <path d="M10,100 Q70,86 140,92 T270,88 Q310,88 335,82 L335,104 Q310,108 270,106 T140,110 Q70,110 10,116 Z" fill="#F28B3D" opacity="0.42"/>
+    <circle cx="60" cy="78" r="3" fill="#2EBDB6" opacity="0.6"/>
+    <circle cx="100" cy="74" r="2" fill="#F28B3D" opacity="0.55"/>
+    <circle cx="220" cy="80" r="2.5" fill="#2EBDB6" opacity="0.55"/>
+    <circle cx="270" cy="76" r="2" fill="#F28B3D" opacity="0.5"/>
+  </svg>
+</div>
 
 <!-- NAV -->
 <nav class="nav">
