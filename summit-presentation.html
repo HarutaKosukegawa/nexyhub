@@ -3,89 +3,654 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>プレゼン大会 | NEXY Summit 2026 - 日本最大級の高校生サミット</title>
-<meta name="description" content="NEXY Summit 2026 のプレゼン大会の詳細。テーマは「やりたいをぶつけろ」。NEXY Summit 2026 のメインステージで、1,000人の高校生の前で自分のテーマを語る舞台です。すでに動いている人も">
-<meta name="keywords" content="NEXY Summit 2026,NEXYサミット,ネクシーサミット,NEXY summit,高校生イベント,高校生サミット,プレゼン大会,NEXY,小助川晴大">
+<title>立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会 応募受付中</title>
+<meta name="description" content="2026年8月6日・東京。1,000人の前で語る、16人だけが立てるメインステージ。未完成のまま、それでもやりたいから立つ人へ。応募締切：2026年7月6日 23:59。">
+<meta name="keywords" content="NEXY Summit 2026,プレゼン大会,高校生プレゼン,孫正義育英財団,ピッチコンテスト,高校生ピッチ,大学生ピッチ,1to100,0to1,登壇,応募">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexyhub.jp/summit-presentation.html">
 <link rel="icon" href="/img/icon.jpg" type="image/jpeg">
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nexyhub.jp/summit-presentation.html">
-<meta property="og:title" content="プレゼン大会 | NEXY Summit 2026">
-<meta property="og:description" content="テーマは「やりたいをぶつけろ」。NEXY Summit 2026 のメインステージで、1,000人の高校生の前で自分のテーマを語る舞台です。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る場所。">
-<meta property="og:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
+<meta property="og:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
+<meta property="og:description" content="1,000人の前で語る、16人だけが立てるメインステージ。未完成のまま、それでもやりたいから立つ人へ。">
+<meta property="og:image" content="https://nexyhub.jp/img/summit/presentation.png">
 <meta property="og:site_name" content="NEXY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="プレゼン大会 | NEXY Summit 2026">
-<meta name="twitter:description" content="テーマは「やりたいをぶつけろ」。NEXY Summit 2026 のメインステージで、1,000人の高校生の前で自分のテーマを語る舞台です。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る場所。">
+<meta name="twitter:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
+<meta name="twitter:description" content="1,000人の前で語る、16人だけが立てるメインステージ。応募締切：2026年7月6日。">
 
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#0A0A0A',
+        ash: '#1a1a1a',
+        line: '#262626',
+        muted: '#A3A3A3',
+        red: '#FF3B30',
+        crimson: '#E63946',
+        orange: '#FF6B35',
+        teal: '#2A9D8F',
+        deep: '#264653',
+        gold: '#D4A574',
+      },
+      fontFamily: {
+        sans: ['"Noto Sans JP"','"Zen Kaku Gothic New"','sans-serif'],
+        en: ['"Space Grotesk"','"Inter"','sans-serif'],
+      }
+    }
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
 <style>
-:root {
-  --orange: #F28B3D; --mint: #74D4C3; --mint-deep: #2EBDB6;
-  --bg: #FFFFFF; --paper: #FAFAF7; --text: #000;
-  --text2: #333; --text3: #777; --line: rgba(0,0,0,0.08);
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; background:#0A0A0A; color:#fff; -webkit-font-smoothing:antialiased; }
+.en { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing:.02em; }
+.fade-init { opacity:0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
+.fade-in { opacity:1; transform: translateY(0); }
+.scrollbar-hide::-webkit-scrollbar { display:none; }
+.scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+.cta-pulse { animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,107,53,.55); }
+  50% { box-shadow: 0 0 0 14px rgba(255,107,53,0); }
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.85; font-weight:500; -webkit-font-smoothing:antialiased; }
-img { max-width:100%; display:block; }
-a { color:inherit; }
-
-.nav { position:fixed; top:0; left:0; right:0; z-index:250; height:64px; background:rgba(255,255,255,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); display:flex; align-items:center; padding:0 28px; justify-content:space-between; }
-.nav-logo a { color:var(--text); text-decoration:none; font-family:'Inter',sans-serif; font-weight:900; font-size:1rem; letter-spacing:.02em; }
-.nav-logo .lg-em { color:var(--orange); }
-.nav-logo .sub { color:var(--text3); font-size:.66rem; font-weight:700; margin-left:8px; letter-spacing:.14em; }
-.nav-back { background:var(--orange); color:#fff; padding:9px 18px; font-size:.78rem; font-weight:900; text-decoration:none; }
-.nav-back:hover { background:#e07a2e; }
-
-.hero { padding-top:120px; padding-bottom:48px; text-align:center; background:var(--paper); border-bottom:1px solid var(--line); }
-.hero-eyebrow { display:inline-block; font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.26em; color:var(--orange); font-weight:900; text-transform:uppercase; padding:6px 16px; border:1.5px solid var(--orange); background:rgba(242,139,61,.08); margin-bottom:16px; }
-.hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; color:var(--text); line-height:1.45; }
-.hero h1 em { color:var(--orange); font-style:normal; position:relative; }
-.hero h1 em::after { content:''; position:absolute; left:0; right:0; bottom:-3px; height:8px; background:var(--mint); z-index:-1; }
-.hero-img { width:100%; max-width:920px; margin:32px auto 0; aspect-ratio:16/9; background-size:cover; background-position:center; background-image:url('img/summit/presentation.png'); border-radius:14px; box-shadow:0 18px 40px rgba(0,0,0,.08); }
-
-.content { max-width:760px; margin:0 auto; padding:64px 6%; }
-.content .intro { font-size:1.04rem; color:var(--text); line-height:2.05; font-weight:600; margin-bottom:40px; padding:24px 26px; background:rgba(242,139,61,.06); border-left:4px solid var(--orange); }
-.detail-block { margin-bottom:36px; }
-.detail-h2 { font-size:1.24rem; font-weight:900; color:var(--text); margin-bottom:14px; padding-left:14px; border-left:4px solid var(--orange); line-height:1.6; }
-.detail-p { font-size:.94rem; color:var(--text2); line-height:1.95; margin-bottom:14px; }
-.detail-list { list-style:none; padding:0; }
-.detail-list li { font-size:.92rem; color:var(--text); padding:6px 0 6px 22px; position:relative; line-height:1.85; }
-.detail-list li::before { content:''; position:absolute; left:0; top:14px; width:10px; height:2px; background:var(--orange); }
-
-.cta-back { text-align:center; padding:0 6% 80px; }
-.cta-back .btn { display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff; text-decoration:none; padding:14px 28px; font-weight:900; font-size:.9rem; letter-spacing:.04em; transition:.25s; }
-.cta-back .btn:hover { background:#e07a2e; transform:translateY(-2px); }
-.cta-back .btn-ghost { background:transparent; color:var(--text); border:2px solid var(--text); margin-left:10px; padding:12px 26px; }
-.cta-back .btn-ghost:hover { background:var(--text); color:#fff; }
-
-.related { background:var(--paper); padding:56px 6%; border-top:1px solid var(--line); }
-.related-inner { max-width:1100px; margin:0 auto; }
-.related h3 { font-size:1.16rem; font-weight:900; color:var(--text); text-align:center; margin-bottom:24px; }
-.related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-@media (max-width:700px) { .related-grid { grid-template-columns:1fr; } }
-.rel-card { background:#fff; border:1px solid var(--line); padding:18px 22px; text-decoration:none; color:var(--text); transition:.25s; }
-.rel-card:hover { transform:translateY(-3px); border-color:var(--orange); box-shadow:0 14px 28px rgba(242,139,61,.18); }
-.rel-name { font-size:.96rem; font-weight:800; }
-
-.footer { padding:36px 6%; display:flex; flex-wrap:wrap; gap:24px; justify-content:center; font-size:.78rem; color:var(--text3); border-top:1px solid var(--line); }
-.footer a { color:var(--text2); text-decoration:none; }
-.footer a:hover { color:var(--orange); }
+.text-stroke {
+  -webkit-text-stroke: 1.5px #fff; color: transparent;
+}
+.gradient-mask {
+  background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.85) 60%, #0A0A0A 100%);
+}
+.tilt-card { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.tilt-card:hover { transform: translateY(-8px); }
+.acc summary { list-style: none; cursor: pointer; }
+.acc summary::-webkit-details-marker { display:none; }
+.acc[open] .chev { transform: rotate(180deg); }
+.chev { transition: transform .3s ease; }
+.handwriting {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
 </style>
+</head>
+<body class="bg-ink text-white">
 
+<!-- ============== NAV ============== -->
+<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/80 border-b border-line">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-14">
+    <a href="summit.html" class="en font-bold tracking-wider text-sm sm:text-base">
+      <span class="text-orange">NEXY</span> Summit<span class="text-muted ml-2 text-xs">2026</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <a href="summit.html" class="hidden sm:inline text-xs text-muted hover:text-white transition">← Summitトップ</a>
+      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-white hover:text-orange transition">
+        応募する →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== SECTION 01: HERO ============== -->
+<section class="hero relative h-screen w-full overflow-hidden">
+  <!-- ヒーロー画像（依頼者から差し替え予定） -->
+  <img src="img/summit/presentation.png" alt="NEXY Summit 2026 プレゼン大会" class="w-full h-full object-cover">
+  <!-- 下部のグラデーション（ナビとセクション接続の馴染ませ） -->
+  <div class="absolute inset-x-0 bottom-0 h-32 gradient-mask pointer-events-none"></div>
+</section>
+
+<!-- ============== SECTION 02: ここに立つと、何が変わるか ============== -->
+<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHAT CHANGES</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
+      ここに立つと、<br class="sm:hidden"><span class="text-orange">人生が動く。</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
+      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-orange">
+        <i data-lucide="users" class="w-7 h-7 text-orange mb-6"></i>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">1,000</p>
+        <p class="text-base sm:text-lg font-bold mb-2">人の前で語る</p>
+        <p class="text-muted text-sm leading-relaxed">あなたの言葉が、当日会場で届く対象者の数。</p>
+      </div>
+      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-teal">
+        <i data-lucide="mic" class="w-7 h-7 text-teal mb-6"></i>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">16</p>
+        <p class="text-base sm:text-lg font-bold mb-2">人だけが立てる</p>
+        <p class="text-muted text-sm leading-relaxed">2部門×8名。選ばれた16名だけのメインステージ。</p>
+      </div>
+      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-gold">
+        <i data-lucide="zap" class="w-7 h-7 text-gold mb-6"></i>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">90</p>
+        <p class="text-base sm:text-lg font-bold mb-2">分の人生が動く</p>
+        <p class="text-muted text-sm leading-relaxed">プレゼン7分＋Q&A3分。10分が次の打席を呼ぶ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 03: 2部門 ============== -->
+<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+  <div class="max-w-6xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">CHOOSE YOUR STAGE</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
+      2つの部門、<br class="sm:hidden">どっちに応募する？
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+      <!-- 1→100 -->
+      <div class="fade-init tilt-card bg-ink p-8 sm:p-10 border border-orange/60 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-orange/10 leading-none select-none">100</div>
+        <div class="relative">
+          <p class="en text-orange font-bold text-sm tracking-widest mb-3">PART 01 / 10:30 — 12:00</p>
+          <p class="en text-orange font-black text-6xl sm:text-7xl leading-none mb-6">1 → 100</p>
+          <h3 class="text-xl sm:text-2xl font-black mb-4">もう動いてる君へ。</h3>
+          <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
+            すでに事業・活動・プロジェクトが走っている。<br>これを「もっとデカく」したい人のための部門。
+          </p>
+          <ul class="space-y-3 mb-10">
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 3分</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>審査員からのフィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>協賛企業からのインターン打診</span></li>
+          </ul>
+          <a href="#apply" data-part="1to100" class="block w-full text-center bg-orange text-white py-4 font-black tracking-wide hover:bg-white hover:text-orange transition">
+            この部門に応募 →
+          </a>
+        </div>
+      </div>
+
+      <!-- 0→1 -->
+      <div class="fade-init tilt-card bg-ink p-8 sm:p-10 border border-teal/60 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-teal/10 leading-none select-none">1</div>
+        <div class="relative">
+          <p class="en text-teal font-bold text-sm tracking-widest mb-3">PART 02 / 15:00 — 16:30</p>
+          <p class="en text-teal font-black text-6xl sm:text-7xl leading-none mb-6">0 → 1</p>
+          <h3 class="text-xl sm:text-2xl font-black mb-4">まだ動けてない君へ。</h3>
+          <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
+            まだ言葉にならない、形にならない。<br>それでも挑戦したい。そんな君のための部門。
+          </p>
+          <ul class="space-y-3 mb-10">
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>5分ピッチ ＋ Q&A 3分</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>審査員からの応援フィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>「初めての一歩」体験ワーク</span></li>
+            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
+          </ul>
+          <a href="#apply" data-part="0to1" class="block w-full text-center bg-teal text-white py-4 font-black tracking-wide hover:bg-white hover:text-teal transition">
+            この部門に応募 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 04: 賞・特典 ============== -->
+<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-5xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">AWARDS & BENEFITS</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
+      登壇者には、<br><span class="text-gold">「次の打席」</span>が約束される。
+    </h2>
+
+    <!-- メイン賞 -->
+    <div class="fade-init bg-gradient-to-br from-gold/20 to-transparent border border-gold p-8 sm:p-12 mb-10 relative overflow-hidden">
+      <div class="absolute top-6 right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gold flex items-center justify-center bg-ink">
+        <i data-lucide="trophy" class="w-10 h-10 sm:w-14 sm:h-14 text-gold"></i>
+      </div>
+      <p class="en text-gold text-xs tracking-[.3em] mb-3">MAIN PRIZE</p>
+      <h3 class="text-2xl sm:text-4xl font-black mb-2 leading-tight">孫正義育英財団 大賞</h3>
+      <p class="text-muted text-sm mb-6">プレゼン大会優勝者 1名</p>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="gift" class="w-4 h-4 text-gold mt-1.5 shrink-0"></i><span>賞品提供</span></li>
+        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="user-check" class="w-4 h-4 text-gold mt-1.5 shrink-0"></i><span>孫正義育英財団 担当者との1on1面談</span></li>
+      </ul>
+    </div>
+
+    <!-- 特別賞 -->
+    <div class="fade-init bg-ash border border-line p-8 sm:p-10 mb-10">
+      <p class="en text-orange text-xs tracking-[.3em] mb-3">SPECIAL AWARDS</p>
+      <h3 class="text-xl sm:text-2xl font-black mb-2">協賛企業 特別賞</h3>
+      <p class="text-muted text-sm mb-6">数名</p>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="briefcase" class="w-4 h-4 text-orange mt-1.5 shrink-0"></i><span>各企業からの個別フォローアップ</span></li>
+        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="handshake" class="w-4 h-4 text-orange mt-1.5 shrink-0"></i><span>インターン・共同活動の打診チャンス</span></li>
+      </ul>
+    </div>
+
+    <!-- 全登壇者特典 -->
+    <div class="fade-init bg-ash border border-line p-8 sm:p-10">
+      <p class="en text-teal text-xs tracking-[.3em] mb-3">FOR ALL SPEAKERS</p>
+      <h3 class="text-xl sm:text-2xl font-black mb-6">全登壇者特典</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター1on1セッション</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇のアーカイブ動画（履歴書・自己PRに使える）</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>NEXY登壇者コミュニティへの参加権</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>1on1チケット（協賛企業との後日面談）</span></div>
+      </div>
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-white hover:text-orange transition">応募する →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 05: こんな人に挑戦してほしい ============== -->
+<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+  <div class="max-w-4xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHO SHOULD STAND</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12">
+      完璧じゃなくていい。<br>むしろ、<span class="text-orange">未完成な君</span>に立ってほしい。
+    </h2>
+
+    <ul class="space-y-5 mb-12">
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「やりたい」はあるけど、まだ言葉にできない高校生・大学生</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>すでに何か始めてるけど、もっと加速させたい人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自分の活動を1,000人に知ってもらいたい人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「ここに立っていいのか」と悩んでる人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>起業／不登校／海外進学／AO総合型／地方発信／音楽／アート／研究…テーマは何でもいい</span></li>
+    </ul>
+
+    <div class="fade-init bg-ink border-l-4 border-orange p-6 sm:p-8">
+      <p class="text-lg sm:text-2xl font-black leading-relaxed">
+        NEXY Summitは、<br class="sm:hidden"><span class="text-orange">未完成のまま舞台に立っていい場所</span>です。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 06: ハルタからのメッセージ ============== -->
+<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-orange/5 via-transparent to-teal/5"></div>
+  <div class="relative max-w-4xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">A LETTER FROM HARUTA</p>
+    <h2 class="fade-init text-2xl sm:text-4xl font-black leading-tight mb-12">
+      NEXY代表 <span class="text-orange">小助川晴大</span>からのメッセージ。
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+      <!-- 写真エリア -->
+      <div class="md:col-span-4 fade-init">
+        <div class="aspect-[3/4] bg-ash border border-line flex items-center justify-center">
+          <!-- 後で差し替え -->
+          <img src="img/members/haruta.jpg" alt="小助川晴大" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="text-muted text-xs text-center p-4" style="display:none">[小助川晴大の写真]<br>後で差し替え</div>
+        </div>
+        <p class="mt-4 en text-sm text-muted">Haruta Kosukegawa</p>
+        <p class="text-xs text-muted">NEXY代表 / 孫正義育英財団3期生</p>
+      </div>
+
+      <!-- 本文 -->
+      <div class="md:col-span-8 fade-init">
+        <div class="space-y-6 text-base sm:text-lg leading-loose handwriting">
+          <p>13歳のとき、僕は世界大会のステージで負けた。</p>
+          <p>それから10年、ずっと「自分のやりたい」を社会にぶつけ続けてきた。</p>
+          <p class="text-muted">でも、本当はずっと不安だった。<br>「自分なんかが立っていいのか」と。</p>
+          <p>このプレゼン大会は、<br><span class="text-orange">その不安を抱えたまま立つための場所</span>です。</p>
+          <p>完成された人だけが立つ場所じゃない。<br>未完成のまま、それでもやりたいから立つ人のための場所。</p>
+          <p class="text-xl sm:text-2xl font-black mt-10">
+            君が応募してくれることを、待っています。
+          </p>
+          <p class="text-right text-sm text-muted mt-8 en">— Haruta Kosukegawa, June 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 07: ステージイメージ ============== -->
+<section class="bg-ash py-24 sm:py-32 border-y border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-12">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">YOUR STAGE</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight">
+      これが、<span class="text-orange">君が立つ舞台</span>。
+    </h2>
+  </div>
+
+  <!-- 横スクロールギャラリー -->
+  <div class="overflow-x-auto scrollbar-hide">
+    <div class="flex gap-4 px-5 sm:px-8 pb-2 w-max">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/pitch_stage.jpg" alt="ステージ" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/pitch_keynote.jpg" alt="基調講演" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/pitch_speaker.jpg" alt="登壇者" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/pitch_audience.jpg" alt="客席" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/venue.jpg" alt="東京たま未来メッセ" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+        <img src="img/summit/pitch_handshake.jpg" alt="登壇後の交流" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 mt-6">
+    <p class="text-xs text-muted">※ 過去のNEXY関連イベントおよび会場写真。当日のステージは東京たま未来メッセ。</p>
+  </div>
+</section>
+
+<!-- ============== SECTION 08: タイムライン ============== -->
+<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">TIMELINE</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6">
+      応募から本番まで、<br class="sm:hidden">2ヶ月。
+    </h2>
+
+    <!-- カウントダウン -->
+    <div class="fade-init bg-ash border border-orange p-6 sm:p-8 mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <p class="text-xs text-muted en tracking-widest mb-1">DEADLINE</p>
+        <p class="text-base sm:text-lg font-bold">2026年7月6日（月）23:59</p>
+      </div>
+      <div class="text-right">
+        <p class="text-xs text-muted en tracking-widest mb-1">REMAINING</p>
+        <p class="text-3xl sm:text-5xl font-black text-orange en"><span id="cd-days">--</span><span class="text-base text-muted ml-2">日</span> <span id="cd-h">--</span>:<span id="cd-m">--</span>:<span id="cd-s">--</span></p>
+      </div>
+    </div>
+
+    <!-- タイムライン -->
+    <div class="relative">
+      <!-- 線 -->
+      <div class="hidden md:block absolute top-6 left-6 right-6 h-px bg-line"></div>
+      <div class="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-2 relative">
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="flag" class="w-5 h-5 text-white"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-orange mb-1">6/7</p>
+            <p class="text-sm font-bold">応募開始</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="alarm-clock" class="w-5 h-5 text-white"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-orange mb-1">7/6</p>
+            <p class="text-sm font-bold">応募締切</p>
+            <p class="text-xs text-muted">23:59</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="mail-check" class="w-5 h-5 text-muted"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-muted mb-1">7/13</p>
+            <p class="text-sm font-bold">通過連絡</p>
+            <p class="text-xs text-muted">16名選出</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="bell" class="w-5 h-5 text-muted"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-muted mb-1">7/22</p>
+            <p class="text-sm font-bold">最終通知</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="sparkles" class="w-5 h-5 text-muted"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-muted mb-1">7/27</p>
+            <p class="text-sm font-bold">ブラッシュアップ</p>
+            <p class="text-xs text-muted">メンタリング</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="mic-2" class="w-5 h-5 text-muted"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-muted mb-1">8/5</p>
+            <p class="text-sm font-bold">リハーサル</p>
+          </div>
+        </div>
+
+        <div class="fade-init flex md:block items-start gap-4">
+          <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center shrink-0 relative z-10">
+            <i data-lucide="trophy" class="w-5 h-5 text-ink"></i>
+          </div>
+          <div class="md:mt-4">
+            <p class="en text-xs text-gold mb-1">8/6</p>
+            <p class="text-sm font-bold">本番</p>
+            <p class="text-xs text-muted">90分 × 2</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 09: 応募方法（3ステップ） ============== -->
+<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+  <div class="max-w-6xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">HOW TO APPLY</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6">
+      3ステップ、<span class="text-orange">10分</span>で完了。
+    </h2>
+
+    <div class="fade-init bg-orange/10 border-l-4 border-orange p-5 sm:p-6 mb-12">
+      <p class="text-base sm:text-lg font-black leading-relaxed">
+        動画はスマホで撮ったやつでOK。<br>
+        編集なくていい。3分で大丈夫。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+
+      <div class="fade-init bg-ink border border-line p-8 relative">
+        <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">01</div>
+        <i data-lucide="edit-3" class="w-8 h-8 text-orange mb-6 mt-2"></i>
+        <h3 class="text-xl font-black mb-3">応募フォームに記入</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">名前・部門・話したいテーマ・連絡先など。</p>
+        <p class="en text-xs text-orange">≈ 5分で完了</p>
+      </div>
+
+      <div class="fade-init bg-ink border border-line p-8 relative">
+        <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">02</div>
+        <i data-lucide="video" class="w-8 h-8 text-orange mb-6 mt-2"></i>
+        <h3 class="text-xl font-black mb-3">自己紹介動画をアップ</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">スマホで撮影OK。3分・編集なしでOK。</p>
+        <p class="en text-xs text-orange">スマホ縦撮りでOK</p>
+      </div>
+
+      <div class="fade-init bg-ink border border-line p-8 relative">
+        <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">03</div>
+        <i data-lucide="send" class="w-8 h-8 text-orange mb-6 mt-2"></i>
+        <h3 class="text-xl font-black mb-3">送信して連絡を待つ</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">通過連絡は2026年7月13日。</p>
+        <p class="en text-xs text-orange">あとは結果を待つだけ</p>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-white hover:text-orange transition cta-pulse">応募フォームへ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 10: FAQ ============== -->
+<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-3xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">FAQ</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12">
+      不安、<span class="text-orange">先につぶしておこう。</span>
+    </h2>
+
+    <div class="space-y-3">
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">プレゼン経験ゼロでも応募していい？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          全く問題ない。むしろ「初めて」の人のために0→1部門を用意している。リハーサルと事前メンタリングがあるので、本番前に必ず一度は人前で話す経験を積める。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">何の活動もしていないけど0→1部門に応募できる？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          できる。「これからやりたい」「気になっている」「違和感がある」レベルでも応募してOK。むしろそういう人を待っている。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">落選してもサミットには参加できる？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          できる。NEXY Summit 2026は高校生・大学生は参加費無料。プレゼン落選後も一般参加者として申し込み可能。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">保護者の同意は必要？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          18歳未満の場合は通過連絡後に保護者の同意書を提出してもらう。応募の段階では不要。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">関東圏以外からも応募できる？交通費は？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          全国から応募可能。地方学生には1人最大¥50,000の渡航支援スカラシップを用意している（先着順・通過後申請）。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">当日のスライドは持ち込み？こちらで作る？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          自分で作る。Keynote/PowerPoint/Google Slidesどれでも可。7/27のブラッシュアップ会で運営からフィードバックを受けられる。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">動画撮影の質はどのくらい必要？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          スマホで撮ったやつでOK。編集なくてOK。顔と声がちゃんと届けば十分。中身を見ている。
+        </div>
+      </details>
+
+      <details class="acc fade-init bg-ash border border-line">
+        <summary class="flex items-center justify-between p-6">
+          <span class="font-bold text-sm sm:text-base pr-4">応募後の連絡はいつ来る？</span>
+          <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
+        </summary>
+        <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
+          一次連絡は応募締切後の2026年7月13日。通過者には個別連絡、全応募者にメールで結果を通知する。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 12: FINAL CTA ============== -->
+<section id="apply" class="bg-gradient-to-br from-orange via-crimson to-orange py-32 sm:py-40 px-5 sm:px-8 relative overflow-hidden">
+  <!-- 背景の大きな数字 -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <p class="en font-black text-[300px] sm:text-[500px] text-white/5 leading-none select-none">2026</p>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto text-center">
+    <h2 class="fade-init text-5xl sm:text-8xl font-black leading-none mb-8">
+      立つ覚悟、<br>ある？
+    </h2>
+    <p class="fade-init text-base sm:text-xl mb-2 opacity-90">
+      応募締切まで残り
+    </p>
+    <p class="fade-init en text-5xl sm:text-7xl font-black mb-4">
+      <span id="cd-days-2">--</span>
+      <span class="text-2xl sm:text-3xl ml-2 opacity-80">日</span>
+    </p>
+    <p class="fade-init text-sm sm:text-base opacity-80 mb-12">
+      2026年7月6日（月）23:59 まで
+    </p>
+
+    <a href="https://forms.gle/PLACEHOLDER" class="fade-init inline-block bg-ink text-white px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-white hover:text-ink transition shadow-2xl">
+      今すぐ応募する →
+    </a>
+
+    <p class="fade-init text-xs opacity-70 mt-8">
+      ※ 応募フォームURLは仮。後日プレゼン大会専用フォームに差し替え。
+    </p>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-ink border-t border-line py-12 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
+    <div>
+      <p class="en font-bold mb-2"><span class="text-orange">NEXY</span> Summit 2026 — Presentation</p>
+      <p class="text-xs text-muted">© 2026 学生団体 NEXY</p>
+    </div>
+    <div class="flex flex-wrap gap-5 text-xs">
+      <a href="summit.html" class="text-muted hover:text-white transition">サミットトップ</a>
+      <a href="summit-session.html" class="text-muted hover:text-white transition">登壇セッション</a>
+      <a href="summit-workshop.html" class="text-muted hover:text-white transition">ワークショップ</a>
+      <a href="summit-booth.html" class="text-muted hover:text-white transition">企業ブース</a>
+      <a href="summit-community.html" class="text-muted hover:text-white transition">交流ブース</a>
+      <a href="summit-story.html" class="text-muted hover:text-white transition">ストーリー展</a>
+      <a href="index.html" class="text-muted hover:text-white transition">NEXY</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== JSON-LD ============== -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "NEXY Summit 2026 - プレゼン大会",
-  "startDate": "2026-08-01",
-  "endDate": "2026-08-31",
+  "name": "NEXY Summit 2026 プレゼン大会",
+  "startDate": "2026-08-06T10:30+09:00",
+  "endDate": "2026-08-06T16:30+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
@@ -93,7 +658,8 @@ a { color:inherit; }
     "name": "東京たま未来メッセ",
     "address": "東京都八王子市別所2-65"
   },
-  "description": "テーマは「やりたいをぶつけろ」。NEXY Summit 2026 のメインステージで、1,000人の高校生の前で自分のテーマを語る舞台です。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る場所。",
+  "description": "1,000人の前で語る、16人だけが立てるメインステージ。1→100部門と0→1部門の2部門で計16名が登壇。",
+  "image": "https://nexyhub.jp/img/summit/presentation.png",
   "organizer": {
     "@type": "Organization",
     "name": "学生団体 NEXY",
@@ -102,68 +668,55 @@ a { color:inherit; }
   "url": "https://nexyhub.jp/summit-presentation.html"
 }
 </script>
-</head>
-<body>
 
-<nav class="nav">
-  <div class="nav-logo"><a href="summit.html"><span class="lg-em">NEXY</span> Summit<span class="sub">2026</span></a></div>
-  <a href="summit.html#program" class="nav-back">← プログラム一覧に戻る</a>
-</nav>
+<!-- ============== JS ============== -->
+<script>
+  // Lucide
+  if (window.lucide) lucide.createIcons();
 
-<section class="hero">
-  <span class="hero-eyebrow">Main Stage</span>
-  <h1>プレゼン大会<em>。</em></h1>
-  <div class="hero-img"></div>
-</section>
+  // Countdown
+  const deadline = new Date('2026-07-06T23:59:59+09:00').getTime();
+  function tick() {
+    const now = Date.now();
+    let d = Math.max(0, deadline - now);
+    const days = Math.floor(d / 86400000);
+    d -= days * 86400000;
+    const h = Math.floor(d / 3600000);
+    d -= h * 3600000;
+    const m = Math.floor(d / 60000);
+    d -= m * 60000;
+    const s = Math.floor(d / 1000);
+    const pad = n => String(n).padStart(2, '0');
+    const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    setText('cd-days', days);
+    setText('cd-h', pad(h));
+    setText('cd-m', pad(m));
+    setText('cd-s', pad(s));
+    setText('cd-days-2', days);
+  }
+  tick();
+  setInterval(tick, 1000);
 
-<div class="content">
-  <p class="intro">テーマは「やりたいをぶつけろ」。NEXY Summit 2026 のメインステージで、1,000人の高校生の前で自分のテーマを語る舞台です。すでに動いている人も、まだ言葉になっていない人も、自分のテーマを舞台で語る場所。</p>
+  // Fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('fade-in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-init').forEach(el => io.observe(el));
 
-    <section class="detail-block">
-      <h2 class="detail-h2">1→100 部門：すでに動いている学生</h2>
-      <p class="detail-p">既に事業・プロジェクト・活動を動かしている学生が、自分の挑戦の現在地と次の打席を語る部門。</p>
-      <ul class="detail-list">        <li>活動実績のある学生による5〜10分のピッチ</li>
-        <li>審査員からのフィードバックあり</li>
-        <li>登壇後はメンターとの1on1セッションあり</li></ul>
-    </section>
+  // 部門指定遷移（応募フォームに ?part= を渡す想定）
+  document.querySelectorAll('a[data-part]').forEach(a => {
+    a.addEventListener('click', () => {
+      const part = a.dataset.part;
+      // 応募フォームに部門情報を渡したい場合はここで sessionStorage に保存
+      sessionStorage.setItem('nexy-summit-part', part);
+    });
+  });
+</script>
 
-    <section class="detail-block">
-      <h2 class="detail-h2">0→1 部門：まだ形になっていない夢を語る</h2>
-      <p class="detail-p">「やりたい」がまだ言葉になっていない人の部門。完成された発表ではなく、未完成のまま舞台に立つことそのものに価値を置く。</p>
-      <ul class="detail-list">        <li>未完成の違和感・好奇心を語る5分ピッチ</li>
-        <li>審査ではなく『応援』のフィードバック</li>
-        <li>1,000人の前で初めて自分の言葉を出す体験</li></ul>
-    </section>
-
-    <section class="detail-block">
-      <h2 class="detail-h2">オープニング・クロージング</h2>
-      <p class="detail-p">1日のはじまりと終わりに、全参加者が同じステージで体験を共有するメインセッション。</p>
-      <ul class="detail-list">        <li>オープニング: 1日の流れと過ごし方の説明、NEXY代表挨拶</li>
-        <li>クロージング: 参加者の宣言・ネクストアクション共有</li></ul>
-    </section>
-
-</div>
-
-<div class="cta-back">
-  <a href="summit.html#apply" class="btn">参加申込する →</a>
-  <a href="summit.html" class="btn btn-ghost">トップへ戻る</a>
-</div>
-
-<section class="related">
-  <div class="related-inner">
-    <h3>その他のプログラム</h3>
-    <div class="related-grid">
-      <a href="summit-session.html" class="rel-card"><div class="rel-name">登壇セッション</div></a>
-      <a href="summit-workshop.html" class="rel-card"><div class="rel-name">ワークショップ</div></a>
-      <a href="summit-booth.html" class="rel-card"><div class="rel-name">ブース出展</div></a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <span>© 2026 NEXY</span>
-  <a href="summit.html">NEXY Summit 2026</a>
-  <a href="index.html">NEXY TOP</a>
-</footer>
 </body>
 </html>
