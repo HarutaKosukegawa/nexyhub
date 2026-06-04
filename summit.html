@@ -679,6 +679,60 @@ img { max-width: 100%; display: block; }
   color: var(--text3); font-style: italic;
 }
 
+/* ===== FEATURED SPEAKERS (拡張カード) ===== */
+.featured-speakers {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+  max-width: 1100px; margin: 0 auto 36px;
+}
+@media (max-width: 900px) {
+  .featured-speakers { grid-template-columns: 1fr; }
+}
+.featured-card {
+  background: #fff; border: 2px solid var(--orange);
+  display: grid; grid-template-columns: 240px 1fr;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+}
+.featured-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(242,139,61,.18); }
+@media (max-width: 600px) {
+  .featured-card { grid-template-columns: 1fr; }
+}
+.featured-photo { background: var(--paper); overflow: hidden; }
+.featured-photo img {
+  width: 100%; height: 100%; aspect-ratio: 3/4;
+  object-fit: cover; object-position: center 25%;
+  display: block;
+}
+@media (max-width: 600px) {
+  .featured-photo img { aspect-ratio: 4/3; object-position: center 30%; }
+}
+.featured-body { padding: 20px 22px 22px; display: flex; flex-direction: column; }
+.featured-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: .66rem;
+  letter-spacing: .22em; color: var(--orange);
+  font-weight: 800; text-transform: uppercase; margin-bottom: 8px;
+}
+.featured-name { font-size: 1.22rem; font-weight: 900; color: var(--text); line-height: 1.3; margin-bottom: 2px; }
+.featured-name .kana { font-size: .68rem; font-weight: 600; color: var(--text3); margin-left: 6px; letter-spacing: .02em; }
+.featured-meta { font-size: .78rem; color: var(--text3); margin-bottom: 4px; }
+.featured-affil { font-size: .8rem; color: var(--text2); font-weight: 600; line-height: 1.55; margin-bottom: 12px; }
+.featured-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.featured-badges .fbadge {
+  font-family: 'Noto Sans JP', sans-serif; font-size: .64rem; font-weight: 800;
+  background: rgba(242,139,61,.12); color: var(--orange);
+  padding: 4px 8px; line-height: 1.4;
+}
+.featured-desc { font-size: .8rem; color: var(--text2); line-height: 1.85; margin-bottom: 10px; }
+.featured-themes { font-size: .68rem; color: var(--text3); font-style: italic; margin-bottom: 10px; line-height: 1.55; }
+.featured-link {
+  font-family: 'Inter', sans-serif; font-size: .74rem;
+  color: var(--orange); font-weight: 800; text-decoration: none;
+  margin-top: auto; padding-top: 4px;
+}
+.featured-link:hover { text-decoration: underline; }
+.featured-link::before { content: '→ '; }
+
+
 /* ===== TARGET (参加者) ===== */
 .target-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
@@ -1692,7 +1746,53 @@ img { max-width: 100%; display: block; }
         <h3 class="speakers-group-title">学生登壇者</h3>
         <span class="speakers-group-count">15〜20名 / Coming Soon</span>
       </div>
-      <div class="speakers-grid">
+            <!-- Featured Speakers（拡張カード） -->
+      <div class="featured-speakers">
+
+        <!-- 谷 昊埜 -->
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/speaker_tani.jpg" alt="谷 昊埜">
+          </div>
+          <div class="featured-body">
+            <p class="featured-eyebrow">Student Speaker</p>
+            <h4 class="featured-name">谷 昊埜<span class="kana">たに こうや</span></h4>
+            <p class="featured-meta">19歳・神奈川県／湘南台</p>
+            <p class="featured-affil">慶應義塾大学 ／ 株式会社 The Bedrock Space Group 共同創業</p>
+            <div class="featured-badges">
+              <span class="fbadge">BedrockSpace 共同創業</span>
+              <span class="fbadge">教育事業「ミラコエ」創設</span>
+              <span class="fbadge">全日本スキー選手権出場 2022・2023</span>
+            </div>
+            <p class="featured-desc">政治・宇宙をメインに事業をつくることを通して、社会や人を幸せにできるよう挑戦する。</p>
+            <p class="featured-themes">テーマ：起業・事業／自己探求／海外・グローバル／哲学（AI時代における人とは）</p>
+            <a href="https://x.com/koyatani_0828" target="_blank" rel="noopener" class="featured-link">@koyatani_0828</a>
+          </div>
+        </article>
+
+        <!-- 植田 晴子 -->
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/speaker_ueda.jpg" alt="植田 晴子">
+          </div>
+          <div class="featured-body">
+            <p class="featured-eyebrow">Student Speaker</p>
+            <h4 class="featured-name">植田 晴子<span class="kana">うえだ はるこ</span></h4>
+            <p class="featured-meta">18歳・神奈川県／湘南台</p>
+            <p class="featured-affil">慶應義塾大学SFC ／ 株式会社FMMK ／ SFC学生団体ワカキチ ／ Synergy Club</p>
+            <div class="featured-badges">
+              <span class="fbadge">沖縄県高校生団体FLARE 創設者（309名規模）</span>
+              <span class="fbadge">海風祭2025 実行委員長（1万人規模）</span>
+              <span class="fbadge">慶應SFC AO合格</span>
+            </div>
+            <p class="featured-desc">高校2年で沖縄県高校生団体FLAREを創設し309名規模へ拡大。高校生のみで企画した1万人規模イベント「海風祭2025」の実行委員長を務めた。総合型選抜で慶應SFCへ進学後、「挑戦が孤立しない社会」をテーマに、沖縄の相互扶助文化「模合」の研究と、若者同士が支え合うコミュニティづくりに取り組む。</p>
+            <p class="featured-themes">テーマ：コミュニティ／自己探求・問い／AO総合型選抜／人間関係・巻き込み</p>
+            <a href="https://www.instagram.com/3h_rk/" target="_blank" rel="noopener" class="featured-link">@3h_rk</a>
+          </div>
+        </article>
+
+      </div>
+<div class="speakers-grid">
       <div class="speaker-card">
         <div class="speaker-img placeholder">Coming Soon</div>
         <div class="speaker-body">
