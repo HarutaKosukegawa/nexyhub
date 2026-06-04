@@ -679,55 +679,38 @@ img { max-width: 100%; display: block; }
   color: var(--text3); font-style: italic;
 }
 
-/* ===== FEATURED SPEAKERS (拡張カード) ===== */
+/* ===== FEATURED SPEAKERS (5列縦カード) ===== */
 .featured-speakers {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-  max-width: 860px; margin: 0 auto 32px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+  max-width: 1180px; margin: 0 auto 32px;
 }
-@media (max-width: 900px) {
-  .featured-speakers { grid-template-columns: 1fr; max-width: 480px; }
-}
+@media (max-width: 1000px) { .featured-speakers { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px)  { .featured-speakers { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
 .featured-card {
   background: #fff; border: 1.5px solid var(--orange);
-  display: grid; grid-template-columns: 130px 1fr;
+  display: flex; flex-direction: column;
   overflow: hidden;
   transition: transform .3s, box-shadow .3s;
 }
 .featured-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(242,139,61,.14); }
-@media (max-width: 520px) {
-  .featured-card { grid-template-columns: 110px 1fr; }
-}
 .featured-photo { background: var(--paper); overflow: hidden; }
 .featured-photo img {
-  width: 100%; height: 100%; aspect-ratio: 3/4;
+  width: 100%; aspect-ratio: 1/1;
   object-fit: cover; object-position: center 22%;
   display: block;
 }
-.featured-body { padding: 13px 14px 14px; display: flex; flex-direction: column; }
-.featured-eyebrow {
-  font-family: 'Inter', sans-serif; font-size: .56rem;
-  letter-spacing: .22em; color: var(--orange);
-  font-weight: 800; text-transform: uppercase; margin-bottom: 5px;
-}
-.featured-name { font-size: 1rem; font-weight: 900; color: var(--text); line-height: 1.3; margin-bottom: 1px; }
-.featured-name .kana { font-size: .58rem; font-weight: 600; color: var(--text3); margin-left: 5px; letter-spacing: .02em; display: inline-block; }
-.featured-meta { font-size: .66rem; color: var(--text3); margin-bottom: 3px; }
-.featured-affil { font-size: .68rem; color: var(--text2); font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
-.featured-badges { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 8px; }
+.featured-body { padding: 10px 11px 12px; display: flex; flex-direction: column; flex: 1; }
+.featured-name { font-size: .88rem; font-weight: 900; color: var(--text); line-height: 1.3; margin-bottom: 1px; }
+.featured-name .kana { font-size: .52rem; font-weight: 600; color: var(--text3); margin-left: 4px; letter-spacing: .02em; display: inline-block; }
+.featured-meta { font-size: .6rem; color: var(--text3); margin-bottom: 3px; }
+.featured-affil { font-size: .62rem; color: var(--text2); font-weight: 600; line-height: 1.5; margin-bottom: 7px; }
+.featured-badges { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 7px; }
 .featured-badges .fbadge {
-  font-family: 'Noto Sans JP', sans-serif; font-size: .56rem; font-weight: 800;
+  font-family: 'Noto Sans JP', sans-serif; font-size: .52rem; font-weight: 800;
   background: rgba(242,139,61,.12); color: var(--orange);
-  padding: 3px 6px; line-height: 1.35;
+  padding: 3px 5px; line-height: 1.35;
 }
-.featured-desc { font-size: .68rem; color: var(--text2); line-height: 1.7; margin-bottom: 6px; }
-.featured-themes { font-size: .58rem; color: var(--text3); font-style: italic; margin-bottom: 6px; line-height: 1.5; }
-.featured-link {
-  font-family: 'Inter', sans-serif; font-size: .64rem;
-  color: var(--orange); font-weight: 800; text-decoration: none;
-  margin-top: auto; padding-top: 3px;
-}
-.featured-link:hover { text-decoration: underline; }
-.featured-link::before { content: '→ '; }
+.featured-desc { font-size: .64rem; color: var(--text2); line-height: 1.7; }
 
 
 /* ===== TARGET (参加者) ===== */
@@ -1752,18 +1735,15 @@ img { max-width: 100%; display: block; }
             <img src="img/summit/speaker_tani.jpg" alt="谷 昊埜">
           </div>
           <div class="featured-body">
-            <p class="featured-eyebrow">Student Speaker</p>
             <h4 class="featured-name">谷 昊埜<span class="kana">たに こうや</span></h4>
-            <p class="featured-meta">19歳・神奈川県／湘南台</p>
-            <p class="featured-affil">慶應義塾大学 ／ 株式会社 The Bedrock Space Group 共同創業</p>
+            <p class="featured-meta">19歳 ／ 慶應義塾大学</p>
+            <p class="featured-affil">株式会社 The Bedrock Space Group 共同創業</p>
             <div class="featured-badges">
               <span class="fbadge">BedrockSpace 共同創業</span>
               <span class="fbadge">教育事業「ミラコエ」創設</span>
               <span class="fbadge">全日本スキー選手権出場 2022・2023</span>
             </div>
             <p class="featured-desc">政治・宇宙をメインに事業をつくることを通して、社会や人を幸せにできるよう挑戦する。</p>
-            <p class="featured-themes">テーマ：起業・事業／自己探求／海外・グローバル／哲学（AI時代における人とは）</p>
-            <a href="https://x.com/koyatani_0828" target="_blank" rel="noopener" class="featured-link">@koyatani_0828</a>
           </div>
         </article>
 
@@ -1773,18 +1753,15 @@ img { max-width: 100%; display: block; }
             <img src="img/summit/speaker_ueda.jpg" alt="植田 晴子">
           </div>
           <div class="featured-body">
-            <p class="featured-eyebrow">Student Speaker</p>
             <h4 class="featured-name">植田 晴子<span class="kana">うえだ はるこ</span></h4>
-            <p class="featured-meta">18歳・神奈川県／湘南台</p>
-            <p class="featured-affil">慶應義塾大学SFC ／ 株式会社FMMK ／ SFC学生団体ワカキチ ／ Synergy Club</p>
+            <p class="featured-meta">18歳 ／ 慶應義塾大学SFC</p>
+            <p class="featured-affil">株式会社FMMK ／ SFC学生団体ワカキチ ／ Synergy Club</p>
             <div class="featured-badges">
               <span class="fbadge">沖縄県高校生団体FLARE 創設者（309名規模）</span>
               <span class="fbadge">海風祭2025 実行委員長（1万人規模）</span>
               <span class="fbadge">慶應SFC AO合格</span>
             </div>
             <p class="featured-desc">高校2年で沖縄県高校生団体FLAREを創設し309名規模へ拡大。高校生のみで企画した1万人規模イベント「海風祭2025」の実行委員長を務めた。総合型選抜で慶應SFCへ進学後、「挑戦が孤立しない社会」をテーマに、沖縄の相互扶助文化「模合」の研究と、若者同士が支え合うコミュニティづくりに取り組む。</p>
-            <p class="featured-themes">テーマ：コミュニティ／自己探求・問い／AO総合型選抜／人間関係・巻き込み</p>
-            <a href="https://www.instagram.com/3h_rk/" target="_blank" rel="noopener" class="featured-link">@3h_rk</a>
           </div>
         </article>
 
