@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://nexyhub.jp/summit-presentation.html">
 <meta property="og:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
 <meta property="og:description" content="1,000人の前で語る、12人だけが立てるメインステージ。未完成のまま、それでもやりたいから立つ人へ。">
-<meta property="og:image" content="https://nexyhub.jp/img/summit/presentation.png">
+<meta property="og:image" content="https://nexyhub.jp/img/summit/presentation_hero.png">
 <meta property="og:site_name" content="NEXY">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
@@ -27,15 +27,16 @@ tailwind.config = {
     extend: {
       colors: {
         ink: '#0A0A0A',
-        ash: '#1a1a1a',
-        line: '#262626',
-        muted: '#A3A3A3',
+        text2: '#333333',
+        muted: '#737373',
+        line: '#E5E5E5',
+        paper: '#FAFAF7',
         red: '#FF3B30',
         crimson: '#E63946',
         orange: '#FF6B35',
         teal: '#2A9D8F',
         deep: '#264653',
-        gold: '#D4A574',
+        gold: '#C8961F',
       },
       fontFamily: {
         sans: ['"Noto Sans JP"','"Zen Kaku Gothic New"','sans-serif'],
@@ -52,7 +53,7 @@ tailwind.config = {
 
 <style>
 html { scroll-behavior: smooth; }
-body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; background:#0A0A0A; color:#fff; -webkit-font-smoothing:antialiased; }
+body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; background:#FFFFFF; color:#0A0A0A; -webkit-font-smoothing:antialiased; }
 .en { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing:.02em; }
 .fade-init { opacity:0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
 .fade-in { opacity:1; transform: translateY(0); }
@@ -63,11 +64,8 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   0%,100% { box-shadow: 0 0 0 0 rgba(255,107,53,.55); }
   50% { box-shadow: 0 0 0 14px rgba(255,107,53,0); }
 }
-.text-stroke {
-  -webkit-text-stroke: 1.5px #fff; color: transparent;
-}
-.gradient-mask {
-  background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,.85) 60%, #0A0A0A 100%);
+.gradient-mask-light {
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 60%, #FFFFFF 100%);
 }
 .tilt-card { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
 .tilt-card:hover { transform: translateY(-8px); }
@@ -82,17 +80,17 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 }
 </style>
 </head>
-<body class="bg-ink text-white">
+<body class="bg-white text-ink">
 
 <!-- ============== NAV ============== -->
-<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/80 border-b border-line">
+<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/85 border-b border-line">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-14">
-    <a href="summit.html" class="en font-bold tracking-wider text-sm sm:text-base">
+    <a href="summit.html" class="en font-bold tracking-wider text-sm sm:text-base text-ink">
       <span class="text-orange">NEXY</span> Summit<span class="text-muted ml-2 text-xs">2026</span>
     </a>
     <div class="flex items-center gap-3">
-      <a href="summit.html" class="hidden sm:inline text-xs text-muted hover:text-white transition">← Summitトップ</a>
-      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-white hover:text-orange transition">
+      <a href="summit.html" class="hidden sm:inline text-xs text-muted hover:text-ink transition">← Summitトップ</a>
+      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-ink hover:text-white transition">
         応募する →
       </a>
     </div>
@@ -100,38 +98,36 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </nav>
 
 <!-- ============== SECTION 01: HERO ============== -->
-<section class="hero relative h-screen w-full overflow-hidden">
-  <!-- ヒーロー画像（依頼者から差し替え予定） -->
-  <img src="img/summit/presentation.png" alt="NEXY Summit 2026 プレゼン大会" class="w-full h-full object-cover">
-  <!-- 下部のグラデーション（ナビとセクション接続の馴染ませ） -->
-  <div class="absolute inset-x-0 bottom-0 h-32 gradient-mask pointer-events-none"></div>
+<section class="hero relative h-screen w-full overflow-hidden bg-white">
+  <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会 — やりたいをぶつけに来い" class="w-full h-full object-cover">
+  <div class="absolute inset-x-0 bottom-0 h-32 gradient-mask-light pointer-events-none"></div>
 </section>
 
 <!-- ============== SECTION 02: ここに立つと、何が変わるか ============== -->
-<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+<section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHAT CHANGES</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16 text-ink">
       ここに立つと、<br class="sm:hidden"><span class="text-orange">人生が動く。</span>
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
-      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-orange">
+      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-orange">
         <i data-lucide="users" class="w-7 h-7 text-orange mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">1,000</p>
-        <p class="text-base sm:text-lg font-bold mb-2">人の前で語る</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">1,000</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">人の前で語る</p>
         <p class="text-muted text-sm leading-relaxed">あなたの言葉が、当日会場で届く対象者の数。</p>
       </div>
-      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-teal">
+      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-teal">
         <i data-lucide="mic" class="w-7 h-7 text-teal mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">12</p>
-        <p class="text-base sm:text-lg font-bold mb-2">人だけが立てる</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">12</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">人だけが立てる</p>
         <p class="text-muted text-sm leading-relaxed">2部門×6名。選ばれた12名だけのメインステージ。</p>
       </div>
-      <div class="fade-init tilt-card bg-ash p-8 sm:p-10 border-l-4 border-gold">
+      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-gold">
         <i data-lucide="zap" class="w-7 h-7 text-gold mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3">12</p>
-        <p class="text-base sm:text-lg font-bold mb-2">分の人生が動く</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">12</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">分の人生が動く</p>
         <p class="text-muted text-sm leading-relaxed">プレゼン7分＋Q&A5分。12分が次の打席を呼ぶ。</p>
       </div>
     </div>
@@ -139,56 +135,56 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 03: 2部門 ============== -->
-<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">CHOOSE YOUR STAGE</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16 text-ink">
       2つの部門、<br class="sm:hidden">どっちに応募する？
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 
       <!-- 1→100 -->
-      <div class="fade-init tilt-card bg-ink p-8 sm:p-10 border border-orange/60 relative overflow-hidden">
+      <div class="fade-init tilt-card bg-white p-8 sm:p-10 border border-orange/60 relative overflow-hidden">
         <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-orange/10 leading-none select-none">100</div>
         <div class="relative">
           <p class="en text-orange font-bold text-sm tracking-widest mb-3">PART 01 / 10:30 — 12:00</p>
           <p class="en text-orange font-black text-6xl sm:text-7xl leading-none mb-6">1 → 100</p>
-          <h3 class="text-xl sm:text-2xl font-black mb-4">もう動いてる君へ。</h3>
+          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">もう動いてる君へ。</h3>
           <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
             すでに事業・活動・プロジェクトが走っている。<br>これを「もっとデカく」したい人のための部門。
           </p>
           <ul class="space-y-3 mb-10">
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>審査員からのフィードバック</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>協賛企業からのインターン打診</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>審査員からのフィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>協賛企業からのインターン打診</span></li>
           </ul>
-          <a href="#apply" data-part="1to100" class="block w-full text-center bg-orange text-white py-4 font-black tracking-wide hover:bg-white hover:text-orange transition">
+          <a href="#apply" data-part="1to100" class="block w-full text-center bg-orange text-white py-4 font-black tracking-wide hover:bg-ink transition">
             この部門に応募 →
           </a>
         </div>
       </div>
 
       <!-- 0→1 -->
-      <div class="fade-init tilt-card bg-ink p-8 sm:p-10 border border-teal/60 relative overflow-hidden">
+      <div class="fade-init tilt-card bg-white p-8 sm:p-10 border border-teal/60 relative overflow-hidden">
         <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-teal/10 leading-none select-none">1</div>
         <div class="relative">
           <p class="en text-teal font-bold text-sm tracking-widest mb-3">PART 02 / 15:00 — 16:30</p>
           <p class="en text-teal font-black text-6xl sm:text-7xl leading-none mb-6">0 → 1</p>
-          <h3 class="text-xl sm:text-2xl font-black mb-4">まだ動けてない君へ。</h3>
+          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">まだ動けてない君へ。</h3>
           <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
             まだ言葉にならない、形にならない。<br>それでも挑戦したい。そんな君のための部門。
           </p>
           <ul class="space-y-3 mb-10">
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>審査員からの応援フィードバック</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>「初めての一歩」体験ワーク</span></li>
-            <li class="flex items-start gap-3 text-sm"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>審査員からの応援フィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>「初めての一歩」体験ワーク</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
           </ul>
-          <a href="#apply" data-part="0to1" class="block w-full text-center bg-teal text-white py-4 font-black tracking-wide hover:bg-white hover:text-teal transition">
+          <a href="#apply" data-part="0to1" class="block w-full text-center bg-teal text-white py-4 font-black tracking-wide hover:bg-ink transition">
             この部門に応募 →
           </a>
         </div>
@@ -197,75 +193,142 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   </div>
 </section>
 
-<!-- ============== SECTION 04: 賞・特典 ============== -->
-<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+<!-- ============== SECTION 04: 賞・特典（準備中枠） ============== -->
+<section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-5xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">AWARDS & BENEFITS</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16">
-      登壇者には、<br><span class="text-gold">「次の打席」</span>が約束される。
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">PRIZES & BENEFITS</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
+      登壇者には、<br><span class="text-gold">「賞品」</span>を用意している。
     </h2>
+    <p class="fade-init text-muted text-sm sm:text-base mb-16 leading-relaxed">
+      賞の種別・最優秀賞の内容は現在最終調整中。決まり次第このページで発表する。
+    </p>
 
-    <!-- メイン賞 -->
-    <div class="fade-init bg-gradient-to-br from-gold/20 to-transparent border border-gold p-8 sm:p-12 mb-10 relative overflow-hidden">
-      <div class="absolute top-6 right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gold flex items-center justify-center bg-ink">
+    <!-- メイン賞（準備中枠） -->
+    <div class="fade-init bg-gradient-to-br from-gold/15 to-transparent border-2 border-gold p-8 sm:p-12 mb-10 relative overflow-hidden">
+      <div class="absolute top-6 right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gold flex items-center justify-center bg-white">
         <i data-lucide="trophy" class="w-10 h-10 sm:w-14 sm:h-14 text-gold"></i>
       </div>
       <p class="en text-gold text-xs tracking-[.3em] mb-3">MAIN PRIZE</p>
-      <h3 class="text-2xl sm:text-4xl font-black mb-2 leading-tight">孫正義育英財団 大賞</h3>
-      <p class="text-muted text-sm mb-6">プレゼン大会優勝者 1名</p>
-      <ul class="space-y-2">
-        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="gift" class="w-4 h-4 text-gold mt-1.5 shrink-0"></i><span>賞品提供</span></li>
-        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="user-check" class="w-4 h-4 text-gold mt-1.5 shrink-0"></i><span>孫正義育英財団 担当者との1on1面談</span></li>
-      </ul>
+      <h3 class="text-2xl sm:text-4xl font-black mb-3 leading-tight text-ink">最優秀賞</h3>
+      <p class="text-muted text-sm mb-6 en tracking-wider">COMING SOON</p>
+      <p class="text-ink text-sm sm:text-base leading-relaxed">
+        賞品・副賞の内容は調整中。最終確定後、本ページにて発表します。
+      </p>
     </div>
 
-    <!-- 特別賞 -->
-    <div class="fade-init bg-ash border border-line p-8 sm:p-10 mb-10">
+    <!-- 特別賞（準備中枠） -->
+    <div class="fade-init bg-paper border border-line p-8 sm:p-10 mb-10">
       <p class="en text-orange text-xs tracking-[.3em] mb-3">SPECIAL AWARDS</p>
-      <h3 class="text-xl sm:text-2xl font-black mb-2">協賛企業 特別賞</h3>
-      <p class="text-muted text-sm mb-6">数名</p>
-      <ul class="space-y-2">
-        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="briefcase" class="w-4 h-4 text-orange mt-1.5 shrink-0"></i><span>各企業からの個別フォローアップ</span></li>
-        <li class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="handshake" class="w-4 h-4 text-orange mt-1.5 shrink-0"></i><span>インターン・共同活動の打診チャンス</span></li>
-      </ul>
+      <h3 class="text-xl sm:text-2xl font-black mb-3 text-ink">協賛企業 特別賞</h3>
+      <p class="text-muted text-sm mb-6 en tracking-wider">COMING SOON</p>
+      <p class="text-ink text-sm sm:text-base leading-relaxed">
+        協賛企業から数名に特別賞を授与予定。各社の関心領域に応じた賞を企画中。
+      </p>
     </div>
 
     <!-- 全登壇者特典 -->
-    <div class="fade-init bg-ash border border-line p-8 sm:p-10">
+    <div class="fade-init bg-paper border border-line p-8 sm:p-10">
       <p class="en text-teal text-xs tracking-[.3em] mb-3">FOR ALL SPEAKERS</p>
-      <h3 class="text-xl sm:text-2xl font-black mb-6">全登壇者特典</h3>
+      <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">全登壇者の確定特典</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター1on1セッション</span></div>
-        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇のアーカイブ動画（履歴書・自己PRに使える）</span></div>
-        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>NEXY登壇者コミュニティへの参加権</span></div>
-        <div class="flex items-start gap-3 text-sm sm:text-base"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>1on1チケット（協賛企業との後日面談）</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター1on1セッション</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇のアーカイブ動画（履歴書・自己PRに使える）</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>NEXY登壇者コミュニティへの参加権</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>事前メンタリング（経験豊富な講師による壁打ち）</span></div>
       </div>
     </div>
 
     <div class="text-center mt-14">
-      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-white hover:text-orange transition">応募する →</a>
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition">応募する →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SECTION 04.5: メンタリング体制 ============== -->
+<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+  <div class="max-w-5xl mx-auto">
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">MENTORING</p>
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
+      ひとりで<span class="text-orange">立たせない。</span>
+    </h2>
+    <p class="fade-init text-muted text-base sm:text-lg mb-12 leading-relaxed">
+      経験豊富な講師陣が、応募〜本番までを伴走する。プレゼン未経験でも、本番までに「立てる状態」までつくりあげる。
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+      <!-- 講師枠（準備中） -->
+      <div class="fade-init bg-white border-2 border-orange/40 p-8 sm:p-10">
+        <i data-lucide="user-check" class="w-9 h-9 text-orange mb-5"></i>
+        <h3 class="text-xl sm:text-2xl font-black mb-3 text-ink">メンター講師</h3>
+        <p class="text-muted text-sm mb-5 en tracking-wider">COMING SOON</p>
+        <p class="text-ink text-sm sm:text-base leading-relaxed mb-4">
+          ピッチ・スピーチ・事業開発の現場経験を持つ講師陣を起用予定。
+        </p>
+        <p class="text-muted text-xs leading-relaxed">
+          ※ 詳細は決まり次第このページに掲載します。
+        </p>
+      </div>
+
+      <!-- スケジュール -->
+      <div class="fade-init bg-white border border-line p-8 sm:p-10">
+        <i data-lucide="calendar-clock" class="w-9 h-9 text-teal mb-5"></i>
+        <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">メンタリングの流れ</h3>
+        <ol class="space-y-4">
+          <li class="flex items-start gap-3">
+            <span class="en text-teal font-black text-sm shrink-0 w-10">STEP1</span>
+            <div>
+              <p class="text-sm font-bold text-ink mb-1">通過後すぐ：キックオフ</p>
+              <p class="text-xs text-muted leading-relaxed">担当メンターとの初回顔合わせ。話す内容の方向性を確認。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="en text-teal font-black text-sm shrink-0 w-10">STEP2</span>
+            <div>
+              <p class="text-sm font-bold text-ink mb-1">7月下旬：個別壁打ち</p>
+              <p class="text-xs text-muted leading-relaxed">スライド草案を講師がレビュー。構成・伝え方・尺をブラッシュアップ。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="en text-teal font-black text-sm shrink-0 w-10">STEP3</span>
+            <div>
+              <p class="text-sm font-bold text-ink mb-1">8月上旬：全体会レビュー</p>
+              <p class="text-xs text-muted leading-relaxed">本番1週間前。講師に通しで見てもらい、最終調整。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="en text-teal font-black text-sm shrink-0 w-10">STEP4</span>
+            <div>
+              <p class="text-sm font-bold text-ink mb-1">8月5日：リハーサル</p>
+              <p class="text-xs text-muted leading-relaxed">本番会場にて、ステージ感覚と機材を確認。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ============== SECTION 05: こんな人に挑戦してほしい ============== -->
-<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+<section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-4xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHO SHOULD STAND</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
       完璧じゃなくていい。<br>むしろ、<span class="text-orange">未完成な君</span>に立ってほしい。
     </h2>
 
     <ul class="space-y-5 mb-12">
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「やりたい」はあるけど、まだ言葉にできない高校生・大学生</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>すでに何か始めてるけど、もっと加速させたい人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自分の活動を1,000人に知ってもらいたい人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「ここに立っていいのか」と悩んでる人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>起業／不登校／海外進学／AO総合型／地方発信／音楽／アート／研究…テーマは何でもいい</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「やりたい」はあるけど、まだ言葉にできない高校生・大学生</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>すでに何か始めてるけど、もっと加速させたい人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自分の活動を1,000人に知ってもらいたい人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「ここに立っていいのか」と悩んでる人</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>起業／不登校／海外進学／AO総合型／地方発信／音楽／アート／研究…テーマは何でもいい</span></li>
     </ul>
 
-    <div class="fade-init bg-ink border-l-4 border-orange p-6 sm:p-8">
-      <p class="text-lg sm:text-2xl font-black leading-relaxed">
+    <div class="fade-init bg-paper border-l-4 border-orange p-6 sm:p-8">
+      <p class="text-lg sm:text-2xl font-black leading-relaxed text-ink">
         NEXY Summitは、<br class="sm:hidden"><span class="text-orange">未完成のまま舞台に立っていい場所</span>です。
       </p>
     </div>
@@ -273,19 +336,17 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 06: ハルタからのメッセージ ============== -->
-<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8 relative overflow-hidden">
+<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 relative overflow-hidden border-y border-line">
   <div class="absolute inset-0 bg-gradient-to-br from-orange/5 via-transparent to-teal/5"></div>
   <div class="relative max-w-4xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">A LETTER FROM HARUTA</p>
-    <h2 class="fade-init text-2xl sm:text-4xl font-black leading-tight mb-12">
+    <h2 class="fade-init text-2xl sm:text-4xl font-black leading-tight mb-12 text-ink">
       NEXY代表 <span class="text-orange">小助川晴大</span>からのメッセージ。
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-      <!-- 写真エリア -->
       <div class="md:col-span-4 fade-init">
-        <div class="aspect-[3/4] bg-ash border border-line flex items-center justify-center">
-          <!-- 後で差し替え -->
+        <div class="aspect-[3/4] bg-white border border-line flex items-center justify-center">
           <img src="img/members/haruta.jpg" alt="小助川晴大" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="text-muted text-xs text-center p-4" style="display:none">[小助川晴大の写真]<br>後で差し替え</div>
         </div>
@@ -293,9 +354,8 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         <p class="text-xs text-muted">NEXY代表 / 孫正義育英財団3期生</p>
       </div>
 
-      <!-- 本文 -->
       <div class="md:col-span-8 fade-init">
-        <div class="space-y-6 text-base sm:text-lg leading-loose handwriting">
+        <div class="space-y-6 text-base sm:text-lg leading-loose handwriting text-ink">
           <p>13歳のとき、僕は世界大会のステージで負けた。</p>
           <p>それから10年、ずっと「自分のやりたい」を社会にぶつけ続けてきた。</p>
           <p class="text-muted">でも、本当はずっと不安だった。<br>「自分なんかが立っていいのか」と。</p>
@@ -312,33 +372,32 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 07: ステージイメージ ============== -->
-<section class="bg-ash py-24 sm:py-32 border-y border-line">
+<section class="bg-white py-24 sm:py-32 border-y border-line">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-12">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">YOUR STAGE</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight text-ink">
       これが、<span class="text-orange">君が立つ舞台</span>。
     </h2>
   </div>
 
-  <!-- 横スクロールギャラリー -->
   <div class="overflow-x-auto scrollbar-hide">
     <div class="flex gap-4 px-5 sm:px-8 pb-2 w-max">
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_stage.jpg" alt="ステージ" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_keynote.jpg" alt="基調講演" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_speaker.jpg" alt="登壇者" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_audience.jpg" alt="客席" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/venue.jpg" alt="東京たま未来メッセ" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-ink border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_handshake.jpg" alt="登壇後の交流" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
     </div>
@@ -349,18 +408,18 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 08: タイムライン ============== -->
-<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+<section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">TIMELINE</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
       応募から本番まで、<br class="sm:hidden">2ヶ月。
     </h2>
 
     <!-- カウントダウン -->
-    <div class="fade-init bg-ash border border-orange p-6 sm:p-8 mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div class="fade-init bg-paper border-2 border-orange p-6 sm:p-8 mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
         <p class="text-xs text-muted en tracking-widest mb-1">DEADLINE</p>
-        <p class="text-base sm:text-lg font-bold">2026年7月6日（月）23:59</p>
+        <p class="text-base sm:text-lg font-bold text-ink">2026年7月6日（月）23:59</p>
       </div>
       <div class="text-right">
         <p class="text-xs text-muted en tracking-widest mb-1">REMAINING</p>
@@ -368,9 +427,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
       </div>
     </div>
 
-    <!-- タイムライン -->
     <div class="relative">
-      <!-- 線 -->
       <div class="hidden md:block absolute top-6 left-6 right-6 h-px bg-line"></div>
       <div class="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-2 relative">
 
@@ -380,7 +437,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-orange mb-1">6/7</p>
-            <p class="text-sm font-bold">応募開始</p>
+            <p class="text-sm font-bold text-ink">応募開始</p>
           </div>
         </div>
 
@@ -390,60 +447,60 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-orange mb-1">7/6</p>
-            <p class="text-sm font-bold">応募締切</p>
+            <p class="text-sm font-bold text-ink">応募締切</p>
             <p class="text-xs text-muted">23:59</p>
           </div>
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="mail-check" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-muted mb-1">7/13</p>
-            <p class="text-sm font-bold">通過連絡</p>
+            <p class="text-sm font-bold text-ink">通過連絡</p>
             <p class="text-xs text-muted">12名選出</p>
           </div>
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="bell" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-muted mb-1">7/22</p>
-            <p class="text-sm font-bold">最終通知</p>
+            <p class="text-sm font-bold text-ink">最終通知</p>
           </div>
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="sparkles" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-muted mb-1">7/27</p>
-            <p class="text-sm font-bold">ブラッシュアップ</p>
+            <p class="text-sm font-bold text-ink">ブラッシュアップ</p>
             <p class="text-xs text-muted">メンタリング</p>
           </div>
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-ash border border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="mic-2" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-muted mb-1">8/5</p>
-            <p class="text-sm font-bold">リハーサル</p>
+            <p class="text-sm font-bold text-ink">リハーサル</p>
           </div>
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
           <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center shrink-0 relative z-10">
-            <i data-lucide="trophy" class="w-5 h-5 text-ink"></i>
+            <i data-lucide="trophy" class="w-5 h-5 text-white"></i>
           </div>
           <div class="md:mt-4">
             <p class="en text-xs text-gold mb-1">8/6</p>
-            <p class="text-sm font-bold">本番</p>
+            <p class="text-sm font-bold text-ink">本番</p>
             <p class="text-xs text-muted">90分 × 2</p>
           </div>
         </div>
@@ -454,15 +511,15 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 09: 応募方法（3ステップ） ============== -->
-<section class="bg-ash py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">HOW TO APPLY</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
       3ステップ、<span class="text-orange">10分</span>で完了。
     </h2>
 
     <div class="fade-init bg-orange/10 border-l-4 border-orange p-5 sm:p-6 mb-12">
-      <p class="text-base sm:text-lg font-black leading-relaxed">
+      <p class="text-base sm:text-lg font-black leading-relaxed text-ink">
         動画はスマホで撮ったやつでOK。<br>
         編集なくていい。3分で大丈夫。
       </p>
@@ -470,26 +527,26 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
 
-      <div class="fade-init bg-ink border border-line p-8 relative">
+      <div class="fade-init bg-white border border-line p-8 relative">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">01</div>
         <i data-lucide="edit-3" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3">応募フォームに記入</h3>
+        <h3 class="text-xl font-black mb-3 text-ink">応募フォームに記入</h3>
         <p class="text-sm text-muted leading-relaxed mb-4">名前・部門・話したいテーマ・連絡先など。</p>
         <p class="en text-xs text-orange">≈ 5分で完了</p>
       </div>
 
-      <div class="fade-init bg-ink border border-line p-8 relative">
+      <div class="fade-init bg-white border border-line p-8 relative">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">02</div>
         <i data-lucide="video" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3">自己紹介動画をアップ</h3>
+        <h3 class="text-xl font-black mb-3 text-ink">自己紹介動画をアップ</h3>
         <p class="text-sm text-muted leading-relaxed mb-4">スマホで撮影OK。3分・編集なしでOK。</p>
         <p class="en text-xs text-orange">スマホ縦撮りでOK</p>
       </div>
 
-      <div class="fade-init bg-ink border border-line p-8 relative">
+      <div class="fade-init bg-white border border-line p-8 relative">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">03</div>
         <i data-lucide="send" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3">送信して連絡を待つ</h3>
+        <h3 class="text-xl font-black mb-3 text-ink">送信して連絡を待つ</h3>
         <p class="text-sm text-muted leading-relaxed mb-4">通過連絡は2026年7月13日。</p>
         <p class="en text-xs text-orange">あとは結果を待つだけ</p>
       </div>
@@ -497,23 +554,23 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     </div>
 
     <div class="text-center mt-14">
-      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-white hover:text-orange transition cta-pulse">応募フォームへ →</a>
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition cta-pulse">応募フォームへ →</a>
     </div>
   </div>
 </section>
 
 <!-- ============== SECTION 10: FAQ ============== -->
-<section class="bg-ink py-24 sm:py-32 px-5 sm:px-8">
+<section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-3xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">FAQ</p>
-    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12">
+    <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
       不安、<span class="text-orange">先につぶしておこう。</span>
     </h2>
 
     <div class="space-y-3">
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">プレゼン経験ゼロでも応募していい？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">プレゼン経験ゼロでも応募していい？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -521,9 +578,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">何の活動もしていないけど0→1部門に応募できる？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">何の活動もしていないけど0→1部門に応募できる？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -531,9 +588,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">落選してもサミットには参加できる？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">落選してもサミットには参加できる？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -541,9 +598,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">保護者の同意は必要？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">保護者の同意は必要？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -551,9 +608,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">関東圏以外からも応募できる？交通費は？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">関東圏以外からも応募できる？交通費は？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -561,9 +618,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">当日のスライドは持ち込み？こちらで作る？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">当日のスライドは持ち込み？こちらで作る？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -571,9 +628,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">動画撮影の質はどのくらい必要？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">動画撮影の質はどのくらい必要？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -581,9 +638,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
       </details>
 
-      <details class="acc fade-init bg-ash border border-line">
+      <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4">応募後の連絡はいつ来る？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">応募後の連絡はいつ来る？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
@@ -596,12 +653,11 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 
 <!-- ============== SECTION 12: FINAL CTA ============== -->
 <section id="apply" class="bg-gradient-to-br from-orange via-crimson to-orange py-32 sm:py-40 px-5 sm:px-8 relative overflow-hidden">
-  <!-- 背景の大きな数字 -->
   <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
     <p class="en font-black text-[300px] sm:text-[500px] text-white/5 leading-none select-none">2026</p>
   </div>
 
-  <div class="relative max-w-4xl mx-auto text-center">
+  <div class="relative max-w-4xl mx-auto text-center text-white">
     <h2 class="fade-init text-5xl sm:text-8xl font-black leading-none mb-8">
       立つ覚悟、<br>ある？
     </h2>
@@ -616,7 +672,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
       2026年7月6日（月）23:59 まで
     </p>
 
-    <a href="https://forms.gle/PLACEHOLDER" class="fade-init inline-block bg-ink text-white px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-white hover:text-ink transition shadow-2xl">
+    <a href="https://forms.gle/PLACEHOLDER" class="fade-init inline-block bg-white text-ink px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-ink hover:text-white transition shadow-2xl">
       今すぐ応募する →
     </a>
 
@@ -627,20 +683,20 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== FOOTER ============== -->
-<footer class="bg-ink border-t border-line py-12 px-5 sm:px-8">
+<footer class="bg-white border-t border-line py-12 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
     <div>
-      <p class="en font-bold mb-2"><span class="text-orange">NEXY</span> Summit 2026 — Presentation</p>
+      <p class="en font-bold mb-2 text-ink"><span class="text-orange">NEXY</span> Summit 2026 — Presentation</p>
       <p class="text-xs text-muted">© 2026 学生団体 NEXY</p>
     </div>
     <div class="flex flex-wrap gap-5 text-xs">
-      <a href="summit.html" class="text-muted hover:text-white transition">サミットトップ</a>
-      <a href="summit-session.html" class="text-muted hover:text-white transition">登壇セッション</a>
-      <a href="summit-workshop.html" class="text-muted hover:text-white transition">ワークショップ</a>
-      <a href="summit-booth.html" class="text-muted hover:text-white transition">企業ブース</a>
-      <a href="summit-community.html" class="text-muted hover:text-white transition">交流ブース</a>
-      <a href="summit-story.html" class="text-muted hover:text-white transition">ストーリー展</a>
-      <a href="index.html" class="text-muted hover:text-white transition">NEXY</a>
+      <a href="summit.html" class="text-muted hover:text-ink transition">サミットトップ</a>
+      <a href="summit-session.html" class="text-muted hover:text-ink transition">登壇セッション</a>
+      <a href="summit-workshop.html" class="text-muted hover:text-ink transition">ワークショップ</a>
+      <a href="summit-booth.html" class="text-muted hover:text-ink transition">企業ブース</a>
+      <a href="summit-community.html" class="text-muted hover:text-ink transition">交流ブース</a>
+      <a href="summit-story.html" class="text-muted hover:text-ink transition">ストーリー展</a>
+      <a href="index.html" class="text-muted hover:text-ink transition">NEXY</a>
     </div>
   </div>
 </footer>
@@ -661,7 +717,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     "address": "東京都八王子市別所2-65"
   },
   "description": "1,000人の前で語る、12人だけが立てるメインステージ。1→100部門と0→1部門の2部門で計12名が登壇。各登壇者はプレゼン7分＋Q&A5分。",
-  "image": "https://nexyhub.jp/img/summit/presentation.png",
+  "image": "https://nexyhub.jp/img/summit/presentation_hero.png",
   "organizer": {
     "@type": "Organization",
     "name": "学生団体 NEXY",
@@ -673,10 +729,8 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 
 <!-- ============== JS ============== -->
 <script>
-  // Lucide
   if (window.lucide) lucide.createIcons();
 
-  // Countdown
   const deadline = new Date('2026-07-06T23:59:59+09:00').getTime();
   function tick() {
     const now = Date.now();
@@ -699,7 +753,6 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   tick();
   setInterval(tick, 1000);
 
-  // Fade-in on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -710,11 +763,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-init').forEach(el => io.observe(el));
 
-  // 部門指定遷移（応募フォームに ?part= を渡す想定）
   document.querySelectorAll('a[data-part]').forEach(a => {
     a.addEventListener('click', () => {
       const part = a.dataset.part;
-      // 応募フォームに部門情報を渡したい場合はここで sessionStorage に保存
       sessionStorage.setItem('nexy-summit-part', part);
     });
   });
