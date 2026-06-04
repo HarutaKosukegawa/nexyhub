@@ -98,10 +98,25 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </nav>
 
 <!-- ============== SECTION 01: HERO ============== -->
-<section class="hero relative h-screen w-full overflow-hidden bg-white">
-  <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会 — やりたいをぶつけに来い" class="w-full h-full object-cover">
-  <div class="absolute inset-x-0 bottom-0 h-32 gradient-mask-light pointer-events-none"></div>
+<section class="hero w-full bg-white pt-14">
+  <div class="hero-img-wrap w-full flex items-center justify-center px-4 sm:px-8">
+    <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会 — やりたいをぶつけに来い" class="hero-img w-full max-w-[1600px] h-auto object-contain">
+  </div>
 </section>
+
+<style>
+/* Hero: 画面比率に関わらず画像全体を常に見せる
+   - ナビ(h-14=56px)分を除いた viewport 内に画像を収める
+   - 画像はアスペクト比を維持（object-contain 相当）
+   - デスクトップ・タブレット・モバイルすべてで全体が見える */
+.hero { min-height: calc(100vh - 56px); display: flex; align-items: center; }
+.hero-img-wrap { max-height: calc(100vh - 56px); }
+.hero-img { max-height: calc(100vh - 56px - 32px); display: block; }
+@media (max-width: 640px) {
+  /* モバイル：横長画像が縦に潰れて細くなりすぎないよう、最低限の高さを確保しつつ画像全体を表示 */
+  .hero-img { max-height: calc(100vh - 56px - 16px); }
+}
+</style>
 
 <!-- ============== SECTION 02: ここに立つと、何が変わるか ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
