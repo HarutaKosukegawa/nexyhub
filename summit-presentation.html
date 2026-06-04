@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会 応募受付中</title>
-<meta name="description" content="2026年8月6日・東京。1,000人の前で語る、12人だけが立てるメインステージ。未完成のまま、それでもやりたいから立つ人へ。応募締切：2026年7月6日 23:59。">
+<title>NEXY Summit 2026 プレゼン大会 — 応募受付中</title>
+<meta name="description" content="2026年8月6日・東京。1,000人規模のメインステージで登壇する高校生・大学生12名を募集。応募締切：2026年7月6日 23:59。">
 <meta name="keywords" content="NEXY Summit 2026,プレゼン大会,高校生プレゼン,孫正義育英財団,ピッチコンテスト,高校生ピッチ,大学生ピッチ,1to100,0to1,登壇,応募">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://nexyhub.jp/summit-presentation.html">
@@ -12,13 +12,13 @@
 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nexyhub.jp/summit-presentation.html">
-<meta property="og:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
-<meta property="og:description" content="1,000人の前で語る、12人だけが立てるメインステージ。未完成のまま、それでもやりたいから立つ人へ。">
+<meta property="og:title" content="NEXY Summit 2026 プレゼン大会 — 応募受付中">
+<meta property="og:description" content="1,000人規模のメインステージ。高校生・大学生12名の登壇者を募集。">
 <meta property="og:image" content="https://nexyhub.jp/img/summit/presentation_hero.png">
 <meta property="og:site_name" content="NEXY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="立つ覚悟、ある？ | NEXY Summit 2026 プレゼン大会">
-<meta name="twitter:description" content="1,000人の前で語る、12人だけが立てるメインステージ。応募締切：2026年7月6日。">
+<meta name="twitter:title" content="NEXY Summit 2026 プレゼン大会 — 応募受付中">
+<meta name="twitter:description" content="1,000人規模のメインステージ。応募締切：2026年7月6日。">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -55,28 +55,116 @@ tailwind.config = {
 html { scroll-behavior: smooth; }
 body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; background:#FFFFFF; color:#0A0A0A; -webkit-font-smoothing:antialiased; }
 .en { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing:.02em; }
+
+/* ===== fade-in (scroll reveal) ===== */
 .fade-init { opacity:0; transform: translateY(28px); transition: opacity .9s ease, transform .9s ease; }
 .fade-in { opacity:1; transform: translateY(0); }
+
+/* ===== slide-in (scroll reveal) ===== */
+.slide-l-init { opacity:0; transform: translateX(-80px); transition: opacity 1s ease, transform 1s cubic-bezier(.16,1,.3,1); }
+.slide-r-init { opacity:0; transform: translateX(80px); transition: opacity 1s ease, transform 1s cubic-bezier(.16,1,.3,1); }
+.slide-in { opacity:1; transform: translateX(0); }
+
+/* ===== scrollbar hide ===== */
 .scrollbar-hide::-webkit-scrollbar { display:none; }
 .scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ===== CTA pulse ===== */
 .cta-pulse { animation: pulse 2.4s ease-in-out infinite; }
 @keyframes pulse {
   0%,100% { box-shadow: 0 0 0 0 rgba(255,106,0,.55); }
   50% { box-shadow: 0 0 0 14px rgba(255,106,0,0); }
 }
+
+/* ===== Hero: Ken Burns + subtle gradient ===== */
+@keyframes kenburns {
+  0% { transform: scale(1) translate(0,0); }
+  50% { transform: scale(1.04) translate(-0.5%, -0.5%); }
+  100% { transform: scale(1) translate(0,0); }
+}
+.hero-img { animation: kenburns 14s ease-in-out infinite; transform-origin: center center; }
 .gradient-mask-light {
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 60%, #FFFFFF 100%);
 }
-.tilt-card { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
-.tilt-card:hover { transform: translateY(-8px); }
+
+/* ===== Tilt card ===== */
+.tilt-card { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
+.tilt-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px rgba(0,0,0,.10); }
+
+/* ===== Accordion ===== */
 .acc summary { list-style: none; cursor: pointer; }
 .acc summary::-webkit-details-marker { display:none; }
 .acc[open] .chev { transform: rotate(180deg); }
 .chev { transition: transform .3s ease; }
-.handwriting {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-weight: 900;
-  letter-spacing: .02em;
+
+/* ===== Float Medal ===== */
+@keyframes float-medal {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.float-medal { animation: float-medal 4.5s ease-in-out infinite; transform-origin: center center; }
+
+/* ===== Glow gold pulse (gold ring) ===== */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200,150,31,.45), 0 0 0 0 rgba(200,150,31,.0); }
+  50% { box-shadow: 0 0 0 12px rgba(200,150,31,.0), 0 8px 30px rgba(200,150,31,.30); }
+}
+.gold-pulse { animation: goldPulse 3.2s ease-in-out infinite; }
+
+/* ===== Animated gradient bg (Final CTA) ===== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-anim-grad {
+  background: linear-gradient(125deg, #FF6A00, #E63946, #FF6A00, #18BFC3, #FF6A00);
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+}
+
+/* ===== Marquee ===== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+.marquee-wrap { overflow: hidden; }
+.marquee-inner { display: flex; width: max-content; }
+
+/* ===== Number count-up: ensure stable layout ===== */
+.count-up { font-variant-numeric: tabular-nums; }
+
+/* ===== Step item reveal ===== */
+.step-init { opacity:0; transform: translateX(-20px); transition: opacity .7s ease, transform .7s ease; }
+.step-init.step-in { opacity:1; transform: translateX(0); }
+
+/* ===== Timeline node animate ===== */
+.tl-node { transition: transform .5s ease, background-color .5s ease; }
+.tl-node.tl-active { transform: scale(1.12); }
+
+/* ===== Soft glow for orange accents ===== */
+.glow-orange { box-shadow: 0 0 0 0 rgba(255,106,0,0); transition: box-shadow .4s ease; }
+.glow-orange:hover { box-shadow: 0 10px 30px rgba(255,106,0,.30); }
+
+/* ===== Bg pattern dots (subtle) ===== */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ===== Apply button micro-bounce ===== */
+@keyframes microBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.micro-bounce { animation: microBounce 2.2s ease-in-out infinite; }
+
+/* ===== Reduce motion respect ===== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-img, .float-medal, .gold-pulse, .bg-anim-grad, .animate-marquee, .micro-bounce, .cta-pulse {
+    animation: none !important;
+  }
 }
 </style>
 </head>
@@ -90,117 +178,121 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     </a>
     <div class="flex items-center gap-3">
       <a href="summit.html" class="hidden sm:inline text-xs text-muted hover:text-ink transition">← Summitトップ</a>
-      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-ink hover:text-white transition">
-        応募する →
+      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-ink transition">
+        応募する
       </a>
     </div>
   </div>
 </nav>
 
 <!-- ============== SECTION 01: HERO ============== -->
-<section class="hero w-full bg-white pt-14">
-  <div class="hero-img-wrap w-full flex items-center justify-center px-4 sm:px-8">
-    <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会 — やりたいをぶつけに来い" class="hero-img w-full max-w-[1600px] h-auto object-contain">
+<section class="hero w-full bg-white pt-14 overflow-hidden" style="min-height: calc(100vh - 56px); display:flex; align-items:center;">
+  <div class="hero-img-wrap w-full flex items-center justify-center px-4 sm:px-8" style="max-height: calc(100vh - 56px);">
+    <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会" class="hero-img w-full max-w-[1600px] h-auto object-contain" style="max-height: calc(100vh - 56px - 32px);">
   </div>
 </section>
 
-<style>
-/* Hero: 画面比率に関わらず画像全体を常に見せる
-   - ナビ(h-14=56px)分を除いた viewport 内に画像を収める
-   - 画像はアスペクト比を維持（object-contain 相当）
-   - デスクトップ・タブレット・モバイルすべてで全体が見える */
-.hero { min-height: calc(100vh - 56px); display: flex; align-items: center; }
-.hero-img-wrap { max-height: calc(100vh - 56px); }
-.hero-img { max-height: calc(100vh - 56px - 32px); display: block; }
-@media (max-width: 640px) {
-  /* モバイル：横長画像が縦に潰れて細くなりすぎないよう、最低限の高さを確保しつつ画像全体を表示 */
-  .hero-img { max-height: calc(100vh - 56px - 16px); }
-}
-</style>
+<!-- ============== MARQUEE ============== -->
+<div class="marquee-wrap bg-ink py-5 border-y border-ink">
+  <div class="marquee-inner animate-marquee">
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">NEXY SUMMIT 2026</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-orange">/ PRESENTATION /</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">2026.08.06</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-teal">/ TOKYO /</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">1,000 PEOPLE</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-orange">/ 12 SPEAKERS /</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">NEXY SUMMIT 2026</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-orange">/ PRESENTATION /</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">2026.08.06</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-teal">/ TOKYO /</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-white">1,000 PEOPLE</span>
+    <span class="en text-2xl sm:text-3xl font-black mx-6 text-orange">/ 12 SPEAKERS /</span>
+  </div>
+</div>
 
-<!-- ============== SECTION 02: ここに立つと、何が変わるか ============== -->
+<!-- ============== SECTION 02: 登壇者が得るもの ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHAT CHANGES</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHAT YOU GET</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16 text-ink">
-      ここに立つと、<br class="sm:hidden"><span class="text-orange">人生が動く。</span>
+      登壇者が<span class="text-orange">得るもの</span>。
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
-      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-orange">
+      <div class="slide-l-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-orange">
         <i data-lucide="users" class="w-7 h-7 text-orange mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">1,000</p>
-        <p class="text-base sm:text-lg font-bold mb-2 text-ink">人の前で語る</p>
-        <p class="text-muted text-sm leading-relaxed">あなたの言葉が、当日会場で届く対象者の数。</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink count-up" data-count="1000" data-suffix=",000" data-display="0">0</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">人規模の動員</p>
+        <p class="text-muted text-sm leading-relaxed">当日会場で言葉を届ける対象者数。</p>
       </div>
-      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-teal">
+      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-teal" style="transition-delay:.15s">
         <i data-lucide="mic" class="w-7 h-7 text-teal mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">12</p>
-        <p class="text-base sm:text-lg font-bold mb-2 text-ink">人だけが立てる</p>
-        <p class="text-muted text-sm leading-relaxed">2部門×6名。選ばれた12名だけのメインステージ。</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink count-up" data-count="12">0</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">名の登壇枠</p>
+        <p class="text-muted text-sm leading-relaxed">2部門×6名。メインステージ登壇権。</p>
       </div>
-      <div class="fade-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-gold">
+      <div class="slide-r-init tilt-card bg-paper p-8 sm:p-10 border-l-4 border-gold">
         <i data-lucide="zap" class="w-7 h-7 text-gold mb-6"></i>
-        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink">12</p>
-        <p class="text-base sm:text-lg font-bold mb-2 text-ink">分の人生が動く</p>
-        <p class="text-muted text-sm leading-relaxed">プレゼン7分＋Q&A5分。12分が次の打席を呼ぶ。</p>
+        <p class="en text-6xl sm:text-7xl font-bold leading-none mb-3 text-ink count-up" data-count="12">0</p>
+        <p class="text-base sm:text-lg font-bold mb-2 text-ink">分の持ち時間</p>
+        <p class="text-muted text-sm leading-relaxed">プレゼン7分＋Q&amp;A 5分の構成。</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============== SECTION 03: 2部門 ============== -->
-<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
+<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line bg-dots">
   <div class="max-w-6xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">CHOOSE YOUR STAGE</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">TWO CATEGORIES</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16 text-ink">
-      2つの部門、<br class="sm:hidden">どっちに応募する？
+      応募部門は<span class="text-orange">2つ</span>。
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 
       <!-- 1→100 -->
-      <div class="fade-init tilt-card bg-white p-8 sm:p-10 border border-orange/60 relative overflow-hidden">
+      <div class="slide-l-init tilt-card bg-white p-8 sm:p-10 border border-orange/60 relative overflow-hidden">
         <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-orange/10 leading-none select-none">100</div>
         <div class="relative">
           <p class="en text-orange font-bold text-sm tracking-widest mb-3">PART 01 / 10:30 — 12:00</p>
           <p class="en text-orange font-black text-6xl sm:text-7xl leading-none mb-6">1 → 100</p>
-          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">もう動いてる君へ。</h3>
+          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">既に動いている挑戦者の部門</h3>
           <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
-            すでに事業・活動・プロジェクトが走っている。<br>これを「もっとデカく」したい人のための部門。
+            既に事業・活動・プロジェクトが進行中の挑戦者向け。スケール拡大を目指す登壇枠。
           </p>
           <ul class="space-y-3 mb-10">
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>審査員からのフィードバック</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>協賛企業からのインターン打診</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>プレゼン 7分 ＋ Q&amp;A 5分</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>登壇枠 6名</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>審査員フィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>メンター 1on1 セッション</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-orange mt-1 shrink-0"></i><span>協賛企業からの個別打診の可能性</span></li>
           </ul>
-          <a href="#apply" data-part="1to100" class="block w-full text-center bg-orange text-white py-4 font-black tracking-wide hover:bg-ink transition">
-            この部門に応募 →
+          <a href="#apply" data-part="1to100" class="block w-full text-center bg-orange text-white py-4 font-black tracking-wide hover:bg-ink transition glow-orange">
+            この部門に応募
           </a>
         </div>
       </div>
 
       <!-- 0→1 -->
-      <div class="fade-init tilt-card bg-white p-8 sm:p-10 border border-teal/60 relative overflow-hidden">
+      <div class="slide-r-init tilt-card bg-white p-8 sm:p-10 border border-teal/60 relative overflow-hidden">
         <div class="absolute -top-10 -right-10 en font-bold text-[160px] sm:text-[200px] text-teal/10 leading-none select-none">1</div>
         <div class="relative">
           <p class="en text-teal font-bold text-sm tracking-widest mb-3">PART 02 / 15:00 — 16:30</p>
           <p class="en text-teal font-black text-6xl sm:text-7xl leading-none mb-6">0 → 1</p>
-          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">まだ動けてない君へ。</h3>
+          <h3 class="text-xl sm:text-2xl font-black mb-4 text-ink">これから挑戦する者の部門</h3>
           <p class="text-muted text-sm sm:text-base leading-relaxed mb-8">
-            まだ言葉にならない、形にならない。<br>それでも挑戦したい。そんな君のための部門。
+            言語化前のアイデアや構想を抱える挑戦者向け。最初の一歩を踏み出すための登壇枠。
           </p>
           <ul class="space-y-3 mb-10">
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>7分ピッチ ＋ Q&A 5分</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>各部門6名のみ登壇</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>審査員からの応援フィードバック</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>プレゼン 7分 ＋ Q&amp;A 5分</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>登壇枠 6名</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>審査員フィードバック</span></li>
             <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>「初めての一歩」体験ワーク</span></li>
-            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>メンター1on1セッション</span></li>
+            <li class="flex items-start gap-3 text-sm text-ink"><i data-lucide="check" class="w-4 h-4 text-teal mt-1 shrink-0"></i><span>メンター 1on1 セッション</span></li>
           </ul>
           <a href="#apply" data-part="0to1" class="block w-full text-center bg-teal text-white py-4 font-black tracking-wide hover:bg-ink transition">
-            この部門に応募 →
+            この部門に応募
           </a>
         </div>
       </div>
@@ -208,31 +300,31 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   </div>
 </section>
 
-<!-- ============== SECTION 04: 賞・特典（準備中枠） ============== -->
+<!-- ============== SECTION 04: 賞・特典 ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-5xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">PRIZES & BENEFITS</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">PRIZES &amp; BENEFITS</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      登壇者には、<br><span class="text-gold">「賞品」</span>を用意している。
+      <span class="text-gold">賞品</span>・特典。
     </h2>
     <p class="fade-init text-muted text-sm sm:text-base mb-16 leading-relaxed">
-      賞の種別・最優秀賞の内容は現在最終調整中。決まり次第このページで発表する。
+      賞の種別・最優秀賞の内容は最終調整中。決定次第、本ページにて発表。
     </p>
 
-    <!-- メイン賞（準備中枠） -->
+    <!-- メイン賞 -->
     <div class="fade-init bg-gradient-to-br from-gold/15 to-transparent border-2 border-gold p-8 sm:p-12 mb-10 relative overflow-hidden">
-      <div class="absolute top-6 right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gold flex items-center justify-center bg-white">
+      <div class="float-medal absolute top-6 right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-gold flex items-center justify-center bg-white gold-pulse">
         <i data-lucide="trophy" class="w-10 h-10 sm:w-14 sm:h-14 text-gold"></i>
       </div>
       <p class="en text-gold text-xs tracking-[.3em] mb-3">MAIN PRIZE</p>
       <h3 class="text-2xl sm:text-4xl font-black mb-3 leading-tight text-ink">最優秀賞</h3>
       <p class="text-muted text-sm mb-6 en tracking-wider">COMING SOON</p>
       <p class="text-ink text-sm sm:text-base leading-relaxed">
-        賞品・副賞の内容は調整中。最終確定後、本ページにて発表します。
+        賞品・副賞の内容は調整中。最終確定後、本ページにて発表予定。
       </p>
     </div>
 
-    <!-- 特別賞（準備中枠） -->
+    <!-- 特別賞 -->
     <div class="fade-init bg-paper border border-line p-8 sm:p-10 mb-10">
       <p class="en text-orange text-xs tracking-[.3em] mb-3">SPECIAL AWARDS</p>
       <h3 class="text-xl sm:text-2xl font-black mb-3 text-ink">協賛企業 特別賞</h3>
@@ -247,34 +339,34 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
       <p class="en text-teal text-xs tracking-[.3em] mb-3">FOR ALL SPEAKERS</p>
       <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">全登壇者の確定特典</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター1on1セッション</span></div>
-        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇のアーカイブ動画（履歴書・自己PRに使える）</span></div>
-        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>NEXY登壇者コミュニティへの参加権</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター 1on1 セッション</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇アーカイブ動画（履歴書・自己PR活用可）</span></div>
+        <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>NEXY 登壇者コミュニティへの参加権</span></div>
         <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>事前メンタリング（経験豊富な講師による壁打ち）</span></div>
       </div>
     </div>
 
     <div class="text-center mt-14">
-      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition">応募する →</a>
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition glow-orange">応募する</a>
     </div>
   </div>
 </section>
 
-<!-- ============== SECTION 04.5: メンタリング体制 ============== -->
+<!-- ============== SECTION 04.5: メンタリング ============== -->
 <section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
   <div class="max-w-5xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">MENTORING</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      ひとりで<span class="text-orange">立たせない。</span>
+      メンタリング<span class="text-orange">体制</span>。
     </h2>
     <p class="fade-init text-muted text-base sm:text-lg mb-12 leading-relaxed">
-      経験豊富な講師陣が、応募〜本番までを伴走する。プレゼン未経験でも、本番までに「立てる状態」までつくりあげる。
+      経験豊富な講師陣が、応募から本番まで伴走。プレゼン未経験者も本番までに登壇可能な状態に到達できる体制を整備。
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 
-      <!-- 講師枠（準備中） -->
-      <div class="fade-init bg-white border-2 border-orange/40 p-8 sm:p-10">
+      <!-- 講師枠 -->
+      <div class="slide-l-init bg-white border-2 border-orange/40 p-8 sm:p-10">
         <i data-lucide="user-check" class="w-9 h-9 text-orange mb-5"></i>
         <h3 class="text-xl sm:text-2xl font-black mb-3 text-ink">メンター講師</h3>
         <p class="text-muted text-sm mb-5 en tracking-wider">COMING SOON</p>
@@ -282,37 +374,37 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
           ピッチ・スピーチ・事業開発の現場経験を持つ講師陣を起用予定。
         </p>
         <p class="text-muted text-xs leading-relaxed">
-          ※ 詳細は決まり次第このページに掲載します。
+          ※ 詳細確定後、本ページにて掲載。
         </p>
       </div>
 
       <!-- スケジュール -->
-      <div class="fade-init bg-white border border-line p-8 sm:p-10">
+      <div class="slide-r-init bg-white border border-line p-8 sm:p-10">
         <i data-lucide="calendar-clock" class="w-9 h-9 text-teal mb-5"></i>
         <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">メンタリングの流れ</h3>
         <ol class="space-y-4">
-          <li class="flex items-start gap-3">
+          <li class="step-init flex items-start gap-3">
             <span class="en text-teal font-black text-sm shrink-0 w-10">STEP1</span>
             <div>
               <p class="text-sm font-bold text-ink mb-1">通過後すぐ：キックオフ</p>
               <p class="text-xs text-muted leading-relaxed">担当メンターとの初回顔合わせ。話す内容の方向性を確認。</p>
             </div>
           </li>
-          <li class="flex items-start gap-3">
+          <li class="step-init flex items-start gap-3">
             <span class="en text-teal font-black text-sm shrink-0 w-10">STEP2</span>
             <div>
               <p class="text-sm font-bold text-ink mb-1">7月下旬：個別壁打ち</p>
               <p class="text-xs text-muted leading-relaxed">スライド草案を講師がレビュー。構成・伝え方・尺をブラッシュアップ。</p>
             </div>
           </li>
-          <li class="flex items-start gap-3">
+          <li class="step-init flex items-start gap-3">
             <span class="en text-teal font-black text-sm shrink-0 w-10">STEP3</span>
             <div>
               <p class="text-sm font-bold text-ink mb-1">8月上旬：全体会レビュー</p>
-              <p class="text-xs text-muted leading-relaxed">本番1週間前。講師に通しで見てもらい、最終調整。</p>
+              <p class="text-xs text-muted leading-relaxed">本番1週間前。講師に通しで確認してもらい、最終調整。</p>
             </div>
           </li>
-          <li class="flex items-start gap-3">
+          <li class="step-init flex items-start gap-3">
             <span class="en text-teal font-black text-sm shrink-0 w-10">STEP4</span>
             <div>
               <p class="text-sm font-bold text-ink mb-1">8月5日：リハーサル</p>
@@ -326,93 +418,57 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   </div>
 </section>
 
-<!-- ============== SECTION 05: こんな人に挑戦してほしい ============== -->
+<!-- ============== SECTION 05: 応募対象 ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-4xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHO SHOULD STAND</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHO CAN APPLY</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
-      完璧じゃなくていい。<br>むしろ、<span class="text-orange">未完成な君</span>に立ってほしい。
+      応募<span class="text-orange">対象</span>。
     </h2>
 
     <ul class="space-y-5 mb-12">
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「やりたい」はあるけど、まだ言葉にできない高校生・大学生</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>すでに何か始めてるけど、もっと加速させたい人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自分の活動を1,000人に知ってもらいたい人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「ここに立っていいのか」と悩んでる人</span></li>
-      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>起業／不登校／海外進学／AO総合型／地方発信／音楽／アート／研究…テーマは何でもいい</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>「やりたい」はあるが、まだ言語化できていない高校生・大学生</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>既に動き始めているが、より加速させたい者</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自身の活動を1,000人規模に届けたい者</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>自分が登壇していいのか迷っている者</span></li>
+      <li class="fade-init flex items-start gap-4 text-base sm:text-xl text-ink"><i data-lucide="check" class="w-6 h-6 text-orange mt-1 shrink-0"></i><span>テーマ自由（起業／不登校／海外進学／総合型選抜／地方発信／音楽／アート／研究 ほか）</span></li>
     </ul>
 
     <div class="fade-init bg-paper border-l-4 border-orange p-6 sm:p-8">
       <p class="text-lg sm:text-2xl font-black leading-relaxed text-ink">
-        NEXY Summitは、<br class="sm:hidden"><span class="text-orange">未完成のまま舞台に立っていい場所</span>です。
+        NEXY Summit は、<br class="sm:hidden"><span class="text-orange">未完成のままステージに立つことが許容される場</span>。
       </p>
     </div>
   </div>
 </section>
 
-<!-- ============== SECTION 06: ハルタからのメッセージ ============== -->
-<section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 relative overflow-hidden border-y border-line">
-  <div class="absolute inset-0 bg-gradient-to-br from-orange/5 via-transparent to-teal/5"></div>
-  <div class="relative max-w-4xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">A LETTER FROM HARUTA</p>
-    <h2 class="fade-init text-2xl sm:text-4xl font-black leading-tight mb-12 text-ink">
-      NEXY代表 <span class="text-orange">小助川晴大</span>からのメッセージ。
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-      <div class="md:col-span-4 fade-init">
-        <div class="aspect-[3/4] bg-white border border-line flex items-center justify-center">
-          <img src="img/members/haruta.jpg" alt="小助川晴大" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="text-muted text-xs text-center p-4" style="display:none">[小助川晴大の写真]<br>後で差し替え</div>
-        </div>
-        <p class="mt-4 en text-sm text-muted">Haruta Kosukegawa</p>
-        <p class="text-xs text-muted">NEXY代表 / 孫正義育英財団3期生</p>
-      </div>
-
-      <div class="md:col-span-8 fade-init">
-        <div class="space-y-6 text-base sm:text-lg leading-loose handwriting text-ink">
-          <p>13歳のとき、僕は世界大会のステージで負けた。</p>
-          <p>それから10年、ずっと「自分のやりたい」を社会にぶつけ続けてきた。</p>
-          <p class="text-muted">でも、本当はずっと不安だった。<br>「自分なんかが立っていいのか」と。</p>
-          <p>このプレゼン大会は、<br><span class="text-orange">その不安を抱えたまま立つための場所</span>です。</p>
-          <p>完成された人だけが立つ場所じゃない。<br>未完成のまま、それでもやりたいから立つ人のための場所。</p>
-          <p class="text-xl sm:text-2xl font-black mt-10">
-            君が応募してくれることを、待っています。
-          </p>
-          <p class="text-right text-sm text-muted mt-8 en">— Haruta Kosukegawa, June 2026</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== SECTION 07: ステージイメージ ============== -->
-<section class="bg-white py-24 sm:py-32 border-y border-line">
+<!-- ============== SECTION 07: ステージ・会場 ============== -->
+<section class="bg-paper py-24 sm:py-32 border-y border-line">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-12">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">YOUR STAGE</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">VENUE</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight text-ink">
-      これが、<span class="text-orange">君が立つ舞台</span>。
+      当日の<span class="text-orange">ステージ</span>。
     </h2>
   </div>
 
   <div class="overflow-x-auto scrollbar-hide">
     <div class="flex gap-4 px-5 sm:px-8 pb-2 w-max">
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_stage.jpg" alt="ステージ" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_keynote.jpg" alt="基調講演" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_speaker.jpg" alt="登壇者" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_audience.jpg" alt="客席" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/venue.jpg" alt="東京たま未来メッセ" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
-      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-paper border border-line shrink-0 flex items-center justify-center text-muted text-xs">
+      <div class="w-[280px] sm:w-[420px] aspect-[4/3] bg-white border border-line shrink-0 flex items-center justify-center text-muted text-xs">
         <img src="img/summit/pitch_handshake.jpg" alt="登壇後の交流" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
     </div>
@@ -422,12 +478,12 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   </div>
 </section>
 
-<!-- ============== SECTION 08: タイムライン ============== -->
+<!-- ============== SECTION 08: スケジュール ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">TIMELINE</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      応募から本番まで、<br class="sm:hidden">2ヶ月。
+      応募から本番までの<span class="text-orange">2ヶ月</span>。
     </h2>
 
     <!-- カウントダウン -->
@@ -447,7 +503,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
       <div class="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-2 relative">
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="flag" class="w-5 h-5 text-white"></i>
           </div>
           <div class="md:mt-4">
@@ -457,7 +513,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-orange rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="alarm-clock" class="w-5 h-5 text-white"></i>
           </div>
           <div class="md:mt-4">
@@ -468,7 +524,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="mail-check" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
@@ -479,7 +535,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="bell" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
@@ -489,7 +545,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="sparkles" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
@@ -500,7 +556,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-white border-2 border-line rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="mic-2" class="w-5 h-5 text-muted"></i>
           </div>
           <div class="md:mt-4">
@@ -510,7 +566,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         </div>
 
         <div class="fade-init flex md:block items-start gap-4">
-          <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center shrink-0 relative z-10">
+          <div class="tl-node w-12 h-12 bg-gold rounded-full flex items-center justify-center shrink-0 relative z-10">
             <i data-lucide="trophy" class="w-5 h-5 text-white"></i>
           </div>
           <div class="md:mt-4">
@@ -525,51 +581,50 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   </div>
 </section>
 
-<!-- ============== SECTION 09: 応募方法（3ステップ） ============== -->
+<!-- ============== SECTION 09: 応募手順 ============== -->
 <section class="bg-paper py-24 sm:py-32 px-5 sm:px-8 border-y border-line">
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">HOW TO APPLY</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      3ステップ、<span class="text-orange">10分</span>で完了。
+      応募手順｜<span class="text-orange">3ステップ・所要10分</span>。
     </h2>
 
     <div class="fade-init bg-orange/10 border-l-4 border-orange p-5 sm:p-6 mb-12">
       <p class="text-base sm:text-lg font-black leading-relaxed text-ink">
-        動画はスマホで撮ったやつでOK。<br>
-        編集なくていい。3分で大丈夫。
+        動画はスマホ撮影で可。編集不要。3分以内。
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
 
-      <div class="fade-init bg-white border border-line p-8 relative">
+      <div class="slide-l-init bg-white border border-line p-8 relative">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">01</div>
         <i data-lucide="edit-3" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3 text-ink">応募フォームに記入</h3>
-        <p class="text-sm text-muted leading-relaxed mb-4">名前・部門・話したいテーマ・連絡先など。</p>
-        <p class="en text-xs text-orange">≈ 5分で完了</p>
+        <h3 class="text-xl font-black mb-3 text-ink">応募フォーム入力</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">氏名・部門・テーマ・連絡先などを記入。</p>
+        <p class="en text-xs text-orange">所要 約5分</p>
       </div>
 
-      <div class="fade-init bg-white border border-line p-8 relative">
+      <div class="fade-init bg-white border border-line p-8 relative" style="transition-delay:.15s">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">02</div>
         <i data-lucide="video" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3 text-ink">自己紹介動画をアップ</h3>
-        <p class="text-sm text-muted leading-relaxed mb-4">スマホで撮影OK。3分・編集なしでOK。</p>
-        <p class="en text-xs text-orange">スマホ縦撮りでOK</p>
+        <h3 class="text-xl font-black mb-3 text-ink">自己紹介動画アップロード</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">スマホ撮影可。3分以内・編集不要。</p>
+        <p class="en text-xs text-orange">スマホ縦撮り可</p>
       </div>
 
-      <div class="fade-init bg-white border border-line p-8 relative">
+      <div class="slide-r-init bg-white border border-line p-8 relative">
         <div class="absolute -top-4 -left-4 bg-orange text-white en font-black text-xl w-12 h-12 flex items-center justify-center">03</div>
         <i data-lucide="send" class="w-8 h-8 text-orange mb-6 mt-2"></i>
-        <h3 class="text-xl font-black mb-3 text-ink">送信して連絡を待つ</h3>
-        <p class="text-sm text-muted leading-relaxed mb-4">通過連絡は2026年7月13日。</p>
-        <p class="en text-xs text-orange">あとは結果を待つだけ</p>
+        <h3 class="text-xl font-black mb-3 text-ink">送信・結果通知</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4">通過連絡は 2026年7月13日。</p>
+        <p class="en text-xs text-orange">通知まで待機</p>
       </div>
 
     </div>
 
     <div class="text-center mt-14">
-      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition cta-pulse">応募フォームへ →</a>
+      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition cta-pulse glow-orange">応募フォームへ</a>
     </div>
   </div>
 </section>
@@ -579,87 +634,87 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-3xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">FAQ</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
-      不安、<span class="text-orange">先につぶしておこう。</span>
+      よくある<span class="text-orange">質問</span>。
     </h2>
 
     <div class="space-y-3">
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">プレゼン経験ゼロでも応募していい？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">プレゼン経験ゼロでも応募可能か？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          全く問題ない。むしろ「初めて」の人のために0→1部門を用意している。リハーサルと事前メンタリングがあるので、本番前に必ず一度は人前で話す経験を積める。
+          応募可能。0→1部門は初挑戦者を主対象とした構成。リハーサル・事前メンタリングを通じて、本番前に登壇可能な状態に到達できる。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">何の活動もしていないけど0→1部門に応募できる？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">活動経験がなくても0→1部門に応募可能か？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          できる。「これからやりたい」「気になっている」「違和感がある」レベルでも応募してOK。むしろそういう人を待っている。
+          応募可能。「これから挑戦したい」「関心がある」「違和感を感じている」段階での応募を歓迎する。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">落選してもサミットには参加できる？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">落選後もサミット参加は可能か？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          できる。NEXY Summit 2026は高校生・大学生は参加費無料。プレゼン落選後も一般参加者として申し込み可能。
+          可能。NEXY Summit 2026 は高校生・大学生の参加費無料。落選後も一般参加者として申込可能。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">保護者の同意は必要？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">保護者の同意は必要か？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          18歳未満の場合は通過連絡後に保護者の同意書を提出してもらう。応募の段階では不要。
+          18歳未満の場合、通過連絡後に保護者の同意書を提出。応募段階では不要。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">関東圏以外からも応募できる？交通費は？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">関東圏外からも応募可能か？交通費の補助は？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          全国から応募可能。地方学生には1人最大¥50,000の渡航支援スカラシップを用意している（先着順・通過後申請）。
+          全国から応募可能。地方学生には1人最大¥50,000の渡航支援スカラシップを用意（先着順・通過後申請）。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">当日のスライドは持ち込み？こちらで作る？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">スライドは持ち込みか？運営側で作成するのか？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          自分で作る。Keynote/PowerPoint/Google Slidesどれでも可。7/27のブラッシュアップ会で運営からフィードバックを受けられる。
+          登壇者自身で作成。Keynote／PowerPoint／Google Slides いずれも対応。7/27 のブラッシュアップ会で運営からフィードバックあり。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">動画撮影の質はどのくらい必要？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">動画撮影の品質はどの程度必要か？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          スマホで撮ったやつでOK。編集なくてOK。顔と声がちゃんと届けば十分。中身を見ている。
+          スマホ撮影・編集なしで可。顔と声が明瞭であれば十分。審査は内容を重視。
         </div>
       </details>
 
       <details class="acc fade-init bg-paper border border-line">
         <summary class="flex items-center justify-between p-6">
-          <span class="font-bold text-sm sm:text-base pr-4 text-ink">応募後の連絡はいつ来る？</span>
+          <span class="font-bold text-sm sm:text-base pr-4 text-ink">応募後の連絡時期は？</span>
           <i data-lucide="chevron-down" class="chev w-5 h-5 text-orange shrink-0"></i>
         </summary>
         <div class="px-6 pb-6 text-sm text-muted leading-relaxed">
-          一次連絡は応募締切後の2026年7月13日。通過者には個別連絡、全応募者にメールで結果を通知する。
+          一次連絡は応募締切後の 2026年7月13日。通過者には個別連絡、全応募者にメールで結果を通知。
         </div>
       </details>
     </div>
@@ -667,32 +722,30 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </section>
 
 <!-- ============== SECTION 12: FINAL CTA ============== -->
-<section id="apply" class="bg-gradient-to-br from-orange via-crimson to-orange py-32 sm:py-40 px-5 sm:px-8 relative overflow-hidden">
+<section id="apply" class="bg-anim-grad py-32 sm:py-40 px-5 sm:px-8 relative overflow-hidden">
   <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
     <p class="en font-black text-[300px] sm:text-[500px] text-white/5 leading-none select-none">2026</p>
   </div>
 
   <div class="relative max-w-4xl mx-auto text-center text-white">
+    <p class="fade-init en text-white/80 text-xs tracking-[.3em] mb-4">APPLY NOW</p>
     <h2 class="fade-init text-5xl sm:text-8xl font-black leading-none mb-8">
-      立つ覚悟、<br>ある？
+      応募受付中。
     </h2>
     <p class="fade-init text-base sm:text-xl mb-2 opacity-90">
       応募締切まで残り
     </p>
-    <p class="fade-init en text-5xl sm:text-7xl font-black mb-4">
-      <span id="cd-days-2">--</span>
-      <span class="text-2xl sm:text-3xl ml-2 opacity-80">日</span>
-    </p>
+    <p class="fade-init en text-5xl sm:text-7xl font-black mb-4 count-up" id="cd-days-2" data-final="0">--<span class="text-2xl sm:text-3xl ml-2 opacity-80">日</span></p>
     <p class="fade-init text-sm sm:text-base opacity-80 mb-12">
       2026年7月6日（月）23:59 まで
     </p>
 
-    <a href="https://forms.gle/PLACEHOLDER" class="fade-init inline-block bg-white text-ink px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-ink hover:text-white transition shadow-2xl">
-      今すぐ応募する →
+    <a href="https://forms.gle/PLACEHOLDER" class="fade-init micro-bounce inline-block bg-white text-ink px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-ink hover:text-white transition shadow-2xl">
+      今すぐ応募する
     </a>
 
     <p class="fade-init text-xs opacity-70 mt-8">
-      ※ 応募フォームURLは仮。後日プレゼン大会専用フォームに差し替え。
+      ※ 応募フォームURLは仮設定。後日プレゼン大会専用フォームに差し替え予定。
     </p>
   </div>
 </section>
@@ -731,7 +784,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     "name": "東京たま未来メッセ",
     "address": "東京都八王子市別所2-65"
   },
-  "description": "1,000人の前で語る、12人だけが立てるメインステージ。1→100部門と0→1部門の2部門で計12名が登壇。各登壇者はプレゼン7分＋Q&A5分。",
+  "description": "1,000人規模のメインステージで登壇する12名（2部門×6名）を募集。各登壇者はプレゼン7分＋Q&A5分。",
   "image": "https://nexyhub.jp/img/summit/presentation_hero.png",
   "organizer": {
     "@type": "Organization",
@@ -746,6 +799,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 <script>
   if (window.lucide) lucide.createIcons();
 
+  // ===== Countdown =====
   const deadline = new Date('2026-07-06T23:59:59+09:00').getTime();
   function tick() {
     const now = Date.now();
@@ -763,21 +817,87 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     setText('cd-h', pad(h));
     setText('cd-m', pad(m));
     setText('cd-s', pad(s));
-    setText('cd-days-2', days);
+    // CTA section days
+    const cdEl = document.getElementById('cd-days-2');
+    if (cdEl) {
+      cdEl.innerHTML = `${days}<span class="text-2xl sm:text-3xl ml-2 opacity-80">日</span>`;
+    }
   }
   tick();
   setInterval(tick, 1000);
 
+  // ===== Fade / Slide reveal =====
+  const reveal = (el) => {
+    if (el.classList.contains('fade-init')) el.classList.add('fade-in');
+    if (el.classList.contains('slide-l-init') || el.classList.contains('slide-r-init')) el.classList.add('slide-in');
+    if (el.classList.contains('step-init')) el.classList.add('step-in');
+  };
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('fade-in');
+        reveal(e.target);
         io.unobserve(e.target);
       }
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-init').forEach(el => io.observe(el));
+  document.querySelectorAll('.fade-init, .slide-l-init, .slide-r-init').forEach(el => io.observe(el));
 
+  // ===== Step items staggered =====
+  document.querySelectorAll('.step-init').forEach((el, i) => {
+    el.style.transitionDelay = (i * 120) + 'ms';
+    io.observe(el);
+  });
+
+  // ===== Count-up =====
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = 0;
+    const startTime = performance.now();
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.floor(start + (target - start) * eased);
+      // 1000 表示時にカンマを入れる
+      if (target >= 1000) {
+        el.textContent = value.toLocaleString();
+      } else {
+        el.textContent = value + suffix;
+      }
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString();
+    };
+    requestAnimationFrame(step);
+  }
+  const ioCount = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        ioCount.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.count-up[data-count]').forEach(el => ioCount.observe(el));
+
+  // ===== Timeline node activate sequentially when in view =====
+  const ioTL = new IntersectionObserver((entries) => {
+    entries.forEach((e, idx) => {
+      if (e.isIntersecting) {
+        const nodes = document.querySelectorAll('.tl-node');
+        nodes.forEach((n, i) => {
+          setTimeout(() => n.classList.add('tl-active'), i * 120);
+          setTimeout(() => n.classList.remove('tl-active'), i * 120 + 600);
+        });
+        ioTL.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  const tlSection = document.querySelector('.tl-node');
+  if (tlSection) ioTL.observe(tlSection);
+
+  // ===== Part button click → store choice =====
   document.querySelectorAll('a[data-part]').forEach(a => {
     a.addEventListener('click', () => {
       const part = a.dataset.part;
