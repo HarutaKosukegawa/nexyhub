@@ -156,6 +156,17 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--mint); transition: .25s;
 }
 .btn-mint:hover { background: #60c2b1; border-color: #60c2b1; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(116,212,195,.45); }
+
+.btn-ghost-light {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; font-weight: 800; font-size: .82rem;
+  text-decoration: none; letter-spacing: .04em;
+  color: #fff; background: transparent;
+  border: 1.5px solid rgba(255,255,255,.5);
+  transition: .25s;
+}
+.btn-ghost-light:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;
   background: transparent; color: var(--text);
@@ -2079,9 +2090,10 @@ img { max-width: 100%; display: block; }
       ただ、何かが引っかかっているなら、<br>
       その違和感を持ってきてください。
     </p>
-    <div class="hero-ctas" style="justify-content:center;">
+    <div class="hero-ctas" style="justify-content:center;flex-wrap:wrap;">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
+      <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener" class="btn-mint">お問い合わせフォーム</a>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-ghost-light">Instagramで相談する</a>
     </div>
     <p style="margin-top:48px;font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;letter-spacing:.06em;">
       主催：学生団体 NEXY ／ 代表：小助川 晴大<br>
@@ -2092,6 +2104,7 @@ img { max-width: 100%; display: block; }
 
 <footer class="footer">
   <span>© 2026 NEXY</span>
+  <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener">お問い合わせ</a>
   <a href="index.html">TOP</a>
   <a href="asa.html">朝食会</a>
   <a href="yoru.html">深夜の語り場</a>
