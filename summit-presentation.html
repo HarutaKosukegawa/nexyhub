@@ -186,11 +186,34 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 </nav>
 
 <!-- ============== SECTION 01: HERO ============== -->
-<section class="hero w-full bg-white pt-14 overflow-hidden" style="min-height: calc(100vh - 56px); display:flex; align-items:center;">
-  <div class="hero-img-wrap w-full flex items-center justify-center px-4 sm:px-8" style="max-height: calc(100vh - 56px);">
-    <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会" class="hero-img w-full max-w-[1600px] h-auto object-contain" style="max-height: calc(100vh - 56px - 32px);">
+<section class="hero-section w-full bg-white pt-14 overflow-hidden">
+  <div class="hero-img-wrap w-full flex items-center justify-center">
+    <img src="img/summit/presentation_hero.png" alt="NEXY Summit 2026 プレゼン大会" class="hero-img w-full max-w-[1600px] h-auto block">
   </div>
 </section>
+
+<style>
+/* Hero: 画面比率にフィットさせる
+   - モバイル(縦長): 画像横幅100%でアスペクト比維持、上下に余白なし
+   - タブレット以上: ビューポート内に収め、画像全体が常に見える */
+.hero-section { display: block; }
+.hero-img-wrap { width: 100%; }
+.hero-img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+/* デスクトップ・タブレット：viewport(100vh - 56px nav)内に収める */
+@media (min-width: 768px) {
+  .hero-section { min-height: calc(100vh - 56px); display: flex; align-items: center; }
+  .hero-img-wrap { max-height: calc(100vh - 56px); padding: 0 32px; }
+  .hero-img { max-height: calc(100vh - 56px - 32px); }
+}
+
+/* モバイル：横幅いっぱい、高さ自動 */
+@media (max-width: 767px) {
+  .hero-section { padding-top: 56px; padding-bottom: 0; }
+  .hero-img-wrap { padding: 0; }
+  .hero-img { width: 100%; max-width: 100%; height: auto; max-height: none; }
+}
+</style>
 
 <!-- ============== MARQUEE ============== -->
 <div class="marquee-wrap bg-ink py-5 border-y border-ink">
@@ -213,9 +236,9 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 <!-- ============== SECTION 02: 登壇者が得るもの ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-6xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHAT YOU GET</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">BY THE NUMBERS</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-16 text-ink">
-      登壇者が<span class="text-orange">得るもの</span>。
+      数字で見る<span class="text-orange">プレゼン大会</span>
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10">
@@ -246,7 +269,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-5xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">COMPETITION FORMAT</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
-      登壇枠は<span class="text-orange">7名</span>。
+      登壇枠は<span class="text-orange">7名</span>
     </h2>
 
     <div class="slide-l-init tilt-card bg-white p-8 sm:p-12 border-2 border-orange relative overflow-hidden">
@@ -256,7 +279,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         <!-- 左カラム：見出し＋本文 -->
         <div class="md:col-span-7">
           <p class="en text-orange font-bold text-xs tracking-[.3em] mb-3">MAIN STAGE / 10:30 — 12:00</p>
-          <h3 class="text-2xl sm:text-3xl font-black mb-5 text-ink leading-tight">テーマ自由・経験レベル不問。</h3>
+          <h3 class="text-2xl sm:text-3xl font-black mb-5 text-ink leading-tight">テーマ自由・経験レベル不問</h3>
           <p class="text-muted text-sm sm:text-base leading-relaxed mb-6">
             既に動いている挑戦者も、これから始める挑戦者も、どちらも対象。事業・活動・研究・課題意識など、自分が語りたいテーマを自由に持ち込める登壇枠。
           </p>
@@ -305,12 +328,12 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 <!-- ============== SECTION 04: 賞・特典 ============== -->
 <section class="bg-white py-24 sm:py-32 px-5 sm:px-8">
   <div class="max-w-5xl mx-auto">
-    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">PRIZES &amp; BENEFITS</p>
+    <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">FOR SPEAKERS</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      <span class="text-gold">賞品</span>・特典。
+      登壇者への<span class="text-gold">サポート</span>
     </h2>
     <p class="fade-init text-muted text-sm sm:text-base mb-16 leading-relaxed">
-      賞の種別・最優秀賞の内容は最終調整中。決定次第、本ページにて発表。
+      最優秀賞の内容や協賛企業からの個別支援は最終調整中。決定次第、本ページにて発表。
     </p>
 
     <!-- メイン賞 -->
@@ -339,7 +362,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     <!-- 全登壇者特典 -->
     <div class="fade-init bg-paper border border-line p-8 sm:p-10">
       <p class="en text-teal text-xs tracking-[.3em] mb-3">FOR ALL SPEAKERS</p>
-      <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">全登壇者の確定特典</h3>
+      <h3 class="text-xl sm:text-2xl font-black mb-6 text-ink">全登壇者向けの確定サポート</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>当日のメンター 1on1 セッション</span></div>
         <div class="flex items-start gap-3 text-sm sm:text-base text-ink"><i data-lucide="check-circle-2" class="w-5 h-5 text-teal mt-0.5 shrink-0"></i><span>登壇アーカイブ動画（履歴書・自己PR活用可）</span></div>
@@ -359,7 +382,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-5xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">MENTORING</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      メンタリング<span class="text-orange">体制</span>。
+      メンタリング<span class="text-orange">体制</span>
     </h2>
     <p class="fade-init text-muted text-base sm:text-lg mb-12 leading-relaxed">
       ICCカタパルト・グランプリ第1回優勝者・三輪 開人氏がメンター講師として参加。応募から本番まで伴走し、プレゼン未経験者も本番までに登壇可能な状態に引き上げる。
@@ -439,7 +462,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-4xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">WHO CAN APPLY</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
-      応募<span class="text-orange">対象</span>。
+      応募<span class="text-orange">対象</span>
     </h2>
 
     <ul class="space-y-5 mb-12">
@@ -452,7 +475,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 
     <div class="fade-init bg-paper border-l-4 border-orange p-6 sm:p-8">
       <p class="text-lg sm:text-2xl font-black leading-relaxed text-ink">
-        NEXY Summit は、<br class="sm:hidden"><span class="text-orange">未完成のままステージに立つことが許容される場</span>。
+        NEXY Summit は、<br class="sm:hidden"><span class="text-orange">未完成のままステージに立つことが許容される場</span>
       </p>
     </div>
   </div>
@@ -463,7 +486,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">VENUE</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight text-ink mb-3">
-      当日の<span class="text-orange">ステージ</span>。
+      当日の<span class="text-orange">ステージ</span>
     </h2>
     <p class="fade-init text-muted text-sm sm:text-base mb-12">
       会場：東京たま未来メッセ（東京都八王子市別所2-65）
@@ -493,7 +516,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">TIMELINE</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      応募から本番までの<span class="text-orange">2ヶ月</span>。
+      応募から本番までの<span class="text-orange">2ヶ月</span>
     </h2>
 
     <!-- カウントダウン -->
@@ -596,7 +619,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-6xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">HOW TO APPLY</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-6 text-ink">
-      応募手順｜<span class="text-orange">3ステップ・所要10分</span>。
+      応募手順｜<span class="text-orange">3ステップ・所要10分</span>
     </h2>
 
     <div class="fade-init bg-orange/10 border-l-4 border-orange p-5 sm:p-6 mb-12">
@@ -644,7 +667,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="max-w-3xl mx-auto">
     <p class="fade-init en text-orange text-xs tracking-[.3em] mb-4">FAQ</p>
     <h2 class="fade-init text-3xl sm:text-5xl font-black leading-tight mb-12 text-ink">
-      よくある<span class="text-orange">質問</span>。
+      よくある<span class="text-orange">質問</span>
     </h2>
 
     <div class="space-y-3">
@@ -740,7 +763,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
   <div class="relative max-w-4xl mx-auto text-center text-white">
     <p class="fade-init en text-white/80 text-xs tracking-[.3em] mb-4">APPLY NOW</p>
     <h2 class="fade-init text-5xl sm:text-8xl font-black leading-none mb-8">
-      応募受付中。
+      応募受付中
     </h2>
     <p class="fade-init text-base sm:text-xl mb-2 opacity-90">
       応募締切まで残り
@@ -794,7 +817,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     "name": "東京たま未来メッセ",
     "address": "東京都八王子市別所2-65"
   },
-  "description": "1,000人規模のメインステージで登壇する7名を募集。テーマ自由・経験レベル不問。プレゼン7分＋Q&A5分。",
+  "description": "1,000人規模のメインステージで登壇する7名を募集。テーマ自由・経験レベル不問プレゼン7分＋Q&A5分。",
   "image": "https://nexyhub.jp/img/summit/presentation_hero.png",
   "organizer": {
     "@type": "Organization",
