@@ -684,6 +684,41 @@ img { max-width: 100%; display: block; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   max-width: 1080px; margin: 0 auto;
 }
+
+/* ===== MENTOR (三輪 開人さん) ===== */
+.mentor-wrap { max-width: 980px; margin: 0 auto; }
+.mentor-card {
+  display: grid; grid-template-columns: 280px 1fr; gap: 36px;
+  background: #fff; border: 2px solid var(--orange);
+  padding: 36px 40px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.06);
+}
+@media (max-width: 760px) {
+  .mentor-card { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
+}
+.mentor-photo {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  border: 1px solid var(--line);
+}
+.mentor-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: .72rem;
+  letter-spacing: .26em; color: var(--orange);
+  font-weight: 800; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.mentor-name { font-size: 1.65rem; font-weight: 900; color: var(--text); margin-bottom: 6px; line-height: 1.35; }
+.mentor-name-en { font-family: 'Inter', sans-serif; font-size: .8rem; color: var(--text3); font-weight: 700; margin-left: 8px; }
+.mentor-title { font-size: .88rem; color: var(--text2); font-weight: 600; margin-bottom: 16px; line-height: 1.6; }
+.mentor-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.mentor-badge {
+  font-family: 'Inter', sans-serif; font-size: .66rem; font-weight: 800;
+  letter-spacing: .04em; padding: 5px 10px; line-height: 1.4;
+}
+.mentor-badge.b-orange { background: rgba(242,139,61,.12); color: var(--orange); }
+.mentor-badge.b-line { background: var(--paper); color: var(--text); border: 1px solid var(--line); }
+.mentor-desc { font-size: .88rem; color: var(--text2); line-height: 1.95; margin-bottom: 10px; }
+.mentor-book { font-size: .76rem; color: var(--text3); font-style: italic; margin-top: 8px; }
+
 @media (max-width: 800px) { .target-grid { grid-template-columns: 1fr; } }
 .target-card {
   background: #fff; padding: 28px 28px;
@@ -1731,6 +1766,39 @@ img { max-width: 100%; display: block; }
     </div>
 
     <p class="speakers-note">※ 登壇者は順次発表予定です。最新情報は Instagram @nexy.hub にて。</p>
+  </div>
+</section>
+
+
+<!-- SECTION 05.5: MENTOR (三輪 開人さん) -->
+<section class="section" id="mentor">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">Mentor</span>
+      <h2 class="section-title">プレゼン大会の<em>メンター</em></h2>
+      <p class="section-lead">プレゼンの天下一武道会と称される「ICC FUKUOKA カタパルト・グランプリ」第1回優勝者がメンター講師として参加。</p>
+    </div>
+
+    <div class="mentor-wrap">
+      <div class="mentor-card">
+        <div>
+          <img src="img/summit/mentor_miwa.jpg" alt="三輪 開人" class="mentor-photo">
+        </div>
+        <div>
+          <div class="mentor-eyebrow">Mentor / Presentation</div>
+          <h3 class="mentor-name">三輪 開人<span class="mentor-name-en">Kaito Miwa</span></h3>
+          <p class="mentor-title">認定NPO法人e-Education ／ 株式会社e-Education 代表</p>
+          <div class="mentor-badges">
+            <span class="mentor-badge b-orange">ICCカタパルト・グランプリ 第1回 優勝</span>
+            <span class="mentor-badge b-line">Forbes 30 Under 30 Asia (2016)</span>
+            <span class="mentor-badge b-line">著書『100%共感プレゼン』</span>
+          </div>
+          <p class="mentor-desc">1986年生まれ。早稲田大学法学部在学中に、同大学の後輩とともに NPO法人 e-Education の前身を設立。卒業後、JICA（国際協力機構）で東南アジア・大洋州の教育案件を担当。2013年に退職、e-Education の活動に専念。2014年7月に代表へ就任。</p>
+          <p class="mentor-desc">バングラデシュをはじめ途上国14カ国で3万人の中高生に映像授業を届けてきた。2017年、プレゼンの天下一武道会と称される「ICC FUKUOKA」の第1回カタパルト・グランプリで優勝。以後、大手企業の経営者から大学生まで幅広い層の「話し方」改善を支援。</p>
+          <p class="mentor-book">著書：『100%共感プレゼン』（2020年・ダイヤモンド社）</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
