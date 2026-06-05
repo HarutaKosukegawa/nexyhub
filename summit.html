@@ -1296,6 +1296,79 @@ img { max-width: 100%; display: block; }
   .float-apply-sub { font-size: .54rem; }
 }
 
+
+/* ===== 登壇者詳細モーダル ===== */
+.featured-detail-btn {
+  display: inline-block; margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: .62rem; font-weight: 800; letter-spacing: .08em;
+  color: var(--orange); text-transform: uppercase;
+  cursor: pointer; border: none; background: transparent;
+  text-decoration: none; padding: 0;
+  transition: color .2s;
+}
+.featured-detail-btn:hover { color: var(--text); }
+.featured-detail-btn::after { content: ' →'; }
+
+.speaker-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 1500;
+  background: rgba(0,0,0,.7); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  padding: 20px; overflow-y: auto;
+}
+.speaker-modal.open { display: flex; }
+.speaker-modal-body {
+  background: #fff; max-width: 760px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
+  position: relative;
+  padding: 36px 32px 32px;
+  animation: modalIn .35s cubic-bezier(.16,1,.3,1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.speaker-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--text); color: #fff;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; cursor: pointer; border: none;
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  transition: background .2s;
+}
+.speaker-modal-close:hover { background: var(--orange); }
+.sm-head {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 20px; align-items: flex-start;
+  margin-bottom: 24px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 520px) {
+  .speaker-modal-body { padding: 28px 18px 24px; }
+  .sm-head { grid-template-columns: 80px 1fr; gap: 14px; }
+}
+.sm-photo {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover; object-position: center 22%;
+  border: 1px solid var(--line);
+}
+.sm-name { font-size: 1.4rem; font-weight: 900; color: var(--text); line-height: 1.3; margin-bottom: 2px; }
+.sm-kana { font-size: .72rem; font-weight: 600; color: var(--text3); margin-left: 6px; }
+.sm-meta { font-size: .82rem; color: var(--text3); margin-bottom: 4px; line-height: 1.5; }
+.sm-affil { font-size: .88rem; color: var(--text2); font-weight: 600; line-height: 1.6; }
+.sm-section { margin-bottom: 22px; }
+.sm-section-label {
+  font-family: 'Inter', sans-serif; font-size: .68rem;
+  letter-spacing: .22em; color: var(--orange);
+  font-weight: 800; text-transform: uppercase; margin-bottom: 8px;
+}
+.sm-section-body {
+  font-size: .9rem; color: var(--text); line-height: 1.95;
+  white-space: pre-wrap;
+}
+body.modal-open { overflow: hidden; }
 </style>
 
 <script type="application/ld+json">
@@ -1832,6 +1905,7 @@ img { max-width: 100%; display: block; }
               <span class="fbadge">全日本スキー選手権出場</span>
             </div>
             <p class="featured-desc">政治・宇宙領域で事業をつくり、社会と人の幸せを追求する。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="tani">詳細を見る</button>
           </div>
         </article>
 
@@ -1849,6 +1923,7 @@ img { max-width: 100%; display: block; }
               <span class="fbadge">海風祭2025 実行委員長（1万人規模）</span>
             </div>
             <p class="featured-desc">「挑戦が孤立しない社会」をテーマに、コミュニティづくりに取り組む。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="ueda">詳細を見る</button>
           </div>
         </article>
 
@@ -1866,6 +1941,7 @@ img { max-width: 100%; display: block; }
               <span class="fbadge">地域×探究の事業立ち上げ</span>
             </div>
             <p class="featured-desc">「高校生のやってみたいを実現できる社会へ」を掲げ、企業や地域への取材を通じて高校生の学びの場を増やす挑戦中。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="kuno">詳細を見る</button>
           </div>
         </article>
 
@@ -1883,6 +1959,7 @@ img { max-width: 100%; display: block; }
               <span class="fbadge">歴代総理・国会議員と意見交換</span>
             </div>
             <p class="featured-desc">「将来世代の意思を現在の意思決定にどう組み込むか」を問いに、財政・社会保障の持続可能性を提言する活動を展開。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="hattori">詳細を見る</button>
           </div>
         </article>
 
@@ -1900,6 +1977,7 @@ img { max-width: 100%; display: block; }
               <span class="fbadge">クラファン500万円達成</span>
             </div>
             <p class="featured-desc">小5から静岡県産みかんの宇宙日本食「静岡みかんゼリー」を開発。2025年夏に本製造、大阪万博での発表も予定。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="masuda">詳細を見る</button>
           </div>
         </article>
 
@@ -2512,6 +2590,198 @@ if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     }
   });
 })();
+</script>
+
+<!-- ===== 登壇者詳細モーダル ===== -->
+<div class="speaker-modal" id="modal-tani" role="dialog" aria-modal="true" aria-labelledby="m-tani-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/speaker_tani.jpg" alt="谷 昊埜" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-tani-name">谷 昊埜<span class="sm-kana">たに こうや</span></h3>
+        <p class="sm-meta">19歳 ／ 慶應義塾大学SFC ／ 神奈川県・湘南台</p>
+        <p class="sm-affil">株式会社 The Bedrock Space Group 共同創業 ／ 学生団体ミラコエ</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">政治・宇宙をメインに事業をつくることを通して、社会や人を幸せにできるよう頑張っています。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">話せること</p>
+      <p class="sm-section-body">AO・総合型選抜系 ／ 起業・事業 ／ 海外・グローバル ／ 自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは）</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">これまでの活動・実績</p>
+      <p class="sm-section-body">全日本スキー選手権出場 2022・2023
+学生団体「ミラコエ」を創設し、教育系事業を連続的に立ち上げ
+株式会社 The Bedrock Space Group を共同創業</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-ueda" role="dialog" aria-modal="true" aria-labelledby="m-ueda-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/speaker_ueda.jpg" alt="植田 晴子" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-ueda-name">植田 晴子<span class="sm-kana">うえだ はるこ</span></h3>
+        <p class="sm-meta">18歳 ／ 慶應義塾大学SFC ／ 神奈川県・湘南台</p>
+        <p class="sm-affil">309人の学生が在籍中の沖縄県高校生団体 FLARE 初代代表</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">高校2年生で沖縄県高校生団体FLAREを立ち上げ、300人規模の団体へと成長させた。代表として活動する中で、高校生のみで企画・運営するプロジェクト「海風祭2025」を実施し、国際通りを貸し切った1万人規模のイベントの実行委員長を務めた。その後、総合型選抜で慶應義塾大学環境情報学部に進学。活動を通して、挑戦する人やリーダーが責任や不安を一人で抱え込み、孤立してしまう現状に課題意識を持つようになった。現在は「挑戦が孤立しない社会」をテーマに、出身地・沖縄の相互扶助文化である「模合」の研究や、若者同士が支え合うコミュニティづくりに取り組んでいる。また、営業インターンやAO塾講師としても活動中。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">話せること</p>
+      <p class="sm-section-body">AO・総合型選抜系 ／ 自己探求・問い ／ 人間関係・巻き込み</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">これまでの活動・実績</p>
+      <p class="sm-section-body">・沖縄戦の歴史継承活動（白梅学徒隊に関するフィールドワーク・ガイド活動）
+・こども食堂運営プロジェクト リーダー
+・沖縄県高校生団体FLARE 創設者・初代代表（現在所属309名）
+・高校生主体で企画・運営した1万人規模イベント「海風祭2025」実行委員長
+・高校生向けイベントや交流会を複数企画・運営
+・AO入試で慶應義塾大学環境情報学部に合格
+・営業インターンに従事
+・AO・総合型選抜専門塾にて講師として活動
+・「挑戦が孤立しない社会」をテーマに、沖縄の模合文化を活かしたコミュニティづくりを研究中</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-kuno" role="dialog" aria-modal="true" aria-labelledby="m-kuno-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/speaker_kuno.jpg" alt="久野 美恋彩" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-kuno-name">久野 美恋彩<span class="sm-kana">クノ ミレア</span></h3>
+        <p class="sm-meta">17歳 ／ 星の杜高等学校 ／ 栃木県・下野大沢駅</p>
+        <p class="sm-affil">株式会社Challink 代表</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">飛行機のお尻が大好きな高校3年生の久野美恋彩です。「高校生のやってみたいを実現できる社会へ」をテーマに活動しています。探究活動に取り組んできた中で、学生の学びの場が地域に不足しているという課題を見つけました。そこから、自ら株式会社を設立し、企業や地域の方々への取材・訪問を通して、高校生の学びの場を増やすという挑戦をしています。教育やキャリア形成に関心があり、実際に多くの大人や起業家の方々と対話を重ねながら学びを深めています。人との出会いや対話を大切にし、「悩む前に行動！」をモットーに、新しい価値を生み出せる人を目指しています。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">話せること</p>
+      <p class="sm-section-body">起業・事業 ／ 人間関係・巻き込み</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">これまでの活動・実績</p>
+      <p class="sm-section-body">高校入学後から地域活性化に関心を持ち、探究活動に積極的に取り組んできました。国内外問わず、カンボジアや福島など学びを見つけたら直ぐに飛び込んで学ぶという行動重視で活動しています。また、高校生と企業・地域社会をつなぐことを目的として株式会社を設立し、栃木県内外の企業や団体へのヒアリング・取材を実施しています。現在1プロジェクト始動開始しました。さらに、起業家イベントやビジネスコンテストへの参加を通して事業構想を磨き、多様な世代との対話を重ねてきました。高校生の視点を活かしながら、社会課題の解決に向けて実践的な挑戦を続けています。</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-hattori" role="dialog" aria-modal="true" aria-labelledby="m-hattori-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/speaker_hattori.jpg" alt="服部 将昌" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-hattori-name">服部 将昌<span class="sm-kana">ハットリ マサアキ</span></h3>
+        <p class="sm-meta">19歳 ／ 中央大学 ／ 埼玉県・JR新白岡駅</p>
+        <p class="sm-affil">学生団体 財政教育フロンティア 代表</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">大学1年。N高時代から政治や社会課題に関心を持ち、政策提言や主権者教育活動に取り組んできました。学生団体「財政教育フロンティア」代表として、財政教育ワークショップや模擬選挙の企画・運営を行うほか、歴代総理大臣との対話をはじめ、国会議員、官僚、有識者など数百名と意見交換を重ね、財政・社会保障や将来世代の政策に関する提言活動を行ってきました。現在は、「将来世代の意思をいかに現在の意思決定に組み込むことができるのか」を問いに、財政・社会保障を持続可能な形へ変革し、将来世代に責任を持てる社会の実現を目指して活動しています。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">話せること</p>
+      <p class="sm-section-body">政治・経済・社会課題</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">これまでの活動・実績</p>
+      <p class="sm-section-body">N高政治部
+学生団体 財政教育フロンティア 設立・代表
+数百名の政治家や官僚、有識者と意見交換・政策提言
+選挙特番等の各種番組にて、石破前総理や高市総理などに質問
+渋谷QWSチャレンジ 27期</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-masuda" role="dialog" aria-modal="true" aria-labelledby="m-masuda-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/speaker_masuda.jpg" alt="増田 結桜" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-masuda-name">増田 結桜<span class="sm-kana">マスダ ユラ</span></h3>
+        <p class="sm-meta">15歳 ／ N高等学校 ／ 静岡県・静岡駅</p>
+        <p class="sm-affil">一般社団法人チームゆら 理事（プロジェクトリーダー）</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">小学5年生のときに、大好きな地元・静岡県産のみかんを使った宇宙日本食「静岡みかんゼリー」の開発を始める。小学6年生では、静岡県の大学生や社会人とともに宇宙日本食開発チーム「チームゆら」を設立。中学1年生で法人化し、「一般社団法人チームゆら」プロジェクトリーダー（理事）となる。中学2年生で株式会社ワンテーブルと契約を締結し、2025年夏に「静岡みかんゼリー」の本製造を迎える。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">話せること</p>
+      <p class="sm-section-body">起業・事業 ／ 宇宙食 ／ クラウドファンディングで500万円達成した話</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">これまでの活動・実績</p>
+      <p class="sm-section-body">2022年〜：JAXA様（TV番組「サンドイッチマン＆芦田愛菜の博士ちゃん」企画）
+2023年5月：野口聡一 元・宇宙飛行士との対面（TV番組「博士ちゃん」企画）
+2023年10月：一般社団法人チームゆら設立
+2023年10月：静岡市主催「SDGsユースサミット」発表者として登壇、静岡市・難波市長に提案
+2024年7月：株式会社ワンテーブル様とOEM契約締結
+2025年1月〜2月：CAMPFIREにて製造資金クラウドファンディング 500万円達成
+2025年2月：静岡STEAMフューチャーアカデミーのトップ受講生として、ミネソタ大学で英語プレゼン
+2025年7月：株式会社ワンテーブル様の工場で「静岡みかんゼリー」製造開始
+2025年8月：大阪・関西万博 大阪ヘルスケアパビリオンで毎日プレゼンテーション予定
+
+【受賞歴】
+山崎賞（第39回・第41回優良賞）／ 鈴木賞（第70回）正賞 ／ 自然科学観察コンクール（第64回）佳作 ／ 国際探究活動発表交流会 総合グランプリ ／ 静岡倶楽部「科学研究奨励賞」 ほか
+「サンドウィッチマンと芦田愛菜の博士ちゃん」はじめメディア多数出演</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Speaker modal ===== */
+document.querySelectorAll('.featured-detail-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.speaker;
+    const modal = document.getElementById('modal-' + key);
+    if (modal) {
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+    }
+  });
+});
+document.querySelectorAll('.speaker-modal').forEach(modal => {
+  // 閉じるボタン
+  modal.querySelector('.speaker-modal-close')?.addEventListener('click', () => {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  });
+  // 背景クリックで閉じる
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+    }
+  });
+});
+// ESCキーで閉じる
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.speaker-modal.open').forEach(m => m.classList.remove('open'));
+    document.body.classList.remove('modal-open');
+  }
+});
 </script>
 </body>
 </html>
