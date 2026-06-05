@@ -228,7 +228,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: .04em;
   display: inline-flex; align-items: center; gap: 8px;
 }
-.hero-tm-icon { font-size: 1.2em; }
+.hero-tm-icon { font-size: .58em; font-weight: 900; letter-spacing: .18em; color: var(--orange); background: rgba(242,139,61,.1); padding: 4px 8px; vertical-align: middle; }
 .hero-tm-deadline {
   margin-top: 6px;
   display: inline-block;
@@ -1263,6 +1263,39 @@ img { max-width: 100%; display: block; }
   .sch-table tbody td.t-time { font-size: .72rem; }
 }
 
+
+/* ===== フローティング応募ボタン（右上固定） ===== */
+.float-apply {
+  position: fixed; top: 14px; right: 14px; z-index: 1100;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: #fff;
+  padding: 10px 18px 11px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(242,139,61,.32), 0 2px 6px rgba(0,0,0,.1);
+  transition: transform .25s ease, box-shadow .25s ease;
+  border: 2px solid #fff;
+  animation: floatPulse 2.6s ease-in-out infinite;
+}
+@keyframes floatPulse {
+  0%,100% { box-shadow: 0 14px 30px rgba(242,139,61,.32), 0 0 0 0 rgba(242,139,61,.5); }
+  50% { box-shadow: 0 14px 30px rgba(242,139,61,.32), 0 0 0 12px rgba(242,139,61,0); }
+}
+.float-apply:hover { transform: translateY(-2px) scale(1.03); }
+.float-apply-main {
+  font-size: .92rem; font-weight: 900; letter-spacing: .04em;
+}
+.float-apply-sub {
+  display: block;
+  font-size: .58rem; font-weight: 700; letter-spacing: .08em;
+  color: rgba(255,255,255,.95); margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .float-apply { top: 10px; right: 10px; padding: 8px 14px 9px; }
+  .float-apply-main { font-size: .82rem; }
+  .float-apply-sub { font-size: .54rem; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -1337,6 +1370,16 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<!-- フローティング応募ボタン -->
+<a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="float-apply" aria-label="参加申込（高校生・大学生・社会人OK）">
+  <div>
+    <span class="float-apply-main">参加申込 →</span>
+    <span class="float-apply-sub">高校生・大学生・社会人 OK</span>
+  </div>
+</a>
+
+
+
 <canvas id="particles" aria-hidden="true"></canvas>
 
 <!-- NAV -->
@@ -1350,8 +1393,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#target">参加者</a></li>
     <li><a href="#scholarship">スカラシップ制度</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="nav-cta">申込</a></li>
-  </ul>
+      </ul>
   <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
@@ -1362,8 +1404,7 @@ img { max-width: 100%; display: block; }
   <a href="#target">参加者</a>
   <a href="#scholarship">スカラシップ制度</a>
   <a href="#faq">FAQ</a>
-  <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="cta">申込</a>
-</div>
+  </div>
 
 <!-- SECTION 01: HERO (1枚目KV) -->
 <section class="hero" id="top">
@@ -1379,11 +1420,11 @@ img { max-width: 100%; display: block; }
     </div>
     <h1 class="hero-text-meta">
       <span class="hero-tm-line">
-        <span class="hero-tm-icon">📅</span>
+        <span class="hero-tm-icon" style="font-family:Inter,sans-serif;">DATE</span>
         2026年8月6日（水）10:00–18:00
       </span>
       <span class="hero-tm-line">
-        <span class="hero-tm-icon">📍</span>
+        <span class="hero-tm-icon" style="font-family:Inter,sans-serif;">PLACE</span>
         東京たま未来メッセ（八王子）
       </span>
       <span class="hero-tm-deadline">申込締切：2026年8月5日（火）</span>
@@ -1683,7 +1724,7 @@ img { max-width: 100%; display: block; }
     <div class="section-head">
       <span class="section-tag">Speakers</span>
       <h2 class="section-title">登壇者</h2>
-      <p class="section-lead">ゲストと学生、合計30〜40名が登壇予定。順次発表します。</p>
+      <p class="section-lead">ゲストと学生、合計30〜40名が登壇予定。学生登壇者5名が確定（順次発表中）。</p>
     </div>
 
     <!-- ゲスト登壇者 -->
@@ -1691,7 +1732,7 @@ img { max-width: 100%; display: block; }
       <div class="speakers-group-head">
         <span class="speakers-group-en">Guest Speakers</span>
         <h3 class="speakers-group-title">ゲスト登壇者</h3>
-        <span class="speakers-group-count">15〜20名 / Coming Soon</span>
+        <span class="speakers-group-count">確定5名 / 残り順次発表</span>
       </div>
       <div class="speakers-grid">
       <div class="speaker-card">
@@ -1810,6 +1851,58 @@ img { max-width: 100%; display: block; }
             <p class="featured-desc">「挑戦が孤立しない社会」をテーマに、コミュニティづくりに取り組む。</p>
           </div>
         </article>
+
+        <!-- 久野 美恋彩 -->
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/speaker_kuno.jpg" alt="久野 美恋彩" loading="lazy" decoding="async">
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">久野 美恋彩<span class="kana">クノ ミレア</span></h4>
+            <p class="featured-meta">17歳 ／ 星の杜高等学校</p>
+            <p class="featured-affil">株式会社Challink 代表</p>
+            <div class="featured-badges">
+              <span class="fbadge">高校生で株式会社を設立</span>
+              <span class="fbadge">地域×探究の事業立ち上げ</span>
+            </div>
+            <p class="featured-desc">「高校生のやってみたいを実現できる社会へ」を掲げ、企業や地域への取材を通じて高校生の学びの場を増やす挑戦中。</p>
+          </div>
+        </article>
+
+        <!-- 服部 将昌 -->
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/speaker_hattori.jpg" alt="服部 将昌" loading="lazy" decoding="async">
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">服部 将昌<span class="kana">ハットリ マサアキ</span></h4>
+            <p class="featured-meta">19歳 ／ 中央大学</p>
+            <p class="featured-affil">学生団体 財政教育フロンティア 代表</p>
+            <div class="featured-badges">
+              <span class="fbadge">N高政治部</span>
+              <span class="fbadge">歴代総理・国会議員と意見交換</span>
+            </div>
+            <p class="featured-desc">「将来世代の意思を現在の意思決定にどう組み込むか」を問いに、財政・社会保障の持続可能性を提言する活動を展開。</p>
+          </div>
+        </article>
+
+        <!-- 増田 結桜 -->
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/speaker_masuda.jpg" alt="増田 結桜" loading="lazy" decoding="async">
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">増田 結桜<span class="kana">マスダ ユラ</span></h4>
+            <p class="featured-meta">15歳 ／ N高等学校</p>
+            <p class="featured-affil">一般社団法人チームゆら 理事（プロジェクトリーダー）</p>
+            <div class="featured-badges">
+              <span class="fbadge">中1で法人化</span>
+              <span class="fbadge">クラファン500万円達成</span>
+            </div>
+            <p class="featured-desc">小5から静岡県産みかんの宇宙日本食「静岡みかんゼリー」を開発。2025年夏に本製造、大阪万博での発表も予定。</p>
+          </div>
+        </article>
+
 
       </div>
 <div class="speakers-grid">
