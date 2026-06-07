@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nexyhub.jp/sitemap.xml
+Sitemap: https://www.nexyhub.jp/sitemap.xml
