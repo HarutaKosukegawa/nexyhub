@@ -314,10 +314,64 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
 .bounce-init { opacity: 0; }
 .bounce-init.bounce-in { animation: bounceIn .8s cubic-bezier(.34,1.56,.64,1) forwards; }
 
+
+/* ===== モバイル下部固定CTAバー（CVR最大化） ===== */
+.mobile-bottom-cta {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #0A0A0A; color: #fff;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  z-index: 200;
+  box-shadow: 0 -8px 24px rgba(0,0,0,.25);
+  border-top: 2px solid #FF6A00;
+}
+.mobile-bottom-cta-info {
+  display: flex; flex-direction: column; gap: 1px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.mobile-bottom-cta-info .label {
+  font-size: .58rem; color: rgba(255,255,255,.7);
+  font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: .14em;
+}
+.mobile-bottom-cta-info .deadline {
+  font-size: .8rem; font-weight: 900;
+}
+.mobile-bottom-cta-info .deadline .days {
+  color: #FF6A00; font-family: 'Inter', sans-serif;
+  font-size: 1.1rem; margin-right: 3px;
+}
+.mobile-bottom-cta-btn {
+  background: #FF6A00; color: #fff;
+  font-weight: 900; font-size: .82rem; letter-spacing: .04em;
+  padding: 10px 18px;
+  text-decoration: none;
+  animation: ctaBarPulse 2.4s ease-in-out infinite;
+}
+@keyframes ctaBarPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,106,0,.7); }
+  50% { box-shadow: 0 0 0 10px rgba(255,106,0,0); }
+}
+@media (min-width: 769px) {
+  .mobile-bottom-cta { display: none; }
+}
+body { padding-bottom: 70px; }
+@media (min-width: 769px) {
+  body { padding-bottom: 0; }
+}
 </style>
 </head>
 <body class="bg-white text-ink">
 <div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- モバイル下部固定CTAバー -->
+<div class="mobile-bottom-cta" aria-label="応募締切と応募ボタン">
+  <div class="mobile-bottom-cta-info">
+    <span class="label">DEADLINE</span>
+    <span class="deadline"><span class="days" id="mb-cta-days">--</span>日後 7/6（月）23:59</span>
+  </div>
+  <a href="#apply" class="mobile-bottom-cta-btn">応募する →</a>
+</div>
+
 
 <!-- ============== NAV ============== -->
 <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-white/85 border-b border-line">
@@ -404,6 +458,12 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
         <p class="text-sm sm:text-base font-black text-ink mb-1">【必須】7月11日（金）19:00–21:00</p>
         <p class="text-xs sm:text-sm text-muted leading-relaxed">三輪 開人氏によるプレゼン講座を実施。<span class="font-bold text-ink">応募者全員参加マスト</span>。応募前にスケジュールを必ず確保してください。</p>
       </div>
+    </div>
+    <!-- 迷ったら相談 -->
+    <div class="fade-init mt-3 text-center">
+      <p class="text-xs sm:text-sm text-muted leading-relaxed">
+        応募するか迷っている方は、<a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange);font-weight:700;text-decoration:underline;">NEXY公式InstagramのDM</a> でお気軽にご相談ください。
+      </p>
     </div>
   </div>
 </section>
@@ -1340,6 +1400,7 @@ body { font-family: 'Noto Sans JP', 'Zen Kaku Gothic New', sans-serif; backgroun
     const pad = n => String(n).padStart(2, '0');
     const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
     setText('cd-days', days);
+    setText('mb-cta-days', days);
     setText('cd-h', pad(h));
     setText('cd-m', pad(m));
     setText('cd-s', pad(s));
