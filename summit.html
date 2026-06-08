@@ -2873,32 +2873,39 @@ if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 </div>
 
 <script>
-/* ===== Speaker modal ===== */
-document.querySelectorAll('.featured-detail-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const key = btn.dataset.speaker;
+/* ===== Speaker modal (event delegation pattern) ===== */
+// 動的に追加されたモーダルにも対応するため、document全体にイベント委任
+document.addEventListener('click', (e) => {
+  // 1. 「詳細を見る」ボタンでモーダルを開く
+  const openBtn = e.target.closest('.featured-detail-btn');
+  if (openBtn) {
+    e.preventDefault();
+    const key = openBtn.dataset.speaker;
     const modal = document.getElementById('modal-' + key);
     if (modal) {
       modal.classList.add('open');
       document.body.classList.add('modal-open');
     }
-  });
-});
-document.querySelectorAll('.speaker-modal').forEach(modal => {
-  // 閉じるボタン
-  modal.querySelector('.speaker-modal-close')?.addEventListener('click', () => {
-    modal.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  });
-  // 背景クリックで閉じる
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    return;
+  }
+  // 2. 閉じるボタン(×)でモーダルを閉じる
+  const closeBtn = e.target.closest('.speaker-modal-close');
+  if (closeBtn) {
+    e.preventDefault();
+    const modal = closeBtn.closest('.speaker-modal');
+    if (modal) {
       modal.classList.remove('open');
       document.body.classList.remove('modal-open');
     }
-  });
+    return;
+  }
+  // 3. 背景（モーダル本体外）をクリックして閉じる
+  if (e.target.classList && e.target.classList.contains('speaker-modal')) {
+    e.target.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
 });
-// ESCキーで閉じる
+// 4. ESCキーで閉じる
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.speaker-modal.open').forEach(m => m.classList.remove('open'));
