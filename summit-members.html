@@ -7,14 +7,14 @@
 <meta name="description" content="NEXY Summit 2026の運営メンバー一覧。学生団体NEXY代表 小助川晴大を筆頭に、当日の運営を支える学生メンバーをご紹介します。">
 <meta name="keywords" content="NEXY Summit 2026,NEXYサミット,運営メンバー,学生団体NEXY,小助川晴大,孫正義育英財団">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://nexyhub.jp/summit-members.html">
+<link rel="canonical" href="https://www.nexyhub.jp/summit-members.html">
 <link rel="icon" href="/img/icon.jpg" type="image/jpeg">
 
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://nexyhub.jp/summit-members.html">
+<meta property="og:url" content="https://www.nexyhub.jp/summit-members.html">
 <meta property="og:title" content="運営メンバー一覧 | NEXY Summit 2026">
 <meta property="og:description" content="NEXY Summit 2026 運営メンバー一覧。学生団体NEXYのコアメンバーをご紹介します。">
-<meta property="og:image" content="https://nexyhub.jp/img/summit/summit_ogp.jpg">
+<meta property="og:image" content="https://www.nexyhub.jp/img/summit/summit_ogp.jpg">
 <meta property="og:site_name" content="NEXY">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="運営メンバー一覧 | NEXY Summit 2026">
@@ -43,17 +43,17 @@ a { color:inherit; }
 .nav-back { background:var(--orange); color:#fff; padding:9px 18px; font-size:.78rem; font-weight:900; text-decoration:none; }
 .nav-back:hover { background:#e07a2e; }
 
-.hero { padding-top:120px; padding-bottom:64px; text-align:center; background:var(--paper); border-bottom:1px solid var(--line); }
+.hero { padding-top:120px; padding-bottom:56px; text-align:center; background:var(--paper); border-bottom:1px solid var(--line); }
 .hero-eyebrow { display:inline-block; font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.26em; color:var(--orange); font-weight:900; text-transform:uppercase; padding:6px 16px; border:1.5px solid var(--orange); background:rgba(242,139,61,.08); margin-bottom:16px; }
 .hero h1 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; color:var(--text); line-height:1.45; }
 .hero h1 em { color:var(--orange); font-style:normal; position:relative; }
 .hero h1 em::after { content:''; position:absolute; left:0; right:0; bottom:-3px; height:8px; background:var(--mint); z-index:-1; }
-.hero p { max-width:680px; margin:20px auto 0; color:var(--text2); font-size:.96rem; line-height:1.95; }
+.hero p { max-width:680px; margin:20px auto 0; color:var(--text2); font-size:.96rem; line-height:1.95; padding:0 6%; }
 
-.content { max-width:1180px; margin:0 auto; padding:64px 6%; }
+.content { max-width:1200px; margin:0 auto; padding:56px 6%; }
 
 .group { margin-bottom:64px; }
-.group-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin:0 auto 28px; padding-bottom:14px; border-bottom:2px solid var(--text); }
+.group-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; max-width:1100px; margin:0 auto 28px; padding-bottom:14px; border-bottom:2px solid var(--text); }
 .group-en { font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.26em; color:var(--orange); font-weight:800; text-transform:uppercase; }
 .group-title { font-size:1.36rem; font-weight:900; color:var(--text); letter-spacing:.02em; }
 .group-count { margin-left:auto; font-family:'Inter',sans-serif; font-size:.72rem; color:var(--text3); font-weight:700; letter-spacing:.1em; }
@@ -70,17 +70,22 @@ a { color:inherit; }
 .lead-desc { font-size:.88rem; color:var(--text2); line-height:1.95; }
 
 /* メンバーグリッド */
-.members-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1100px; margin:0 auto; }
-@media (max-width:880px) { .members-grid { grid-template-columns:repeat(3,1fr); } }
-@media (max-width:580px) { .members-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
-.member-card { background:#fff; border:1px solid var(--line); padding:0; overflow:hidden; transition:transform .25s,border-color .25s; }
+.members-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; max-width:1140px; margin:0 auto; }
+@media (max-width:980px) { .members-grid { grid-template-columns:repeat(3,1fr); gap:16px; } }
+@media (max-width:680px) { .members-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
+.member-card { background:#fff; border:1px solid var(--line); overflow:hidden; transition:transform .25s,border-color .25s,box-shadow .25s; display:flex; flex-direction:column; }
 .member-card:hover { transform:translateY(-3px); border-color:var(--orange); box-shadow:0 12px 22px rgba(0,0,0,.08); }
-.member-img { width:100%; aspect-ratio:1; background-size:cover; background-position:center top; background-color:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--text3); font-family:'Inter',sans-serif; font-size:.6rem; letter-spacing:.18em; font-weight:800; text-transform:uppercase; }
-.member-body { padding:12px 14px 16px; }
-.member-name { font-size:.94rem; font-weight:900; color:var(--text); line-height:1.4; margin-bottom:4px; }
-.member-role { font-family:'Noto Sans JP',sans-serif; font-size:.72rem; color:var(--text3); line-height:1.55; font-weight:600; }
+.member-img { width:100%; aspect-ratio:1; background:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--text3); font-family:'Inter',sans-serif; font-size:.6rem; letter-spacing:.18em; font-weight:800; text-transform:uppercase; overflow:hidden; position:relative; }
+.member-img img { width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+.member-img-initial { font-family:'Noto Sans JP',sans-serif; font-size:2.4rem; font-weight:900; color:rgba(242,139,61,.45); letter-spacing:0; text-transform:none; }
+.member-body { padding:14px 16px 18px; flex:1; display:flex; flex-direction:column; }
+.member-name { font-size:1.02rem; font-weight:900; color:var(--text); line-height:1.35; margin-bottom:2px; }
+.member-name .kana { font-family:'Inter',sans-serif; font-size:.62rem; font-weight:700; color:var(--text3); margin-left:6px; letter-spacing:.02em; display:inline-block; }
+.member-age { font-family:'Inter',sans-serif; font-size:.66rem; color:var(--text3); font-weight:700; letter-spacing:.08em; margin-bottom:6px; }
+.member-affil { font-size:.74rem; color:var(--orange); font-weight:800; line-height:1.55; margin-bottom:10px; min-height:1.6em; }
+.member-desc { font-size:.74rem; color:var(--text2); line-height:1.7; }
 
-.note { text-align:center; margin-top:48px; font-size:.84rem; color:var(--text3); font-style:italic; }
+.note { text-align:center; margin-top:48px; font-size:.84rem; color:var(--text3); font-style:italic; padding:0 6%; line-height:1.85; }
 
 .footer { padding:36px 6%; display:flex; flex-wrap:wrap; gap:24px; justify-content:center; font-size:.78rem; color:var(--text3); border-top:1px solid var(--line); margin-top:48px; }
 .footer a { color:var(--text2); text-decoration:none; }
@@ -93,11 +98,11 @@ a { color:inherit; }
   "@type": "WebPage",
   "name": "NEXY Summit 2026 運営メンバー一覧",
   "description": "NEXY Summit 2026 の運営メンバー一覧。学生団体NEXYのコアメンバーを紹介。",
-  "url": "https://nexyhub.jp/summit-members.html",
+  "url": "https://www.nexyhub.jp/summit-members.html",
   "isPartOf": {
     "@type": "WebSite",
     "name": "NEXY",
-    "url": "https://nexyhub.jp"
+    "url": "https://www.nexyhub.jp"
   }
 }
 </script>
@@ -112,7 +117,7 @@ a { color:inherit; }
 <section class="hero">
   <span class="hero-eyebrow">Organizing Members</span>
   <h1>NEXY Summit 2026<br><em>運営メンバー</em>一覧</h1>
-  <p>本イベントは、学生団体NEXYの代表 小助川 晴大 を筆頭に、学生メンバーが主体となって企画・運営しています。当日の運営を支えるメンバーを順次ご紹介します。</p>
+  <p>本イベントは、学生団体NEXYの代表 小助川 晴大 を筆頭に、全国から集まった学生メンバーが主体となって企画・運営しています。当日の運営を支える主要メンバー20名をご紹介します。</p>
 </section>
 
 <div class="content">
@@ -131,72 +136,224 @@ a { color:inherit; }
         <p class="lead-role">Representative ／ NEXY 代表</p>
         <h3 class="lead-name">小助川 晴大<span class="lead-name-kana">Haruta Kosukegawa</span></h3>
         <p class="lead-meta">学生団体NEXY 代表 ／ 孫正義育英財団 3期生</p>
-        <p class="lead-desc">2005年12月9日生まれ。神奈川県横浜市出身。13歳でWRO世界大会7位（史上最年少）。2026年に学生団体NEXYを設立し、自ら代表に就任。N高起業部ビジネスコンテスト2026 優勝（1,600人中1位）、リクルート地方創生インターン 最優秀賞などの実績を持つ。「やりたい」をひとりにしないをコンセプトに、学生コミュニティを運営。</p>
+        <p class="lead-desc">2005年12月9日生まれ。13歳でWRO世界大会7位（史上最年少）。2026年に学生団体NEXYを設立し、自ら代表に就任。N高起業部ビジネスコンテスト2026 優勝（1,600人中1位）、リクルート地方創生インターン 最優秀賞などの実績を持つ。「やりたい」をひとりにしないをコンセプトに、学生コミュニティを運営。</p>
       </div>
     </div>
   </div>
 
-  <!-- プロジェクトマネージャー -->
+  <!-- コアメンバー20名 -->
   <div class="group">
     <div class="group-head">
-      <span class="group-en">Project Managers</span>
-      <h2 class="group-title">プロジェクトマネージャー（PM）</h2>
-      <span class="group-count">順次発表</span>
+      <span class="group-en">Core Organizing Team</span>
+      <h2 class="group-title">運営メンバー</h2>
+      <span class="group-count">20 Members</span>
     </div>
     <div class="members-grid">
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">PM 01</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">PM 02</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">PM 03</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">PM 04</div><div class="member-role">順次発表</div></div></div>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">小泉</span></div>
+        <div class="member-body">
+          <h3 class="member-name">小泉 芽生<span class="kana">Mei Koizumi</span></h3>
+          <p class="member-age">19歳</p>
+          <p class="member-affil">Luonto 創設者</p>
+          <p class="member-desc">「世界中に、誰もがあるがままの自分で帰ってこれる場所をつくる」を理念に、これまで4回のリトリート空間を開催。トビタテ留学Japan経験者。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">岡本</span></div>
+        <div class="member-body">
+          <h3 class="member-name">岡本 光太郎<span class="kana">Kotaro Okamoto</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">投資部・複数同好会会長</p>
+          <p class="member-desc">16歳で介護福祉士実務者研修を修了。ヒッチハイクで全国を巡る行動派。現在は高校生向け事業プロジェクトやインターンでマーケティング・新規事業企画に取り組む。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">佐々木</span></div>
+        <div class="member-body">
+          <h3 class="member-name">佐々木 杏奈<span class="kana">Anna Sasaki</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">学生団体Sperto 代表 ／ 一般社団法人ハピプラ 次期副代表理事</p>
+          <p class="member-desc">いじめや虐待を遠回しに防ぐコミュニティを立ち上げ、児童福祉の領域を横断する「福祉人間」を目指す。NPO法人 第3の家族 奥村氏へ登壇営業を実施。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">三ツ谷</span></div>
+        <div class="member-body">
+          <h3 class="member-name">三ツ谷 隼羽<span class="kana">Hayata Mitsutani</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">Novelink 副代表 ／ Beyond2020 Next Project</p>
+          <p class="member-desc">人生の約半分を海外で過ごし、オフラインの出会いを大事にする学生団体Novelinkを立ち上げ。SusHi Tech Tokyoではボランティアリーダーで3日間参加。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">八町</span></div>
+        <div class="member-body">
+          <h3 class="member-name">八町 颯乃佑<span class="kana">Sounosuke Hatcho</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">ATTTO Academy ／ Webデザイナー</p>
+          <p class="member-desc">中学時代からWebデザインを学び、複数の企業サイトを制作・運営。創作することへの強い興味を軸に、新領域への挑戦を継続中。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">松丸</span></div>
+        <div class="member-body">
+          <h3 class="member-name">松丸 夏歩<span class="kana">Kaho Matsumaru</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">学生団体ELLNOWA 設立者</p>
+          <p class="member-desc">JAXAに応援メッセージを届ける活動など、宇宙・教育分野で複数のプロジェクトを企画・実行。学生団体ELLNOWAを立ち上げ。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">水野</span></div>
+        <div class="member-body">
+          <h3 class="member-name">水野 太陽<span class="kana">Taiyo Mizuno</span></h3>
+          <p class="member-age">19歳</p>
+          <p class="member-affil">Challase株式会社 ／ 株式会社ブルースプリング</p>
+          <p class="member-desc">小学生からサッカーでスペイン・ドバイ・ドイツに留学。高校時代にクラウドファンディングで109万円調達し起業。LIXILの縦型動画編集担当。TikTokフォロワー6,000人超。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">佐野</span></div>
+        <div class="member-body">
+          <h3 class="member-name">佐野 智武<span class="kana">Satomu Sano</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">OVERVIEW ACADEMY 開発者</p>
+          <p class="member-desc">幼少期のプラネタリウム体験から宇宙視点教育プログラム「OVERVIEW ACADEMY」を開発。国際教育弁論大会 茨城県知事賞、全国高校生英語プレゼンTOP30など実績多数。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">小野</span></div>
+        <div class="member-body">
+          <h3 class="member-name">小野 愛奈<span class="kana">Ayana Ono</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">ハンドメイドブランド「minoa」 主宰</p>
+          <p class="member-desc">高校1年で通信制高校進学者向けSNS発信を開始。趣味のハンドメイドを活かし「minoa」を立ち上げ、マルシェ・オンライン販売・群馬県内旅館での委託販売を展開。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">吉村</span></div>
+        <div class="member-body">
+          <h3 class="member-name">吉村 歩峰<span class="kana">Hotaka Yoshimura</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">株式会社ジンジブ ／ IKASU!</p>
+          <p class="member-desc">生徒会選挙で約3,000枚の名刺を配り、関東地区代表選挙で889票獲得。上場企業のインターンで新規事業開発プロジェクトリーダーを担当。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">長谷部</span></div>
+        <div class="member-body">
+          <h3 class="member-name">長谷部 紗世<span class="kana">Sayo Hasebe</span></h3>
+          <p class="member-age">14歳</p>
+          <p class="member-affil">任意団体Next Step 代表 ／ E-LINK 広報</p>
+          <p class="member-desc">小6で松下幸之助杯スピーチコンテスト全国大会最優秀賞、小5でパナソニック教育財団プレゼンコンテスト奨励賞。任意団体Next Stepを立ち上げ、興味分野の共有・応援文化を醸成。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">大屋</span></div>
+        <div class="member-body">
+          <h3 class="member-name">大屋 諒<span class="kana">Ryo Oya</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">政策・ルールメイキング領域</p>
+          <p class="member-desc">政治、まちづくり、スタートアップ、ルールメイキングに関心。社会の構造的課題に取り組む。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">古賀</span></div>
+        <div class="member-body">
+          <h3 class="member-name">古賀 百合子<span class="kana">Yuriko Koga</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">IKASU! マネージャー</p>
+          <p class="member-desc">バレエ歴12年、YGP国際バレエコンクール2026出場。IKASU!のマネージャーとして、高校生・大学生が新しい挑戦に踏み出すきっかけづくりに取り組む。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">松枝</span></div>
+        <div class="member-body">
+          <h3 class="member-name">松枝 漱祐<span class="kana">Sosuke Matsueda</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">株式会社Tapaz COO ／ ミセミルデザイン研究所</p>
+          <p class="member-desc">企業向けワークショップ、アプリ開発、AI導入支援に取り組むTapazのCOO。徳島の学生による事業者向けWeb制作組織を立ち上げ、10名以上の組織を運営。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">田中</span></div>
+        <div class="member-body">
+          <h3 class="member-name">田中 瑠夏<span class="kana">Ruka Tanaka</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">ワークショップ設計 ／ 絵本制作</p>
+          <p class="member-desc">アンコンシャスバイアスを認知し新たな可能性を拓く「可能星map」ワークショップを設計・実践。Steamコンテストでリップグロスのプロダクトデザインで入賞。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">酒井</span></div>
+        <div class="member-body">
+          <h3 class="member-name">酒井 盛光<span class="kana">Morimitsu Sakai</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">防犯領域 起業準備中</p>
+          <p class="member-desc">防犯分野で起業を構想中。神山まるごと高専で起業・ものづくり・社会課題探究を中心に活動。能登半島ボランティア、高専祭実行員、企業訪問など実践多数。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">百武</span></div>
+        <div class="member-body">
+          <h3 class="member-name">百武 東洋<span class="kana">Toyo Hyakutake</span></h3>
+          <p class="member-age">15歳</p>
+          <p class="member-affil">空間デザイン ／ ステージ演出</p>
+          <p class="member-desc">音・光・ダンス・心拍データを組み合わせた空間デザインを研究。神山まるごと高専サマースクール2025ピッチコンテスト個人の部優勝。心拍に応じて光るペンライト制作。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">小林</span></div>
+        <div class="member-body">
+          <h3 class="member-name">小林 建登<span class="kana">Kento Kobayashi</span></h3>
+          <p class="member-age">16歳</p>
+          <p class="member-affil">生徒会企画運営</p>
+          <p class="member-desc">予算1,000万円の生徒会企画運営に多数携わる。「みたらしコッペ」など独自の企画を考案。傾聴ボランティア、ジンジブハイスクールのインターンも経験。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">木下</span></div>
+        <div class="member-body">
+          <h3 class="member-name">木下 まお<span class="kana">Mao Kinoshita</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">アクセサリーブランド「reposer」</p>
+          <p class="member-desc">中学1年でアクセサリーブランド「reposer」を立ち上げ、現在5年目。海外ジュエリーのセレクト、ワークショップ講師、営業インターン、メディア関連の仕事も並行。</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-img"><span class="member-img-initial">後田</span></div>
+        <div class="member-body">
+          <h3 class="member-name">後田 百歌<span class="kana">Moka Ushiroda</span></h3>
+          <p class="member-age">17歳</p>
+          <p class="member-affil">学生団体IKASU!</p>
+          <p class="member-desc">N高第3期生徒会役員会で1,776票の最多得票を獲得し副会長に就任。小学館「Steenz 気になる10代名鑑」掲載。</p>
+        </div>
+      </article>
+
     </div>
   </div>
 
-  <!-- メイン会場メンバー -->
-  <div class="group">
-    <div class="group-head">
-      <span class="group-en">Main Stage Crew</span>
-      <h2 class="group-title">メイン会場メンバー</h2>
-      <span class="group-count">順次発表</span>
-    </div>
-    <div class="members-grid">
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 01</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 02</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 03</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 04</div><div class="member-role">順次発表</div></div></div>
-    </div>
-  </div>
-
-  <!-- 常設エリアメンバー -->
-  <div class="group">
-    <div class="group-head">
-      <span class="group-en">Booth &amp; Community Crew</span>
-      <h2 class="group-title">常設エリアメンバー</h2>
-      <span class="group-count">順次発表</span>
-    </div>
-    <div class="members-grid">
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 01</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 02</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 03</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 04</div><div class="member-role">順次発表</div></div></div>
-    </div>
-  </div>
-
-  <!-- SNS・広報 -->
-  <div class="group">
-    <div class="group-head">
-      <span class="group-en">PR &amp; Social</span>
-      <h2 class="group-title">SNS・広報</h2>
-      <span class="group-count">順次発表</span>
-    </div>
-    <div class="members-grid">
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 01</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 02</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 03</div><div class="member-role">順次発表</div></div></div>
-      <div class="member-card"><div class="member-img">Coming Soon</div><div class="member-body"><div class="member-name">メンバー 04</div><div class="member-role">順次発表</div></div></div>
-    </div>
-  </div>
-
-  <p class="note">※ 運営メンバーは順次発表予定です。最新情報は <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange);font-weight:700;text-decoration:underline;">Instagram @nexy.hub</a> にて。</p>
+  <p class="note">※ 上記は主要メンバー20名の紹介です。実際のサミットは50名超の運営メンバーで支えられています。<br>※ 写真は順次差し替えていきます。最新情報は <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange);font-weight:700;text-decoration:underline;">Instagram @nexy.hub</a> にて。</p>
 
 </div>
 
