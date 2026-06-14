@@ -763,6 +763,42 @@ img { max-width: 100%; display: block; }
 .btn-secondary { display: inline-block; background: var(--ink); color: #fff; padding: 12px 22px; text-decoration: none; font-size: .82rem; font-weight: 800; border-radius: 8px; transition: opacity .2s; white-space: nowrap; }
 .btn-secondary:hover { opacity: .85; }
 
+
+/* === 都市カード CTA 強化 === */
+.city-card.linked {
+  position: relative;
+  display: flex !important; flex-direction: column; gap: 10px;
+  padding: 22px 18px 18px !important;
+  background: #fff !important;
+  border: 2px solid var(--orange) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all .22s ease;
+  overflow: hidden;
+}
+.city-card.linked::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--yellow) 100%);
+}
+.city-card.linked:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(232,115,42,.22);
+  border-color: var(--orange-deep) !important;
+}
+.city-card.linked .city-name { font-size: 1.34rem; font-weight: 900; color: var(--text); }
+.city-card.linked .city-status { font-size: .76rem; font-weight: 700; color: var(--green-deep); }
+.city-card.linked .city-cta-btn {
+  margin-top: auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--orange); color: #fff;
+  padding: 10px 16px; font-weight: 800; font-size: .82rem;
+  letter-spacing: .04em; gap: 6px;
+  transition: background .2s;
+}
+.city-card.linked:hover .city-cta-btn { background: var(--orange-deep); }
+.city-card.linked .city-cta-btn::after { content: '→'; font-weight: 900; }
+
 </style>
 </head>
 <body>
@@ -816,7 +852,7 @@ img { max-width: 100%; display: block; }
         <div class="hero-meta-item"><span class="hero-meta-label">AREA</span><span class="hero-meta-val">地方主要都市を巡回</span></div>
       </div>
       <div class="hero-btns">
-        <a href="#cta" class="btn-primary">次回開催の参加申込 →</a>
+        <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="btn-primary">参加申込フォーム →</a>
         <a href="#past" class="btn-outline">過去の開催を見る</a>
       </div>
     </div>
@@ -927,23 +963,27 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">Next Cities</span>
     <h2 class="section-title reveal">これから巡回する<em>都市</em></h2>
-    <p class="section-lead reveal">「やってみたい」を地元から始める場を、首都圏以外の主要都市に届けていきます。<br>下記4都市の開催が決定。詳細日程はInstagram @nexy.hub で順次発表します。</p>
+    <p class="section-lead reveal">下記4都市の開催が決定しています。<strong>各都市カードをクリックすると、開催詳細ページに移動します。</strong><br>具体的な日程・会場はInstagram <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange-deep);font-weight:800;">@nexy.hub</a> で順次発表します。</p>
     <div class="cities-grid reveal">
-      <a href="yoisho-okayama.html" class="city-card planning" style="text-decoration:none;color:inherit;cursor:pointer;transition:transform .2s;display:block;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <a href="yoisho-okayama.html" class="city-card linked">
         <div class="city-name">岡山</div>
-        <div class="city-status">開催決定 ／ 詳しく →</div>
+        <div class="city-status">●開催決定 ／ 日程・会場 調整中</div>
+        <div class="city-cta-btn">この都市の詳細を見る</div>
       </a>
-      <a href="yoisho-aichi.html" class="city-card planning" style="text-decoration:none;color:inherit;cursor:pointer;transition:transform .2s;display:block;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <a href="yoisho-aichi.html" class="city-card linked">
         <div class="city-name">愛知（名古屋）</div>
-        <div class="city-status">開催決定 ／ 詳しく →</div>
+        <div class="city-status">●開催決定 ／ 日程・会場 調整中</div>
+        <div class="city-cta-btn">この都市の詳細を見る</div>
       </a>
-      <a href="yoisho-kanazawa.html" class="city-card planning" style="text-decoration:none;color:inherit;cursor:pointer;transition:transform .2s;display:block;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <a href="yoisho-kanazawa.html" class="city-card linked">
         <div class="city-name">金沢</div>
-        <div class="city-status">開催決定 ／ 詳しく →</div>
+        <div class="city-status">●開催決定 ／ 日程・会場 調整中</div>
+        <div class="city-cta-btn">この都市の詳細を見る</div>
       </a>
-      <a href="yoisho-osaka.html" class="city-card planning" style="text-decoration:none;color:inherit;cursor:pointer;transition:transform .2s;display:block;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <a href="yoisho-osaka.html" class="city-card linked">
         <div class="city-name">大阪</div>
-        <div class="city-status">開催決定 ／ 詳しく →</div>
+        <div class="city-status">●開催決定 ／ 日程・会場 調整中</div>
+        <div class="city-cta-btn">この都市の詳細を見る</div>
       </a>
     </div>
   </div>
@@ -977,17 +1017,12 @@ img { max-width: 100%; display: block; }
 <section class="section fee" id="fee">
   <div class="section-inner">
     <span class="section-label reveal">Fee</span>
-    <h2 class="section-title reveal">参加費（<em>会場・運営の実費水準</em>）</h2>
-    <p class="section-lead reveal">会場費・運営費の一部を賄うための、最小限の参加費です。</p>
-    <div class="fee-grid">
-      <div class="fee-card reveal">
-        <div class="fee-target">中学生・高校生</div>
+    <h2 class="section-title reveal">参加費（<em>一律 ¥1,000</em>）</h2>
+    <p class="section-lead reveal">会場費・運営費の一部を賄うための、最小限の参加費です。<br>中学生・高校生・大学生・社会人すべて一律 ¥1,000 でご参加いただけます。</p>
+    <div class="fee-grid" style="grid-template-columns:1fr;max-width:480px;margin:0 auto;">
+      <div class="fee-card highlight reveal">
+        <div class="fee-target">中学生・高校生・大学生・社会人 一律</div>
         <div class="fee-amount">¥1,000</div>
-        <div class="fee-incl">ワーク参加 ／ 軽食・ドリンク ／ 交流タイム参加</div>
-      </div>
-      <div class="fee-card highlight reveal" style="transition-delay:.06s">
-        <div class="fee-target">大学生・社会人</div>
-        <div class="fee-amount">¥1,500</div>
         <div class="fee-incl">ワーク参加 ／ 軽食・ドリンク ／ 交流タイム参加</div>
       </div>
     </div>
@@ -1037,8 +1072,8 @@ img { max-width: 100%; display: block; }
       地元での開催リクエストや、会場提供のご相談もこちらから。
     </p>
     <div class="cta-btns">
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-primary">Instagramをフォロー →</a>
-      <a href="index.html#contact" class="btn-outline">問い合わせる</a>
+      <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="btn-primary">参加申込フォーム →</a>
+      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-outline">Instagramをフォロー</a>
     </div>
   </div>
 </section>
