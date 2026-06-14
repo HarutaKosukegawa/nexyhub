@@ -31,7 +31,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Yusei+Magic&family=Kaisei+Decol:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Yusei+Magic&family=Kaisei+Decol:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --paper: #FAF5E8;
@@ -46,9 +46,9 @@
   --green-deep: #1F5A33;
   --yellow: #F2C547;
   --yellow-deep: #E0AC2A;
-  --text: #3A2C20;
-  --text2: #6B5547;
-  --text3: #9C8472;
+  --text: #2A1F15;
+  --text2: #524033;
+  --text3: #8A7461;
   --line: rgba(58,44,32,0.12);
   --line-strong: rgba(58,44,32,0.22);
   --shadow: 0 4px 24px rgba(58,44,32,.07);
@@ -58,11 +58,14 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif;
   background: var(--paper);
   color: var(--text);
   overflow-x: hidden;
-  line-height: 1.8;
+  line-height: 1.95;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .02em;
   background-image:
     radial-gradient(circle at 20% 30%, rgba(232,115,42,0.04) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(46,127,74,0.04) 0%, transparent 50%);
@@ -762,6 +765,62 @@ img { max-width: 100%; display: block; }
 .city-card .city-status { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .12em; padding: 5px 12px; border-radius: 999px; text-transform: uppercase; }
 .btn-secondary { display: inline-block; background: var(--ink); color: #fff; padding: 12px 22px; text-decoration: none; font-size: .82rem; font-weight: 800; border-radius: 8px; transition: opacity .2s; white-space: nowrap; }
 .btn-secondary:hover { opacity: .85; }
+
+
+/* === Typography Hierarchy & Readability Enhancements === */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem) !important;
+  line-height: 1.4 !important;
+  letter-spacing: -.01em;
+  margin-bottom: 18px;
+}
+.section-title em {
+  font-style: normal;
+  background: linear-gradient(transparent 62%, rgba(242,197,71,.45) 62%);
+  padding: 0 4px;
+}
+.section-lead {
+  font-size: 1.02rem !important;
+  line-height: 2.05 !important;
+  color: var(--text2) !important;
+  max-width: 720px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.section-inner { padding-block: 16px; }
+.section { padding-block: 88px !important; }
+.hero-sub {
+  font-size: 1.06rem !important;
+  line-height: 2 !important;
+}
+.fee-card { padding: 32px 26px !important; }
+.fee-amount { font-size: 2.6rem !important; font-weight: 900; }
+.fee-target { font-size: .9rem !important; }
+.fee-incl { font-size: .88rem !important; line-height: 1.95 !important; }
+.faq-q {
+  font-size: 1rem !important;
+  font-weight: 700;
+  padding: 18px 22px !important;
+}
+.faq-a {
+  font-size: .95rem !important;
+  line-height: 1.95 !important;
+  padding: 4px 22px 20px !important;
+}
+.past-title { font-size: 1.24rem !important; font-weight: 800; }
+.past-desc { font-size: .94rem !important; line-height: 1.95 !important; }
+.how-text strong { font-size: 1.04rem; line-height: 1.6; display: block; margin-bottom: 6px; }
+.how-text p { font-size: .92rem; line-height: 1.85; color: var(--text2); }
+.btn-primary, .btn-outline {
+  font-size: .96rem !important;
+  padding: 14px 28px !important;
+  letter-spacing: .04em;
+}
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+  .section { padding-block: 64px !important; }
+  .section-lead { font-size: .95rem !important; }
+}
 
 </style>
 </head>
