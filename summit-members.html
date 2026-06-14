@@ -78,15 +78,26 @@ a { color:inherit; }
 .group-l { border-color: var(--orange); } .group-l .group-en { color: var(--orange); }
 
 /* 代表者カード */
-.lead-card { background:#fff; border:2px solid var(--orange); padding:32px; display:grid; grid-template-columns:200px 1fr; gap:32px; align-items:start; max-width:980px; margin:0 auto; }
-@media (max-width:680px) { .lead-card { grid-template-columns:1fr; gap:20px; padding:24px; } }
+.lead-card { background:#fff; border:2px solid var(--orange); padding:36px; display:grid; grid-template-columns:220px 1fr; gap:36px; align-items:start; max-width:1080px; margin:0 auto; }
+@media (max-width:760px) { .lead-card { grid-template-columns:1fr; gap:24px; padding:28px; } }
 .lead-photo { width:100%; aspect-ratio:1; background:var(--paper); border:1px solid var(--line); overflow:hidden; }
 .lead-photo img { width:100%; height:100%; object-fit:cover; object-position:center 30%; }
-.lead-name { font-size:1.6rem; font-weight:900; color:var(--text); margin-bottom:4px; line-height:1.3; }
-.lead-name-kana { font-family:'Inter',sans-serif; font-size:.78rem; color:var(--text3); font-weight:700; margin-left:8px; }
-.lead-role { font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.22em; color:var(--orange); font-weight:800; text-transform:uppercase; margin-bottom:16px; }
-.lead-meta { font-size:.92rem; color:var(--text2); font-weight:600; margin-bottom:14px; line-height:1.7; }
-.lead-desc { font-size:.88rem; color:var(--text2); line-height:1.95; }
+.lead-name { font-size:1.7rem; font-weight:900; color:var(--text); margin-bottom:4px; line-height:1.3; }
+.lead-name-kana { font-family:'Inter',sans-serif; font-size:.82rem; color:var(--text3); font-weight:700; margin-left:10px; }
+.lead-role { font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.22em; color:var(--orange); font-weight:800; text-transform:uppercase; margin-bottom:14px; }
+.lead-meta { font-size:.92rem; color:var(--text2); font-weight:600; margin-bottom:16px; line-height:1.7; }
+.lead-badges { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.lead-badge { font-family:'Noto Sans JP',sans-serif; font-size:.7rem; font-weight:800; padding:5px 10px; line-height:1.4; }
+.lead-badge.b-fill { background: var(--orange); color:#fff; }
+.lead-badge.b-line { background: var(--paper); color: var(--text2); border:1px solid var(--line); }
+.lead-message { font-size:1.05rem; font-weight:900; color:var(--text); line-height:1.6; margin-bottom:14px; padding-left:14px; border-left:3px solid var(--orange); }
+.lead-desc { font-size:.88rem; color:var(--text2); line-height:1.95; margin-bottom:14px; }
+.lead-section { margin-top:20px; padding-top:16px; border-top:1px dashed var(--line); }
+.lead-section-label { font-family:'Inter',sans-serif; font-size:.66rem; letter-spacing:.18em; color:var(--orange); font-weight:800; text-transform:uppercase; margin-bottom:10px; }
+.lead-achievements { list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; font-size:.8rem; color:var(--text2); line-height:1.6; }
+@media (max-width:680px) { .lead-achievements { grid-template-columns:1fr; } }
+.lead-achievements li { padding-left:14px; position:relative; }
+.lead-achievements li::before { content:'■'; position:absolute; left:0; top:2px; color:var(--orange); font-size:.6rem; }
 
 /* メンバーグリッド */
 .members-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:1180px; margin:0 auto; }
@@ -180,9 +191,51 @@ a { color:inherit; }
       </div>
       <div>
         <p class="lead-role">Representative ／ NEXY 代表 ／ D会場 統括</p>
-        <h3 class="lead-name">小助川 晴大<span class="lead-name-kana">Haruta Kosukegawa</span></h3>
+        <h3 class="lead-name">小助川 晴大<span class="lead-name-kana">Kosukegawa Haruta</span></h3>
         <p class="lead-meta">学生団体NEXY 代表 ／ 孫正義育英財団 3期生</p>
-        <p class="lead-desc">2005年12月9日生まれ。13歳でWRO世界大会7位（史上最年少）。2026年に学生団体NEXYを設立し、自ら代表に就任。N高起業部ビジネスコンテスト2026 優勝（1,600人中1位）、リクルート地方創生インターン 最優秀賞などの実績を持つ。</p>
+
+        <div class="lead-badges">
+          <span class="lead-badge b-fill">WRO世界最年少7位</span>
+          <span class="lead-badge b-fill">孫正義育英財団 3期生</span>
+          <span class="lead-badge b-line">シンガポール中学3年間留学</span>
+          <span class="lead-badge b-line">N高起業部2026 優勝</span>
+          <span class="lead-badge b-line">リクルート最優秀賞</span>
+          <span class="lead-badge b-line">TBS出演</span>
+        </div>
+
+        <p class="lead-message">「やりたい」が孤独になる社会を、変えたい。</p>
+
+        <p class="lead-desc">これまで、ロボット、起業、教育など、さまざまな挑戦をしてきました。その中で強く感じたのは、「挑戦は人との出会いで加速する」ということ。実際に自分の人生を大きく変えてくれたのは、環境と人でした。同じように何かに本気で取り組んでいる人と出会い、語り合い、刺激を受けることで、自分の可能性が広がっていく感覚がありました。</p>
+
+        <p class="lead-desc">一方で、そうした出会いは意図的に作らないと生まれにくいのも事実です。だからこそ、挑戦している人たちが交わり、新たなきっかけが生まれる場を作りたいと思い、NEXYを立ち上げました。NEXYはただのコミュニティではなく、それぞれの「やりたい」が交差し、次の挑戦へとつながっていく場所。ここでの出会いが、誰かの人生を変えるきっかけになる。そんな連鎖が生まれる場を、本気で作っていきます。</p>
+
+        <div class="lead-section">
+          <p class="lead-section-label">主な実績</p>
+          <ul class="lead-achievements">
+            <li>WRO世界大会 世界7位（史上最年少）／世界8位</li>
+            <li>孫正義育英財団 3期生</li>
+            <li>N高起業部ビジネスコンテスト2026 優勝（1,600人中）</li>
+            <li>リクルート地方創生インターン 最優秀賞（宮古島市採択）</li>
+            <li>Startup Jr.アワード ソーシャルイノベーション部門 初代大賞</li>
+            <li>TBS「Nスタ」「ニュースキャスター」出演</li>
+            <li>渋谷QWS「HACHIKO PITCH」小学生初登壇</li>
+            <li>JCI World Congress 横浜にてプレゼン実施</li>
+          </ul>
+        </div>
+
+        <div class="lead-section">
+          <p class="lead-section-label">経歴サマリー（9歳〜17歳）</p>
+          <ul class="lead-achievements">
+            <li>9歳：WRO世界大会7位（史上最年少）</li>
+            <li>10歳：WRO世界大会8位</li>
+            <li>11歳：孫正義育英財団 3期生に選抜</li>
+            <li>12歳：シンガポールへ単身留学／TBS出演</li>
+            <li>14歳：ジンベエザメ株式会社 設立／取締役COO</li>
+            <li>16歳：不登校児向けメンター50名以上／リクルート地方創生インターン</li>
+            <li>17歳：学生団体NEXY 代表／N高起業部2026 優勝</li>
+            <li>17歳：ネルフィン株式会社 設立／取締役COO・富山へ単身移住</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
