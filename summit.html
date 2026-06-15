@@ -1438,6 +1438,96 @@ body.modal-open { overflow: hidden; }
   .ig-text { text-align: center; }
 }
 
+
+/* ===== PROMO BANNER (プレゼン大会出場者募集) ===== */
+.promo-banner {
+  background: linear-gradient(135deg, #F28B3D 0%, #FF5E2C 100%);
+  padding: 28px 6%;
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
+.promo-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(255,255,255,.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 50%, rgba(255,255,255,.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.promo-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 22px;
+  align-items: center; position: relative; z-index: 1;
+}
+@media (max-width: 720px) { .promo-inner { grid-template-columns: 1fr; text-align: center; gap: 14px; } }
+.promo-tag {
+  font-family: 'Inter', sans-serif; font-size: .68rem;
+  letter-spacing: .22em; font-weight: 900;
+  background: #fff; color: var(--orange);
+  padding: 8px 14px; text-transform: uppercase;
+  white-space: nowrap; display: inline-block;
+}
+.promo-text { color: #fff; line-height: 1.5; }
+.promo-text strong { font-size: 1.18rem; font-weight: 900; display: block; margin-bottom: 4px; letter-spacing: .02em; }
+.promo-text span { font-size: .82rem; opacity: .94; font-weight: 700; }
+.promo-cta {
+  background: #fff; color: var(--orange);
+  padding: 14px 28px;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 900; font-size: .9rem; letter-spacing: .04em;
+  text-decoration: none;
+  transition: all .25s; white-space: nowrap;
+  border: 2px solid #fff;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.promo-cta:hover { background: var(--orange); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.promo-cta::after { content: '→'; font-weight: 900; }
+
+/* ===== FREE NOTICE (CTAボタン上の無料明示) ===== */
+.free-notice {
+  display: inline-block;
+  font-size: .8rem; font-weight: 900;
+  background: var(--mint); color: var(--text);
+  padding: 6px 14px;
+  margin-bottom: 14px;
+  letter-spacing: .04em;
+  border: 2px solid var(--mint-deep);
+}
+.cta-final .free-notice {
+  background: rgba(255,255,255,.95); color: var(--orange);
+  border-color: #fff;
+}
+
+/* ===== Final CTA Value Boxes (3つの得られるもの) ===== */
+.cta-values {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  max-width: 720px; margin: 0 auto 32px;
+}
+@media (max-width: 640px) { .cta-values { grid-template-columns: 1fr; gap: 10px; } }
+.cta-value {
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.3);
+  padding: 16px 14px;
+  text-align: center;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.cta-value-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem; font-weight: 900;
+  color: var(--orange);
+  line-height: 1; margin-bottom: 6px;
+}
+.cta-value-text {
+  font-size: .8rem; font-weight: 700;
+  color: #fff; line-height: 1.5;
+}
+.cta-value-sub {
+  display: block; font-size: .68rem; opacity: .8;
+  font-weight: 500; margin-top: 4px;
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -1577,10 +1667,23 @@ body.modal-open { overflow: hidden; }
       次世代の挑戦者が集い、自分の可能性が<br>
       遠い未来ではなく、今ここにあると気づく1日。
     </p>
+    <p class="free-notice" style="margin:18px auto 0;display:block;text-align:center;max-width:fit-content;">※ 高校生・大学生は無料 ／ 社会人 ¥3,000</p>
     <div class="hero-ctas">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
       <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
     </div>
+  </div>
+</section>
+
+<!-- SECTION: PROMO BANNER (プレゼン大会出場者募集中) -->
+<section class="promo-banner" aria-label="プレゼン大会出場者募集中">
+  <div class="promo-inner">
+    <span class="promo-tag">Now Recruiting</span>
+    <div class="promo-text">
+      <strong>NEXYプレゼン大会 出場者募集中</strong>
+      <span>中学生・高校生 7名 ／ 最優秀賞 賞金10万円 ／ 全国どこからでも交通費全額支援 ／ 締切 7/6（日）</span>
+    </div>
+    <a href="summit-presentation.html" class="promo-cta">プレゼン大会LPを見る</a>
   </div>
 </section>
 
@@ -2574,7 +2677,24 @@ body.modal-open { overflow: hidden; }
       ただ、何かが引っかかっているなら、<br>
       その違和感を持ってきてください。
     </p>
-    <p style="margin:0 auto 24px;font-size:.86rem;font-weight:800;color:#fff;letter-spacing:.06em;">申込締切：2026年8月5日（火）</p>
+
+    <div class="cta-values">
+      <div class="cta-value">
+        <div class="cta-value-num">15</div>
+        <div class="cta-value-text">全国の学生登壇者と<br>直接話せる<span class="cta-value-sub">起業・地方・教育・グローバル他</span></div>
+      </div>
+      <div class="cta-value">
+        <div class="cta-value-num">13+</div>
+        <div class="cta-value-text">D会場・C会場の<br>セッション無料で参加<span class="cta-value-sub">プレゼン大会 観覧も含む</span></div>
+      </div>
+      <div class="cta-value">
+        <div class="cta-value-num">¥0</div>
+        <div class="cta-value-text">高校生・大学生は<br>すべて無料<span class="cta-value-sub">社会人 ¥3,000</span></div>
+      </div>
+    </div>
+
+    <p style="margin:0 auto 14px;font-size:.86rem;font-weight:800;color:#fff;letter-spacing:.06em;">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</p>
+    <span class="free-notice" style="display:inline-block;margin-bottom:18px;">※ 高校生・大学生 完全無料</span>
     <div class="hero-ctas" style="justify-content:center;flex-wrap:wrap;">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
       <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener" class="btn-mint">お問い合わせフォーム</a>
