@@ -822,6 +822,200 @@ img { max-width: 100%; display: block; }
   .section-lead { font-size: .95rem !important; }
 }
 
+
+/* ===== GOOGLE MAP セクション ===== */
+.map-section { padding: 80px 6%; background: var(--paper2); }
+.map-inner { max-width: 1100px; margin: 0 auto; }
+.map-head { text-align: center; margin-bottom: 32px; }
+.map-frame-wrap {
+  position: relative;
+  background: #fff;
+  padding: 8px;
+  border: 2px solid var(--text);
+  box-shadow: 8px 8px 0 var(--orange);
+}
+.map-frame {
+  width: 100%; height: 460px;
+  border: 0;
+  display: block;
+}
+.map-info {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: center;
+  background: var(--cream);
+  padding: 22px 26px;
+  margin-top: 24px;
+  border: 1.5px solid var(--line);
+}
+.map-info-detail strong { font-size: 1.04rem; font-weight: 900; color: var(--text); display: block; margin-bottom: 6px; }
+.map-info-detail span { font-size: .9rem; color: var(--text2); line-height: 1.7; }
+.map-info-btn {
+  background: var(--orange); color: #fff;
+  padding: 12px 22px; font-weight: 900; font-size: .86rem;
+  text-decoration: none; letter-spacing: .04em;
+  border: 2px solid var(--orange-deep);
+  white-space: nowrap;
+}
+.map-info-btn:hover { background: var(--orange-deep); }
+@media (max-width: 700px) {
+  .map-frame { height: 360px; }
+  .map-info { grid-template-columns: 1fr; gap: 14px; padding: 18px 20px; }
+  .map-section { padding: 60px 5%; }
+}
+
+/* ===== 主催者プロフィール ===== */
+.organizer-section { padding: 80px 6%; background: var(--paper); }
+.organizer-inner { max-width: 920px; margin: 0 auto; }
+.organizer-card {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 36px; align-items: start;
+  background: #fff;
+  padding: 36px 40px;
+  border: 2px solid var(--orange);
+  box-shadow: 10px 10px 0 var(--orange);
+  position: relative;
+}
+.organizer-card::before {
+  content: '主催者'; position: absolute;
+  top: -16px; left: 28px;
+  background: var(--orange); color: #fff;
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem; font-weight: 900;
+  letter-spacing: .22em;
+}
+.organizer-photo {
+  width: 100%; aspect-ratio: 1;
+  background: var(--paper2);
+  border: 1.5px solid var(--line);
+  overflow: hidden;
+}
+.organizer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.organizer-role {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; letter-spacing: .22em;
+  color: var(--orange); font-weight: 900;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.organizer-name {
+  font-size: 1.7rem; font-weight: 900;
+  color: var(--text); line-height: 1.3; margin-bottom: 4px;
+}
+.organizer-name-kana {
+  font-size: .76rem; color: var(--text3);
+  font-weight: 700; margin-left: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.organizer-meta {
+  font-size: .9rem; color: var(--text2);
+  font-weight: 700; line-height: 1.6;
+  margin-bottom: 18px;
+}
+.organizer-badges {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 18px;
+}
+.organizer-badge {
+  font-size: .7rem; font-weight: 800;
+  background: rgba(232,115,42,.12);
+  color: var(--orange-deep);
+  padding: 5px 11px;
+  letter-spacing: .02em;
+}
+.organizer-desc {
+  font-size: .9rem; color: var(--text2);
+  line-height: 1.95;
+}
+@media (max-width: 700px) {
+  .organizer-card { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; box-shadow: 6px 6px 0 var(--orange); }
+  .organizer-photo { max-width: 220px; margin: 0 auto; }
+  .organizer-section { padding: 60px 5%; }
+}
+
+
+/* === 主催者プロフィール 実績ハイライト & 詳細 === */
+.org-headline-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin: 22px 0 24px;
+}
+@media (max-width: 700px) { .org-headline-grid { grid-template-columns: 1fr; gap: 10px; } }
+.org-headline {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+  border: 2px solid var(--orange);
+  padding: 14px 14px;
+  position: relative;
+}
+.org-headline-icon {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.06rem; font-weight: 900;
+  background: var(--orange); color: #fff;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.org-headline-title {
+  font-size: .92rem; font-weight: 900;
+  color: var(--text); line-height: 1.35;
+}
+.org-headline-sub {
+  font-size: .74rem; font-weight: 700;
+  color: var(--orange-deep); margin-top: 2px;
+  line-height: 1.45;
+}
+.org-message {
+  background: var(--paper3);
+  padding: 18px 22px;
+  border-left: 4px solid var(--orange);
+  margin-bottom: 22px;
+}
+.org-message-em {
+  font-size: 1.04rem; font-weight: 900;
+  color: var(--text); margin-bottom: 10px;
+  line-height: 1.5;
+}
+.org-message p:not(.org-message-em) {
+  font-size: .88rem; color: var(--text2);
+  line-height: 1.95;
+}
+.org-details {
+  border-top: 1.5px dashed var(--line);
+  padding-top: 18px;
+}
+.org-details summary {
+  font-size: .86rem; font-weight: 800;
+  color: var(--orange-deep);
+  cursor: pointer; padding: 8px 0;
+  list-style: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.org-details summary::-webkit-details-marker { display: none; }
+.org-details summary::after {
+  content: '▼'; font-size: .68rem;
+  transition: transform .2s;
+}
+.org-details[open] summary::after { transform: rotate(180deg); }
+.org-details-content { padding-top: 14px; }
+.org-details-section { margin-bottom: 18px; }
+.org-details-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; letter-spacing: .18em;
+  color: var(--orange); font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.org-details-section ul { list-style: none; padding: 0; }
+.org-details-section li {
+  font-size: .84rem; color: var(--text2);
+  line-height: 1.85; padding-left: 16px;
+  position: relative; margin-bottom: 4px;
+}
+.org-details-section li::before {
+  content: '・'; position: absolute;
+  left: 0; color: var(--orange);
+  font-weight: 900;
+}
+.org-details-section li strong { color: var(--text); }
 </style>
 </head>
 <body>
