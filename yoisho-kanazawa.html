@@ -825,29 +825,36 @@ img { max-width: 100%; display: block; }
 
 /* ===== HEADER OVERHAUL (固定CTA + 概要表示) ===== */
 .nav {
-  background: rgba(250,245,232,0.98) !important;
-  border-bottom: 2px solid var(--orange) !important;
+  background: #FFFFFF !important;
+  border-bottom: 3px solid var(--orange) !important;
   height: auto !important;
-  min-height: 64px;
-  padding: 8px 24px !important;
+  min-height: 68px;
+  padding: 10px 26px !important;
   gap: 16px;
+  box-shadow: 0 4px 14px rgba(58,44,32,.10) !important;
 }
+.nav-logo a {
+  color: var(--orange-deep) !important;
+  font-size: 1.14rem !important;
+  font-weight: 900 !important;
+}
+.nav-logo .lg-em { color: var(--green-deep) !important; }
 .nav-summary {
   display: flex; flex-direction: column;
-  align-items: flex-end; gap: 2px;
-  margin-left: auto; margin-right: 14px;
+  align-items: flex-end; gap: 3px;
+  margin-left: auto; margin-right: 16px;
   text-align: right;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 .nav-summary-date {
   font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif;
-  font-size: .82rem; font-weight: 900;
-  color: var(--orange-deep);
+  font-size: .9rem; font-weight: 900;
+  color: var(--text);
   letter-spacing: .02em;
 }
 .nav-summary-place {
-  font-size: .72rem; font-weight: 700;
-  color: var(--text2);
+  font-size: .76rem; font-weight: 800;
+  color: var(--orange-deep);
 }
 .nav-cta-fixed {
   background: var(--orange) !important;
@@ -878,7 +885,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* hero padding 調整（nav拡大に対応） */
-.hero { padding-top: 150px !important; }
+.hero { padding-top: 168px !important; }
 
 /* ===== GOOGLE MAP セクション ===== */
 .map-section { padding: 80px 6%; background: var(--paper2); }
@@ -1210,7 +1217,9 @@ img { max-width: 100%; display: block; }
           <span class="organizer-badge">N高起業部2026 優勝（1,600人中）</span>
           <span class="organizer-badge">リクルート地方創生インターン 最優秀賞</span>
         </div>
-        <p class="organizer-desc">学生団体NEXY代表として「やりたい」をひとりにしないをコンセプトに、全国の挑戦したい学生のためのコミュニティを運営。同時に、3社の経営にも携わり、地方創生・AI・教育の交差点で事業を立ち上げている。「よいしょ〇〇！！シリーズ」は、首都圏以外の地方で挑戦の起点をつくる地方巡回プロジェクト。</p>
+        <p class="organizer-desc" style="margin-bottom:14px;font-weight:700;color:var(--text);font-size:.96rem;">「やりたい」が孤独になる社会を、変えたい。</p>
+        <p class="organizer-desc">これまで、ロボット、起業、教育など、さまざまな挑戦をしてきました。その中で強く感じたのは、「挑戦は人との出会いで加速する」ということです。実際に、自分の人生を大きく変えてくれたのは、環境と人でした。同じように何かに本気で取り組んでいる人と出会い、語り合い、刺激を受けることで、自分の可能性が広がっていく感覚がありました。</p>
+        <p class="organizer-desc" style="margin-top:14px;">一方で、そうした出会いは意図的に作らないと生まれにくいのも事実です。だからこそ僕は、挑戦している人たちが交わり、新たなきっかけが生まれる場を作りたいと思い、NEXYを立ち上げました。NEXYはただのコミュニティではなく、それぞれの「やりたい」が交差し、次の挑戦へとつながっていく場所。「よいしょ〇〇！！シリーズ」は、そうした「やりたい」の起点を、首都圏以外の地方からつくる挑戦です。</p>
       </div>
     </div>
   </div>
