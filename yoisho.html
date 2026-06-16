@@ -757,7 +757,7 @@ img { max-width: 100%; display: block; }
 
 /* canvas effect */
 #confetti { opacity: .55; }
-.announce-bar, .nav, .mobile-nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 1; }
+.mobile-nav, .hero, .section, .cta-final, .footer { position: relative; z-index: 1; } /* .nav と .announce-bar は fixed を維持 */
 
 .city-card { padding: 28px 20px; text-align: center; border-radius: 14px; border: 2px solid var(--orange); transition: transform .25s, box-shadow .25s; }
 .city-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(232,115,42,.18); }
@@ -859,38 +859,97 @@ img { max-width: 100%; display: block; }
 }
 
 
-/* ===== HEADER OVERHAUL (固定CTA + 概要表示) ===== */
+/* ===== HEADER OVERHAUL (2段nav・絶対視認) ===== */
 .nav {
+  position: fixed !important;
+  top: 46px !important;
+  left: 0 !important; right: 0 !important;
+  z-index: 200 !important;
   background: #FFFFFF !important;
   border-bottom: 3px solid var(--orange) !important;
   height: auto !important;
-  min-height: 68px;
-  padding: 10px 26px !important;
-  gap: 16px;
-  box-shadow: 0 4px 14px rgba(58,44,32,.10) !important;
+  min-height: 120px;
+  padding: 0 !important;
+  box-shadow: 0 6px 18px rgba(58,44,32,.14) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+.nav-row-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px 10px; gap: 18px;
+  border-bottom: 1px solid rgba(232,115,42,.18);
+}
+.nav-row-bottom {
+  display: flex; align-items: center; justify-content: center; gap: 28px;
+  padding: 10px 28px;
+  background: var(--paper2);
 }
 .nav-logo a {
   color: var(--orange-deep) !important;
   font-size: 1.14rem !important;
   font-weight: 900 !important;
+  text-decoration: none;
 }
 .nav-logo .lg-em { color: var(--green-deep) !important; }
 .nav-summary {
   display: flex; flex-direction: column;
   align-items: flex-end; gap: 3px;
-  margin-left: auto; margin-right: 16px;
+  margin-left: auto; margin-right: 14px;
   text-align: right;
   line-height: 1.35;
 }
 .nav-summary-date {
   font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif;
-  font-size: .9rem; font-weight: 900;
+  font-size: .92rem; font-weight: 900;
   color: var(--text);
   letter-spacing: .02em;
 }
 .nav-summary-place {
-  font-size: .76rem; font-weight: 800;
+  font-size: .78rem; font-weight: 800;
   color: var(--orange-deep);
+}
+.nav-row-bottom a {
+  color: var(--text2); text-decoration: none;
+  font-size: .82rem; font-weight: 800;
+  letter-spacing: .04em; padding: 4px 2px;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+}
+.nav-row-bottom a:hover {
+  color: var(--orange-deep);
+  border-bottom-color: var(--orange);
+}
+.nav-cta-fixed {
+  background: var(--orange) !important;
+  color: #fff !important;
+  padding: 12px 22px !important;
+  font-size: .88rem !important;
+  font-weight: 900 !important;
+  border: 2px solid var(--orange-deep) !important;
+  text-decoration: none;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 var(--orange-deep);
+  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-cta-fixed:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--orange-deep);
+}
+.nav-cta-fixed::after { content: '→'; font-weight: 900; }
+@media (max-width: 900px) {
+  .nav { min-height: 110px; }
+  .nav-row-top { padding: 12px 16px 8px; gap: 10px; }
+  .nav-row-bottom { gap: 18px; padding: 8px 12px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .nav-row-bottom a { font-size: .76rem; white-space: nowrap; }
+  .nav-summary { display: none; }
+  .nav-cta-fixed { padding: 10px 16px !important; font-size: .82rem !important; }
+}
+@media (max-width: 560px) {
+  .nav-logo a { font-size: .96rem !important; }
 }
 .nav-cta-fixed {
   background: var(--orange) !important;
@@ -921,7 +980,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* hero padding 調整（nav拡大に対応） */
-.hero { padding-top: 168px !important; }
+.hero { padding-top: 210px !important; }
 
 /* ===== GOOGLE MAP セクション ===== */
 .map-section { padding: 80px 6%; background: var(--paper2); }
@@ -1032,6 +1091,91 @@ img { max-width: 100%; display: block; }
   .organizer-section { padding: 60px 5%; }
 }
 
+
+/* === 主催者プロフィール 実績ハイライト & 詳細 === */
+.org-headline-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin: 22px 0 24px;
+}
+@media (max-width: 700px) { .org-headline-grid { grid-template-columns: 1fr; gap: 10px; } }
+.org-headline {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+  border: 2px solid var(--orange);
+  padding: 14px 14px;
+  position: relative;
+}
+.org-headline-icon {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.06rem; font-weight: 900;
+  background: var(--orange); color: #fff;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.org-headline-title {
+  font-size: .92rem; font-weight: 900;
+  color: var(--text); line-height: 1.35;
+}
+.org-headline-sub {
+  font-size: .74rem; font-weight: 700;
+  color: var(--orange-deep); margin-top: 2px;
+  line-height: 1.45;
+}
+.org-message {
+  background: var(--paper3);
+  padding: 18px 22px;
+  border-left: 4px solid var(--orange);
+  margin-bottom: 22px;
+}
+.org-message-em {
+  font-size: 1.04rem; font-weight: 900;
+  color: var(--text); margin-bottom: 10px;
+  line-height: 1.5;
+}
+.org-message p:not(.org-message-em) {
+  font-size: .88rem; color: var(--text2);
+  line-height: 1.95;
+}
+.org-details {
+  border-top: 1.5px dashed var(--line);
+  padding-top: 18px;
+}
+.org-details summary {
+  font-size: .86rem; font-weight: 800;
+  color: var(--orange-deep);
+  cursor: pointer; padding: 8px 0;
+  list-style: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.org-details summary::-webkit-details-marker { display: none; }
+.org-details summary::after {
+  content: '▼'; font-size: .68rem;
+  transition: transform .2s;
+}
+.org-details[open] summary::after { transform: rotate(180deg); }
+.org-details-content { padding-top: 14px; }
+.org-details-section { margin-bottom: 18px; }
+.org-details-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; letter-spacing: .18em;
+  color: var(--orange); font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.org-details-section ul { list-style: none; padding: 0; }
+.org-details-section li {
+  font-size: .84rem; color: var(--text2);
+  line-height: 1.85; padding-left: 16px;
+  position: relative; margin-bottom: 4px;
+}
+.org-details-section li::before {
+  content: '・'; position: absolute;
+  left: 0; color: var(--orange);
+  font-weight: 900;
+}
+.org-details-section li strong { color: var(--text); }
+
 </style>
 </head>
 <body>
@@ -1046,12 +1190,22 @@ img { max-width: 100%; display: block; }
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo"><a href="index.html"><span class="lg-em">よいしょ</span>〇〇！！シリーズ</a></div>
-  <div class="nav-summary">
-    <span class="nav-summary-date">愛知 7/25（土）／ 金沢 7/26（日）／ 岡山 8/11（火）</span>
-    <span class="nav-summary-place">参加費一律 ¥1,000 ／ 大阪は調整中</span>
+  <div class="nav-row-top">
+    <div class="nav-logo"><a href="index.html"><span class="lg-em">よいしょ</span>〇〇！！シリーズ</a></div>
+    <div class="nav-summary">
+      <span class="nav-summary-date">愛知 7/25（土）／ 金沢 7/26（日）／ 岡山 8/11（火）</span>
+      <span class="nav-summary-place">参加費一律 ¥1,000 ／ 大阪は調整中</span>
+    </div>
+    <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="nav-cta-fixed">参加申込</a>
   </div>
-  <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="nav-cta-fixed">参加申込</a>
+  <div class="nav-row-bottom">
+    <a href="#story">よいしょとは</a>
+    <a href="#target">参加者</a>
+    <a href="#fee">参加費</a>
+    <a href="#past">過去の実施例</a>
+    <a href="#cities">開催都市</a>
+    <a href="#organizer">主催者</a>
+  </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="#story">なぜ</a><a href="#what">何をする</a><a href="#timeline">4時間の中身</a>
@@ -1256,15 +1410,70 @@ img { max-width: 100%; display: block; }
         <p class="organizer-role">Founder ／ NEXY 代表</p>
         <h3 class="organizer-name">小助川 晴大<span class="organizer-name-kana">Haruta Kosukegawa</span></h3>
         <p class="organizer-meta">高校2年生 ／ 学生団体NEXY 代表 ／ 株式会社3社経営中</p>
-        <div class="organizer-badges">
-          <span class="organizer-badge">孫正義育英財団 3期生</span>
-          <span class="organizer-badge">WRO世界最年少7位</span>
-          <span class="organizer-badge">N高起業部2026 優勝（1,600人中）</span>
-          <span class="organizer-badge">リクルート地方創生インターン 最優秀賞</span>
+
+        <div class="org-headline-grid">
+          <div class="org-headline">
+            <div class="org-headline-icon">01</div>
+            <div class="org-headline-body">
+              <div class="org-headline-title">孫正義育英財団</div>
+              <div class="org-headline-sub">3期生として選抜</div>
+            </div>
+          </div>
+          <div class="org-headline">
+            <div class="org-headline-icon">02</div>
+            <div class="org-headline-body">
+              <div class="org-headline-title">WRO世界大会</div>
+              <div class="org-headline-sub">世界7位（史上最年少）</div>
+            </div>
+          </div>
+          <div class="org-headline">
+            <div class="org-headline-icon">03</div>
+            <div class="org-headline-body">
+              <div class="org-headline-title">株式会社 3社経営</div>
+              <div class="org-headline-sub">ジンベエザメ／ネルフィン／NEXY</div>
+            </div>
+          </div>
         </div>
-        <p class="organizer-desc" style="margin-bottom:14px;font-weight:700;color:var(--text);font-size:.96rem;">「やりたい」が孤独になる社会を、変えたい。</p>
-        <p class="organizer-desc">これまで、ロボット、起業、教育など、さまざまな挑戦をしてきました。その中で強く感じたのは、「挑戦は人との出会いで加速する」ということです。実際に、自分の人生を大きく変えてくれたのは、環境と人でした。同じように何かに本気で取り組んでいる人と出会い、語り合い、刺激を受けることで、自分の可能性が広がっていく感覚がありました。</p>
-        <p class="organizer-desc" style="margin-top:14px;">一方で、そうした出会いは意図的に作らないと生まれにくいのも事実です。だからこそ僕は、挑戦している人たちが交わり、新たなきっかけが生まれる場を作りたいと思い、NEXYを立ち上げました。NEXYはただのコミュニティではなく、それぞれの「やりたい」が交差し、次の挑戦へとつながっていく場所。「よいしょ〇〇！！シリーズ」は、そうした「やりたい」の起点を、首都圏以外の地方からつくる挑戦です。</p>
+
+        <div class="org-message">
+          <p class="org-message-em">「やりたい」が孤独になる社会を、変えたい。</p>
+          <p>これまで、ロボット、起業、教育など、さまざまな挑戦をしてきました。その中で強く感じたのは、「挑戦は人との出会いで加速する」ということです。同じように本気で取り組んでいる人と出会い、語り合うことで、自分の可能性が広がっていく感覚がありました。だからこそ「よいしょ〇〇！！シリーズ」を、首都圏以外の地方から「やりたい」の起点をつくる挑戦として始めました。</p>
+        </div>
+
+        <details class="org-details">
+          <summary>その他の実績・経歴を見る</summary>
+          <div class="org-details-content">
+            <div class="org-details-section">
+              <p class="org-details-label">受賞・選抜</p>
+              <ul>
+                <li>WRO 世界大会 世界7位（9歳・史上最年少）／ 世界8位（10歳）</li>
+                <li>孫正義育英財団 3期生</li>
+                <li>N高起業部ビジネスコンテスト2026 優勝（1,600人中）</li>
+                <li>リクルート地方創生インターン 最優秀賞（宮古島市採択）</li>
+                <li>Startup Jr. アワード ソーシャルイノベーション部門 初代大賞</li>
+                <li>渋谷QWS「HACHIKO PITCH」小学生初登壇</li>
+              </ul>
+            </div>
+            <div class="org-details-section">
+              <p class="org-details-label">経営してきた事業</p>
+              <ul>
+                <li><strong>ジンベエザメ株式会社</strong>（中学2年で設立／取締役COO）— 子ども向け教育サービス「ひきだしkids」を運営</li>
+                <li><strong>ネルフィン株式会社</strong>（元 取締役COO）— 地方×AI×人材育成。富山県高岡市拠点</li>
+                <li><strong>学生団体 NEXY</strong>（代表）— 「やりたい」をひとりにしない、学生コミュニティ</li>
+              </ul>
+            </div>
+            <div class="org-details-section">
+              <p class="org-details-label">メディア・登壇</p>
+              <ul>
+                <li>TBS「Nスタ」「ニュースキャスター」出演</li>
+                <li>JCI World Congress 横浜にてプレゼン</li>
+                <li>ICC 福岡・京都 スタッフ参加 ／ Steez 10代名鑑掲載</li>
+                <li>不登校児向けメンター 累計50名以上</li>
+                <li>シンガポール単身留学 経験</li>
+              </ul>
+            </div>
+          </div>
+        </details>
       </div>
     </div>
   </div>
