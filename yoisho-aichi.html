@@ -1163,12 +1163,25 @@ img { max-width: 100%; display: block; }
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo"><a href="yoisho.html"><span class="lg-em">よいしょ</span>愛知！！</a></div>
-  <div class="nav-summary">
-    <span class="nav-summary-date">2026年7月25日（土） 13:00–17:00</span>
-    <span class="nav-summary-place">@ STATION Ai</span>
-  </div>
-  <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="nav-cta-fixed">参加申込</a>
+  <ul class="nav-links">
+    <li><a href="#story">よいしょとは</a></li>
+    <li><a href="#target">参加者</a></li>
+    <li><a href="#fee">参加費</a></li>
+    <li><a href="#past">過去の実施例</a></li>
+    <li><a href="#map">会場アクセス</a></li>
+    <li><a href="#organizer">主催者</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
+
+<!-- フローティング応募ボタン (右上 固定) -->
+<a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="float-apply">
+  <span>
+    <span class="float-apply-main">参加申込 →</span>
+    <span class="float-apply-sub">中学生〜社会人 OK</span>
+  </span>
+</a>
+
 <div class="mobile-nav" id="mobileNav">
   <a href="#story">なぜ</a><a href="#what">何をする</a><a href="#timeline">4時間の中身</a>
   <a href="#target">来てほしい人</a><a href="#past">過去開催</a>
