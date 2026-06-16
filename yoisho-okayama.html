@@ -822,6 +822,173 @@ img { max-width: 100%; display: block; }
   .section-lead { font-size: .95rem !important; }
 }
 
+
+/* ===== HEADER OVERHAUL (固定CTA + 概要表示) ===== */
+.nav {
+  background: rgba(250,245,232,0.98) !important;
+  border-bottom: 2px solid var(--orange) !important;
+  height: auto !important;
+  min-height: 64px;
+  padding: 8px 24px !important;
+  gap: 16px;
+}
+.nav-summary {
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 2px;
+  margin-left: auto; margin-right: 14px;
+  text-align: right;
+  line-height: 1.4;
+}
+.nav-summary-date {
+  font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif;
+  font-size: .82rem; font-weight: 900;
+  color: var(--orange-deep);
+  letter-spacing: .02em;
+}
+.nav-summary-place {
+  font-size: .72rem; font-weight: 700;
+  color: var(--text2);
+}
+.nav-cta-fixed {
+  background: var(--orange) !important;
+  color: #fff !important;
+  padding: 12px 22px !important;
+  font-size: .88rem !important;
+  font-weight: 900 !important;
+  border: 2px solid var(--orange-deep) !important;
+  text-decoration: none;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 var(--orange-deep);
+  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-cta-fixed:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--orange-deep);
+}
+.nav-cta-fixed::after { content: '→'; font-weight: 900; }
+@media (max-width: 900px) {
+  .nav { flex-wrap: wrap; padding: 8px 16px !important; }
+  .nav-summary { display: none; }
+  .nav-cta-fixed { padding: 10px 16px !important; font-size: .8rem !important; }
+}
+@media (max-width: 560px) {
+  .nav-logo a { font-size: .9rem !important; }
+}
+
+/* hero padding 調整（nav拡大に対応） */
+.hero { padding-top: 150px !important; }
+
+/* ===== GOOGLE MAP セクション ===== */
+.map-section { padding: 80px 6%; background: var(--paper2); }
+.map-inner { max-width: 1100px; margin: 0 auto; }
+.map-head { text-align: center; margin-bottom: 32px; }
+.map-frame-wrap {
+  position: relative;
+  background: #fff;
+  padding: 8px;
+  border: 2px solid var(--text);
+  box-shadow: 8px 8px 0 var(--orange);
+}
+.map-frame {
+  width: 100%; height: 460px;
+  border: 0;
+  display: block;
+}
+.map-info {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: center;
+  background: var(--cream);
+  padding: 22px 26px;
+  margin-top: 24px;
+  border: 1.5px solid var(--line);
+}
+.map-info-detail strong { font-size: 1.04rem; font-weight: 900; color: var(--text); display: block; margin-bottom: 6px; }
+.map-info-detail span { font-size: .9rem; color: var(--text2); line-height: 1.7; }
+.map-info-btn {
+  background: var(--orange); color: #fff;
+  padding: 12px 22px; font-weight: 900; font-size: .86rem;
+  text-decoration: none; letter-spacing: .04em;
+  border: 2px solid var(--orange-deep);
+  white-space: nowrap;
+}
+.map-info-btn:hover { background: var(--orange-deep); }
+@media (max-width: 700px) {
+  .map-frame { height: 360px; }
+  .map-info { grid-template-columns: 1fr; gap: 14px; padding: 18px 20px; }
+  .map-section { padding: 60px 5%; }
+}
+
+/* ===== 主催者プロフィール ===== */
+.organizer-section { padding: 80px 6%; background: var(--paper); }
+.organizer-inner { max-width: 920px; margin: 0 auto; }
+.organizer-card {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 36px; align-items: start;
+  background: #fff;
+  padding: 36px 40px;
+  border: 2px solid var(--orange);
+  box-shadow: 10px 10px 0 var(--orange);
+  position: relative;
+}
+.organizer-card::before {
+  content: '主催者'; position: absolute;
+  top: -16px; left: 28px;
+  background: var(--orange); color: #fff;
+  padding: 6px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem; font-weight: 900;
+  letter-spacing: .22em;
+}
+.organizer-photo {
+  width: 100%; aspect-ratio: 1;
+  background: var(--paper2);
+  border: 1.5px solid var(--line);
+  overflow: hidden;
+}
+.organizer-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.organizer-role {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; letter-spacing: .22em;
+  color: var(--orange); font-weight: 900;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.organizer-name {
+  font-size: 1.7rem; font-weight: 900;
+  color: var(--text); line-height: 1.3; margin-bottom: 4px;
+}
+.organizer-name-kana {
+  font-size: .76rem; color: var(--text3);
+  font-weight: 700; margin-left: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.organizer-meta {
+  font-size: .9rem; color: var(--text2);
+  font-weight: 700; line-height: 1.6;
+  margin-bottom: 18px;
+}
+.organizer-badges {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 18px;
+}
+.organizer-badge {
+  font-size: .7rem; font-weight: 800;
+  background: rgba(232,115,42,.12);
+  color: var(--orange-deep);
+  padding: 5px 11px;
+  letter-spacing: .02em;
+}
+.organizer-desc {
+  font-size: .9rem; color: var(--text2);
+  line-height: 1.95;
+}
+@media (max-width: 700px) {
+  .organizer-card { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; box-shadow: 6px 6px 0 var(--orange); }
+  .organizer-photo { max-width: 220px; margin: 0 auto; }
+  .organizer-section { padding: 60px 5%; }
+}
+
 </style>
 </head>
 <body>
@@ -836,18 +1003,12 @@ img { max-width: 100%; display: block; }
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo"><a href="index.html"><span class="lg-em">よいしょ</span>〇〇！！シリーズ</a></div>
-  <ul class="nav-links">
-    <li><a href="#story">なぜ</a></li>
-    <li><a href="#what">何をする</a></li>
-    <li><a href="#timeline">4時間の中身</a></li>
-    <li><a href="#target">来てほしい人</a></li>
-    <li><a href="#past">過去開催</a></li>
-    
-    <li><a href="#fee">参加費</a></li>
-    <li><a href="#cta" class="nav-cta">参加する</a></li>
-  </ul>
-  <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+  <div class="nav-logo"><a href="yoisho.html"><span class="lg-em">よいしょ</span>岡山！！</a></div>
+  <div class="nav-summary">
+    <span class="nav-summary-date">2026年8月11日（火） 13:00–17:00</span>
+    <span class="nav-summary-place">@ ももスタ</span>
+  </div>
+  <a href="https://forms.gle/5jBF4oJWPJnTNCMEA" target="_blank" rel="noopener" class="nav-cta-fixed">参加申込</a>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="#story">なぜ</a><a href="#what">何をする</a><a href="#timeline">4時間の中身</a>
@@ -1001,6 +1162,57 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
     <p class="section-lead reveal" style="margin-top:32px;font-size:.86rem;">開催日程はInstagram <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange-deep);font-weight:800;">@nexy.hub</a> で先行公開します。<br><a href="yoisho.html" style="color:var(--orange-deep);font-weight:800;text-decoration:underline;">他都市の開催情報はこちら →</a></p>
+  </div>
+</section>
+
+
+<!-- MAP -->
+<section class="map-section" id="map" aria-label="会場アクセス">
+  <div class="map-inner">
+    <div class="map-head">
+      <span class="section-label reveal">Venue Access</span>
+      <h2 class="section-title reveal">会場 <em>アクセス</em></h2>
+      <p class="section-lead reveal">ももたろう・スタートアップ・カフェ（ももスタ） ／ 岡山県岡山市北区桑田町6-3</p>
+    </div>
+    <div class="map-frame-wrap reveal">
+      <iframe class="map-frame"
+        src="https://www.google.com/maps?q=ももたろう・スタートアップ・カフェ+岡山県岡山市北区桑田町&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+        title="ももスタ 地図"></iframe>
+    </div>
+    <div class="map-info reveal">
+      <div class="map-info-detail">
+        <strong>ももたろう・スタートアップ・カフェ（ももスタ）</strong>
+        <span>岡山県岡山市北区桑田町6-3<br>2026年8月11日（火） 13:00–17:00 開催</span>
+      </div>
+      <a href="https://maps.app.goo.gl/BSc1rjfNBzoNViZ97" target="_blank" rel="noopener" class="map-info-btn">Googleマップで開く →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ORGANIZER -->
+<section class="organizer-section" id="organizer" aria-label="主催者">
+  <div class="organizer-inner">
+    <div class="organizer-card reveal">
+      <div class="organizer-photo">
+        <img src="img/members/kosukegawa_haruta.jpg" alt="小助川 晴大">
+      </div>
+      <div>
+        <p class="organizer-role">Founder ／ NEXY 代表</p>
+        <h3 class="organizer-name">小助川 晴大<span class="organizer-name-kana">Haruta Kosukegawa</span></h3>
+        <p class="organizer-meta">高校2年生 ／ 学生団体NEXY 代表 ／ 株式会社3社経営中</p>
+        <div class="organizer-badges">
+          <span class="organizer-badge">孫正義育英財団 3期生</span>
+          <span class="organizer-badge">WRO世界最年少7位</span>
+          <span class="organizer-badge">N高起業部2026 優勝（1,600人中）</span>
+          <span class="organizer-badge">リクルート地方創生インターン 最優秀賞</span>
+        </div>
+        <p class="organizer-desc">学生団体NEXY代表として「やりたい」をひとりにしないをコンセプトに、全国の挑戦したい学生のためのコミュニティを運営。同時に、3社の経営にも携わり、地方創生・AI・教育の交差点で事業を立ち上げている。「よいしょ〇〇！！シリーズ」は、首都圏以外の地方で挑戦の起点をつくる地方巡回プロジェクト。</p>
+      </div>
+    </div>
   </div>
 </section>
 
