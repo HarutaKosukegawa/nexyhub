@@ -823,18 +823,19 @@ img { max-width: 100%; display: block; }
 }
 
 
-/* ===== HEADER (薄型1段：ロゴ+CTAのみ) ===== */
+/* ===== HEADER (summit.html風: ロゴ + 横並びメニュー + フローティング申込) ===== */
 .nav {
   position: fixed !important;
   top: 46px !important;
   left: 0 !important; right: 0 !important;
   z-index: 200 !important;
-  background: #FFFFFF !important;
-  border-bottom: 2px solid var(--orange) !important;
+  background: rgba(255,255,255,0.96) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid var(--line) !important;
   height: 64px !important;
   min-height: 64px;
-  padding: 0 28px !important;
-  box-shadow: 0 4px 12px rgba(58,44,32,.10) !important;
+  padding: 0 220px 0 28px !important;
+  box-shadow: 0 2px 10px rgba(58,44,32,.06) !important;
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -843,77 +844,84 @@ img { max-width: 100%; display: block; }
 }
 .nav-logo a {
   color: var(--orange-deep) !important;
-  font-size: 1.08rem !important;
+  font-size: 1.06rem !important;
   font-weight: 900 !important;
   text-decoration: none;
+  letter-spacing: .02em;
 }
 .nav-logo .lg-em { color: var(--green-deep) !important; }
-.nav-cta-fixed {
-  background: var(--orange) !important;
-  color: #fff !important;
-  padding: 10px 20px !important;
-  font-size: .84rem !important;
-  font-weight: 900 !important;
-  border: 2px solid var(--orange-deep) !important;
+.nav-links {
+  display: flex; gap: 18px; list-style: none;
+  align-items: center; margin: 0; padding: 0;
+}
+.nav-links li { list-style: none; }
+.nav-links a {
+  color: var(--text2) !important; text-decoration: none;
+  font-size: .8rem; font-weight: 800;
+  transition: color .15s; white-space: nowrap;
+  padding: 6px 0;
+  letter-spacing: .02em;
+}
+.nav-links a:hover { color: var(--orange-deep) !important; }
+.nav-links li:not(:last-child)::after {
+  content: ''; display: inline-block;
+  width: 1px; height: 13px;
+  background: var(--line-strong);
+  margin-left: 18px;
+  vertical-align: middle;
+}
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text); border-radius: 2px;
+}
+
+/* ===== FLOAT-APPLY (右上 固定参加申込ボタン) ===== */
+.float-apply {
+  position: fixed; top: 54px; right: 16px; z-index: 1100;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: #fff;
+  padding: 12px 22px 14px;
+  font-family: 'Zen Maru Gothic', 'Zen Kaku Gothic New', sans-serif;
   text-decoration: none;
-  letter-spacing: .04em;
-  white-space: nowrap;
-  box-shadow: 0 3px 0 var(--orange-deep);
-  transition: all .2s;
-  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 0 12px 28px rgba(232,115,42,.38), 0 3px 8px rgba(0,0,0,.12);
+  transition: transform .25s, box-shadow .25s;
+  border: 2.5px solid #fff;
+  animation: yFloatPulse 2.6s ease-in-out infinite;
 }
-.nav-cta-fixed:hover {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 var(--orange-deep);
+@keyframes yFloatPulse {
+  0%,100% { box-shadow: 0 14px 32px rgba(232,115,42,.36), 0 0 0 0 rgba(232,115,42,.55); }
+  50% { box-shadow: 0 14px 32px rgba(232,115,42,.36), 0 0 0 14px rgba(232,115,42,0); }
 }
-.nav-cta-fixed::after { content: '→'; font-weight: 900; }
+.float-apply:hover { transform: translateY(-2px) scale(1.04); }
+.float-apply-main {
+  font-size: 1rem; font-weight: 900; letter-spacing: .03em;
+}
+.float-apply-sub {
+  display: block;
+  font-size: .64rem; font-weight: 700; letter-spacing: .06em;
+  color: rgba(255,255,255,.95); margin-top: 2px;
+}
+
+@media (max-width: 1100px) {
+  .nav { padding: 0 200px 0 22px !important; }
+  .nav-links { gap: 14px; }
+  .nav-links li:not(:last-child)::after { margin-left: 14px; }
+  .nav-links a { font-size: .76rem; }
+}
 @media (max-width: 900px) {
   .nav { padding: 0 16px !important; }
-  .nav-cta-fixed { padding: 9px 16px !important; font-size: .78rem !important; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .float-apply { top: 52px; right: 12px; padding: 10px 18px 11px; }
+  .float-apply-main { font-size: .9rem; }
+  .float-apply-sub { font-size: .6rem; }
 }
 @media (max-width: 560px) {
   .nav-logo a { font-size: .92rem !important; }
-}
-
-/* ===== MID-NAV (Hero直下のセクションナビ) ===== */
-.mid-nav {
-  background: var(--paper2);
-  border-top: 1.5px solid var(--line);
-  border-bottom: 1.5px solid var(--line);
-  padding: 14px 5%;
-  position: relative;
-  z-index: 5;
-}
-.mid-nav-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: flex; flex-wrap: wrap;
-  justify-content: center; align-items: center;
-  gap: 14px 32px;
-}
-.mid-nav a {
-  color: var(--text2); text-decoration: none;
-  font-size: .9rem; font-weight: 800;
-  letter-spacing: .04em;
-  padding: 6px 2px;
-  border-bottom: 2px solid transparent;
-  transition: all .15s;
-  white-space: nowrap;
-}
-.mid-nav a:hover {
-  color: var(--orange-deep);
-  border-bottom-color: var(--orange);
-}
-@media (max-width: 760px) {
-  .mid-nav { padding: 10px 3%; }
-  .mid-nav-inner {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 22px;
-    padding-bottom: 4px;
-  }
-  .mid-nav a { font-size: .82rem; }
 }
 .nav-cta-fixed {
   background: var(--orange) !important;
