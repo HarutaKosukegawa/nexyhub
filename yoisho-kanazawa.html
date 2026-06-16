@@ -996,16 +996,31 @@ img { max-width: 100%; display: block; }
 
 /* ===== 主催者プロフィール ===== */
 .organizer-section { padding: 80px 6%; background: var(--paper); }
-.organizer-inner { max-width: 920px; margin: 0 auto; }
-.organizer-card {
-  display: grid; grid-template-columns: 220px 1fr;
-  gap: 36px; align-items: start;
-  background: #fff;
-  padding: 36px 40px;
-  border: 2px solid var(--orange);
-  box-shadow: 10px 10px 0 var(--orange);
-  position: relative;
+.organizer-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 28px; align-items: start;
 }
+@media (max-width: 920px) {
+  .organizer-inner { grid-template-columns: 1fr; gap: 36px; max-width: 920px; }
+}
+.organizer-card {
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 22px; align-items: start;
+  background: #fff;
+  padding: 28px 24px;
+  border: 2px solid var(--orange);
+  box-shadow: 8px 8px 0 var(--orange);
+  position: relative;
+  margin-top: 0 !important;
+}
+@media (max-width: 480px) {
+  .organizer-card { grid-template-columns: 1fr; gap: 18px; padding: 24px 20px; }
+  .organizer-photo { max-width: 200px; margin: 0 auto; }
+}
+/* 共同開催カードは緑shadowに */
+.organizer-card:nth-child(2) { border-color: var(--green); box-shadow: 8px 8px 0 var(--green); }
+.organizer-card:nth-child(2)::before { background: var(--green) !important; }
 .organizer-card::before {
   content: '主催者'; position: absolute;
   top: -16px; left: 28px;
@@ -1029,7 +1044,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase; margin-bottom: 8px;
 }
 .organizer-name {
-  font-size: 1.7rem; font-weight: 900;
+  font-size: 1.4rem; font-weight: 900;
   color: var(--text); line-height: 1.3; margin-bottom: 4px;
 }
 .organizer-name-kana {
@@ -1066,8 +1081,8 @@ img { max-width: 100%; display: block; }
 
 /* === 主催者プロフィール 実績ハイライト & 詳細 === */
 .org-headline-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 12px; margin: 22px 0 24px;
+  display: grid; grid-template-columns: 1fr;
+  gap: 10px; margin: 20px 0 22px;
 }
 @media (max-width: 700px) { .org-headline-grid { grid-template-columns: 1fr; gap: 10px; } }
 .org-headline {
@@ -1442,7 +1457,7 @@ img { max-width: 100%; display: block; }
         </details>
       </div>
     </div>
-    <div class="organizer-card reveal" style="margin-top:32px;">
+    <div class="organizer-card reveal">
       <div class="organizer-photo">
         <img src="img/yoisho/kita_hikaru.jpg" alt="喜多 輝">
       </div>
