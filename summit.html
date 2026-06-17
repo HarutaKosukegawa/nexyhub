@@ -1256,6 +1256,27 @@ img { max-width: 100%; display: block; }
 }
 
 .sch-session-title { font-size: .82rem; font-weight: 800; line-height: 1.5; color: var(--text); }
+/* === セッションタイトル リンク化 === */
+.sch-session-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 2px 0;
+  transition: background .15s;
+  border-radius: 0;
+}
+.sch-session-link:hover { background: rgba(242,139,61,.08); }
+.sch-session-cue {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: .58rem; font-weight: 800;
+  color: var(--orange);
+  letter-spacing: .06em;
+  margin-top: 3px;
+  opacity: .9;
+}
+.sch-session-cue::before { content: '＞ '; }
+
 .sch-session-guest { display: block; font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 700; color: var(--orange); margin-top: 3px; letter-spacing: .03em; }
 @media (max-width: 700px) {
   .sch-session-title { font-size: .72rem; }
@@ -1940,14 +1961,14 @@ body.modal-open { overflow: hidden; }
           </tr>
           <tr>
             <td class="t-time">10:30 – 11:20</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「勉強って、なんのためにするの？」</span></td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「自分の『好き』『得意』『やりたい』を見つける」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-1" class="sch-session-link"><span class="sch-session-title">勉強って、なんのためにするの？</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-1" class="sch-session-link"><span class="sch-session-title">【ワーク】自分の『好き』『得意』『やりたい』は、どうやって見つけるか</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-ws" rowspan="9">ワークショップ<br>＋<br>ブース<br>＋<br>コミュニティ</td>
           </tr>
           <tr>
             <td class="t-time">11:30 – 12:20</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「周りから応援される人の共通点」</span></td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「『普通じゃない』高校生のリアル」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-2" class="sch-session-link"><span class="sch-session-title">周りから応援される人の共通点</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-5" class="sch-session-link"><span class="sch-session-title">『普通じゃない』を選んだ高校生のリアル</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr class="row-break">
             <td class="t-time">12:20 – 13:00</td>
@@ -1956,33 +1977,33 @@ body.modal-open { overflow: hidden; }
           <tr>
             <td class="t-time">13:00 – 13:50</td>
             <td class="t-cell cell-presen" rowspan="2">プレゼン大会</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「『やりたい』が分からない君へ」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-1" class="sch-session-link"><span class="sch-session-title">【ワーク】自分の『好き』『得意』『やりたい』は、どうやって見つけるか</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">14:00 – 14:50</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「人生が変わった、ひとつの出会い」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-2" class="sch-session-link"><span class="sch-session-title">人生を変えた、ひとつのきっかけ</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">15:00 – 15:50</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「課外活動を、受験で終わらせない」</span></td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「最初の1歩を、踏み出した日」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-4" class="sch-session-link"><span class="sch-session-title">課外活動を、受験で終わらせない人がやっていること</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-3" class="sch-session-link"><span class="sch-session-title">【ワーク】社会の『おかしい』を、自分の挑戦テーマにする</span><span class="sch-session-cue">Ridilover代表登壇 ＞ 詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">16:00 – 16:50</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「インターン・留学・起業、何のためにやる？」</span></td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「好きを突き詰めた、その先に」</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-5" class="sch-session-link"><span class="sch-session-title">インターン・留学・起業、何のためにやる？</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-4" class="sch-session-link"><span class="sch-session-title">『好き』を突き詰めた人の、その先の話</span><span class="sch-session-cue">小助川晴大登壇 ＞ 詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">17:00 – 17:50</td>
-            <td class="t-cell cell-sp"><span class="sch-session-title">「親・先生に反対された時、どう動いたか」</span></td>
-            <td class="t-cell cell-sp"><span class="sch-session-title" style="color:var(--text3);">未定（順次発表）</span></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-6" class="sch-session-link"><span class="sch-session-title">親・先生に反対された時、どう動いたか</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-5" class="sch-session-link"><span class="sch-session-title">『普通じゃない』を選んだ高校生のリアル</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="sch-note">
-      ※ プレゼン大会は13:00–15:00（D会場メインステージ）。D会場（1,000名）・C会場サブステージ（200名）・C会場のワーク／ブース／コミュニティスペースで同時並行進行し、参加者は自由に行き来できます。C会場のワーク／ブース／コミュニティスペースは1日を通して開放。一部セッションは登壇者調整中です。
+      ※ プレゼン大会は13:00–15:00（D会場メインステージ）。D会場（1,000名）・C会場サブステージ（200名）・C会場のワーク／ブース／コミュニティスペースで同時並行進行。参加者は自由に行き来できます。<br><strong>各セッションタイトルをクリックすると詳細（こんな話を聞ける／こんな人におすすめ）が見られます。</strong>登壇者は順次発表。
     </div>
   </div>
 </section>

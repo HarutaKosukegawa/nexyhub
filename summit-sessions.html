@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セッション詳細 | NEXY Summit 2026</title>
+<meta name="description" content="NEXY Summit 2026 全11セッションの詳細。D会場（メインステージ）6セッション、C会場（サブステージ）5セッション。各セッションの内容・こんな話を聞ける・おすすめの人をご紹介。">
+<meta name="keywords" content="NEXY Summit 2026,セッション,プログラム,登壇者,Ridilover,小助川晴大,高校生サミット">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.nexyhub.jp/summit-sessions.html">
+<link rel="icon" href="/img/icon.jpg" type="image/jpeg">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nexyhub.jp/summit-sessions.html">
+<meta property="og:title" content="セッション詳細 | NEXY Summit 2026">
+<meta property="og:description" content="NEXY Summit 2026 全11セッションの詳細。D会場6セッション・C会場5セッション・プレゼン大会。">
+<meta property="og:image" content="https://www.nexyhub.jp/img/summit/summit_ogp.jpg">
+<meta property="og:site_name" content="NEXY">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --orange: #F28B3D; --orange-deep: #C45612;
+  --mint: #74D4C3; --mint-deep: #2EBDB6;
+  --navy: #2B3D6E;
+  --bg: #FFFFFF; --paper: #FAFAF7; --text: #1A1A1A;
+  --text2: #333; --text3: #777; --line: rgba(0,0,0,0.10);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.95; font-weight: 500; -webkit-font-smoothing: antialiased; font-size: 16.5px; letter-spacing: .02em; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 250; height: 64px; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1.5px solid var(--line); display: flex; align-items: center; padding: 0 28px; justify-content: space-between; }
+.nav-logo a { color: var(--text); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: .02em; }
+.nav-logo .lg-em { color: var(--orange); }
+.nav-back { background: var(--orange); color: #fff; padding: 9px 18px; font-size: .78rem; font-weight: 900; text-decoration: none; }
+.nav-back:hover { background: #e07a2e; }
+
+.hero { padding: 130px 6% 60px; text-align: center; background: linear-gradient(180deg, var(--paper) 0%, #fff 100%); border-bottom: 1px solid var(--line); }
+.hero-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .26em; color: var(--orange); font-weight: 900; text-transform: uppercase; padding: 6px 16px; border: 1.5px solid var(--orange); background: rgba(242,139,61,.08); margin-bottom: 16px; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.4; }
+.hero h1 em { color: var(--orange); font-style: normal; position: relative; }
+.hero h1 em::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 9px; background: var(--mint); z-index: -1; }
+.hero p { max-width: 720px; margin: 22px auto 0; color: var(--text2); font-size: 1rem; line-height: 2; }
+
+/* 一覧サマリー（目次） */
+.toc { padding: 50px 6%; background: var(--paper); }
+.toc-inner { max-width: 1100px; margin: 0 auto; }
+.toc-head { margin-bottom: 28px; }
+.toc-head h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 8px; }
+.toc-head .toc-sub { font-size: .9rem; color: var(--text2); }
+.toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 820px) { .toc-grid { grid-template-columns: 1fr; gap: 16px; } }
+.toc-col h3 { font-family: 'Inter', sans-serif; font-size: .72rem; letter-spacing: .22em; color: var(--orange); font-weight: 900; text-transform: uppercase; padding-bottom: 10px; border-bottom: 2px solid var(--text); margin-bottom: 14px; }
+.toc-col h3 .ja { display: block; font-family: 'Noto Sans JP', sans-serif; font-size: 1.16rem; color: var(--text); font-weight: 900; letter-spacing: .04em; text-transform: none; margin-top: 6px; }
+.toc-col.c h3 { color: var(--mint-deep); border-bottom-color: var(--mint-deep); }
+.toc-item { display: block; padding: 14px 16px; background: #fff; border: 1.5px solid var(--line); margin-bottom: 10px; text-decoration: none; transition: all .2s; }
+.toc-item:hover { border-color: var(--orange); transform: translateX(2px); }
+.toc-item-time { font-family: 'Inter', sans-serif; font-size: .7rem; font-weight: 800; color: var(--text3); letter-spacing: .08em; }
+.toc-item-title { font-size: .98rem; font-weight: 900; color: var(--text); line-height: 1.5; margin-top: 4px; }
+.toc-item-sub { font-size: .76rem; color: var(--orange-deep); font-weight: 800; margin-top: 4px; }
+.toc-col.c .toc-item:hover { border-color: var(--mint-deep); }
+
+/* セッション詳細カード */
+.sessions { padding: 70px 6%; max-width: 1100px; margin: 0 auto; }
+.session { padding: 50px 0; border-bottom: 1px dashed var(--line); scroll-margin-top: 80px; }
+.session:last-child { border-bottom: none; }
+.session-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .22em; font-weight: 900; padding: 5px 12px; border: 2px solid; margin-bottom: 12px; text-transform: uppercase; }
+.session.d .session-tag { color: var(--navy); border-color: var(--navy); background: rgba(43,61,110,.06); }
+.session.c .session-tag { color: var(--mint-deep); border-color: var(--mint-deep); background: rgba(46,189,182,.06); }
+.session-time { font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 800; color: var(--text3); margin-bottom: 8px; letter-spacing: .04em; }
+.session-title { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 900; line-height: 1.4; color: var(--text); margin-bottom: 14px; }
+.session-speaker { font-size: .9rem; color: var(--orange-deep); font-weight: 800; margin-bottom: 16px; padding: 8px 14px; background: rgba(242,139,61,.08); border-left: 3px solid var(--orange); display: inline-block; }
+.session-catch { font-size: 1.1rem; font-weight: 900; color: var(--text); margin: 18px 0 22px; padding: 16px 22px; border-left: 4px solid var(--orange); background: var(--paper); line-height: 1.65; }
+.session.c .session-catch { border-left-color: var(--mint-deep); }
+.session-body { font-size: .96rem; color: var(--text2); line-height: 2; margin-bottom: 26px; }
+.session-body p { margin-bottom: 14px; }
+.session-block { margin-bottom: 22px; padding: 18px 22px; background: #fff; border: 1.5px solid var(--line); }
+.session-block-label { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .2em; color: var(--orange); font-weight: 900; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1.5px solid var(--line); }
+.session.c .session-block-label { color: var(--mint-deep); }
+.session-block ul { list-style: none; padding: 0; }
+.session-block li { font-size: .92rem; color: var(--text2); line-height: 1.85; padding: 5px 0 5px 22px; position: relative; }
+.session-block li::before { content: '／'; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+.session.c .session-block li::before { color: var(--mint-deep); }
+.session-block.ws-flow li::before { content: '・'; }
+.session-block strong { color: var(--text); font-weight: 900; }
+.session-back { display: inline-block; margin-top: 14px; font-size: .82rem; color: var(--orange-deep); font-weight: 800; text-decoration: none; }
+.session-back:hover { text-decoration: underline; }
+.session-back::before { content: '← '; }
+
+/* 全体CTA */
+.cta-strip { background: var(--orange); color: #fff; padding: 40px 6%; text-align: center; }
+.cta-strip h3 { font-size: 1.6rem; font-weight: 900; margin-bottom: 14px; }
+.cta-strip p { font-size: .92rem; opacity: .94; margin-bottom: 22px; }
+.cta-strip a { display: inline-block; background: #fff; color: var(--orange-deep); padding: 14px 30px; font-weight: 900; font-size: 1rem; text-decoration: none; letter-spacing: .04em; box-shadow: 0 4px 0 var(--orange-deep); transition: all .2s; }
+.cta-strip a:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--orange-deep); }
+
+.footer { padding: 36px 6%; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; font-size: .8rem; color: var(--text3); border-top: 1px solid var(--line); }
+.footer a { color: var(--text2); text-decoration: none; }
+.footer a:hover { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo"><a href="summit.html"><span class="lg-em">NEXY</span> Summit Sessions</a></div>
+  <a href="summit.html" class="nav-back">← サミットトップに戻る</a>
+</nav>
+
+<section class="hero">
+  <span class="hero-eyebrow">Sessions</span>
+  <h1>NEXY Summit 2026<br><em>セッション詳細</em></h1>
+  <p>D会場（メインステージ・1,000名）6セッション、C会場（サブステージ・200名）5セッション。<br>各セッションの「こんな話を聞ける」「こんな人におすすめ」を順番にご紹介します。</p>
+</section>
+
+<!-- 目次 -->
+<section class="toc">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <h2>セッション一覧</h2>
+      <p class="toc-sub">タイトルをクリックすると詳細にジャンプします。</p>
+    </div>
+    <div class="toc-grid">
+      <div class="toc-col d">
+        <h3>D Hall — Main Stage<span class="ja">D会場（1,000名）</span></h3>
+        <a href="#d-1" class="toc-item">
+          <div class="toc-item-time">D-1 ／ 10:30–11:20</div>
+          <div class="toc-item-title">勉強って、なんのためにするの？</div>
+        </a>
+        <a href="#d-2" class="toc-item">
+          <div class="toc-item-time">D-2 ／ 11:30–12:20</div>
+          <div class="toc-item-title">周りから応援される人の共通点</div>
+        </a>
+        <a href="summit-presentation.html" class="toc-item" style="border-color:var(--orange);background:rgba(242,139,61,.06);">
+          <div class="toc-item-time">D-3 ／ 13:00–15:00</div>
+          <div class="toc-item-title">NEXYプレゼン大会</div>
+          <div class="toc-item-sub">メンター：三輪開人 ／ 賞金10万円 ／ 専用LP →</div>
+        </a>
+        <a href="#d-4" class="toc-item">
+          <div class="toc-item-time">D-4 ／ 15:00–15:50</div>
+          <div class="toc-item-title">課外活動を、受験で終わらせない人がやっていること</div>
+        </a>
+        <a href="#d-5" class="toc-item">
+          <div class="toc-item-time">D-5 ／ 16:00–16:50</div>
+          <div class="toc-item-title">インターン・留学・起業、何のためにやる？</div>
+        </a>
+        <a href="#d-6" class="toc-item">
+          <div class="toc-item-time">D-6 ／ 17:00–17:50</div>
+          <div class="toc-item-title">親・先生に反対された時、どう動いたか</div>
+        </a>
+      </div>
+      <div class="toc-col c">
+        <h3>C Hall — Sub Stage<span class="ja">C会場（200名）</span></h3>
+        <a href="#c-1" class="toc-item">
+          <div class="toc-item-time">C-1 ／ 10:30–12:20（100分・ワーク）</div>
+          <div class="toc-item-title">【ワーク】自分の『好き』『得意』『やりたい』は、どうやって見つけるか</div>
+        </a>
+        <a href="#c-2" class="toc-item">
+          <div class="toc-item-time">C-2 ／ 13:00–13:50</div>
+          <div class="toc-item-title">人生を変えた、ひとつのきっかけ</div>
+        </a>
+        <a href="#c-3" class="toc-item">
+          <div class="toc-item-time">C-3 ／ 14:00–15:50（110分・ワーク）</div>
+          <div class="toc-item-title">【ワーク】社会の『おかしい』を、自分の挑戦テーマにする</div>
+          <div class="toc-item-sub">株式会社Ridilover 代表登壇</div>
+        </a>
+        <a href="#c-4" class="toc-item">
+          <div class="toc-item-time">C-4 ／ 16:00–16:50</div>
+          <div class="toc-item-title">『好き』を突き詰めた人の、その先の話</div>
+          <div class="toc-item-sub">小助川晴大（学生団体NEXY代表）登壇</div>
+        </a>
+        <a href="#c-5" class="toc-item">
+          <div class="toc-item-time">C-5 ／ 17:00–17:50</div>
+          <div class="toc-item-title">『普通じゃない』を選んだ高校生のリアル</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- セッション詳細 -->
+<div class="sessions">
+
+  <!-- ===== D会場 ===== -->
+  <article class="session d" id="d-1">
+    <span class="session-tag">D-1 ／ D会場 メインステージ</span>
+    <div class="session-time">10:30–11:20 ／ 50分</div>
+    <h2 class="session-title">勉強って、なんのためにするの？</h2>
+    <p class="session-catch">「勉強なんて、なんのためにするの？」に、自分なりの答えを持っているか。</p>
+    <div class="session-body">
+      <p>学校で言われる「勉強しなさい」の理由は、自分で納得できているか。偏差値・大学受験・将来の選択肢——どこかで聞いたことのある答えではなく、登壇者がそれぞれ自分の言葉でたどり着いた「勉強の意味」を聞く50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>勉強が嫌いだった登壇者が、それでも勉強した理由</li>
+        <li>勉強しなかった時期に、代わりに何をしていたか</li>
+        <li>学校の勉強と、自分の興味の繋ぎ方</li>
+        <li>「勉強なんて意味ない」と思っていた時期のリアル</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>勉強する意味が分からなくなっている高校生</li>
+        <li>「勉強しなさい」と言われ続けている人</li>
+        <li>学校の勉強と課外活動のバランスに悩んでいる人</li>
+        <li>自分なりの「勉強の意味」を見つけたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session d" id="d-2">
+    <span class="session-tag">D-2 ／ D会場 メインステージ</span>
+    <div class="session-time">11:30–12:20 ／ 50分</div>
+    <h2 class="session-title">周りから応援される人の共通点</h2>
+    <p class="session-catch">応援される人とされない人、たったひとつの違い。</p>
+    <div class="session-body">
+      <p>同じ挑戦をしているはずなのに、応援が集まる人と集まらない人がいる。何が違うのか。生まれつきの何かではない。実は、ある「やり方」がある。応援を引き出してきた登壇者たちが、その共通点を語る50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>応援を引き出すために、登壇者が実際にやってきたこと</li>
+        <li>応援を断られた失敗談と、そこから変えたこと</li>
+        <li>「カッコ悪く頼んだら助けてもらえた」エピソード</li>
+        <li>応援される側になる前の、目に見えない準備</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>自分の挑戦を応援してくれる人を増やしたい人</li>
+        <li>「誰にも応援されない」と感じている人</li>
+        <li>メンター・サポーターを探している人</li>
+        <li>1人で頑張ることに限界を感じている人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session d" id="d-4">
+    <span class="session-tag">D-4 ／ D会場 メインステージ</span>
+    <div class="session-time">15:00–15:50 ／ 50分</div>
+    <h2 class="session-title">課外活動を、受験で終わらせない人がやっていること</h2>
+    <p class="session-catch">願書のために作った活動は、合格と同時に消える。</p>
+    <div class="session-body">
+      <p>「総合型選抜のための課外活動」と「本気の課外活動」は、外から見れば見分けがつかない。でも、合格した後、続く人と消える人がはっきり分かれる。受験を超えて続く活動を作ってきた登壇者が、その差を語る50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>受験のために始めた活動が、続いた人と消えた人の分岐点</li>
+        <li>大学合格後に活動が変質した話</li>
+        <li>「願書のため」感を、自分の中でどう乗り越えたか</li>
+        <li>受験を目的にしない活動の作り方</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>総合型選抜・AO入試を考えている高校生</li>
+        <li>課外活動を始めたけど目的が見えない人</li>
+        <li>「願書のため」感が拭えない人</li>
+        <li>大学合格後も続けられる活動を作りたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session d" id="d-5">
+    <span class="session-tag">D-5 ／ D会場 メインステージ</span>
+    <div class="session-time">16:00–16:50 ／ 50分</div>
+    <h2 class="session-title">インターン・留学・起業、何のためにやる？</h2>
+    <p class="session-catch">やった人だけが知る、それぞれの「割に合わなかった話」。</p>
+    <div class="session-body">
+      <p>「インターンやった方がいい」「留学した方がいい」「起業した方がいい」。周りの大人や同級生がそう言う。でも、本当に？それぞれを実際にやった登壇者が、リアルな労力とリターンを語る50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>それぞれの選択肢の、表に出ない労力とリターン</li>
+        <li>途中でやめた人の、やめた理由</li>
+        <li>投資対効果が合わなかった具体的な事例</li>
+        <li>やる前の期待と、やった後の現実のギャップ</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>インターン・留学・起業を考えている高校生・大学生</li>
+        <li>「みんなやってるから」で動こうとしている人</li>
+        <li>何を選ぶか迷っている人</li>
+        <li>やる前にリアルな話を聞いておきたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session d" id="d-6">
+    <span class="session-tag">D-6 ／ D会場 メインステージ</span>
+    <div class="session-time">17:00–17:50 ／ 50分</div>
+    <h2 class="session-title">親・先生に反対された時、どう動いたか</h2>
+    <p class="session-catch">「反対されたら諦める」の外側に、もうひとつの選択肢がある。</p>
+    <div class="session-body">
+      <p>親に言うとリスクの話になる。先生に言うと止められる。反発するか、従うか。その2択しかないと思っていないか。反対されてもなお動いた登壇者たちが、その間にある第3の選択を語る50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>親・先生に反対された具体的なシーン</li>
+        <li>反発でも従順でもない、第3の選択肢</li>
+        <li>結果的に親が変わった瞬間の、具体的なセリフ</li>
+        <li>今でも完全には分かり合えていない話</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>親・先生に挑戦を反対されている人</li>
+        <li>周りに理解されないと感じている人</li>
+        <li>家族と気まずい状態にある人</li>
+        <li>「反対されるから動けない」と感じている人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <!-- ===== C会場 ===== -->
+  <article class="session c" id="c-1">
+    <span class="session-tag">C-1 ／ C会場 サブステージ ／ ワークショップ</span>
+    <div class="session-time">10:30–12:20 ／ 100分</div>
+    <h2 class="session-title">【ワーク】自分の『好き』『得意』『やりたい』は、どうやって見つけるか</h2>
+    <p class="session-catch">100分のワークで、「やりたい」を1文にして帰る。</p>
+    <div class="session-body">
+      <p>「やりたいことが分からない」「好きと得意の違いが分からない」「やりたいことがあるはずなのに、言葉にならない」——そんな自分のままで、ワークショップに来てほしい。</p>
+      <p>個人ワークとペアワークを交互に進めながら、今日、自分の言葉で「やりたい」を書き出して帰る100分。</p>
+    </div>
+    <div class="session-block ws-flow">
+      <p class="session-block-label">ワークの流れ</p>
+      <ul>
+        <li>10:30–10:40 ／ <strong>イントロ</strong>：「好き」「得意」「やりたい」は別物</li>
+        <li>10:40–10:55 ／ <strong>個人ワーク</strong>：自分の「好き」を10個書き出す</li>
+        <li>10:55–11:15 ／ <strong>ペアワーク</strong>：相手の「好き」を深掘り質問する</li>
+        <li>11:15–11:30 ／ <strong>個人ワーク</strong>：「人から褒められたこと」から得意を発見</li>
+        <li>11:30–11:50 ／ <strong>ペアワーク</strong>：相手から見た「あなたの得意」を伝え合う</li>
+        <li>11:50–12:10 ／ <strong>個人ワーク</strong>：「好き × 得意」から「やりたい」を1文にする</li>
+        <li>12:10–12:20 ／ <strong>全体シェア・クロージング</strong></li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">持ち帰れるもの</p>
+      <ul>
+        <li>自分の言葉で書いた「やりたい」1文</li>
+        <li>ペアになった人との繋がり</li>
+        <li>1人で考えるのとは違う、自分の輪郭</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>やりたいことが、まだ言葉になっていない人</li>
+        <li>「好き」と「得意」が混ざっていて整理できない人</li>
+        <li>周りに流されて、自分の軸が見えない人</li>
+        <li>1人で考えていても、いつも同じところに戻ってくる人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session c" id="c-2">
+    <span class="session-tag">C-2 ／ C会場 サブステージ</span>
+    <div class="session-time">13:00–13:50 ／ 50分</div>
+    <h2 class="session-title">人生を変えた、ひとつのきっかけ</h2>
+    <p class="session-catch">人・本・言葉・出来事——人生が動き出した瞬間の話。</p>
+    <div class="session-body">
+      <p>登壇者には必ず、人生が動き出した「ひとつのきっかけ」がある。それは出会った人かもしれないし、読んだ本かもしれないし、誰かに言われた一言かもしれない。そのきっかけがいつ・どこで・どう訪れたか、そして掴んだ後に何をしたかを聞く50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>各登壇者の「ターニングポイント」と、その時の感情</li>
+        <li>きっかけがいつ・どこで・どう訪れたか</li>
+        <li>きっかけを掴んだ後、最初に何をしたか</li>
+        <li>同じきっかけを「見過ごす人」と「掴む人」の違い</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>自分の人生にも転機が欲しいと感じている人</li>
+        <li>「特別なきっかけ」を待っている人</li>
+        <li>他人の人生の物語から、自分の物語を考えたい人</li>
+        <li>「自分にはきっかけがなかった」と思っている人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session c" id="c-3">
+    <span class="session-tag">C-3 ／ C会場 サブステージ ／ ワークショップ</span>
+    <div class="session-time">14:00–15:50 ／ 110分</div>
+    <h2 class="session-title">【ワーク】社会の『おかしい』を、自分の挑戦テーマにする</h2>
+    <p class="session-speaker">— 株式会社Ridilover 代表登壇 —</p>
+    <p class="session-catch">社会問題を、自分の事業に変える110分。</p>
+    <div class="session-body">
+      <p>「社会を良くしたい」「気になる問題がある」。でも、それをどう自分の挑戦に変えればいいか分からない。社会問題を構造化し、事業として動かしてきたリディラバ代表が、自身の手法を110分で伝える。</p>
+    </div>
+    <div class="session-block ws-flow">
+      <p class="session-block-label">ワークの流れ</p>
+      <ul>
+        <li>14:00–14:15 ／ <strong>イントロ</strong>：「課題」と「問題」は何が違うか</li>
+        <li>14:15–14:35 ／ <strong>ワーク①</strong>：自分が気になる社会の「違和感」を書き出す</li>
+        <li>14:35–14:55 ／ <strong>レクチャー</strong>：違和感を「構造」として捉える方法</li>
+        <li>14:55–15:15 ／ <strong>ワーク②</strong>：その課題に関わる人々（ステークホルダー）を描く</li>
+        <li>15:15–15:30 ／ <strong>レクチャー</strong>：どこに「介入ポイント」があるか</li>
+        <li>15:30–15:45 ／ <strong>ワーク③</strong>：自分の挑戦テーマをA4 1枚に書く</li>
+        <li>15:45–15:50 ／ <strong>全体シェア・クロージング</strong></li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">持ち帰れるもの</p>
+      <ul>
+        <li>A4 1枚の「自分の挑戦テーマ」構想シート</li>
+        <li>社会課題を構造で捉える視点</li>
+        <li>同じ志を持つ参加者との繋がり</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>社会の「おかしい」が気になっているが、動き出せない人</li>
+        <li>ビジネスや事業に興味があるが、テーマが見つからない人</li>
+        <li>「やりたい」はあるが、社会との接点がぼんやりしている人</li>
+        <li>アントレプレナーシップ（起業家精神）に触れてみたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session c" id="c-4">
+    <span class="session-tag">C-4 ／ C会場 サブステージ</span>
+    <div class="session-time">16:00–16:50 ／ 50分</div>
+    <h2 class="session-title">『好き』を突き詰めた人の、その先の話</h2>
+    <p class="session-speaker">— 小助川晴大（学生団体NEXY代表）登壇 —</p>
+    <p class="session-catch">『好き』が『使命』に変わる瞬間、人生はどう変わるか。</p>
+    <div class="session-body">
+      <p>小学生でロボット世界大会7位、中学2年で会社設立、17歳で1,000人サミット主催。「好き」を突き詰め続けた小助川晴大が、その先で何が起きたかを語る50分。突き詰めた人だけが知る、変化と葛藤、今でも分からないこと。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>「好き」が完全な遊びだった時代の話</li>
+        <li>「好き」が「やらなきゃ」に変わった瞬間</li>
+        <li>「好き」が「使命」になった瞬間</li>
+        <li>17歳で1,000人サミットを主催する立場の本音</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>「好き」を突き詰めたいけど不安な人</li>
+        <li>自分の人生の方向性を探している人</li>
+        <li>「好き」が「義務」になる感覚を知りたい人</li>
+        <li>ハルタの実体験を知りたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+  <article class="session c" id="c-5">
+    <span class="session-tag">C-5 ／ C会場 サブステージ</span>
+    <div class="session-time">17:00–17:50 ／ 50分</div>
+    <h2 class="session-title">『普通じゃない』を選んだ高校生のリアル</h2>
+    <p class="session-catch">学校に通わない、起業する、海外に出る、地元で挑戦する。『普通』を外れた選択の、本当の話。</p>
+    <div class="session-body">
+      <p>「普通」じゃない選択をした高校生たちは、毎日どう生きているのか。お金は？時間は？人間関係は？家族との距離は？普通のサミットでは語られない、選択の後の日常を聞く50分。</p>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな話を聞ける</p>
+      <ul>
+        <li>それぞれの選択をした後の、本当の生活</li>
+        <li>お金と時間の現実（実数ベース）</li>
+        <li>学校との距離の取り方、家族との関係の維持の仕方</li>
+        <li>地元で挑戦している人の、孤独と仲間の見つけ方</li>
+      </ul>
+    </div>
+    <div class="session-block">
+      <p class="session-block-label">こんな人におすすめ</p>
+      <ul>
+        <li>「普通の道」から外れる選択を考えている人</li>
+        <li>起業・休学・海外進学・地元挑戦に興味がある人</li>
+        <li>自分が「普通じゃない」と感じている人</li>
+        <li>選択した後のリアルを知ってから決めたい人</li>
+      </ul>
+    </div>
+    <a href="#top" class="session-back">セッション一覧に戻る</a>
+  </article>
+
+</div>
+
+<!-- 最終CTA -->
+<section class="cta-strip">
+  <h3>気になるセッションがあったら、まず申し込み。</h3>
+  <p>当日は自由に行き来できます。事前申込制ですが当日参加も歓迎です。</p>
+  <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener">参加申込フォーム →</a>
+</section>
+
+<footer class="footer">
+  <span>&copy; 2026 NEXY</span>
+  <a href="summit.html">サミットトップ</a>
+  <a href="summit-presentation.html">プレゼン大会</a>
+  <a href="summit-members.html">運営メンバー</a>
+  <a href="index.html">NEXY</a>
+</footer>
+
+</body>
+</html>
