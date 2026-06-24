@@ -1950,6 +1950,21 @@ body.modal-open { overflow: hidden; }
   .intro-2card-grid { grid-template-columns: 1fr !important; }
 }
 
+
+/* === 重複情報のスマホ非表示 === */
+@media (max-width: 700px) {
+  /* Stay Connected: Footerに同じInstagramリンクがあるため */
+  .stay-connected { display: none; }
+
+  /* promo-banner: モバイルでは簡素化（コンパクト版へ） */
+  .promo-banner .promo-tag { display: none; }
+  .promo-banner .promo-text strong { font-size: .94rem; }
+  .promo-banner .promo-text span { display: none; }
+
+  /* Benefits 3点: WHATと内容重複のため非表示 */
+  .benefits-section { display: none; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -2088,10 +2103,7 @@ body.modal-open { overflow: hidden; }
       </span>
       <span class="hero-tm-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</span>
     </h1>
-    <p class="hero-sub">
-      「やりたい」を、まだ言葉にできていなくていい。<br>
-      同じ熱量の仲間と出会う、1日。
-    </p>
+    
     <div class="free-notice-wrap">
       <span class="free-notice">※ 中学生〜社会人 全年代歓迎 ／ 高校生・大学生 無料 ／ 社会人 ¥3,000</span>
     </div>
@@ -2112,34 +2124,7 @@ body.modal-open { overflow: hidden; }
   </div>
 </section>
 
-<section class="intro-3card" aria-label="WHAT/WHO">
-  <div class="intro-3card-inner">
-    <div class="intro-3card-grid intro-2card-grid">
-      <div class="intro-card intro-card-what">
-        <span class="intro-card-tag">WHAT ／ あなたに起きること</span>
-        <h3 class="intro-card-title">「やりたい」を、言葉にして帰る。</h3>
-        <ul class="intro-card-list">
-          <li>同じ熱量で語り合える仲間と出会う</li>
-          <li>「やりたい」をワークで言葉にする</li>
-          <li>挑戦する同世代のリアルを聞く</li>
-          <li>明日から、誰かに話したくなる</li>
-        </ul>
-      </div>
-      <div class="intro-card intro-card-who">
-        <span class="intro-card-tag">WHO ／ こんなあなたへ</span>
-        <h3 class="intro-card-title">「やりたい」を、ひとりで抱えてる人へ。</h3>
-        <ul class="intro-card-list">
-          <li>周りに同じ熱量の人がいない</li>
-          <li>やりたいことが、まだ言葉にならない</li>
-          <li>親や先生に反対されて、誰かに相談したい</li>
-          <li>地元で孤独に挑戦している</li>
-        </ul>
-      </div>
-    </div>
 
-    
-  </div>
-</section>
 
 <!-- SECTION: PROMO BANNER (プレゼン大会出場者募集中) -->
 <section class="promo-banner" aria-label="プレゼン大会出場者募集中">
@@ -2217,17 +2202,8 @@ body.modal-open { overflow: hidden; }
     </div>
 
     <div class="about-block">
-      <p class="p-line">今の時代は、「やりたいこと」を求められる。</p>
-      <p class="p-line">でも、やりたいことを話す前に、リスクや実現可能性で測られてしまう。</p>
-      <div style="margin-top:24px;display:flex;flex-direction:column;gap:6px;">
-        <p class="p-line">親に言うと、<strong>リスクの話</strong>になる。</p>
-        <p class="p-line">学校で言うと、<strong>浮く</strong>。</p>
-        <p class="p-line">同世代では、<strong>話が続かない</strong>。</p>
-      </div>
-      <p class="p-strong">だから、誰も口に出さなくなる。「やりたい」が生まれる前に、消されている。</p>
-
-      <p class="p-line" style="margin-top:48px;">NEXY Summit は、<strong>すごい誰かを見るだけのイベントではありません</strong>。</p>
-      <p class="p-line">未完成の違和感や好奇心を持ち寄り、一歩先の同世代や大人と出会い、<br>自分の中にある可能性に気づくための場所です。</p>
+      <p class="p-line" style="margin-top:32px;">NEXY Summit は、<strong>すごい誰かを見るだけのイベントではありません</strong>。</p>
+      <p class="p-line">未完成の違和感や好奇心を持ち寄り、同じ熱量の仲間と出会い、<br>自分の中にある可能性に気づくための場所です。</p>
 
       <div class="concept-emphasis">
         自分の可能性は、<br>遠い未来ではなく、<em>今ここにある</em>。
