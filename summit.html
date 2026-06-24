@@ -1965,6 +1965,20 @@ body.modal-open { overflow: hidden; }
   .benefits-section { display: none; }
 }
 
+
+.featured-photo .speaker-placeholder {
+  width: 100%; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #FAFAF7 0%, #F0EBDE 100%);
+  color: var(--text3);
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; font-weight: 800;
+  letter-spacing: .12em;
+  text-align: center;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--line);
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -2417,7 +2431,7 @@ body.modal-open { overflow: hidden; }
     <div class="section-head">
       <span class="section-tag">Speakers</span>
       <h2 class="section-title">登壇者</h2>
-      <p class="section-lead">ゲストと学生、合計30〜40名が登壇予定。学生登壇者15名が確定（順次発表中）。</p>
+      <p class="section-lead">ゲスト9名・学生15名 ＝ 計24名以上が登壇確定（順次追加中）。</p>
     </div>
 
     <!-- ゲスト登壇者 -->
@@ -2425,79 +2439,165 @@ body.modal-open { overflow: hidden; }
       <div class="speakers-group-head">
         <span class="speakers-group-en">Guest Speakers</span>
         <h3 class="speakers-group-title">ゲスト登壇者</h3>
-        <span class="speakers-group-count">確定5名 / 残り順次発表</span>
+        <span class="speakers-group-count">確定9名 / 順次発表中</span>
       </div>
-      <div class="speakers-grid">
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 01</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
+      <div class="featured-speakers">
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">山本 敏行<span class="kana">ヤマモト トシユキ</span></h4>
+            <p class="featured-meta">Chatwork 創業者 ／ エンジェル投資家</p>
+            <p class="featured-affil">Power Angels CEO ／ 日本エンジェル投資家協会 代表理事</p>
+            <div class="featured-badges">
+              <span class="fbadge">Chatwork創業者</span>
+              <span class="fbadge">東証グロース上場</span>
+            </div>
+            <p class="featured-desc">2000年EC studio設立、2011年「Chatwork」リリース、2019年上場。現在はエンジェル投資家として後進を育成。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="yamamoto">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">ブランスクム 文葉<span class="kana">Fumiha Branscombe</span></h4>
+            <p class="featured-meta">株式会社Fleurinary 代表</p>
+            <p class="featured-affil">文部科学省 起業家精神推進大使 ／ Prospera Women 日本代表</p>
+            <div class="featured-badges">
+              <span class="fbadge">野村證券15年</span>
+              <span class="fbadge">Globis MBA</span>
+            </div>
+            <p class="featured-desc">オリエンタルランド・CCC・野村證券Financial Advisor 15年を経て、2024年にFleurinary設立。個人の可能性を最大化する環境づくりに取り組む。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="branscombe">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">只石 昌幸<span class="kana">タダイシ マサユキ</span></h4>
+            <p class="featured-meta">VALX株式会社（旧レバレッジ） 代表取締役CEO</p>
+            <p class="featured-affil">フィットネスD2Cブランド「VALX」創業</p>
+            <div class="featured-badges">
+              <span class="fbadge">VALX創業者</span>
+              <span class="fbadge">10ヶ月で月商1億円</span>
+            </div>
+            <p class="featured-desc">2006年レバレッジ設立。2019年フィットネスブランド「VALX」立ち上げ、10ヶ月で月商1億円を達成。D2C業界を牽引する経営者。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="tadaishi">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">林 裕子<span class="kana">ハヤシ ユウコ</span></h4>
+            <p class="featured-meta">山口大学大学院 技術経営研究科 特命教授</p>
+            <p class="featured-affil">科学技術政策 ／ イノベーション ／ ジェンダー研究</p>
+            <div class="featured-badges">
+              <span class="fbadge">大学院教授</span>
+              <span class="fbadge">STEM教育・ジェンダー</span>
+            </div>
+            <p class="featured-desc">山口大学大学院技術経営研究科で、科学技術政策・技術経営・ジェンダー・STEM教育を専門に研究。次世代の挑戦者育成に取り組む。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="hayashi">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">夏野 剛<span class="kana">ナツノ タケシ</span></h4>
+            <p class="featured-meta">KADOKAWA 代表執行役社長CEO ／ ドワンゴ 社長CEO</p>
+            <p class="featured-affil">慶應義塾大学SFC 特別招聘教授</p>
+            <div class="featured-badges">
+              <span class="fbadge">iモード生みの親</span>
+              <span class="fbadge">KADOKAWA社長</span>
+            </div>
+            <p class="featured-desc">早稲田政経卒、ペンシルバニア大学Wharton MBA。NTTドコモで「iモード」「おサイフケータイ」を立ち上げ。2021年KADOKAWA社長CEO就任。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="natsuno">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <img src="img/summit/mentor_miwa.jpg" alt="三輪 開人" loading="lazy" decoding="async">
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">三輪 開人<span class="kana">ミワ カイト</span></h4>
+            <p class="featured-meta">認定NPO法人e-Education 代表</p>
+            <p class="featured-affil">プレゼン大会 メンター ／ JICA出身</p>
+            <div class="featured-badges">
+              <span class="fbadge">ICCカタパルト第1回優勝</span>
+              <span class="fbadge">著書『100%共感プレゼン』</span>
+            </div>
+            <p class="featured-desc">1986年生まれ。早稲田大学法学部在学中にe-Educationの前身を設立。バングラデシュなど14カ国で3万人の中高生に映像授業を届ける。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="miwa">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">佐野 貴<span class="kana">サノ タカシ</span></h4>
+            <p class="featured-meta">TALENT PRENEUR 主宰 ／ 才能診断</p>
+            <p class="featured-affil">心理学ベースの才能言語化メソッド開発</p>
+            <div class="featured-badges">
+              <span class="fbadge">才能診断 1,700名+</span>
+              <span class="fbadge">起業スクール主宰</span>
+            </div>
+            <p class="featured-desc">心理学をベースに人々の「才能」や「強み」を言語化する才能診断を延べ1,700名以上に実施。才能をサービスに変える起業スクール「TALENT PRENEUR」を運営。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="sano">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">平野 歩<span class="kana">ヒラノ アユム</span></h4>
+            <p class="featured-meta">SailStep株式会社 代表取締役</p>
+            <p class="featured-affil">シリアル・アントレプレナー ／ エンジェル投資家</p>
+            <div class="featured-badges">
+              <span class="fbadge">2社の会社売却経験</span>
+              <span class="fbadge">学研CC 元取締役</span>
+            </div>
+            <p class="featured-desc">2015年OurPhoto創業→2020年うるるに売却。2021年教育EC事業創業→2022年GAKKEN CC（学研グループ）に売却し取締役就任。連続起業家。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="hirano">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">琴坂 将広<span class="kana">コトサカ マサヒロ</span></h4>
+            <p class="featured-meta">慶應義塾大学 総合政策学部 准教授</p>
+            <p class="featured-affil">経営戦略・国際経営 ／ 元マッキンゼー</p>
+            <div class="featured-badges">
+              <span class="fbadge">『経営戦略原論』著者</span>
+              <span class="fbadge">ユーグレナ等 社外取締役</span>
+            </div>
+            <p class="featured-desc">慶應SFC卒、オックスフォード大学博士。マッキンゼーで9カ国の戦略策定を経験。立命館経営学部を経て2016年より慶應SFC。ユーグレナ・ユーザベース・ラクスル等の社外取締役を兼務。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="kotosaka">詳細を見る</button>
+          </div>
+        </article>
+
       </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 02</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 03</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 04</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 05</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 06</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 07</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 08</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 09</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
-      <div class="speaker-card">
-        <div class="speaker-img placeholder">Coming Soon</div>
-        <div class="speaker-body">
-          <div class="speaker-name">登壇者 10</div>
-          <div class="speaker-title">順次発表</div>
-        </div>
-      </div>
+      <p class="speakers-note">※ 順次発表中。写真・追加プロフィールは決定次第更新します。</p>
       </div>
     </div>
 
