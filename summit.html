@@ -1684,6 +1684,168 @@ body.modal-open { overflow: hidden; }
   .featured-card .featured-meta { display: none; }
 }
 
+
+/* ===== Tier 2: Hero キャッチコピー ===== */
+.hero-catch {
+  text-align: center;
+  margin: 24px auto 18px;
+  padding: 0 16px;
+}
+.hero-catch-em {
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.hero-catch-em em {
+  font-style: normal;
+  color: var(--orange);
+  position: relative;
+  background: linear-gradient(transparent 62%, rgba(116,212,195,.55) 62%);
+  padding: 0 4px;
+}
+.hero-catch-sub {
+  font-size: clamp(.86rem, 2vw, 1.06rem);
+  font-weight: 700;
+  color: var(--text2);
+  letter-spacing: .02em;
+}
+
+/* ===== Tier 1: Intro 3-Card セクション ===== */
+.intro-3card {
+  padding: 56px 6% 48px;
+  background: linear-gradient(180deg, var(--paper) 0%, #fff 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.intro-3card-inner { max-width: 1180px; margin: 0 auto; }
+.intro-3card-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  margin-bottom: 48px;
+}
+@media (max-width: 900px) { .intro-3card-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; } }
+.intro-card {
+  background: #fff;
+  border: 2px solid;
+  padding: 26px 24px;
+  position: relative;
+  transition: transform .25s, box-shadow .25s;
+}
+.intro-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.08); }
+.intro-card-why { border-color: var(--orange); }
+.intro-card-what { border-color: var(--mint-deep); }
+.intro-card-who { border-color: var(--text); }
+.intro-card-tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: .66rem; font-weight: 900;
+  letter-spacing: .22em; text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+.intro-card-why .intro-card-tag { color: var(--orange); background: rgba(242,139,61,.1); }
+.intro-card-what .intro-card-tag { color: var(--mint-deep); background: rgba(46,189,182,.1); }
+.intro-card-who .intro-card-tag { color: var(--text); background: rgba(0,0,0,.06); }
+.intro-card-title {
+  font-size: 1.18rem; font-weight: 900;
+  line-height: 1.5; margin-bottom: 12px;
+  color: var(--text);
+}
+.intro-card-body { font-size: .88rem; line-height: 1.9; color: var(--text2); }
+.intro-card-list { list-style: none; padding: 0; font-size: .88rem; line-height: 1.9; color: var(--text2); }
+.intro-card-list li { padding-left: 18px; position: relative; margin-bottom: 4px; }
+.intro-card-list li::before { content: '●'; color: var(--mint-deep); position: absolute; left: 0; font-size: .6rem; top: 8px; }
+
+/* ===== Tier 3: Type Quick (4タイプアイコン) ===== */
+.type-quick { margin-top: 24px; }
+.type-quick-head {
+  text-align: center;
+  font-size: 1.08rem; font-weight: 900;
+  letter-spacing: .04em;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+.type-quick-head::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); vertical-align: middle; margin-right: 10px; }
+.type-quick-head::after { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--orange); vertical-align: middle; margin-left: 10px; }
+.type-quick-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+}
+@media (max-width: 760px) { .type-quick-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+.type-quick-item {
+  display: flex; flex-direction: column; align-items: flex-start;
+  text-decoration: none; color: inherit;
+  padding: 14px 14px 16px;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  transition: all .2s;
+  gap: 4px;
+}
+.type-quick-item:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(242,139,61,.15); }
+.tqi-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: .58rem; font-weight: 800;
+  letter-spacing: .18em; color: var(--text3);
+  text-transform: uppercase;
+}
+.tqi-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.08rem; font-weight: 900;
+  color: var(--orange); letter-spacing: .02em;
+}
+.tqi-desc { font-size: .76rem; line-height: 1.7; color: var(--text2); }
+
+/* ===== Tier 4: About ストーリー === */
+.about-story {
+  max-width: 880px; margin: 36px auto 28px;
+  padding: 0 16px;
+}
+.about-story-quote {
+  background: var(--paper);
+  border-left: 4px solid var(--orange);
+  padding: 26px 28px;
+  margin-bottom: 22px;
+}
+.about-story-quote-em {
+  font-size: 1.32rem; font-weight: 900;
+  color: var(--text); line-height: 1.55;
+  margin-bottom: 14px;
+}
+.about-story-quote-body {
+  font-size: .98rem; line-height: 2;
+  color: var(--text2);
+  margin-bottom: 14px;
+}
+.about-story-quote-by {
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem; font-weight: 700;
+  color: var(--text3); text-align: right;
+  letter-spacing: .02em;
+}
+.about-story-conclusion {
+  text-align: center;
+  padding: 18px 0;
+}
+.about-story-conclusion-em {
+  font-size: 1.24rem; font-weight: 900;
+  color: var(--orange-deep, var(--orange));
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.about-story-conclusion-sub {
+  font-size: .92rem; color: var(--text2);
+  line-height: 1.85;
+}
+@media (max-width: 700px) {
+  .intro-3card { padding: 40px 5% 36px; }
+  .intro-card { padding: 22px 18px; }
+  .intro-card-title { font-size: 1.06rem; }
+  .about-story-quote { padding: 22px 20px; }
+  .about-story-quote-em { font-size: 1.14rem; }
+  .about-story-conclusion-em { font-size: 1.08rem; }
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -1808,6 +1970,10 @@ body.modal-open { overflow: hidden; }
       <span class="hbadge">事前申込制 ／ 当日参加もOK</span>
       <span class="hbadge">1DAY / 回遊型フェス</span>
     </div>
+    <div class="hero-catch">
+      <p class="hero-catch-em">やりたいを、<em>ぶつけに来い。</em></p>
+      <p class="hero-catch-sub">未完成の違和感や好奇心を持ち寄る、1日。</p>
+    </div>
     <h1 class="hero-text-meta">
       <span class="hero-tm-line">
         <span class="hero-tm-icon" style="font-family:Inter,sans-serif;">DATE</span>
@@ -1829,6 +1995,61 @@ body.modal-open { overflow: hidden; }
     <div class="hero-ctas">
       <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
       <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION: INTRO 3-CARD (Why-What-Who) + TYPE QUICK -->
+<section class="intro-3card" aria-label="サミット概要">
+  <div class="intro-3card-inner">
+    <div class="intro-3card-grid">
+      <div class="intro-card intro-card-why">
+        <span class="intro-card-tag">WHY ／ なぜ</span>
+        <h3 class="intro-card-title">「やりたい」を、ひとりにしない。</h3>
+        <p class="intro-card-body">挑戦している学生が、本気でつながり刺激し合える場はほとんどない。だから1日だけ、全国の挑戦者を東京に集める。</p>
+      </div>
+      <div class="intro-card intro-card-what">
+        <span class="intro-card-tag">WHAT ／ 何ができる</span>
+        <h3 class="intro-card-title">1日で、全部体験できる。</h3>
+        <ul class="intro-card-list">
+          <li>プレゼン大会（賞金10万円）</li>
+          <li>登壇セッション 11本</li>
+          <li>ワークショップ 2本</li>
+          <li>ブース＋コミュニティ</li>
+        </ul>
+      </div>
+      <div class="intro-card intro-card-who">
+        <span class="intro-card-tag">WHO ／ 誰のため</span>
+        <h3 class="intro-card-title">中学生〜社会人、全年代歓迎。</h3>
+        <p class="intro-card-body">メインは高校生。大学生も無料、社会人 ¥3,000で参加可能。企業の方は学生との対話に。</p>
+      </div>
+    </div>
+
+    <div class="type-quick">
+      <p class="type-quick-head">あなたはどのタイプ？</p>
+      <div class="type-quick-grid">
+        <a href="#target" class="type-quick-item">
+          <span class="tqi-tag">Type 01</span>
+          <span class="tqi-name">Active</span>
+          <span class="tqi-desc">すでに活動中／<br>もっと本気の人と出会いたい</span>
+        </a>
+        <a href="#target" class="type-quick-item">
+          <span class="tqi-tag">Type 02</span>
+          <span class="tqi-name">Starter</span>
+          <span class="tqi-desc">課外活動を始めたい／<br>自分のテーマを探したい</span>
+        </a>
+        <a href="#target" class="type-quick-item">
+          <span class="tqi-tag">Type 03</span>
+          <span class="tqi-name">Wandering</span>
+          <span class="tqi-desc">モヤモヤしている／<br>同世代の本気を見たい</span>
+        </a>
+        <a href="#target" class="type-quick-item">
+          <span class="tqi-tag">Type 04</span>
+          <span class="tqi-name">Local</span>
+          <span class="tqi-desc">地元で孤独に挑戦中／<br>東京の同世代と話したい</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1891,9 +2112,23 @@ body.modal-open { overflow: hidden; }
 <section class="section" id="about">
   <div class="section-inner">
     <div class="section-head">
-      <span class="section-tag">About</span>
-      <h2 class="section-title">NEXYサミット<em>とは</em>？</h2>
+      <span class="section-tag">Why</span>
+      <h2 class="section-title">なぜ、<em>1,000人</em>なのか</h2>
+      <p class="section-lead" style="margin-top:14px;color:var(--text2);font-size:1rem;line-height:2;">小助川晴大（NEXY代表）が見てきた風景から、このサミットは生まれた。</p>
     </div>
+
+    <div class="about-story">
+      <div class="about-story-quote">
+        <p class="about-story-quote-em">「すごい高校生は、確かに存在する。」</p>
+        <p class="about-story-quote-body">でも、その学生同士が本気でつながり、刺激し合える場は、ほとんどない。<br>同じ熱量で語り合える仲間に出会う機会は、自分から取りに行かないと得られない。</p>
+        <p class="about-story-quote-by">— NEXY代表 小助川晴大</p>
+      </div>
+      <div class="about-story-conclusion">
+        <p class="about-story-conclusion-em">だから1日だけ、全国の挑戦したい1,000人を、東京に集める。</p>
+        <p class="about-story-conclusion-sub">「やりたい」を持っているのに、孤独に挑戦している学生のための、年に一度の交差点。</p>
+      </div>
+    </div>
+
     <div class="about-block">
       <p class="p-line">今の時代は、「やりたいこと」を求められる。</p>
       <p class="p-line">でも、やりたいことを話す前に、リスクや実現可能性で測られてしまう。</p>
