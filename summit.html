@@ -1979,6 +1979,20 @@ body.modal-open { overflow: hidden; }
   border-bottom: 1px solid var(--line);
 }
 
+
+.sm-photo.speaker-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #FAFAF7 0%, #F0EBDE 100%);
+  color: var(--text3);
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; font-weight: 800;
+  letter-spacing: .12em;
+  text-align: center;
+  line-height: 1.6;
+  aspect-ratio: 1;
+  width: 100%;
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -2431,7 +2445,7 @@ body.modal-open { overflow: hidden; }
     <div class="section-head">
       <span class="section-tag">Speakers</span>
       <h2 class="section-title">登壇者</h2>
-      <p class="section-lead">ゲスト9名・学生15名 ＝ 計24名以上が登壇確定（順次追加中）。</p>
+      <p class="section-lead">ゲスト10名・学生15名 ＝ 計25名以上が登壇確定（順次追加中）。</p>
     </div>
 
     <!-- ゲスト登壇者 -->
@@ -2439,7 +2453,7 @@ body.modal-open { overflow: hidden; }
       <div class="speakers-group-head">
         <span class="speakers-group-en">Guest Speakers</span>
         <h3 class="speakers-group-title">ゲスト登壇者</h3>
-        <span class="speakers-group-count">確定9名 / 順次発表中</span>
+        <span class="speakers-group-count">確定10名 / 順次発表中</span>
       </div>
       <div class="featured-speakers">
 
@@ -2593,6 +2607,23 @@ body.modal-open { overflow: hidden; }
             </div>
             <p class="featured-desc">慶應SFC卒、オックスフォード大学博士。マッキンゼーで9カ国の戦略策定を経験。立命館経営学部を経て2016年より慶應SFC。ユーグレナ・ユーザベース・ラクスル等の社外取締役を兼務。</p>
             <button type="button" class="featured-detail-btn" data-speaker="kotosaka">詳細を見る</button>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-photo">
+            <div class="speaker-placeholder">写真<br>準備中</div>
+          </div>
+          <div class="featured-body">
+            <h4 class="featured-name">赤土 豪一<span class="kana">シャクド ゴウイチ</span></h4>
+            <p class="featured-meta">リクルート「キャリアガイダンス」編集長</p>
+            <p class="featured-affil">東京学芸大学 先端教育人材育成推進機構 准教授</p>
+            <div class="featured-badges">
+              <span class="fbadge">高校生Ring 立ち上げ（累計10万人+）</span>
+              <span class="fbadge">スタディサプリDXで全社アワード</span>
+            </div>
+            <p class="featured-desc">早稲田MBA。ベネッセ「こどもちゃれんじ」を経てリクルート。スタディサプリで進路選択体験を2年かけて変革。「半径5mからの発見」をコンセプトに、高校生Ringを国内最大級のアントレ教育PGに育てた。</p>
+            <button type="button" class="featured-detail-btn" data-speaker="shakudo">詳細を見る</button>
           </div>
         </article>
 
@@ -4103,5 +4134,233 @@ Abema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞�
 })();
 
 </script>
+
+
+<!-- ===== 大人ゲスト登壇者 詳細モーダル ===== -->
+
+<div class="speaker-modal" id="modal-yamamoto" role="dialog" aria-modal="true" aria-labelledby="m-yamamoto-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-yamamoto-name">山本 敏行<span class="sm-kana">ヤマモト トシユキ</span></h3>
+        <p class="sm-meta">Chatwork 創業者 ／ エンジェル投資家</p>
+        <p class="sm-affil">Power Angels CEO ／ 日本エンジェル投資家協会 代表理事</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">1979年3月21日、大阪府寝屋川市生まれ。大阪桐蔭高校・中央大学商学部卒。在学中の2000年、ロサンゼルス留学中にEC studioを設立。2004年に法人化。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・2011年 ビジネスチャット「Chatwork」リリース<br>・2012年 Chatwork株式会社に社名変更<br>・2018年 CEO退任、その後米国事業に専念<br>・2019年 東証マザーズ（現グロース）に上場<br>・2020年 Power Angels CEO就任<br>・2023年 一般社団法人日本エンジェル投資家協会 代表理事就任</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-branscombe" role="dialog" aria-modal="true" aria-labelledby="m-branscombe-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-branscombe-name">ブランスクム 文葉<span class="sm-kana">Fumiha Branscombe</span></h3>
+        <p class="sm-meta">株式会社Fleurinary 代表</p>
+        <p class="sm-affil">文部科学省 起業家精神推進大使 ／ Prospera Women 日本代表</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">オリエンタルランドで店舗管理・人材育成・東京ディズニーシー立ち上げに従事。カルチュア・コンビニエンス・クラブ、野村證券Financial Advisor（15年）を経て、2020年01Boosterに参画し有楽町SAAI立ち上げ・運営に従事。2024年4月独立、Fleurinary設立。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な活動・実績</p>
+      <p class="sm-section-body">・株式会社Fleurinary 代表取締役（2024年〜）<br>・Globis経営大学院 MBA取得<br>・Prospera Women 日本支部代表<br>・All Bridge Corporation 社外取締役<br>・文部科学省 起業家精神推進大使<br>・女性起業家育成プログラム支援<br>・高校生向け起業家教育に従事</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-tadaishi" role="dialog" aria-modal="true" aria-labelledby="m-tadaishi-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-tadaishi-name">只石 昌幸<span class="sm-kana">タダイシ マサユキ</span></h3>
+        <p class="sm-meta">VALX株式会社（旧レバレッジ） 代表取締役CEO</p>
+        <p class="sm-affil">フィットネスD2Cブランド「VALX」創業</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">1975年10月11日、群馬県出身。群馬県立高崎高校・法政大学経営学部卒。1998年キーエンス入社、3年で退社。グルメブログを経て、2006年ウェブ制作会社「レバレッジ」を設立。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・2006年 株式会社レバレッジ（現VALX株式会社）設立<br>・2016年 フィットネス業界サイト運営開始<br>・2019年 フィットネスD2Cブランド「VALX」立ち上げ<br>・VALXは10ヶ月で月商1億円達成<br>・「日本一情熱的な社長」として講演活動も多数</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-hayashi" role="dialog" aria-modal="true" aria-labelledby="m-hayashi-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-hayashi-name">林 裕子<span class="sm-kana">ハヤシ ユウコ</span></h3>
+        <p class="sm-meta">山口大学大学院 技術経営研究科 特命教授</p>
+        <p class="sm-affil">科学技術政策 ／ イノベーション ／ STEM・ジェンダー研究</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">山口大学大学院技術経営研究科の特命教授。専門は科学技術政策・技術経営・イノベーション論。研究キーワードはイノベーション、ジェンダー、STEM、科学教育、ダイバーシティ、技術経営など。次世代の挑戦者育成に取り組む。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な活動</p>
+      <p class="sm-section-body">・山口大学大学院 技術経営研究科 特命教授<br>・国際総合科学部 兼任<br>・科学技術政策・STEM教育に関する研究<br>・産官学連携プロジェクトの推進</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-natsuno" role="dialog" aria-modal="true" aria-labelledby="m-natsuno-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-natsuno-name">夏野 剛<span class="sm-kana">ナツノ タケシ</span></h3>
+        <p class="sm-meta">KADOKAWA 代表執行役社長CEO ／ ドワンゴ 代表取締役社長CEO</p>
+        <p class="sm-affil">慶應義塾大学SFC 特別招聘教授</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">1965年3月17日生まれ。早稲田大学政治経済学部卒、米ペンシルバニア大学ウォートン経営大学院（MBA）修了。東京ガス入社後、1997年NTTドコモへ。1999年「iモード」立ち上げ、その後「おサイフケータイ」など多数のサービスを世に送り出した。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・NTTドコモ「iモード」「おサイフケータイ」立ち上げ<br>・2005年 NTTドコモ執行役員、2008年退社<br>・慶應義塾大学大学院 政策・メディア研究科 特別招聘教授<br>・2021年6月 株式会社KADOKAWA代表取締役社長就任<br>・株式会社ドワンゴ代表取締役社長CEO</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-miwa" role="dialog" aria-modal="true" aria-labelledby="m-miwa-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <img src="img/summit/mentor_miwa.jpg" alt="三輪 開人" class="sm-photo">
+      <div>
+        <h3 class="sm-name" id="m-miwa-name">三輪 開人<span class="sm-kana">ミワ カイト</span></h3>
+        <p class="sm-meta">認定NPO法人e-Education 代表 ／ 株式会社e-Education 代表</p>
+        <p class="sm-affil">プレゼン大会 メンター ／ 著書『100%共感プレゼン』</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">1986年生まれ。早稲田大学法学部在学中に同大学の後輩とともにNPO法人e-Educationの前身を設立。卒業後JICAで東南アジア・大洋州の教育案件を担当。2013年JICA退職、2014年7月にe-Education代表へ就任。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・バングラデシュをはじめ途上国14カ国で3万人の中高生に映像授業を届ける<br>・2017年 ICC FUKUOKA「カタパルト・グランプリ」第1回優勝<br>・Forbes 30 Under 30 Asia (2016)<br>・著書『100%共感プレゼン』（2020年・ダイヤモンド社）<br>・NEXY Summit 2026 プレゼン大会 メンター</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-sano" role="dialog" aria-modal="true" aria-labelledby="m-sano-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-sano-name">佐野 貴<span class="sm-kana">サノ タカシ</span></h3>
+        <p class="sm-meta">TALENT PRENEUR 主宰 ／ 才能診断</p>
+        <p class="sm-affil">心理学ベースの才能言語化メソッド開発</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">心理学をベースに人々の「才能」や「強み」を言語化する才能診断を延べ1,700名以上に実施。自身の才能をサービスに変える起業スクール「TALENT PRENEUR」を運営。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な活動</p>
+      <p class="sm-section-body">・才能診断 1,700名以上に実施<br>・起業スクール「TALENT PRENEUR」主宰<br>・心理学ベースの「才能」言語化メソッド開発<br>・才能をサービスへ変える支援活動</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-hirano" role="dialog" aria-modal="true" aria-labelledby="m-hirano-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-hirano-name">平野 歩<span class="sm-kana">ヒラノ アユム</span></h3>
+        <p class="sm-meta">SailStep株式会社 代表取締役</p>
+        <p class="sm-affil">シリアル・アントレプレナー ／ エンジェル投資家</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">2社の会社売却・事業売却の経験があるシリアル・アントレプレナー。現在はSailStep株式会社 代表取締役として、大手企業向けの新規事業立ち上げ支援、スタートアップ数社へのエンジェル投資も行っている。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・2015年 OurPhoto株式会社（写真撮影サービス）創業<br>・2020年 株式会社うるるに事業売却<br>・2021年 教育EC事業を創業<br>・2022年 株式会社GAKKEN CC（学研グループ）に売却、取締役就任<br>・SailStep株式会社 代表取締役<br>・大手企業向け新規事業支援、スタートアップへのエンジェル投資</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-kotosaka" role="dialog" aria-modal="true" aria-labelledby="m-kotosaka-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-kotosaka-name">琴坂 将広<span class="sm-kana">コトサカ マサヒロ</span></h3>
+        <p class="sm-meta">慶應義塾大学 総合政策学部 准教授</p>
+        <p class="sm-affil">経営戦略・国際経営 ／ 元マッキンゼー</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">日本の経営学者。専門は国際経営と経営戦略。慶應義塾大学環境情報学部卒、オックスフォード大学にて経営学博士号を取得。3社の起業に関わった後マッキンゼー・アンド・カンパニーに勤務、北欧・西欧・中東・アジアの9カ国で多国籍企業の戦略策定に従事。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・オックスフォード大学助手、立命館大学経営学部准教授を経て、2016年より慶應SFC准教授<br>・株式会社ユーグレナ、ユーザベース、ラクスル、五常・アンド・カンパニー、アピリッツの取締役を兼務<br>・著書『経営戦略原論』（東洋経済新報社、2018）など多数</p>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-modal" id="modal-shakudo" role="dialog" aria-modal="true" aria-labelledby="m-shakudo-name">
+  <div class="speaker-modal-body">
+    <button class="speaker-modal-close" aria-label="閉じる">×</button>
+    <div class="sm-head">
+      <div class="sm-photo speaker-placeholder">写真<br>準備中</div>
+      <div>
+        <h3 class="sm-name" id="m-shakudo-name">赤土 豪一<span class="sm-kana">シャクド ゴウイチ</span></h3>
+        <p class="sm-meta">リクルート「キャリアガイダンス」編集長</p>
+        <p class="sm-affil">東京学芸大学 先端教育人材育成推進機構 准教授</p>
+      </div>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">About</p>
+      <p class="sm-section-body">大阪府生まれ。早稲田大学大学院商学研究科ビジネス専攻（MBA）修了。新卒でベネッセコーポレーション入社、「こどもちゃれんじ」等のマーケ・教材開発に従事。その後リクルートへ転職し、「スタディサプリ」にて高校生向けキャリア教育プログラムの開発を担い、半世紀近く不変だった進路選択体験を2年かけて変革。全社イノベーションアワード「FORUM｜GROWTH部門」を受賞。</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">主な実績</p>
+      <p class="sm-section-body">・2021年4月 リクルート「キャリアガイダンス」編集長就任<br>・同年「高校生Ring」立ち上げ、累計10万人以上が探究学習で取り組む国内最大級のアントレ教育PGに発展<br>・東京学芸大学 准教授（先端教育人材育成推進機構）<br>・Minecraftカップ全国大会 審査員<br>・文部科学省「全国学生調査」有識者会議委員<br>・キャリア教育推進連携シンポジウム 基調講演（文科省・経産省・厚労省主催）</p>
+    </div>
+    <div class="sm-section">
+      <p class="sm-section-label">メッセージ</p>
+      <p class="sm-section-body">半径5メートルから始まる、自分の心が動く対象に「自分なりの意味」を見出すこと。その内発的なエネルギーを起点に、既存のルールに囚われず新しい価値を生み出すプロセスを、私は「内発新結合」と呼んでいます。</p>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
