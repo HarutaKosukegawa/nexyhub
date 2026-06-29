@@ -1046,6 +1046,54 @@ img { max-width: 100%; display: block; }
 .sponsor-tier.platinum .sponsor-card { aspect-ratio: 16/9; font-size: 1rem; }
 .sponsor-tier.gold .sponsor-card { aspect-ratio: 4/3; font-size: .86rem; }
 .sponsor-tier.silver .sponsor-card { aspect-ratio: 4/3; font-size: .76rem; }
+
+/* スポンサーロゴ（差し替え枠）— ボタン化 */
+.sponsor-card.sponsor-logo {
+  cursor: pointer; padding: 18px 22px; background: #fff;
+  border: 1px solid var(--line); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.sponsor-card.sponsor-logo:hover {
+  transform: translateY(-3px); border-color: var(--orange);
+  box-shadow: 0 12px 26px rgba(242,139,61,.18);
+}
+.sponsor-card.sponsor-logo img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; display: block;
+}
+
+/* スポンサーモーダル */
+.sponsor-modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999; padding: 24px;
+}
+.sponsor-modal.is-open { display: flex; }
+.sponsor-modal-body {
+  background: #fff; max-width: 560px; width: 100%;
+  border-radius: 12px; padding: 36px 32px; position: relative;
+  max-height: 85vh; overflow-y: auto;
+}
+.sponsor-modal-close {
+  position: absolute; top: 14px; right: 16px; background: transparent;
+  border: 0; font-size: 1.8rem; cursor: pointer; color: var(--text2); line-height: 1;
+}
+.sponsor-modal-logo {
+  max-width: 220px; margin: 0 auto 22px; display: block;
+}
+.sponsor-modal-tier {
+  font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: .2em;
+  text-align: center; font-size: .72rem; color: var(--orange);
+  margin-bottom: 8px;
+}
+.sponsor-modal-name {
+  text-align: center; font-size: 1.18rem; font-weight: 900;
+  margin-bottom: 18px; color: var(--text);
+}
+.sponsor-modal-desc {
+  font-size: .92rem; line-height: 1.95; color: var(--text2);
+  white-space: pre-wrap;
+}
+
 .sponsors-note {
   margin-top: 32px; text-align: center; font-size: .78rem;
   color: var(--text3); font-style: italic;
@@ -4198,6 +4246,43 @@ Abema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞�
     </div>
   </div>
 </div>
+
+
+<!-- Sponsor Modal: CHEERS! -->
+<div class="sponsor-modal" id="modal-sponsor-cheers" role="dialog" aria-modal="true" aria-labelledby="m-sponsor-cheers-name">
+  <div class="sponsor-modal-body">
+    <button class="sponsor-modal-close" aria-label="閉じる">×</button>
+    <img src="img/summit/sponsor_cheers.png" alt="CHEERS!" class="sponsor-modal-logo">
+    <div class="sponsor-modal-tier">PLATINUM SPONSOR</div>
+    <h3 class="sponsor-modal-name" id="m-sponsor-cheers-name">CHEERS!（株式会社CHEERS）</h3>
+    <p class="sponsor-modal-desc">「あらゆるパートナーとの協力で、子どもたちの挑戦機会を公平に」をミッションに、ワクワクで、世界とこころを沸かせる体験をデザインしています。これまで全国51の自治体で、1,100社を超える企業と協力し、約35,000人を超える親子に無償で体験機会を届けてきました。</p>
+  </div>
+</div>
+
+<script>
+// Sponsor Modal handler
+(function(){
+  var openers = document.querySelectorAll('button.sponsor-logo[data-sponsor]');
+  openers.forEach(function(b){
+    b.addEventListener('click', function(){
+      var key = b.getAttribute('data-sponsor');
+      var modal = document.getElementById('modal-sponsor-' + key);
+      if (modal) { modal.classList.add('is-open'); document.body.style.overflow='hidden'; }
+    });
+  });
+  document.querySelectorAll('.sponsor-modal').forEach(function(m){
+    var close = function(){ m.classList.remove('is-open'); document.body.style.overflow=''; };
+    m.addEventListener('click', function(e){ if (e.target === m) close(); });
+    var btn = m.querySelector('.sponsor-modal-close');
+    if (btn) btn.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.sponsor-modal.is-open').forEach(function(m){ m.classList.remove('is-open'); document.body.style.overflow=''; });
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
