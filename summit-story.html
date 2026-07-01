@@ -81,6 +81,14 @@ a { color:inherit; }
 .footer { padding:36px 6%; display:flex; flex-wrap:wrap; gap:24px; justify-content:center; font-size:.78rem; color:var(--text3); border-top:1px solid var(--line); }
 .footer a { color:var(--text2); text-decoration:none; }
 .footer a:hover { color:var(--orange); }
+
+.powered-by { background:#fff; padding:22px 6% 0; display:flex; justify-content:center; }
+.powered-by-inner { display:flex; align-items:center; gap:16px; padding:14px 26px; background:var(--paper); border:1px solid var(--line); border-radius:8px; max-width:720px; }
+.pb-label { font-family:'Inter',sans-serif; font-size:.72rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--text2); }
+.pb-divider { width:1px; height:22px; background:var(--line); }
+.pb-logo { height:32px; width:auto; display:block; }
+.pb-note { font-size:.72rem; color:var(--text3); }
+@media (max-width:600px){ .powered-by-inner{ padding:10px 16px; gap:12px; flex-wrap:wrap; justify-content:center; } .pb-label{ font-size:.62rem; } .pb-logo{ height:22px; } .pb-note{ display:none; } }
 </style>
 
 <script type="application/ld+json">
@@ -120,6 +128,16 @@ a { color:inherit; }
   <h1>ストーリー展<em>。</em></h1>
   <div class="hero-img"></div>
 </section>
+
+<div class="powered-by" aria-label="Powered by CHEERS">
+  <div class="powered-by-inner">
+    <span class="pb-label">Powered by</span>
+    <span class="pb-divider" aria-hidden="true"></span>
+    <img src="img/summit/sponsor_cheers.png" alt="CHEERS!（株式会社CHEERS）" class="pb-logo">
+    <span class="pb-divider" aria-hidden="true"></span>
+    <span class="pb-note">本エリアは CHEERS! の協賛により実現しています</span>
+  </div>
+</div>
 
 <div class="content">
   <p class="intro">有名な経営者や挑戦してきた人たちの人生を、ライフグラフや年表、言葉とともに展示するエリアです。</p>
