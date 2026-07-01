@@ -1900,19 +1900,15 @@ body.modal-open { overflow: hidden; }
 /* ===== Why フルブリード横長セクション ===== */
 .why-fullwidth {
   width: 100%;
-  background: linear-gradient(135deg, var(--orange) 0%, #FF6B47 100%);
-  color: #fff;
+  background: #fff;
+  color: var(--text);
   padding: 64px 5% 56px;
   position: relative;
   overflow: hidden;
-  border-bottom: 3px solid #fff;
+  border-bottom: 1px solid var(--line);
 }
 .why-fullwidth::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(255,255,255,.18) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(255,255,255,.14) 0%, transparent 45%);
-  pointer-events: none;
+  content: none;
 }
 .why-fullwidth-inner {
   max-width: 1280px; margin: 0 auto;
@@ -1925,9 +1921,9 @@ body.modal-open { overflow: hidden; }
   font-size: .76rem; font-weight: 900;
   letter-spacing: .26em; text-transform: uppercase;
   padding: 7px 18px;
-  background: rgba(255,255,255,.18);
-  border: 1.5px solid rgba(255,255,255,.55);
-  color: #fff;
+  background: rgba(242,139,61,.08);
+  border: 1.5px solid var(--orange);
+  color: var(--orange);
   margin-bottom: 22px;
 }
 .why-headline {
@@ -1939,16 +1935,16 @@ body.modal-open { overflow: hidden; }
 }
 .why-headline em {
   font-style: normal;
-  color: #FFE4B0;
+  color: var(--orange);
   position: relative;
-  background: linear-gradient(transparent 60%, rgba(255,255,255,.32) 60%);
+  background: linear-gradient(transparent 60%, rgba(242,139,61,.16) 60%);
   padding: 0 8px;
 }
 .why-lead {
   font-size: clamp(.96rem, 2vw, 1.18rem);
   line-height: 2.05;
   max-width: 880px; margin: 0 auto 36px;
-  color: rgba(255,255,255,.96);
+  color: var(--text2);
   font-weight: 600;
 }
 .why-stats {
@@ -1966,7 +1962,7 @@ body.modal-open { overflow: hidden; }
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 900;
   line-height: 1;
-  color: #fff;
+  color: var(--orange);
   letter-spacing: -.02em;
   margin-bottom: 6px;
 }
@@ -1974,11 +1970,11 @@ body.modal-open { overflow: hidden; }
   font-size: .76rem;
   font-weight: 700;
   letter-spacing: .08em;
-  color: rgba(255,255,255,.86);
+  color: var(--text3);
 }
 .why-stat-divider {
   width: 1px; height: 50px;
-  background: rgba(255,255,255,.32);
+  background: var(--line-strong);
 }
 @media (max-width: 760px) {
   .why-fullwidth { padding: 44px 5% 40px; }
