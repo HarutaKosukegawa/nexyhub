@@ -2046,6 +2046,294 @@ body.modal-open { overflow: hidden; }
 
 /* SEO用 視覚的非表示 */
 .seo-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ===================================================================== */
+/* HERO v2  ─  添付画像デザイン準拠（日本最大級／1,000人 復活バージョン） */
+/* ===================================================================== */
+
+/* nav CTA */
+.nav-cta-v2 {
+  display: inline-flex; align-items: center; padding: 8px 20px;
+  background: var(--orange); color: #fff !important;
+  border-radius: 999px; font-weight: 800; font-size: .82rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 6px 16px rgba(242,139,61,.28);
+}
+.nav-cta-v2:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(242,139,61,.42); }
+.nav-links li:has(.nav-cta-v2) { margin-left: 12px; }
+.mobile-nav-cta {
+  margin-top: 18px !important; padding: 14px 24px !important;
+  background: var(--orange) !important; color: #fff !important;
+  border-radius: 999px !important; text-align: center; font-weight: 800 !important;
+}
+
+/* v2 カラーパレット拡張 */
+:root {
+  --v2-navy: #1a2d5c;
+  --v2-orange: #ee7a3d;
+  --v2-orange-dark: #d1622b;
+  --v2-mint: #4dd0c1;
+  --v2-mint-dark: #2fb8a9;
+  --v2-blue: #4a90e2;
+  --v2-blue-soft: #6ba7ec;
+}
+
+/* Hero セクション枠 */
+.hero-v2 {
+  position: relative; overflow: hidden;
+  background: #fff;
+  padding: 108px 60px 60px;
+  min-height: 720px;
+}
+@media (max-width: 900px) {
+  .hero-v2 { padding: 88px 24px 44px; min-height: 0; }
+}
+
+.hero-v2-inner {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .hero-v2-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* 背景ブラシストローク（CSSのみで再現） */
+.hv2-brushes { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hv2-brush { position: absolute; filter: blur(1px); opacity: .8; }
+.hv2-brush-orange-lg {
+  top: 8%; right: 24%; width: 460px; height: 60px;
+  background: linear-gradient(105deg, transparent 0%, var(--v2-orange) 20%, var(--v2-orange) 70%, transparent 95%);
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  transform: rotate(-14deg); opacity: .78;
+}
+.hv2-brush-mint-lg {
+  bottom: 14%; right: 6%; width: 520px; height: 70px;
+  background: linear-gradient(105deg, transparent 0%, var(--v2-mint) 20%, var(--v2-mint) 70%, transparent 95%);
+  border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%;
+  transform: rotate(-10deg); opacity: .68;
+}
+.hv2-brush-blue-md {
+  top: 42%; right: 42%; width: 340px; height: 50px;
+  background: linear-gradient(100deg, transparent 0%, var(--v2-blue) 25%, var(--v2-blue-soft) 65%, transparent 95%);
+  border-radius: 50%; transform: rotate(-18deg); opacity: .58;
+}
+.hv2-brush-orange-sm {
+  top: 26%; right: 8%; width: 260px; height: 34px;
+  background: linear-gradient(90deg, transparent 0%, var(--v2-orange) 40%, transparent 100%);
+  border-radius: 50%; transform: rotate(-22deg); opacity: .55;
+}
+.hv2-brush-mint-sm {
+  bottom: 38%; right: 34%; width: 200px; height: 30px;
+  background: linear-gradient(90deg, transparent 0%, var(--v2-mint) 40%, transparent 100%);
+  border-radius: 50%; transform: rotate(6deg); opacity: .5;
+}
+@media (max-width: 900px) {
+  .hv2-brush-orange-lg { width: 260px; height: 44px; top: 4%; right: 8%; }
+  .hv2-brush-mint-lg { width: 280px; height: 46px; }
+  .hv2-brush-blue-md { width: 200px; }
+  .hv2-brush-orange-sm { width: 160px; }
+  .hv2-brush-mint-sm { width: 140px; }
+}
+
+/* 左：テキストブロック */
+.hero-v2-left { position: relative; z-index: 3; }
+.hero-v2-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; margin-bottom: 24px;
+  border: 2px solid var(--v2-mint); border-radius: 999px;
+  color: var(--v2-mint-dark); font-size: .92rem; font-weight: 700;
+  background: rgba(77,208,193,.06);
+}
+.hv2-badge-star { color: var(--v2-mint-dark); flex-shrink: 0; }
+
+.hero-v2-title {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  color: var(--v2-navy); font-size: clamp(2.4rem, 6.4vw, 5.4rem);
+  line-height: 1.08; letter-spacing: -0.01em;
+  margin: 0 0 20px; text-shadow: 3px 3px 0 rgba(0,0,0,0.02);
+}
+.hv2-title-line { display: block; }
+.hv2-yaritai { color: var(--v2-navy); position: relative; display: inline-block; }
+.hv2-yaritai::after {
+  content: ''; position: absolute; left: -2%; right: -2%; bottom: 4px; height: 8px;
+  background: var(--v2-orange); opacity: .18; z-index: -1; border-radius: 4px;
+}
+.hv2-ippo { color: var(--v2-mint-dark); position: relative; display: inline-block; }
+.hv2-ippo::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 6px;
+  background: var(--v2-mint); border-radius: 4px;
+}
+.hv2-dot { color: var(--v2-navy); }
+
+.hero-v2-sub {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: clamp(1.15rem, 2.4vw, 1.86rem); margin: 22px 0 14px;
+  color: var(--v2-navy);
+}
+.hv2-sub-a { color: var(--v2-mint-dark); }
+.hv2-sub-b { color: var(--v2-orange); }
+
+.hero-v2-desc {
+  color: var(--text2); font-size: .96rem; line-height: 1.85;
+  margin-bottom: 20px; max-width: 560px;
+}
+@media (max-width: 900px) { .hero-v2-desc br { display: none; } }
+
+.hero-v2-pills {
+  display: flex; flex-wrap: wrap; gap: 10px 12px; margin-bottom: 26px;
+}
+.hv2-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 999px;
+  background: #fff; border: 1.5px solid var(--line-strong);
+  font-size: .84rem; font-weight: 700; color: var(--v2-navy);
+}
+.hv2-pill svg { color: var(--v2-orange); flex-shrink: 0; }
+.hv2-pill-free { border-color: var(--v2-orange); }
+.hv2-free-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  background: var(--v2-orange); color: #fff; font-size: .68rem; font-weight: 900;
+  letter-spacing: .06em; margin-right: 2px;
+}
+
+.hero-v2-ctas {
+  display: flex; gap: 16px; margin-bottom: 30px; flex-wrap: wrap;
+}
+.hv2-btn-primary, .hv2-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 40px; border-radius: 999px;
+  font-size: 1rem; font-weight: 800;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.hv2-btn-primary {
+  background: var(--v2-orange); color: #fff !important;
+  box-shadow: 0 10px 26px rgba(238,122,61,.34);
+}
+.hv2-btn-primary:hover {
+  background: var(--v2-orange-dark); transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(238,122,61,.48);
+}
+.hv2-btn-outline {
+  background: #fff; color: var(--v2-navy) !important;
+  border: 2px solid var(--v2-navy);
+}
+.hv2-btn-outline:hover {
+  background: var(--v2-navy); color: #fff !important; transform: translateY(-3px);
+}
+.hv2-arrow { font-size: 1.2rem; line-height: 1; font-weight: 900; }
+
+.hero-v2-features {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.hv2-feat {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 18px; background: #f7f8fa; border-radius: 10px;
+  font-size: .84rem; font-weight: 700; color: var(--v2-navy);
+}
+.hv2-feat svg:nth-child(1) { color: var(--v2-orange); }
+.hv2-feat:nth-child(1) svg { color: var(--v2-orange); }
+.hv2-feat:nth-child(2) svg { color: var(--v2-mint-dark); }
+.hv2-feat:nth-child(3) svg { color: var(--v2-blue); }
+
+/* 右：写真コラージュ+カード */
+.hero-v2-right {
+  position: relative; z-index: 3;
+  display: grid; grid-template-columns: 1fr 220px; gap: 20px;
+  min-height: 560px;
+}
+@media (max-width: 1100px) {
+  .hero-v2-right { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .hero-v2-right { min-height: 0; }
+}
+
+.hv2-photos {
+  position: relative; min-height: 480px;
+}
+@media (max-width: 900px) {
+  .hv2-photos { min-height: 340px; }
+}
+.hv2-photo {
+  position: absolute; background: linear-gradient(135deg, #f2f5fa 0%, #e6ecf3 100%);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 44px rgba(26,45,92,.14);
+  transform: rotate(-8deg);
+}
+.hv2-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hv2-photo.is-placeholder {
+  background: linear-gradient(140deg, #e6ecf3 0%, #d9e2ee 50%, #cad6e6 100%);
+}
+.hv2-photo.is-placeholder::before {
+  content: ''; position: absolute; left: 50%; top: 30%;
+  width: 42%; padding-bottom: 42%; transform: translateX(-50%);
+  background: rgba(26,45,92,.12); border-radius: 50%;
+}
+.hv2-photo.is-placeholder::after {
+  content: ''; position: absolute; left: 50%; bottom: -8%;
+  width: 76%; padding-bottom: 76%; transform: translateX(-50%);
+  background: rgba(26,45,92,.10); border-radius: 50%;
+}
+.hv2-photo-top {
+  top: 4%; left: 22%; width: 46%; aspect-ratio: 3/4;
+  transform: rotate(-10deg);
+}
+.hv2-photo-mid {
+  top: 26%; left: 4%; width: 44%; aspect-ratio: 3/4;
+  transform: rotate(-4deg); z-index: 2;
+}
+.hv2-photo-bot {
+  top: 34%; right: 4%; width: 48%; aspect-ratio: 4/5;
+  transform: rotate(6deg); z-index: 3;
+}
+
+.hv2-cards {
+  display: flex; flex-direction: column; gap: 14px;
+  align-content: start;
+}
+@media (max-width: 1100px) {
+  .hv2-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .hv2-cards { grid-template-columns: 1fr; }
+}
+.hv2-card {
+  display: flex; align-items: center; gap: 14px;
+  background: #fff; border-radius: 16px; padding: 18px 20px;
+  box-shadow: 0 8px 24px rgba(26,45,92,.08);
+}
+.hv2-card-icon {
+  flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 900;
+}
+.hv2-icon-orange { background: var(--v2-orange); }
+.hv2-icon-mint { background: var(--v2-mint); }
+.hv2-icon-txt { font-family: 'Inter', sans-serif; font-size: 1rem; letter-spacing: -.02em; }
+.hv2-card-body { flex: 1; min-width: 0; }
+.hv2-card-title { font-size: .96rem; font-weight: 800; color: var(--v2-navy); line-height: 1.3; }
+.hv2-card-title-sm { font-size: .72rem; color: var(--text3); font-weight: 700; margin-bottom: 2px; }
+.hv2-card-num {
+  font-family: 'Inter', sans-serif; font-size: 1.7rem; font-weight: 900;
+  color: var(--v2-navy); line-height: 1; margin: 2px 0;
+}
+.hv2-card-unit { font-size: 1rem; margin-left: 2px; }
+.hv2-card-sub { font-size: .7rem; color: var(--text3); line-height: 1.5; margin-top: 4px; }
+
+/* モバイル微調整 */
+@media (max-width: 700px) {
+  .hero-v2-title { font-size: 2.2rem; }
+  .hero-v2-sub { font-size: 1.15rem; }
+  .hero-v2-badge { font-size: .82rem; padding: 8px 14px; }
+  .hv2-btn-primary, .hv2-btn-outline { flex: 1; padding: 14px 20px; font-size: .9rem; }
+  .hero-v2-features { flex-direction: column; gap: 8px; }
+  .hv2-feat { width: 100%; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -2136,62 +2424,105 @@ body.modal-open { overflow: hidden; }
 <nav class="nav">
   <div class="nav-logo"><a href="https://www.nexyhub.jp/index.html#home"><img src="img/summit/nexy_logo.png" alt="NEXY Summit 2026 - NEXYトップへ" class="nav-logo-img"></a></div>
   <ul class="nav-links">
-    <li><a href="#top">TOP</a></li>
-    <li><a href="#about">NEXYサミットとは？</a></li>
+    <li><a href="#about">イベント概要</a></li>
     <li><a href="#program">プログラム</a></li>
     <li><a href="#speakers">登壇者</a></li>
-    <li><a href="#target">参加者</a></li>
-    <li><a href="#scholarship">スカラシップ制度</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="summit-members.html">運営メンバー</a></li>
-      </ul>
+    <li><a href="#target">参加対象</a></li>
+    <li><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="nav-cta-v2">無料で申し込む</a></li>
+  </ul>
   <button class="nav-burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#top">TOP</a>
-  <a href="#about">NEXYサミットとは？</a>
+  <a href="#about">イベント概要</a>
   <a href="#program">プログラム</a>
   <a href="#speakers">登壇者</a>
-  <a href="#target">参加者</a>
+  <a href="#target">参加対象</a>
   <a href="#scholarship">スカラシップ制度</a>
   <a href="#faq">FAQ</a>
   <a href="summit-members.html">運営メンバー</a>
+  <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="mobile-nav-cta">無料で申し込む →</a>
+</div>
+
+<!-- SECTION 01: HERO v2 (添付画像デザイン準拠) -->
+<section class="hero-v2" id="top">
+  <!-- 背景ブラシストローク -->
+  <div class="hv2-brushes" aria-hidden="true">
+    <div class="hv2-brush hv2-brush-orange-lg"></div>
+    <div class="hv2-brush hv2-brush-mint-lg"></div>
+    <div class="hv2-brush hv2-brush-blue-md"></div>
+    <div class="hv2-brush hv2-brush-orange-sm"></div>
+    <div class="hv2-brush hv2-brush-mint-sm"></div>
   </div>
 
-<!-- SECTION 01: HERO (1枚目KV) -->
-<section class="hero" id="top">
-  <div class="hero-image-wrap">
-    <img src="img/summit/hero_kv.jpg" alt="NEXY Summit 2026｜「やりたい」をひとりで抱えなくていい｜2026年8月6日 東京たま未来メッセ" class="hero-image">
-  </div>
-  <div class="hero-body">
-    <div class="hero-badges">
-      <span class="hbadge fill">高校生・大学生 無料</span>
-      <span class="hbadge mint">社会人も歓迎 ¥3,000</span>
-      <span class="hbadge">事前申込／当日参加OK</span>
+  <div class="hero-v2-inner">
+    <!-- 左カラム：テキスト -->
+    <div class="hero-v2-left">
+      <div class="hero-v2-badge">
+        <svg class="hv2-badge-star" viewBox="0 0 20 20" width="16" height="16"><path fill="currentColor" d="M10 0l2.5 6.5L20 8l-6 4.5L15.5 20 10 16 4.5 20 6 12.5 0 8l7.5-1.5z"/></svg>
+        日本最大級の高校生サミット
+      </div>
+
+      <h1 class="hero-v2-title">
+        <span class="hv2-title-line">君の<span class="hv2-yaritai">やりたい</span>を、</span>
+        <span class="hv2-title-line">次の<span class="hv2-ippo">一歩</span>へ<span class="hv2-dot">。</span></span>
+      </h1>
+
+      <p class="hero-v2-sub"><span class="hv2-sub-a">高校生が創る</span>、<span class="hv2-sub-b">高校生のための1日</span></p>
+
+      <p class="hero-v2-desc">学校では出会えない刺激的な高校生1,000人とつながる。<br>探究、AO、プレゼン、進路のヒントが見つかる1日。</p>
+
+      <div class="hero-v2-pills">
+        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2026.08.06(木)</span>
+        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>10:00-18:00</span>
+        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>東京たま未来メッセ</span>
+        <span class="hv2-pill hv2-pill-free"><span class="hv2-free-tag">FREE</span>参加無料</span>
+      </div>
+
+      <div class="hero-v2-ctas">
+        <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="hv2-btn-primary">無料で申し込む<span class="hv2-arrow">›</span></a>
+        <a href="#about" class="hv2-btn-outline">詳細を見る<span class="hv2-arrow">›</span></a>
+      </div>
+
+      <div class="hero-v2-features">
+        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>高校生中心1,000人規模</div>
+        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="22" x2="4" y2="15"/><path d="M4 15L8 12L14 15L20 12V4L14 7L8 4L4 7Z"/></svg>6つの体験エリア</div>
+        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>AO・探究にも役立つ</div>
+      </div>
     </div>
-    <div class="hero-catch">
-      <p class="hero-catch-em">「やりたい」を、<em>ひとりで抱えなくていい。</em></p>
-      <p class="hero-catch-sub">同じ熱量で語り合える仲間に、出会う1日。</p>
-    </div>
-    <h1 class="seo-only">NEXYサミット 2026（NEXY Summit 2026 ／ ネクシーサミット）｜2026年8月6日・東京たま未来メッセで開催の高校生向けサミット</h2>
-    <h2 class="hero-text-meta">
-      <span class="hero-tm-line">
-        <span class="hero-tm-icon" style="font-family:Inter,sans-serif;">DATE</span>
-        2026年8月6日（木）10:00–18:00
-      </span>
-      <span class="hero-tm-line">
-        <span class="hero-tm-icon" style="font-family:Inter,sans-serif;">PLACE</span>
-        東京たま未来メッセ（八王子）
-      </span>
-      <span class="hero-tm-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</span>
-    </h1>
-    
-    <div class="free-notice-wrap">
-      <span class="free-notice">※ 中学生〜社会人 全年代歓迎 ／ 高校生・大学生 無料 ／ 社会人 ¥3,000</span>
-    </div>
-    <div class="hero-ctas">
-      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
-      <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-mint">Instagramで相談する</a>
+
+    <!-- 右カラム：写真コラージュ+情報カード -->
+    <div class="hero-v2-right">
+      <div class="hv2-photos">
+        <div class="hv2-photo hv2-photo-top"><img src="img/summit/hero_student_01.png" alt="NEXYサミット 高校生登壇者" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
+        <div class="hv2-photo hv2-photo-mid"><img src="img/summit/hero_student_02.png" alt="NEXYサミット 集う高校生たち" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
+        <div class="hv2-photo hv2-photo-bot"><img src="img/summit/hero_student_03.png" alt="NEXYサミット 会場の様子" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
+      </div>
+
+      <div class="hv2-cards">
+        <div class="hv2-card">
+          <div class="hv2-card-icon hv2-icon-orange"><span class="hv2-icon-txt">¥0</span></div>
+          <div class="hv2-card-body">
+            <div class="hv2-card-title">参加無料</div>
+            <div class="hv2-card-sub">すべてのプログラムが<br>無料で参加可能！</div>
+          </div>
+        </div>
+        <div class="hv2-card">
+          <div class="hv2-card-icon hv2-icon-mint"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="hv2-card-body">
+            <div class="hv2-card-title-sm">高校生</div>
+            <div class="hv2-card-num">1,000<span class="hv2-card-unit">人</span></div>
+            <div class="hv2-card-sub">全国から高校生が集結</div>
+          </div>
+        </div>
+        <div class="hv2-card">
+          <div class="hv2-card-icon hv2-icon-orange"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="hv2-card-body">
+            <div class="hv2-card-title-sm">会場：八王子駅徒歩1分</div>
+            <div class="hv2-card-title">東京たま未来メッセ</div>
+            <div class="hv2-card-sub">アクセス抜群の会場！</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
