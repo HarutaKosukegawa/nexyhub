@@ -2334,6 +2334,54 @@ body.modal-open { overflow: hidden; }
   .hero-v2-features { flex-direction: column; gap: 8px; }
   .hv2-feat { width: 100%; }
 }
+
+/* ===================================================================== */
+/* HERO KV (単一画像版) — 添付完成画像1枚をKVとして表示                    */
+/* ===================================================================== */
+.hero-kv {
+  padding: 88px 0 40px; background: #fff; text-align: center;
+}
+.hero-kv-wrap {
+  max-width: 1400px; margin: 0 auto; padding: 0 24px;
+}
+.hero-kv-img {
+  width: 100%; height: auto; display: block;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.07);
+}
+.hero-kv-ctas {
+  display: flex; gap: 16px; justify-content: center;
+  margin: 32px auto 12px; max-width: 700px; padding: 0 24px; flex-wrap: wrap;
+}
+.hero-kv-btn-primary, .hero-kv-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 40px; border-radius: 999px;
+  font-size: 1rem; font-weight: 800;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+  flex: 1 1 260px; min-width: 240px;
+}
+.hero-kv-btn-primary {
+  background: var(--orange); color: #fff !important;
+  box-shadow: 0 12px 30px rgba(242,139,61,.36);
+}
+.hero-kv-btn-primary:hover {
+  background: #d76d29; transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(242,139,61,.48);
+}
+.hero-kv-btn-outline {
+  background: #fff; color: var(--text) !important; border: 2px solid var(--text);
+}
+.hero-kv-btn-outline:hover {
+  background: var(--text); color: #fff !important; transform: translateY(-3px);
+}
+.hkv-arrow { font-size: 1.2rem; font-weight: 900; line-height: 1; }
+.hero-kv-deadline {
+  font-size: .82rem; color: var(--text3); margin-top: 8px; padding: 0 24px;
+}
+@media (max-width: 700px) {
+  .hero-kv { padding: 72px 0 32px; }
+  .hero-kv-btn-primary, .hero-kv-btn-outline { padding: 14px 24px; font-size: .92rem; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -2446,88 +2494,17 @@ body.modal-open { overflow: hidden; }
   <a href="summit-members.html">運営メンバー</a>
   </div>
 
-<!-- SECTION 01: HERO v2 (添付画像デザイン準拠) -->
-<section class="hero-v2" id="top">
-  <!-- 背景ブラシストローク -->
-  <div class="hv2-brushes" aria-hidden="true">
-    <div class="hv2-brush hv2-brush-orange-lg"></div>
-    <div class="hv2-brush hv2-brush-mint-lg"></div>
-    <div class="hv2-brush hv2-brush-blue-md"></div>
-    <div class="hv2-brush hv2-brush-orange-sm"></div>
-    <div class="hv2-brush hv2-brush-mint-sm"></div>
+<!-- SECTION 01: HERO KV (完成画像1枚) -->
+<section class="hero-kv" id="top">
+  <h1 class="seo-only">NEXYサミット 2026（NEXY Summit 2026 ／ ネクシーサミット）｜君のやりたいを、次の一歩へ｜2026年8月6日・東京たま未来メッセ開催の日本最大級・高校生1,000人が集うサミット</h1>
+  <div class="hero-kv-wrap">
+    <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日（木）10:00-18:00 東京たま未来メッセ｜参加無料｜高校生1,000人が全国から集結" class="hero-kv-img">
   </div>
-
-  <div class="hero-v2-inner">
-    <!-- 左カラム：テキスト -->
-    <div class="hero-v2-left">
-      <div class="hero-v2-badge">
-        <svg class="hv2-badge-star" viewBox="0 0 20 20" width="16" height="16"><path fill="currentColor" d="M10 0l2.5 6.5L20 8l-6 4.5L15.5 20 10 16 4.5 20 6 12.5 0 8l7.5-1.5z"/></svg>
-        日本最大級の高校生サミット
-      </div>
-
-      <h1 class="hero-v2-title">
-        <span class="hv2-title-line">君の<span class="hv2-yaritai">やりたい</span>を、</span>
-        <span class="hv2-title-line">次の<span class="hv2-ippo">一歩</span>へ<span class="hv2-dot">。</span></span>
-      </h1>
-
-      <p class="hero-v2-sub"><span class="hv2-sub-a">高校生が創る</span>、<span class="hv2-sub-b">高校生のための1日</span></p>
-
-      <p class="hero-v2-desc">学校では出会えない刺激的な高校生1,000人とつながる。<br>探究、AO、プレゼン、進路のヒントが見つかる1日。</p>
-
-      <div class="hero-v2-pills">
-        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2026.08.06(木)</span>
-        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>10:00-18:00</span>
-        <span class="hv2-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>東京たま未来メッセ</span>
-        <span class="hv2-pill hv2-pill-free"><span class="hv2-free-tag">FREE</span>参加無料</span>
-      </div>
-
-      <div class="hero-v2-ctas">
-        <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="hv2-btn-primary">無料で申し込む<span class="hv2-arrow">›</span></a>
-        <a href="#about" class="hv2-btn-outline">詳細を見る<span class="hv2-arrow">›</span></a>
-      </div>
-
-      <div class="hero-v2-features">
-        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>高校生中心1,000人規模</div>
-        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="22" x2="4" y2="15"/><path d="M4 15L8 12L14 15L20 12V4L14 7L8 4L4 7Z"/></svg>6つの体験エリア</div>
-        <div class="hv2-feat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 4 2 10l10 6 10-6z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>AO・探究にも役立つ</div>
-      </div>
-    </div>
-
-    <!-- 右カラム：写真コラージュ+情報カード -->
-    <div class="hero-v2-right">
-      <div class="hv2-photos">
-        <div class="hv2-photo hv2-photo-top"><img src="img/summit/hero_student_01.png" alt="NEXYサミット 高校生登壇者" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
-        <div class="hv2-photo hv2-photo-mid"><img src="img/summit/hero_student_02.png" alt="NEXYサミット 集う高校生たち" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
-        <div class="hv2-photo hv2-photo-bot"><img src="img/summit/hero_student_03.png" alt="NEXYサミット 会場の様子" loading="eager" onerror="this.parentNode.classList.add('is-placeholder');this.remove();"></div>
-      </div>
-
-      <div class="hv2-cards">
-        <div class="hv2-card">
-          <div class="hv2-card-icon hv2-icon-orange"><span class="hv2-icon-txt">¥0</span></div>
-          <div class="hv2-card-body">
-            <div class="hv2-card-title">参加無料</div>
-            <div class="hv2-card-sub">すべてのプログラムが<br>無料で参加可能！</div>
-          </div>
-        </div>
-        <div class="hv2-card">
-          <div class="hv2-card-icon hv2-icon-mint"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="hv2-card-body">
-            <div class="hv2-card-title-sm">高校生</div>
-            <div class="hv2-card-num">1,000<span class="hv2-card-unit">人</span></div>
-            <div class="hv2-card-sub">全国から高校生が集結</div>
-          </div>
-        </div>
-        <div class="hv2-card">
-          <div class="hv2-card-icon hv2-icon-orange"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="hv2-card-body">
-            <div class="hv2-card-title-sm">会場：八王子駅徒歩1分</div>
-            <div class="hv2-card-title">東京たま未来メッセ</div>
-            <div class="hv2-card-sub">アクセス抜群の会場！</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="hero-kv-ctas">
+    <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="hero-kv-btn-primary">無料で申し込む<span class="hkv-arrow">›</span></a>
+    <a href="#about" class="hero-kv-btn-outline">詳細を見る<span class="hkv-arrow">›</span></a>
   </div>
+  <p class="hero-kv-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</p>
 </section>
 
 
