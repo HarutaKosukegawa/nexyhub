@@ -138,6 +138,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:64px;display:flex;ali
 .nav-links a{font-size:.78rem;font-weight:700;color:#444;letter-spacing:.04em;padding:6px 12px;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap;}
 .nav-links a:hover{background:var(--bg);color:var(--black);}
 .nav-links a.active{color:var(--orange);background:rgba(212,98,42,.07);}
+.nav-summit-btn{background:var(--orange)!important;color:#fff!important;border-radius:6px;padding:7px 14px!important;font-size:.76rem!important;transition:background .15s,transform .15s!important;box-shadow:0 4px 12px rgba(212,98,42,.25);}
+.nav-summit-btn:hover{background:#B0501F!important;transform:translateY(-1px);}
+.mobile-summit-link{color:var(--orange)!important;font-weight:900!important;}
 .nav-cta-btn{background:var(--black)!important;color:#fff!important;border-radius:6px;padding:7px 16px!important;margin-left:6px;transition:background .15s!important;}
 .nav-cta-btn:hover{background:var(--orange)!important;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
@@ -506,6 +509,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
     <li><a href="#solutions" data-sec="solutions">事業内容</a></li>
     <li><a href="#members" data-sec="members">メンバー紹介</a></li>
     <li><a href="news.html" data-sec="news">お知らせ</a></li>
+    <li><a href="summit.html" class="nav-summit-btn">NEXYサミット はこちら</a></li>
     <li><a href="#contact" class="nav-cta-btn">お問い合わせ</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -516,6 +520,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   <a href="#solutions" onclick="closeMenu()">事業内容</a>
   <a href="#members" onclick="closeMenu()">メンバー紹介</a>
   <a href="news.html" onclick="closeMenu()">お知らせ</a>
+  <a href="summit.html" onclick="closeMenu()" class="mobile-summit-link">NEXYサミット はこちら</a>
   <a href="#contact" onclick="closeMenu()">お問い合わせ</a>
 </div>
 
