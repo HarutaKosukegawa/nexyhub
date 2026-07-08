@@ -1024,30 +1024,50 @@ img { max-width: 100%; display: block; }
 .sponsor-tier.gold .sponsor-tier-name { font-size: .86rem; color: var(--orange); border: 1.5px solid var(--orange); }
 .sponsor-tier.silver .sponsor-tier-name { font-size: .76rem; color: var(--text2); border: 1px solid var(--text2); }
 
-.sponsor-grid { display: grid; gap: 16px; }
-.sponsor-tier.diamond .sponsor-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
-.sponsor-tier.platinum .sponsor-grid { grid-template-columns: repeat(3, 1fr); max-width: 880px; margin: 0 auto; }
-.sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(5, 1fr); }
-.sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(5, 1fr); }
-@media (max-width: 900px) {
-  .sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
-  .sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(3, 1fr); }
+.sponsor-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  max-width: 1100px; margin: 0 auto;
 }
-@media (max-width: 600px) {
-  .sponsor-tier.platinum .sponsor-grid { grid-template-columns: 1fr 1fr; }
-  .sponsor-tier.gold .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
-  .sponsor-tier.silver .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
-}
+.sponsor-tier.diamond .sponsor-grid { max-width: 560px; }
+.sponsor-tier.platinum .sponsor-grid { max-width: 880px; }
+.sponsor-tier.gold .sponsor-grid { max-width: 900px; }
+.sponsor-tier.silver .sponsor-grid { max-width: 900px; }
+
 .sponsor-card {
   background: #fff; border: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Inter', sans-serif; font-weight: 800;
   color: var(--text3); text-align: center; padding: 16px;
+  box-sizing: border-box;
 }
-.sponsor-tier.diamond .sponsor-card { aspect-ratio: 16/6; font-size: 1.16rem; border-width: 2px; border-color: var(--orange); }
-.sponsor-tier.platinum .sponsor-card { aspect-ratio: 16/9; font-size: 1rem; }
-.sponsor-tier.gold .sponsor-card { aspect-ratio: 4/3; font-size: .86rem; }
-.sponsor-tier.silver .sponsor-card { aspect-ratio: 4/3; font-size: .76rem; }
+/* 各tierごとのカード幅と比率 */
+.sponsor-tier.diamond .sponsor-card {
+  aspect-ratio: 16/6; font-size: 1.16rem;
+  border-width: 2px; border-color: var(--orange);
+  width: 100%; max-width: 560px;
+}
+.sponsor-tier.platinum .sponsor-card {
+  aspect-ratio: 16/9; font-size: 1rem;
+  width: calc((100% - 32px) / 3); min-width: 220px;
+}
+.sponsor-tier.gold .sponsor-card {
+  aspect-ratio: 4/3; font-size: .86rem;
+  width: calc((100% - 64px) / 5); min-width: 150px;
+}
+.sponsor-tier.silver .sponsor-card {
+  aspect-ratio: 4/3; font-size: .76rem;
+  width: calc((100% - 64px) / 5); min-width: 140px;
+}
+@media (max-width: 900px) {
+  .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
+  .sponsor-tier.gold .sponsor-card { width: calc((100% - 32px) / 3); }
+  .sponsor-tier.silver .sponsor-card { width: calc((100% - 32px) / 3); }
+}
+@media (max-width: 600px) {
+  .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
+  .sponsor-tier.gold .sponsor-card { width: calc((100% - 16px) / 2); }
+  .sponsor-tier.silver .sponsor-card { width: calc((100% - 16px) / 2); }
+}
 
 /* スポンサーロゴ（差し替え枠）— ボタン化 */
 .sponsor-card.sponsor-logo {
