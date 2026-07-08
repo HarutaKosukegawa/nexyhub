@@ -363,13 +363,13 @@ body { padding-bottom: 70px; }
 <body class="bg-white text-ink">
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- モバイル下部固定CTAバー -->
-<div class="mobile-bottom-cta" aria-label="応募締切と応募ボタン">
+<!-- モバイル下部固定CTAバー: 受付終了 -->
+<div class="mobile-bottom-cta" aria-label="応募受付終了のご案内">
   <div class="mobile-bottom-cta-info">
-    <span class="label">DEADLINE</span>
-    <span class="deadline"><span class="days" id="mb-cta-days">--</span>日後 7/6（月）23:59</span>
+    <span class="label" style="color:#999;">STATUS</span>
+    <span class="deadline" style="color:#999;">応募締切 2026/7/6 受付終了</span>
   </div>
-  <a href="#apply" class="mobile-bottom-cta-btn">応募する →</a>
+  <a href="summit.html#speakers" class="mobile-bottom-cta-btn" style="background:#333;">結果は追ってご連絡</a>
 </div>
 
 
@@ -381,9 +381,9 @@ body { padding-bottom: 70px; }
     </a>
     <div class="flex items-center gap-3">
       <a href="summit.html" class="hidden sm:inline text-xs text-muted hover:text-ink transition">← Summitトップ</a>
-      <a href="#apply" class="cta-pulse bg-orange text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide hover:bg-ink transition">
-        応募する
-      </a>
+      <span class="bg-gray-400 text-white px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-black tracking-wide cursor-default" style="background:#999;">
+        受付終了
+      </span>
     </div>
   </div>
 </nav>
@@ -580,9 +580,9 @@ body { padding-bottom: 70px; }
       </div>
 
       <div class="relative mt-10">
-        <a href="#apply" class="block w-full text-center bg-orange text-white py-5 font-black tracking-wide text-base hover:bg-ink transition glow-orange">
-          応募する
-        </a>
+        <div class="block w-full text-center bg-gray-500 text-white py-5 font-black tracking-wide text-base" style="background:#666;cursor:default;">
+          応募受付終了 ／ 結果発表をお待ちください
+        </div>
       </div>
     </div>
   </div>
@@ -643,9 +643,7 @@ body { padding-bottom: 70px; }
       </p>
     </div>
 
-    <div class="text-center mt-14">
-      <a href="#apply" class="inline-block bg-orange text-white px-10 py-4 font-black tracking-wide hover:bg-ink transition glow-orange">応募する</a>
-    </div>
+
   </div>
 </section>
 
@@ -979,15 +977,15 @@ body { padding-bottom: 70px; }
       応募から本番までの<span class="text-orange">2ヶ月</span>
     </h2>
 
-    <!-- カウントダウン -->
-    <div class="fade-init bg-paper border-2 border-orange p-6 sm:p-8 mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <!-- 応募受付終了 -->
+    <div class="fade-init bg-paper border-2 border-gray-400 p-6 sm:p-8 mb-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="border-color:#666;">
       <div>
         <p class="text-xs text-muted en tracking-widest mb-1">DEADLINE</p>
-        <p class="text-base sm:text-lg font-bold text-ink">2026年7月6日（月）23:59</p>
+        <p class="text-base sm:text-lg font-bold text-ink">2026年7月6日（月）23:59 ／ 受付終了しました</p>
       </div>
       <div class="text-right">
-        <p class="text-xs text-muted en tracking-widest mb-1">REMAINING</p>
-        <p class="text-3xl sm:text-5xl font-black text-orange en"><span id="cd-days">--</span><span class="text-base text-muted ml-2">日</span> <span id="cd-h">--</span>:<span id="cd-m">--</span>:<span id="cd-s">--</span></p>
+        <p class="text-xs text-muted en tracking-widest mb-1">STATUS</p>
+        <p class="text-2xl sm:text-3xl font-black en" style="color:#666;">CLOSED</p>
       </div>
     </div>
 
@@ -1206,7 +1204,7 @@ body { padding-bottom: 70px; }
         <i data-lucide="upload" class="w-8 h-8 text-orange mb-4 mt-2"></i>
         <h3 class="text-lg sm:text-xl font-black mb-3 text-ink">応募フォーム入力</h3>
         <p class="text-sm text-muted leading-relaxed mb-3">基本情報・テーマ・物語を記入。<span class="font-bold text-ink">スライド資料の提出も必須</span>。</p>
-        <p class="en text-xs text-orange">締切：7月6日 23:59</p>
+        <p class="en text-xs" style="color:#999;">締切：7月6日 23:59 ／ <span style="font-weight:900;color:#666;">受付終了</span></p>
       </div>
 
       <div class="fade-init bg-white border border-line p-6 sm:p-8 relative" style="transition-delay:.1s">
@@ -1342,21 +1340,24 @@ body { padding-bottom: 70px; }
   </div>
 
   <div class="relative max-w-4xl mx-auto text-center text-white">
-    <p class="fade-init en text-white/80 text-xs tracking-[.3em] mb-4">APPLY NOW</p>
+    <p class="fade-init en text-white/80 text-xs tracking-[.3em] mb-4">APPLICATION CLOSED</p>
     <h2 class="fade-init text-5xl sm:text-8xl font-black leading-none mb-8">
-      応募受付中
+      応募受付終了
     </h2>
     <p class="fade-init text-base sm:text-xl mb-2 opacity-90">
-      応募締切まで残り
+      たくさんのご応募、ありがとうございました。
     </p>
-    <p class="fade-init en text-5xl sm:text-7xl font-black mb-4 count-up" id="cd-days-2" data-final="0">--<span class="text-2xl sm:text-3xl ml-2 opacity-80">日</span></p>
-    <p class="fade-init text-sm sm:text-base opacity-80 mb-12">
-      2026年7月6日（月）23:59 まで
+    <p class="fade-init text-sm sm:text-base opacity-80 mb-12 mt-6">
+      応募締切：2026年7月6日（月）23:59<br>
+      通過者への個別連絡は、順次お送りしています。
     </p>
 
-    <a href="https://forms.gle/WC4fNGxE1H2znDj4A" target="_blank" rel="noopener" class="fade-init micro-bounce btn-tilt inline-block bg-white text-ink px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-ink hover:text-white transition shadow-2xl">
-      今すぐ応募する
+    <a href="summit.html" class="fade-init inline-block bg-white text-ink px-12 sm:px-20 py-6 sm:py-8 text-xl sm:text-3xl font-black tracking-wide hover:bg-ink hover:text-white transition shadow-2xl">
+      NEXY Summit 2026 トップへ
     </a>
+    <p class="fade-init text-xs opacity-70 mt-6">
+      観覧はサミット当日 (2026/8/6) にご参加ください ／ 参加無料
+    </p>
 
 
       </div>
