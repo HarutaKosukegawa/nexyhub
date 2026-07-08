@@ -1944,6 +1944,9 @@ body.modal-open { overflow: hidden; }
 }
 
 .why-image { width: 100%; max-width: 1200px; margin: 28px auto 0; display: block; height: auto; }
+.why-text-block{max-width:720px;margin:36px auto 0;text-align:center;}
+.why-lead-2{font-size:1.02rem;font-weight:700;color:var(--text);line-height:2.1;margin-bottom:14px;}
+.why-lead-3{font-size:.9rem;color:var(--text2);font-weight:600;letter-spacing:.02em;}
 .why-tag {
   display: inline-block;
   font-family: 'Inter', sans-serif;
@@ -2400,6 +2403,30 @@ body.modal-open { overflow: hidden; }
   background: var(--text); color: #fff !important; transform: translateY(-3px);
 }
 .hkv-arrow { font-size: 1.2rem; font-weight: 900; line-height: 1; }
+
+.cta-value-highlight{background:rgba(255,255,255,0.10);border-radius:8px;}
+.cta-value-unit{font-size:.5em;font-weight:900;margin-left:2px;}
+.speakers-audience-note{max-width:820px;margin:0 auto 32px;padding:18px 24px;background:rgba(46,189,182,0.08);border-left:3px solid var(--mint);border-radius:2px;}
+.speakers-audience-note p{font-size:.9rem;line-height:1.85;color:var(--text2);}
+.speakers-audience-note strong{color:var(--text);font-weight:900;}
+.scholar-tokyo-note{max-width:720px;margin:32px auto 0;padding:22px 24px;background:var(--paper);border-radius:4px;}
+.scholar-tokyo-note .stn-title{font-size:.86rem;font-weight:800;color:var(--orange);margin-bottom:10px;letter-spacing:.02em;}
+.scholar-tokyo-note p{font-size:.86rem;line-height:1.9;color:var(--text2);}
+.voice-card{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--line);padding:44px 40px;border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,0.03);}
+.voice-card-title{font-size:.9rem;font-weight:800;color:var(--orange);letter-spacing:.06em;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--orange);}
+.voice-body p{font-size:.94rem;line-height:2.05;color:var(--text2);margin-bottom:16px;}
+.voice-time{display:inline-block;font-family:'Inter',sans-serif;font-weight:900;font-size:.86rem;color:var(--orange);margin-right:12px;letter-spacing:.04em;}
+.voice-close{margin-top:26px;padding:18px 22px;background:var(--paper);border-left:3px solid var(--orange);font-size:.94rem;font-weight:700;color:var(--text);line-height:1.9;}
+@media (max-width:700px){.cta-value-highlight{background:rgba(255,255,255,0.10);border-radius:8px;}
+.cta-value-unit{font-size:.5em;font-weight:900;margin-left:2px;}
+.speakers-audience-note{max-width:820px;margin:0 auto 32px;padding:18px 24px;background:rgba(46,189,182,0.08);border-left:3px solid var(--mint);border-radius:2px;}
+.speakers-audience-note p{font-size:.9rem;line-height:1.85;color:var(--text2);}
+.speakers-audience-note strong{color:var(--text);font-weight:900;}
+.scholar-tokyo-note{max-width:720px;margin:32px auto 0;padding:22px 24px;background:var(--paper);border-radius:4px;}
+.scholar-tokyo-note .stn-title{font-size:.86rem;font-weight:800;color:var(--orange);margin-bottom:10px;letter-spacing:.02em;}
+.scholar-tokyo-note p{font-size:.86rem;line-height:1.9;color:var(--text2);}
+.voice-card{padding:28px 22px;}.voice-body p{font-size:.86rem;line-height:1.95;}}
+.hero-kv-tagline{margin:22px auto 12px;font-size:1.02rem;font-weight:800;color:var(--text);line-height:1.75;text-align:center;letter-spacing:.01em;}
 .hero-kv-deadline {
   font-size: .82rem; color: var(--text3); margin-top: 8px; padding: 0 24px;
 }
@@ -2525,6 +2552,7 @@ body.modal-open { overflow: hidden; }
   <div class="hero-kv-wrap">
     <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日（木）10:00-18:00 東京たま未来メッセ｜参加無料｜高校生1,000人が全国から集結" class="hero-kv-img">
   </div>
+  <p class="hero-kv-tagline">やりたいことがなくても、暇でも、<br>「なんとなく」でも、大丈夫。</p>
   <p class="hero-kv-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</p>
 </section>
 
@@ -2534,6 +2562,14 @@ body.modal-open { overflow: hidden; }
   <div class="why-fullwidth-inner">
     <span class="why-tag">WHY ／ なぜこの場をつくったのか</span>
     <img src="img/summit/why_infographic.jpg" alt="『やりたい』を、ひとりにしない — いま起きていること：同じ熱量で語り合える仲間に出会えていない、親に話すとリスクの話になる、学校で話すと浮く、同世代では話が続かない。だから、1日だけつくる。『やりたい』を持つ仲間が出会える場。ここから、未来は動き出す。" class="why-image" loading="lazy">
+    <div class="why-text-block">
+      <p class="why-lead-2">
+        「やりたいことなんて、まだない」<br>
+        「なんかモヤモヤしてる」<br>
+        「頑張ってる同世代の話を聞いてみたい」
+      </p>
+      <p class="why-lead-3">——そんな気持ちで来て、大丈夫です。</p>
+    </div>
   </div>
 </section>
 
@@ -2561,8 +2597,8 @@ body.modal-open { overflow: hidden; }
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-num">01</div>
-        <div class="benefit-title">一歩先の挑戦者との出会い</div>
-        <div class="benefit-desc">同世代の挑戦者、社会人挑戦者、各業界の一歩先を歩く方々と直接話せる場。自分のロールモデルに出会う。</div>
+        <div class="benefit-title">色んな生き方の人との出会い</div>
+        <div class="benefit-desc">色んな人生を歩いている高校生や大人と、直接話せる場。「あ、こんな生き方もあるんだ」って気づく1日。</div>
       </div>
       <div class="benefit-card">
         <div class="benefit-num">02</div>
@@ -2732,13 +2768,13 @@ body.modal-open { overflow: hidden; }
           </tr>
           <tr>
             <td class="t-time">10:30 – 11:20</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-1" class="sch-session-link"><span class="sch-t-main">なぜ、あの人には人が集まるのか？</span><span class="sch-t-sub">熱量と巻き込みの構造の話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
-            <td class="t-cell cell-ws" rowspan="2"><a href="summit-sessions.html#c-1" class="sch-session-link"><span class="sch-t-main">モヤモヤを、"やりたい"に変える110分ワーク。</span><span class="sch-t-sub">社会・親・環境からの"ミュート"を、対話で外していく時間</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-1" class="sch-session-link"><span class="sch-t-main">あの人、なんで人気なんだろう？</span><span class="sch-t-sub">周りに人が集まる人の、思考と習慣の話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-ws" rowspan="2"><a href="summit-sessions.html#c-1" class="sch-session-link"><span class="sch-t-main">モヤモヤを、言葉にしてみる110分。</span><span class="sch-t-sub">対話で「やりたい」を発掘するワーク。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-ws" rowspan="9">ブース<br>＋<br>コミュニティ</td>
           </tr>
           <tr>
             <td class="t-time">11:30 – 12:20</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-2" class="sch-session-link"><span class="sch-t-main">その勉強、10年後も使う？</span><span class="sch-t-sub">学校の知識と、社会で伸びる力の話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-2" class="sch-session-link"><span class="sch-t-main">学校の勉強、大人になっても使うの？</span><span class="sch-t-sub">「なぜ勉強するのか」に、大人が本音で答える50分。</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr class="row-break">
             <td class="t-time">12:20 – 13:00</td>
@@ -2751,21 +2787,21 @@ body.modal-open { overflow: hidden; }
           </tr>
           <tr>
             <td class="t-time">14:00 – 14:50</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-3" class="sch-session-link"><span class="sch-t-main">AIが全部やる時代、あなたは何をする？</span><span class="sch-t-sub">AIネイティブ高校生3人が本音で語る、"人にしかできないこと"の話</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#c-3" class="sch-session-link"><span class="sch-t-main">AIが全部やる時代、人間って何すればいい？</span><span class="sch-t-sub">AIネイティブ高校生3人が本音で語る話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">15:00 – 15:50</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-4" class="sch-session-link"><span class="sch-t-main">その課外活動、AOで武器になる？</span><span class="sch-t-sub">書類で終わる実績と、面接で光る実績の、決定的な違い</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-4" class="sch-session-link"><span class="sch-t-main">課外活動、なんとなくやるだけで大丈夫？</span><span class="sch-t-sub">書類で終わる活動と、面接で光る活動の違い。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-ws"><a href="summit-sessions.html#c-4" class="sch-session-link sch-cheers-cell"><span class="sch-t-main">日本初・日本最大級の高校生サミットは、どう生まれた？</span><span class="sch-t-sub">8ヶ月前の"やってみたい"が、1,000人イベントになるまでの舞台裏（Presented by CHEERS）</span><span class="sch-session-cue">Presented by CHEERS ／ 詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">16:00 – 16:50</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-5" class="sch-session-link"><span class="sch-t-main">"やってみた"を、"やってよかった"に変える方法。</span><span class="sch-t-sub">挑戦の経験を、次に繋げる人の考え方</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-5" class="sch-session-link"><span class="sch-t-main">頑張ったのに空回り、を防ぐ方法。</span><span class="sch-t-sub">経験を、次に繋げる人の考え方。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#c-5" class="sch-session-link"><span class="sch-t-main">"好きを仕事に"って、実際どう？</span><span class="sch-t-sub">突き詰めた人たちに、正直な今を聞いてみた50分</span><span class="sch-session-cue">小助川晴大登壇 ／ 詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">17:00 – 17:50</td>
-            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-6" class="sch-session-link"><span class="sch-t-main">環境の"反対"を、突破するには？</span><span class="sch-t-sub">親・先生・周りに「無理」と言われた時の、動き方</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-sp"><a href="summit-sessions.html#d-6" class="sch-session-link"><span class="sch-t-main">親や先生に「無理」って言われた時、どうする？</span><span class="sch-t-sub">周りを動かした人の、動き方の話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#c-6" class="sch-session-link"><span class="sch-t-main">君の"ミュートされた やりたい"を、世界へ。</span><span class="sch-t-sub">発掘した"やりたい"を、参加型で世界へ届ける50分</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
         </tbody>
@@ -2784,7 +2820,10 @@ body.modal-open { overflow: hidden; }
     <div class="section-head">
       <span class="section-tag">Speakers</span>
       <h2 class="section-title">登壇者</h2>
-      <p class="section-lead">ゲスト10名・学生15名 ＝ 計25名以上が登壇確定（順次追加中）。</p>
+      <p class="section-lead">ゲスト10名・学生13名 ＝ 計23名以上が登壇確定（順次追加中）。</p>
+    </div>
+    <div class="speakers-audience-note">
+      <p>※ 登壇者はすごい人ばかりですが、<strong>聞きに来る側は「普通の高校生」で大丈夫です</strong>。1,000人のうち、特別な実績を持っている参加者は5%未満です。</p>
     </div>
 
     <!-- ゲスト登壇者 -->
@@ -3279,10 +3318,10 @@ body.modal-open { overflow: hidden; }
             <div class="target-tag">Type 02 — Starter</div>
             <div class="target-name">スターター層</div>
             <ul class="target-list">
-              <li>総合型選抜／AOを考えている</li>
-              <li>課外活動を始めたい</li>
-              <li>でも自分のテーマがまだない</li>
-              <li>探究や活動の方向性がぼんやりしている</li>
+              <li>進路、まだ決めていない</li>
+              <li>「なんとなく気になる」ことはある</li>
+              <li>でも自分の軸がぼんやりしている</li>
+              <li>色んな人の話を聞いてみたい</li>
             </ul>
           </div>
           <div class="target-card t2">
@@ -3327,6 +3366,29 @@ body.modal-open { overflow: hidden; }
   </div>
 </section>
 
+
+
+<!-- SECTION 06.5: 普通の高校生の1日 -->
+<section class="section" id="voice" style="background:var(--paper);">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">A Day at Summit</span>
+      <h2 class="section-title">普通の高校生の、<em>当日の1日</em></h2>
+      <p class="section-lead">特別な実績も、大きな夢もない高校生が、この1日をどう過ごすのか。</p>
+    </div>
+    <div class="voice-card">
+      <p class="voice-card-title">都内私立高校2年生・Sさんの1日</p>
+      <div class="voice-body">
+        <p><span class="voice-time">10:00</span>友達に誘われて来た。特にやりたいことは、なかった。朝早くて眠かった。会場に着いたら、全国から来た同世代がたくさんいた。「みんな凄そう」と思って、最初は圧倒された。</p>
+        <p><span class="voice-time">13:00</span>たまたま座ったセッションで、自分と同じ高校2年生の登壇者が話していた。「自分もモヤモヤしてた」と言っていた。なんだか、少し勇気が出た。</p>
+        <p><span class="voice-time">15:00</span>ワークショップに参加した。隣の席の高校生と話した。「実は自分もそう思ってた」ということが、いくつもあった。</p>
+        <p><span class="voice-time">18:00</span>帰り道、少しだけ何か変わった気がした。</p>
+      </div>
+      <p class="voice-close">「特に何か始めたわけじゃない。でも、なんか毎日がちょっとだけ違う気がする」</p>
+    </div>
+  </div>
+</section>
+
 <!-- SECTION 07: SCHOLARSHIP -->
 <section class="section alt" id="scholarship">
   <div class="section-inner">
@@ -3366,6 +3428,10 @@ body.modal-open { overflow: hidden; }
             </div>
           </div>
         </div>
+      </div>
+      <div class="scholar-tokyo-note">
+        <p class="stn-title">※ 東京・首都圏の皆さんへ</p>
+        <p>いつもの街を出て、全国の同世代と1日を過ごす体験は、交通費が出る地方の挑戦者だけの特権ではありません。「近いから、なんとなく」で来る東京の高校生も、心から歓迎します。</p>
       </div>
     </div>
   </div>
@@ -3492,16 +3558,17 @@ body.modal-open { overflow: hidden; }
     <div class="cta-eyebrow">Join NEXY Summit 2026</div>
     <h2>まだ何者でもないまま、<em>来ていい</em>。</h2>
     <p>
-      完成していなくていい。<br>
-      言葉になっていなくていい。<br>
-      ただ、何かが引っかかっているなら、<br>
-      その違和感を持ってきてください。
+      「特にやりたいことがない」でも、来ていい。<br>
+      「暇だから」でも、来ていい。<br>
+      「友達に誘われた」でも、来ていい。<br>
+      来た理由なんて、なんでもいい。<br>
+      1日を過ごしてから、決めればいい。
     </p>
 
     <div class="cta-values">
-      <div class="cta-value">
-        <div class="cta-value-num">15</div>
-        <div class="cta-value-text">全国の学生登壇者と<br>直接話せる<span class="cta-value-sub">起業・地方・教育・グローバル他</span></div>
+      <div class="cta-value cta-value-highlight">
+        <div class="cta-value-num">95<span class="cta-value-unit">%</span></div>
+        <div class="cta-value-text">参加者は「普通の高校生」<span class="cta-value-sub">特別な実績のない、普通の高校生の割合</span></div>
       </div>
       <div class="cta-value">
         <div class="cta-value-num">13+</div>
