@@ -2385,21 +2385,23 @@ body.modal-open { overflow: hidden; }
 
 /* ===================================================================== */
 /* HERO KV Slideshow — 2枚を2秒ごとに切替                                 */
-/* HERO KV Slideshow (右→左スライド) */
+/* HERO KV Slideshow (右から入るワンウェイ) */
 .hero-kv-slideshow{position:relative;width:100%;overflow:hidden;}
+/* 最初の1枚は表示サイズ確保用にrelative(is-first) */
 .hero-kv-slideshow .hero-kv-slide{
-  position:absolute;top:0;left:0;width:100%;height:auto;display:block;
+  position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;
   transform:translateX(100%);
   transition:transform .8s cubic-bezier(.4,0,.2,1);
   will-change:transform;
+  z-index:1;
+}
+.hero-kv-slideshow .hero-kv-slide.is-first{
+  position:relative;
+  height:auto;
 }
 .hero-kv-slideshow .hero-kv-slide.is-active{
-  position:relative;
   transform:translateX(0);
-}
-.hero-kv-slideshow .hero-kv-slide.is-prev{
-  position:absolute;
-  transform:translateX(-100%);
+  z-index:2;
 }
 
 /* HERO KV (単一画像版) — 添付完成画像1枚をKVとして表示                    */
@@ -2589,7 +2591,7 @@ body.modal-open { overflow: hidden; }
 <section class="hero-kv" id="top">
   <h1 class="seo-only">NEXYサミット 2026（NEXY Summit 2026 ／ ネクシーサミット）｜この夏、いちばんの1日｜2026年8月6日・東京たま未来メッセ開催｜参加無料・高校生1,000人が全国から集結</h1>
   <div class="hero-kv-wrap hero-kv-slideshow">
-    <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide is-active">
+    <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide is-active is-first">
     <img src="img/summit/hero_kv_v3.jpg" alt="NEXYサミット 2026｜この夏、いちばんの1日。勉強も、進路も、青春も。｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide">
   </div>
   <p class="hero-kv-tagline">やりたいことがなくても、暇でも、<br>「なんとなく」でも、大丈夫。</p>
@@ -2605,14 +2607,16 @@ body.modal-open { overflow: hidden; }
     var cur = slides[idx];
     idx = (idx + 1) % slides.length;
     var next = slides[idx];
-    // 現在画像は左に流れる、次画像は右から中央へ
-    cur.classList.remove('is-active');
-    cur.classList.add('is-prev');
+    // 次画像を右から中央へ(is-active付与) - 現画像の上にかぶさる形
     next.classList.add('is-active');
-    // 少し待って is-prev を掃除 (次サイクルの準備)
+    // 現画像はスライドが完了する頃にactiveを外す
+    // (外すと transition で右外に戻るが、次画像に隠れて見えない)
     setTimeout(function(){
-      cur.classList.remove('is-prev');
-    }, 900);
+      cur.classList.remove('is-active');
+      cur.classList.remove('is-first');
+      // 次画像を新しい is-first (高さ確保) に
+      next.classList.add('is-first');
+    }, 820);
   }, 4000);
 })();
 </script>
