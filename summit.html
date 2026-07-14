@@ -2384,6 +2384,13 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ===================================================================== */
+/* HERO KV Slideshow — 2枚を2秒ごとに切替                                 */
+/* HERO KV Slideshow */
+.hero-kv-slideshow{position:relative;width:100%;}
+.hero-kv-slideshow .hero-kv-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease-in-out;}
+.hero-kv-slideshow .hero-kv-slide.is-active{opacity:1;position:relative;}
+.hero-kv-slideshow .hero-kv-slide:not(.is-active){position:absolute;}
+
 /* HERO KV (単一画像版) — 添付完成画像1枚をKVとして表示                    */
 /* ===================================================================== */
 .hero-kv {
@@ -2569,13 +2576,27 @@ body.modal-open { overflow: hidden; }
 
 <!-- SECTION 01: HERO KV (完成画像1枚) -->
 <section class="hero-kv" id="top">
-  <h1 class="seo-only">NEXYサミット 2026（NEXY Summit 2026 ／ ネクシーサミット）｜君のやりたいを、次の一歩へ｜2026年8月6日・東京たま未来メッセ開催の日本最大級・高校生1,000人が集うサミット</h1>
-  <div class="hero-kv-wrap">
-    <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日（木）10:00-18:00 東京たま未来メッセ｜参加無料｜高校生1,000人が全国から集結" class="hero-kv-img">
+  <h1 class="seo-only">NEXYサミット 2026（NEXY Summit 2026 ／ ネクシーサミット）｜この夏、いちばんの1日｜2026年8月6日・東京たま未来メッセ開催｜参加無料・高校生1,000人が全国から集結</h1>
+  <div class="hero-kv-wrap hero-kv-slideshow">
+    <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide is-active">
+    <img src="img/summit/hero_kv_v3.jpg" alt="NEXYサミット 2026｜この夏、いちばんの1日。勉強も、進路も、青春も。｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide">
   </div>
   <p class="hero-kv-tagline">やりたいことがなくても、暇でも、<br>「なんとなく」でも、大丈夫。</p>
   <p class="hero-kv-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</p>
 </section>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.hero-kv-slide');
+  if (slides.length < 2) return;
+  var idx = 0;
+  setInterval(function(){
+    slides[idx].classList.remove('is-active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('is-active');
+  }, 2000);
+})();
+</script>
 
 
 <!-- SECTION: WHY (フルブリード横長・軟化版) -->
