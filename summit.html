@@ -1116,6 +1116,16 @@ img { max-width: 100%; display: block; }
   white-space: pre-wrap;
 }
 
+
+/* Support / 後援 */
+.support-block { margin-top: 48px; padding-top: 40px; border-top: 1px dashed var(--line-strong); }
+.support-head { text-align: center; margin-bottom: 24px; }
+.support-tag { display: inline-block; font-family: 'Inter', sans-serif; font-weight: 900; font-size: .76rem; letter-spacing: .24em; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; }
+.support-title { font-size: 1.06rem; font-weight: 900; color: var(--text); letter-spacing: .04em; }
+.support-list { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; max-width: 720px; margin: 0 auto; }
+.support-card { min-width: 240px; padding: 18px 26px; background: #fff; border: 1px solid var(--line-strong); border-radius: 8px; text-align: center; }
+.support-name { font-size: .96rem; font-weight: 800; color: var(--text); letter-spacing: .02em; }
+@media (max-width: 600px) { .support-card { min-width: 0; width: 100%; padding: 14px 20px; } }
 .sponsors-note {
   margin-top: 32px; text-align: center; font-size: .78rem;
   color: var(--text3); font-style: italic;
@@ -3507,6 +3517,22 @@ body.modal-open { overflow: hidden; }
     </div>
 
     <p class="sponsors-note">※ 協賛企業は順次発表予定です。協賛のご相談は info@nexyhub.jp まで。</p>
+
+    <!-- Support / 後援 -->
+    <div class="support-block">
+      <div class="support-head">
+        <span class="support-tag">Support</span>
+        <h3 class="support-title">後援</h3>
+      </div>
+      <div class="support-list">
+        <div class="support-card">
+          <span class="support-name">八王子市</span>
+        </div>
+        <div class="support-card">
+          <span class="support-name">八王子市教育委員会</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
