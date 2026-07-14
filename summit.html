@@ -2385,11 +2385,22 @@ body.modal-open { overflow: hidden; }
 
 /* ===================================================================== */
 /* HERO KV Slideshow — 2枚を2秒ごとに切替                                 */
-/* HERO KV Slideshow */
-.hero-kv-slideshow{position:relative;width:100%;}
-.hero-kv-slideshow .hero-kv-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease-in-out;}
-.hero-kv-slideshow .hero-kv-slide.is-active{opacity:1;position:relative;}
-.hero-kv-slideshow .hero-kv-slide:not(.is-active){position:absolute;}
+/* HERO KV Slideshow (右→左スライド) */
+.hero-kv-slideshow{position:relative;width:100%;overflow:hidden;}
+.hero-kv-slideshow .hero-kv-slide{
+  position:absolute;top:0;left:0;width:100%;height:auto;display:block;
+  transform:translateX(100%);
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.hero-kv-slideshow .hero-kv-slide.is-active{
+  position:relative;
+  transform:translateX(0);
+}
+.hero-kv-slideshow .hero-kv-slide.is-prev{
+  position:absolute;
+  transform:translateX(-100%);
+}
 
 /* HERO KV (単一画像版) — 添付完成画像1枚をKVとして表示                    */
 /* ===================================================================== */
@@ -2591,10 +2602,18 @@ body.modal-open { overflow: hidden; }
   if (slides.length < 2) return;
   var idx = 0;
   setInterval(function(){
-    slides[idx].classList.remove('is-active');
+    var cur = slides[idx];
     idx = (idx + 1) % slides.length;
-    slides[idx].classList.add('is-active');
-  }, 2000);
+    var next = slides[idx];
+    // 現在画像は左に流れる、次画像は右から中央へ
+    cur.classList.remove('is-active');
+    cur.classList.add('is-prev');
+    next.classList.add('is-active');
+    // 少し待って is-prev を掃除 (次サイクルの準備)
+    setTimeout(function(){
+      cur.classList.remove('is-prev');
+    }, 900);
+  }, 4000);
 })();
 </script>
 
