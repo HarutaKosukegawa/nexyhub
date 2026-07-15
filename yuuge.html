@@ -132,6 +132,35 @@ img { max-width: 100%; display: block; }
 .btn-outline:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
 
 
+
+/* NEXT EVENT (次回開催告知) */
+.next-event-section { padding: 60px 6%; background: linear-gradient(180deg, var(--bg-night) 0%, var(--bg-deep) 100%); border-bottom: 1px solid var(--line); }
+.next-event-section .section-inner { max-width: 1000px; margin: 0 auto; }
+.ne-badge-row { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+.ne-badge-live { display: inline-block; padding: 6px 14px; background: var(--orange); color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: .74rem; letter-spacing: .22em; border-radius: 3px; }
+.ne-badge-date { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.06rem; color: var(--white); letter-spacing: .04em; }
+.ne-headline { margin-bottom: 32px; }
+.ne-title { font-size: clamp(1.4rem, 3.4vw, 1.9rem); font-weight: 900; color: var(--white); line-height: 1.5; margin-bottom: 12px; }
+.ne-title em { font-style: normal; color: var(--orange); }
+.ne-partner { font-size: .96rem; color: var(--text2); }
+.ne-partner strong { color: var(--white); font-weight: 900; }
+.ne-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+@media (max-width: 600px) { .ne-themes { grid-template-columns: 1fr; } }
+.ne-theme-card { background: var(--bg-card); border: 1.5px solid var(--orange); border-radius: 10px; padding: 24px 22px; transition: transform .2s; }
+.ne-theme-card:hover { transform: translateY(-3px); }
+.ne-theme-tag { display: inline-block; font-family: 'Inter', sans-serif; font-weight: 900; font-size: .68rem; letter-spacing: .2em; color: var(--orange); margin-bottom: 12px; }
+.ne-theme-title { font-size: 1.16rem; font-weight: 900; color: var(--white); line-height: 1.55; }
+.ne-info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+@media (max-width: 900px) { .ne-info-grid { grid-template-columns: 1fr 1fr; } }
+.ne-info { background: rgba(255,255,255,.04); border-left: 3px solid var(--orange); border-radius: 4px; padding: 16px 18px; }
+.ne-info-label { font-family: 'Inter', sans-serif; font-weight: 800; font-size: .68rem; letter-spacing: .18em; color: var(--orange); text-transform: uppercase; margin-bottom: 6px; }
+.ne-info-val { font-size: .88rem; color: var(--white); line-height: 1.65; }
+.ne-bonus { display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: rgba(242,139,61,.12); border: 1.5px solid var(--orange); border-radius: 10px; margin-bottom: 32px; }
+.ne-bonus-icon { font-size: 1.4rem; color: var(--orange); font-weight: 900; }
+.ne-bonus-text { font-size: .94rem; color: var(--white); line-height: 1.7; }
+.ne-bonus-text strong { color: var(--orange); font-weight: 900; }
+.ne-cta-wrap { text-align: center; }
+.ne-cta { display: inline-block; padding: 20px 44px !important; font-size: 1.05rem !important; }
 /* HERO IMAGE (画像ヒーロー・全体表示) */
 .hero { width: 100%; margin-top: 108px; background: var(--bg-night); }
 .hero-image { width: 100%; display: block; animation: heroFade 1.2s ease-out; }
@@ -436,6 +465,62 @@ img { max-width: 100%; display: block; }
     <div class="hero-ctas">
       <a href="https://forms.gle/Q9JztQvtVkK5WBs56" target="_blank" rel="noopener" class="btn-primary">参加を申し込む →</a>
       <a href="#flow" class="btn-outline">当日の流れを見る</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SECTION 01.5: NEXT EVENT (次回開催告知) -->
+<section class="section next-event-section" id="next-event">
+  <div class="section-inner">
+    <div class="ne-badge-row">
+      <span class="ne-badge-live">NEXT EVENT</span>
+      <span class="ne-badge-date">2026.08.03 (月)</span>
+    </div>
+
+    <div class="ne-headline">
+      <h2 class="ne-title">2つのテーマを、<em>第一線で働く社会人</em>と対等に話す<em>2時間</em>。</h2>
+      <p class="ne-partner">Presented by <strong>株式会社ラクーンホールディングス</strong></p>
+    </div>
+
+    <div class="ne-themes">
+      <div class="ne-theme-card">
+        <span class="ne-theme-tag">Theme 1</span>
+        <p class="ne-theme-title">日本企業はなぜ<br>DXが進まないのか</p>
+      </div>
+      <div class="ne-theme-card">
+        <span class="ne-theme-tag">Theme 2</span>
+        <p class="ne-theme-title">ホワイト企業・<br>ブラック企業を分解する</p>
+      </div>
+    </div>
+
+    <div class="ne-info-grid">
+      <div class="ne-info">
+        <div class="ne-info-label">日時</div>
+        <div class="ne-info-val"><strong>2026年8月3日（月）</strong><br>19:00〜21:00</div>
+      </div>
+      <div class="ne-info">
+        <div class="ne-info-label">場所</div>
+        <div class="ne-info-val"><strong>株式会社ラクーンホールディングス 本社オフィス</strong><br>東京都中央区日本橋蛎殻町</div>
+      </div>
+      <div class="ne-info">
+        <div class="ne-info-label">参加費</div>
+        <div class="ne-info-val"><strong style="color:var(--orange);">無料</strong><br>夜ご飯付き</div>
+      </div>
+      <div class="ne-info">
+        <div class="ne-info-label">定員</div>
+        <div class="ne-info-val"><strong>20〜25名</strong><br>先着順</div>
+      </div>
+    </div>
+
+    <div class="ne-bonus">
+      <span class="ne-bonus-icon">★</span>
+      <span class="ne-bonus-text"><strong>インターン優遇制度あり！</strong>　当日の対話から、ラクーンHDのインターンへの推薦チャンスも。</span>
+    </div>
+
+    <div class="ne-cta-wrap">
+      <a href="https://forms.gle/Q9JztQvtVkK5WBs56" target="_blank" rel="noopener" class="btn-primary ne-cta">この回に申し込む →</a>
     </div>
   </div>
 </section>
