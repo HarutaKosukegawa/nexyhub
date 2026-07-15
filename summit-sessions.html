@@ -82,8 +82,26 @@ a { color: inherit; }
 .session-body { font-size: .96rem; color: var(--text2); line-height: 2; margin-bottom: 26px; }
 .session-body p { margin-bottom: 14px; }
 .session-block { margin-bottom: 22px; padding: 18px 22px; background: #fff; border: 1.5px solid var(--line); }
+
+/* Session Speakers */
+.session-speakers .ss-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 6px; }
+@media (max-width: 900px) { .session-speakers .ss-list { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .session-speakers .ss-list { grid-template-columns: repeat(2, 1fr); } }
+.ss-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ss-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: var(--paper); }
+.ss-placeholder { width: 100%; aspect-ratio: 1/1; background: linear-gradient(135deg, #e6ecf3, #d9e2ee); border-radius: 8px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: .68rem; font-weight: 700; letter-spacing: .04em; }
+.ss-name { font-size: .82rem; font-weight: 800; color: var(--text); line-height: 1.4; }
 .session-block-label { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .2em; color: var(--orange); font-weight: 900; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1.5px solid var(--line); }
-.session.c .session-block-label { color: var(--mint-deep); }
+.session.c 
+/* Session Speakers */
+.session-speakers .ss-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 6px; }
+@media (max-width: 900px) { .session-speakers .ss-list { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .session-speakers .ss-list { grid-template-columns: repeat(2, 1fr); } }
+.ss-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ss-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: var(--paper); }
+.ss-placeholder { width: 100%; aspect-ratio: 1/1; background: linear-gradient(135deg, #e6ecf3, #d9e2ee); border-radius: 8px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: .68rem; font-weight: 700; letter-spacing: .04em; }
+.ss-name { font-size: .82rem; font-weight: 800; color: var(--text); line-height: 1.4; }
+.session-block-label { color: var(--mint-deep); }
 .session-block ul { list-style: none; padding: 0; }
 .session-block li { font-size: .92rem; color: var(--text2); line-height: 1.85; padding: 5px 0 5px 22px; position: relative; }
 .session-block li::before { content: '／'; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
@@ -217,7 +235,28 @@ a { color: inherit; }
         <li>1人で頑張ることに限界を感じている人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_branscombe.jpg" alt="ブランスクム 文葉" loading="lazy">
+  <span class="ss-name">ブランスクム 文葉</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_tadaishi.jpg" alt="只石 昌幸" loading="lazy">
+  <span class="ss-name">只石 昌幸</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_noda.jpg" alt="野田 樹里" loading="lazy">
+  <span class="ss-name">野田 樹里</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_masuda.jpg" alt="増田 結桜" loading="lazy">
+  <span class="ss-name">増田 結桜</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session d" id="d-2">
@@ -246,7 +285,24 @@ a { color: inherit; }
         <li>自分なりの「勉強の意味」を見つけたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_kotosaka.jpg" alt="琴坂 将広" loading="lazy">
+  <span class="ss-name">琴坂 将広</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_takamatsu.jpg" alt="髙松 優大" loading="lazy">
+  <span class="ss-name">髙松 優大</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_matsunaga.jpg" alt="松長 侑南" loading="lazy">
+  <span class="ss-name">松長 侑南</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session d" id="d-4">
@@ -275,7 +331,24 @@ a { color: inherit; }
         <li>大学合格後も続けられる活動を作りたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_hayashi.jpg" alt="林 裕子" loading="lazy">
+  <span class="ss-name">林 裕子</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_tani.jpg" alt="谷 昊埜" loading="lazy">
+  <span class="ss-name">谷 昊埜</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_ueda.jpg" alt="植田 晴子" loading="lazy">
+  <span class="ss-name">植田 晴子</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session d" id="d-5">
@@ -304,7 +377,24 @@ a { color: inherit; }
         <li>やる前にリアルな話を聞いておきたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_yamamoto.jpg" alt="山本 敏行" loading="lazy">
+  <span class="ss-name">山本 敏行</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_noritake.jpg" alt="則竹 瑛斗" loading="lazy">
+  <span class="ss-name">則竹 瑛斗</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_kuno.jpg" alt="久野 美恋彩" loading="lazy">
+  <span class="ss-name">久野 美恋彩</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session d" id="d-6">
@@ -333,7 +423,24 @@ a { color: inherit; }
         <li>「反対されるから動けない」と感じている人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_natsuno.jpg" alt="夏野 剛" loading="lazy">
+  <span class="ss-name">夏野 剛</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_takeuchi.jpg" alt="竹内 翼" loading="lazy">
+  <span class="ss-name">竹内 翼</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_kuwako.jpg" alt="桑子 友菜" loading="lazy">
+  <span class="ss-name">桑子 友菜</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <!-- ===== C会場 ===== -->
@@ -375,7 +482,16 @@ a { color: inherit; }
         <li>1人で考えていても、いつも同じところに戻ってくる人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_izawa.jpg" alt="伊澤 祐太" loading="lazy">
+  <span class="ss-name">伊澤 祐太</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session c" id="c-2">
@@ -432,7 +548,20 @@ a { color: inherit; }
         <li>AI ネイティブの同世代がどう動いているかを知りたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_aburatani.jpg" alt="油谷 駿杜" loading="lazy">
+  <span class="ss-name">油谷 駿杜</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_sakai.jpg" alt="酒井 愛瑠" loading="lazy">
+  <span class="ss-name">酒井 愛瑠</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session c" id="c-4">
@@ -460,7 +589,24 @@ a { color: inherit; }
         <li>NEXY の裏側を知りたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_uemura.jpg" alt="植村 英明" loading="lazy">
+  <span class="ss-name">植村 英明</span>
+</div>
+        <div class="ss-item ss-item-noimg">
+  <div class="ss-placeholder"><span>写真<br>準備中</span></div>
+  <span class="ss-name">小助川 晴大</span>
+</div>
+        <div class="ss-item ss-item-noimg">
+  <div class="ss-placeholder"><span>写真<br>準備中</span></div>
+  <span class="ss-name">松松 かほ</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session c" id="c-5">
@@ -490,7 +636,24 @@ a { color: inherit; }
         <li>ハルタの実体験を知りたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_sano.jpg" alt="佐野 貴" loading="lazy">
+  <span class="ss-name">佐野 貴</span>
+</div>
+        <div class="ss-item ss-item-noimg">
+  <div class="ss-placeholder"><span>写真<br>準備中</span></div>
+  <span class="ss-name">小助川 晴大</span>
+</div>
+        <div class="ss-item">
+  <img src="img/summit/speaker_ohama.jpg" alt="大濱 裕輝" loading="lazy">
+  <span class="ss-name">大濱 裕輝</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
   <article class="session c" id="c-6">
@@ -519,7 +682,16 @@ a { color: inherit; }
         <li>自分の「やりたい」を、半径5mから全国へ広げたい人</li>
       </ul>
     </div>
-    <a href="#top" class="session-back">セッション一覧に戻る</a>
+    <div class="session-block session-speakers">
+      <p class="session-block-label">登壇者</p>
+      <div class="ss-list">
+        <div class="ss-item">
+  <img src="img/summit/speaker_izawa.jpg" alt="伊澤 祐太" loading="lazy">
+  <span class="ss-name">伊澤 祐太</span>
+</div>
+      </div>
+    </div>
+        <a href="#top" class="session-back">セッション一覧に戻る</a>
   </article>
 
 </div>
