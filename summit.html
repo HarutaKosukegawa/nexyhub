@@ -340,11 +340,19 @@ img { max-width: 100%; display: block; }
   content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
   height: 8px; background: var(--mint); z-index: -1;
 }
+.benefits-grid.benefits-grid-4-mode { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 1100px) { .benefits-grid.benefits-grid-4-mode { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .benefits-grid.benefits-grid-4-mode { grid-template-columns: 1fr; } }
+.benefit-card-parents { background: linear-gradient(180deg, #fff 0%, rgba(242,139,61,.04) 100%); }
 .benefits-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
 }
 @media (max-width: 800px) {
-  .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
+  .benefits-grid.benefits-grid-4-mode { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 1100px) { .benefits-grid.benefits-grid-4-mode { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .benefits-grid.benefits-grid-4-mode { grid-template-columns: 1fr; } }
+.benefit-card-parents { background: linear-gradient(180deg, #fff 0%, rgba(242,139,61,.04) 100%); }
+.benefits-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 .benefit-card {
   background: #fff; border: 1px solid var(--line); padding: 24px 22px;
@@ -2606,7 +2614,6 @@ body.modal-open { overflow: hidden; }
     <img src="img/summit/hero_kv_v2.jpg" alt="NEXYサミット 2026｜君のやりたいを、次の一歩へ｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide is-active is-first">
     <img src="img/summit/hero_kv_v3.jpg" alt="NEXYサミット 2026｜この夏、いちばんの1日。勉強も、進路も、青春も。｜2026年8月6日 東京たま未来メッセ｜参加無料" class="hero-kv-img hero-kv-slide">
   </div>
-  <p class="hero-kv-tagline">やりたいことがなくても、暇でも、<br>「なんとなく」でも、大丈夫。</p>
   <p class="hero-kv-deadline">申込締切：2026年8月5日（火） ／ 当日参加も歓迎</p>
 </section>
 
@@ -2639,14 +2646,6 @@ body.modal-open { overflow: hidden; }
   <div class="why-fullwidth-inner">
     <span class="why-tag">WHY ／ なぜこの場をつくったのか</span>
     <img src="img/summit/why_infographic.jpg" alt="『やりたい』を、ひとりにしない — いま起きていること：同じ熱量で語り合える仲間に出会えていない、親に話すとリスクの話になる、学校で話すと浮く、同世代では話が続かない。だから、1日だけつくる。『やりたい』を持つ仲間が出会える場。ここから、未来は動き出す。" class="why-image" loading="lazy">
-    <div class="why-text-block">
-      <p class="why-lead-2">
-        「やりたいことなんて、まだない」<br>
-        「なんかモヤモヤしてる」<br>
-        「頑張ってる同世代の話を聞いてみたい」
-      </p>
-      <p class="why-lead-3">——そんな気持ちで来て、大丈夫です。</p>
-    </div>
   </div>
 </section>
 
@@ -2657,9 +2656,9 @@ body.modal-open { overflow: hidden; }
   <div class="benefits-inner">
     <div class="benefits-head">
       <span class="benefits-tag">What you get</span>
-      <h2 class="benefits-title">このイベントで、<em>得られる3つのこと</em></h2>
+      <h2 class="benefits-title">このイベントで、<em>得られる4つのこと</em></h2>
     </div>
-    <div class="benefits-grid">
+    <div class="benefits-grid benefits-grid-4-mode">
       <div class="benefit-card">
         <div class="benefit-num">01</div>
         <div class="benefit-title">色んな生き方の人との出会い</div>
