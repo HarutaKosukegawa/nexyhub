@@ -1350,6 +1350,88 @@ img { max-width: 100%; display: block; }
   margin-left: 10px; line-height: 1.2;
 }
 .cell-afterparty .sch-t-main { color: var(--orange); }
+
+/* Interact Booth (交流ブース) section */
+#interact { background: linear-gradient(180deg, #fffef9 0%, #fff8ec 100%); scroll-margin-top: 80px; }
+.ib-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 8px; }
+@media (max-width: 900px) { .ib-grid { grid-template-columns: 1fr; } }
+.ib-card {
+  background: #fff;
+  border: 2px solid #f5b342;
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+  box-shadow: 4px 4px 0 rgba(245,179,66,.35);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.ib-card-head { display: flex; align-items: center; gap: 10px; }
+.ib-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem; font-weight: 900;
+  color: #fff; background: #f5b342;
+  padding: 4px 12px; border-radius: 4px;
+  letter-spacing: .04em; line-height: 1;
+}
+.ib-time {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem; font-weight: 800;
+  color: #a86a12; letter-spacing: .04em;
+}
+.ib-title {
+  font-size: 1.05rem; font-weight: 900;
+  line-height: 1.5; color: var(--text);
+  margin: 0;
+}
+.ib-hook {
+  font-size: .84rem; font-weight: 800;
+  color: #a86a12; margin: 0;
+  padding: 8px 12px; background: rgba(245,179,66,.12);
+  border-radius: 4px;
+}
+.ib-flow { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.ib-step {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fffcf3;
+  border-left: 3px solid #f5b342;
+  border-radius: 0 4px 4px 0;
+}
+.ib-step-time {
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; font-weight: 900;
+  color: #a86a12; letter-spacing: .04em;
+  padding-top: 2px;
+}
+.ib-step-body {
+  font-size: .78rem; line-height: 1.75;
+  color: var(--text2);
+}
+.ib-step-body strong { color: var(--text); font-weight: 900; }
+.ib-step-body small { display: block; margin-top: 4px; font-size: .68rem; color: var(--text3); }
+.ib-footer {
+  margin-top: 24px; text-align: center;
+  font-size: .8rem; color: var(--text2);
+  padding: 12px;
+}
+.ib-footer strong { color: #a86a12; }
+
+.sch-table tbody td.t-cell.cell-interact {
+  background: linear-gradient(135deg, #fff9e6 0%, #fef3d1 100%);
+  border-left: 3px solid #f5b342;
+  color: var(--text);
+}
+.cell-interact .sch-t-main { color: #a86a12; font-weight: 800; }
+.cell-interact .sch-t-sub { color: var(--text2); font-size: .72rem; line-height: 1.55; }
+.cell-interact .sch-t-num {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: .62rem; font-weight: 900;
+  color: #fff; background: #f5b342;
+  padding: 2px 8px; border-radius: 3px;
+  letter-spacing: .08em;
+  margin-right: 6px;
+}
 .sch-table tbody tr.row-break td { background: rgba(0,0,0,0.04); color: var(--text2); font-weight: 600; text-align: center; font-size: .82rem; padding: 12px; }
 .sch-table tbody tr:hover td:not(.t-time):not(.row-break td) { background: rgba(242,139,61,0.05); }
 
@@ -2851,16 +2933,18 @@ body.modal-open { overflow: hidden; }
             <td class="t-time">10:30 – 11:20</td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#d-1" class="sch-session-link"><span class="sch-t-main">あの人、なんで人気なんだろう？</span><span class="sch-t-sub">応援される人が、実はやっていること。― 熱量と巻き込みの構造の話</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-ws" rowspan="2"><a href="summit-sessions.html#c-1" class="sch-session-link"><span class="sch-t-main">モヤモヤを、言葉にしてみる110分。</span><span class="sch-t-sub">対話で「やりたい」を発掘するワーク。</span><span class="sch-session-cue">詳細を見る</span></a></td>
-            <td class="t-cell cell-ws" rowspan="6">ブース<br>＋<br>コミュニティ</td>
+            <td class="t-cell cell-ws">ブース<br>＋<br>コミュニティ</td>
           </tr>
           <tr>
             <td class="t-time">11:30 – 12:20</td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#d-2" class="sch-session-link"><span class="sch-t-main">学校の勉強、大人になっても使うの？</span><span class="sch-t-sub">学校では教えてくれない"学び"から、自分らしい未来を考える50分。</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-interact"><a href="#interact" class="sch-session-link"><span class="sch-t-main"><span class="sch-t-num">交流会 01</span>キックオフ交流会</span><span class="sch-t-sub">猛獣狩り＋テーマ別チーム対話＋共通点探しビンゴ（景品あり）＋自由交流。1日の"最初の1人"を見つける50分。</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">12:30 – 13:20</td>
             <td class="t-cell cell-presen" rowspan="2"><a href="summit-presentation.html" class="sch-session-link sch-presen-link"><span class="sch-t-main">"やりたい"を、ぶつけろ。</span><span class="sch-t-sub">全国6名の高校生ピッチバトル（休憩込み120分）。</span><span class="sch-session-cue">プレゼン大会LPへ</span></a></td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#c-2" class="sch-session-link"><span class="sch-t-main">Coming Soon</span><span class="sch-t-sub">セッション準備中</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-ws" rowspan="2">ブース<br>＋<br>コミュニティ</td>
           </tr>
           <tr>
             <td class="t-time">13:30 – 14:20</td>
@@ -2870,11 +2954,13 @@ body.modal-open { overflow: hidden; }
             <td class="t-time">14:30 – 15:20</td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#d-4" class="sch-session-link"><span class="sch-t-main">その課外活動、総合型選抜のためだけになってない？</span><span class="sch-t-sub">「もし受験がなくても、その活動を続けたい？」――受験で終わらせない人の考え方。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#c-4" class="sch-session-link"><span class="sch-t-main">AIが全部やる時代、人間って何すればいい？</span><span class="sch-t-sub">AIネイティブ高校生3人が本音で語る話。</span><span class="sch-session-cue">詳細を見る</span></a></td>
+            <td class="t-cell cell-interact"><a href="#interact" class="sch-session-link"><span class="sch-t-main"><span class="sch-t-num">交流会 02</span>やりたいを、実現化するワークショップ</span><span class="sch-t-sub">「自分が正義のヒーローだったら？」で強み・弱み・未来を紙に書き出し、1on1で1人と繋がるところまで持っていく。</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">15:40 – 16:30</td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#d-5" class="sch-session-link"><span class="sch-t-main">インターン・留学・起業、何のためにやる？</span><span class="sch-t-sub">Chatwork創業者・山本敏行氏らが語る、後悔しない挑戦の選び方。</span><span class="sch-session-cue">詳細を見る</span></a></td>
             <td class="t-cell cell-sp"><a href="summit-sessions.html#c-5" class="sch-session-link"><span class="sch-t-main">君の"ミュートされた やりたい"を、世界へ。</span><span class="sch-t-sub">発掘した"やりたい"を、参加型で世界へ届ける50分（Presented by スイミー株式会社／聴講者も参加できる）</span><span class="sch-session-cue">Presented by スイミー株式会社 ／ 詳細を見る</span></a></td>
+            <td class="t-cell cell-interact"><a href="#interact" class="sch-session-link"><span class="sch-t-main"><span class="sch-t-num">交流会 03</span>未来を、熱く語ろう！お菓子の掴み取り交流会</span><span class="sch-t-sub">シール3枚集めた人だけがお菓子つかみ取りに参加OK。"縛り付き交流"×アクションカードで、次の一歩まで決めて帰る50分。</span><span class="sch-session-cue">詳細を見る</span></a></td>
           </tr>
           <tr>
             <td class="t-time">16:30 – 18:30</td>
@@ -2885,8 +2971,89 @@ body.modal-open { overflow: hidden; }
     </div>
 
     <div class="sch-note">
-      ※ プレゼン大会は12:30–14:30（D会場メインステージ、休憩込み）。D会場（1,000名）・C会場（500名）・C会場のブース／コミュニティスペースで同時並行進行。参加者は自由に行き来できます。<br><strong>各セッションタイトルをクリックすると詳細（こんな話を聞ける／こんな人におすすめ）が見られます。</strong>登壇者は順次発表。<br>※ セッション名に「高校生」が入っているものも、<strong>中学生・大学生の参加を歓迎</strong>します。<br>※ サミット本編は10:00–16:30。16:30–18:30は<strong>アフターパーティー（登壇者・運営限定）</strong>を開催します。
+      ※ プレゼン大会は12:30–14:30（D会場メインステージ、休憩込み）。D会場（1,000名）・C会場（500名）・C会場のブース／コミュニティスペースで同時並行進行。参加者は自由に行き来できます。<br><strong>各セッションタイトルをクリックすると詳細（こんな話を聞ける／こんな人におすすめ）が見られます。</strong>登壇者は順次発表。<br>※ セッション名に「高校生」が入っているものも、<strong>中学生・大学生の参加を歓迎</strong>します。<br>※ サミット本編は10:00–16:30。16:30–18:30は<strong>アフターパーティー（登壇者・運営限定）</strong>を開催します。<br>※ <strong>交流ブース（C会場 右半分）</strong>では、時間帯ごとに参加型の<strong>交流会 01〜03</strong>を開催。参加自由。詳細は下記。
     </div>
+  </div>
+</section>
+
+<!-- SECTION 04.5: INTERACT (交流ブース プログラム) -->
+<section class="section" id="interact">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-tag">Interact Booth</span>
+      <h2 class="section-title">交流ブース <em>プログラム</em></h2>
+      <p class="section-lead">C会場 右半分の交流ブースでは、時間帯ごとに<strong>参加型の交流会</strong>を3つ開催。「隣の人に話しかけられない」を、仕組みで乗り越える50分×3本。</p>
+    </div>
+
+    <div class="ib-grid">
+
+      <!-- 01 KICKOFF -->
+      <article class="ib-card">
+        <div class="ib-card-head">
+          <span class="ib-num">01</span>
+          <span class="ib-time">11:30 – 12:20</span>
+        </div>
+        <h3 class="ib-title">NEXYサミット開催‼️<br>キックオフ交流会</h3>
+        <p class="ib-hook">1日の"最初の1人"を見つける50分。</p>
+        <div class="ib-flow">
+          <div class="ib-step">
+            <span class="ib-step-time">11:30 – 11:50</span>
+            <span class="ib-step-body"><strong>参加者全員で猛獣狩り</strong>。掛け声で人数を集めてランダムにチーム分け → テーマカードに沿って各自交流を進めます。</span>
+          </div>
+          <div class="ib-step">
+            <span class="ib-step-time">11:50 – 12:10</span>
+            <span class="ib-step-body"><strong>共通点探しビンゴ</strong>。1ライン揃った人の中で、一番早かった人には景品あり🎁</span>
+          </div>
+          <div class="ib-step">
+            <span class="ib-step-time">12:10 – 12:20</span>
+            <span class="ib-step-body"><strong>自由交流タイム</strong>。ビンゴで知った人と、続きの話をどうぞ。</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 WORKSHOP -->
+      <article class="ib-card">
+        <div class="ib-card-head">
+          <span class="ib-num">02</span>
+          <span class="ib-time">14:30 – 15:20</span>
+        </div>
+        <h3 class="ib-title">やりたいを、実現化する<br>ワークショップ交流会</h3>
+        <p class="ib-hook">「1on1で1人と繋がる」まで持っていく50分。</p>
+        <div class="ib-flow">
+          <div class="ib-step">
+            <span class="ib-step-time">Work</span>
+            <span class="ib-step-body"><strong>「自分が正義のヒーローだったら？」</strong>を紙に書き出すワーク。<br>・強み ／ 弱み<br>・どんな世界をつくりたいか<br>・決め台詞<br>・未来を語る自己紹介</span>
+          </div>
+          <div class="ib-step">
+            <span class="ib-step-time">Goal</span>
+            <span class="ib-step-body">書き出した内容を持って、<strong>会場内で「話してみたい人」1人と1on1</strong>で繋がる。「あとで話す」で終わらせない設計。</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 CANDY -->
+      <article class="ib-card">
+        <div class="ib-card-head">
+          <span class="ib-num">03</span>
+          <span class="ib-time">15:40 – 16:30</span>
+        </div>
+        <h3 class="ib-title">未来を、熱く語ろう！<br>お菓子の掴み取り交流会</h3>
+        <p class="ib-hook">"次の一歩"を決めて帰る、締めの50分。</p>
+        <div class="ib-flow">
+          <div class="ib-step">
+            <span class="ib-step-time">Rule</span>
+            <span class="ib-step-body">会場内でお題（縛り）付きの<strong>「借り人競争」＋アクションカード</strong>で対話。シールを<strong>3枚集めた人だけ</strong>がお菓子つかみ取りに参加できる🍬<small>※ 海外のコカ・コーラのイベントから着想</small></span>
+          </div>
+          <div class="ib-step">
+            <span class="ib-step-time">Next</span>
+            <span class="ib-step-body">最後は<strong>ネクストアクション</strong>で締める。「自分の夢を1人に話す」「今日知り合った人に帰宅後DMする」など、"次の一歩"を紙に書いて持ち帰る。</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="ib-footer">※ 交流ブースはすべて<strong>参加自由・追加費用なし</strong>。学生同士でも、社会人と学生でも、自由に混ざれます。</p>
   </div>
 </section>
 
