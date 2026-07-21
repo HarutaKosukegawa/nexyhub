@@ -1163,6 +1163,91 @@ img { max-width: 100%; display: block; }
 }
 .org-details-section li strong { color: var(--text); }
 
+/* ── CONCERNS (悩みからの導線) ── */
+.concerns { background: var(--cream); }
+.concerns-lead {
+  font-family: 'Kaisei Decol', serif;
+  font-size: 1.05rem; font-weight: 900; color: var(--text);
+  margin-bottom: 20px; line-height: 1.9;
+}
+.concerns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.concerns-card {
+  background: #fff;
+  border: 2px solid var(--text);
+  border-radius: 16px;
+  padding: 22px 22px 24px;
+  box-shadow: 4px 4px 0 var(--text);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.concerns-card-quote {
+  font-size: 1.02rem; font-weight: 900; color: var(--text);
+  line-height: 1.55; letter-spacing: -.01em;
+  padding-left: 22px; position: relative;
+}
+.concerns-card-quote::before {
+  content: '「'; position: absolute; left: 0; top: -3px;
+  font-family: 'Kaisei Decol', serif; font-size: 1.5rem;
+  color: var(--orange); font-weight: 900;
+}
+.concerns-card-quote::after {
+  content: '」'; font-family: 'Kaisei Decol', serif;
+  color: var(--orange); font-weight: 900; margin-left: 2px;
+}
+.concerns-card-sub {
+  font-size: .78rem; color: var(--text2); line-height: 1.7;
+  font-weight: 700;
+}
+.concerns-card .concerns-tag {
+  align-self: flex-start;
+  font-family: 'Space Mono', monospace;
+  font-size: .62rem; letter-spacing: .12em; font-weight: 700;
+  color: var(--orange-deep); background: rgba(242,139,61,.14);
+  padding: 3px 8px; border-radius: 4px;
+}
+.concerns-closer {
+  text-align: center;
+  font-family: 'Kaisei Decol', serif;
+  font-size: 1.15rem; font-weight: 900; color: var(--orange-deep);
+  padding: 22px 20px;
+  background: #fff;
+  border: 2px dashed var(--orange);
+  border-radius: 14px;
+  line-height: 1.7;
+}
+.concerns-closer strong { color: var(--text); }
+@media (max-width: 720px) {
+  .concerns-grid { grid-template-columns: 1fr; }
+  .concerns-lead { font-size: .96rem; }
+  .concerns-closer { font-size: 1rem; }
+}
+
+/* ── SCENE (当日の空気を写真で) ── */
+.scene { background: var(--paper2); }
+.scene-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2.5px solid var(--text);
+  box-shadow: 6px 6px 0 var(--text);
+  background: #fff;
+  margin-top: 28px;
+}
+.scene-frame img {
+  width: 100%; height: auto; display: block;
+}
+.scene-caption {
+  padding: 18px 24px;
+  font-size: .86rem; color: var(--text2); line-height: 1.8;
+  font-weight: 700;
+  background: #fff;
+  border-top: 2px solid var(--text);
+}
+.scene-caption strong { color: var(--orange-deep); }
+
 </style>
 </head>
 <body>
@@ -1285,6 +1370,29 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+<!-- SCENE -->
+<section class="section scene" id="scene">
+  <div class="section-inner">
+    <span class="section-label reveal">Scene</span>
+    <h2 class="section-title reveal">当日の<em>一場面</em></h2>
+    <p class="section-lead reveal">
+      話すのが苦手でも大丈夫。
+      日本の名所を巡るボードゲーム「TIMELESS」を使いながら、
+      まずは<strong>「対話が自然と始まる場」</strong>から入ります。
+      いきなり自己分析、いきなり将来設計、ではなく、
+      <strong>手を動かす→話す→考えるの順番</strong>で「一段差」を下げます。
+    </p>
+    <div class="scene-frame reveal">
+      <img src="img/yoisho/scene_kanazawa_timeless.jpg" alt="よいしょ金沢当日の様子｜日本地図ボードゲームTIMELESSを使ったワーク風景">
+      <div class="scene-caption">
+        <strong>ゲーム × 対話 × 内省</strong>のワークショップ。
+        「探究のテーマが決まらない」「進路の軸がない」「自己分析の切り口が分からない」——
+        そんな状態からでも、ゲームを通じて<strong>自分の"引っかかり"に自然と気づける</strong>4時間です。
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TIMELINE -->
 <section class="section timeline" id="timeline">
   <div class="section-inner">
@@ -1311,8 +1419,33 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <span class="section-label reveal">For Who</span>
     <h2 class="section-title reveal">こんな<em>あなた</em>に来てほしい</h2>
-    <p class="section-lead reveal">実績・肩書き不要。「何かやってみたい」気持ちがあれば、それで十分。</p>
-    <div class="tag-cloud reveal">
+    <p class="section-lead reveal">実績・肩書き不要。「何かやってみたい」気持ちがあれば、それで十分。<br>
+    「行動の最初の一段差を下げる」ために、こんな悩みを持つ人にこそ来てほしいイベントです。</p>
+
+    <p class="concerns-lead reveal">たとえば、こんな声。</p>
+    <div class="concerns-grid reveal">
+      <div class="concerns-card">
+        <span class="concerns-tag">CONCERN 01</span>
+        <p class="concerns-card-quote">探究、何やっていいかわからない</p>
+        <p class="concerns-card-sub">テーマ設定で手が止まっている高校生に。テーマの"種"を、対話とゲームの中から拾う4時間。</p>
+      </div>
+      <div class="concerns-card">
+        <span class="concerns-tag">CONCERN 02</span>
+        <p class="concerns-card-quote">自分の進路に自信を持てない</p>
+        <p class="concerns-card-sub">「これでいいのか」がずっと消えない人へ。他の人の"揺らぎ"を聞くと、自分の輪郭がはっきりする。</p>
+      </div>
+      <div class="concerns-card">
+        <span class="concerns-tag">CONCERN 03</span>
+        <p class="concerns-card-quote">自己分析って何からやればいいの</p>
+        <p class="concerns-card-sub">やり方が分からず、"それっぽい言葉"を並べて終わる前に。手を動かしながら、順番通りに掘っていくワーク。</p>
+      </div>
+    </div>
+    <div class="concerns-closer reveal">
+      そんなあなたに来てほしいイベントです。<br>
+      <strong>「まず動いてみる」その最初の一段差を、金沢で下げます。</strong>
+    </div>
+
+    <div class="tag-cloud reveal" style="margin-top:36px;">
       <span class="tag t-o">何か挑戦したい</span>
       <span class="tag t-g">一歩踏み出せない</span>
       <span class="tag t-y">同世代と出会いたい</span>
