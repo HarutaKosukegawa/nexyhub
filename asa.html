@@ -1246,6 +1246,76 @@ body {
   .hero { padding-top: 120px; }
 }
 
+/* ── VENUE (会場情報) ── */
+.venue { background: var(--paper, #fafaf7); }
+.venue-card {
+  background: #fff;
+  border: 2px solid var(--text, #1a1a1a);
+  border-radius: 18px;
+  padding: 36px 40px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 40px;
+  align-items: start;
+  box-shadow: 6px 6px 0 var(--text, #1a1a1a);
+}
+@media (max-width: 780px) {
+  .venue-card { grid-template-columns: 1fr; padding: 26px 22px; gap: 22px; }
+}
+.venue-block-label {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem; font-weight: 900;
+  letter-spacing: .18em; color: var(--orange, #F28B3D);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.venue-block-label::after {
+  content: ''; display: inline-block;
+  width: 28px; height: 1.5px; background: var(--orange, #F28B3D);
+}
+.venue-name {
+  font-family: 'Kaisei Decol', 'Noto Serif JP', serif;
+  font-size: 1.4rem; font-weight: 900; line-height: 1.5;
+  color: var(--text, #1a1a1a);
+  margin-bottom: 6px;
+}
+.venue-postal {
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem; color: var(--text3, #777);
+  letter-spacing: .04em; margin-bottom: 6px;
+}
+.venue-address {
+  font-size: 1rem; font-weight: 800;
+  color: var(--text, #1a1a1a); line-height: 1.75;
+}
+.venue-access-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px; padding: 10px 18px;
+  background: rgba(242,139,61,.1);
+  border-left: 3px solid var(--orange, #F28B3D);
+  border-radius: 4px;
+  font-size: .95rem; font-weight: 900;
+  color: var(--orange-deep, #C45612);
+}
+.venue-access-pill::before {
+  content: '📍'; font-size: 1.05rem;
+}
+.venue-map {
+  border-radius: 12px; overflow: hidden;
+  border: 1.5px solid var(--text, #1a1a1a);
+  box-shadow: 3px 3px 0 var(--text, #1a1a1a);
+  aspect-ratio: 16 / 11;
+  background: #eee;
+}
+.venue-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+.venue-note {
+  font-size: .82rem; color: var(--text2, #333); line-height: 1.8;
+  margin-top: 14px;
+}
+.venue-note strong { color: var(--orange-deep, #C45612); font-weight: 900; }
+
 </style>
 </head>
 <body>
@@ -1314,6 +1384,10 @@ body {
         <div class="hero-meta-item">
           <span class="hero-meta-label">TIME</span>
           <span class="hero-meta-val">7:30〜9:00</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">PLACE</span>
+          <span class="hero-meta-val">神宮前Ikビル3F<br><small style="font-weight:600;opacity:.85;">外苑前駅 徒歩5分</small></span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">FOR</span>
@@ -1779,6 +1853,40 @@ body {
   </div>
 </section>
 
+<!-- VENUE -->
+<section class="section venue" id="venue">
+  <div class="section-inner">
+    <p class="section-label reveal">Venue</p>
+    <h2 class="section-title reveal">会場<em>アクセス</em></h2>
+    <p class="section-lead reveal">
+      外苑前駅から徒歩5分。朝の澄んだ神宮前で、静かに1日を始める場所です。
+    </p>
+
+    <div class="venue-card reveal">
+      <div>
+        <div class="venue-block-label">Location</div>
+        <div class="venue-name">神宮前Ikビル 3F</div>
+        <div class="venue-postal">〒150-0001</div>
+        <div class="venue-address">東京都渋谷区神宮前3丁目1-25</div>
+        <div class="venue-access-pill">外苑前駅 徒歩5分</div>
+        <p class="venue-note">
+          東京メトロ銀座線 <strong>外苑前駅</strong> から徒歩約5分。<br>
+          朝の時間帯は改札から会場まで、ゆっくり歩いて到着できます。
+        </p>
+      </div>
+      <div>
+        <div class="venue-block-label">Map</div>
+        <div class="venue-map">
+          <iframe
+            src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D3%E4%B8%81%E7%9B%AE1-25&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="神宮前Ikビル3F 地図"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-final" id="apply">
   <div class="cta-inner">
@@ -1786,7 +1894,7 @@ body {
     <h2>第4回メンバーとして、<br>朝から始めよう。</h2>
     <p>
       NEXY × Singerly、共同開催の第4回。<br>
-      7月29日（水）7:30〜。<br>
+      7月29日（水）7:30〜 ／ 神宮前Ikビル3F（外苑前駅 徒歩5分）。<br>
       学校では出会えない会話が、ここで始まる。
     </p>
     <div class="cta-btns">
