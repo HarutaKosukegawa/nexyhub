@@ -2581,6 +2581,109 @@ body.modal-open { overflow: hidden; }
 
 .price-payment-note{margin-top:14px;padding:10px 14px;background:rgba(242,139,61,.08);border-left:3px solid var(--orange);font-size:.78rem;color:var(--text2);line-height:1.7;text-align:left;}
 .price-payment-note strong{color:var(--orange);font-weight:900;}
+
+/* 一人参加安心バナー (Solo-attend reassurance) */
+.solo-banner { padding: 40px 5% 20px; background: var(--paper); }
+.solo-banner-inner {
+  max-width: 720px; margin: 0 auto;
+  background: linear-gradient(135deg, #fff 0%, rgba(46,189,182,.08) 100%);
+  border: 2.5px solid var(--mint-deep, #2ebdb6);
+  border-radius: 14px;
+  padding: 24px 26px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: center;
+  box-shadow: 5px 5px 0 rgba(46,189,182,.24);
+}
+.solo-banner-big {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.8rem; font-weight: 900;
+  line-height: 1; color: var(--mint-deep, #2ebdb6);
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+.solo-banner-big small {
+  display: block;
+  font-size: .68rem; font-weight: 800;
+  color: var(--mint-deep, #2ebdb6);
+  letter-spacing: .1em;
+  margin-top: 4px;
+  opacity: .8;
+}
+.solo-banner-copy {
+  font-size: 1.02rem; font-weight: 900;
+  color: var(--text); line-height: 1.55;
+}
+.solo-banner-copy small {
+  display: block;
+  font-size: .82rem; font-weight: 700;
+  color: var(--text2); line-height: 1.7;
+  margin-top: 6px;
+}
+@media (max-width: 560px) {
+  .solo-banner { padding: 32px 4% 16px; }
+  .solo-banner-inner { grid-template-columns: 1fr; gap: 10px; padding: 20px 20px; text-align: center; }
+  .solo-banner-big { font-size: 2.4rem; text-align: center; }
+  .solo-banner-copy { font-size: .95rem; }
+  .solo-banner-copy small { font-size: .78rem; }
+}
+
+/* 3行でわかるNEXYサミット (Quick Summary Card) */
+.quick-summary { padding: 24px 5%; background: linear-gradient(180deg, #fff 0%, var(--paper) 100%); }
+.quick-summary-inner {
+  max-width: 620px; margin: 0 auto;
+  background: #fff;
+  border: 2px solid var(--text);
+  border-radius: 12px;
+  padding: 20px 22px 22px;
+  box-shadow: 5px 5px 0 var(--orange);
+}
+.quick-summary-label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem; font-weight: 900;
+  letter-spacing: .18em; color: var(--orange);
+  padding: 4px 10px; border: 1.5px solid var(--orange);
+  border-radius: 3px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.quick-summary-title {
+  font-size: 1.02rem; font-weight: 900;
+  line-height: 1.5; color: var(--text);
+  margin-bottom: 14px;
+}
+.quick-summary-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.quick-summary-list li {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 12px;
+  font-size: .9rem; line-height: 1.6;
+  color: var(--text); font-weight: 700;
+  padding: 10px 12px;
+  background: var(--paper);
+  border-radius: 6px;
+  border-left: 3px solid var(--orange);
+}
+.quick-summary-list li strong {
+  display: inline-block;
+  color: var(--orange-deep);
+  font-weight: 900;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  padding-top: 2px;
+}
+@media (max-width: 480px) {
+  .quick-summary { padding: 20px 4%; }
+  .quick-summary-inner { padding: 18px 16px 18px; box-shadow: 4px 4px 0 var(--orange); }
+  .quick-summary-title { font-size: .96rem; }
+  .quick-summary-list li { grid-template-columns: 58px 1fr; font-size: .84rem; padding: 8px 10px; }
+  .quick-summary-list li strong { font-size: .72rem; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -2656,9 +2759,9 @@ body.modal-open { overflow: hidden; }
 <body>
 
 <!-- フローティング応募ボタン -->
-<a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="float-apply" aria-label="参加申込（高校生・大学生・社会人OK）">
+<a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="float-apply" aria-label="30秒で無料エントリー（高校生・大学生・社会人OK）">
   <div>
-    <span class="float-apply-main">参加申込 →</span>
+    <span class="float-apply-main">30秒で無料エントリー →</span>
     <span class="float-apply-sub">中学生・高校生・大学生・社会人 OK</span>
   </div>
 </a>
@@ -2734,6 +2837,19 @@ body.modal-open { overflow: hidden; }
 })();
 </script>
 
+
+<!-- SECTION: QUICK SUMMARY (3行でわかる) -->
+<section class="quick-summary" aria-label="3行でわかるNEXYサミット">
+  <div class="quick-summary-inner">
+    <span class="quick-summary-label">Quick Summary</span>
+    <p class="quick-summary-title">3行でわかる NEXYサミット</p>
+    <ul class="quick-summary-list">
+      <li><strong>いつ</strong>8月6日（木）10:00〜16:30<br><span style="font-weight:600;font-size:.78rem;color:var(--text2);">途中入退室OK</span></li>
+      <li><strong>どこ</strong>東京たま未来メッセ<br><span style="font-weight:600;font-size:.78rem;color:var(--text2);">JR八王子駅から徒歩1分</span></li>
+      <li><strong>なに</strong>同世代の仲間や、面白い大人と出会える1日！<br><span style="font-weight:600;font-size:.78rem;color:var(--text2);">中学生・高校生・大学生 無料</span></li>
+    </ul>
+  </div>
+</section>
 
 <!-- SECTION: WHY (フルブリード横長・軟化版) -->
 <section class="why-fullwidth" aria-label="WHY: なぜこの場をつくったのか">
@@ -2898,7 +3014,7 @@ body.modal-open { overflow: hidden; }
 
     </div>
     <div style="text-align:center;margin-top:48px;">
-      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
+      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">まずは無料で席を確保する →</a>
     </div>
   </div>
 </section>
@@ -2972,6 +3088,32 @@ body.modal-open { overflow: hidden; }
 
     <div class="sch-note">
       ※ プレゼン大会は12:30–14:30（D会場メインステージ、休憩込み）。D会場（1,000名）・C会場（500名）・C会場のブース／コミュニティスペースで同時並行進行。参加者は自由に行き来できます。<br><strong>各セッションタイトルをクリックすると詳細（こんな話を聞ける／こんな人におすすめ）が見られます。</strong>登壇者は順次発表。<br>※ セッション名に「高校生」が入っているものも、<strong>中学生・大学生の参加を歓迎</strong>します。<br>※ サミット本編は10:00–16:20。16:30–18:30は<strong>アフターパーティー（登壇者・運営限定）</strong>を開催します。<br>※ <strong>交流ブース（C会場 右半分）</strong>では、時間帯ごとに参加型の<strong>交流会 01〜03</strong>を開催。参加自由・追加費用なし。
+    </div>
+
+    <!-- モデルコース (Task 4) -->
+    <div style="max-width:820px;margin:24px auto 0;padding:20px 24px;background:#fff;border:2px solid var(--orange);border-radius:10px;">
+      <p style="font-size:.94rem;font-weight:900;color:var(--orange-deep);margin-bottom:12px;letter-spacing:.02em;">💡 あなたにぴったりの楽しみ方（モデルコース）</p>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:.86rem;line-height:1.75;color:var(--text2);padding-left:22px;position:relative;">
+          <span style="position:absolute;left:0;top:0;font-weight:900;color:var(--orange);">▶</span>
+          <strong style="color:var(--text);">【初めて・交流重視】</strong>11:30の交流会で仲間を見つけて、午後は一緒にブース巡り！
+        </li>
+        <li style="font-size:.86rem;line-height:1.75;color:var(--text2);padding-left:22px;position:relative;">
+          <span style="position:absolute;left:0;top:0;font-weight:900;color:var(--orange);">▶</span>
+          <strong style="color:var(--text);">【探究ガチ勢】</strong>12:30のピッチバトルで刺激を受け、15:30の起業家セッションへ！
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04.7: 一人参加安心バナー (Task 3) -->
+<section class="solo-banner" aria-label="参加者の8割が一人参加">
+  <div class="solo-banner-inner">
+    <div class="solo-banner-big">80<span style="font-size:1.6rem;">%</span><small>SOLO ATTEND</small></div>
+    <div class="solo-banner-copy">
+      参加者の<strong style="color:var(--mint-deep);">8割が一人参加</strong>です！
+      <small>「知り合いがいない」が普通。運営が声かけ・グループ分けを手厚くサポートするので、はじめての1人参加でも安心して馴染めます。</small>
     </div>
   </div>
 </section>
@@ -3732,7 +3874,7 @@ body.modal-open { overflow: hidden; }
       <span class="free-notice">※ 中学生・高校生・大学生 完全無料</span>
     </div>
     <div class="hero-ctas" style="justify-content:center;flex-wrap:wrap;">
-      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">参加申込する →</a>
+      <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="btn-primary">まずは無料で席を確保する →</a>
       <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener" class="btn-mint">お問い合わせフォーム</a>
       <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="btn-ghost-light">@nexy.hub をフォロー</a>
     </div>
