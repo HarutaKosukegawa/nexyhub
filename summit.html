@@ -1035,10 +1035,10 @@ img { max-width: 100%; display: block; }
   max-width: 1100px; margin: 0 auto;
 }
 .sponsor-tier.diamond .sponsor-grid { max-width: 560px; }
-.sponsor-tier.platinum .sponsor-grid { max-width: 880px; }
-.sponsor-tier.gold .sponsor-grid { max-width: 900px; }
-.sponsor-tier.silver .sponsor-grid { max-width: 900px; }
-.sponsor-tier.bronze .sponsor-grid { max-width: 900px; }
+.sponsor-tier.platinum .sponsor-grid { max-width: 960px; }
+.sponsor-tier.gold .sponsor-grid { max-width: 760px; }
+.sponsor-tier.silver .sponsor-grid { max-width: 640px; }
+.sponsor-tier.bronze .sponsor-grid { max-width: 640px; }
 
 .sponsor-card {
   background: #fff; border: 1px solid var(--line);
@@ -1054,32 +1054,35 @@ img { max-width: 100%; display: block; }
   width: 100%; max-width: 560px;
 }
 .sponsor-tier.platinum .sponsor-card {
-  aspect-ratio: 16/9; font-size: 1rem;
-  width: calc((100% - 32px) / 3); min-width: 220px;
+  aspect-ratio: 16/9; font-size: 1.05rem;
+  width: calc((100% - 24px) / 2); min-width: 320px;
 }
 .sponsor-tier.gold .sponsor-card {
-  aspect-ratio: 4/3; font-size: .86rem;
-  width: calc((100% - 64px) / 5); min-width: 150px;
+  aspect-ratio: 16/9; font-size: .9rem;
+  width: calc((100% - 32px) / 3); min-width: 220px;
+  max-width: 280px;
 }
 .sponsor-tier.silver .sponsor-card {
-  aspect-ratio: 4/3; font-size: .76rem;
-  width: calc((100% - 64px) / 5); min-width: 140px;
+  aspect-ratio: 4/3; font-size: .78rem;
+  width: calc((100% - 48px) / 4); min-width: 160px;
+  max-width: 200px;
 }
 .sponsor-tier.bronze .sponsor-card {
   aspect-ratio: 4/3; font-size: .72rem;
-  width: calc((100% - 64px) / 5); min-width: 130px;
+  width: calc((100% - 48px) / 4); min-width: 140px;
+  max-width: 180px;
 }
 @media (max-width: 900px) {
-  .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
-  .sponsor-tier.gold .sponsor-card { width: calc((100% - 32px) / 3); }
-  .sponsor-tier.silver .sponsor-card { width: calc((100% - 32px) / 3); }
-  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 32px) / 3); }
+  .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); min-width: 260px; }
+  .sponsor-tier.gold .sponsor-card { width: calc((100% - 16px) / 2); min-width: 200px; max-width: none; }
+  .sponsor-tier.silver .sponsor-card { width: calc((100% - 32px) / 3); min-width: 140px; max-width: none; }
+  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 32px) / 3); min-width: 130px; max-width: none; }
 }
 @media (max-width: 600px) {
-  .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
-  .sponsor-tier.gold .sponsor-card { width: calc((100% - 16px) / 2); }
-  .sponsor-tier.silver .sponsor-card { width: calc((100% - 16px) / 2); }
-  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 16px) / 2); }
+  .sponsor-tier.platinum .sponsor-card { width: 100%; min-width: 0; }
+  .sponsor-tier.gold .sponsor-card { width: calc((100% - 16px) / 2); min-width: 0; }
+  .sponsor-tier.silver .sponsor-card { width: calc((100% - 16px) / 2); min-width: 0; }
+  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 16px) / 2); min-width: 0; }
 }
 
 /* スポンサーロゴ（差し替え枠）— ボタン化 */
@@ -3970,8 +3973,8 @@ body.modal-open { overflow: hidden; }
       </div>
     </div>
 
-    <div class="sponsor-tier silver">
-      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Silver</span></div>
+    <div class="sponsor-tier bronze">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Bronze</span></div>
       <div class="sponsor-grid">
         <button type="button" class="sponsor-card sponsor-logo" data-sponsor="aiesec" aria-label="AIESEC Japan — 詳細を見る">
           <img src="img/summit/sponsor_aiesec.png" alt="AIESEC" loading="lazy">
@@ -3979,12 +3982,6 @@ body.modal-open { overflow: hidden; }
         <button type="button" class="sponsor-card sponsor-logo" data-sponsor="king" aria-label="Business Contest KING — 詳細を見る">
           <img src="img/summit/sponsor_king.png" alt="Business Contest KING" loading="lazy">
         </button>
-      </div>
-    </div>
-
-    <div class="sponsor-tier bronze">
-      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Bronze</span></div>
-      <div class="sponsor-grid">
         <button type="button" class="sponsor-card sponsor-logo" data-sponsor="dejiara" aria-label="デジアラホールディングス — 詳細を見る">
           <img src="img/summit/sponsor_dejiara.png" alt="デジアラホールディングス" loading="lazy">
         </button>
@@ -5175,7 +5172,7 @@ Abema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞�
   <div class="sponsor-modal-body">
     <button class="sponsor-modal-close" aria-label="閉じる">×</button>
     <img src="img/summit/sponsor_aiesec.png" alt="AIESEC" class="sponsor-modal-logo">
-    <div class="sponsor-modal-tier">SILVER SPONSOR</div>
+    <div class="sponsor-modal-tier">BRONZE SPONSOR</div>
     <h3 class="sponsor-modal-name" id="m-sponsor-aiesec-name">AIESEC Japan（アイセック・ジャパン）</h3>
     <p class="sponsor-modal-desc">世界127以上の国と地域に拠点を持ち、40,000名を超えるメンバーが所属する、世界最大の学生団体。海外インターンシップの運営を通じて、若者一人ひとりのリーダーシップ発揮を目指しています。次世代の挑戦者を応援するべく、NEXYサミット 2026 にシルバースポンサーとしてご支援いただいています。</p>
   </div>
@@ -5186,7 +5183,7 @@ Abema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞�
   <div class="sponsor-modal-body">
     <button class="sponsor-modal-close" aria-label="閉じる">×</button>
     <img src="img/summit/sponsor_king.png" alt="Business Contest KING" class="sponsor-modal-logo">
-    <div class="sponsor-modal-tier">SILVER SPONSOR</div>
+    <div class="sponsor-modal-tier">BRONZE SPONSOR</div>
     <h3 class="sponsor-modal-name" id="m-sponsor-king-name">Business Contest KING</h3>
     <p class="sponsor-modal-desc">1996年設立、学生による学生のためのビジネスコンテスト。日本最古参の学生ビジコンとして、これまで数多くの起業家・ビジネスリーダーを輩出。学生の「挑戦」を本気で応援する運営団体として、NEXYサミット 2026 にシルバースポンサーとしてご支援いただいています。</p>
   </div>
