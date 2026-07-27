@@ -1028,6 +1028,7 @@ img { max-width: 100%; display: block; }
 .sponsor-tier.platinum .sponsor-tier-name { font-size: .96rem; color: var(--text); border: 2px solid var(--text); }
 .sponsor-tier.gold .sponsor-tier-name { font-size: .86rem; color: var(--orange); border: 1.5px solid var(--orange); }
 .sponsor-tier.silver .sponsor-tier-name { font-size: .76rem; color: var(--text2); border: 1px solid var(--text2); }
+.sponsor-tier.bronze .sponsor-tier-name { font-size: .72rem; color: #a56d3a; border: 1px solid #a56d3a; }
 
 .sponsor-grid {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
@@ -1037,6 +1038,7 @@ img { max-width: 100%; display: block; }
 .sponsor-tier.platinum .sponsor-grid { max-width: 880px; }
 .sponsor-tier.gold .sponsor-grid { max-width: 900px; }
 .sponsor-tier.silver .sponsor-grid { max-width: 900px; }
+.sponsor-tier.bronze .sponsor-grid { max-width: 900px; }
 
 .sponsor-card {
   background: #fff; border: 1px solid var(--line);
@@ -1063,15 +1065,21 @@ img { max-width: 100%; display: block; }
   aspect-ratio: 4/3; font-size: .76rem;
   width: calc((100% - 64px) / 5); min-width: 140px;
 }
+.sponsor-tier.bronze .sponsor-card {
+  aspect-ratio: 4/3; font-size: .72rem;
+  width: calc((100% - 64px) / 5); min-width: 130px;
+}
 @media (max-width: 900px) {
   .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
   .sponsor-tier.gold .sponsor-card { width: calc((100% - 32px) / 3); }
   .sponsor-tier.silver .sponsor-card { width: calc((100% - 32px) / 3); }
+  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 32px) / 3); }
 }
 @media (max-width: 600px) {
   .sponsor-tier.platinum .sponsor-card { width: calc((100% - 16px) / 2); }
   .sponsor-tier.gold .sponsor-card { width: calc((100% - 16px) / 2); }
   .sponsor-tier.silver .sponsor-card { width: calc((100% - 16px) / 2); }
+  .sponsor-tier.bronze .sponsor-card { width: calc((100% - 16px) / 2); }
 }
 
 /* スポンサーロゴ（差し替え枠）— ボタン化 */
@@ -3974,6 +3982,15 @@ body.modal-open { overflow: hidden; }
       </div>
     </div>
 
+    <div class="sponsor-tier bronze">
+      <div class="sponsor-tier-head"><span class="sponsor-tier-name">Bronze</span></div>
+      <div class="sponsor-grid">
+        <button type="button" class="sponsor-card sponsor-logo" data-sponsor="dejiara" aria-label="デジアラホールディングス — 詳細を見る">
+          <img src="img/summit/sponsor_dejiara.png" alt="デジアラホールディングス" loading="lazy">
+        </button>
+      </div>
+    </div>
+
     <p class="sponsors-note">※ 協賛企業は順次発表予定です。協賛のご相談は info@nexyhub.jp まで。</p>
 
     <!-- 後援 -->
@@ -5183,6 +5200,17 @@ Abema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞�
     <div class="sponsor-modal-tier">GOLD SPONSOR</div>
     <h3 class="sponsor-modal-name" id="m-sponsor-swimmy-name">スイミー株式会社（SWIMMY）</h3>
     <p class="sponsor-modal-desc">LINEヤフーやSmartNews等の正規代理店として広告事業を展開する一方、次世代育成にも注力する企業。YouTube番組「olly club」「ON MUTE」など学生主体の番組制作を通じ、学生がメディア活動を通して挑戦できる仕組みを構築。その取り組みは「Wall Street Journal WELL-BEING AWARD」受賞など、対外的にも高く評価されています。NEXYサミット 2026 にゴールドスポンサーとしてご支援いただいています。</p>
+  </div>
+</div>
+
+<!-- Sponsor Modal: デジアラホールディングス -->
+<div class="sponsor-modal" id="modal-sponsor-dejiara" role="dialog" aria-modal="true" aria-labelledby="m-sponsor-dejiara-name">
+  <div class="sponsor-modal-body">
+    <button class="sponsor-modal-close" aria-label="閉じる">×</button>
+    <img src="img/summit/sponsor_dejiara.png" alt="デジアラホールディングス" class="sponsor-modal-logo">
+    <div class="sponsor-modal-tier">BRONZE SPONSOR</div>
+    <h3 class="sponsor-modal-name" id="m-sponsor-dejiara-name">デジアラホールディングス株式会社</h3>
+    <p class="sponsor-modal-desc">「笑顔あふれる暮らしの明日を私たちの手で」という理念のもと、暮らしを豊かにするグループ事業を全国展開しています。エクステリアの販売や外構工事をはじめ、電動自転車の販売やWEBメディア運営を通じ、笑顔があふれる暮らしの未来を支えます。</p>
   </div>
 </div>
 
