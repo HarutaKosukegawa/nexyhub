@@ -1133,6 +1133,21 @@ img { max-width: 100%; display: block; }
 }
 
 
+/* Booth Exhibitors / ブース出展 */
+.booth-block { margin-top: 48px; padding-top: 40px; border-top: 1px dashed var(--line-strong); }
+.booth-block-head { text-align: center; margin-bottom: 24px; }
+.booth-block-tag { display: inline-block; font-family: 'Inter', sans-serif; font-weight: 900; font-size: .76rem; letter-spacing: .24em; color: var(--orange); text-transform: uppercase; margin-bottom: 8px; }
+.booth-block-title { font-size: 1.06rem; font-weight: 900; color: var(--text); letter-spacing: .04em; margin-bottom: 10px; }
+.booth-block-lead { font-size: .84rem; color: var(--text2); line-height: 1.7; max-width: 640px; margin: 0 auto; }
+.booth-block-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; max-width: 960px; margin: 0 auto; }
+.booth-block-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px 14px; background: #fff; border: 1px solid var(--line-strong); border-radius: 8px; text-decoration: none; color: var(--text); min-height: 130px; transition: transform .25s, border-color .25s, box-shadow .25s; text-align: center; }
+.booth-block-card:hover { transform: translateY(-2px); border-color: var(--orange); box-shadow: 0 8px 18px rgba(242,139,61,.16); }
+.booth-block-card img { max-width: 100%; max-height: 56px; object-fit: contain; }
+.booth-block-card span { font-size: .82rem; font-weight: 800; color: var(--text2); line-height: 1.35; }
+.booth-block-card.booth-block-card-text { background: linear-gradient(135deg, var(--paper), #fff); }
+.booth-block-card.booth-block-card-text span { font-size: 1rem; color: var(--text); }
+@media (max-width: 600px) { .booth-block-grid { grid-template-columns: repeat(2, 1fr); } }
+
 /* Support / 後援 */
 .support-block { margin-top: 48px; padding-top: 40px; border-top: 1px dashed var(--line-strong); }
 .support-head { text-align: center; margin-bottom: 24px; }
@@ -4009,6 +4024,24 @@ body.modal-open { overflow: hidden; }
     </div>
 
     <p class="sponsors-note">※ 協賛企業は順次発表予定です。協賛のご相談は info@nexyhub.jp まで。</p>
+
+    <!-- ブース出展 -->
+    <div class="booth-block">
+      <div class="booth-block-head">
+        <span class="booth-block-tag">Booth Exhibitors</span>
+        <div class="booth-block-title">ブース出展</div>
+        <p class="booth-block-lead">当日は以下の7団体・企業がブースを出展します。<a href="summit-booth.html" style="color:var(--orange);font-weight:800;text-decoration:underline;">詳細はこちら →</a></p>
+      </div>
+      <div class="booth-block-grid">
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"><span>CHEERS!</span></a>
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/nexy_logo.png" alt="学生団体NEXY"><span>学生団体NEXY</span></a>
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/sponsor_aiesec.png" alt="AIESEC Japan"><span>AIESEC Japan</span></a>
+        <a href="summit-booth.html" class="booth-block-card booth-block-card-text"><span>Stitch Lab</span></a>
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/booth_etoe.jpg" alt="学生団体EToE"><span>学生団体EToE</span></a>
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/sponsor_king.png" alt="Business Contest KING"><span>Business Contest KING</span></a>
+        <a href="summit-booth.html" class="booth-block-card"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"><span>孫正義育英財団</span></a>
+      </div>
+    </div>
 
     <!-- 後援 -->
     <div class="support-block">
