@@ -63,6 +63,23 @@ a { color:inherit; }
 .gal-img { width:100%; aspect-ratio:16/9; background-size:cover; background-position:center; border-radius:12px; box-shadow:0 14px 28px rgba(0,0,0,.12); }
 .gal-cap { margin-top:10px; font-size:.84rem; color:var(--text2); line-height:1.65; }
 
+.booth-grid { margin-top:18px; display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:14px; }
+.booth-card { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px 14px; background:#fff; border:1px solid var(--line); border-radius:10px; transition:.25s; min-height:130px; text-align:center; }
+.booth-card:hover { border-color:var(--orange); box-shadow:0 8px 18px rgba(242,139,61,.14); transform:translateY(-2px); }
+.booth-card img { max-width:100%; max-height:60px; object-fit:contain; margin-bottom:10px; }
+.booth-card-name { font-size:.82rem; font-weight:800; color:var(--text2); line-height:1.35; }
+.booth-card.no-logo { background:linear-gradient(135deg, var(--paper), #fff); }
+.booth-card.no-logo .booth-card-name { font-size:.95rem; color:var(--text); }
+.booth-feature { margin-top:28px; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:22px 24px; display:flex; gap:20px; align-items:flex-start; }
+.booth-feature-logo { flex-shrink:0; width:96px; height:96px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:8px; display:flex; align-items:center; justify-content:center; }
+.booth-feature-logo img { max-width:100%; max-height:100%; object-fit:contain; }
+.booth-feature-body h3 { font-size:1.02rem; font-weight:900; color:var(--text); margin-bottom:8px; }
+.booth-feature-body p { font-size:.86rem; color:var(--text2); line-height:1.75; }
+@media (max-width:520px) {
+  .booth-feature { flex-direction:column; align-items:center; text-align:left; }
+  .booth-feature-logo { width:80px; height:80px; }
+}
+
 .cta-back { text-align:center; padding:24px 6% 80px; }
 .cta-back .btn { display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff; text-decoration:none; padding:14px 28px; font-weight:900; font-size:.9rem; letter-spacing:.04em; transition:.25s; }
 .cta-back .btn:hover { background:#e07a2e; transform:translateY(-2px); }
@@ -130,9 +147,53 @@ a { color:inherit; }
   </div>
 
   <div class="detail-block">
+    <h2 class="detail-h2">出展団体・企業一覧</h2>
+    <p class="detail-p">当日は以下の7団体・企業がブースを出展します。学生団体・スタートアップ・財団など、それぞれの取り組みを直接聞ける貴重な機会です。</p>
+    <div class="booth-grid">
+      <div class="booth-card">
+        <img src="img/summit/sponsor_cheers.png" alt="CHEERS">
+        <span class="booth-card-name">CHEERS!</span>
+      </div>
+      <div class="booth-card">
+        <img src="img/summit/nexy_logo.png" alt="NEXY">
+        <span class="booth-card-name">学生団体NEXY</span>
+      </div>
+      <div class="booth-card">
+        <img src="img/summit/sponsor_aiesec.png" alt="AIESEC">
+        <span class="booth-card-name">AIESEC Japan</span>
+      </div>
+      <div class="booth-card no-logo">
+        <span class="booth-card-name">Stitch Lab</span>
+      </div>
+      <div class="booth-card">
+        <img src="img/summit/booth_etoe.jpg" alt="EToE">
+        <span class="booth-card-name">学生団体EToE</span>
+      </div>
+      <div class="booth-card">
+        <img src="img/summit/sponsor_king.png" alt="Business Contest KING">
+        <span class="booth-card-name">Business Contest KING</span>
+      </div>
+      <div class="booth-card">
+        <img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団">
+        <span class="booth-card-name">孫正義育英財団</span>
+      </div>
+    </div>
+
+    <div class="booth-feature">
+      <div class="booth-feature-logo">
+        <img src="img/summit/booth_etoe.jpg" alt="学生団体EToE">
+      </div>
+      <div class="booth-feature-body">
+        <h3>学生団体EToE</h3>
+        <p>学生団体EToEは、代表の沖縄での経験を起点に始動し、「すべての人が可能性を最大限に冒険できる教育」を理念に活動しています。活動の軸足の一つは、メタバース空間を活用した独自の教育プログラム「メタロレア」や、オンライン・オフラインを融合させたハイブリッド形式のイベント企画といった情報技術にあります。しかし、技術を盲信することなく、地域文化や対面での議論と結びつけることで、ボトムアップによる多様な教育の実現を目指しています。また、教育イベントの開催やコミュニティ運営を通じ、常に新しい学びの形を探究し続けています。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-block">
     <h2 class="detail-h2">会場の場所</h2>
-    <p class="detail-p">企業ブース出展は当日、以下のエリアで行われます。</p>
-    <span class="place-tag">企業ブースエリア / 展示エリア</span>
+    <p class="detail-p">ブース出展は当日、以下のエリアで行われます。</p>
+    <span class="place-tag">ブースエリア / 展示エリア</span>
   </div>
 </div>
 
