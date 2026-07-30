@@ -3949,14 +3949,21 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 860px) { .live-perf-track { grid-template-columns: 1fr; gap: 28px; } }
 .live-perf-video { position: relative; padding-top: 56.25%; border: 3px solid #0A1D3C; overflow: hidden; box-shadow: 0 22px 44px rgba(10,29,60,.16); }
 .live-perf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.live-perf-meta { padding: 6px 0 0; }
-.live-perf-meta-eyebrow { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .24em; font-weight: 900; color: #F55B1E; margin-bottom: 10px; }
-.live-perf-meta-song { font-size: 1.7rem; font-weight: 900; color: #0A1D3C; line-height: 1.35; margin-bottom: 6px; letter-spacing: .01em; }
-.live-perf-meta-artist { font-size: 1rem; font-weight: 800; color: #2FC4C4; margin-bottom: 22px; }
-.live-perf-meta-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(10,29,60,.12); }
-.live-perf-meta-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 2px; border-bottom: 1px solid rgba(10,29,60,.12); font-size: .88rem; color: #0A1D3C; }
-.live-perf-meta-list li span:first-child { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .18em; font-weight: 800; color: rgba(10,29,60,.55); text-transform: uppercase; }
-.live-perf-meta-list li span:last-child { font-weight: 800; }
+.lp-side { padding: 0; }
+.lp-side-head { padding-bottom: 18px; border-bottom: 1px solid rgba(10,29,60,.14); margin-bottom: 18px; }
+.lp-side-eyebrow { display: inline-block; font-family: 'Inter', sans-serif; font-size: .64rem; letter-spacing: .24em; font-weight: 900; color: #F55B1E; margin-bottom: 8px; }
+.lp-side-song { font-size: 1.44rem; font-weight: 900; color: #0A1D3C; line-height: 1.35; margin-bottom: 4px; }
+.lp-side-artist { font-size: .88rem; font-weight: 800; color: #2FC4C4; margin-bottom: 10px; }
+.lp-side-when { font-size: .82rem; color: #0A1D3C; font-weight: 700; }
+.lp-side-when strong { color: #F55B1E; font-size: .92rem; }
+.lp-side-perfs-label { font-family: 'Inter', sans-serif; font-size: .62rem; letter-spacing: .22em; font-weight: 900; color: rgba(10,29,60,.55); text-transform: uppercase; margin-bottom: 12px; }
+.lp-perf { display: grid; grid-template-columns: 68px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px dashed rgba(10,29,60,.14); align-items: start; }
+.lp-perf:last-child { border-bottom: 0; }
+.lp-perf img { width: 68px; height: 68px; object-fit: cover; border: 2px solid #2FC4C4; }
+.lp-perf-role { display: inline-block; font-family: 'Inter', sans-serif; font-size: .56rem; font-weight: 900; letter-spacing: .2em; color: #fff; background: #2FC4C4; padding: 3px 8px; margin-bottom: 5px; }
+.lp-perf-name { font-size: 1rem; font-weight: 900; color: #0A1D3C; margin-bottom: 4px; line-height: 1.35; }
+.lp-perf-name span { font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 800; letter-spacing: .12em; color: rgba(10,29,60,.5); margin-left: 6px; }
+.lp-perf-desc { font-size: .76rem; color: #0A1D3C; line-height: 1.65; }
 
 .live-perf-section-title { text-align: center; font-size: 1.24rem; font-weight: 900; color: #0A1D3C; margin: 24px auto 24px; letter-spacing: .02em; }
 .live-perf-section-title::after { content: ''; display: block; width: 42px; height: 3px; background: #2FC4C4; margin: 12px auto 0; }
@@ -4015,41 +4022,34 @@ body.modal-open { overflow: hidden; }
       <div class="live-perf-video">
         <iframe src="https://www.youtube.com/embed/tTNeAeTr96U" title="YOYOKA featuring Futures Band「近未来」" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
       </div>
-      <div class="live-perf-meta">
-        <div class="live-perf-meta-eyebrow">Featured Song</div>
-        <div class="live-perf-meta-song">「近未来」</div>
-        <div class="live-perf-meta-artist">YOYOKA featuring Futures Band</div>
-        <ul class="live-perf-meta-list">
-          <li><span>When</span><span>12:30ごろ／プレゼン大会 開会式</span></li>
-          <li><span>Length</span><span>4分37秒</span></li>
-        </ul>
+      <div class="lp-side">
+        <div class="lp-side-head">
+          <span class="lp-side-eyebrow">Featured Song</span>
+          <div class="lp-side-song">「近未来」</div>
+          <div class="lp-side-artist">YOYOKA featuring Futures Band</div>
+          <div class="lp-side-when"><strong>12:30ごろ</strong>／プレゼン大会 開会式</div>
+        </div>
+
+        <div class="lp-side-perfs">
+          <div class="lp-side-perfs-label">当日の演奏者</div>
+          <article class="lp-perf">
+            <img src="img/summit/performer_shio.jpg" alt="しお" loading="lazy">
+            <div>
+              <span class="lp-perf-role">Piano &amp; Vocal</span>
+              <h4 class="lp-perf-name">しお <span>Shio</span></h4>
+              <p class="lp-perf-desc">16歳シンガーソングライター。ピアノ弾き語りで福岡を中心に活動中。</p>
+            </div>
+          </article>
+          <article class="lp-perf">
+            <img src="img/summit/performer_natsushi.jpg" alt="なつし" loading="lazy">
+            <div>
+              <span class="lp-perf-role">Guitar &amp; Vocal</span>
+              <h4 class="lp-perf-name">なつし <span>Natsushi</span></h4>
+              <p class="lp-perf-desc">福岡拠点・大学1年生シンガーソングライター。福岡県軽音楽コンテスト2年連続グランプリ。</p>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
-
-    <div class="live-perf-why-block">
-      <div class="live-perf-why-tag">Why This Song</div>
-      <p class="live-perf-why-msg">「<strong>10代の同世代が世界で挑戦している姿</strong>」を、<br>NEXYの舞台で音楽として伝える演目です。</p>
-      <p class="live-perf-why-sub">まさに"<strong>やりたいを、ひとりにしない</strong>"を、音で体現する時間になります。</p>
-    </div>
-
-    <h3 class="live-perf-section-title">当日の演奏者</h3>
-    <div class="live-perf-singers">
-      <article class="perf-singer-card">
-        <div class="perf-singer-photo" style="background-image:url('img/summit/performer_shio.jpg');"></div>
-        <div class="perf-singer-body">
-          <span class="perf-singer-role">Piano & Vocal</span>
-          <h4 class="perf-singer-name">しお<span style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(10,29,60,.5);margin-left:8px;">Shio</span></h4>
-          <p class="perf-singer-desc">16歳シンガーソングライター。主にピアノ弾き語り。The Creators 2025、Music City Tenjin などへの出演を経験し、福岡を中心に活動中。聴く人の心に寄り添えるアーティストを目指しています。</p>
-        </div>
-      </article>
-      <article class="perf-singer-card">
-        <div class="perf-singer-photo" style="background-image:url('img/summit/performer_natsushi.jpg');"></div>
-        <div class="perf-singer-body">
-          <span class="perf-singer-role">Guitar & Vocal</span>
-          <h4 class="perf-singer-name">なつし<span style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.12em;color:rgba(10,29,60,.5);margin-left:8px;">Natsushi</span></h4>
-          <p class="perf-singer-desc">福岡拠点の大学1年生シンガーソングライター。SUNSET LIVE、Music City 天神などに出演。高校では、福岡県軽音楽コンテスト2年連続グランプリなどを受賞し、全国大会出場。自然を愛し、ギター弾き語りで愛と平和、心に寄り添う音楽を届けている。</p>
-        </div>
-      </article>
     </div>
   </div>
 </section>
