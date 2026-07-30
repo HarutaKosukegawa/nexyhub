@@ -1534,10 +1534,26 @@ img { max-width: 100%; display: block; }
   50% { box-shadow: 0 12px 24px rgba(46,189,182,.45), 0 0 0 12px rgba(46,189,182,0); }
 }
 @media (max-width: 600px) {
-  .referral-badge { top: 66px; right: 12px; min-width: 0; max-width: calc(100vw - 24px); padding: 8px 14px 9px; }
-  .referral-badge-main { font-size: .74rem; }
-  .referral-badge-strong { font-size: .88rem; }
-  .referral-badge-note { font-size: .58rem; }
+  .referral-badge {
+    top: auto; bottom: 14px; right: 12px; left: 12px;
+    min-width: 0; width: auto;
+    flex-direction: row; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 14px; border-width: 2px;
+  }
+  .referral-badge::before {
+    content: '¥500'; font-size: .92rem; letter-spacing: 0;
+    color: #FFF04D; margin: 0;
+    background: rgba(0,0,0,.18); padding: 4px 8px; border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .referral-badge-main { font-size: .72rem; line-height: 1.35; text-align: left; }
+  .referral-badge-strong { display: none; }
+  .referral-badge-note { display: none; }
+  .referral-badge-main::after {
+    content: ' ／ 先着50名限定';
+    font-size: .62rem; font-weight: 700;
+    color: rgba(255,255,255,.9);
+  }
 }
 
 
