@@ -3899,6 +3899,176 @@ body.modal-open { overflow: hidden; }
 </section>
 
 
+<!-- SECTION 05.4: LIVE PERFORMANCE (特別演奏企画) -->
+<style>
+.live-perf { padding: 88px 6% 100px; background: #fff; position: relative; }
+.live-perf-inner { max-width: 1120px; margin: 0 auto; }
+.live-perf-head { text-align: center; margin-bottom: 48px; }
+.live-perf-tag { display: inline-block; font-family: 'Inter', 'Nunito', sans-serif; font-size: .74rem; letter-spacing: .28em; font-weight: 900; color: #2FC4C4; padding: 8px 20px; border: 2px solid #2FC4C4; margin-bottom: 22px; }
+.live-perf-title { font-size: clamp(1.6rem, 3.8vw, 2.4rem); font-weight: 900; color: #0A1D3C; line-height: 1.45; margin-bottom: 16px; letter-spacing: .01em; }
+.live-perf-title em { color: #2FC4C4; font-style: normal; position: relative; }
+.live-perf-title em::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 6px; background: rgba(47,196,196,.24); z-index: -1; }
+.live-perf-sub { font-size: 1.02rem; font-weight: 700; color: #0A1D3C; line-height: 1.75; max-width: 640px; margin: 0 auto; }
+.live-perf-sub strong { color: #F55B1E; }
+
+.live-perf-track { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; align-items: start; margin-bottom: 64px; }
+@media (max-width: 860px) { .live-perf-track { grid-template-columns: 1fr; gap: 28px; } }
+.live-perf-video { position: relative; padding-top: 56.25%; border: 3px solid #0A1D3C; overflow: hidden; box-shadow: 0 22px 44px rgba(10,29,60,.16); }
+.live-perf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.live-perf-meta { padding: 6px 0 0; }
+.live-perf-meta-eyebrow { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .24em; font-weight: 900; color: #F55B1E; margin-bottom: 10px; }
+.live-perf-meta-song { font-size: 1.7rem; font-weight: 900; color: #0A1D3C; line-height: 1.35; margin-bottom: 6px; letter-spacing: .01em; }
+.live-perf-meta-artist { font-size: 1rem; font-weight: 800; color: #2FC4C4; margin-bottom: 22px; }
+.live-perf-meta-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(10,29,60,.12); }
+.live-perf-meta-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 2px; border-bottom: 1px solid rgba(10,29,60,.12); font-size: .88rem; color: #0A1D3C; }
+.live-perf-meta-list li span:first-child { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .18em; font-weight: 800; color: rgba(10,29,60,.55); text-transform: uppercase; }
+.live-perf-meta-list li span:last-child { font-weight: 800; }
+
+.live-perf-section-title { text-align: center; font-size: 1.24rem; font-weight: 900; color: #0A1D3C; margin: 24px auto 24px; letter-spacing: .02em; }
+.live-perf-section-title::after { content: ''; display: block; width: 42px; height: 3px; background: #2FC4C4; margin: 12px auto 0; }
+
+.live-perf-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 72px; }
+@media (max-width: 860px) { .live-perf-why { grid-template-columns: 1fr; gap: 16px; } }
+.perf-why-card { background: #fff; border: 2px solid #0A1D3C; padding: 28px 24px 30px; position: relative; transition: transform .3s, box-shadow .3s; }
+.perf-why-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(10,29,60,.16); }
+.perf-why-role { display: inline-block; font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 900; letter-spacing: .22em; color: #fff; background: #F55B1E; padding: 5px 12px; margin-bottom: 16px; }
+.perf-why-card.type-lyrics .perf-why-role { background: #0A1D3C; }
+.perf-why-card.type-band .perf-why-role { background: #2FC4C4; }
+.perf-why-name { font-size: 1.24rem; font-weight: 900; color: #0A1D3C; line-height: 1.35; margin-bottom: 6px; }
+.perf-why-affil { font-size: .82rem; font-weight: 800; color: #2FC4C4; margin-bottom: 14px; line-height: 1.5; }
+.perf-why-list { list-style: none; padding: 0; margin: 0; }
+.perf-why-list li { position: relative; padding-left: 16px; font-size: .82rem; color: #0A1D3C; line-height: 1.75; margin-bottom: 4px; }
+.perf-why-list li::before { content: '▸'; position: absolute; left: 0; top: 0; color: #F55B1E; font-weight: 900; }
+.perf-why-desc { font-size: .88rem; color: #0A1D3C; line-height: 1.85; }
+
+.live-perf-why-block { background: linear-gradient(135deg, #0A1D3C 0%, #12295a 100%); color: #fff; padding: 56px 44px; border-left: 6px solid #2FC4C4; margin-bottom: 72px; position: relative; }
+.live-perf-why-block::before { content: ''; position: absolute; top: 0; right: 0; width: 180px; height: 180px; background: radial-gradient(circle at top right, rgba(47,196,196,.22), transparent 65%); pointer-events: none; }
+.live-perf-why-tag { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 900; letter-spacing: .3em; color: #2FC4C4; margin-bottom: 20px; }
+.live-perf-why-msg { font-size: clamp(1.15rem, 2.3vw, 1.44rem); font-weight: 800; line-height: 1.85; letter-spacing: .02em; margin-bottom: 22px; }
+.live-perf-why-msg strong { color: #2FC4C4; }
+.live-perf-why-sub { font-size: .96rem; font-weight: 700; color: rgba(255,255,255,.9); line-height: 1.85; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.18); }
+.live-perf-why-sub strong { color: #F55B1E; }
+@media (max-width: 640px) { .live-perf-why-block { padding: 40px 26px; } }
+
+.live-perf-singers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 64px; }
+@media (max-width: 720px) { .live-perf-singers { grid-template-columns: 1fr; } }
+.perf-singer-card { background: #fff; border: 2px solid rgba(10,29,60,.14); overflow: hidden; transition: border-color .3s, box-shadow .3s; }
+.perf-singer-card:hover { border-color: #2FC4C4; box-shadow: 0 16px 34px rgba(47,196,196,.16); }
+.perf-singer-photo { width: 100%; aspect-ratio: 4/3; background: #f2f2f0 center/cover no-repeat; }
+.perf-singer-body { padding: 22px 24px 26px; }
+.perf-singer-role { display: inline-block; font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 900; letter-spacing: .22em; color: #fff; background: #2FC4C4; padding: 5px 12px; margin-bottom: 12px; }
+.perf-singer-name { font-size: 1.2rem; font-weight: 900; color: #0A1D3C; margin-bottom: 4px; }
+.perf-singer-name-en { font-size: .72rem; font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: .12em; color: rgba(10,29,60,.5); margin-bottom: 14px; }
+.perf-singer-desc { font-size: .86rem; color: #0A1D3C; line-height: 1.9; }
+
+.live-perf-style { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 640px) { .live-perf-style { grid-template-columns: 1fr; } }
+.perf-style-card { background: #fff; border: 1.5px solid #2FC4C4; padding: 20px 22px; text-align: center; transition: background .25s; }
+.perf-style-card:hover { background: rgba(47,196,196,.06); }
+.perf-style-label { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .22em; color: #F55B1E; margin-bottom: 10px; }
+.perf-style-body { font-size: .92rem; font-weight: 800; color: #0A1D3C; line-height: 1.55; }
+</style>
+
+<section class="live-perf" id="live-performance">
+  <div class="live-perf-inner">
+    <div class="live-perf-head">
+      <span class="live-perf-tag">Live Performance</span>
+      <h2 class="live-perf-title">NEXY Summit 2026 <em>特別演奏企画</em></h2>
+      <p class="live-perf-sub">"<strong>やりたいを、ひとりにしない</strong>"を、音で体現する時間。</p>
+    </div>
+
+    <div class="live-perf-track">
+      <div class="live-perf-video">
+        <iframe src="https://www.youtube.com/embed/tTNeAeTr96U" title="YOYOKA featuring Futures Band「近未来」" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="live-perf-meta">
+        <div class="live-perf-meta-eyebrow">Featured Song</div>
+        <div class="live-perf-meta-song">「近未来」</div>
+        <div class="live-perf-meta-artist">YOYOKA featuring Futures Band</div>
+        <ul class="live-perf-meta-list">
+          <li><span>Length</span><span>4分37秒</span></li>
+          <li><span>Release</span><span>2026年5月</span></li>
+          <li><span>Format</span><span>CD音源＋生歌</span></li>
+          <li><span>Visual</span><span>MV投影</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="live-perf-section-title">この曲がすごい理由</h3>
+    <div class="live-perf-why">
+      <article class="perf-why-card type-drummer">
+        <span class="perf-why-role">Drummer</span>
+        <h4 class="perf-why-name">YOYOKA</h4>
+        <p class="perf-why-affil">世界的16歳天才ドラマー</p>
+        <ul class="perf-why-list">
+          <li>1歳半でドラムを始める</li>
+          <li>8歳で世界のメディアに登場</li>
+          <li>9歳「世界が尊敬する日本人100人」選出</li>
+          <li>世界TOP500ドラマー最年少入り</li>
+          <li>米『エレンの部屋』出演</li>
+          <li>現在ロサンゼルス在住・ハリウッドで活動中</li>
+        </ul>
+      </article>
+      <article class="perf-why-card type-lyrics">
+        <span class="perf-why-role">Lyrics</span>
+        <h4 class="perf-why-name">松本 素生</h4>
+        <p class="perf-why-affil">GOING UNDER GROUND</p>
+        <p class="perf-why-desc">数多くのヒット曲を生み出してきたGOING UNDER GROUNDの松本素生氏が、本楽曲の歌詞を担当。</p>
+      </article>
+      <article class="perf-why-card type-band">
+        <span class="perf-why-role">Band</span>
+        <h4 class="perf-why-name">Futures Band</h4>
+        <p class="perf-why-affil">10〜18歳の同世代6人組</p>
+        <p class="perf-why-desc">バックバンドを務めるのは、10代のミュージシャンたちで結成された6人組バンド。</p>
+      </article>
+    </div>
+
+    <div class="live-perf-why-block">
+      <div class="live-perf-why-tag">Why This Song</div>
+      <p class="live-perf-why-msg">「<strong>10代の同世代が世界で挑戦している姿</strong>」を、<br>NEXYの舞台で音楽として伝える演目です。</p>
+      <p class="live-perf-why-sub">まさに"<strong>やりたいを、ひとりにしない</strong>"を、音で体現する時間になります。</p>
+    </div>
+
+    <h3 class="live-perf-section-title">当日の生歌出演者</h3>
+    <div class="live-perf-singers">
+      <article class="perf-singer-card">
+        <div class="perf-singer-photo" style="background-image:url('img/summit/performer_shio.jpg');"></div>
+        <div class="perf-singer-body">
+          <span class="perf-singer-role">Piano & Vocal</span>
+          <h4 class="perf-singer-name">しお</h4>
+          <p class="perf-singer-name-en">Shio</p>
+          <p class="perf-singer-desc">16歳シンガーソングライター。主にピアノ弾き語り。The Creators 2025、Music City Tenjin などへの出演を経験し、福岡を中心に活動中。聴く人の心に寄り添えるアーティストを目指しています。</p>
+        </div>
+      </article>
+      <article class="perf-singer-card">
+        <div class="perf-singer-photo" style="background-image:url('img/summit/performer_natsushi.jpg');"></div>
+        <div class="perf-singer-body">
+          <span class="perf-singer-role">Guitar & Vocal</span>
+          <h4 class="perf-singer-name">なつし</h4>
+          <p class="perf-singer-name-en">Natsushi</p>
+          <p class="perf-singer-desc">福岡拠点の大学1年生シンガーソングライター。SUNSET LIVE、Music City 天神などに出演。高校では、福岡県軽音楽コンテスト2年連続グランプリなどを受賞し、全国大会出場。自然を愛し、ギター弾き語りで愛と平和、心に寄り添う音楽を届けている。</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="live-perf-style">
+      <div class="perf-style-card">
+        <div class="perf-style-label">Style</div>
+        <div class="perf-style-body">舞台上で生歌<br>（2名・マイクあり）</div>
+      </div>
+      <div class="perf-style-card">
+        <div class="perf-style-label">Sound</div>
+        <div class="perf-style-body">CD音源<br>（伴奏として使用）</div>
+      </div>
+      <div class="perf-style-card">
+        <div class="perf-style-label">Visual</div>
+        <div class="perf-style-body">MV投影<br>（プロジェクター）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- SECTION 05.5: MENTOR (三輪 開人さん) -->
 <section class="section" id="mentor">
   <div class="section-inner">
