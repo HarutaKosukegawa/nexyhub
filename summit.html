@@ -1502,6 +1502,44 @@ img { max-width: 100%; display: block; }
   .float-apply-sub { font-size: .62rem; }
 }
 
+/* ===== 紹介キャンペーン バッジ（右上・応募ボタン直下） ===== */
+.referral-badge {
+  position: fixed; top: 72px; right: 14px; z-index: 1099;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: linear-gradient(135deg, #2EBDB6, #1f8f8a);
+  color: #fff; text-decoration: none;
+  padding: 9px 16px 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 10px 22px rgba(46,189,182,.45), 0 3px 8px rgba(0,0,0,.15);
+  animation: referralPulse 3s ease-in-out infinite;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  min-width: 220px;
+  text-align: center;
+}
+.referral-badge::before {
+  content: 'CAMPAIGN'; display: block;
+  font-size: .58rem; font-weight: 900; letter-spacing: .22em;
+  color: rgba(255,255,255,.9); margin-bottom: 3px;
+}
+.referral-badge-main {
+  font-size: .82rem; font-weight: 900; letter-spacing: .02em; line-height: 1.3;
+}
+.referral-badge-strong { color: #FFF04D; font-size: 1rem; }
+.referral-badge-note {
+  font-size: .62rem; font-weight: 700; letter-spacing: .06em;
+  color: rgba(255,255,255,.95); margin-top: 3px;
+}
+@keyframes referralPulse {
+  0%,100% { box-shadow: 0 12px 24px rgba(46,189,182,.45), 0 0 0 0 rgba(46,189,182,.5); }
+  50% { box-shadow: 0 12px 24px rgba(46,189,182,.45), 0 0 0 12px rgba(46,189,182,0); }
+}
+@media (max-width: 600px) {
+  .referral-badge { top: 66px; right: 12px; min-width: 0; max-width: calc(100vw - 24px); padding: 8px 14px 9px; }
+  .referral-badge-main { font-size: .74rem; }
+  .referral-badge-strong { font-size: .88rem; }
+  .referral-badge-note { font-size: .58rem; }
+}
+
 
 /* ===== 登壇者詳細モーダル ===== */
 .featured-detail-btn {
@@ -2909,6 +2947,12 @@ body.modal-open { overflow: hidden; }
     <span class="float-apply-main">30秒で無料エントリー →</span>
     <span class="float-apply-sub">中学生・高校生・大学生・社会人 OK</span>
   </div>
+</a>
+
+<!-- 紹介キャンペーンバッジ -->
+<a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="referral-badge" aria-label="紹介キャンペーン：1人紹介ごとに500円分商品券プレゼント（先着50名分まで）">
+  <span class="referral-badge-main">紹介1人につき <span class="referral-badge-strong">¥500</span> 商品券プレゼント</span>
+  <span class="referral-badge-note">※ 先着50名分まで／エントリー時に紹介者名を記入</span>
 </a>
 
 
