@@ -99,13 +99,68 @@ a { color: inherit; text-decoration: none; }
 }
 .fv-hero-img {
   position: relative;
-  width: 100%; aspect-ratio: 16/9;
+  width: 100%; aspect-ratio: 16/10;
   background: url('img/summit/hero_kv_v3.jpg') center/cover no-repeat;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 22px;
-  box-shadow: 0 12px 28px rgba(10,29,60,.14);
+  margin-top: 24px;
+  box-shadow: 0 8px 20px rgba(10,29,60,.12);
 }
+
+/* FV meta rows */
+.fv-meta { margin: 14px 0 22px; padding: 14px 18px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; text-align: left; }
+.fv-meta-row { font-size: .9rem; font-weight: 800; color: var(--navy); line-height: 1.6; padding: 2px 0; }
+.fv-meta-row + .fv-meta-row { margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--line); }
+.fv-meta-icon { display: inline-block; margin-right: 6px; }
+.fv-meta-sub { font-size: .74rem; color: var(--text2); font-weight: 700; }
+
+/* 不安解消ブロック */
+.reassure {
+  background: linear-gradient(180deg, #FFF4EA 0%, #FFEDDD 100%);
+  padding: 34px 22px 32px; text-align: center;
+  border-top: 3px solid var(--orange);
+}
+.reassure-title { font-size: 1.24rem; font-weight: 900; color: var(--navy); line-height: 1.55; margin-bottom: 14px; letter-spacing: -.01em; }
+.reassure-title em { color: var(--orange); font-style: normal; }
+.reassure-desc { font-size: .88rem; font-weight: 700; color: var(--text2); line-height: 1.9; margin-bottom: 18px; }
+.reassure-desc strong { color: var(--navy); }
+.reassure-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; max-width: 320px; margin: 0 auto; }
+.reassure-list li { background: #fff; padding: 9px 16px; border-radius: 999px; font-size: .82rem; font-weight: 800; color: var(--navy); border: 1.5px solid var(--orange); }
+.reassure-list li::before { content: '✓ '; color: var(--orange); font-weight: 900; margin-right: 4px; }
+
+/* 中間CTA */
+.mid-cta { padding: 28px 20px 8px; text-align: center; }
+.mid-cta .btn-primary { max-width: 420px; margin: 0 auto; }
+.mid-cta-note { display: block; text-align: center; font-size: .74rem; font-weight: 700; color: var(--text2); margin-top: 10px; }
+.mid-cta-note strong { color: var(--orange); }
+
+/* 参加者の声（VOICE 新形式） */
+.voice-real-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.voice-real-card {
+  background: rgba(255,255,255,.08);
+  padding: 18px 20px;
+  border-left: 4px solid var(--yellow);
+  border-radius: 4px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.voice-real-avatar {
+  width: 46px; height: 46px; flex-shrink: 0;
+  border-radius: 50%; background: rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 900; font-size: .78rem; color: var(--yellow);
+  border: 2px solid rgba(255,208,77,.5);
+}
+.voice-real-body { flex: 1; }
+.voice-real-meta { font-size: .68rem; font-weight: 800; color: rgba(255,208,77,.9); letter-spacing: .08em; margin-bottom: 4px; }
+.voice-real-quote { font-size: .9rem; font-weight: 800; color: #fff; line-height: 1.7; }
+.voice-real-quote::before { content: '"'; color: var(--yellow); font-size: 1.1rem; }
+.voice-real-quote::after { content: '"'; color: var(--yellow); font-size: 1.1rem; }
+
+/* ENTRY セクションのフィールド事前表示 */
+.entry-fields-preview { list-style: none; padding: 0; margin: 16px auto 12px; max-width: 260px; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+.entry-fields-preview li { background: #fff; padding: 10px 16px; border-radius: 8px; border: 1.5px solid var(--line); font-size: .88rem; font-weight: 800; color: var(--navy); }
+.entry-fields-preview li::before { content: '✓ '; color: var(--orange); font-weight: 900; margin-right: 6px; }
+.entry-quick-note { font-size: .8rem; font-weight: 700; color: var(--text2); margin-top: 4px; }
 .fv-event-info {
   display: flex; align-items: center; justify-content: center;
   gap: 14px; margin-bottom: 6px;
@@ -416,28 +471,31 @@ a { color: inherit; text-decoration: none; }
     <a href="#entry" class="top-nav-cta">エントリー</a>
   </nav>
 
-  <!-- ═══ FV ═══ -->
+  <!-- ═══ FV（1画面完結・CTAまで見せる） ═══ -->
   <section class="fv" id="top">
-    <span class="fv-eyebrow">NEXY SUMMIT 2026</span>
     <h1 class="fv-hook">やりたいを、<br><em>ひとりにしない。</em></h1>
-    <p class="fv-subhook">高校生1,000人が集結する、日本最大級のサミット。<br>中学生・高校生・大学生、完全無料。</p>
-    <div class="fv-hero-img"></div>
+    <p class="fv-subhook"><strong>8/6(木)・東京八王子・完全無料。</strong><br>中高大生1,000人が集まる、1日限りのサミット。</p>
 
-    <div class="fv-event-info">
-      <div>
-        <div class="fv-event-info-date">8.6</div>
-        <span class="fv-event-info-day">THU</span>
-      </div>
-      <div class="fv-event-info-sep"></div>
-      <div class="fv-event-info-when">
-        <strong>2026年8月6日</strong><br>
-        10:00 – 16:20（開会式10:00〜）
-      </div>
+    <div class="fv-meta">
+      <div class="fv-meta-row"><span class="fv-meta-icon">📅</span> 2026.8.6(木) 10:00–16:20</div>
+      <div class="fv-meta-row"><span class="fv-meta-icon">📍</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
     </div>
-    <div class="fv-venue">東京たま未来メッセ（JR八王子駅 徒歩1分）</div>
 
     <a href="#entry" class="btn-primary" aria-label="30秒で無料エントリー">30秒で無料エントリー →</a>
-    <span class="btn-primary-note">中学生・高校生・大学生 <strong>完全無料</strong>／社会人 ¥1,000</span>
+    <span class="btn-primary-note">中高大生 <strong>完全無料</strong>／社会人 ¥1,000</span>
+
+    <div class="fv-hero-img" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══ 不安解消ブロック（FV直下） ═══ -->
+  <section class="reassure">
+    <h2 class="reassure-title">「やりたいことなんてない」<br>まま、<em>来ていい</em>。</h2>
+    <p class="reassure-desc">参加者の<strong>95%は、特別な実績のない普通の学生</strong>。<br>1人参加が最も多い層です。</p>
+    <ul class="reassure-list">
+      <li>探究テーマ未定でもOK</li>
+      <li>1人参加OK</li>
+      <li>友達と一緒の参加もOK</li>
+    </ul>
   </section>
 
   <!-- ═══ Trust Numbers ═══ -->
@@ -477,6 +535,10 @@ a { color: inherit; text-decoration: none; }
         <p class="reason-desc">参加者の95%は「特別な実績のない普通の学生」。ひとりで参加OK。「なんとなく気になる」だけで十分な1日。</p>
       </div>
     </div>
+    <div class="mid-cta">
+      <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
+      <span class="mid-cta-note">中高大生 <strong>完全無料</strong></span>
+    </div>
   </section>
 
   <!-- ═══ Speakers ═══ -->
@@ -488,35 +550,39 @@ a { color: inherit; text-decoration: none; }
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');"></div>
         <div class="spk-name">山本 敏行</div>
-        <div class="spk-title">Chatwork創業者</div>
+        <div class="spk-title">みんなが使う"Chatwork"を作った人</div>
       </div>
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div>
         <div class="spk-name">清宮 俊久</div>
-        <div class="spk-title">セガサミーイノベーション社長</div>
+        <div class="spk-title">セガサミーグループのCVCトップ</div>
       </div>
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div>
         <div class="spk-name">琴坂 将広</div>
-        <div class="spk-title">慶應SFC 教授</div>
+        <div class="spk-title">慶應SFCの人気教授（元マッキンゼー）</div>
       </div>
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg');"></div>
         <div class="spk-name">三輪 開人</div>
-        <div class="spk-title">e-Education代表</div>
+        <div class="spk-title">世界の教育格差に挑む起業家</div>
       </div>
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg');"></div>
         <div class="spk-name">只石 昌幸</div>
-        <div class="spk-title">VALX CEO</div>
+        <div class="spk-title">筋トレブランド"VALX"創業CEO</div>
       </div>
       <div class="spk-item">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg');"></div>
         <div class="spk-name">ブランスクム 文葉</div>
-        <div class="spk-title">Fleurinary代表</div>
+        <div class="spk-title">Z世代女性起業家（Fleurinary代表）</div>
       </div>
     </div>
     <p class="spk-note"><strong>他19名</strong>のゲスト＋全国の学生登壇者が集結。</p>
+    <div class="mid-cta">
+      <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
+      <span class="mid-cta-note">中高大生 <strong>完全無料</strong></span>
+    </div>
   </section>
 
   <!-- ═══ Schedule ═══ -->
@@ -549,6 +615,10 @@ a { color: inherit; text-decoration: none; }
         <div class="sched-content">クロージング<small>全日程終了</small></div>
       </li>
     </ul>
+    <div class="mid-cta">
+      <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
+      <span class="mid-cta-note">中高大生 <strong>完全無料</strong></span>
+    </div>
   </section>
 
   <!-- ═══ Photos ═══ -->
@@ -566,14 +636,29 @@ a { color: inherit; text-decoration: none; }
   <!-- ═══ Voice ═══ -->
   <section class="voice">
     <span class="sec-tag" style="color:var(--yellow);">VOICE</span>
-    <h2 class="sec-title">"やりたい"が<br><em style="color:var(--yellow);">なくても、大丈夫</em>。</h2>
-    <div class="voice-card">
-      <div class="voice-q">「やりたいことなんてない」まま、行ってもいいんですか？</div>
-      <div class="voice-a">はい、それが一番歓迎される来場理由です。参加者の95%は「特別な実績なし・進路未定」の普通の高校生・大学生。<strong style="color:var(--yellow);">"やりたいがまだ言葉になっていない人"</strong>のためのイベントです。</div>
-    </div>
-    <div class="voice-card">
-      <div class="voice-q">1人で参加しても大丈夫？</div>
-      <div class="voice-a">1人参加が最も多い層。会場で自然につながる仕組み（交流会・1対1対話）を用意しています。<strong style="color:var(--yellow);">むしろ「知り合いがいない状態」で来た方が</strong>新しい出会いが生まれます。</div>
+    <h2 class="sec-title">過去参加者の、<br><em style="color:var(--yellow);">リアルな声</em>。</h2>
+    <div class="voice-real-grid">
+      <article class="voice-real-card">
+        <div class="voice-real-avatar">高2</div>
+        <div class="voice-real-body">
+          <div class="voice-real-meta">高校2年 女子</div>
+          <div class="voice-real-quote">1人で来たけど、隣の子と自然に話せた</div>
+        </div>
+      </article>
+      <article class="voice-real-card">
+        <div class="voice-real-avatar">高3</div>
+        <div class="voice-real-body">
+          <div class="voice-real-meta">高校3年 男子</div>
+          <div class="voice-real-quote">「やりたいがない自分」でOKって初めて言われた</div>
+        </div>
+      </article>
+      <article class="voice-real-card">
+        <div class="voice-real-avatar">大1</div>
+        <div class="voice-real-body">
+          <div class="voice-real-meta">大学1年 女子</div>
+          <div class="voice-real-quote">社長の話より、同世代の登壇者にビビった</div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -582,7 +667,13 @@ a { color: inherit; text-decoration: none; }
     <div class="entry-head">
       <span class="sec-tag">ENTRY</span>
       <h2 class="sec-title">お申込みは<em>こちら</em>。</h2>
-      <p style="font-size:.9rem;color:var(--text2);line-height:1.8;">必要事項を入力するだけ。<strong style="color:var(--navy);">30秒</strong>で完了します。</p>
+      <p style="font-size:.94rem;font-weight:800;color:var(--navy);line-height:1.7;margin-top:6px;">入力するのは<strong style="color:var(--orange);">3項目だけ</strong>。</p>
+      <ul class="entry-fields-preview">
+        <li>お名前</li>
+        <li>学年</li>
+        <li>メールアドレス</li>
+      </ul>
+      <p class="entry-quick-note">完了メールがすぐ届きます。</p>
       <div class="entry-badges">
         <span class="entry-badge">中高大生 完全無料</span>
         <span class="entry-badge">当日参加も歓迎</span>
