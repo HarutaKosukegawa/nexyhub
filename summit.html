@@ -4471,67 +4471,6 @@ if (heroImg) {
 }
 
 
-/* Scroll-triggered reveal */
-const animSelectors = '.card, .prog-acc, .speaker-card, .target-card, .num-cell, .sch-item, .scholar-item, .sponsor-card, .faq-item, .overview-grid > div, .scholar-block, .pair-block';
-const animEls = document.querySelectorAll(animSelectors);
-animEls.forEach((el) => {
-  el.classList.add('anim', 'up');
-  const idx = Array.from(el.parentElement?.children || []).indexOf(el);
-  el.style.transitionDelay = Math.min(idx, 6) * 0.06 + 's';
-});
-const revObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in-view');
-      revObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-animEls.forEach(el => revObs.observe(el));
-
-/* Number counter animation */
-const numEls = document.querySelectorAll('.num-num');
-const numObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    const text = el.textContent.trim();
-    const m = text.match(/^([¥]?)([0-9,]+)(.*)/);
-    if (!m) { numObs.unobserve(el); return; }
-    const prefix = m[1];
-    const target = parseInt(m[2].replace(/,/g, ''));
-    const suffix = m[3];
-    const dur = 1400;
-    const start = performance.now();
-    function step(now) {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const cur = Math.floor(target * eased);
-      el.innerHTML = prefix + cur.toLocaleString() + suffix;
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-    numObs.unobserve(el);
-  });
-}, { threshold: 0.3 });
-numEls.forEach(el => numObs.observe(el));
-
-/* Hero subtle parallax on scroll */
-const heroImg = document.querySelector('.hero-image');
-if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (y < 700) heroImg.style.transform = `translateY(${y * 0.15}px) scale(${1 + y * 0.00012})`;
-      ticking = false;
-    });
-  }, { passive: true });
-}
-
-
 /* ===== Particles animation ===== */
 (function(){
   const c = document.getElementById('particles');
