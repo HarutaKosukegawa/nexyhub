@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://docs.google.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Manrope:wght@400;600;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -35,14 +35,19 @@
   --text: #0A1D3C;
   --text2: #4a5568;
   --line: rgba(10,29,60,.10);
+  /* Font tokens */
+  --font-jp: 'Zen Kaku Gothic New', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Noto Serif JP', 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', serif;
+  --font-num: 'Manrope', 'Inter', -apple-system, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-jp);
   background: var(--bg); color: var(--text); font-weight: 500;
   line-height: 1.7; -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  letter-spacing: .02em;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -56,20 +61,21 @@ a { color: inherit; text-decoration: none; }
 
 /* Countdown bar (top-most) */
 .countdown-bar {
-  background: linear-gradient(90deg, var(--navy) 0%, #12295a 100%);
-  color: #fff; padding: 8px 12px;
+  background: #0a0a0a;
+  color: #fff; padding: 9px 12px;
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-family: var(--font-num); font-weight: 800;
   font-size: .72rem; letter-spacing: .06em;
-  border-bottom: 2px solid var(--orange);
+  border-bottom: 1px solid rgba(255,255,255,.14);
 }
-.countdown-label { color: rgba(255,255,255,.7); font-size: .62rem; letter-spacing: .16em; font-weight: 700; }
+.countdown-label { color: rgba(255,255,255,.55); font-size: .58rem; letter-spacing: .22em; font-weight: 700; text-transform: uppercase; }
 .countdown-nums { display: flex; gap: 6px; align-items: baseline; }
 .countdown-unit { display: inline-flex; align-items: baseline; gap: 2px; transition: transform .18s; }
 .countdown-unit.pulse { transform: scale(1.12); }
 .countdown-val {
-  font-size: 1.02rem; font-weight: 900; color: var(--yellow);
-  font-variant-numeric: tabular-nums; letter-spacing: 0;
+  font-family: var(--font-num);
+  font-size: 1.06rem; font-weight: 900; color: var(--orange);
+  font-variant-numeric: tabular-nums; letter-spacing: -.02em;
   min-width: 22px; text-align: center;
 }
 .countdown-suffix { font-size: .62rem; color: rgba(255,255,255,.75); font-weight: 700; margin-right: 2px; }
@@ -95,77 +101,127 @@ a { color: inherit; text-decoration: none; }
   padding: 8px 14px; border-radius: 999px;
 }
 
-/* ─── FV（ヒーロー画像＋大型CTAデザイン） ─── */
+/* ─── FV（v3：黒背景 × 編集的タイポ × 巨大"8.6"） ─── */
 .fv {
   position: relative; min-height: 100vh;
-  padding: 30px 22px 42px;
-  background: url('img/summit/hero_kv_v3.jpg') center/cover no-repeat;
-  color: #fff; text-align: center;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 44px 26px 56px;
+  background: #0a0a0a;
+  color: #fff; text-align: left;
+  display: flex; flex-direction: column; justify-content: center;
   overflow: hidden;
 }
+/* 背景に配置する巨大な"8.6"（雑誌カバー風） */
 .fv::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(10,29,60,.55) 0%, rgba(10,29,60,.75) 60%, rgba(26,43,92,.9) 100%);
-  z-index: 0;
+  content: '8.6'; position: absolute;
+  right: -60px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-num);
+  font-size: clamp(280px, 68vw, 460px);
+  font-weight: 900; line-height: .82;
+  color: #fff; opacity: .028; letter-spacing: -.05em;
+  pointer-events: none; z-index: 0;
 }
 .fv > * { position: relative; z-index: 1; }
 
-.fv-badges {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
-  margin-bottom: 24px;
+/* 編集的マーカー：上部の巨大 8.6 */
+.fv-marker {
+  display: flex; align-items: flex-end; gap: 14px;
+  margin-bottom: 32px;
   animation: fadeInDown .8s ease both;
 }
-.fv-badge {
-  background: rgba(255,255,255,.95); color: var(--navy);
-  padding: 6px 12px; border-radius: 999px;
-  font-size: .68rem; font-weight: 900; letter-spacing: .02em;
-  box-shadow: 0 3px 10px rgba(0,0,0,.14);
+.fv-marker-num {
+  font-family: var(--font-num);
+  font-size: clamp(84px, 20vw, 116px);
+  font-weight: 900; line-height: .82;
+  color: #fff; letter-spacing: -.05em;
 }
-.fv-badge-primary { background: var(--orange); color: #fff; }
+.fv-marker-meta {
+  font-family: var(--font-num);
+  padding-bottom: 8px; letter-spacing: .18em;
+}
+.fv-marker-line {
+  font-size: .68rem; font-weight: 800; color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+}
+.fv-marker-line + .fv-marker-line { margin-top: 4px; }
+.fv-marker-line strong { color: var(--orange); font-weight: 900; }
+
+.fv-badges {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 30px;
+  animation: fadeInDown .8s .1s ease both;
+}
+.fv-badge {
+  background: rgba(255,255,255,.08); color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  padding: 6px 12px; border-radius: 999px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+}
+.fv-badge-primary { background: var(--orange); color: #fff; border-color: var(--orange); font-weight: 900; }
 
 .fv-hook {
-  font-size: clamp(2.1rem, 9.5vw, 2.7rem);
-  font-weight: 900; color: #fff; line-height: 1.4;
-  letter-spacing: -.02em; margin: 0 0 12px;
-  text-shadow: 0 3px 14px rgba(0,0,0,.6);
+  font-family: var(--font-jp);
+  font-size: clamp(2.6rem, 11vw, 3.5rem);
+  font-weight: 900; color: #fff; line-height: 1.28;
+  letter-spacing: -.02em; margin: 0 0 22px;
   animation: fadeInUp .9s .1s ease both;
 }
-.fv-hook em { color: #FF9455; font-style: normal; position: relative; }
-.fv-hook em::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
-  height: 8px; background: rgba(255,215,0,.42); z-index: -1;
+.fv-hook-quiet {
+  display: block; color: rgba(255,255,255,.55);
+  font-size: .78em; font-weight: 500; letter-spacing: -.01em;
+  margin-bottom: 4px;
 }
+.fv-hook-quiet .fv-hook-bracket { color: var(--orange); font-weight: 900; }
+.fv-hook em { color: var(--orange); font-style: normal; display: block; }
+.fv-hook-final { display: block; color: #fff; }
+
 .fv-subhook {
-  font-size: 1rem; font-weight: 800; color: rgba(255,255,255,.95);
-  margin: 0 0 30px; line-height: 1.85;
-  text-shadow: 0 2px 10px rgba(0,0,0,.55);
+  font-size: 1rem; font-weight: 500; color: rgba(255,255,255,.85);
+  margin: 0 0 34px; line-height: 1.95;
+  letter-spacing: .02em; max-width: 520px;
   animation: fadeInUp .9s .25s ease both;
 }
-.fv-subhook strong { color: #FFD700; }
-
-.fv-meta {
-  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
-  color: #fff; border-radius: 14px; padding: 14px 18px;
-  margin: 26px auto 0; max-width: 380px;
-  backdrop-filter: blur(6px);
-  animation: fadeInUp .9s .55s ease both;
-}
-.fv-meta-row { color: #fff; font-weight: 800; display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: .88rem; }
-.fv-meta-row + .fv-meta-row { border-top: 1px dashed rgba(255,255,255,.25); margin-top: 4px; padding-top: 8px; }
-.fv-meta-icon { background: var(--orange); color: #fff; font-size: .58rem; font-weight: 900; letter-spacing: .12em; padding: 3px 8px; border-radius: 3px; flex-shrink: 0; }
-.fv-meta-sub { color: rgba(255,255,255,.75); font-weight: 700; font-size: .74rem; }
+.fv-subhook strong { color: #fff; font-weight: 800; }
 
 .fv-cta {
-  margin-top: 4px;
-  padding: 20px 26px; font-size: 1.14rem; letter-spacing: .04em;
+  align-self: flex-start;
+  padding: 20px 32px; font-size: 1.1rem;
+  font-family: var(--font-jp);
+  font-weight: 900; letter-spacing: .04em;
   background: linear-gradient(135deg, #FF6B35 0%, #FF8555 100%);
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(255,107,53,.55), 0 3px 8px rgba(0,0,0,.2);
-  animation: fadeInUp .9s .4s ease both, fvBounce 2.4s .8s ease-in-out infinite;
-  border: 2px solid rgba(255,255,255,.4);
+  color: #fff; text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(255,107,53,.35), 0 3px 8px rgba(0,0,0,.4);
+  animation: fadeInUp .9s .4s ease both, fvBounce 2.6s .9s ease-in-out infinite;
+  border: none; display: inline-block;
+  transition: transform .18s;
+  min-width: 260px; text-align: center;
 }
 .fv-cta:active { transform: scale(.98); }
+.fv-cta-note {
+  display: block; margin-top: 12px;
+  font-family: var(--font-num);
+  font-size: .72rem; color: rgba(255,255,255,.55);
+  letter-spacing: .08em;
+  animation: fadeInUp .9s .5s ease both;
+}
+.fv-cta-note strong { color: var(--orange); font-weight: 800; }
+
+.fv-meta {
+  background: transparent; border: none; border-top: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.7); border-radius: 0; padding: 20px 0 0;
+  margin: 40px 0 0; max-width: 100%;
+  backdrop-filter: none;
+  animation: fadeInUp .9s .55s ease both;
+}
+.fv-meta-row { color: rgba(255,255,255,.85); font-weight: 700; display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: .84rem; letter-spacing: .02em; }
+.fv-meta-row + .fv-meta-row { border-top: 1px dashed rgba(255,255,255,.14); margin-top: 4px; padding-top: 10px; }
+.fv-meta-icon {
+  background: transparent; color: var(--orange);
+  font-family: var(--font-num); font-size: .58rem; font-weight: 800; letter-spacing: .22em;
+  padding: 0; border: none; border-left: 2px solid var(--orange); padding-left: 8px;
+  flex-shrink: 0;
+}
+.fv-meta-sub { color: rgba(255,255,255,.5); font-weight: 500; font-size: .74rem; }
 
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-14px); }
@@ -393,9 +449,13 @@ a { color: inherit; text-decoration: none; }
 }
 .voice-real-body { flex: 1; }
 .voice-real-meta { font-size: .68rem; font-weight: 800; color: rgba(255,208,77,.9); letter-spacing: .08em; margin-bottom: 4px; }
-.voice-real-quote { font-size: .9rem; font-weight: 800; color: #fff; line-height: 1.7; }
-.voice-real-quote::before { content: '"'; color: var(--yellow); font-size: 1.1rem; }
-.voice-real-quote::after { content: '"'; color: var(--yellow); font-size: 1.1rem; }
+.voice-real-quote {
+  font-family: var(--font-serif);
+  font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.85;
+  letter-spacing: .02em;
+}
+.voice-real-quote::before { content: '「'; color: var(--yellow); font-size: 1.24rem; font-weight: 900; margin-right: -2px; }
+.voice-real-quote::after { content: '」'; color: var(--yellow); font-size: 1.24rem; font-weight: 900; margin-left: -2px; }
 
 /* ENTRY セクションのフィールド事前表示 */
 .entry-fields-preview { list-style: none; padding: 0; margin: 16px auto 12px; max-width: 260px; text-align: left; display: flex; flex-direction: column; gap: 8px; }
@@ -458,32 +518,35 @@ a { color: inherit; text-decoration: none; }
 /* ─── Trust numbers ─── */
 .trust-nums {
   background: var(--navy);
-  color: #fff; padding: 26px 16px;
+  color: #fff; padding: 30px 16px;
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 4px; text-align: center;
 }
 .trust-num-val {
-  font-family: 'Inter', sans-serif; font-weight: 900;
-  font-size: 1.9rem; line-height: 1;
+  font-family: var(--font-num); font-weight: 900;
+  font-size: 2.2rem; line-height: 1;
   color: var(--yellow);
-  letter-spacing: -.02em;
+  letter-spacing: -.03em;
 }
-.trust-num-val small { font-size: .8rem; color: #fff; }
+.trust-num-val small { font-size: .82rem; color: #fff; font-weight: 800; margin-left: 2px; }
 .trust-num-label {
-  font-size: .68rem; font-weight: 700; margin-top: 8px;
-  letter-spacing: .04em; color: rgba(255,255,255,.85);
+  font-family: var(--font-num);
+  font-size: .64rem; font-weight: 700; margin-top: 10px;
+  letter-spacing: .18em; color: rgba(255,255,255,.75);
+  text-transform: uppercase;
 }
 
 /* ─── Section shared ─── */
 .section { padding: 44px 20px; }
 .sec-tag {
   display: inline-block;
-  font-family: 'Inter', sans-serif; font-size: .64rem; font-weight: 900; letter-spacing: .24em;
-  color: var(--orange); margin-bottom: 12px;
+  font-family: var(--font-num); font-size: .64rem; font-weight: 800; letter-spacing: .28em;
+  color: var(--orange); margin-bottom: 14px; text-transform: uppercase;
 }
 .sec-title {
-  font-size: 1.44rem; font-weight: 900; color: var(--navy);
-  line-height: 1.45; margin-bottom: 20px; letter-spacing: -.01em;
+  font-family: var(--font-jp);
+  font-size: 1.56rem; font-weight: 900; color: var(--navy);
+  line-height: 1.5; margin-bottom: 22px; letter-spacing: -.01em;
 }
 .sec-title em { color: var(--orange); font-style: normal; }
 
@@ -495,8 +558,8 @@ a { color: inherit; text-decoration: none; }
   padding: 18px 18px 20px;
 }
 .reason-num {
-  font-family: 'Inter', sans-serif; font-size: .68rem;
-  font-weight: 900; letter-spacing: .2em; color: var(--orange);
+  font-family: var(--font-num); font-size: .72rem;
+  font-weight: 900; letter-spacing: .28em; color: var(--orange);
 }
 .reason-title {
   font-size: 1.08rem; font-weight: 900; color: var(--navy);
@@ -504,33 +567,51 @@ a { color: inherit; text-decoration: none; }
 }
 .reason-desc { font-size: .84rem; color: var(--text2); line-height: 1.85; }
 
-/* Speakers */
+/* Speakers（美術館風 1pxグリッド） */
 .speakers-hero {
-  background: var(--paper); padding: 34px 20px;
+  background: #fff; padding: 40px 20px 44px;
 }
 .spk-lead {
-  font-size: .92rem; font-weight: 700; color: var(--text);
-  line-height: 1.85; margin-bottom: 18px;
+  font-size: .92rem; font-weight: 500; color: var(--text2);
+  line-height: 1.95; margin-bottom: 26px; letter-spacing: .02em;
 }
-.spk-lead strong { color: var(--orange); }
+.spk-lead strong { color: var(--navy); font-weight: 800; }
 .spk-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 10px; margin-bottom: 14px;
+  gap: 0; margin: 0 -4px 18px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
-.spk-item { text-align: center; }
+.spk-item {
+  text-align: center; padding: 22px 12px 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  transition: background .25s;
+}
+.spk-item:hover { background: var(--paper); }
 .spk-photo {
-  width: 100%; aspect-ratio: 1; border-radius: 50%;
-  background: #ddd center/cover no-repeat;
-  border: 4px solid #fff; box-shadow: 0 8px 18px rgba(10,29,60,.18);
-  margin-bottom: 8px;
+  width: 82%; max-width: 90px; aspect-ratio: 1; border-radius: 50%;
+  background: #eee center/cover no-repeat;
+  border: none; box-shadow: none;
+  margin: 0 auto 12px;
 }
-.spk-name { font-size: .82rem; font-weight: 900; color: var(--navy); line-height: 1.35; }
-.spk-title { font-size: .66rem; font-weight: 700; color: var(--text2); line-height: 1.5; margin-top: 4px; }
+.spk-name {
+  font-family: var(--font-jp);
+  font-size: .84rem; font-weight: 900; color: var(--navy);
+  line-height: 1.35; letter-spacing: .02em;
+}
+.spk-title {
+  font-family: var(--font-num);
+  font-size: .58rem; font-weight: 700; color: var(--text2);
+  line-height: 1.5; margin-top: 6px;
+  letter-spacing: .16em; text-transform: uppercase;
+}
 .spk-note {
-  font-size: .74rem; color: var(--text2); font-weight: 700;
-  text-align: center; margin-top: 10px;
+  font-size: .78rem; color: var(--text2); font-weight: 500;
+  text-align: center; margin-top: 18px; letter-spacing: .02em;
 }
-.spk-note strong { color: var(--navy); }
+.spk-note strong { color: var(--navy); font-weight: 800; }
 
 /* Schedule */
 .sched-list { list-style: none; padding: 0; }
@@ -541,8 +622,8 @@ a { color: inherit; text-decoration: none; }
 }
 .sched-item:last-child { border-bottom: 0; }
 .sched-time {
-  font-family: 'Inter', sans-serif; font-weight: 900;
-  font-size: .82rem; color: var(--orange); letter-spacing: -.01em;
+  font-family: var(--font-num); font-weight: 900;
+  font-size: .96rem; color: var(--orange); letter-spacing: -.02em;
 }
 .sched-content { font-size: .88rem; font-weight: 700; color: var(--navy); line-height: 1.5; }
 .sched-content small { display: block; font-size: .72rem; font-weight: 500; color: var(--text2); margin-top: 2px; }
@@ -725,22 +806,36 @@ a { color: inherit; text-decoration: none; }
     <a href="#entry" class="top-nav-cta">エントリー</a>
   </nav>
 
-  <!-- ═══ FV（ヒーロー画像＋大型CTA） ═══ -->
+  <!-- ═══ FV（v3：黒背景 × 編集的タイポ × 巨大"8.6"） ═══ -->
   <section class="fv" id="top">
+    <div class="fv-marker">
+      <div class="fv-marker-num">8.6</div>
+      <div class="fv-marker-meta">
+        <div class="fv-marker-line">2026 <strong>THU</strong></div>
+        <div class="fv-marker-line">NEXY SUMMIT</div>
+      </div>
+    </div>
+
     <div class="fv-badges">
       <span class="fv-badge fv-badge-primary">中高大生 完全無料</span>
       <span class="fv-badge">1人参加OK</span>
       <span class="fv-badge">やりたいことなくてOK</span>
     </div>
 
-    <h1 class="fv-hook">この夏、<br><em>いちばんの1日</em>。</h1>
-    <p class="fv-subhook"><strong>勉強も、進路も、青春も。</strong><br>全国1,000人の同世代と、まっすぐ交わる1日。</p>
+    <h1 class="fv-hook">
+      <span class="fv-hook-quiet"><span class="fv-hook-bracket">「</span>やりたいがない<span class="fv-hook-bracket">」</span></span>
+      <em>まま、来ていい</em>
+      <span class="fv-hook-final">1日。</span>
+    </h1>
 
-    <a href="#entry" class="btn-primary fv-cta" aria-label="30秒で無料エントリー">30秒で無料エントリー →</a>
+    <p class="fv-subhook">全国1,000人の同世代と、第一線で挑む大人25人が交わる、<strong>1年に1度きり</strong>の1日。<br>勉強も、進路も、青春も、まっすぐ持ち帰る。</p>
+
+    <a href="#entry" class="fv-cta" aria-label="30秒で無料エントリー">30秒で無料エントリー →</a>
+    <span class="fv-cta-note">中高大生 <strong>完全無料</strong> ／ 社会人 ¥1,000</span>
 
     <div class="fv-meta">
-      <div class="fv-meta-row"><span class="fv-meta-icon">日時</span> 2026.8.6(木) 10:00–16:20</div>
-      <div class="fv-meta-row"><span class="fv-meta-icon">会場</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
+      <div class="fv-meta-row"><span class="fv-meta-icon">DATE</span> 2026.8.6(木) 10:00–16:20</div>
+      <div class="fv-meta-row"><span class="fv-meta-icon">PLACE</span> 東京たま未来メッセ <span class="fv-meta-sub">JR八王子駅 徒歩1分</span></div>
     </div>
   </section>
 
@@ -1045,12 +1140,12 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
-  <!-- Final CTA before footer -->
-  <section class="section fade-in" style="text-align:center;background:var(--paper);padding-bottom:56px;">
-    <h2 style="font-size:1.24rem;font-weight:900;color:var(--navy);line-height:1.55;margin-bottom:8px;">まだ何者でもないまま、<br>来ていい。</h2>
-    <p style="font-size:.86rem;color:var(--text2);line-height:1.85;margin-bottom:20px;">来た理由なんて、なんでもいい。<br>1日を過ごしてから、決めればいい。</p>
+  <!-- Final CTA before footer（Noto Serif JPで感情の"深さ"） -->
+  <section class="section fade-in" style="text-align:center;background:var(--paper);padding:64px 22px 60px;">
+    <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:900;color:var(--navy);line-height:1.7;margin-bottom:14px;letter-spacing:.02em;">まだ何者でもないまま、<br>来ていい。</h2>
+    <p style="font-family:var(--font-serif);font-size:.94rem;font-weight:500;color:var(--text2);line-height:2.1;margin-bottom:24px;letter-spacing:.03em;">来た理由なんて、なんでもいい。<br>1日を過ごしてから、決めればいい。</p>
     <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
-    <p style="margin-top:14px;font-size:.76rem;font-weight:700;color:var(--text2);line-height:1.85;">入力は、<strong style="color:var(--navy);">名前・学年・メールアドレスの3項目</strong>だけ。<br>事前申込は<strong style="color:var(--navy);">8月5日</strong>まで／当日参加も歓迎。</p>
+    <p style="margin-top:16px;font-family:var(--font-num);font-size:.7rem;font-weight:700;color:var(--text2);line-height:1.85;letter-spacing:.06em;">事前申込は 8/5 まで ／ 当日参加も歓迎</p>
   </section>
 
   <!-- 逆FOMO -->
