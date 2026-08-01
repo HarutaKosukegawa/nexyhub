@@ -54,6 +54,31 @@ a { color: inherit; text-decoration: none; }
   .lp-wrap { margin: 0 auto; }
 }
 
+/* Countdown bar (top-most) */
+.countdown-bar {
+  background: linear-gradient(90deg, var(--navy) 0%, #12295a 100%);
+  color: #fff; padding: 8px 12px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: .72rem; letter-spacing: .06em;
+  border-bottom: 2px solid var(--orange);
+}
+.countdown-label { color: rgba(255,255,255,.7); font-size: .62rem; letter-spacing: .16em; font-weight: 700; }
+.countdown-nums { display: flex; gap: 6px; align-items: baseline; }
+.countdown-unit { display: inline-flex; align-items: baseline; gap: 2px; transition: transform .18s; }
+.countdown-unit.pulse { transform: scale(1.12); }
+.countdown-val {
+  font-size: 1.02rem; font-weight: 900; color: var(--yellow);
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+  min-width: 22px; text-align: center;
+}
+.countdown-suffix { font-size: .62rem; color: rgba(255,255,255,.75); font-weight: 700; margin-right: 2px; }
+@media (max-width: 380px) {
+  .countdown-bar { font-size: .66rem; gap: 6px; padding: 7px 10px; }
+  .countdown-val { font-size: .94rem; min-width: 18px; }
+  .countdown-label { display: none; }
+}
+
 /* Top nav */
 .top-nav {
   position: sticky; top: 0; z-index: 100;
@@ -127,6 +152,84 @@ a { color: inherit; text-decoration: none; }
 }
 .reason-card-body { padding: 18px 18px 20px; }
 .reason-card-body .reason-num { display: block; margin-bottom: 4px; }
+
+/* Speaker Marquee (hero下部・無限横流し) */
+.spk-marquee {
+  overflow: hidden; margin-top: 24px; padding: 14px 0;
+  background: linear-gradient(180deg, var(--paper), #fff);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.spk-marquee::before, .spk-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 36px; z-index: 2; pointer-events: none;
+}
+.spk-marquee::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+.spk-marquee::after { right: 0; background: linear-gradient(-90deg, var(--paper), transparent); }
+.spk-marquee-label {
+  text-align: center; font-family: 'Inter', sans-serif;
+  font-size: .58rem; letter-spacing: .28em; font-weight: 900; color: var(--text2);
+  margin-bottom: 10px;
+}
+.spk-marquee-track {
+  display: flex; gap: 14px; width: max-content;
+  animation: marqueeScroll 60s linear infinite;
+}
+.spk-marquee-track:hover { animation-play-state: paused; }
+.spk-marquee-item {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #eee center/cover no-repeat;
+  border: 2.5px solid #fff; box-shadow: 0 4px 10px rgba(10,29,60,.16);
+  flex-shrink: 0;
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Sponsor Marquee */
+.sponsor-marquee-section {
+  padding: 30px 0 34px; background: #fff; text-align: center;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.sponsor-marquee-title {
+  font-family: 'Inter', sans-serif; font-size: .64rem; letter-spacing: .28em;
+  font-weight: 900; color: var(--text2); margin-bottom: 14px;
+}
+.sponsor-marquee { overflow: hidden; position: relative; padding: 10px 0; }
+.sponsor-marquee::before, .sponsor-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
+}
+.sponsor-marquee::before { left: 0; background: linear-gradient(90deg, #fff, transparent); }
+.sponsor-marquee::after { right: 0; background: linear-gradient(-90deg, #fff, transparent); }
+.sponsor-marquee-track {
+  display: flex; gap: 40px; align-items: center; width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+.sponsor-marquee-track img { height: 40px; width: auto; object-fit: contain; opacity: .82; transition: opacity .2s; flex-shrink: 0; }
+.sponsor-marquee-track img:hover { opacity: 1; }
+
+/* Fade-in on scroll */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.in-view { opacity: 1; transform: translateY(0); }
+.fade-in.delay-1 { transition-delay: .15s; }
+.fade-in.delay-2 { transition-delay: .3s; }
+.fade-in.delay-3 { transition-delay: .45s; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; }
+  .spk-marquee-track, .sponsor-marquee-track { animation: none; }
+  .countdown-unit.pulse { transform: none; }
+}
+
+/* Speaker card enhancements — 大きく + 「当日話す内容」 */
+.spk-item { position: relative; overflow: hidden; padding-bottom: 14px; transition: transform .3s; }
+.spk-item:hover { transform: translateY(-4px); }
+.spk-item .spk-photo { transition: transform .3s; }
+.spk-item:hover .spk-photo { transform: scale(1.06); }
+.spk-topic {
+  display: block; margin-top: 6px;
+  font-size: .64rem; font-weight: 700; color: var(--orange);
+  line-height: 1.5; letter-spacing: .01em; padding: 0 4px;
+}
 
 /* Venue photo strip (between Trust-nums and 不安解消) */
 .venue-photo { padding: 22px 20px 0; text-align: center; background: #fff; }
@@ -506,6 +609,17 @@ a { color: inherit; text-decoration: none; }
 
 <div class="lp-wrap">
 
+  <!-- ═══ Countdown Bar ═══ -->
+  <div class="countdown-bar" id="countdownBar" aria-live="polite">
+    <span class="countdown-label">本番まで</span>
+    <div class="countdown-nums">
+      <span class="countdown-unit"><span class="countdown-val" id="cdDays">--</span><span class="countdown-suffix">日</span></span>
+      <span class="countdown-unit"><span class="countdown-val" id="cdHours">--</span><span class="countdown-suffix">時間</span></span>
+      <span class="countdown-unit"><span class="countdown-val" id="cdMins">--</span><span class="countdown-suffix">分</span></span>
+      <span class="countdown-unit"><span class="countdown-val" id="cdSecs">--</span><span class="countdown-suffix">秒</span></span>
+    </div>
+  </div>
+
   <nav class="top-nav">
     <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT 2026</a>
     <a href="#entry" class="top-nav-cta">エントリー</a>
@@ -514,16 +628,24 @@ a { color: inherit; text-decoration: none; }
   <!-- ═══ FV ═══ -->
   <section class="fv" id="top">
     <div class="fv-hero-strip" aria-hidden="true"></div>
-    <h1 class="fv-hook">「やりたいがない」<br>まま、<em>来ていい</em>。</h1>
-    <p class="fv-subhook">同世代1,000人が集まる、1日限りの場。<br><strong>8月6日(木)・東京八王子・中高大生完全無料。</strong></p>
+    <h1 class="fv-hook fade-in">全国1,000人の高校生が、<br><em>"人生を変える1日"</em>を選んだ。</h1>
+    <p class="fv-subhook fade-in delay-1">琴坂将広、山本敏行、三輪開人──<br>第一線で挑む大人と、同世代1,000人が出会う、<br><strong>1年に1度きりの1日。</strong></p>
 
-    <div class="fv-meta">
+    <div class="fv-meta fade-in delay-2">
       <div class="fv-meta-row"><span class="fv-meta-icon">📅</span> 2026.8.6(木) 10:00–16:20</div>
       <div class="fv-meta-row"><span class="fv-meta-icon">📍</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
     </div>
 
-    <a href="#entry" class="btn-primary" aria-label="30秒で無料エントリー">30秒で無料エントリー →</a>
-    <span class="btn-primary-note">中高大生 <strong>完全無料</strong>／社会人 ¥1,000</span>
+    <a href="#entry" class="btn-primary fade-in delay-3" aria-label="まずは、席だけ取っておく（無料）">まずは、席だけ取っておく（無料）→</a>
+    <span class="btn-primary-note fade-in delay-3">中高大生 <strong>完全無料</strong>／社会人 ¥1,000</span>
+
+    <!-- 登壇者マーキー（無限横流し） -->
+    <div class="spk-marquee" aria-hidden="true">
+      <div class="spk-marquee-label">SPEAKERS ／ 25名</div>
+      <div class="spk-marquee-track" id="spkMarqueeTrack">
+        <!-- JSで25枚を2周ぶん複製注入 -->
+      </div>
+    </div>
   </section>
 
   <!-- ═══ Trust Numbers ═══ -->
@@ -694,38 +816,54 @@ a { color: inherit; text-decoration: none; }
     <h2 class="sec-title">話せる大人と、<br><em>同世代</em>の登壇者。</h2>
     <p class="spk-lead">"すごい人"を見に来る場所じゃなく、<strong>いろんな大人・同世代と対話できる</strong>場所。25名が集結します。</p>
     <div class="spk-grid">
-      <div class="spk-item">
+      <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');"></div>
         <div class="spk-name">山本 敏行</div>
         <div class="spk-title">起業家</div>
+        <span class="spk-topic">「学生時代の1歩が、その先の全てを決めた」</span>
       </div>
-      <div class="spk-item">
+      <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div>
         <div class="spk-name">清宮 俊久</div>
         <div class="spk-title">経営者</div>
+        <span class="spk-topic">「大企業のなかで、新しいものを立ち上げる話」</span>
       </div>
-      <div class="spk-item">
+      <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div>
         <div class="spk-name">琴坂 将広</div>
         <div class="spk-title">大学教授</div>
+        <span class="spk-topic">「10代のうちに考えておきたい戦略の話」</span>
       </div>
-      <div class="spk-item">
+      <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg');"></div>
         <div class="spk-name">三輪 開人</div>
         <div class="spk-title">起業家</div>
+        <span class="spk-topic">「伝わるプレゼンの原則を、実演で」</span>
       </div>
-      <div class="spk-item">
+      <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg');"></div>
         <div class="spk-name">只石 昌幸</div>
         <div class="spk-title">経営者</div>
+        <span class="spk-topic">「情熱で事業をつくる、リアルな話」</span>
       </div>
-      <div class="spk-item">
+      <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg');"></div>
         <div class="spk-name">ブランスクム 文葉</div>
         <div class="spk-title">起業家</div>
+        <span class="spk-topic">「"やりたい"を、40代で言葉にした話」</span>
       </div>
     </div>
     <p class="spk-note">大人ゲスト＋<strong>全国の現役高校生</strong>登壇者が集結。</p>
+  </section>
+
+  <!-- ═══ Sponsor Marquee ═══ -->
+  <section class="sponsor-marquee-section fade-in">
+    <div class="sponsor-marquee-title">SUPPORTED BY</div>
+    <div class="sponsor-marquee">
+      <div class="sponsor-marquee-track" id="sponsorMarqueeTrack">
+        <!-- JSで複製 -->
+      </div>
+    </div>
   </section>
 
   <!-- ═══ Entry Form ═══ -->
@@ -782,11 +920,23 @@ a { color: inherit; text-decoration: none; }
   </section>
 
   <!-- Final CTA before footer -->
-  <section class="section" style="text-align:center;background:var(--paper);padding-bottom:56px;">
+  <section class="section fade-in" style="text-align:center;background:var(--paper);padding-bottom:56px;">
     <h2 style="font-size:1.24rem;font-weight:900;color:var(--navy);line-height:1.55;margin-bottom:8px;">まだ何者でもないまま、<br>来ていい。</h2>
     <p style="font-size:.86rem;color:var(--text2);line-height:1.85;margin-bottom:20px;">来た理由なんて、なんでもいい。<br>1日を過ごしてから、決めればいい。</p>
     <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
     <p style="margin-top:14px;font-size:.76rem;font-weight:700;color:var(--text2);line-height:1.85;">入力は、<strong style="color:var(--navy);">名前・学年・メールアドレスの3項目</strong>だけ。<br>事前申込は<strong style="color:var(--navy);">8月5日</strong>まで／当日参加も歓迎。</p>
+  </section>
+
+  <!-- 逆FOMO -->
+  <section class="fade-in" style="background:var(--navy);color:#fff;padding:56px 22px 60px;text-align:center;position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,var(--orange)0%,transparent 65%);opacity:.35;"></div>
+    <div style="position:relative;">
+      <span style="display:inline-block;font-family:'Inter',sans-serif;font-size:.68rem;letter-spacing:.32em;font-weight:900;color:var(--yellow);margin-bottom:16px;">FOR YOU</span>
+      <h2 style="font-size:clamp(1.6rem,4.8vw,2.1rem);font-weight:900;line-height:1.5;margin-bottom:18px;letter-spacing:-.01em;">参加を、<em style="color:var(--yellow);font-style:normal;">"迷ってる君へ"</em>。</h2>
+      <p style="font-size:.94rem;font-weight:800;line-height:2;margin-bottom:28px;color:rgba(255,255,255,.92);">今、席を取らないと。<br>8月6日のあの日、<br><strong style="color:var(--orange);">"やっぱり行っておけばよかった"</strong>って、<br>後悔することになる。</p>
+      <a href="#entry" class="btn-primary" style="background:var(--orange);font-size:1.14rem;padding:20px 22px;box-shadow:0 8px 22px rgba(255,107,53,.55),0 3px 6px rgba(0,0,0,.2);">30秒で無料エントリー →</a>
+      <p style="margin-top:14px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.7);">中高大生 完全無料 ／ 事前申込は 8月5日まで</p>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -815,6 +965,97 @@ a { color: inherit; text-decoration: none; }
 </div>
 
 <script>
+/* ═══ カウントダウン（本番: 2026-08-06 10:00 JST） ═══ */
+(function(){
+  var target = new Date('2026-08-06T10:00:00+09:00').getTime();
+  var d = document.getElementById('cdDays');
+  var h = document.getElementById('cdHours');
+  var m = document.getElementById('cdMins');
+  var s = document.getElementById('cdSecs');
+  if (!d) return;
+  var prev = {};
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function pulse(el){ if (!el) return; el.parentElement.classList.add('pulse'); setTimeout(function(){ el.parentElement.classList.remove('pulse'); }, 180); }
+  function tick(){
+    var now = Date.now();
+    var diff = Math.max(0, target - now);
+    var days = Math.floor(diff / 86400000);
+    var hrs = Math.floor((diff % 86400000) / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    var secs = Math.floor((diff % 60000) / 1000);
+    var next = { d: String(days), h: pad(hrs), m: pad(mins), s: pad(secs) };
+    if (next.d !== prev.d) { d.textContent = next.d; pulse(d); }
+    if (next.h !== prev.h) { h.textContent = next.h; pulse(h); }
+    if (next.m !== prev.m) { m.textContent = next.m; pulse(m); }
+    if (next.s !== prev.s) { s.textContent = next.s; pulse(s); }
+    prev = next;
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ═══ 登壇者マーキー（33枚を2周ぶん注入） ═══ */
+(function(){
+  var track = document.getElementById('spkMarqueeTrack');
+  if (!track) return;
+  var files = [
+    'speaker_yamamoto','speaker_kotosaka','mentor_miwa','speaker_tadaishi','speaker_hayashi',
+    'speaker_branscombe','speaker_kiyomiya','speaker_miyanaka','speaker_sano','speaker_hirano',
+    'speaker_izawa','speaker_uemura','speaker_watanabe','speaker_natsuno','speaker_tani',
+    'speaker_ueda','speaker_kuno','speaker_masuda','speaker_ohama','speaker_noritake',
+    'speaker_takamatsu','speaker_kuwako','speaker_noda','speaker_sakai','speaker_matsunaga',
+    'speaker_aburatani','speaker_takeuchi','performer_shio','performer_natsushi'
+  ];
+  function build(list){
+    return list.map(function(name){
+      return '<div class="spk-marquee-item" style="background-image:url(\'img/summit/' + name + '.jpg\');"></div>';
+    }).join('');
+  }
+  // 2周ぶんで無限ループに見せる
+  track.innerHTML = build(files) + build(files);
+})();
+
+/* ═══ スポンサーマーキー ═══ */
+(function(){
+  var track = document.getElementById('sponsorMarqueeTrack');
+  if (!track) return;
+  var files = [
+    {name:'sponsor_cheers.png', alt:'CHEERS!'},
+    {name:'sponsor_segasammy.png', alt:'SEGA SAMMY'},
+    {name:'sponsor_smbc.jpg', alt:'SMBC'},
+    {name:'sponsor_swimmy.png', alt:'SWIMMY'},
+    {name:'sponsor_dejiara.png', alt:'デジアラ'},
+    {name:'sponsor_gaiax.png', alt:'Gaiax'},
+    {name:'sponsor_symenergy.png', alt:'シン・エナジー'}
+  ];
+  function build(list){
+    return list.map(function(f){
+      return '<img src="img/summit/' + f.name + '" alt="' + f.alt + '" loading="lazy">';
+    }).join('');
+  }
+  track.innerHTML = build(files) + build(files);
+})();
+
+/* ═══ スクロール連動 フェードイン（IntersectionObserver） ═══ */
+(function(){
+  if (!('IntersectionObserver' in window)) {
+    // フォールバック: すべて表示
+    document.querySelectorAll('.fade-in').forEach(function(el){ el.classList.add('in-view'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) {
+        en.target.classList.add('in-view');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  // 既存要素にfade-inを自動付与（セクション単位）
+  var autoTargets = document.querySelectorAll('section.section, section.speakers-hero, section.voice, section.gallery-section, section.venue-photo, section.reassure, section.trust-nums');
+  autoTargets.forEach(function(el){ if (!el.classList.contains('fade-in')) el.classList.add('fade-in'); });
+  document.querySelectorAll('.fade-in').forEach(function(el){ io.observe(el); });
+})();
+
 // Sticky CTA を FV / entry-form 表示中は非表示にする（重複防止）
 (function(){
   var sticky = document.getElementById('stickyCta');
