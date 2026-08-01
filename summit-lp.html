@@ -1235,26 +1235,75 @@ body.modal-open { overflow: hidden; }
   background: #fff; border: 1.5px solid var(--orange);
   color: var(--navy); padding: 5px 10px; border-radius: 999px;
 }
-.entry-frame {
-  background: #fff; position: relative; min-height: 1800px;
-  overflow: hidden;
+/* エントリーフォーム 最上位フォールバックCTA（常時表示） */
+.entry-primary-cta {
+  display: block; text-align: center;
+  padding: 22px 24px;
+  margin: 0 auto 22px; max-width: 460px;
+  background: var(--grad-sunset);
+  color: #fff; text-decoration: none;
+  border-radius: 14px;
+  font-family: var(--font-jp); font-weight: 900; font-size: 1.14rem; letter-spacing: .04em;
+  box-shadow: 0 14px 30px rgba(234,92,31,.4), 0 4px 10px rgba(255,62,127,.25);
+  border: 2px solid rgba(255,255,255,.4);
+  animation: softPulse 2.6s ease-in-out infinite;
+  transition: transform .18s;
 }
-.entry-frame::before {
-  content: 'フォーム読み込み中…';
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text2); font-size: .88rem; font-weight: 700;
-  background: var(--paper); z-index: 0;
+.entry-primary-cta:hover { transform: translateY(-2px) scale(1.02); }
+.entry-primary-cta small {
+  display: block; margin-top: 4px;
+  font-size: .68rem; font-weight: 700; color: rgba(255,255,255,.9);
+  letter-spacing: .04em;
+}
+
+.entry-frame {
+  background: #fff; position: relative; min-height: 720px;
+  overflow: hidden; border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(16,35,63,.08);
+  border: 1px solid var(--line);
+}
+/* ローディングプレースホルダ（スピナー付き） */
+.entry-frame-loader {
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 40px 20px; text-align: center;
+  background: var(--paper);
+  transition: opacity .4s ease;
+}
+.entry-frame.is-loaded .entry-frame-loader { opacity: 0; pointer-events: none; }
+.entry-frame-spinner {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 4px solid rgba(20,191,174,.2);
+  border-top-color: var(--teal);
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.entry-frame-msg {
+  font-size: .86rem; font-weight: 800; color: var(--navy);
+  line-height: 1.7;
+}
+.entry-frame-msg small {
+  display: block; margin-top: 6px;
+  font-size: .68rem; font-weight: 500; color: var(--text2);
 }
 .entry-frame iframe {
-  display: block; width: 100%; height: 1800px; border: 0;
+  display: block; width: 100%; height: 1400px; border: 0;
   background: #fff; position: relative; z-index: 1;
 }
+@media (min-width: 640px) { .entry-frame iframe { height: 1200px; } }
 .entry-alt {
-  text-align: center; margin-top: 16px;
-  font-size: .78rem; color: var(--text2); padding: 0 12px;
+  text-align: center; margin-top: 18px;
+  font-size: .82rem; color: var(--text2); padding: 0 12px; font-weight: 700;
 }
-.entry-alt a { color: var(--orange); font-weight: 800; text-decoration: underline; }
+.entry-alt a {
+  display: inline-block; margin-top: 8px;
+  color: #fff; background: var(--orange);
+  padding: 12px 22px; border-radius: 10px;
+  font-weight: 900; text-decoration: none; letter-spacing: .04em;
+  box-shadow: 0 6px 16px rgba(234,92,31,.34);
+  transition: transform .18s;
+}
+.entry-alt a:hover { transform: translateY(-2px); }
 
 /* FAQ */
 .faq-list { display: flex; flex-direction: column; gap: 10px; }
@@ -1794,10 +1843,25 @@ body.modal-open { overflow: hidden; }
         <span class="entry-badge">事前申込は8月5日まで</span>
       </div>
     </div>
-    <div class="entry-frame">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrjBTUazHWLwyHMusCydT_Fd6Lx0RC6akC2POyffzhKoweVQ/viewform?embedded=true" title="NEXY SUMMIT 2026 エントリーフォーム">読み込み中…</iframe>
+    <!-- 最重要：常に見える大きなCTA（フォーム読込前でもクリック可能） -->
+    <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" class="entry-primary-cta">
+      いますぐエントリー（別画面で開く）→
+      <small>Googleフォームが新しいタブで開きます</small>
+    </a>
+
+    <p style="text-align:center;font-size:.78rem;color:var(--text2);margin-bottom:14px;">↓ このページ内で入力する場合はこちら ↓</p>
+
+    <div class="entry-frame" id="entryFrame">
+      <div class="entry-frame-loader">
+        <div class="entry-frame-spinner" aria-hidden="true"></div>
+        <div class="entry-frame-msg">
+          フォームを読み込んでいます…
+          <small>数秒お待ちください（通信環境により時間がかかる場合があります）</small>
+        </div>
+      </div>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrjBTUazHWLwyHMusCydT_Fd6Lx0RC6akC2POyffzhKoweVQ/viewform?embedded=true" title="NEXY SUMMIT 2026 エントリーフォーム" id="entryIframe"></iframe>
     </div>
-    <p class="entry-alt">フォームが表示されない場合は <a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener">こちらから直接アクセス</a> できます。</p>
+    <p class="entry-alt">フォームが表示されない・入力しづらい方は<br><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener">別画面でフォームを開く →</a></p>
   </section>
 
   <!-- ═══ FAQ ═══ -->
@@ -1878,6 +1942,25 @@ body.modal-open { overflow: hidden; }
 </div>
 
 <script>
+/* ═══ エントリーフォーム 読み込み検知＋タイムアウト警告 ═══ */
+(function(){
+  var frame = document.getElementById('entryFrame');
+  var iframe = document.getElementById('entryIframe');
+  var loader = frame ? frame.querySelector('.entry-frame-loader') : null;
+  if (!frame || !iframe) return;
+  var loaded = false;
+  iframe.addEventListener('load', function(){
+    loaded = true;
+    frame.classList.add('is-loaded');
+  });
+  // 8秒経ってもloadされない場合、警告メッセージに切り替え
+  setTimeout(function(){
+    if (!loaded && loader) {
+      loader.innerHTML = '<div style="font-size:.9rem;font-weight:800;color:var(--navy);line-height:1.85;">フォームの表示に時間がかかっています。<br><span style="font-size:.72rem;font-weight:500;color:var(--text2);display:block;margin-top:8px;">通信環境により表示されない場合があります。</span><a href="https://forms.gle/2zACzKb6H3JshrJz8" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px;padding:14px 24px;background:var(--orange);color:#fff;border-radius:10px;font-weight:900;text-decoration:none;box-shadow:0 6px 16px rgba(234,92,31,.34);">別画面でフォームを開く →</a></div>';
+    }
+  }, 8000);
+})();
+
 /* ═══ 全登壇者モーダル ═══ */
 (function(){
   var btn = document.getElementById('spkSeeAllBtn');
