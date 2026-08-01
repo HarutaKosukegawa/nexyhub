@@ -775,6 +775,24 @@ a { transition: color .2s; }
   font-size: .64rem; font-weight: 700; color: var(--orange);
   line-height: 1.5; letter-spacing: .01em; padding: 0 4px;
 }
+/* 実績リスト */
+.spk-facts {
+  list-style: none; padding: 10px 8px 0; margin: 8px 0 0;
+  text-align: left;
+  border-top: 1px dashed var(--line);
+}
+.spk-facts li {
+  position: relative; padding: 3px 0 3px 14px;
+  font-size: .66rem; font-weight: 700; color: var(--text2);
+  line-height: 1.55; letter-spacing: .01em;
+}
+.spk-facts li::before {
+  content: ''; position: absolute; left: 2px; top: 9px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--teal);
+}
+.spk-item:nth-of-type(2) .spk-facts li::before { background: var(--orange); }
+.spk-item:nth-of-type(3) .spk-facts li::before { background: var(--pink); }
 
 /* Venue photo strip (between Trust-nums and 不安解消) */
 .venue-photo { padding: 22px 20px 0; text-align: center; background: #fff; }
@@ -1519,49 +1537,6 @@ a { transition: color .2s; }
     <p class="gallery-caption">登壇セッション ／ ワークショップ ／ 交流エリア ／ ブース出展<br>― 6つの体験エリアで1日を過ごす ―</p>
   </section>
 
-  <!-- ═══ VOICE ═══ -->
-  <section class="voice">
-    <span class="sec-tag" style="color:var(--yellow);">VOICE</span>
-    <h2 class="sec-title">過去参加者の、<br><em style="color:var(--yellow);">リアルな声</em>。</h2>
-    <div class="voice-real-grid">
-      <article class="voice-real-card">
-        <div class="voice-real-avatar">高2</div>
-        <div class="voice-real-body">
-          <div class="voice-real-meta">高校2年 ／ 東京</div>
-          <div class="voice-real-quote">1人で行ったけど、隣の子と自然に話せた。</div>
-        </div>
-      </article>
-      <article class="voice-real-card">
-        <div class="voice-real-avatar">高3</div>
-        <div class="voice-real-body">
-          <div class="voice-real-meta">高校3年 ／ 埼玉</div>
-          <div class="voice-real-quote">"やりたいがない自分"でOKって初めて言われた。</div>
-        </div>
-      </article>
-      <article class="voice-real-card">
-        <div class="voice-real-avatar">大1</div>
-        <div class="voice-real-body">
-          <div class="voice-real-meta">大学1年 ／ 神奈川</div>
-          <div class="voice-real-quote">大人の話より、同世代のプレゼンにビビった。</div>
-        </div>
-      </article>
-      <article class="voice-real-card">
-        <div class="voice-real-avatar">高1</div>
-        <div class="voice-real-body">
-          <div class="voice-real-meta">高校1年 ／ 千葉</div>
-          <div class="voice-real-quote">"なんとなく来た"けど、帰る頃には話したい人が3人できてた。</div>
-        </div>
-      </article>
-      <article class="voice-real-card">
-        <div class="voice-real-avatar">大2</div>
-        <div class="voice-real-body">
-          <div class="voice-real-meta">大学2年 ／ 大阪</div>
-          <div class="voice-real-quote">1日で友達が増える経験は、大学入学以来だった。</div>
-        </div>
-      </article>
-    </div>
-  </section>
-
   <!-- ═══ Speakers（大人3名 × 学生3名） ═══ -->
   <section class="speakers-hero" id="speakers-section">
     <span class="sec-tag">SPEAKERS</span>
@@ -1574,43 +1549,67 @@ a { transition: color .2s; }
       <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');"></div>
         <div class="spk-name">山本 敏行</div>
-        <div class="spk-title">起業家</div>
-        <span class="spk-topic">「学生時代の1歩が、その先の全てを決めた」</span>
+        <div class="spk-title">Chatwork創業者</div>
+        <ul class="spk-facts">
+          <li>Chatwork創業→東証グロース上場</li>
+          <li>Power Angels CEO</li>
+          <li>日本エンジェル投資家協会 代表理事</li>
+        </ul>
       </div>
       <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div>
         <div class="spk-name">清宮 俊久</div>
-        <div class="spk-title">経営者</div>
-        <span class="spk-topic">「大企業のなかで、新しいものを立ち上げる話」</span>
+        <div class="spk-title">セガサミーイノベーション 代表</div>
+        <ul class="spk-facts">
+          <li>150億円CVCを運用</li>
+          <li>TUNNEL TOKYO 設立</li>
+          <li>1999年セガ入社、経営企画→M&A→CVC統括</li>
+        </ul>
       </div>
       <div class="spk-item fade-in delay-2">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div>
         <div class="spk-name">琴坂 将広</div>
-        <div class="spk-title">大学教授</div>
-        <span class="spk-topic">「10代のうちに考えておきたい戦略の話」</span>
+        <div class="spk-title">慶應SFC 教授</div>
+        <ul class="spk-facts">
+          <li>オックスフォード大 アソシエイトフェロー</li>
+          <li>元マッキンゼー・アンド・カンパニー</li>
+          <li>著書『経営戦略の進化』</li>
+        </ul>
       </div>
     </div>
 
     <!-- 学生登壇者 3名 -->
-    <div class="spk-group-label" style="margin-top:32px;"><span class="spk-group-tag spk-group-tag-student">STUDENT</span>学生登壇者</div>
+    <div class="spk-group-label" style="margin-top:36px;"><span class="spk-group-tag spk-group-tag-student">STUDENT</span>学生登壇者</div>
     <div class="spk-grid">
       <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg');"></div>
         <div class="spk-name">竹内 翼</div>
-        <div class="spk-title">高校生 起業家</div>
-        <span class="spk-topic">「NFT取引1.5億・eスポーツ事業譲渡」</span>
+        <div class="spk-title">17歳 ／ 甲陽学院高校</div>
+        <ul class="spk-facts">
+          <li>NFTコレクション取引総額 1.5億円</li>
+          <li>eスポーツ事業を設立→事業譲渡</li>
+          <li>SNS運用で月500万円売上</li>
+        </ul>
       </div>
       <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg');"></div>
         <div class="spk-name">桑子 友菜</div>
-        <div class="spk-title">高校生</div>
-        <span class="spk-topic">「学生時代の挑戦で、見えた景色」</span>
+        <div class="spk-title">17歳 ／ N高等学校</div>
+        <ul class="spk-facts">
+          <li>湯端温泉 若女将</li>
+          <li>群馬県知事へ政策提言（一部施策化）</li>
+          <li>全国マイプロ「全国ロールモデル賞」</li>
+        </ul>
       </div>
       <div class="spk-item fade-in delay-2">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg');"></div>
         <div class="spk-name">松長 侑南</div>
-        <div class="spk-title">高校生</div>
-        <span class="spk-topic">「同世代に届けたい、リアルな話」</span>
+        <div class="spk-title">17歳 ／ 渋谷教育学園幕張高校</div>
+        <ul class="spk-facts">
+          <li>孫正義育英財団 第9期</li>
+          <li>未踏ジュニア採択</li>
+          <li>EGOI 2025 銅メダル</li>
+        </ul>
       </div>
     </div>
 
