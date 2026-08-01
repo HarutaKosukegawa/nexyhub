@@ -95,32 +95,45 @@ a { color: inherit; text-decoration: none; }
   padding: 8px 14px; border-radius: 999px;
 }
 
-/* ─── FV ─── */
+/* ─── FV（パターンA：ミニマル洗練） ─── */
 .fv {
   position: relative;
-  padding: 28px 20px 32px;
+  padding: 40px 24px 44px;
   background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
   text-align: center;
 }
-.fv-eyebrow {
-  display: inline-block;
-  font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .26em;
-  color: var(--orange); padding: 5px 14px; border: 1.5px solid var(--orange);
-  margin-bottom: 20px;
-}
 .fv-hook {
-  font-size: clamp(1.72rem, 8vw, 2.2rem);
-  font-weight: 900; color: var(--navy); line-height: 1.35;
-  letter-spacing: -.01em; margin-bottom: 4px;
+  font-size: clamp(1.9rem, 9vw, 2.4rem);
+  font-weight: 900; color: var(--navy); line-height: 1.4;
+  letter-spacing: -.02em; margin: 0 0 28px;
 }
 .fv-hook em { color: var(--orange); font-style: normal; position: relative; }
 .fv-hook em::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 2px;
   height: 10px; background: rgba(255,216,77,.5); z-index: -1;
 }
+.fv-divider {
+  width: 40px; height: 2px; background: var(--orange);
+  margin: 0 auto 12px;
+}
+.fv-tagline {
+  font-size: .82rem; font-weight: 800; color: var(--text2);
+  letter-spacing: .18em; margin: 0 0 26px;
+}
+.fv-datetime {
+  font-family: 'Inter', sans-serif; font-size: 1.14rem; font-weight: 900;
+  color: var(--navy); letter-spacing: .04em; margin: 0 0 6px;
+  line-height: 1.2;
+}
+.fv-datetime span { font-size: .82rem; font-weight: 800; color: var(--text2); letter-spacing: .1em; }
+.fv-datetime-dot { color: var(--orange) !important; padding: 0 4px; font-weight: 900 !important; }
 .fv-subhook {
-  font-size: .88rem; font-weight: 700; color: var(--text2);
-  margin: 10px 0 22px; line-height: 1.75;
+  font-size: .92rem; font-weight: 700; color: var(--text2);
+  margin: 22px 0 34px; line-height: 1.85;
+}
+.fv-cta {
+  margin-top: 6px;
+  padding: 20px 24px; font-size: 1.08rem; letter-spacing: .06em;
 }
 .fv-hero-img {
   position: relative;
@@ -636,26 +649,31 @@ a { color: inherit; text-decoration: none; }
     <a href="#entry" class="top-nav-cta">エントリー</a>
   </nav>
 
-  <!-- ═══ FV ═══ -->
+  <!-- ═══ FV（パターンA：ミニマル洗練） ═══ -->
   <section class="fv" id="top">
     <div class="fv-hero-strip" aria-hidden="true"></div>
-    <h1 class="fv-hook fade-in">全国1,000人の高校生が、<br><em>"人生を変える1日"</em>を選んだ。</h1>
-    <p class="fv-subhook fade-in delay-1">琴坂将広、山本敏行、三輪開人──<br>第一線で挑む大人と、同世代1,000人が出会う、<br><strong>1年に1度きりの1日。</strong></p>
 
-    <div class="fv-meta fade-in delay-2">
+    <h1 class="fv-hook fade-in">やりたいを、<br><em>ひとりにしない。</em></h1>
+
+    <div class="fv-divider fade-in delay-1" aria-hidden="true"></div>
+    <p class="fv-tagline fade-in delay-1">1年に、1度だけ。</p>
+
+    <p class="fv-datetime fade-in delay-2">2026.8.6 <span>THU</span> <span class="fv-datetime-dot">·</span> <span>TOKYO</span></p>
+
+    <p class="fv-subhook fade-in delay-2">第一線で挑む大人25人と、<br>全国1,000人の同世代が交わる1日。</p>
+
+    <a href="#entry" class="btn-primary fv-cta fade-in delay-3" aria-label="席を確保する（無料）">席を確保する（無料）→</a>
+    <span class="btn-primary-note fade-in delay-3">中高大生 <strong>完全無料</strong>／社会人 ¥1,000</span>
+
+    <div class="fv-meta fade-in delay-3">
       <div class="fv-meta-row"><span class="fv-meta-icon">日時</span> 2026.8.6(木) 10:00–16:20</div>
       <div class="fv-meta-row"><span class="fv-meta-icon">会場</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
     </div>
 
-    <a href="#entry" class="btn-primary fade-in delay-3" aria-label="まずは、席だけ取っておく（無料）">まずは、席だけ取っておく（無料）→</a>
-    <span class="btn-primary-note fade-in delay-3">中高大生 <strong>完全無料</strong>／社会人 ¥1,000</span>
-
     <!-- 登壇者マーキー（無限横流し） -->
     <div class="spk-marquee" aria-hidden="true">
       <div class="spk-marquee-label">SPEAKERS ／ 25名</div>
-      <div class="spk-marquee-track" id="spkMarqueeTrack">
-        <!-- JSで25枚を2周ぶん複製注入 -->
-      </div>
+      <div class="spk-marquee-track" id="spkMarqueeTrack"></div>
     </div>
   </section>
 
@@ -882,13 +900,7 @@ a { color: inherit; text-decoration: none; }
     <div class="entry-head">
       <span class="sec-tag">ENTRY</span>
       <h2 class="sec-title">お申込みは<em>こちら</em>。</h2>
-      <p style="font-size:.94rem;font-weight:800;color:var(--navy);line-height:1.7;margin-top:6px;">入力するのは<strong style="color:var(--orange);">3項目だけ</strong>。</p>
-      <ul class="entry-fields-preview">
-        <li>お名前</li>
-        <li>学年</li>
-        <li>メールアドレス</li>
-      </ul>
-      <p class="entry-quick-note">完了メールがすぐ届きます。</p>
+      <p class="entry-quick-note" style="margin-top:8px;">完了メールがすぐ届きます。</p>
       <div class="entry-badges">
         <span class="entry-badge">中高大生 完全無料</span>
         <span class="entry-badge">当日参加も歓迎</span>
