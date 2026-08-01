@@ -252,9 +252,15 @@ a { color: inherit; text-decoration: none; }
 
 /* FV meta rows */
 .fv-meta { margin: 14px 0 22px; padding: 14px 18px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; text-align: left; }
-.fv-meta-row { font-size: .9rem; font-weight: 800; color: var(--navy); line-height: 1.6; padding: 2px 0; }
+.fv-meta-row { font-size: .9rem; font-weight: 800; color: var(--navy); line-height: 1.6; padding: 2px 0; display: flex; align-items: center; gap: 10px; }
 .fv-meta-row + .fv-meta-row { margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--line); }
-.fv-meta-icon { display: inline-block; margin-right: 6px; }
+.fv-meta-icon {
+  display: inline-block; flex-shrink: 0;
+  background: var(--orange); color: #fff;
+  font-family: 'Inter','Noto Sans JP',sans-serif;
+  font-size: .58rem; font-weight: 900; letter-spacing: .12em;
+  padding: 3px 8px; border-radius: 3px;
+}
 .fv-meta-sub { font-size: .74rem; color: var(--text2); font-weight: 700; }
 
 /* 不安解消ブロック */
@@ -268,8 +274,11 @@ a { color: inherit; text-decoration: none; }
 .reassure-desc { font-size: .88rem; font-weight: 700; color: var(--text2); line-height: 1.9; margin-bottom: 18px; }
 .reassure-desc strong { color: var(--navy); }
 .reassure-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; max-width: 320px; margin: 0 auto; }
-.reassure-list li { background: #fff; padding: 9px 16px; border-radius: 999px; font-size: .82rem; font-weight: 800; color: var(--navy); border: 1.5px solid var(--orange); }
-.reassure-list li::before { content: '✓ '; color: var(--orange); font-weight: 900; margin-right: 4px; }
+.reassure-list li { background: #fff; padding: 9px 16px 9px 28px; border-radius: 999px; font-size: .82rem; font-weight: 800; color: var(--navy); border: 1.5px solid var(--orange); position: relative; }
+.reassure-list li::before {
+  content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 6px; height: 6px; background: var(--orange); border-radius: 50%;
+}
 
 /* 中間CTA */
 .mid-cta { padding: 28px 20px 8px; text-align: center; }
@@ -301,8 +310,11 @@ a { color: inherit; text-decoration: none; }
 
 /* ENTRY セクションのフィールド事前表示 */
 .entry-fields-preview { list-style: none; padding: 0; margin: 16px auto 12px; max-width: 260px; text-align: left; display: flex; flex-direction: column; gap: 8px; }
-.entry-fields-preview li { background: #fff; padding: 10px 16px; border-radius: 8px; border: 1.5px solid var(--line); font-size: .88rem; font-weight: 800; color: var(--navy); }
-.entry-fields-preview li::before { content: '✓ '; color: var(--orange); font-weight: 900; margin-right: 6px; }
+.entry-fields-preview li { background: #fff; padding: 10px 16px 10px 32px; border-radius: 8px; border: 1.5px solid var(--line); font-size: .88rem; font-weight: 800; color: var(--navy); position: relative; }
+.entry-fields-preview li::before {
+  content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; background: var(--orange); border-radius: 50%;
+}
 .entry-quick-note { font-size: .8rem; font-weight: 700; color: var(--text2); margin-top: 4px; }
 .fv-event-info {
   display: flex; align-items: center; justify-content: center;
@@ -329,7 +341,6 @@ a { color: inherit; text-decoration: none; }
   font-size: .9rem; font-weight: 800; color: var(--text);
   margin-bottom: 22px;
 }
-.fv-venue::before { content: '📍 '; }
 
 /* CTA button */
 .btn-primary {
@@ -611,7 +622,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- ═══ Countdown Bar ═══ -->
   <div class="countdown-bar" id="countdownBar" aria-live="polite">
-    <span class="countdown-label">本番まで</span>
+    <span class="countdown-label">本番（8/6 木）まで</span>
     <div class="countdown-nums">
       <span class="countdown-unit"><span class="countdown-val" id="cdDays">--</span><span class="countdown-suffix">日</span></span>
       <span class="countdown-unit"><span class="countdown-val" id="cdHours">--</span><span class="countdown-suffix">時間</span></span>
@@ -632,8 +643,8 @@ a { color: inherit; text-decoration: none; }
     <p class="fv-subhook fade-in delay-1">琴坂将広、山本敏行、三輪開人──<br>第一線で挑む大人と、同世代1,000人が出会う、<br><strong>1年に1度きりの1日。</strong></p>
 
     <div class="fv-meta fade-in delay-2">
-      <div class="fv-meta-row"><span class="fv-meta-icon">📅</span> 2026.8.6(木) 10:00–16:20</div>
-      <div class="fv-meta-row"><span class="fv-meta-icon">📍</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
+      <div class="fv-meta-row"><span class="fv-meta-icon">日時</span> 2026.8.6(木) 10:00–16:20</div>
+      <div class="fv-meta-row"><span class="fv-meta-icon">会場</span> 東京たま未来メッセ<span class="fv-meta-sub">（JR八王子駅 徒歩1分）</span></div>
     </div>
 
     <a href="#entry" class="btn-primary fade-in delay-3" aria-label="まずは、席だけ取っておく（無料）">まずは、席だけ取っておく（無料）→</a>
