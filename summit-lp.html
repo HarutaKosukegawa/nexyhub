@@ -230,13 +230,27 @@ a { color: inherit; text-decoration: none; }
   padding: 8px 14px; border-radius: 999px;
 }
 
-/* ─── FV（v5：カラフル × 動くブロブ × 活動カード） ─── */
+/* ─── FV（v5.2：デザインKV画像を主役） ─── */
 .fv {
-  position: relative; padding: 44px 24px 48px;
+  position: relative; padding: 0 0 32px;
   background: #fff;
   color: var(--text); text-align: center;
   overflow: hidden;
   isolation: isolate;
+}
+.fv-kv-wrap {
+  width: 100%; margin: 0 0 26px;
+  animation: fadeInDown .9s ease both;
+  overflow: hidden;
+}
+.fv-kv-img {
+  width: 100%; height: auto; display: block;
+  animation: kvZoomIn 1.4s cubic-bezier(.22,.61,.36,1) both;
+  transform-origin: center 55%;
+}
+@keyframes kvZoomIn {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
 }
 /* カラフルなブロブ（浮遊） */
 .fv-blob {
@@ -1164,77 +1178,16 @@ a { transition: color .2s; }
     <a href="#entry" class="top-nav-cta">エントリー</a>
   </nav>
 
-  <!-- ═══ FV（v5：カラフル × 浮遊ブロブ × 動き満載） ═══ -->
+  <!-- ═══ FV（v5.2：デザインKV画像を主役に） ═══ -->
   <section class="fv" id="top">
     <div class="fv-rainbow-line" aria-hidden="true"></div>
-    <div class="fv-blob fv-blob-1" aria-hidden="true"></div>
-    <div class="fv-blob fv-blob-2" aria-hidden="true"></div>
-    <div class="fv-blob fv-blob-3" aria-hidden="true"></div>
-    <div class="fv-blob fv-blob-4" aria-hidden="true"></div>
-    <div class="fv-blob fv-blob-5" aria-hidden="true"></div>
 
-    <!-- 装飾スパークル（星型SVG） -->
-    <div class="sparkle" style="top:8%;left:10%;animation-delay:0s;" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="#FFC93E"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
-    </div>
-    <div class="sparkle" style="top:14%;right:12%;animation-delay:-1.5s;width:10px;height:10px;" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="#FF3E7F"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
-    </div>
-    <div class="sparkle" style="bottom:22%;left:8%;animation-delay:-3s;width:12px;height:12px;" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="#14BFAE"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
-    </div>
-    <div class="sparkle" style="bottom:16%;right:14%;animation-delay:-2s;width:16px;height:16px;" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="#7C3AED"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
-    </div>
-
-    <span class="fv-eyebrow">NEXY SUMMIT · 2026.8.6 THU</span>
-
-    <div class="fv-badges">
-      <span class="fv-badge fv-badge-primary">中高大生 完全無料</span>
-      <span class="fv-badge">1人参加OK</span>
-      <span class="fv-badge">やりたいことなくてOK</span>
-    </div>
-
-    <h1 class="fv-hook">
-      <span class="fv-hook-quiet reveal-line"><span><span class="fv-hook-bracket">「</span>やりたいがない<span class="fv-hook-bracket">」</span></span></span>
-      <em class="reveal-line"><span>まま、来ていい</span></em>
-      <span class="fv-hook-final reveal-line"><span>1日。</span></span>
-    </h1>
-
-    <p class="fv-subhook">全国1,000人の同世代と、第一線で挑む大人25人が交わる、<strong>1年に1度きり</strong>の1日。</p>
-
-    <!-- 活動カード 3枚 -->
-    <div class="fv-activities">
-      <div class="fv-act-card">
-        <div class="fv-act-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M18 9h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><path d="M6 4h12v6a6 6 0 0 1-12 0V4z"/><line x1="12" y1="16" x2="12" y2="20"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
-        </div>
-        <div class="fv-act-name">プレゼン大会</div>
-        <div class="fv-act-desc">高校生ピッチバトル</div>
-      </div>
-      <div class="fv-act-card">
-        <div class="fv-act-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
-        </div>
-        <div class="fv-act-name">登壇セッション</div>
-        <div class="fv-act-desc">大人の話を聞く</div>
-      </div>
-      <div class="fv-act-card">
-        <div class="fv-act-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="18" cy="8" r="3"/><path d="M22 20v-1a3 3 0 0 0-3-3h-1"/></svg>
-        </div>
-        <div class="fv-act-name">ワークショップ</div>
-        <div class="fv-act-desc">手を動かして考える</div>
-      </div>
+    <div class="fv-kv-wrap">
+      <img src="img/summit/hero_lp_v5.jpg" alt="NEXY SUMMIT 2026 - この夏、いちばんの1日。参加無料・中高大生1,000人が集結" class="fv-kv-img">
     </div>
 
     <a href="#entry" class="fv-cta" aria-label="30秒で無料エントリー">30秒で無料エントリー →</a>
     <span class="fv-cta-note">中高大生 <strong>完全無料</strong> ／ 社会人 ¥1,000</span>
-
-    <div class="fv-meta">
-      <div class="fv-meta-row"><span class="fv-meta-icon">DATE</span> 2026.8.6(木) 10:00–16:20</div>
-      <div class="fv-meta-row"><span class="fv-meta-icon">PLACE</span> 東京たま未来メッセ <span class="fv-meta-sub">JR八王子駅 徒歩1分</span></div>
-    </div>
   </section>
 
   <!-- ═══ マーキーバナー（動く帯） ═══ -->
