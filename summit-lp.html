@@ -976,7 +976,20 @@ a { transition: color .2s; }
 .spk-note strong { color: var(--navy); font-weight: 800; }
 
 /* Schedule */
-.sched-list { list-style: none; padding: 0; }
+.sched-list { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.sched-item-highlight {
+  background: linear-gradient(135deg, rgba(20,191,174,.08) 0%, rgba(20,191,174,.02) 100%);
+  padding-left: 12px !important; padding-right: 12px !important;
+  margin: 4px -12px !important; border-radius: 8px;
+  border-bottom: none !important;
+}
+.sched-item-special {
+  background: linear-gradient(135deg, rgba(255,62,127,.08) 0%, rgba(234,92,31,.05) 100%);
+  padding-left: 12px !important; padding-right: 12px !important;
+  margin: 4px -12px !important; border-radius: 8px;
+  border-bottom: none !important;
+  border-left: 3px solid var(--pink);
+}
 .sched-item {
   display: grid; grid-template-columns: 76px 1fr;
   padding: 14px 0; border-bottom: 1px dashed var(--line);
@@ -1345,36 +1358,66 @@ a { transition: color .2s; }
     </div>
   </section>
 
-  <!-- ═══ Schedule ═══ -->
+  <!-- ═══ Schedule（詳細タイムテーブル） ═══ -->
   <section class="section">
     <span class="sec-tag">SCHEDULE</span>
     <h2 class="sec-title">1日の<em>流れ</em>。</h2>
+    <p style="font-size:.86rem;color:var(--text2);line-height:1.85;margin-bottom:22px;">10:00〜16:20の8時間、<strong style="color:var(--navy);">D会場（メインステージ）／C会場（登壇セッション）／ブース＋コミュニティ</strong>が同時並行。参加自由・出入り自由です。</p>
     <ul class="sched-list">
-      <li class="sched-item">
-        <span class="sched-time">10:00</span>
-        <div class="sched-content">1日の使い方を、共有する<small>開会式（会場でスタッフから直接）</small></div>
+
+      <li class="sched-item sched-item-highlight">
+        <span class="sched-time">10:00<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-10:30</small></span>
+        <div class="sched-content"><span style="color:var(--teal);font-weight:900;font-size:.68rem;letter-spacing:.14em;">OPENING</span><br>開会式（全体スタート）<small>1日の使い方をシェア。ぜひ最初から会場へ！</small></div>
       </li>
+
       <li class="sched-item">
-        <span class="sched-time">10:30</span>
-        <div class="sched-content">話を聞く／手を動かして考える<small>午前の登壇セッション・ワークショップ</small></div>
+        <span class="sched-time">10:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-11:20</small></span>
+        <div class="sched-content">D-1 未来を切り拓く高校生の話 ／ C-1 モヤモヤを、言葉にしてみる110分<small>Sponsored by 株式会社スイミー — ワークショップ</small></div>
       </li>
+
       <li class="sched-item">
-        <span class="sched-time">12:20</span>
-        <div class="sched-content">生の音楽を、体で受け取る<small>特別演奏「近未来」— YOYOKA feat. Futures Band</small></div>
+        <span class="sched-time">11:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-12:20</small></span>
+        <div class="sched-content">D-2 学校の勉強、大人になっても使うの？ ／ 交流会01「キックオフ交流会」<small>1日の"最初の1人"を見つける50分</small></div>
       </li>
+
+      <li class="sched-item sched-item-special">
+        <span class="sched-time">12:20<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-12:30</small></span>
+        <div class="sched-content"><span style="color:var(--pink);font-weight:900;font-size:.68rem;letter-spacing:.14em;">SPECIAL LIVE</span><br>特別演奏「近未来」あり<small>YOYOKA feat. Futures Band ／ 生歌＋MV投影（プレゼン大会 開会式）</small></div>
+      </li>
+
+      <li class="sched-item sched-item-highlight">
+        <span class="sched-time">12:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-14:30</small></span>
+        <div class="sched-content"><span style="color:var(--orange);font-weight:900;font-size:.68rem;letter-spacing:.14em;">MAIN STAGE</span><br>NEXYプレゼン大会（全国6名の高校生ピッチバトル）<small>D会場メインステージ／120分・休憩込み</small></div>
+      </li>
+
       <li class="sched-item">
-        <span class="sched-time">12:30</span>
-        <div class="sched-content">全国6人の高校生が、想いを語る<small>プレゼン大会（120分）</small></div>
+        <span class="sched-time">12:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-13:20</small></span>
+        <div class="sched-content">C-2「やりたい」に向かって進んできた、セガ開発者の話<small>プリクラシリーズに携わってきた女性開発者が語るキャリア</small></div>
       </li>
+
       <li class="sched-item">
-        <span class="sched-time">14:30</span>
-        <div class="sched-content">興味のあるテーマを、選んで参加<small>午後のトラック（複数並行）</small></div>
+        <span class="sched-time">14:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-15:20</small></span>
+        <div class="sched-content">D-4 その課外活動、総合型選抜のためだけになってない？ ／ C-4 AIが全部やる時代、人間って何すればいい？<small>交流会02「やりたいを、実現化するワークショップ」</small></div>
       </li>
+
       <li class="sched-item">
-        <span class="sched-time">16:20</span>
-        <div class="sched-content">1日をまとめて、次の一歩を決める<small>クロージング・交流タイム</small></div>
+        <span class="sched-time">15:30<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">-16:20</small></span>
+        <div class="sched-content">D-5 インターン・留学・起業、何のためにやる？ ／ C-5【YouTube『ON MUTE』公開収録】<small>Presented by スイミー株式会社 ／ 交流会03「未来を熱く語ろう」</small></div>
       </li>
+
+      <li class="sched-item sched-item-highlight">
+        <span class="sched-time">16:20<br><small style="font-size:.62rem;font-weight:600;color:var(--text2);">閉会</small></span>
+        <div class="sched-content"><span style="color:var(--teal);font-weight:900;font-size:.68rem;letter-spacing:.14em;">CLOSING</span><br>1日をまとめて、次の一歩を決める<small>クロージング／全プログラム終了</small></div>
+      </li>
+
     </ul>
+
+    <p style="font-size:.72rem;color:var(--text2);line-height:1.75;margin-top:16px;padding:12px 14px;background:var(--paper);border-radius:8px;border-left:3px solid var(--teal);">
+      ※ タイムテーブルは変更の可能性があります。<br>
+      ※ ブース／コミュニティスペースは10:30〜16:20まで常時オープン。自由に行き来できます。<br>
+      ※ セッション名に「高校生」が入っているものも、<strong>中学生・大学生の参加を歓迎</strong>します。
+    </p>
+
     <div class="mid-cta">
       <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
       <span class="mid-cta-note">中高大生 <strong>完全無料</strong></span>
