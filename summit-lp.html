@@ -1072,6 +1072,81 @@ a { transition: color .2s; }
 }
 .spk-group-tag-adult { background: var(--navy); }
 .spk-group-tag-student { background: var(--orange); }
+
+/* 「全登壇者を見る」ボタン */
+.spk-see-all {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px;
+  background: #fff; color: var(--navy);
+  border: 2px solid var(--navy); border-radius: 999px;
+  font-family: var(--font-jp); font-size: .92rem; font-weight: 900; letter-spacing: .04em;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, background .2s, color .2s;
+  box-shadow: 0 4px 12px rgba(16,35,63,.08);
+}
+.spk-see-all:hover { background: var(--navy); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16,35,63,.2); }
+
+/* 全登壇者モーダル */
+.spk-all-modal {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(16,35,63,.72); backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px 12px;
+}
+.spk-all-modal.is-open { display: flex; animation: fadeInModal .3s ease both; }
+@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+.spk-all-modal-inner {
+  background: #fff; width: 100%; max-width: 720px;
+  max-height: 90vh; border-radius: 14px;
+  position: relative; overflow: hidden;
+  animation: modalPop .35s cubic-bezier(.34,1.36,.64,1) both;
+}
+@keyframes modalPop { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
+.spk-all-modal-close {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(16,35,63,.08); border: none; cursor: pointer;
+  font-size: 1.4rem; font-weight: 900; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .2s;
+}
+.spk-all-modal-close:hover { background: var(--orange); color: #fff; transform: rotate(90deg); }
+.spk-all-modal-scroll {
+  overflow-y: auto; max-height: 90vh;
+  padding: 30px 24px 34px;
+  scroll-behavior: smooth;
+}
+.spk-all-title {
+  font-family: var(--font-jp); font-size: 1.24rem; font-weight: 900;
+  color: var(--navy); text-align: center;
+  margin-bottom: 22px; letter-spacing: -.01em;
+}
+.spk-all-group-label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .9rem; font-weight: 900; color: var(--navy);
+  margin-bottom: 14px; padding-left: 4px;
+}
+.spk-all-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px 8px;
+}
+@media (min-width: 480px) { .spk-all-grid { grid-template-columns: repeat(4, 1fr); } }
+.spk-all-item { text-align: center; }
+.spk-all-photo {
+  width: 70px; height: 70px; margin: 0 auto 6px;
+  border-radius: 50%;
+  background-color: #eee;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 20%;
+  border: 2.5px solid #fff;
+  box-shadow: 0 4px 10px rgba(16,35,63,.14);
+  transition: transform .25s;
+}
+.spk-all-item:hover .spk-all-photo { transform: scale(1.08); box-shadow: 0 6px 14px rgba(16,35,63,.22); }
+.spk-all-name { font-size: .74rem; font-weight: 900; color: var(--navy); line-height: 1.3; margin-bottom: 2px; }
+.spk-all-meta { font-size: .58rem; font-weight: 700; color: var(--text2); line-height: 1.45; padding: 0 4px; }
+body.modal-open { overflow: hidden; }
 .spk-name {
   font-family: var(--font-jp);
   font-size: .84rem; font-weight: 900; color: var(--navy);
@@ -1638,8 +1713,63 @@ a { transition: color .2s; }
       </div>
     </div>
 
-    <p class="spk-note">全 <strong>25名</strong> の大人ゲスト＋学生登壇者が集結。</p>
+    <div style="text-align:center;margin-top:28px;">
+      <button type="button" class="spk-see-all" id="spkSeeAllBtn">全登壇者を見る（26名）→</button>
+    </div>
+    <p class="spk-note">全 <strong>26名</strong> の登壇者＋特別演奏者が集結。</p>
   </section>
+
+  <!-- ═══ 全登壇者モーダル ═══ -->
+  <div class="spk-all-modal" id="spkAllModal" role="dialog" aria-modal="true" aria-labelledby="spkAllTitle">
+    <div class="spk-all-modal-inner">
+      <button class="spk-all-modal-close" id="spkAllModalClose" aria-label="閉じる">×</button>
+      <div class="spk-all-modal-scroll">
+        <h3 class="spk-all-title" id="spkAllTitle">登壇者一覧</h3>
+
+        <div class="spk-all-group-label"><span class="spk-group-tag spk-group-tag-adult">GUEST</span>大人ゲスト（13名）</div>
+        <div class="spk-all-grid">
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');background-position:center 18%;"></div><div class="spk-all-name">山本 敏行</div><div class="spk-all-meta">Chatwork創業者 ／ Power Angels CEO</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_branscombe.jpg');"></div><div class="spk-all-name">ブランスクム 文葉</div><div class="spk-all-meta">株式会社Fleurinary 代表取締役</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg');"></div><div class="spk-all-name">只石 昌幸</div><div class="spk-all-meta">VALX株式会社 代表取締役CEO</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_hayashi.jpg');"></div><div class="spk-all-name">林 裕子</div><div class="spk-all-meta">山口大学大学院 特命教授</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/mentor_miwa.jpg');"></div><div class="spk-all-name">三輪 開人</div><div class="spk-all-meta">認定NPO法人e-Education 代表</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_sano.jpg');"></div><div class="spk-all-name">佐野 貴</div><div class="spk-all-meta">株式会社Play Robotics 代表</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_hirano.jpg');"></div><div class="spk-all-name">平野 歩</div><div class="spk-all-meta">SailStep株式会社 代表取締役</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div><div class="spk-all-name">琴坂 将広</div><div class="spk-all-meta">慶應義塾大学 総合政策学部 教授</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_izawa.jpg');"></div><div class="spk-all-name">伊澤 祐太</div><div class="spk-all-meta">スイミー株式会社 代表</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_uemura.jpg');"></div><div class="spk-all-name">植村 英明</div><div class="spk-all-meta">CHEERS株式会社 COO</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_watanabe.jpg');"></div><div class="spk-all-name">渡邊 渚</div><div class="spk-all-meta">タレント ／ 元フジテレビアナウンサー</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div><div class="spk-all-name">清宮 俊久</div><div class="spk-all-meta">セガサミーイノベーション 代表取締役社長</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_miyanaka.jpg');"></div><div class="spk-all-name">宮中 沙羅</div><div class="spk-all-meta">株式会社セガ 開発者</div></div>
+        </div>
+
+        <div class="spk-all-group-label" style="margin-top:32px;"><span class="spk-group-tag spk-group-tag-student">STUDENT</span>学生登壇者（13名）</div>
+        <div class="spk-all-grid">
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_tani.jpg');"></div><div class="spk-all-name">谷 昊埜</div><div class="spk-all-meta">19歳 ／ 慶應義塾大学SFC</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_ueda.jpg');"></div><div class="spk-all-name">植田 晴子</div><div class="spk-all-meta">18歳 ／ 慶應義塾大学SFC</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_kuno.jpg');"></div><div class="spk-all-name">久野 美恋彩</div><div class="spk-all-meta">17歳 ／ 星の杜高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_masuda.jpg');"></div><div class="spk-all-name">増田 結桜</div><div class="spk-all-meta">15歳 ／ N高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_ohama.jpg');"></div><div class="spk-all-name">大濱 裕輝</div><div class="spk-all-meta">18歳 ／ 徳島文理高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_noritake.jpg');"></div><div class="spk-all-name">則竹 瑛斗</div><div class="spk-all-meta">16歳 ／ ゼロ高等学院</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_takamatsu.jpg');"></div><div class="spk-all-name">髙松 優大</div><div class="spk-all-meta">18歳 ／ 英・マンチェスター大学進学予定</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_kuwako.jpg');"></div><div class="spk-all-name">桑子 友菜</div><div class="spk-all-meta">17歳 ／ N高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div><div class="spk-all-name">野田 樹里</div><div class="spk-all-meta">17歳 ／ 名城大学附属高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_sakai.jpg');"></div><div class="spk-all-name">酒井 愛瑠</div><div class="spk-all-meta">19歳 ／ 愛知県</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg');"></div><div class="spk-all-name">松長 侑南</div><div class="spk-all-meta">17歳 ／ 渋谷教育学園幕張高等学校</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_aburatani.jpg');"></div><div class="spk-all-name">油谷 駿杜</div><div class="spk-all-meta">18歳 ／ 富山県</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg');"></div><div class="spk-all-name">竹内 翼</div><div class="spk-all-meta">17歳 ／ 甲陽学院高等学校</div></div>
+        </div>
+
+        <div class="spk-all-group-label" style="margin-top:32px;"><span class="spk-group-tag" style="background:var(--pink);">LIVE</span>特別演奏者（2名）</div>
+        <div class="spk-all-grid">
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/performer_shio.jpg');"></div><div class="spk-all-name">しお</div><div class="spk-all-meta">16歳 ／ Piano &amp; Vocal</div></div>
+          <div class="spk-all-item"><div class="spk-all-photo" style="background-image:url('img/summit/performer_natsushi.jpg');"></div><div class="spk-all-name">なつし</div><div class="spk-all-meta">大学1年 ／ Guitar &amp; Vocal</div></div>
+        </div>
+
+        <p style="text-align:center;margin-top:34px;font-size:.78rem;color:var(--text2);line-height:1.85;">詳細プロフィール・肩書きは <a href="https://www.nexyhub.jp/summit.html#speakers" target="_blank" rel="noopener" style="color:var(--orange);font-weight:800;text-decoration:underline;">サミット公式サイト</a> にてご確認いただけます。</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══ Sponsor Marquee ═══ -->
   <section class="sponsor-marquee-section fade-in">
@@ -1748,6 +1878,30 @@ a { transition: color .2s; }
 </div>
 
 <script>
+/* ═══ 全登壇者モーダル ═══ */
+(function(){
+  var btn = document.getElementById('spkSeeAllBtn');
+  var modal = document.getElementById('spkAllModal');
+  var closeBtn = document.getElementById('spkAllModalClose');
+  if (!btn || !modal) return;
+  function open(){
+    modal.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  }
+  function close(){
+    modal.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+  }
+  btn.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function(e){
+    if (e.target === modal) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  });
+})();
+
 /* ═══ ハンバーガーメニュー（全画面共通） ═══ */
 (function(){
   var burger = document.getElementById('lpBurger');
