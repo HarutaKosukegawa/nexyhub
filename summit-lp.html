@@ -226,58 +226,85 @@ a { color: inherit; text-decoration: none; }
 .top-nav-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; color: var(--navy); letter-spacing: .02em; flex-shrink: 0; }
 .top-nav-logo em { color: var(--orange); font-style: normal; }
 .top-nav-links { display: none; }
-@media (min-width: 640px) {
-  .top-nav-links {
-    display: flex; align-items: center; gap: 18px;
-    margin-left: auto; margin-right: 14px;
-  }
-  .top-nav-links a {
-    font-size: .78rem; font-weight: 800; color: var(--navy);
-    text-decoration: none; transition: color .2s;
-    position: relative;
-  }
-  .top-nav-links a::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: -4px;
-    height: 2px; background: var(--orange);
-    transform: scaleX(0); transform-origin: right center;
-    transition: transform .3s ease;
-  }
-  .top-nav-links a:hover { color: var(--orange); }
-  .top-nav-links a:hover::after { transform: scaleX(1); transform-origin: left center; }
-}
 .top-nav-cta {
   background: var(--orange); color: #fff;
   font-size: .78rem; font-weight: 900; letter-spacing: .04em;
   padding: 9px 16px; border-radius: 999px;
   box-shadow: 0 3px 10px rgba(234,92,31,.34);
   flex-shrink: 0;
+  margin-left: auto;
 }
-/* モバイル用ハンバーガー */
+/* ハンバーガー（全画面で表示） */
 .top-nav-burger {
-  display: flex; flex-direction: column; gap: 4px;
-  background: none; border: none; cursor: pointer; padding: 6px; margin-right: 4px;
+  display: flex; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+  transition: transform .2s;
 }
+.top-nav-burger:hover { transform: scale(1.08); }
 .top-nav-burger span {
   display: block; width: 22px; height: 2px; background: var(--navy);
-  transition: transform .3s, opacity .3s;
+  transition: transform .3s cubic-bezier(.68,-.55,.27,1.55), opacity .2s;
 }
-@media (min-width: 640px) { .top-nav-burger { display: none; } }
+.top-nav-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--orange); }
+.top-nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.top-nav-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--orange); }
+
+/* オーバーレイメニュー（ハンバーガーから展開） */
 .top-nav-mobile {
-  display: none; position: fixed; top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,.98); backdrop-filter: blur(14px);
-  padding: 60px 20px 20px; z-index: 99;
-  flex-direction: column; gap: 4px;
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,.98); backdrop-filter: blur(16px);
+  padding: 78px 24px 30px; z-index: 99;
+  display: none; flex-direction: column; gap: 0;
+  overflow-y: auto;
 }
-.top-nav-mobile.open { display: flex; }
+.top-nav-mobile.open {
+  display: flex;
+  animation: menuSlideDown .35s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .top-nav-mobile a {
-  padding: 14px 12px; font-size: .96rem; font-weight: 800; color: var(--navy);
+  padding: 20px 8px; font-size: 1.14rem; font-weight: 900; color: var(--navy);
   text-decoration: none; border-bottom: 1px solid var(--line);
-  transition: color .2s, background .2s;
+  transition: color .2s, padding-left .2s;
+  display: flex; align-items: center; justify-content: space-between;
+  letter-spacing: .02em;
+  animation: menuItemFade .5s ease both;
 }
-.top-nav-mobile a:hover { color: var(--orange); background: var(--paper); }
-.top-nav-mobile a:last-child { border-bottom: none; }
+.top-nav-mobile.open a:nth-child(1) { animation-delay: .1s; }
+.top-nav-mobile.open a:nth-child(2) { animation-delay: .17s; }
+.top-nav-mobile.open a:nth-child(3) { animation-delay: .24s; }
+.top-nav-mobile.open a:nth-child(4) { animation-delay: .31s; }
+.top-nav-mobile.open a:nth-child(5) { animation-delay: .38s; }
+.top-nav-mobile.open a:nth-child(6) { animation-delay: .45s; }
+@keyframes menuItemFade {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.top-nav-mobile a::after {
+  content: '→'; color: var(--teal); font-family: var(--font-num); font-weight: 900;
+  transition: transform .2s;
+}
+.top-nav-mobile a:hover { color: var(--orange); padding-left: 16px; }
+.top-nav-mobile a:hover::after { transform: translateX(6px); color: var(--orange); }
+.top-nav-mobile a.mobile-cta {
+  background: var(--grad-sunset); color: #fff;
+  border: none; margin-top: 18px; padding: 20px;
+  border-radius: 12px; justify-content: center;
+  box-shadow: 0 10px 24px rgba(234,92,31,.4);
+  animation: menuItemFade .5s .45s ease both;
+}
+.top-nav-mobile a.mobile-cta::after { content: ''; }
+.top-nav-mobile a.mobile-cta:hover { padding-left: 20px; color: #fff; transform: scale(1.02); }
+.top-nav-mobile-label {
+  font-family: var(--font-num); font-size: .62rem; font-weight: 800;
+  letter-spacing: .3em; color: var(--text2); text-transform: uppercase;
+  padding: 20px 8px 8px; border-bottom: none;
+}
+/* メニュー展開中は背景スクロールを止める用のクラス */
+body.menu-open { overflow: hidden; }
 
 /* ─── FV（v5.2：デザインKV画像を主役） ─── */
 .fv {
@@ -1275,20 +1302,18 @@ a { transition: color .2s; }
 
   <nav class="top-nav">
     <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT 2026</a>
-    <div class="top-nav-links">
-      <a href="#top">HOME</a>
-      <a href="#speakers-section">登壇者</a>
-      <a href="#schedule-section">タイムテーブル</a>
-      <a href="#entry">申込</a>
-    </div>
     <a href="#entry" class="top-nav-cta">エントリー</a>
-    <button class="top-nav-burger" id="lpBurger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    <button class="top-nav-burger" id="lpBurger" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
-  <div class="top-nav-mobile" id="lpMobileNav">
-    <a href="#top">HOME</a>
-    <a href="#speakers-section">登壇者</a>
-    <a href="#schedule-section">タイムテーブル</a>
-    <a href="#entry">申込フォーム</a>
+  <div class="top-nav-mobile" id="lpMobileNav" role="menu">
+    <div class="top-nav-mobile-label">MENU</div>
+    <a href="#top" role="menuitem">HOME</a>
+    <a href="#what-you-get" role="menuitem">この1日で得られること</a>
+    <a href="#speakers-section" role="menuitem">登壇者</a>
+    <a href="#schedule-section" role="menuitem">タイムテーブル</a>
+    <a href="#entry" role="menuitem">申込フォーム</a>
+    <a href="https://www.nexyhub.jp/summit.html" role="menuitem">詳細版サイトへ →</a>
+    <a href="#entry" class="mobile-cta" role="menuitem">30秒で無料エントリー →</a>
   </div>
 
   <!-- ═══ FV（v5.2：デザインKV画像を主役に） ═══ -->
@@ -1322,7 +1347,7 @@ a { transition: color .2s; }
   </div>
 
   <!-- ═══ WHAT YOU GET（FV直下・3つの持ち帰り） ═══ -->
-  <section class="what-you-get">
+  <section class="what-you-get" id="what-you-get">
     <div class="wyg-head fade-in">
       <span class="wyg-tag">What you get</span>
       <h2 class="wyg-title">この1日で、<br><em>3つ持ち帰る</em>。</h2>
@@ -1723,20 +1748,32 @@ a { transition: color .2s; }
 </div>
 
 <script>
-/* ═══ ハンバーガーメニュー ═══ */
+/* ═══ ハンバーガーメニュー（全画面共通） ═══ */
 (function(){
   var burger = document.getElementById('lpBurger');
   var mobileNav = document.getElementById('lpMobileNav');
   if (!burger || !mobileNav) return;
+  function close(){
+    mobileNav.classList.remove('open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  }
+  function open(){
+    mobileNav.classList.add('open');
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  }
   burger.addEventListener('click', function(){
-    mobileNav.classList.toggle('open');
-    burger.classList.toggle('is-open');
+    if (mobileNav.classList.contains('open')) close(); else open();
   });
   mobileNav.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
-      mobileNav.classList.remove('open');
-      burger.classList.remove('is-open');
-    });
+    a.addEventListener('click', close);
+  });
+  // ESCで閉じる
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) close();
   });
 })();
 
