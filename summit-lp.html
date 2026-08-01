@@ -218,17 +218,66 @@ a { color: inherit; text-decoration: none; }
 .top-nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
-  padding: 12px 16px;
+  padding: 10px 16px;
   display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid var(--line);
+  gap: 10px;
 }
-.top-nav-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--navy); letter-spacing: .02em; }
+.top-nav-logo { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 1rem; color: var(--navy); letter-spacing: .02em; flex-shrink: 0; }
 .top-nav-logo em { color: var(--orange); font-style: normal; }
+.top-nav-links { display: none; }
+@media (min-width: 640px) {
+  .top-nav-links {
+    display: flex; align-items: center; gap: 18px;
+    margin-left: auto; margin-right: 14px;
+  }
+  .top-nav-links a {
+    font-size: .78rem; font-weight: 800; color: var(--navy);
+    text-decoration: none; transition: color .2s;
+    position: relative;
+  }
+  .top-nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -4px;
+    height: 2px; background: var(--orange);
+    transform: scaleX(0); transform-origin: right center;
+    transition: transform .3s ease;
+  }
+  .top-nav-links a:hover { color: var(--orange); }
+  .top-nav-links a:hover::after { transform: scaleX(1); transform-origin: left center; }
+}
 .top-nav-cta {
   background: var(--orange); color: #fff;
   font-size: .78rem; font-weight: 900; letter-spacing: .04em;
-  padding: 8px 14px; border-radius: 999px;
+  padding: 9px 16px; border-radius: 999px;
+  box-shadow: 0 3px 10px rgba(234,92,31,.34);
+  flex-shrink: 0;
 }
+/* モバイル用ハンバーガー */
+.top-nav-burger {
+  display: flex; flex-direction: column; gap: 4px;
+  background: none; border: none; cursor: pointer; padding: 6px; margin-right: 4px;
+}
+.top-nav-burger span {
+  display: block; width: 22px; height: 2px; background: var(--navy);
+  transition: transform .3s, opacity .3s;
+}
+@media (min-width: 640px) { .top-nav-burger { display: none; } }
+.top-nav-mobile {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,.98); backdrop-filter: blur(14px);
+  padding: 60px 20px 20px; z-index: 99;
+  flex-direction: column; gap: 4px;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+.top-nav-mobile.open { display: flex; }
+.top-nav-mobile a {
+  padding: 14px 12px; font-size: .96rem; font-weight: 800; color: var(--navy);
+  text-decoration: none; border-bottom: 1px solid var(--line);
+  transition: color .2s, background .2s;
+}
+.top-nav-mobile a:hover { color: var(--orange); background: var(--paper); }
+.top-nav-mobile a:last-child { border-bottom: none; }
 
 /* ─── FV（v5.2：デザインKV画像を主役） ─── */
 .fv {
@@ -953,11 +1002,31 @@ a { transition: color .2s; }
 }
 .spk-item:hover { background: var(--paper); }
 .spk-photo {
-  width: 82%; max-width: 90px; aspect-ratio: 1; border-radius: 50%;
-  background: #eee center/cover no-repeat;
-  border: none; box-shadow: none;
+  width: 90%; max-width: 110px; aspect-ratio: 1; border-radius: 50%;
+  background-color: #eee;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 20%;
+  border: 3px solid #fff; box-shadow: 0 4px 12px rgba(16,35,63,.15);
   margin: 0 auto 12px;
+  transition: transform .3s;
 }
+.spk-item:hover .spk-photo { transform: scale(1.06); box-shadow: 0 8px 20px rgba(16,35,63,.22); }
+
+/* 大人ゲスト／学生登壇者 グループラベル */
+.spk-group-label {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-jp); font-size: .96rem; font-weight: 900;
+  color: var(--navy); margin-bottom: 14px;
+  padding-left: 4px;
+}
+.spk-group-tag {
+  font-family: var(--font-num); font-size: .58rem; font-weight: 900;
+  letter-spacing: .2em; padding: 4px 10px; border-radius: 4px;
+  color: #fff; text-transform: uppercase;
+}
+.spk-group-tag-adult { background: var(--navy); }
+.spk-group-tag-student { background: var(--orange); }
 .spk-name {
   font-family: var(--font-jp);
   font-size: .84rem; font-weight: 900; color: var(--navy);
@@ -1188,8 +1257,21 @@ a { transition: color .2s; }
 
   <nav class="top-nav">
     <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT 2026</a>
+    <div class="top-nav-links">
+      <a href="#top">HOME</a>
+      <a href="#speakers-section">登壇者</a>
+      <a href="#schedule-section">タイムテーブル</a>
+      <a href="#entry">申込</a>
+    </div>
     <a href="#entry" class="top-nav-cta">エントリー</a>
+    <button class="top-nav-burger" id="lpBurger" aria-label="メニュー"><span></span><span></span><span></span></button>
   </nav>
+  <div class="top-nav-mobile" id="lpMobileNav">
+    <a href="#top">HOME</a>
+    <a href="#speakers-section">登壇者</a>
+    <a href="#schedule-section">タイムテーブル</a>
+    <a href="#entry">申込フォーム</a>
+  </div>
 
   <!-- ═══ FV（v5.2：デザインKV画像を主役に） ═══ -->
   <section class="fv" id="top">
@@ -1359,7 +1441,7 @@ a { transition: color .2s; }
   </section>
 
   <!-- ═══ Schedule（詳細タイムテーブル） ═══ -->
-  <section class="section">
+  <section class="section" id="schedule-section">
     <span class="sec-tag">SCHEDULE</span>
     <h2 class="sec-title">1日の<em>流れ</em>。</h2>
     <p style="font-size:.86rem;color:var(--text2);line-height:1.85;margin-bottom:22px;">10:00〜16:20の8時間、<strong style="color:var(--navy);">D会場（メインステージ）／C会場（登壇セッション）／ブース＋コミュニティ</strong>が同時並行。参加自由・出入り自由です。</p>
@@ -1480,11 +1562,14 @@ a { transition: color .2s; }
     </div>
   </section>
 
-  <!-- ═══ Speakers（権威推し削除・多様な大人へ） ═══ -->
-  <section class="speakers-hero">
+  <!-- ═══ Speakers（大人3名 × 学生3名） ═══ -->
+  <section class="speakers-hero" id="speakers-section">
     <span class="sec-tag">SPEAKERS</span>
     <h2 class="sec-title">話せる大人と、<br><em>同世代</em>の登壇者。</h2>
     <p class="spk-lead">"すごい人"を見に来る場所じゃなく、<strong>いろんな大人・同世代と対話できる</strong>場所。25名が集結します。</p>
+
+    <!-- 大人ゲスト 3名 -->
+    <div class="spk-group-label"><span class="spk-group-tag spk-group-tag-adult">GUEST</span>大人ゲスト</div>
     <div class="spk-grid">
       <div class="spk-item fade-in">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');"></div>
@@ -1492,38 +1577,44 @@ a { transition: color .2s; }
         <div class="spk-title">起業家</div>
         <span class="spk-topic">「学生時代の1歩が、その先の全てを決めた」</span>
       </div>
-      <div class="spk-item fade-in">
+      <div class="spk-item fade-in delay-1">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div>
         <div class="spk-name">清宮 俊久</div>
         <div class="spk-title">経営者</div>
         <span class="spk-topic">「大企業のなかで、新しいものを立ち上げる話」</span>
       </div>
-      <div class="spk-item fade-in">
+      <div class="spk-item fade-in delay-2">
         <div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div>
         <div class="spk-name">琴坂 将広</div>
         <div class="spk-title">大学教授</div>
         <span class="spk-topic">「10代のうちに考えておきたい戦略の話」</span>
       </div>
-      <div class="spk-item fade-in delay-1">
-        <div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg');"></div>
-        <div class="spk-name">三輪 開人</div>
-        <div class="spk-title">起業家</div>
-        <span class="spk-topic">「伝わるプレゼンの原則を、実演で」</span>
+    </div>
+
+    <!-- 学生登壇者 3名 -->
+    <div class="spk-group-label" style="margin-top:32px;"><span class="spk-group-tag spk-group-tag-student">STUDENT</span>学生登壇者</div>
+    <div class="spk-grid">
+      <div class="spk-item fade-in">
+        <div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg');"></div>
+        <div class="spk-name">竹内 翼</div>
+        <div class="spk-title">高校生 起業家</div>
+        <span class="spk-topic">「NFT取引1.5億・eスポーツ事業譲渡」</span>
       </div>
       <div class="spk-item fade-in delay-1">
-        <div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg');"></div>
-        <div class="spk-name">只石 昌幸</div>
-        <div class="spk-title">経営者</div>
-        <span class="spk-topic">「情熱で事業をつくる、リアルな話」</span>
+        <div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg');"></div>
+        <div class="spk-name">桑子 友菜</div>
+        <div class="spk-title">高校生</div>
+        <span class="spk-topic">「学生時代の挑戦で、見えた景色」</span>
       </div>
-      <div class="spk-item fade-in delay-1">
-        <div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg');"></div>
-        <div class="spk-name">ブランスクム 文葉</div>
-        <div class="spk-title">起業家</div>
-        <span class="spk-topic">「"やりたい"を、40代で言葉にした話」</span>
+      <div class="spk-item fade-in delay-2">
+        <div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg');"></div>
+        <div class="spk-name">松長 侑南</div>
+        <div class="spk-title">高校生</div>
+        <span class="spk-topic">「同世代に届けたい、リアルな話」</span>
       </div>
     </div>
-    <p class="spk-note">大人ゲスト＋<strong>全国の現役高校生</strong>登壇者が集結。</p>
+
+    <p class="spk-note">全 <strong>25名</strong> の大人ゲスト＋学生登壇者が集結。</p>
   </section>
 
   <!-- ═══ Sponsor Marquee ═══ -->
@@ -1633,6 +1724,23 @@ a { transition: color .2s; }
 </div>
 
 <script>
+/* ═══ ハンバーガーメニュー ═══ */
+(function(){
+  var burger = document.getElementById('lpBurger');
+  var mobileNav = document.getElementById('lpMobileNav');
+  if (!burger || !mobileNav) return;
+  burger.addEventListener('click', function(){
+    mobileNav.classList.toggle('open');
+    burger.classList.toggle('is-open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      burger.classList.remove('is-open');
+    });
+  });
+})();
+
 /* ═══ スクロール進捗バー ═══ */
 (function(){
   var fill = document.getElementById('scrollProgressFill');
