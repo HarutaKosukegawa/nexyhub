@@ -106,6 +106,46 @@ a { color: inherit; text-decoration: none; }
   margin-top: 24px;
   box-shadow: 0 8px 20px rgba(10,29,60,.12);
 }
+/* FV top hero strip (visual anchor) */
+.fv-hero-strip {
+  width: calc(100% + 40px); margin: -28px -20px 22px;
+  aspect-ratio: 16/9;
+  background: url('img/summit/hero_kv_v3.jpg') center/cover no-repeat;
+  position: relative;
+}
+.fv-hero-strip::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 60%, var(--paper) 100%);
+  pointer-events: none;
+}
+
+/* Reason card with image */
+.reason-card { padding: 0; overflow: hidden; }
+.reason-card-img {
+  width: 100%; aspect-ratio: 16/9;
+  background: #eee center/cover no-repeat;
+}
+.reason-card-body { padding: 18px 18px 20px; }
+.reason-card-body .reason-num { display: block; margin-bottom: 4px; }
+
+/* Venue photo strip (between Trust-nums and 不安解消) */
+.venue-photo { padding: 22px 20px 0; text-align: center; background: #fff; }
+.venue-photo-img { width: 100%; aspect-ratio: 16/9; background: #ddd center/cover no-repeat; border-radius: 10px; box-shadow: 0 6px 16px rgba(10,29,60,.14); }
+.venue-photo-cap { margin-top: 10px; font-size: .74rem; font-weight: 700; color: var(--text2); line-height: 1.7; }
+
+/* Gallery restored */
+.gallery-section { padding: 40px 20px 44px; background: var(--paper); }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
+.gallery-item {
+  aspect-ratio: 4/3;
+  background: #ddd center/cover no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(10,29,60,.10);
+}
+.gallery-caption {
+  margin-top: 12px; font-size: .8rem; font-weight: 700;
+  color: var(--text2); text-align: center; line-height: 1.7;
+}
 
 /* FV meta rows */
 .fv-meta { margin: 14px 0 22px; padding: 14px 18px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; text-align: left; }
@@ -278,11 +318,11 @@ a { color: inherit; text-decoration: none; }
 .spk-photo {
   width: 100%; aspect-ratio: 1; border-radius: 50%;
   background: #ddd center/cover no-repeat;
-  border: 3px solid #fff; box-shadow: 0 6px 14px rgba(10,29,60,.14);
-  margin-bottom: 6px;
+  border: 4px solid #fff; box-shadow: 0 8px 18px rgba(10,29,60,.18);
+  margin-bottom: 8px;
 }
-.spk-name { font-size: .76rem; font-weight: 900; color: var(--navy); line-height: 1.35; }
-.spk-title { font-size: .62rem; font-weight: 700; color: var(--text2); line-height: 1.4; margin-top: 3px; }
+.spk-name { font-size: .82rem; font-weight: 900; color: var(--navy); line-height: 1.35; }
+.spk-title { font-size: .66rem; font-weight: 700; color: var(--text2); line-height: 1.5; margin-top: 4px; }
 .spk-note {
   font-size: .74rem; color: var(--text2); font-weight: 700;
   text-align: center; margin-top: 10px;
@@ -473,6 +513,7 @@ a { color: inherit; text-decoration: none; }
 
   <!-- ═══ FV ═══ -->
   <section class="fv" id="top">
+    <div class="fv-hero-strip" aria-hidden="true"></div>
     <h1 class="fv-hook">「やりたいがない」<br>まま、<em>来ていい</em>。</h1>
     <p class="fv-subhook">同世代1,000人が集まる、1日限りの場。<br><strong>8月6日(木)・東京八王子・中高大生完全無料。</strong></p>
 
@@ -501,6 +542,12 @@ a { color: inherit; text-decoration: none; }
     </div>
   </section>
 
+  <!-- ═══ Venue Photo ═══ -->
+  <section class="venue-photo">
+    <div class="venue-photo-img" style="background-image:url('img/summit/venue_interior.jpg');"></div>
+    <p class="venue-photo-cap">会場：東京たま未来メッセ（八王子）<br>天井高15m・2,400㎡の大展示ホール</p>
+  </section>
+
   <!-- ═══ 不安解消バンド ═══ -->
   <section class="reassure">
     <h2 class="reassure-title">95%は、<em>特別な実績のない</em><br>普通の学生。</h2>
@@ -519,19 +566,28 @@ a { color: inherit; text-decoration: none; }
     <h2 class="sec-title">来て、<em>何が起きる</em>？</h2>
     <div class="reasons-list">
       <div class="reason-card">
-        <div class="reason-num">01</div>
-        <h3 class="reason-title">同世代1,000人と、1日を過ごす。</h3>
-        <p class="reason-desc">全国から集まる高校生・大学生と、"モヤモヤしてた"を話せる。聞くだけじゃなく、手を動かしたり、先輩と1人ずつ話せる時間もあり。</p>
+        <div class="reason-card-img" style="background-image:url('img/summit/community.jpg');"></div>
+        <div class="reason-card-body">
+          <span class="reason-num">01</span>
+          <h3 class="reason-title">同世代1,000人と、1日を過ごす。</h3>
+          <p class="reason-desc">全国から集まる高校生・大学生と、"モヤモヤしてた"を話せる。聞くだけじゃなく、手を動かしたり、先輩と1人ずつ話せる時間もあり。</p>
+        </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num">02</div>
-        <h3 class="reason-title">"やりたいがない"まま、来ていい。</h3>
-        <p class="reason-desc">95%は特別な実績なしの普通の学生。"見つけよう"じゃなく、"見つかるかもしれない"くらいでOK。</p>
+        <div class="reason-card-img" style="background-image:url('img/summit/workshop.jpg');"></div>
+        <div class="reason-card-body">
+          <span class="reason-num">02</span>
+          <h3 class="reason-title">"やりたいがない"まま、来ていい。</h3>
+          <p class="reason-desc">95%は特別な実績なしの普通の学生。"見つけよう"じゃなく、"見つかるかもしれない"くらいでOK。</p>
+        </div>
       </div>
       <div class="reason-card">
-        <div class="reason-num">03</div>
-        <h3 class="reason-title">1人で来ても、浮かない。</h3>
-        <p class="reason-desc">1人参加がいちばん多い層。知り合いゼロで来た方が、むしろ新しい出会いがある1日です。</p>
+        <div class="reason-card-img" style="background-image:url('img/summit/session.jpg');"></div>
+        <div class="reason-card-body">
+          <span class="reason-num">03</span>
+          <h3 class="reason-title">1人で来ても、浮かない。</h3>
+          <p class="reason-desc">1人参加がいちばん多い層。知り合いゼロで来た方が、むしろ新しい出会いがある1日です。</p>
+        </div>
       </div>
     </div>
     <div class="mid-cta">
@@ -574,6 +630,19 @@ a { color: inherit; text-decoration: none; }
       <a href="#entry" class="btn-primary">30秒で無料エントリー →</a>
       <span class="mid-cta-note">中高大生 <strong>完全無料</strong></span>
     </div>
+  </section>
+
+  <!-- ═══ Gallery（当日の風景をイメージで） ═══ -->
+  <section class="gallery-section">
+    <span class="sec-tag">SCENES</span>
+    <h2 class="sec-title">当日の<em>風景</em>。</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" style="background-image:url('img/summit/session.jpg');"></div>
+      <div class="gallery-item" style="background-image:url('img/summit/workshop.jpg');"></div>
+      <div class="gallery-item" style="background-image:url('img/summit/community.jpg');"></div>
+      <div class="gallery-item" style="background-image:url('img/summit/booth.jpg');"></div>
+    </div>
+    <p class="gallery-caption">登壇セッション ／ ワークショップ ／ 交流エリア ／ ブース出展<br>― 6つの体験エリアで1日を過ごす ―</p>
   </section>
 
   <!-- ═══ VOICE ═══ -->
