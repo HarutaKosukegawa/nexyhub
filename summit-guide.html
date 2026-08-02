@@ -532,6 +532,41 @@ button.tt-item.is-link { display: block; }
   .sponsor-tier.bronze .sponsor-card img { max-height: 40px; }
 }
 
+
+/* ─── 「詳細を見る」ヒント ─── */
+.spk-card.is-clickable, .pitch-card.is-clickable, .sponsor-card.is-clickable {
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position: relative;
+  font-family: inherit;
+}
+.spk-card.is-clickable:hover, .pitch-card.is-clickable:hover, .sponsor-card.is-clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16,35,63,.14);
+  border-color: var(--orange);
+}
+.spk-more {
+  display: block; margin-top: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .54rem; font-weight: 900; letter-spacing: .12em;
+  color: var(--orange);
+  padding-top: 6px; border-top: 1px dashed var(--line);
+}
+.spk-more::after { content: ' ›'; font-weight: 900; }
+.pitch-more { color: var(--orange); }
+.sponsor-more {
+  display: block; margin-top: 10px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .58rem; font-weight: 900; letter-spacing: .14em;
+  color: var(--orange);
+}
+.sponsor-more::after { content: ' ›'; }
+.sponsor-card.is-clickable {
+  flex-direction: column; gap: 6px;
+  background: #fff;
+}
+.sponsor-card.is-clickable img { flex: 0 0 auto; }
+
 /* ─── UNIVERSAL MODAL (session / speaker detail) ─── */
 .gm-modal {
   position: fixed; inset: 0; z-index: 500;
@@ -972,38 +1007,38 @@ body.gm-open { overflow: hidden; }
       <div>
         <div class="spk-group-head">ゲスト登壇者</div>
         <div class="spk-grid">
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_yamamoto"><div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg')"></div><div class="spk-name">山本 敏行</div><div class="spk-title">Chatwork創業者</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_branscombe"><div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg')"></div><div class="spk-name">ブランスクム 文葉</div><div class="spk-title">Fleurinary代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tadaishi"><div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg')"></div><div class="spk-name">只石 昌幸</div><div class="spk-title">VALX CEO</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hayashi"><div class="spk-photo" style="background-image:url('img/summit/speaker_hayashi.jpg')"></div><div class="spk-name">林 裕子</div><div class="spk-title">山口大学大学院 特命教授</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="mentor_miwa"><div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg')"></div><div class="spk-name">三輪 開人</div><div class="spk-title">e-Education 代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sano"><div class="spk-photo" style="background-image:url('img/summit/speaker_sano.jpg')"></div><div class="spk-name">佐野 貴</div><div class="spk-title">Play Robotics 代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hirano"><div class="spk-photo" style="background-image:url('img/summit/speaker_hirano.jpg')"></div><div class="spk-name">平野 歩</div><div class="spk-title">SailStep 代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kotosaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg')"></div><div class="spk-name">琴坂 将広</div><div class="spk-title">慶應SFC 教授</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_izawa"><div class="spk-photo" style="background-image:url('img/summit/speaker_izawa.jpg')"></div><div class="spk-name">伊澤 祐太</div><div class="spk-title">スイミー株式会社 代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_uemura"><div class="spk-photo" style="background-image:url('img/summit/speaker_uemura.jpg')"></div><div class="spk-name">植村 英明</div><div class="spk-title">CHEERS COO</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_watanabe"><div class="spk-photo" style="background-image:url('img/summit/speaker_watanabe.jpg')"></div><div class="spk-name">渡邊 渚</div><div class="spk-title">タレント</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kiyomiya"><div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg')"></div><div class="spk-name">清宮 俊久</div><div class="spk-title">セガサミーイノベーション 代表</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_miyanaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_miyanaka.jpg')"></div><div class="spk-name">宮中 沙羅</div><div class="spk-title">株式会社セガ 開発者</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_yamamoto"><div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg')"></div><div class="spk-name">山本 敏行</div><div class="spk-title">Chatwork創業者</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_branscombe"><div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg')"></div><div class="spk-name">ブランスクム 文葉</div><div class="spk-title">Fleurinary代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tadaishi"><div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg')"></div><div class="spk-name">只石 昌幸</div><div class="spk-title">VALX CEO</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hayashi"><div class="spk-photo" style="background-image:url('img/summit/speaker_hayashi.jpg')"></div><div class="spk-name">林 裕子</div><div class="spk-title">山口大学大学院 特命教授</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="mentor_miwa"><div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg')"></div><div class="spk-name">三輪 開人</div><div class="spk-title">e-Education 代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sano"><div class="spk-photo" style="background-image:url('img/summit/speaker_sano.jpg')"></div><div class="spk-name">佐野 貴</div><div class="spk-title">Play Robotics 代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hirano"><div class="spk-photo" style="background-image:url('img/summit/speaker_hirano.jpg')"></div><div class="spk-name">平野 歩</div><div class="spk-title">SailStep 代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kotosaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg')"></div><div class="spk-name">琴坂 将広</div><div class="spk-title">慶應SFC 教授</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_izawa"><div class="spk-photo" style="background-image:url('img/summit/speaker_izawa.jpg')"></div><div class="spk-name">伊澤 祐太</div><div class="spk-title">スイミー株式会社 代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_uemura"><div class="spk-photo" style="background-image:url('img/summit/speaker_uemura.jpg')"></div><div class="spk-name">植村 英明</div><div class="spk-title">CHEERS COO</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_watanabe"><div class="spk-photo" style="background-image:url('img/summit/speaker_watanabe.jpg')"></div><div class="spk-name">渡邊 渚</div><div class="spk-title">タレント</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kiyomiya"><div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg')"></div><div class="spk-name">清宮 俊久</div><div class="spk-title">セガサミーイノベーション 代表</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_miyanaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_miyanaka.jpg')"></div><div class="spk-name">宮中 沙羅</div><div class="spk-title">株式会社セガ 開発者</div><span class="spk-more">詳細を見る</span></button>
         </div>
       </div>
 
       <div>
         <div class="spk-group-head teal">学生登壇者</div>
         <div class="spk-grid">
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tani"><div class="spk-photo" style="background-image:url('img/summit/speaker_tani.jpg')"></div><div class="spk-name">谷 昊埜</div><div class="spk-title">19歳／慶應SFC</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ueda"><div class="spk-photo" style="background-image:url('img/summit/speaker_ueda.jpg')"></div><div class="spk-name">植田 晴子</div><div class="spk-title">18歳／慶應SFC</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuno"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuno.jpg')"></div><div class="spk-name">久野 美恋彩</div><div class="spk-title">17歳／星の杜高校</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_masuda"><div class="spk-photo" style="background-image:url('img/summit/speaker_masuda.jpg')"></div><div class="spk-name">増田 結桜</div><div class="spk-title">15歳／N高</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ohama"><div class="spk-photo" style="background-image:url('img/summit/speaker_ohama.jpg')"></div><div class="spk-name">大濱 裕輝</div><div class="spk-title">18歳／徳島文理高校</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noritake"><div class="spk-photo" style="background-image:url('img/summit/speaker_noritake.jpg')"></div><div class="spk-name">則竹 瑛斗</div><div class="spk-title">16歳／ゼロ高</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takamatsu"><div class="spk-photo" style="background-image:url('img/summit/speaker_takamatsu.jpg')"></div><div class="spk-name">髙松 優大</div><div class="spk-title">18歳／マンチェスター大進学予定</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuwako"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg')"></div><div class="spk-name">桑子 友菜</div><div class="spk-title">17歳／N高</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noda"><div class="spk-photo" style="background-image:url('img/summit/speaker_noda.jpg')"></div><div class="spk-name">野田 樹里</div><div class="spk-title">17歳／名城大附属高校</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sakai"><div class="spk-photo" style="background-image:url('img/summit/speaker_sakai.jpg')"></div><div class="spk-name">酒井 愛瑠</div><div class="spk-title">19歳／愛知県</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_matsunaga"><div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg')"></div><div class="spk-name">松長 侑南</div><div class="spk-title">17歳／渋幕高校</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_aburatani"><div class="spk-photo" style="background-image:url('img/summit/speaker_aburatani.jpg')"></div><div class="spk-name">油谷 駿杜</div><div class="spk-title">18歳／富山県</div></button>
-          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takeuchi"><div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg')"></div><div class="spk-name">竹内 翼</div><div class="spk-title">17歳／甲陽学院高校</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tani"><div class="spk-photo" style="background-image:url('img/summit/speaker_tani.jpg')"></div><div class="spk-name">谷 昊埜</div><div class="spk-title">19歳／慶應SFC</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ueda"><div class="spk-photo" style="background-image:url('img/summit/speaker_ueda.jpg')"></div><div class="spk-name">植田 晴子</div><div class="spk-title">18歳／慶應SFC</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuno"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuno.jpg')"></div><div class="spk-name">久野 美恋彩</div><div class="spk-title">17歳／星の杜高校</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_masuda"><div class="spk-photo" style="background-image:url('img/summit/speaker_masuda.jpg')"></div><div class="spk-name">増田 結桜</div><div class="spk-title">15歳／N高</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ohama"><div class="spk-photo" style="background-image:url('img/summit/speaker_ohama.jpg')"></div><div class="spk-name">大濱 裕輝</div><div class="spk-title">18歳／徳島文理高校</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noritake"><div class="spk-photo" style="background-image:url('img/summit/speaker_noritake.jpg')"></div><div class="spk-name">則竹 瑛斗</div><div class="spk-title">16歳／ゼロ高</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takamatsu"><div class="spk-photo" style="background-image:url('img/summit/speaker_takamatsu.jpg')"></div><div class="spk-name">髙松 優大</div><div class="spk-title">18歳／マンチェスター大進学予定</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuwako"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg')"></div><div class="spk-name">桑子 友菜</div><div class="spk-title">17歳／N高</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noda"><div class="spk-photo" style="background-image:url('img/summit/speaker_noda.jpg')"></div><div class="spk-name">野田 樹里</div><div class="spk-title">17歳／名城大附属高校</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sakai"><div class="spk-photo" style="background-image:url('img/summit/speaker_sakai.jpg')"></div><div class="spk-name">酒井 愛瑠</div><div class="spk-title">19歳／愛知県</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_matsunaga"><div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg')"></div><div class="spk-name">松長 侑南</div><div class="spk-title">17歳／渋幕高校</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_aburatani"><div class="spk-photo" style="background-image:url('img/summit/speaker_aburatani.jpg')"></div><div class="spk-name">油谷 駿杜</div><div class="spk-title">18歳／富山県</div><span class="spk-more">詳細を見る</span></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takeuchi"><div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg')"></div><div class="spk-name">竹内 翼</div><div class="spk-title">17歳／甲陽学院高校</div><span class="spk-more">詳細を見る</span></button>
         </div>
       </div>
     </div>
@@ -1023,11 +1058,11 @@ body.gm-open { overflow: hidden; }
     </p>
 
     <div class="pitch-grid">
-      <button type="button" class="pitch-card is-clickable" data-open-pitch="sato"><div class="pitch-time">12:40 – 12:50 ／ PITCH 1</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_sato.jpg');"></div><div class="pitch-name">佐藤 瞭真</div><div class="pitch-theme">「なぜ私たちは学ぶのか？」</div></button>
-      <button type="button" class="pitch-card is-clickable" data-open-pitch="nakanishi"><div class="pitch-time">12:50 – 13:00 ／ PITCH 2</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_nakanishi.jpg');"></div><div class="pitch-name">中西 尭</div><div class="pitch-theme">若者が職人の「最初の一歩」を背負う。</div></button>
-      <button type="button" class="pitch-card pitch-team is-clickable" data-open-pitch="ellnowa"><div class="pitch-time">13:00 – 13:10 ／ PITCH 3 TEAM</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_ellnowa_team.jpg');"></div><div class="pitch-name">松丸 夏歩 & 海野 仁那 & 中原 瑠夏</div><div class="pitch-theme">「あなただから輝ける、みんなだからできる」みんなの大運動会</div></button>
-      <button type="button" class="pitch-card is-clickable" data-open-pitch="noda"><div class="pitch-time">13:10 – 13:20 ／ PITCH 4</div><div class="pitch-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div><div class="pitch-name">野田 樹里</div><div class="pitch-theme">一重に選択肢を｜JYUNIHITOE</div></button>
-      <button type="button" class="pitch-card is-clickable" data-open-pitch="kanda"><div class="pitch-time">13:20 – 13:30 ／ PITCH 5</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_kanda.jpg');"></div><div class="pitch-name">神田 芙羽</div><div class="pitch-theme">雑草が世界を救う？！〜雑草の可能性〜</div></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="sato"><div class="pitch-time">12:40 – 12:50 ／ PITCH 1</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_sato.jpg');"></div><div class="pitch-name">佐藤 瞭真</div><div class="pitch-theme">「なぜ私たちは学ぶのか？」</div><span class="spk-more pitch-more">詳細を見る</span></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="nakanishi"><div class="pitch-time">12:50 – 13:00 ／ PITCH 2</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_nakanishi.jpg');"></div><div class="pitch-name">中西 尭</div><div class="pitch-theme">若者が職人の「最初の一歩」を背負う。</div><span class="spk-more pitch-more">詳細を見る</span></button>
+      <button type="button" class="pitch-card pitch-team is-clickable" data-open-pitch="ellnowa"><div class="pitch-time">13:00 – 13:10 ／ PITCH 3 TEAM</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_ellnowa_team.jpg');"></div><div class="pitch-name">松丸 夏歩 & 海野 仁那 & 中原 瑠夏</div><div class="pitch-theme">「あなただから輝ける、みんなだからできる」みんなの大運動会</div><span class="spk-more pitch-more">詳細を見る</span></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="noda"><div class="pitch-time">13:10 – 13:20 ／ PITCH 4</div><div class="pitch-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div><div class="pitch-name">野田 樹里</div><div class="pitch-theme">一重に選択肢を｜JYUNIHITOE</div><span class="spk-more pitch-more">詳細を見る</span></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="kanda"><div class="pitch-time">13:20 – 13:30 ／ PITCH 5</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_kanda.jpg');"></div><div class="pitch-name">神田 芙羽</div><div class="pitch-theme">雑草が世界を救う？！〜雑草の可能性〜</div><span class="spk-more pitch-more">詳細を見る</span></button>
       <button type="button" class="pitch-card pitch-team is-clickable" data-open-pitch="blesc">
         <div class="pitch-time">13:30 – 13:40 ／ PITCH 6 TEAM</div>
         <div class="pitch-photo pitch-photo-team">
@@ -1072,26 +1107,26 @@ body.gm-open { overflow: hidden; }
     <div class="sponsor-tier platinum">
       <div class="sponsor-tier-name platinum">PLATINUM</div>
       <div class="sponsor-grid">
-        <div class="sponsor-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"></div>
-        <div class="sponsor-card"><img src="img/summit/sponsor_segasammy.png" alt="SEGA SAMMY"></div>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="cheers" aria-label="CHEERS! — 詳細を見る"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"><span class="sponsor-more">詳細を見る</span></button>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="segasammy" aria-label="SEGA SAMMY — 詳細を見る"><img src="img/summit/sponsor_segasammy.png" alt="SEGA SAMMY"><span class="sponsor-more">詳細を見る</span></button>
       </div>
     </div>
 
     <div class="sponsor-tier gold">
       <div class="sponsor-tier-name gold">GOLD</div>
       <div class="sponsor-grid">
-        <div class="sponsor-card"><img src="img/summit/sponsor_smbc.jpg" alt="SMBC"></div>
-        <div class="sponsor-card"><img src="img/summit/sponsor_swimmy.png" alt="SWIMMY"></div>
-        <div class="sponsor-card"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"></div>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="smbc" aria-label="SMBC — 詳細を見る"><img src="img/summit/sponsor_smbc.jpg" alt="SMBC"><span class="sponsor-more">詳細を見る</span></button>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="swimmy" aria-label="SWIMMY — 詳細を見る"><img src="img/summit/sponsor_swimmy.png" alt="SWIMMY"><span class="sponsor-more">詳細を見る</span></button>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="son_foundation" aria-label="孫正義育英財団 — 詳細を見る"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"><span class="sponsor-more">詳細を見る</span></button>
       </div>
     </div>
 
     <div class="sponsor-tier bronze">
       <div class="sponsor-tier-name bronze">BRONZE</div>
       <div class="sponsor-grid">
-        <div class="sponsor-card"><img src="img/summit/sponsor_dejiara.png" alt="デジアラ"></div>
-        <div class="sponsor-card"><img src="img/summit/sponsor_gaiax.png" alt="Gaiax"></div>
-        <div class="sponsor-card"><img src="img/summit/sponsor_symenergy.png" alt="SymEnergy"></div>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="dejiara" aria-label="デジアラ — 詳細を見る"><img src="img/summit/sponsor_dejiara.png" alt="デジアラ"><span class="sponsor-more">詳細を見る</span></button>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="gaiax" aria-label="Gaiax — 詳細を見る"><img src="img/summit/sponsor_gaiax.png" alt="Gaiax"><span class="sponsor-more">詳細を見る</span></button>
+        <button type="button" class="sponsor-card is-clickable" data-open-sponsor="symenergy" aria-label="SymEnergy — 詳細を見る"><img src="img/summit/sponsor_symenergy.png" alt="SymEnergy"><span class="sponsor-more">詳細を見る</span></button>
       </div>
     </div>
   </div>
@@ -1285,6 +1320,8 @@ const PITCHES = {
   blesc: { pitch: 'PITCH 6 TEAM ／ 13:30-13:40', name: '王 謙蘊 & 松本 龍', theme: 'Blesc — AIで生徒の「声なきSOS」を検知', img: 'pitch_wang.jpg' }
 };
 
+const SPONSORS = {"cheers": {"tier": "PLATINUM SPONSOR", "name": "CHEERS!（株式会社CHEERS）", "logo": "sponsor_cheers.png", "desc": "「あらゆるパートナーとの協力で、子どもたちの挑戦機会を公平に」をミッションに、ワクワクで、世界とこころを沸かせる体験をデザインしています。これまで全国51の自治体で、1,100社を超える企業と協力し、約35,000人を超える親子に無償で体験機会を届けてきました。"}, "segasammy": {"tier": "PLATINUM SPONSOR", "name": "セガサミーホールディングス株式会社", "logo": "sponsor_segasammy.png", "desc": "ゲームメーカーの株式会社セガと遊技機メーカーのサミー株式会社が2004年に経営統合して誕生した持株会社として、グループの経営管理および附帯する業務を行っています。セガサミーグループは「エンタテインメントコンテンツ事業」「遊技機事業」「ゲーミング事業」の3つの事業を軸に、世界中のあらゆる人々に感動体験を提供し続けています。"}, "smbc": {"tier": "GOLD SPONSOR", "name": "SMBCグループ（三井住友フィナンシャルグループ）", "logo": "sponsor_smbc.jpg", "desc": "SMBCグループは、「世界をつなぐ日本発のトラステッド・パートナー」を目指し、信頼を礎に、お客さまや社会の期待を超える新たな価値創造に挑戦しています。社会的価値創造のフロントランナーとして、金融の枠を超えて社会課題の解決や持続可能な社会の実現に取り組むとともに、次世代を担う若い世代の挑戦を応援しています。NEXY2026への協賛を通じて、高校生の皆さんの自由な発想と挑戦、行動力を応援します。"}, "swimmy": {"tier": "GOLD SPONSOR", "name": "スイミー株式会社（SWIMMY）", "logo": "sponsor_swimmy.png", "desc": "LINEヤフーやSmartNews等の正規代理店として広告事業を展開する一方、次世代育成にも注力する企業。YouTube番組「olly club」「ON MUTE」など学生主体の番組制作を通じ、学生がメディア活動を通して挑戦できる仕組みを構築。その取り組みは「Wall Street Journal WELL-BEING AWARD」受賞など、対外的にも高く評価されています。NEXYサミット 2026 にゴールドスポンサーとしてご支援いただいています。"}, "son_foundation": {"tier": "GOLD SPONSOR", "name": "公益財団法人 孫正義育英財団", "logo": "sponsor_son_foundation.jpg", "desc": "公益財団法人 孫正義育英財団は、「高い志」と「異能」を持つ若者が才能を最大限に発揮し、人類の未来に貢献できる人材へ成長することを目的に設立された財団です。資金支援に加え、学びや交流の機会、活動拠点の提供などを通じて、未来を切り拓く次世代リーダーの挑戦を支援しています。"}, "dejiara": {"tier": "BRONZE SPONSOR", "name": "株式会社デジアラホールディングス", "logo": "sponsor_dejiara.png", "desc": "私たちは「笑顔あふれる暮らしの明日を私たちの手で」という理念のもと、暮らしを豊かにするグループ事業を全国展開しています。エクステリアの販売や外構工事をはじめ、電動自転車の販売やWEBメディア運営を通じ、笑顔があふれる暮らしの未来を支えます。"}, "gaiax": {"tier": "BRONZE SPONSOR", "name": "株式会社ガイアックス（Gaiax）", "logo": "sponsor_gaiax.png", "desc": "株式会社ガイアックスは、「人と人をつなげる」をミッションに掲げ、ソーシャルメディアやシェアリングサービスを通じて社会課題の解決を目指す、起業家支援・スタートアップスタジオです。"}, "symenergy": {"tier": "BRONZE SPONSOR", "name": "株式会社シン・エナジー（SymEnergy）", "logo": "sponsor_symenergy.png", "desc": "高騰し続ける電気代。シン・エナジーは「エネルギーを基軸に社会を変革する」をミッションとし、「お得なプランと簡単手続き」で、ご家庭から、商店や事務所、工場やビルまで幅広く電気代を削減します。また、全国の地域と共に再生可能エネルギーの開発に取り組んでいます。"}};
+
 /* ═══ Modal Logic ═══ */
 (function(){
   const modal = document.getElementById('gmModal');
@@ -1342,6 +1379,23 @@ const PITCHES = {
       </div>`;
   }
 
+
+  function renderSponsor(s){
+    const tierColor = s.tier.startsWith('PLATINUM') ? 'var(--navy)' : (s.tier.startsWith('GOLD') ? 'var(--yellow)' : '#c9a15f');
+    const tierText = s.tier.startsWith('GOLD') ? 'var(--navy)' : '#fff';
+    return `
+      <div class="gm-modal-hero" style="text-align:center;">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;display:inline-flex;align-items:center;justify-content:center;min-width:180px;min-height:100px;margin-bottom:14px;">
+          <img src="img/summit/${s.logo}" alt="${s.name}" style="max-width:200px;max-height:80px;object-fit:contain;">
+        </div>
+        <div style="font-family:'Manrope',sans-serif;font-size:.62rem;font-weight:900;letter-spacing:.24em;padding:5px 14px;border-radius:999px;display:inline-block;background:${tierColor};color:${tierText};margin-bottom:12px;">${s.tier}</div>
+        <h3 class="gm-modal-title" style="text-align:center;">${s.name}</h3>
+      </div>
+      <div class="gm-modal-content">
+        <p class="gm-modal-lead">${s.desc}</p>
+      </div>`;
+  }
+
   function open(html){
     body.innerHTML = html;
     modal.classList.add('is-open');
@@ -1362,6 +1416,8 @@ const PITCHES = {
     if (sp){ const id=sp.getAttribute('data-open-speaker'); if (SPEAKERS[id]) open(renderSpeaker(SPEAKERS[id], id)); return; }
     const pt = e.target.closest('[data-open-pitch]');
     if (pt){ const id=pt.getAttribute('data-open-pitch'); if (PITCHES[id]) open(renderPitch(PITCHES[id], id)); return; }
+    const sn = e.target.closest('[data-open-sponsor]');
+    if (sn){ const id=sn.getAttribute('data-open-sponsor'); if (SPONSORS[id]) open(renderSponsor(SPONSORS[id])); return; }
   });
   closeBtn.addEventListener('click', close);
   modal.addEventListener('click', function(e){ if (e.target===modal) close(); });
