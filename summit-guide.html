@@ -330,6 +330,17 @@ button.tt-item.is-link { display: block; }
   box-shadow: 0 4px 12px rgba(20,191,174,.32);
 }
 
+/* C会場内の常設ブース入れ子ラベル */
+.map-b-nested {
+  margin-top: 18px; padding-top: 16px;
+  border-top: 2px dashed rgba(20,191,174,.4);
+}
+.map-b-nested-label {
+  display: inline-block;
+  font-family: 'Manrope', sans-serif; font-size: .62rem; font-weight: 800; letter-spacing: .18em;
+  color: var(--purple); background: rgba(124,58,237,.1);
+  padding: 5px 12px; border-radius: 999px; margin-bottom: 10px;
+}
 /* 常設ブース */
 .map-b-layout { display: flex; flex-direction: column; gap: 8px; }
 .map-b-story {
@@ -835,31 +846,18 @@ body.gm-open { overflow: hidden; }
     </div>
 
     <div class="venue-legend-txt">
-      <span class="num"><span style="background:var(--orange);">3</span>D会場</span>
-      <span class="num"><span style="background:var(--teal);">1</span>C会場</span>
-      <span class="num"><span style="background:var(--purple);">2</span>常設ブース</span>
+      <span class="num"><span style="background:var(--teal);">1</span>C会場（＋常設ブース）</span>
+      <span class="num"><span style="background:var(--orange);">2</span>D会場</span>
       <span class="num"><span style="background:var(--pink);">🎁</span>スタンプラリー</span>
     </div>
 
     <div class="map-container">
-      <!-- D会場ゾーン -->
-      <div class="map-zone map-zone-d">
-        <span class="map-zone-num">3</span>
-        <div class="map-zone-title">D会場</div>
-        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
-        <div class="map-d-layout">
-          <div class="map-d-stage-visual">D会場ステージ</div>
-          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
-            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- C会場ゾーン -->
-      <div class="map-zone map-zone-c">
+      <!-- C会場（常設ブースを内包） -->
+      <div class="map-zone map-zone-c map-container-full">
         <span class="map-zone-num">1</span>
         <div class="map-zone-title">C会場</div>
-        <div class="map-zone-sub">登壇セッション・ワークショップ（500人）</div>
+        <div class="map-zone-sub">登壇セッション・ワークショップ（500人）＋常設ブースエリア</div>
+
         <div class="map-c-layout">
           <div class="map-c-seats-visual" aria-label="C会場 椅子ブロック × 24">
             <div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div>
@@ -867,18 +865,29 @@ body.gm-open { overflow: hidden; }
           <div class="map-c-arrow">▼</div>
           <div class="map-c-stage-visual">C会場ステージ</div>
         </div>
+
+        <!-- 常設ブース（C会場内） -->
+        <div class="map-b-nested">
+          <div class="map-b-nested-label">＋ 常設ブースエリア（C会場内）</div>
+          <div class="map-b-layout">
+            <div class="map-b-story">ストーリー展示</div>
+            <div class="map-b-booth">交流ブース</div>
+            <div class="map-b-boxes">
+              <div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- 常設ブース ゾーン（全幅） -->
-      <div class="map-zone map-zone-b map-container-full">
+      <!-- D会場 -->
+      <div class="map-zone map-zone-d map-container-full">
         <span class="map-zone-num">2</span>
-        <div class="map-zone-title">常設ブース＋ストーリー展示＋交流ブース</div>
-        <div class="map-zone-sub">企業ブース／ワークショップ／交流会エリア（終日オープン）</div>
-        <div class="map-b-layout">
-          <div class="map-b-story">ストーリー展示</div>
-          <div class="map-b-booth">交流ブース</div>
-          <div class="map-b-boxes">
-            <div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div>
+        <div class="map-zone-title">D会場</div>
+        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
+        <div class="map-d-layout">
+          <div class="map-d-stage-visual">D会場ステージ</div>
+          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
+            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
           </div>
         </div>
       </div>
