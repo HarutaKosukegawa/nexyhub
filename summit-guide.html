@@ -60,12 +60,34 @@ a { color: inherit; text-decoration: none; }
 }
 .top-nav-logo { font-family: 'Manrope', sans-serif; font-weight: 900; font-size: 1rem; color: var(--navy); letter-spacing: .04em; }
 .top-nav-logo em { color: var(--orange); font-style: normal; }
-.top-nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.top-nav-links { display: none; gap: 4px; flex-wrap: wrap; }
 .top-nav-links a {
   font-size: .68rem; font-weight: 800; color: var(--navy);
   padding: 6px 10px; border-radius: 999px;
 }
 .top-nav-links a:hover { background: var(--paper); color: var(--orange); }
+@media (min-width: 720px) { .top-nav-links { display: flex; } }
+
+/* モバイル・スティッキー クイックナビ */
+.mobile-quick-nav {
+  display: flex; overflow-x: auto; gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.98); backdrop-filter: blur(10px);
+  position: sticky; top: 47px; z-index: 90;
+  border-bottom: 1px solid var(--line);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mobile-quick-nav::-webkit-scrollbar { display: none; }
+.mobile-quick-nav a {
+  flex-shrink: 0;
+  font-size: .72rem; font-weight: 900; color: var(--navy);
+  padding: 8px 14px; border-radius: 999px;
+  background: var(--paper); white-space: nowrap;
+  border: 1px solid var(--line);
+}
+.mobile-quick-nav a:hover, .mobile-quick-nav a:active { background: var(--orange); color: #fff; border-color: var(--orange); }
+@media (min-width: 720px) { .mobile-quick-nav { display: none; } }
 
 /* ─── Hero ─── */
 .hero {
@@ -117,71 +139,187 @@ a { color: inherit; text-decoration: none; }
 }
 .section-title em { color: var(--orange); font-style: normal; }
 
-/* ─── TIMETABLE ─── */
-.tt-wrap {
-  overflow-x: auto; border: 1.5px solid var(--line); border-radius: 12px;
-  background: #fff; box-shadow: 0 6px 18px rgba(16,35,63,.08);
+/* ─── TIMETABLE（モバイルファースト・カード型） ─── */
+.tt-list { display: flex; flex-direction: column; gap: 14px; }
+.tt-slot {
+  background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
+  overflow: hidden; box-shadow: 0 4px 12px rgba(16,35,63,.06);
 }
-.tt-table {
-  width: 100%; min-width: 640px;
-  border-collapse: collapse; font-size: .82rem;
+.tt-slot-time {
+  padding: 12px 16px; font-family: 'Manrope', sans-serif;
+  font-size: 1.06rem; font-weight: 900; color: #fff;
+  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  letter-spacing: .02em; display: flex; align-items: center; justify-content: space-between; gap: 10px;
 }
-.tt-table thead th {
-  padding: 12px 10px; font-weight: 900; color: #fff;
-  font-family: 'Manrope', sans-serif; letter-spacing: .08em;
-  text-align: center; font-size: .78rem;
+.tt-slot-time-tag {
+  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .22em;
+  background: rgba(255,255,255,.16); padding: 3px 10px; border-radius: 999px;
 }
-.tt-table thead th:nth-child(1) { background: var(--navy); }
-.tt-table thead th:nth-child(2) { background: var(--orange); }
-.tt-table thead th:nth-child(3) { background: var(--teal); }
-.tt-table thead th:nth-child(4) { background: #333; }
-.tt-table tbody td {
-  padding: 12px 10px; vertical-align: top;
-  border-bottom: 1px solid var(--line);
-  line-height: 1.55; font-size: .78rem;
+.tt-slot.is-open .tt-slot-time { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
+.tt-slot.is-live .tt-slot-time { background: linear-gradient(135deg, var(--pink), #ff6b9a); }
+.tt-slot.is-main .tt-slot-time { background: linear-gradient(135deg, var(--orange), var(--pink)); }
+.tt-slot.is-party .tt-slot-time { background: linear-gradient(135deg, #666, #333); }
+.tt-slot-body { padding: 0; }
+.tt-item {
+  display: block; padding: 14px 16px; border-top: 1px solid var(--line);
+  transition: background .2s;
 }
-.tt-table tbody tr:last-child td { border-bottom: none; }
-.tt-time {
-  font-family: 'Manrope', sans-serif; font-weight: 900;
-  color: var(--orange); white-space: nowrap;
-  width: 100px; text-align: center; background: var(--paper);
+.tt-item:first-child { border-top: none; }
+.tt-item.is-link { color: inherit; text-decoration: none; }
+.tt-item.is-link:hover, .tt-item.is-link:active { background: var(--paper); }
+.tt-item.is-link::after {
+  content: '›';
+  float: right; color: var(--orange); font-weight: 900; font-size: 1.2rem;
+  margin-top: -2px;
 }
-.tt-cell strong { display: block; color: var(--navy); font-weight: 900; margin-bottom: 3px; font-size: .84rem; }
-.tt-cell small { color: var(--text2); font-size: .72rem; line-height: 1.6; }
-.tt-cell-d { background: rgba(234,92,31,.04); }
-.tt-cell-c { background: rgba(20,191,174,.04); }
-.tt-cell-b { background: rgba(50,50,50,.04); }
-.tt-badge {
-  display: inline-block; padding: 2px 8px; border-radius: 4px;
-  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 900; letter-spacing: .12em;
-  color: #fff; margin-bottom: 5px;
+.tt-venue-label {
+  display: inline-block; font-family: 'Manrope', sans-serif;
+  font-size: .56rem; font-weight: 900; letter-spacing: .18em;
+  padding: 3px 8px; border-radius: 4px; color: #fff;
+  margin-bottom: 6px;
 }
-.tt-badge-open { background: var(--navy); }
-.tt-badge-main { background: var(--orange); }
-.tt-badge-ws { background: var(--purple); }
-.tt-badge-session { background: var(--orange); }
-.tt-badge-live { background: var(--pink); }
-.tt-badge-inter { background: var(--teal); }
-.tt-open-row td {
-  background: var(--paper-warm) !important;
-  border-top: 2px solid var(--orange);
-}
-.tt-live-row td {
-  background: rgba(255,62,127,.08) !important;
-}
+.tt-venue-label.d { background: var(--orange); }
+.tt-venue-label.c { background: var(--teal); }
+.tt-venue-label.b { background: #333; }
+.tt-venue-label.all { background: var(--navy); }
+.tt-title { font-size: .96rem; font-weight: 900; color: var(--navy); line-height: 1.45; margin-bottom: 4px; }
+.tt-desc { font-size: .76rem; color: var(--text2); line-height: 1.75; }
+.tt-desc small { display: block; margin-top: 4px; font-size: .68rem; color: var(--orange); font-weight: 700; }
 .tt-note {
-  margin-top: 12px; font-size: .74rem; color: var(--text2); line-height: 1.7;
-  padding: 10px 14px; background: var(--paper); border-left: 3px solid var(--teal);
-  border-radius: 4px;
+  margin-top: 14px; font-size: .76rem; color: var(--text2); line-height: 1.8;
+  padding: 12px 14px; background: var(--paper); border-left: 3px solid var(--teal);
+  border-radius: 6px;
+}
+@media (min-width: 720px) {
+  .tt-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
 
-/* ─── VENUE MAP ─── */
-.venue-grid {
-  display: grid; grid-template-columns: 1fr; gap: 20px;
+/* ─── VENUE MAP（フロアレイアウト詳細） ─── */
+.map-section-title {
+  font-family: 'Manrope', sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .28em;
+  color: var(--navy); margin-bottom: 10px; padding-left: 8px;
+  border-left: 3px solid var(--orange); text-transform: uppercase;
 }
-@media (min-width: 900px) { .venue-grid { grid-template-columns: 240px 1fr; } }
 
-.venue-side { display: flex; flex-direction: column; gap: 12px; }
+/* D会場マップ */
+.map-d {
+  background: linear-gradient(135deg, rgba(234,92,31,.06), rgba(234,92,31,.02));
+  border: 2px solid var(--orange); border-radius: 12px;
+  padding: 14px 12px; margin-bottom: 18px;
+  position: relative;
+}
+.map-d-inner {
+  display: grid; grid-template-columns: 60px 1fr 60px;
+  gap: 8px; align-items: stretch;
+}
+.map-d-stage {
+  background: linear-gradient(180deg, var(--orange), var(--orange-light));
+  color: #fff; font-weight: 900; font-size: .78rem;
+  padding: 12px 4px; border-radius: 6px;
+  writing-mode: vertical-rl; text-orientation: upright;
+  text-align: center; letter-spacing: .1em;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 320px;
+}
+.map-d-seats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 4px; padding: 6px;
+  background: rgba(255,255,255,.6); border-radius: 6px;
+}
+.map-d-seat-block {
+  background: var(--orange);
+  border-radius: 2px;
+  aspect-ratio: 1/2;
+  min-height: 34px;
+}
+.map-d-right {
+  display: flex; flex-direction: column; gap: 8px;
+  justify-content: center; align-items: center;
+}
+.map-d-light {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: radial-gradient(circle, var(--yellow), rgba(255,201,62,.4));
+  font-size: .5rem; font-weight: 900; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed var(--navy);
+}
+.map-d-num {
+  position: absolute; bottom: 10px; right: 12px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--orange); color: #fff;
+  font-family: 'Manrope', sans-serif; font-weight: 900; font-size: .96rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* C会場マップ */
+.map-c {
+  background: linear-gradient(135deg, rgba(20,191,174,.06), rgba(20,191,174,.02));
+  border: 2px solid var(--teal); border-radius: 12px;
+  padding: 14px 12px; margin-bottom: 18px;
+  position: relative;
+}
+.map-c-booth-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+  margin-bottom: 6px;
+}
+.map-c-booth {
+  background: #fff; border: 1px dashed var(--teal);
+  padding: 8px 4px; text-align: center;
+  font-size: .56rem; font-weight: 900; color: var(--navy);
+  border-radius: 4px; min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1.2;
+}
+.map-c-hicounter-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+  margin: 8px 4px;
+}
+.map-c-hicounter {
+  background: rgba(20,191,174,.15); border: 1px solid var(--teal);
+  min-height: 20px; border-radius: 2px;
+}
+.map-c-panel {
+  height: 4px; background: var(--teal-light); margin: 8px 0; border-radius: 2px;
+}
+.map-c-portal-row {
+  display: grid; grid-template-columns: 1fr 200px 40px; gap: 6px;
+  margin-top: 8px; align-items: center;
+}
+.map-c-portal {
+  background: linear-gradient(180deg, var(--teal), var(--teal-dark));
+  color: #fff; font-weight: 900; font-size: .68rem;
+  padding: 8px 4px; text-align: center; border-radius: 4px;
+  letter-spacing: .04em;
+}
+.map-c-mc {
+  background: rgba(20,191,174,.15); border: 1px dashed var(--teal);
+  padding: 6px 2px; text-align: center;
+  font-size: .5rem; font-weight: 800; color: var(--navy);
+  border-radius: 2px;
+}
+.map-c-seat-block {
+  background: var(--teal);
+  border-radius: 2px; min-height: 12px;
+}
+.map-c-seats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 3px; padding: 6px 4px;
+  background: rgba(255,255,255,.4); border-radius: 4px;
+  margin-top: 6px;
+}
+.map-c-num {
+  position: absolute; top: 10px; right: 12px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--teal); color: #fff;
+  font-family: 'Manrope', sans-serif; font-weight: 900; font-size: .96rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* サイドカード */
+.venue-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 500px) { .venue-cards { grid-template-columns: 1fr; } }
 .venue-card {
   background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
   padding: 14px 16px;
@@ -192,60 +330,25 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 6px; border-bottom: 2px solid var(--orange);
 }
 .venue-card-body {
-  font-size: .78rem; color: var(--text2); line-height: 1.75;
+  font-size: .74rem; color: var(--text2); line-height: 1.75;
 }
 .venue-card-stamp {
   margin-top: 8px; padding: 6px 10px; background: var(--paper-warm);
   border-left: 3px solid var(--orange);
-  font-size: .7rem; font-weight: 700; color: var(--navy);
+  font-size: .68rem; font-weight: 700; color: var(--navy);
 }
-
-/* Map visual */
-.venue-map {
-  background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
-  border: 2px dashed var(--line); border-radius: 16px;
-  padding: 20px 16px; position: relative;
+.venue-legend-txt {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  margin: 16px 0 22px; padding: 12px 14px;
+  background: var(--paper); border-radius: 8px;
+  font-size: .72rem; font-weight: 700; color: var(--navy);
 }
-.venue-map-title {
-  text-align: center; font-family: 'Manrope', sans-serif;
-  font-size: .68rem; font-weight: 900; letter-spacing: .28em; color: var(--navy);
-  margin-bottom: 18px; text-transform: uppercase;
-}
-.venue-map-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-}
-.venue-zone {
-  padding: 20px 12px; border-radius: 10px; text-align: center;
-  font-weight: 900; color: var(--navy); font-size: .84rem;
-  border: 2px solid transparent;
-  min-height: 100px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-  position: relative;
-}
-.venue-zone-num {
-  position: absolute; top: 8px; right: 8px;
-  width: 28px; height: 28px; border-radius: 50%;
-  background: #fff; border: 2px solid var(--navy);
-  font-family: 'Manrope', sans-serif; font-size: .82rem; font-weight: 900;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--navy);
-}
-.venue-zone small { font-size: .68rem; font-weight: 700; color: var(--text2); margin-top: 4px; }
-.venue-zone-d { background: linear-gradient(135deg, rgba(234,92,31,.15), rgba(234,92,31,.05)); border-color: var(--orange); }
-.venue-zone-c { background: linear-gradient(135deg, rgba(20,191,174,.15), rgba(20,191,174,.05)); border-color: var(--teal); }
-.venue-zone-b { background: linear-gradient(135deg, rgba(124,58,237,.15), rgba(124,58,237,.05)); border-color: var(--purple); grid-column: 1 / -1; }
-.venue-zone-reception { background: #f0f4ff; border-color: #6a8ec8; }
-.venue-legend {
-  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line);
-  font-size: .74rem; font-weight: 700; color: var(--navy);
-}
-.venue-legend-num {
+.venue-legend-txt .num {
   display: inline-flex; align-items: center; gap: 6px;
 }
-.venue-legend-num span {
+.venue-legend-txt .num span:first-child {
   width: 22px; height: 22px; border-radius: 50%;
-  background: var(--navy); color: #fff;
-  font-family: 'Manrope', sans-serif; font-size: .68rem; font-weight: 900;
+  color: #fff; font-family: 'Manrope', sans-serif; font-size: .68rem; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -382,7 +485,7 @@ a { color: inherit; text-decoration: none; }
 
 <!-- ═══ Top Nav ═══ -->
 <nav class="top-nav">
-  <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT 2026 ｜ 当日ガイド</a>
+  <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT ｜ ガイド</a>
   <div class="top-nav-links">
     <a href="#schedule">タイムテーブル</a>
     <a href="#map">会場マップ</a>
@@ -391,6 +494,14 @@ a { color: inherit; text-decoration: none; }
     <a href="#booth">ブース</a>
   </div>
 </nav>
+<!-- モバイル用スティッキー クイックナビ -->
+<div class="mobile-quick-nav" aria-label="クイックナビゲーション">
+  <a href="#schedule">🕒 タイムテーブル</a>
+  <a href="#map">📍 会場マップ</a>
+  <a href="#speakers">👥 登壇者</a>
+  <a href="#pitch">🎤 プレゼン大会</a>
+  <a href="#booth">🏢 ブース</a>
+</div>
 
 <!-- ═══ Hero ═══ -->
 <header class="hero" id="top">
@@ -413,126 +524,140 @@ a { color: inherit; text-decoration: none; }
       <h2 class="section-title">当日の<em>タイムテーブル</em></h2>
     </div>
 
-    <div class="tt-wrap">
-      <table class="tt-table">
-        <thead>
-          <tr>
-            <th style="width:100px;">時間</th>
-            <th>D会場</th>
-            <th>C会場</th>
-            <th style="width:120px;">常設ブース</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="tt-open-row">
-            <td class="tt-time">10:00<br>-10:30</td>
-            <td class="tt-cell" colspan="3">
-              <span class="tt-badge tt-badge-open">OPENING</span>
-              <strong>開会式（オープニング）</strong>
-              <small>"やりたい"を持ち帰るための、この1日の使い方をご案内します。</small>
-            </td>
-          </tr>
+    <div class="tt-list">
 
-          <tr>
-            <td class="tt-time">10:30<br>-11:20</td>
-            <td class="tt-cell tt-cell-d">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>あの人、なんで人気なんだろう？</strong>
-              <small>応援される人が実はやっていること。「熱量と巻き込みの構造」の話</small>
-            </td>
-            <td class="tt-cell tt-cell-c">
-              <span class="tt-badge tt-badge-ws">ワークショップ</span>
-              <strong>モヤモヤを言葉にしてみる110分</strong>
-              <small>社会・親・環境からの"ミュート"を対話で外していく時間<br>Sponsored by 株式会社スイミー</small>
-            </td>
-            <td class="tt-cell tt-cell-b" rowspan="7"><strong>ブース<br>＋<br>コミュニティ</strong><small style="display:block;margin-top:8px;">終日オープン<br>自由出入り</small></td>
-          </tr>
+      <div class="tt-slot is-open">
+        <div class="tt-slot-time">10:00 – 10:30 <span class="tt-slot-time-tag">OPENING</span></div>
+        <div class="tt-slot-body">
+          <div class="tt-item">
+            <span class="tt-venue-label all">全体</span>
+            <div class="tt-title">開会式（オープニング）</div>
+            <div class="tt-desc">"やりたい"を持ち帰るための、この1日の使い方をご案内。<small>ぜひ最初から会場へ！</small></div>
+          </div>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">11:30<br>-12:20</td>
-            <td class="tt-cell tt-cell-d">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>学校の勉強、大人になっても使うの？</strong>
-              <small>学校では教えてくれない"学び"から、自分らしい未来を考える50分</small>
-            </td>
-            <td class="tt-cell tt-cell-c">
-              <span class="tt-badge tt-badge-inter">交流会01</span>
-              <strong>NEXYサミット開催!!<br>キックオフ交流会</strong>
-              <small>猛獣狩り＋テーマ別チーム対話＋共通点探しビンゴ＋自由交流。1日の"最初の1人"を見つける50分</small>
-            </td>
-          </tr>
+      <div class="tt-slot">
+        <div class="tt-slot-time">10:30 – 11:20</div>
+        <div class="tt-slot-body">
+          <a href="summit-sessions.html#d-1" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">あの人、なんで人気なんだろう？</div>
+            <div class="tt-desc">応援される人が実はやっていること。「熱量と巻き込みの構造」の話</div>
+          </a>
+          <a href="summit-sessions.html#c-1" class="tt-item is-link">
+            <span class="tt-venue-label c">C会場</span>
+            <div class="tt-title">モヤモヤを、言葉にしてみる110分</div>
+            <div class="tt-desc">社会・親・環境からの"ミュート"を対話で外していく時間<small>Sponsored by 株式会社スイミー</small></div>
+          </a>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">12:30<br>-13:20</td>
-            <td class="tt-cell tt-cell-d" rowspan="2">
-              <span class="tt-badge tt-badge-main">MAIN STAGE</span>
-              <strong>プレゼン大会「やりたいをぶつけろ」</strong>
-              <small>全国6組の高校生ピッチバトル（休憩込み120分）<br>12:30〜14:30 D会場メインステージ</small>
-            </td>
-            <td class="tt-cell tt-cell-c">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>"やりたい"に向かって進んできた、セガ開発者の話</strong>
-              <small>プリクラシリーズに携わってきた女性開発者が語るキャリア</small>
-            </td>
-          </tr>
+      <div class="tt-slot">
+        <div class="tt-slot-time">11:30 – 12:20</div>
+        <div class="tt-slot-body">
+          <a href="summit-sessions.html#d-2" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">学校の勉強、大人になっても使うの？</div>
+            <div class="tt-desc">学校では教えてくれない"学び"から、自分らしい未来を考える50分</div>
+          </a>
+          <div class="tt-item">
+            <span class="tt-venue-label c">C会場</span>
+            <div class="tt-title">交流会01「キックオフ交流会」</div>
+            <div class="tt-desc">猛獣狩り＋テーマ別チーム対話＋共通点探しビンゴ＋自由交流。1日の"最初の1人"を見つける50分</div>
+          </div>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">13:30<br>-14:20</td>
-            <td class="tt-cell tt-cell-c">
-              <small style="color:var(--text2);">Coming Soon（セッション調整中）</small>
-            </td>
-          </tr>
+      <div class="tt-slot is-main">
+        <div class="tt-slot-time">12:30 – 14:30 <span class="tt-slot-time-tag">MAIN STAGE</span></div>
+        <div class="tt-slot-body">
+          <a href="summit-presentation.html" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">プレゼン大会「"やりたい"を、ぶつけろ」</div>
+            <div class="tt-desc">全国6組の高校生ピッチバトル（休憩込み120分）<small>プレゼン大会LPで詳細</small></div>
+          </a>
+          <a href="summit-sessions.html#c-2" class="tt-item is-link">
+            <span class="tt-venue-label c">C会場 12:30-13:20</span>
+            <div class="tt-title">"やりたい"に向かって進んできた、セガ開発者の話</div>
+            <div class="tt-desc">プリクラシリーズに携わってきた女性開発者が語るキャリア</div>
+          </a>
+          <a href="summit-sessions.html#c-3" class="tt-item is-link">
+            <span class="tt-venue-label c">C会場 13:30-14:20</span>
+            <div class="tt-title">Coming Soon</div>
+            <div class="tt-desc">セッション調整中。決まり次第こちらでお知らせします。</div>
+          </a>
+        </div>
+      </div>
 
-          <tr class="tt-live-row">
-            <td class="tt-time">13:40<br>-13:46</td>
-            <td class="tt-cell" colspan="2">
-              <span class="tt-badge tt-badge-live">SPECIAL LIVE</span>
-              <strong>特別演奏「近未来」あり ／ プレゼン大会 審査タイム中</strong>
-              <small>YOYOKA feat. Futures Band「近未来」を、shio（Piano&Vocal）／夏志（Guitar&Vocal）が生歌＋MV投影で披露</small>
-            </td>
-          </tr>
+      <div class="tt-slot is-live">
+        <div class="tt-slot-time">13:40 – 13:46 <span class="tt-slot-time-tag">SPECIAL LIVE</span></div>
+        <div class="tt-slot-body">
+          <a href="summit.html#live-performance" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">特別演奏「近未来」／プレゼン大会 審査タイム中</div>
+            <div class="tt-desc">YOYOKA feat. Futures Band「近未来」を、shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が生歌＋MV投影で披露<small>特別演奏企画を見る</small></div>
+          </a>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">14:30<br>-15:20</td>
-            <td class="tt-cell tt-cell-d">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>その課外活動、総合型選抜のためだけになってない？</strong>
-              <small>「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方</small>
-            </td>
-            <td class="tt-cell tt-cell-c">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>AIが全部やる時代、人間って何すればいい？</strong>
-              <small>AI領域で活躍する大人1名＋AIネイティブ高校生2名が本音で語る<br>交流会02「やりたいを実現化するワークショップ」</small>
-            </td>
-          </tr>
+      <div class="tt-slot">
+        <div class="tt-slot-time">14:30 – 15:20</div>
+        <div class="tt-slot-body">
+          <a href="summit-sessions.html#d-4" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">その課外活動、総合型選抜のためだけになってない？</div>
+            <div class="tt-desc">「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方</div>
+          </a>
+          <a href="summit-sessions.html#c-4" class="tt-item is-link">
+            <span class="tt-venue-label c">C会場</span>
+            <div class="tt-title">AIが全部やる時代、人間って何すればいい？</div>
+            <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る<small>交流会02「やりたいを実現化するワークショップ」も同時開催</small></div>
+          </a>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">15:30<br>-16:20</td>
-            <td class="tt-cell tt-cell-d">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>インターン・留学・起業なんのためにやるの？</strong>
-              <small>挑戦の選択肢の本質と、後悔しない選び方を考えるパネル</small>
-            </td>
-            <td class="tt-cell tt-cell-c">
-              <span class="tt-badge tt-badge-session">セッション</span>
-              <strong>君の"ミュートされたやりたい"を全国へ</strong>
-              <small>発掘した"やりたい"を参加型で全国へ届ける50分<br>Presented by スイミー株式会社／交流会03</small>
-            </td>
-          </tr>
+      <div class="tt-slot">
+        <div class="tt-slot-time">15:30 – 16:20</div>
+        <div class="tt-slot-body">
+          <a href="summit-sessions.html#d-5" class="tt-item is-link">
+            <span class="tt-venue-label d">D会場</span>
+            <div class="tt-title">インターン・留学・起業、何のためにやる？</div>
+            <div class="tt-desc">挑戦の選択肢の本質と、後悔しない選び方を考えるパネル</div>
+          </a>
+          <a href="summit-sessions.html#c-5" class="tt-item is-link">
+            <span class="tt-venue-label c">C会場</span>
+            <div class="tt-title">君の"ミュートされた やりたい"を、全国へ</div>
+            <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社／交流会03も同時開催</small></div>
+          </a>
+        </div>
+      </div>
 
-          <tr>
-            <td class="tt-time">16:30<br>-18:30</td>
-            <td class="tt-cell" colspan="3">
-              <span class="tt-badge" style="background:#666;">AFTER PARTY</span>
-              <strong>アフターパーティー（登壇者・運営限定）</strong>
-              <small>サミット後の打ち上げ。登壇者と運営スタッフで、1日の熱をそのまま夜まで持ち帰る2時間</small>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tt-slot is-party">
+        <div class="tt-slot-time">16:30 – 18:30 <span class="tt-slot-time-tag">AFTER PARTY</span></div>
+        <div class="tt-slot-body">
+          <div class="tt-item">
+            <span class="tt-venue-label all">登壇者・運営限定</span>
+            <div class="tt-title">アフターパーティー</div>
+            <div class="tt-desc">サミット後の打ち上げ。1日の熱をそのまま夜まで持ち帰る2時間。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tt-slot" style="border-left:4px solid #333;">
+        <div class="tt-slot-time" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a);">終日オープン <span class="tt-slot-time-tag">BOOTH</span></div>
+        <div class="tt-slot-body">
+          <a href="summit-booth.html" class="tt-item is-link">
+            <span class="tt-venue-label b">常設エリア</span>
+            <div class="tt-title">ブース＋コミュニティ</div>
+            <div class="tt-desc">全8団体・企業のブース＋ワークショップ＋交流エリアが10:30〜16:20の間、常時オープン。自由に出入りできます。<small>ブース一覧を見る</small></div>
+          </a>
+        </div>
+      </div>
+
     </div>
 
-    <p class="tt-note">※ タイムテーブルは変更の可能性があります。<br>※ ブース／コミュニティスペースは10:30〜16:20まで常時オープン、自由出入り可能。<br>※ 「高校生」名でも中学生・大学生の参加を歓迎します。</p>
+    <p class="tt-note">※ タイムテーブルは変更の可能性があります。<br>※ ブース／コミュニティスペースは10:30〜16:20まで常時オープン、自由出入り可能。<br>※ 各セッションのタイトルをタップすると詳細ページへ移動します。</p>
   </div>
 </section>
 
@@ -544,56 +669,166 @@ a { color: inherit; text-decoration: none; }
       <h2 class="section-title">会場<em>マップ</em></h2>
     </div>
 
-    <div class="venue-grid">
-      <div class="venue-side">
-        <div class="venue-card">
-          <div class="venue-card-title">企業ブース</div>
-          <div class="venue-card-body">企業の取り組みや事業、働く人の考え方に触れられるブースエリア。</div>
-          <div class="venue-card-stamp">🎁 スタンプラリー：ブースを1つ回るとシール1枚</div>
+    <div class="venue-legend-txt">
+      <span class="num"><span style="background:var(--orange);">3</span>D会場</span>
+      <span class="num"><span style="background:var(--teal);">1</span>C会場</span>
+      <span class="num"><span style="background:var(--purple);">2</span>常設ブース</span>
+      <span class="num"><span style="background:#6a8ec8;">🎁</span>スタンプラリー</span>
+    </div>
+
+    <!-- ═══ D会場マップ ═══ -->
+    <div class="map-section-title">D会場（プレゼン大会・登壇セッション）</div>
+    <div class="map-d">
+      <span class="map-d-num">3</span>
+      <div class="map-d-inner">
+        <div class="map-d-stage">D会場ステージ</div>
+        <div class="map-d-seats" aria-label="椅子ブロック（椅子×5が32ブロック）">
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
+          <div class="map-d-seat-block"></div>
         </div>
-        <div class="venue-card">
-          <div class="venue-card-title">ワークショップ</div>
-          <div class="venue-card-body">参加者自身が手を動かしながら自分の「やりたい」を言葉にし、形にしていく参加型コンテンツ。</div>
+        <div class="map-d-right">
+          <div class="map-d-light">照明</div>
+          <div class="map-d-light">照明</div>
+          <div class="map-d-light">照明</div>
         </div>
-        <div class="venue-card">
-          <div class="venue-card-title">ストーリー展示</div>
-          <div class="venue-card-body">大人や学生登壇者の経歴・過去、運営メンバーのプロフィールなどを見ることができ、「やりたい！」を持って訪れる高校生の第一歩になる。</div>
-          <div class="venue-card-stamp">🎁 スタンプラリー：展示近くの感想記入でシール1枚</div>
-        </div>
-        <div class="venue-card">
-          <div class="venue-card-title">交流会</div>
-          <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ高校生や、普段出会えない参加者と話せる。</div>
-          <div class="venue-card-stamp">🎁 スタンプラリー：交流会に参加で1枚</div>
-        </div>
+      </div>
+      <div style="font-size:.66rem;font-weight:700;color:var(--text2);text-align:center;margin-top:10px;">左：D会場ステージ ／ 中央：椅子×5×32ブロック（避難動線あり）／ 右：ポータルステージ＋照明</div>
+    </div>
+
+    <!-- ═══ C会場マップ ═══ -->
+    <div class="map-section-title" style="border-left-color:var(--teal);">C会場（登壇セッション・常設ブース）</div>
+    <div class="map-c">
+      <span class="map-c-num">1</span>
+
+      <!-- 上段ブース -->
+      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin-bottom:6px;text-align:center;">上段：ブースエリア</div>
+      <div class="map-c-booth-row">
+        <div class="map-c-booth">NEXY<br>ブース</div>
+        <div class="map-c-booth">AIESEC<br>ブース</div>
+        <div class="map-c-booth">EtoE<br>ブース</div>
+        <div class="map-c-booth">孫正義育英財団<br>ブース</div>
+      </div>
+      <div class="map-c-booth-row">
+        <div class="map-c-booth">CHEERS<br>ブース</div>
+        <div class="map-c-booth">Stitch Lab<br>ブース</div>
+        <div class="map-c-booth">折り鶴平和活動<br>ブース</div>
+        <div class="map-c-booth">KING<br>ブース</div>
       </div>
 
-      <div class="venue-map">
-        <div class="venue-map-title">Floor Layout</div>
-        <div class="venue-map-grid">
-          <div class="venue-zone venue-zone-d">
-            <span class="venue-zone-num">3</span>
-            D会場ステージ<small>プレゼン大会・登壇セッション（1,000席）</small>
-          </div>
-          <div class="venue-zone venue-zone-c">
-            <span class="venue-zone-num">1</span>
-            C会場ステージ<small>登壇セッション（500席）</small>
-          </div>
-          <div class="venue-zone venue-zone-b">
-            <span class="venue-zone-num">2</span>
-            常設ブース＋ストーリー展示＋交流ブース<small>企業ブース／ワークショップ／交流会エリア</small>
-          </div>
-          <div class="venue-zone venue-zone-reception" style="grid-column:1/-1;min-height:60px;padding:12px;">
-            ホワイエ（受付エリア）<small>受付① ／ 受付②</small>
-          </div>
-        </div>
-        <div class="venue-legend">
-          <span class="venue-legend-num"><span>1</span>C会場</span>
-          <span class="venue-legend-num"><span>2</span>常設ブース</span>
-          <span class="venue-legend-num"><span>3</span>D会場</span>
-        </div>
-        <div class="venue-card-stamp" style="margin-top:16px;text-align:center;">🎁 スタンプ5枚でお菓子の掴み取り！コンテンツごとにシールゲットのチャンスあり</div>
+      <!-- ハイカウンター -->
+      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin:12px 0 4px;text-align:center;">中段：ハイカウンター（交流）</div>
+      <div class="map-c-hicounter-row">
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+      </div>
+      <div class="map-c-hicounter-row">
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+        <div class="map-c-hicounter"></div>
+      </div>
+
+      <!-- 展示パネル -->
+      <div class="map-c-panel" aria-label="展示パネル×12"></div>
+      <div style="font-size:.52rem;text-align:center;color:var(--text2);font-weight:700;">↑ 展示パネル×12（ストーリー展示）</div>
+
+      <!-- 下段ステージ + 客席 -->
+      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin:12px 0 4px;text-align:center;">下段：C会場ステージ＋客席</div>
+      <div class="map-c-portal-row">
+        <div style="font-size:.52rem;color:var(--text2);text-align:right;font-weight:700;">階段</div>
+        <div class="map-c-portal">ポータルステージ（照明×3）</div>
+        <div class="map-c-mc">司会台</div>
+      </div>
+      <div class="map-c-seats" aria-label="椅子ブロック（椅子×5が28ブロック）">
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+        <div class="map-c-seat-block"></div>
+      </div>
+      <div style="font-size:.66rem;font-weight:700;color:var(--text2);text-align:center;margin-top:10px;">上：ブース8つ＋ハイカウンター＋展示パネル ／ 下：ポータルステージ＋椅子×5×28ブロック</div>
+    </div>
+
+    <!-- ═══ サイドカード ═══ -->
+    <div class="venue-cards">
+      <div class="venue-card">
+        <div class="venue-card-title">企業ブース</div>
+        <div class="venue-card-body">企業の取り組みや事業、働く人の考え方に触れられるブースエリア。</div>
+        <div class="venue-card-stamp">🎁 ブースを1つ回るとシール1枚</div>
+      </div>
+      <div class="venue-card">
+        <div class="venue-card-title">ワークショップ</div>
+        <div class="venue-card-body">参加者自身が手を動かしながら「やりたい」を言葉にし、形にする参加型コンテンツ。</div>
+      </div>
+      <div class="venue-card">
+        <div class="venue-card-title">ストーリー展示</div>
+        <div class="venue-card-body">大人・学生登壇者の経歴、運営メンバーのプロフィールを見られる展示。</div>
+        <div class="venue-card-stamp">🎁 展示近くの感想記入でシール1枚</div>
+      </div>
+      <div class="venue-card">
+        <div class="venue-card-title">交流会</div>
+        <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ高校生・普段出会えない参加者と話せる。</div>
+        <div class="venue-card-stamp">🎁 交流会に参加で1枚</div>
       </div>
     </div>
+    <div class="venue-card-stamp" style="margin-top:14px;text-align:center;font-size:.78rem;padding:10px 14px;">🎁 <strong>スタンプ5枚</strong>でお菓子の掴み取り！コンテンツごとにシールゲットのチャンスあり</div>
   </div>
 </section>
 
