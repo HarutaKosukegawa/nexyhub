@@ -139,63 +139,202 @@ a { color: inherit; text-decoration: none; }
 }
 .section-title em { color: var(--orange); font-style: normal; }
 
-/* ─── TIMETABLE（モバイルファースト・カード型） ─── */
-.tt-list { display: flex; flex-direction: column; gap: 14px; }
+/* ─── TIMETABLE（カラフル・タイムライン型） ─── */
+.tt-list {
+  display: flex; flex-direction: column; gap: 18px;
+  position: relative;
+}
+/* 縦タイムラインの線 */
+.tt-list::before {
+  content: ''; position: absolute;
+  left: 22px; top: 20px; bottom: 20px; width: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(234,92,31,.35) 0 8px,
+    transparent 8px 14px
+  );
+  z-index: 0;
+}
+@media (min-width: 720px) { .tt-list::before { display: none; } }
+
 .tt-slot {
-  background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
-  overflow: hidden; box-shadow: 0 4px 12px rgba(16,35,63,.06);
+  background: #fff; border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(16,35,63,.08);
+  position: relative;
+  animation: ttSlotIn .6s cubic-bezier(.2,.7,.3,1) both;
+  border: 1px solid var(--line);
 }
+@keyframes ttSlotIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tt-slot:nth-child(1) { animation-delay: 0s; }
+.tt-slot:nth-child(2) { animation-delay: .05s; }
+.tt-slot:nth-child(3) { animation-delay: .1s; }
+.tt-slot:nth-child(4) { animation-delay: .15s; }
+.tt-slot:nth-child(5) { animation-delay: .2s; }
+.tt-slot:nth-child(6) { animation-delay: .25s; }
+.tt-slot:nth-child(7) { animation-delay: .3s; }
+.tt-slot:nth-child(8) { animation-delay: .35s; }
+.tt-slot:nth-child(9) { animation-delay: .4s; }
+
+/* スロットヘッダー：時刻＋タグ */
 .tt-slot-time {
-  padding: 10px 14px; font-family: 'Manrope', sans-serif;
-  font-size: 1.14rem; font-weight: 900; color: #fff;
-  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
-  letter-spacing: .02em; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 14px 18px 14px 56px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.34rem; font-weight: 900; color: #fff;
+  background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 50%, var(--navy) 100%);
+  background-size: 200% 200%;
+  animation: ttGradShift 8s ease infinite;
+  letter-spacing: .01em;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
 }
+/* 時刻の左に「●」パルスドット */
+.tt-slot-time::before {
+  content: ''; position: absolute; left: 22px; top: 50%;
+  transform: translateY(-50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+  animation: ttDotPulse 2.2s ease-out infinite;
+}
+@keyframes ttDotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); }
+  70% { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+@keyframes ttGradShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+/* 光る帯（shimmer） */
+.tt-slot-time::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  animation: ttShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ttShimmer {
+  0%,80% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 .tt-slot-time-tag {
-  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .18em;
-  background: rgba(255,255,255,.2); padding: 4px 10px; border-radius: 999px;
+  font-family: 'Manrope', sans-serif; font-size: .62rem; font-weight: 900; letter-spacing: .22em;
+  background: rgba(255,255,255,.22); padding: 5px 12px; border-radius: 999px;
   flex-shrink: 0;
+  backdrop-filter: blur(4px);
 }
-.tt-slot.is-open .tt-slot-time { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
-.tt-slot.is-live .tt-slot-time { background: linear-gradient(135deg, var(--pink), #ff6b9a); }
-.tt-slot.is-main .tt-slot-time { background: linear-gradient(135deg, var(--orange), var(--pink)); }
-.tt-slot.is-party .tt-slot-time { background: linear-gradient(135deg, #666, #333); }
+/* スロット種別ごとのグラデ */
+.tt-slot.is-open .tt-slot-time { background: linear-gradient(120deg, var(--orange) 0%, var(--orange-light) 50%, var(--orange) 100%); background-size: 200% 200%; }
+.tt-slot.is-live .tt-slot-time { background: linear-gradient(120deg, var(--pink) 0%, #ff6b9a 50%, var(--pink) 100%); background-size: 200% 200%; }
+.tt-slot.is-main .tt-slot-time { background: linear-gradient(120deg, var(--orange) 0%, var(--pink) 50%, var(--purple) 100%); background-size: 200% 200%; }
+.tt-slot.is-party .tt-slot-time { background: linear-gradient(120deg, #444 0%, #222 50%, #444 100%); background-size: 200% 200%; }
+.tt-slot.is-booth .tt-slot-time { background: linear-gradient(120deg, #3a3a3a 0%, #1a1a1a 50%, #3a3a3a 100%); background-size: 200% 200%; }
+
+/* スロット body */
 .tt-slot-body { padding: 0; }
+
+/* セッションアイテム：カラフルな会場別カード */
 .tt-item {
-  display: block; padding: 14px 16px; border-top: 1px solid var(--line);
-  transition: background .2s;
+  display: block; padding: 16px 18px 16px 22px;
+  border-top: 1px solid var(--line);
+  transition: background .25s, transform .2s;
+  position: relative;
 }
 .tt-item:first-child { border-top: none; }
-.tt-item.is-link { color: inherit; text-decoration: none; width: 100%; text-align: left; font: inherit; background: transparent; border: none; }
+/* 左のカラーバー（会場別） */
+.tt-item::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: var(--line);
+  transition: width .2s;
+}
+.tt-item:has(.tt-venue-label.d)::before,
+.tt-item.has-d::before { background: linear-gradient(180deg, var(--orange), var(--orange-light)); }
+.tt-item:has(.tt-venue-label.c)::before,
+.tt-item.has-c::before { background: linear-gradient(180deg, var(--teal), var(--teal-light)); }
+.tt-item:has(.tt-venue-label.all)::before,
+.tt-item.has-all::before { background: linear-gradient(180deg, var(--navy), var(--navy-soft)); }
+.tt-item:has(.tt-venue-label.b)::before,
+.tt-item.has-b::before { background: linear-gradient(180deg, var(--purple), #a76bff); }
+
+.tt-item.is-link {
+  color: inherit; text-decoration: none;
+  width: 100%; text-align: left; font: inherit;
+  background: transparent; border: none; cursor: pointer;
+}
 button.tt-item.is-link { display: block; }
-.tt-item.is-link:hover, .tt-item.is-link:active { background: var(--paper); }
+.tt-item.is-link:hover, .tt-item.is-link:active {
+  background: linear-gradient(90deg, var(--paper), transparent);
+}
+.tt-item.is-link:hover::before { width: 8px; }
 .tt-item.is-link::after {
   content: '›';
-  float: right; color: var(--orange); font-weight: 900; font-size: 1.2rem;
-  margin-top: -2px;
+  position: absolute; right: 16px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--orange); font-weight: 900; font-size: 1.6rem;
+  transition: transform .25s;
 }
+.tt-item.is-link:hover::after {
+  transform: translateY(-50%) translateX(4px);
+}
+
+/* 会場ラベル：パルスドット付きのカラフルなチップ */
 .tt-venue-label {
-  display: inline-block; font-family: 'Manrope', sans-serif;
-  font-size: .56rem; font-weight: 900; letter-spacing: .18em;
-  padding: 3px 8px; border-radius: 4px; color: #fff;
-  margin-bottom: 6px;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .64rem; font-weight: 900; letter-spacing: .16em;
+  padding: 5px 12px 5px 22px; border-radius: 999px; color: #fff;
+  margin-bottom: 8px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,.14);
 }
-.tt-venue-label.d { background: var(--orange); }
-.tt-venue-label.c { background: var(--teal); }
-.tt-venue-label.b { background: #333; }
-.tt-venue-label.all { background: var(--navy); }
-.tt-title { font-size: .98rem; font-weight: 900; color: var(--navy); line-height: 1.4; margin-bottom: 3px; }
-.tt-desc { font-size: .78rem; color: var(--text2); line-height: 1.65; }
-.tt-desc small { display: block; margin-top: 4px; font-size: .7rem; color: var(--orange); font-weight: 800; }
-.tt-item { padding: 12px 14px; }
-.tt-venue-label { font-size: .58rem; padding: 3px 9px; margin-bottom: 5px; }
+.tt-venue-label::before {
+  content: ''; position: absolute; left: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+  animation: ttDotPulse 1.8s ease-out infinite;
+}
+.tt-venue-label.d { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
+.tt-venue-label.c { background: linear-gradient(135deg, var(--teal), var(--teal-light)); }
+.tt-venue-label.b { background: linear-gradient(135deg, var(--purple), #a76bff); }
+.tt-venue-label.all { background: linear-gradient(135deg, var(--navy), var(--navy-soft)); }
+
+.tt-title {
+  font-size: 1.02rem; font-weight: 900; color: var(--navy);
+  line-height: 1.4; margin-bottom: 6px;
+  padding-right: 24px;
+}
+.tt-desc {
+  font-size: .82rem; color: var(--text2); line-height: 1.7;
+  padding-right: 12px;
+}
+.tt-desc small {
+  display: inline-block; margin-top: 6px;
+  font-size: .68rem; color: var(--orange); font-weight: 900;
+  background: rgba(234,92,31,.1);
+  padding: 3px 10px; border-radius: 999px;
+}
+
 .tt-note {
-  margin-top: 14px; font-size: .76rem; color: var(--text2); line-height: 1.8;
-  padding: 12px 14px; background: var(--paper); border-left: 3px solid var(--teal);
-  border-radius: 6px;
+  margin-top: 20px; font-size: .78rem; color: var(--text2); line-height: 1.85;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--paper), #fff);
+  border: 1.5px dashed var(--teal);
+  border-radius: 10px;
 }
+
 @media (min-width: 720px) {
-  .tt-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .tt-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tt-slot-time { font-size: 1.2rem; padding-left: 48px; }
+  .tt-slot-time::before { left: 18px; }
 }
 
 /* ─── VENUE MAP（カラフルゾーン版） ─── */
@@ -892,8 +1031,8 @@ body.gm-open { overflow: hidden; }
         </div>
       </div>
 
-      <div class="tt-slot" style="border-left:4px solid #333;">
-        <div class="tt-slot-time" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a);">終日オープン <span class="tt-slot-time-tag">BOOTH</span></div>
+      <div class="tt-slot is-booth">
+        <div class="tt-slot-time">終日オープン <span class="tt-slot-time-tag">BOOTH</span></div>
         <div class="tt-slot-body">
           <button type="button" data-open-session="booth-info" class="tt-item is-link">
             <span class="tt-venue-label b">常設エリア</span>
@@ -904,7 +1043,7 @@ body.gm-open { overflow: hidden; }
 
     </div>
 
-    <p class="tt-note">※ タイムテーブルは変更の可能性があります。<br>※ ブース／コミュニティスペースは10:30〜16:20まで常時オープン、自由出入り可能。<br>※ 各セッションのタイトルをタップすると詳細ページへ移動します。</p>
+    <p class="tt-note">※ タイムテーブルは変更の可能性があります。<br>※ ブース／コミュニティスペースは10:30〜16:20まで常時オープン、自由出入り可能。<br>※ 各セッションのタイトルをタップすると詳細が開きます。</p>
   </div>
 </section>
 
