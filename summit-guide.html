@@ -146,14 +146,15 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden; box-shadow: 0 4px 12px rgba(16,35,63,.06);
 }
 .tt-slot-time {
-  padding: 12px 16px; font-family: 'Manrope', sans-serif;
-  font-size: 1.06rem; font-weight: 900; color: #fff;
+  padding: 10px 14px; font-family: 'Manrope', sans-serif;
+  font-size: 1.14rem; font-weight: 900; color: #fff;
   background: linear-gradient(135deg, var(--navy), var(--navy-soft));
-  letter-spacing: .02em; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  letter-spacing: .02em; display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 .tt-slot-time-tag {
-  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .22em;
-  background: rgba(255,255,255,.16); padding: 3px 10px; border-radius: 999px;
+  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .18em;
+  background: rgba(255,255,255,.2); padding: 4px 10px; border-radius: 999px;
+  flex-shrink: 0;
 }
 .tt-slot.is-open .tt-slot-time { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
 .tt-slot.is-live .tt-slot-time { background: linear-gradient(135deg, var(--pink), #ff6b9a); }
@@ -183,9 +184,11 @@ button.tt-item.is-link { display: block; }
 .tt-venue-label.c { background: var(--teal); }
 .tt-venue-label.b { background: #333; }
 .tt-venue-label.all { background: var(--navy); }
-.tt-title { font-size: .96rem; font-weight: 900; color: var(--navy); line-height: 1.45; margin-bottom: 4px; }
-.tt-desc { font-size: .76rem; color: var(--text2); line-height: 1.75; }
-.tt-desc small { display: block; margin-top: 4px; font-size: .68rem; color: var(--orange); font-weight: 700; }
+.tt-title { font-size: .98rem; font-weight: 900; color: var(--navy); line-height: 1.4; margin-bottom: 3px; }
+.tt-desc { font-size: .78rem; color: var(--text2); line-height: 1.65; }
+.tt-desc small { display: block; margin-top: 4px; font-size: .7rem; color: var(--orange); font-weight: 800; }
+.tt-item { padding: 12px 14px; }
+.tt-venue-label { font-size: .58rem; padding: 3px 9px; margin-bottom: 5px; }
 .tt-note {
   margin-top: 14px; font-size: .76rem; color: var(--text2); line-height: 1.8;
   padding: 12px 14px; background: var(--paper); border-left: 3px solid var(--teal);
@@ -213,6 +216,10 @@ button.tt-item.is-link { display: block; }
 .map-container {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 12px; margin-bottom: 20px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .map-container { grid-template-columns: 1fr; }
 }
 .map-container-full {
   grid-column: 1 / -1;
@@ -411,22 +418,23 @@ button.tt-item.is-link { display: block; }
 }
 .spk-group-head.teal { border-left-color: var(--teal); }
 .spk-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
 }
-@media (min-width: 640px) { .spk-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1024px) { .spk-grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 480px) { .spk-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 720px) { .spk-grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1024px) { .spk-grid { grid-template-columns: repeat(8, 1fr); } }
 .spk-card {
-  background: #fff; border: 1px solid var(--line); border-radius: 10px;
-  padding: 10px 8px 12px; text-align: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 4px 10px; text-align: center;
 }
 .spk-photo {
-  width: 70%; max-width: 80px; aspect-ratio: 1; border-radius: 50%;
+  width: 78%; max-width: 62px; aspect-ratio: 1; border-radius: 50%;
   background: #eee center 20%/cover no-repeat;
-  margin: 0 auto 8px; border: 2px solid #fff;
-  box-shadow: 0 3px 8px rgba(16,35,63,.12);
+  margin: 0 auto 6px; border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(16,35,63,.1);
 }
-.spk-name { font-size: .78rem; font-weight: 900; color: var(--navy); line-height: 1.3; }
-.spk-title { font-size: .6rem; font-weight: 700; color: var(--text2); margin-top: 3px; line-height: 1.4; }
+.spk-name { font-size: .68rem; font-weight: 900; color: var(--navy); line-height: 1.25; }
+.spk-title { font-size: .54rem; font-weight: 700; color: var(--text2); margin-top: 2px; line-height: 1.35; }
 
 /* ─── PITCH ─── */
 .pitch-intro {
@@ -476,25 +484,53 @@ button.tt-item.is-link { display: block; }
 .booth-card span { font-size: .66rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
 
 /* ─── SPONSOR ─── */
-.sponsor-tier { margin-bottom: 20px; }
+.sponsor-tier { margin-bottom: 28px; text-align: center; }
 .sponsor-tier-name {
-  display: inline-block; padding: 4px 12px; border-radius: 999px;
-  font-family: 'Manrope', sans-serif; font-size: .62rem; font-weight: 900; letter-spacing: .22em;
-  margin-bottom: 12px;
+  display: inline-block; padding: 5px 16px; border-radius: 999px;
+  font-family: 'Manrope', sans-serif; font-weight: 900; letter-spacing: .24em;
+  margin-bottom: 16px;
 }
-.sponsor-tier-name.platinum { background: var(--navy); color: #fff; }
-.sponsor-tier-name.gold { background: var(--yellow); color: var(--navy); }
-.sponsor-tier-name.bronze { background: #c9a15f; color: #fff; }
+.sponsor-tier-name.platinum { background: var(--navy); color: #fff; font-size: .72rem; }
+.sponsor-tier-name.gold { background: var(--yellow); color: var(--navy); font-size: .66rem; }
+.sponsor-tier-name.bronze { background: #c9a15f; color: #fff; font-size: .6rem; }
+
 .sponsor-grid {
-  display: flex; gap: 12px; flex-wrap: wrap;
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
 }
 .sponsor-card {
-  background: #fff; border: 1px solid var(--line); border-radius: 8px;
-  padding: 14px 20px; display: flex; align-items: center; justify-content: center;
-  min-width: 140px; max-width: 200px;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px 24px; display: flex; align-items: center; justify-content: center;
   aspect-ratio: 16/9;
 }
-.sponsor-card img { max-width: 100%; max-height: 60px; object-fit: contain; }
+/* Platinum: 一番大きい */
+.sponsor-tier.platinum .sponsor-card {
+  min-width: 240px; max-width: 320px; padding: 28px 36px;
+  border: 2px solid var(--navy);
+  box-shadow: 0 6px 20px rgba(16,35,63,.14);
+}
+.sponsor-tier.platinum .sponsor-card img { max-height: 100px; }
+/* Gold: 中サイズ */
+.sponsor-tier.gold .sponsor-card {
+  min-width: 180px; max-width: 220px; padding: 20px 26px;
+  border: 1.5px solid var(--yellow);
+  box-shadow: 0 4px 14px rgba(255,201,62,.24);
+}
+.sponsor-tier.gold .sponsor-card img { max-height: 70px; }
+/* Bronze: 小サイズ */
+.sponsor-tier.bronze .sponsor-card {
+  min-width: 140px; max-width: 170px; padding: 14px 18px;
+  border: 1px solid #c9a15f;
+}
+.sponsor-tier.bronze .sponsor-card img { max-height: 48px; }
+
+@media (max-width: 640px) {
+  .sponsor-tier.platinum .sponsor-card { min-width: 200px; max-width: 260px; padding: 22px 28px; }
+  .sponsor-tier.platinum .sponsor-card img { max-height: 80px; }
+  .sponsor-tier.gold .sponsor-card { min-width: 150px; max-width: 180px; }
+  .sponsor-tier.gold .sponsor-card img { max-height: 56px; }
+  .sponsor-tier.bronze .sponsor-card { min-width: 120px; max-width: 145px; }
+  .sponsor-tier.bronze .sponsor-card img { max-height: 40px; }
+}
 
 /* ─── UNIVERSAL MODAL (session / speaker detail) ─── */
 .gm-modal {
@@ -681,11 +717,11 @@ body.gm-open { overflow: hidden; }
 </nav>
 <!-- モバイル用スティッキー クイックナビ -->
 <div class="mobile-quick-nav" aria-label="クイックナビゲーション">
-  <a href="#schedule">🕒 タイムテーブル</a>
-  <a href="#map">📍 会場マップ</a>
-  <a href="#speakers">👥 登壇者</a>
-  <a href="#pitch">🎤 プレゼン大会</a>
-  <a href="#booth">🏢 ブース</a>
+  <a href="#schedule">タイムテーブル</a>
+  <a href="#map">会場マップ</a>
+  <a href="#speakers">登壇者</a>
+  <a href="#pitch">プレゼン大会</a>
+  <a href="#booth">ブース</a>
 </div>
 
 <!-- ═══ Hero ═══ -->
@@ -846,15 +882,27 @@ body.gm-open { overflow: hidden; }
     </div>
 
     <div class="venue-legend-txt">
-      <span class="num"><span style="background:var(--teal);">1</span>C会場（＋常設ブース）</span>
-      <span class="num"><span style="background:var(--orange);">2</span>D会場</span>
-      <span class="num"><span style="background:var(--pink);">🎁</span>スタンプラリー</span>
+      <span class="num"><span style="background:var(--orange);">1</span>D会場</span>
+      <span class="num"><span style="background:var(--teal);">2</span>C会場（＋常設ブース）</span>
     </div>
 
     <div class="map-container">
-      <!-- C会場（常設ブースを内包） -->
-      <div class="map-zone map-zone-c map-container-full">
+      <!-- D会場（左） -->
+      <div class="map-zone map-zone-d">
         <span class="map-zone-num">1</span>
+        <div class="map-zone-title">D会場</div>
+        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
+        <div class="map-d-layout">
+          <div class="map-d-stage-visual">D会場ステージ</div>
+          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
+            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C会場（右 / 常設ブース内包） -->
+      <div class="map-zone map-zone-c">
+        <span class="map-zone-num">2</span>
         <div class="map-zone-title">C会場</div>
         <div class="map-zone-sub">登壇セッション・ワークショップ（500人）＋常設ブースエリア</div>
 
@@ -866,28 +914,14 @@ body.gm-open { overflow: hidden; }
           <div class="map-c-stage-visual">C会場ステージ</div>
         </div>
 
-        <!-- 常設ブース（C会場内） -->
         <div class="map-b-nested">
-          <div class="map-b-nested-label">＋ 常設ブースエリア（C会場内）</div>
+          <div class="map-b-nested-label">常設ブース（C会場内）</div>
           <div class="map-b-layout">
             <div class="map-b-story">ストーリー展示</div>
             <div class="map-b-booth">交流ブース</div>
             <div class="map-b-boxes">
               <div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- D会場 -->
-      <div class="map-zone map-zone-d map-container-full">
-        <span class="map-zone-num">2</span>
-        <div class="map-zone-title">D会場</div>
-        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
-        <div class="map-d-layout">
-          <div class="map-d-stage-visual">D会場ステージ</div>
-          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
-            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
           </div>
         </div>
       </div>
@@ -899,7 +933,7 @@ body.gm-open { overflow: hidden; }
         <div class="venue-card-title">Booth</div>
         <div class="venue-card-name">企業ブース</div>
         <div class="venue-card-body">企業の取り組みや事業、働く人の考え方に触れられるブースエリア。</div>
-        <div class="venue-card-stamp">🎁 ブースを1つ回るとシール1枚</div>
+        <div class="venue-card-stamp">ブースを1つ回るとシール1枚</div>
       </div>
       <div class="venue-card">
         <div class="venue-card-title">Workshop</div>
@@ -910,18 +944,18 @@ body.gm-open { overflow: hidden; }
         <div class="venue-card-title">Story</div>
         <div class="venue-card-name">ストーリー展示</div>
         <div class="venue-card-body">大人・学生登壇者の経歴、運営メンバーのプロフィールを見られる展示。</div>
-        <div class="venue-card-stamp">🎁 感想記入でシール1枚</div>
+        <div class="venue-card-stamp">感想記入でシール1枚</div>
       </div>
       <div class="venue-card">
         <div class="venue-card-title">Meet</div>
         <div class="venue-card-name">交流会</div>
         <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ人と話せる。</div>
-        <div class="venue-card-stamp">🎁 参加で1枚</div>
+        <div class="venue-card-stamp">参加で1枚</div>
       </div>
     </div>
 
     <div class="venue-card-stamp" style="margin-top:14px;text-align:center;font-size:.86rem;padding:14px 18px;background:linear-gradient(135deg,var(--paper-warm),#fff);border:2px dashed var(--orange);border-radius:12px;">
-      🎁 <strong style="color:var(--orange);">スタンプ5枚</strong>でお菓子の掴み取り！コンテンツごとにシールゲットのチャンスあり
+      <strong style="color:var(--orange);">スタンプ5枚</strong>でお菓子の掴み取り。コンテンツごとにシールゲットのチャンスあり
     </div>
   </div>
 </section>
@@ -1035,7 +1069,7 @@ body.gm-open { overflow: hidden; }
       <h2 class="section-title">協賛<em>企業</em></h2>
     </div>
 
-    <div class="sponsor-tier">
+    <div class="sponsor-tier platinum">
       <div class="sponsor-tier-name platinum">PLATINUM</div>
       <div class="sponsor-grid">
         <div class="sponsor-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"></div>
@@ -1043,7 +1077,7 @@ body.gm-open { overflow: hidden; }
       </div>
     </div>
 
-    <div class="sponsor-tier">
+    <div class="sponsor-tier gold">
       <div class="sponsor-tier-name gold">GOLD</div>
       <div class="sponsor-grid">
         <div class="sponsor-card"><img src="img/summit/sponsor_smbc.jpg" alt="SMBC"></div>
@@ -1052,7 +1086,7 @@ body.gm-open { overflow: hidden; }
       </div>
     </div>
 
-    <div class="sponsor-tier">
+    <div class="sponsor-tier bronze">
       <div class="sponsor-tier-name bronze">BRONZE</div>
       <div class="sponsor-grid">
         <div class="sponsor-card"><img src="img/summit/sponsor_dejiara.png" alt="デジアラ"></div>
