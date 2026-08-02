@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>当日ガイド｜NEXY SUMMIT 2026｜タイムテーブル・会場マップ・登壇者一覧</title>
-<meta name="description" content="NEXY SUMMIT 2026 の当日用ガイド。タイムテーブル・会場マップ・登壇者一覧・プレゼン大会出場者・ブース情報・スタンプラリー案内をまとめた1ページ。">
+<title>当日ガイド｜NEXY SUMMIT 2026｜タイムテーブル・登壇者一覧・プレゼン大会</title>
+<meta name="description" content="NEXY SUMMIT 2026 の当日用ガイド。タイムテーブル・登壇者一覧・プレゼン大会出場者・ブース情報をまとめた1ページ。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.nexyhub.jp/summit-guide.html">
 <link rel="icon" href="/img/icon.jpg" type="image/jpeg">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexyhub.jp/summit-guide.html">
 <meta property="og:title" content="当日ガイド｜NEXY SUMMIT 2026">
-<meta property="og:description" content="タイムテーブル・会場マップ・登壇者一覧を1ページに。8月6日（木）東京たま未来メッセ。">
+<meta property="og:description" content="タイムテーブル・登壇者一覧・プレゼン大会を1ページに。8月6日（木）東京たま未来メッセ。">
 <meta property="og:image" content="https://www.nexyhub.jp/img/summit/hero_lp_v5.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -846,6 +846,8 @@ button.tt-item.is-link { display: block; }
   max-height: 90vh; overflow-y: auto;
   border-radius: 20px 20px 0 0;
   position: relative;
+  display: flex; flex-direction: column;
+  -webkit-overflow-scrolling: touch;
   animation: gmSlideUp .38s cubic-bezier(.22,.61,.36,1);
 }
 @media (min-width: 720px) {
@@ -857,15 +859,22 @@ button.tt-item.is-link { display: block; }
 @keyframes gmSlideUp { from { transform: translateY(30%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes gmPop { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .gm-modal-close {
-  position: absolute; top: 12px; right: 12px; z-index: 5;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,.95); border: none; cursor: pointer;
-  font-size: 1.4rem; font-weight: 900; color: var(--navy);
+  position: sticky; top: 10px; margin-left: auto; margin-right: 10px; margin-top: 10px;
+  z-index: 100;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--navy); cursor: pointer;
+  font-size: 1.6rem; font-weight: 900; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(16,35,63,.28);
+  pointer-events: auto;
+  align-self: flex-end;
+  flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,.14);
   transition: transform .25s, background .25s, color .25s;
 }
-.gm-modal-close:hover { background: var(--orange); color: #fff; transform: rotate(90deg); }
+.gm-modal-close:hover { background: var(--orange); color: #fff; border-color: var(--orange); transform: rotate(90deg); }
+.gm-modal-close:active { transform: scale(.9); }
 .gm-modal-hero {
   padding: 30px 24px 20px;
   background: linear-gradient(135deg, var(--paper) 0%, #fff 100%);
@@ -972,6 +981,99 @@ body.gm-open { overflow: hidden; }
 }
 .footer a { color: #fff; text-decoration: underline; margin: 0 8px; }
 
+
+/* ─── Hamburger + Drawer ─── */
+.hamburger {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  border: 1.5px solid var(--navy); border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s, border-color .2s;
+  z-index: 200;
+  position: relative;
+}
+.hamburger span {
+  display: block; width: 20px; height: 2.5px;
+  background: var(--navy); border-radius: 2px;
+  transition: transform .3s ease, opacity .2s;
+}
+.hamburger:hover, .hamburger.is-open { background: var(--orange); border-color: var(--orange); }
+.hamburger:hover span, .hamburger.is-open span { background: #fff; }
+.hamburger.is-open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+@media (min-width: 720px) { .hamburger { display: none; } }
+
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(16,35,63,.6); backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.drawer-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; z-index: 450;
+  width: min(320px, 85vw); height: 100vh;
+  background: #fff;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.22,.61,.36,1);
+  display: flex; flex-direction: column;
+  box-shadow: -6px 0 24px rgba(16,35,63,.24);
+  overflow-y: auto;
+}
+.drawer.is-open { transform: translateX(0); }
+.drawer-head {
+  padding: 20px 22px; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(135deg, #fff, var(--paper));
+}
+.drawer-title {
+  font-family: 'Manrope', sans-serif; font-weight: 900; font-size: .94rem;
+  color: var(--navy); letter-spacing: .02em;
+}
+.drawer-title em { color: var(--orange); font-style: normal; }
+.drawer-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--paper); border: none; cursor: pointer;
+  font-size: 1.3rem; color: var(--navy); font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.drawer-close:hover { background: var(--orange); color: #fff; }
+.drawer-nav { padding: 12px 0; flex: 1; }
+.drawer-link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 22px;
+  font-size: 1rem; font-weight: 900; color: var(--navy);
+  border-bottom: 1px solid rgba(16,35,63,.06);
+  transition: background .2s, padding-left .2s;
+}
+.drawer-link:hover, .drawer-link:active {
+  background: var(--paper); padding-left: 28px;
+}
+.drawer-num {
+  font-family: 'Manrope', sans-serif; font-size: .68rem;
+  font-weight: 900; letter-spacing: .16em;
+  color: var(--orange); background: rgba(234,92,31,.1);
+  padding: 4px 8px; border-radius: 6px;
+  min-width: 36px; text-align: center;
+}
+.drawer-foot {
+  padding: 20px 22px; border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--paper);
+}
+.drawer-foot a {
+  font-size: .82rem; font-weight: 700; color: var(--text2);
+}
+.drawer-foot a:hover { color: var(--orange); }
+
+body.drawer-open { overflow: hidden; }
+
+
 /* Print-friendly */
 @media print {
   .top-nav { display: none; }
@@ -1005,20 +1107,44 @@ body.gm-open { overflow: hidden; }
 <!-- ═══ Top Nav ═══ -->
 <nav class="top-nav">
   <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT ｜ ガイド</a>
+  <button type="button" class="hamburger" id="hamburgerBtn" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <div class="top-nav-links">
     <a href="#schedule">タイムテーブル</a>
-    <a href="#map">会場マップ</a>
-    <a href="#speakers">登壇者</a>
+        <a href="#speakers">登壇者</a>
     <a href="#pitch">プレゼン大会</a>
     <a href="#booth">ブース</a>
     <a href="#koen">後援</a>
   </div>
 </nav>
+
+<!-- スライドインメニュー -->
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="drawer-title"><em>NEXY</em> SUMMIT ／ ガイド</div>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="閉じる">×</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#schedule" class="drawer-link"><span class="drawer-num">01</span>タイムテーブル</a>
+    <a href="#speakers" class="drawer-link"><span class="drawer-num">02</span>登壇者一覧</a>
+    <a href="#pitch" class="drawer-link"><span class="drawer-num">03</span>プレゼン大会</a>
+    <a href="#booth" class="drawer-link"><span class="drawer-num">04</span>ブース</a>
+    <a href="#sponsors" class="drawer-link"><span class="drawer-num">05</span>スポンサー</a>
+    <a href="#koen" class="drawer-link"><span class="drawer-num">06</span>後援</a>
+  </nav>
+  <div class="drawer-foot">
+    <a href="summit.html">サミット詳細ページ</a>
+    <a href="summit-lp.html">エントリー</a>
+    <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener">Instagram @nexy.hub</a>
+  </div>
+</aside>
+
 <!-- モバイル用スティッキー クイックナビ -->
 <div class="mobile-quick-nav" aria-label="クイックナビゲーション">
   <a href="#schedule">タイムテーブル</a>
-  <a href="#map">会場マップ</a>
-  <a href="#speakers">登壇者</a>
+    <a href="#speakers">登壇者</a>
   <a href="#pitch">プレゼン大会</a>
   <a href="#booth">ブース</a>
   <a href="#koen">後援</a>
@@ -1031,7 +1157,7 @@ body.gm-open { overflow: hidden; }
   <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
   <span class="hero-eyebrow">当日ガイド</span>
   <h1 class="hero-title">NEXY SUMMIT 2026<br><em>当日の全プログラム</em></h1>
-  <p class="hero-sub">1日の流れ・会場マップ・登壇者・プレゼン大会出場者・ブース情報を、この1ページに。<br>迷ったら、まずここを開いてください。</p>
+  <p class="hero-sub">1日の流れ・登壇者・プレゼン大会出場者・ブース情報を、この1ページに。<br>迷ったら、まずここを開いてください。</p>
   <div class="hero-meta">
     <span><strong>2026.8.6</strong> THU</span>
     <span>10:00 – 16:20</span>
@@ -1149,9 +1275,9 @@ body.gm-open { overflow: hidden; }
           <div class="tt-slot-body">
             <button type="button" data-open-session="live" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
-              <div class="tt-title">特別演奏「近未来」／プレゼン大会 審査タイム中</div>
-              <div class="tt-desc">YOYOKA feat. Futures Band「近未来」を、shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が生歌＋MV投影で披露<small>特別演奏企画を見る</small></div>
-              <div class="tt-speakers"><span class="tt-spk-names">shio（Piano&amp;Vocal）／ 夏志（Guitar&amp;Vocal）<span class="tt-spk-role">YOYOKA feat. Futures Band「近未来」</span></span></div>
+              <div class="tt-title">特別講演／演奏「近未来」 <span style="color:var(--pink);">〈13:40〜〉</span></div>
+              <div class="tt-desc">プレゼン大会 審査タイム中の6分間、D会場メインステージで shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が「近未来」を生歌＋MV投影で披露<small>特別演奏企画</small></div>
+              <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/performer_shio.jpg')" aria-label="shio"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/performer_natsushi.jpg')" aria-label="夏志"></div></div><span class="tt-spk-names">shio（Piano&amp;Vocal）／ 夏志（Guitar&amp;Vocal）<span class="tt-spk-role">YOYOKA feat. Futures Band「近未来」を披露</span></span></div>
             </button>
           </div>
         </div>
@@ -1245,93 +1371,6 @@ body.gm-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- ═══ VENUE MAP ═══ -->
-<section class="section alt" id="map">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-tag">Venue Map</span>
-      <h2 class="section-title">会場<em>マップ</em></h2>
-    </div>
-
-    <div class="venue-legend-txt">
-      <span class="num"><span style="background:var(--orange);">1</span>D会場</span>
-      <span class="num"><span style="background:var(--teal);">2</span>C会場（＋常設ブース）</span>
-    </div>
-
-    <div class="map-container">
-      <!-- D会場（左） -->
-      <div class="map-zone map-zone-d">
-        <span class="map-zone-num">1</span>
-        <div class="map-zone-title">D会場</div>
-        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
-        <div class="map-d-layout">
-          <div class="map-d-stage-visual">D会場ステージ</div>
-          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
-            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- C会場（右 / 常設ブース内包） -->
-      <div class="map-zone map-zone-c">
-        <span class="map-zone-num">2</span>
-        <div class="map-zone-title">C会場</div>
-        <div class="map-zone-sub">登壇セッション・ワークショップ（500人）＋常設ブースエリア</div>
-
-        <div class="map-c-layout">
-          <div class="map-c-seats-visual" aria-label="C会場 椅子ブロック × 24">
-            <div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div>
-          </div>
-          <div class="map-c-arrow">▼</div>
-          <div class="map-c-stage-visual">C会場ステージ</div>
-        </div>
-
-        <div class="map-b-nested">
-          <div class="map-b-nested-label">常設ブース（C会場内）</div>
-          <div class="map-b-layout">
-            <div class="map-b-story">ストーリー展示</div>
-            <div class="map-b-booth">交流ブース</div>
-            <div class="map-b-boxes">
-              <div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 説明カード（マップ下） -->
-    <div class="venue-cards">
-      <div class="venue-card">
-        <div class="venue-card-title">Booth</div>
-        <div class="venue-card-name">企業ブース</div>
-        <div class="venue-card-body">企業の取り組みや事業、働く人の考え方に触れられるブースエリア。</div>
-        <div class="venue-card-stamp">ブースを1つ回るとシール1枚</div>
-      </div>
-      <div class="venue-card">
-        <div class="venue-card-title">Workshop</div>
-        <div class="venue-card-name">ワークショップ</div>
-        <div class="venue-card-body">参加者自身が手を動かしながら「やりたい」を形にする参加型コンテンツ。</div>
-      </div>
-      <div class="venue-card">
-        <div class="venue-card-title">Story</div>
-        <div class="venue-card-name">ストーリー展示</div>
-        <div class="venue-card-body">大人・学生登壇者の経歴、運営メンバーのプロフィールを見られる展示。</div>
-        <div class="venue-card-stamp">感想記入でシール1枚</div>
-      </div>
-      <div class="venue-card">
-        <div class="venue-card-title">Meet</div>
-        <div class="venue-card-name">交流会</div>
-        <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ人と話せる。</div>
-        <div class="venue-card-stamp">参加で1枚</div>
-      </div>
-    </div>
-
-    <div class="venue-card-stamp" style="margin-top:14px;text-align:center;font-size:.86rem;padding:14px 18px;background:linear-gradient(135deg,var(--paper-warm),#fff);border:2px dashed var(--orange);border-radius:12px;">
-      <strong style="color:var(--orange);">スタンプ5枚</strong>でお菓子の掴み取り。コンテンツごとにシールゲットのチャンスあり
-    </div>
-  </div>
-</section>
-
 <!-- ═══ SPEAKERS ═══ -->
 <section class="section" id="speakers">
   <div class="wrap">
@@ -1378,7 +1417,9 @@ body.gm-open { overflow: hidden; }
           <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takeuchi"><div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg')"></div><div class="spk-name">竹内 翼</div><div class="spk-title">17歳 ／ 甲陽学院高等学校</div><span class="spk-more">詳細を見る</span></button>
         </div>
       </div>
-    </div>
+    
+      <div><div class="spk-group-head" style="border-left-color:var(--pink);">特別演奏（13:40 – 13:46 D会場）</div><div class="spk-grid"><button type="button" class="spk-card is-clickable" data-open-speaker="performer_shio"><div class="spk-photo" style="background-image:url('img/summit/performer_shio.jpg')"></div><div class="spk-name">shio</div><div class="spk-title">16歳 ／ シンガーソングライター</div><span class="spk-more">詳細を見る</span></button><button type="button" class="spk-card is-clickable" data-open-speaker="performer_natsushi"><div class="spk-photo" style="background-image:url('img/summit/performer_natsushi.jpg')"></div><div class="spk-name">夏志</div><div class="spk-title">大学1年 ／ シンガーソングライター</div><span class="spk-more">詳細を見る</span></button></div></div>
+      </div>
   </div>
 </section>
 
@@ -1631,7 +1672,7 @@ const SESSIONS = {
 };
 
 /* ═══ SPEAKER DATA ═══ */
-const SPEAKERS = {"speaker_tani": {"name": "谷 昊埜", "kana": "たに こうや", "meta": "19歳 ／ 慶應義塾大学SFC ／ 神奈川県", "affil": "株式会社 The Bedrock Space Group 共同創業 ／ 学生団体ミラコエ", "about": "政治・宇宙をメインに事業をつくることを通して、社会や人を幸せにできるよう頑張っています。", "topics": "AO・総合型選抜系 ／ 起業・事業 ／ 海外・グローバル ／ 自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは）", "achievements": "全日本スキー選手権出場 2022・2023\n学生団体「ミラコエ」を創設し、教育系事業を連続的に立ち上げ\n株式会社 The Bedrock Space Group を共同創業"}, "speaker_ueda": {"name": "植田 晴子", "kana": "うえだ はるこ", "meta": "18歳 ／ 慶應義塾大学SFC ／ 神奈川県", "affil": "309人の学生が在籍中の沖縄県高校生団体 FLARE 初代代表", "about": "高校2年生で沖縄県高校生団体FLAREを立ち上げ、300人規模の団体へと成長させた。代表として活動する中で、高校生のみで企画・運営するプロジェクト「海風祭2025」を実施し、国際通りを貸し切った1万人規模のイベントの実行委員長を務めた。その後、総合型選抜で慶應義塾大学環境情報学部に進学。活動を通して、挑戦する人やリーダーが責任や不安を一人で抱え込み、孤立してしまう現状に課題意識を持つようになった。現在は「挑戦が孤立しない社会」をテーマに、出身地・沖縄の相互扶助文化である「模合」の研究や、若者同士が支え合うコミュニティづくりに取り組んでいる。また、営業インターンやAO塾講師としても活動中。", "topics": "AO・総合型選抜系 ／ 自己探求・問い ／ 人間関係・巻き込み", "achievements": "・沖縄戦の歴史継承活動（白梅学徒隊に関するフィールドワーク・ガイド活動）\n・こども食堂運営プロジェクト リーダー\n・沖縄県高校生団体FLARE 創設者・初代代表（現在所属309名）\n・高校生主体で企画・運営した1万人規模イベント「海風祭2025」実行委員長\n・高校生向けイベントや交流会を複数企画・運営\n・AO入試で慶應義塾大学環境情報学部に合格\n・営業インターンに従事\n・AO・総合型選抜専門塾にて講師として活動\n・「挑戦が孤立しない社会」をテーマに、沖縄の模合文化を活かしたコミュニティづくりを研究中"}, "speaker_kuno": {"name": "久野 美恋彩", "kana": "クノ ミレア", "meta": "17歳 ／ 星の杜高等学校 ／ 栃木県", "affil": "株式会社Challink 代表", "about": "飛行機のお尻が大好きな高校3年生の久野美恋彩です。「高校生のやってみたいを実現できる社会へ」をテーマに活動しています。探究活動に取り組んできた中で、学生の学びの場が地域に不足しているという課題を見つけました。そこから、自ら株式会社を設立し、企業や地域の方々への取材・訪問を通して、高校生の学びの場を増やすという挑戦をしています。教育やキャリア形成に関心があり、実際に多くの大人や起業家の方々と対話を重ねながら学びを深めています。人との出会いや対話を大切にし、「悩む前に行動！」をモットーに、新しい価値を生み出せる人を目指しています。", "topics": "起業・事業 ／ 人間関係・巻き込み", "achievements": "高校入学後から地域活性化に関心を持ち、探究活動に積極的に取り組んできました。国内外問わず、カンボジアや福島など学びを見つけたら直ぐに飛び込んで学ぶという行動重視で活動しています。また、高校生と企業・地域社会をつなぐことを目的として株式会社を設立し、栃木県内外の企業や団体へのヒアリング・取材を実施しています。現在1プロジェクト始動開始しました。さらに、起業家イベントやビジネスコンテストへの参加を通して事業構想を磨き、多様な世代との対話を重ねてきました。高校生の視点を活かしながら、社会課題の解決に向けて実践的な挑戦を続けています。"}, "speaker_masuda": {"name": "増田 結桜", "kana": "マスダ ユラ", "meta": "15歳 ／ N高等学校 ／ 静岡県", "affil": "一般社団法人チームゆら 理事（プロジェクトリーダー）", "about": "小学5年生のときに、大好きな地元・静岡県産のみかんを使った宇宙日本食「静岡みかんゼリー」の開発を始める。小学6年生では、静岡県の大学生や社会人とともに宇宙日本食開発チーム「チームゆら」を設立。中学1年生で法人化し、「一般社団法人チームゆら」プロジェクトリーダー（理事）となる。中学2年生で株式会社ワンテーブルと契約を締結し、2025年夏に「静岡みかんゼリー」の本製造を迎える。", "topics": "起業・事業 ／ 宇宙食 ／ クラウドファンディングで500万円達成した話", "achievements": "2022年〜：JAXA様（TV番組「サンドイッチマン＆芦田愛菜の博士ちゃん」企画）\n2023年5月：野口聡一 元・宇宙飛行士との対面（TV番組「博士ちゃん」企画）\n2023年10月：一般社団法人チームゆら設立\n2023年10月：静岡市主催「SDGsユースサミット」発表者として登壇、静岡市・難波市長に提案\n2024年7月：株式会社ワンテーブル様とOEM契約締結\n2025年1月〜2月：CAMPFIREにて製造資金クラウドファンディング 500万円達成\n2025年2月：静岡STEAMフューチャーアカデミーのトップ受講生として、ミネソタ大学で英語プレゼン\n2025年7月：株式会社ワンテーブル様の工場で「静岡みかんゼリー」製造開始\n2025年8月：大阪・関西万博 大阪ヘルスケアパビリオンで毎日プレゼンテーション予定\n\n【受賞歴】\n山崎賞（第39回・第41回優良賞）／ 鈴木賞（第70回）正賞 ／ 自然科学観察コンクール（第64回）佳作 ／ 国際探究活動発表交流会 総合グランプリ ／ 静岡倶楽部「科学研究奨励賞」 ほか\n「サンドウィッチマンと芦田愛菜の博士ちゃん」はじめメディア多数出演"}, "speaker_ohama": {"name": "大濱 裕輝", "kana": "オオハマ ヒロキ", "meta": "18歳 ／ 徳島文理高等学校 ／ 徳島県", "affil": "三世代教育プロジェクト BridgE³ ／ 学生団体NEXY ／ 任意団体Next Step", "about": "徳島県の進学校に通う高校3年生。高校2年生の夏に参加した7泊8日のサマースクールをきっかけに、それまで当たり前だと思っていた価値観が大きく揺さぶられる。その経験から、自分自身が「選んでいる」のではなく、「用意された選択肢の中から選ばされていた」ことに気づき、「知らないまま選ぶ社会を壊す」をミッションに三世代教育プロジェクトBridgE³を設立。現在は、「人が一歩踏み出そうとするとき、最も大きな壁となるものは何か」という問いに関心を持ち、高校生や社会人へのインタビュー・調査を通じて探究を続けている。人生のテーマは、「心から笑える人が育つ環境を創る」こと。", "topics": "自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは） ／ 教育", "achievements": "・三世代教育プロジェクト「BridgE³」創設・代表\n・高校生、大学生、社会人をつなぐ対話型コミュニティを運営\n・三世代交流イベント「アトサキ」累計参加者122名以上\n・HLAB TOKYO 2025参加\n・U-18サミット2026参加\n・学生団体NEXY プロジェクトマネージャー\n・「知らないまま選ぶ社会を壊す」をテーマに、高校生の主体的な選択を支える活動を実践\n・徳島県を拠点とし、鳥取県にも活動を拡大\n・課外活動を始めて一年未満"}, "speaker_noritake": {"name": "則竹 瑛斗", "kana": "ノリタケ エイト", "meta": "16歳 ／ ゼロ高等学院 ／ 群馬県／千葉県", "affil": "Challase株式会社 代表取締役CEO", "about": "2009年11月11日、千葉県松戸市出身。2019年から約3年間、アメリカ・ニュージャージー州に滞在後、小学5年生で英検2級を取得。グローバルな経験を活かし、世界規模の環境イベント等にて店舗運営やパンフレット制作・日英翻訳を経験。その後、NPO法人と教育系企業にて執行役員、事務局長、営業・技術責任者を歴任。文部科学省をはじめとする教育機関や自治体の協力を得て、複数の探究学習イベントや中高生向けアクセラプログラムの立ち上げ及び推進に従事。その後、総フォロワー数100万人を超えるインフルエンサーグループでの映像ディレクション（企画・撮影）や営業・アライアンス業務に携わる。<br><br>2024年3月、中学2年生でChatwork創業者・山本敏行氏とChallase株式会社を共同創業し、代表取締役CEOに就任。「みんながワクワクする社会を創る」というビジョンを掲げ、大規模な音楽フェスやファッションショー、YouTube番組、アイドルグループ等の企画制作・プロデュースを手がける。その他、縦型ショート動画や若年層を中心としたマーケティング支援や企業向けAI導入支援等も展開し、16歳にして単月売上2,700万円を達成。", "topics": "AO・総合型選抜系 ／ 起業・事業 ／ 海外・グローバル", "achievements": ""}, "speaker_takamatsu": {"name": "髙松 優大", "kana": "タカマツ ユウタ", "meta": "18歳 ／ 2026年3月 東京都立国際高等学校 国際バカロレアコース卒業 ／ 9月より 英・マンチェスター大学進学予定 ／ 東京都", "affil": "学生団体EToE 代表", "about": "2007年生まれ、東京出身。小学4年時に東京学芸大学附属小学校から沖縄のIB校へ転校。沖縄での原体験から、現在は「誰もが自分の可能性を発揮できる教育」のあり方を探求している。都立国際高校に入学後は、eスポーツで得た経験と技術をもとに、メタバースを活用した教育プログラム「メタロレア」を開発し、全国で展開。さらに学生団体「EToE」を設立し、多様な学びの場づくりにも取り組む。活動は多岐にわたり、琉球史・文化やマルクス経済学の研究、生徒会での伴走支援、YouTube、動画編集、デザイン、模擬国連、ハッカソンなど、分野を問わず多面的に挑戦を続けている。", "topics": "AO・総合型選抜系 ／ 不登校・休学・違う道 ／ 海外・グローバル ／ 自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは） ／ 社会・環境・経済思想", "achievements": "【教育・学生団体】\n・学生団体EToE 代表：メタバース活用の教育プログラム「メタロレア」開発・運営、ハイブリッド形式の教育イベント主催、学生交流Discord運営\n・第68回 旺文社学芸サイエンスコンクール スタートアップ部門 高校生の部 銅賞（2025年3月）\n・SusHi Teck Tokyo 2025「出世魚ピッチ」一次審査通過（2025年4月）\n\n【生徒会】\n・東京都立国際高等学校 生徒会長：生徒総会・中央議会の刷新、ブレザー着用義務緩和\n・第9回 日本生徒会大賞 高校生・個人の部 奨励賞（2025年6月）\n・現役引退後も生徒会の伴走支援\n\n【eスポーツ／ゲーミング組織】\n・Gaming Organization SkyGold 代表（〜2025年5月）\n・X最大フォロワー3,000人超、計4社とスポンサーシップ契約、日本学生eスポーツ協会認定団体\n・30以上のオンラインイベント主催（2021〜2024年）、佐倉市・柏市の自治体と協力\n\n【国際／模擬国連】\n・ハーバード模擬国連など参加\n・明治学院大学民間外交サークル幹部（2024年〜）：複数の大使館訪問、大使館主催イベントのボランティア統括\n・国連大学ミネルバ大学主催イベント、文科省主催IBコンソーシアムなどでスピーカー登壇\n\n【創作・受賞歴】\n・第67回 旺文社学芸サイエンスコンクール 旺文社 赤尾好夫記念賞（銀賞）詩部門 高校生の部（2024年3月）\n・動画編集・デザインの受託、作詞作曲（ボカロ）・Web小説執筆\n\n【大学受験 合格校】\nUniversity of California, San Diego／University of Minnesota Twin Cities／University of Edinburgh／University of Manchester（進学）／University of Bristol／慶應義塾大学 環境情報学部（夏秋AO）"}, "speaker_kuwako": {"name": "桑子 友菜", "kana": "クワコ ユナ", "meta": "17歳 ／ 学校法人 角川ドワンゴ学園 N高等学校 ／ 群馬県", "affil": "湯端温泉 若女将 ／ 群馬県高校生リバースメンター 3期生", "about": "群馬県の小さな温泉宿で若女将として活動。接客や宿の仕事を通して、「手術痕が気になって温泉に入れない」「大浴場に不安がある」といった声を聞いたことをきっかけに、誰もが安心して温泉を楽しめる環境づくりについて探究を始める。現在は、貸切温泉や入浴着の普及、湯治文化の認知拡大をテーマに活動。利用者へのアンケート調査や行政・専門家へのヒアリングを重ねながら群馬県への政策提言を実施。提言内容の一部は県の施策として実現し、実際の情報発信や環境整備にもつながった。温泉の魅力を次世代へつなぎ、多様な人が温泉を楽しめる社会の実現を目指している。", "topics": "起業・事業 ／ 不登校・休学・違う道 ／ 自己探求・問い", "achievements": "【高校】\n・群馬県の温泉宿で若女将として活動\n・群馬県高校生リバースメンター 3期生として、行政・専門家へのヒアリングを行い、群馬県知事へ政策提言を実施（一部施策化）\n・全国マイプロジェクトアワード「全国ロールモデル賞」受賞\n\n【中学】\n・高崎市理科自由研究発表会 最優秀賞\n・中学校人権作文コンテスト群馬県大会 群馬県教育委員会教育長賞\n\n【メディア掲載・出演】\n・NHK「おはよう日本」「ほっとぐんま630」\n・TBS「THE TIME,」\n・テレビ朝日「グッド！モーニング」\n・日本経済新聞 ほか"}, "speaker_noda": {"name": "野田 樹里", "kana": "ノダ ジュリ", "meta": "17歳 ／ 名城大学附属高等学校 ／ 愛知県", "affil": "株式会社JYUNIHITOE 代表取締役CEO", "about": "高校入学後に探究学習と出会い、さまざまなイベントやプロジェクトに参加。その中で、学校だけでは出会えない多様な価値観を持つ人々とつながり、社会課題や新しいアイデアについて語り合う面白さに気付く。その後、ルッキズムや自己肯定感について探究を深め、ネガティブに捉えられがちな一重を強みに変えるコスメブランド「JYUNIHITOE」を立ち上げる。現在は「一重のままの選択肢を世の中に届ける」をミッションに事業やイベント、情報発信を通して、多様な美しさや価値観が尊重される社会づくりに挑戦中。", "topics": "起業・事業 ／ 自己探求・問い", "achievements": "【株式会社JYUNIHITOE 代表取締役CEO】\n「一重のままの選択肢を世の中に届ける」\n\n【JYUNIHITOE 受賞・登壇】\n・STAPS 7期 最優秀賞受賞\n・SusHi Tech Teen Challenge 2026 グランプリ ／ ツクリエ様企業賞受賞\n・Tongali アイデアピッチコンテスト2025 名古屋銀行賞・SMBC日興証券賞\n・JUMP OUT Project 1期生\n・その他登壇多数\n\n【メディア掲載・出演】\nAbema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞／読売新聞／日本経済新聞 ほか\n\n【その他探究活動】\n・Tongali junior competition 2024 最優秀賞受賞\n・全国高校生SBP交流フェア 伊勢市長賞受賞\n・名城大学REALIZE AWARD EXPRESSION賞受賞\n・名城大学附属高等学校 探究Day 総合司会"}, "speaker_sakai": {"name": "酒井 愛瑠", "kana": "サカイ メル", "meta": "19歳 ／ 愛知県", "affil": "tomoni ／ 親子コミュニティ運営", "about": "女子高校生で世界一周に行き、夢は日本列島を愛で繋ぎ、日本の子ども達を幸せにすること。そのために10年以内にフリースクールを運営して親子関係、そして子ども達の自立を目指して現在親子コミュニティの運営をしたり、フリースクールに行ったりして学んでいます。", "topics": "不登校・休学・違う道 ／ 海外・グローバル ／ 人間関係・巻き込み", "achievements": "高校卒業前に世界一周に出発。各国の学校を視察しながら、日本の子どもたちを幸せにするためのオンラインコミュニティを運営。フリースクールでの学びと親子関係の探究を通じて、10年以内にフリースクール開設を目指して活動中。"}, "speaker_matsunaga": {"name": "松長 侑南", "kana": "マツナガ ユウナ", "meta": "17歳 ／ 渋谷教育学園幕張高等学校 ／ 東京都", "affil": "孫正義育英財団 第9期財団生 ／ 未踏ジュニア採択", "about": "渋谷教育学園幕張高校3年生。AIやHCI（Human-Computer Interaction）に興味を持ち、「人のためになるAI」をテーマに研究とプロダクト開発の両方に取り組んでいます。趣味は料理と登山。", "topics": "海外・グローバル系 ／ 自己理解・問いづくり系 ／ 哲学系", "achievements": "・日本人工知能学会 JSAI 2025 に投稿\n・情報科学の達人 6期生 優秀修了\n・未踏ジュニア採択 — 自然言語で画像編集できるAIアプリ「Gen5」を開発\n・進路選択や自己理解を支援するAIアプリ「まいるす」を開発\n・孫正義育英財団 第9期財団生\n・EGOI 2025 銅メダル\n・東京大学松尾研究室 GCI ／ Deep Learning 基礎 ／ 世界モデル講座 修了\n・AI関連企業・大手商社でインターン\n・高校でAIに関する講座を企画・実施"}, "speaker_aburatani": {"name": "油谷 駿杜", "kana": "アブラタニ シュント", "meta": "18歳 ／ 富山県（富山県高岡市出身）", "affil": "株式会社ネルフィン 社長 ／ 株式会社Brownie CEO", "about": "富山県高岡市出身。AI自動検品システムを手がける株式会社Brownie CEO、AI事業を展開する株式会社ネルフィン社長を務めています。中学2年から動画編集の個人事業で活動を始め、高校時代に起業。「AI」と「地域課題解決・地域活性」を軸に活動しています。", "topics": "総合型選抜系 ／ 起業・ビジネス系", "achievements": "高校在学中に株式会社Brownieを設立。町工場の現場ヒアリングを重ねて開発したAI自動検品システム「Ai-Capt」を全国61社以上の工場に展開しています。高校卒業を機に株式会社ネルフィンを新たに設立し、AIコンサルティングやシステム開発を通じて、企業のAI活用支援と地域課題の解決に取り組んでいます。"}, "speaker_takeuchi": {"name": "竹内 翼", "kana": "タケウチ ツバサ", "meta": "17歳 ／ 甲陽学院高等学校 ／ 兵庫県", "affil": "AIプロダクト マーケティング ／ 連続起業家", "about": "高校生ながら、NFT・eスポーツ・SNS運用代行・人事・経営管理など、多岐にわたる事業領域で実績を持つ連続起業家。現在はAIプロダクトのマーケティングに取り組む。", "topics": "起業・ビジネス系 ／ 自己理解・問いづくり系 ／ 人間関係系 ／ 哲学系 ／ マーケ・SNS・採用・働き方など", "achievements": "・NFTコレクションを立ち上げ、取引総額1.5億円\n・eスポーツチーム事業を設立、1年半後に事業譲渡\n・SNS運用代行で、ミリオン再生／月500万円以上の売上創出／採用応募数百件創出\n・スタッフ200名規模の会社で人事責任者\n・年商20億規模の会社で経営管理。月1,000万円弱の固定費カットを実現\n・読売新聞ほかメディア掲載"}, "speaker_miyanaka": {"name": "宮中 沙羅", "kana": "ミヤナカ サラ", "meta": "株式会社セガ 開発者", "affil": "デザイナー → 開発ディレクター", "about": "「やりたいこと」を追いかけて海外に留学。帰国後はゲーム業界で、デザイナーとしてキャリアをスタート。その後、プリクラ開発ディレクターとして企画やチームづくりを担う。現在は、人の創造性を広げる技術に関わりながら、新しいものづくりの可能性に挑戦中。", "topics": "", "achievements": ""}, "speaker_kiyomiya": {"name": "清宮 俊久", "kana": "キヨミヤ トシヒサ", "meta": "セガサミーイノベーション株式会社 代表取締役社長", "affil": "セガサミーホールディングス株式会社 経営企画本部 投資マネジメント部 部長", "about": "1999年 セガ・エンタープライゼス入社、社長室にて経営企画・新規事業開発を担当。2013年 セガネットワークス（現セガ）設立に伴い、経営企画部部長として投資戦略・M&A・アライアンスを主導。2017年よりセガサミーグループCVC部門で現職。150億円を運用するCVCと並行して、イノベーションスペース『TUNNEL TOKYO』を設立し、2026年 セガサミーイノベーション代表取締役に就任。グループのオープンイノベーションを両輪で推進している。", "topics": "", "achievements": ""}, "speaker_yamamoto": {"name": "山本 敏行", "kana": "ヤマモト トシユキ", "meta": "Chatwork 創業者 ／ エンジェル投資家", "affil": "Power Angels CEO ／ 日本エンジェル投資家協会 代表理事", "about": "1979年3月21日、大阪府寝屋川市生まれ。大阪桐蔭高校・中央大学商学部卒。在学中の2000年、ロサンゼルス留学中にEC studioを設立。2004年に法人化。", "topics": "", "achievements": ""}, "speaker_branscombe": {"name": "ブランスクム 文葉", "kana": "Fumiha Branscombe", "meta": "株式会社Fleurinary 代表取締役", "affil": "文部科学省 アントレプレナーシップ推進大使", "about": "オリエンタルランドで店舗管理・人材育成・東京ディズニーシー立ち上げに従事。カルチュア・コンビニエンス・クラブ、野村證券Financial Advisor（15年）を経て、2020年01Boosterに参画し有楽町SAAI立ち上げ・運営に従事。2024年4月独立、Fleurinary設立。", "topics": "", "achievements": ""}, "speaker_tadaishi": {"name": "只石 昌幸", "kana": "タダイシ マサユキ", "meta": "VALX株式会社（旧レバレッジ） 代表取締役CEO", "affil": "フィットネスD2Cブランド「VALX」創業", "about": "1975年10月11日、群馬県出身。群馬県立高崎高校・法政大学経営学部卒。1998年キーエンス入社、3年で退社。グルメブログを経て、2006年ウェブ制作会社「レバレッジ」を設立。", "topics": "", "achievements": ""}, "speaker_hayashi": {"name": "林 裕子", "kana": "ハヤシ ユウコ", "meta": "山口大学大学院 技術経営研究科 特命教授", "affil": "科学技術政策 ／ 技術経営 ／ 医療バイオのイノベーション論", "about": "慶応義塾中等部、慶應義塾女子高校卒。東京大学卒。日本IBMにてシステムやオブジェクト指向型言語を開発。マサチューセッツ工科大学技術政策プログラムにて理学修士取得。東京大学大学院工学系研究科先端学際工学専攻にて博士（学術）取得。現在、山口大学大学院技術経営研究科の特命教授。専門は科学技術政策・技術経営・医療バイオのイノベーション論等。", "topics": "", "achievements": ""}, "mentor_miwa": {"name": "三輪 開人", "kana": "ミワ カイト", "meta": "認定NPO法人e-Education 代表 ／ 株式会社e-Education 代表", "affil": "プレゼン大会 メンター ／ 著書『100%共感プレゼン』", "about": "1986年生まれ。早稲田大学法学部在学中に同大学の後輩とともにNPO法人e-Educationの前身を設立。卒業後JICAで東南アジア・大洋州の教育案件を担当。2013年JICA退職、2014年7月にe-Education代表へ就任。", "topics": "", "achievements": ""}, "speaker_sano": {"name": "佐野 貴", "kana": "サノ タカシ", "meta": "株式会社Play Robotics 代表 ／ TALENT PRENEUR 主宰", "affil": "心理学ベースの才能言語化メソッド開発", "about": "心理学をベースに人々の「才能」や「強み」を言語化する才能診断を延べ1,700名以上に実施。自身の才能をサービスに変える起業スクール「TALENT PRENEUR」を運営。", "topics": "", "achievements": ""}, "speaker_hirano": {"name": "平野 歩", "kana": "ヒラノ アユム", "meta": "SailStep株式会社 代表取締役", "affil": "シリアル・アントレプレナー ／ エンジェル投資家", "about": "2社の会社売却・事業売却の経験があるシリアル・アントレプレナー。現在はSailStep株式会社 代表取締役として、大手企業向けの新規事業立ち上げ支援、スタートアップ数社へのエンジェル投資も行っている。", "topics": "", "achievements": ""}, "speaker_kotosaka": {"name": "琴坂 将広", "kana": "コトサカ マサヒロ", "meta": "慶應義塾大学 総合政策学部 教授", "affil": "オックスフォード大学 サイード・ビジネススクール アソシエイトフェロー", "about": "経営戦略・国際経営を専門とする経営学者。慶應義塾大学 総合政策学部 教授として教育・研究に携わりつつ、オックスフォード大学 サイード・ビジネススクールにてアソシエイトフェローとして研究活動を継続。著書『経営戦略の進化』などを通じて、次世代のリーダーに戦略論を発信している。", "topics": "", "achievements": ""}, "speaker_izawa": {"name": "伊澤 祐太", "kana": "イザワ ユウタ", "meta": "スイミー株式会社 代表", "affil": "広告事業 × 次世代育成 ／ 学生YouTube番組「olly club」「ON MUTE」仕掛け人", "about": "広告事業を展開する一方、次世代育成にも注力。YouTube番組「olly club」や「ON MUTE」など学生主体の番組制作を通じ、学生がメディア活動を通して挑戦できる仕組みを構築。", "topics": "", "achievements": ""}, "speaker_uemura": {"name": "植村 英明", "kana": "ウエムラ ヒデアキ", "meta": "CHEERS株式会社 COO", "affil": "62自治体・1,500社連携 ／ 累計46,000人以上の親子に無償体験を提供", "about": "2022年、CHEERS株式会社の創業メンバーとして参画。事業統括・営業企画・新規事業立案の責任者を兼任。これまでに62の自治体および1,500社を超える企業との連携を築き、累計46,000人以上の親子に無償で「ワクワクする体験の場」を提供している。経済的利益と社会的インパクトを両立させる新時代のスタートアップとして、Forbes JAPAN「2026年版・世界を変える次世代インパクトスタートアップ30社」に選出。", "topics": "", "achievements": ""}, "speaker_watanabe": {"name": "渡邊 渚", "kana": "ワタナベ ナギサ", "meta": "タレント ／ フォトエッセイ『透明を満たす』著者", "affil": "YouTube『ON MUTE』MC ／ 元フジテレビアナウンサー", "about": "慶應義塾大学経済学部卒業後、株式会社フジテレビジョンに入社。2024年8月末に同社を退社。現在はフリーで執筆やタレント活動を行う。<br><br>2025年1月、初のフォトエッセイ『透明を満たす』（講談社）を出版。生きづらさや不安を抱える人、病と向き合う人、将来に悩む同世代の女性など、さまざまな人に言葉を届けたいという思いでフォトエッセイを制作。<br><br>同年、YouTube番組『ON MUTE』MCに就任。言葉にならない思いや違和感に、Z世代とともに光を当てている。", "topics": "", "achievements": ""}};
+const SPEAKERS = {"speaker_tani": {"name": "谷 昊埜", "kana": "たに こうや", "meta": "19歳 ／ 慶應義塾大学SFC ／ 神奈川県", "affil": "株式会社 The Bedrock Space Group 共同創業 ／ 学生団体ミラコエ", "about": "政治・宇宙をメインに事業をつくることを通して、社会や人を幸せにできるよう頑張っています。", "topics": "AO・総合型選抜系 ／ 起業・事業 ／ 海外・グローバル ／ 自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは）", "achievements": "全日本スキー選手権出場 2022・2023\n学生団体「ミラコエ」を創設し、教育系事業を連続的に立ち上げ\n株式会社 The Bedrock Space Group を共同創業"}, "speaker_ueda": {"name": "植田 晴子", "kana": "うえだ はるこ", "meta": "18歳 ／ 慶應義塾大学SFC ／ 神奈川県", "affil": "309人の学生が在籍中の沖縄県高校生団体 FLARE 初代代表", "about": "高校2年生で沖縄県高校生団体FLAREを立ち上げ、300人規模の団体へと成長させた。代表として活動する中で、高校生のみで企画・運営するプロジェクト「海風祭2025」を実施し、国際通りを貸し切った1万人規模のイベントの実行委員長を務めた。その後、総合型選抜で慶應義塾大学環境情報学部に進学。活動を通して、挑戦する人やリーダーが責任や不安を一人で抱え込み、孤立してしまう現状に課題意識を持つようになった。現在は「挑戦が孤立しない社会」をテーマに、出身地・沖縄の相互扶助文化である「模合」の研究や、若者同士が支え合うコミュニティづくりに取り組んでいる。また、営業インターンやAO塾講師としても活動中。", "topics": "AO・総合型選抜系 ／ 自己探求・問い ／ 人間関係・巻き込み", "achievements": "・沖縄戦の歴史継承活動（白梅学徒隊に関するフィールドワーク・ガイド活動）\n・こども食堂運営プロジェクト リーダー\n・沖縄県高校生団体FLARE 創設者・初代代表（現在所属309名）\n・高校生主体で企画・運営した1万人規模イベント「海風祭2025」実行委員長\n・高校生向けイベントや交流会を複数企画・運営\n・AO入試で慶應義塾大学環境情報学部に合格\n・営業インターンに従事\n・AO・総合型選抜専門塾にて講師として活動\n・「挑戦が孤立しない社会」をテーマに、沖縄の模合文化を活かしたコミュニティづくりを研究中"}, "speaker_kuno": {"name": "久野 美恋彩", "kana": "クノ ミレア", "meta": "17歳 ／ 星の杜高等学校 ／ 栃木県", "affil": "株式会社Challink 代表", "about": "飛行機のお尻が大好きな高校3年生の久野美恋彩です。「高校生のやってみたいを実現できる社会へ」をテーマに活動しています。探究活動に取り組んできた中で、学生の学びの場が地域に不足しているという課題を見つけました。そこから、自ら株式会社を設立し、企業や地域の方々への取材・訪問を通して、高校生の学びの場を増やすという挑戦をしています。教育やキャリア形成に関心があり、実際に多くの大人や起業家の方々と対話を重ねながら学びを深めています。人との出会いや対話を大切にし、「悩む前に行動！」をモットーに、新しい価値を生み出せる人を目指しています。", "topics": "起業・事業 ／ 人間関係・巻き込み", "achievements": "高校入学後から地域活性化に関心を持ち、探究活動に積極的に取り組んできました。国内外問わず、カンボジアや福島など学びを見つけたら直ぐに飛び込んで学ぶという行動重視で活動しています。また、高校生と企業・地域社会をつなぐことを目的として株式会社を設立し、栃木県内外の企業や団体へのヒアリング・取材を実施しています。現在1プロジェクト始動開始しました。さらに、起業家イベントやビジネスコンテストへの参加を通して事業構想を磨き、多様な世代との対話を重ねてきました。高校生の視点を活かしながら、社会課題の解決に向けて実践的な挑戦を続けています。"}, "speaker_masuda": {"name": "増田 結桜", "kana": "マスダ ユラ", "meta": "15歳 ／ N高等学校 ／ 静岡県", "affil": "一般社団法人チームゆら 理事（プロジェクトリーダー）", "about": "小学5年生のときに、大好きな地元・静岡県産のみかんを使った宇宙日本食「静岡みかんゼリー」の開発を始める。小学6年生では、静岡県の大学生や社会人とともに宇宙日本食開発チーム「チームゆら」を設立。中学1年生で法人化し、「一般社団法人チームゆら」プロジェクトリーダー（理事）となる。中学2年生で株式会社ワンテーブルと契約を締結し、2025年夏に「静岡みかんゼリー」の本製造を迎える。", "topics": "起業・事業 ／ 宇宙食 ／ クラウドファンディングで500万円達成した話", "achievements": "2022年〜：JAXA様（TV番組「サンドイッチマン＆芦田愛菜の博士ちゃん」企画）\n2023年5月：野口聡一 元・宇宙飛行士との対面（TV番組「博士ちゃん」企画）\n2023年10月：一般社団法人チームゆら設立\n2023年10月：静岡市主催「SDGsユースサミット」発表者として登壇、静岡市・難波市長に提案\n2024年7月：株式会社ワンテーブル様とOEM契約締結\n2025年1月〜2月：CAMPFIREにて製造資金クラウドファンディング 500万円達成\n2025年2月：静岡STEAMフューチャーアカデミーのトップ受講生として、ミネソタ大学で英語プレゼン\n2025年7月：株式会社ワンテーブル様の工場で「静岡みかんゼリー」製造開始\n2025年8月：大阪・関西万博 大阪ヘルスケアパビリオンで毎日プレゼンテーション予定\n\n【受賞歴】\n山崎賞（第39回・第41回優良賞）／ 鈴木賞（第70回）正賞 ／ 自然科学観察コンクール（第64回）佳作 ／ 国際探究活動発表交流会 総合グランプリ ／ 静岡倶楽部「科学研究奨励賞」 ほか\n「サンドウィッチマンと芦田愛菜の博士ちゃん」はじめメディア多数出演"}, "speaker_ohama": {"name": "大濱 裕輝", "kana": "オオハマ ヒロキ", "meta": "18歳 ／ 徳島文理高等学校 ／ 徳島県", "affil": "三世代教育プロジェクト BridgE³ ／ 学生団体NEXY ／ 任意団体Next Step", "about": "徳島県の進学校に通う高校3年生。高校2年生の夏に参加した7泊8日のサマースクールをきっかけに、それまで当たり前だと思っていた価値観が大きく揺さぶられる。その経験から、自分自身が「選んでいる」のではなく、「用意された選択肢の中から選ばされていた」ことに気づき、「知らないまま選ぶ社会を壊す」をミッションに三世代教育プロジェクトBridgE³を設立。現在は、「人が一歩踏み出そうとするとき、最も大きな壁となるものは何か」という問いに関心を持ち、高校生や社会人へのインタビュー・調査を通じて探究を続けている。人生のテーマは、「心から笑える人が育つ環境を創る」こと。", "topics": "自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは） ／ 教育", "achievements": "・三世代教育プロジェクト「BridgE³」創設・代表\n・高校生、大学生、社会人をつなぐ対話型コミュニティを運営\n・三世代交流イベント「アトサキ」累計参加者122名以上\n・HLAB TOKYO 2025参加\n・U-18サミット2026参加\n・学生団体NEXY プロジェクトマネージャー\n・「知らないまま選ぶ社会を壊す」をテーマに、高校生の主体的な選択を支える活動を実践\n・徳島県を拠点とし、鳥取県にも活動を拡大\n・課外活動を始めて一年未満"}, "speaker_noritake": {"name": "則竹 瑛斗", "kana": "ノリタケ エイト", "meta": "16歳 ／ ゼロ高等学院 ／ 群馬県／千葉県", "affil": "Challase株式会社 代表取締役CEO", "about": "2009年11月11日、千葉県松戸市出身。2019年から約3年間、アメリカ・ニュージャージー州に滞在後、小学5年生で英検2級を取得。グローバルな経験を活かし、世界規模の環境イベント等にて店舗運営やパンフレット制作・日英翻訳を経験。その後、NPO法人と教育系企業にて執行役員、事務局長、営業・技術責任者を歴任。文部科学省をはじめとする教育機関や自治体の協力を得て、複数の探究学習イベントや中高生向けアクセラプログラムの立ち上げ及び推進に従事。その後、総フォロワー数100万人を超えるインフルエンサーグループでの映像ディレクション（企画・撮影）や営業・アライアンス業務に携わる。<br><br>2024年3月、中学2年生でChatwork創業者・山本敏行氏とChallase株式会社を共同創業し、代表取締役CEOに就任。「みんながワクワクする社会を創る」というビジョンを掲げ、大規模な音楽フェスやファッションショー、YouTube番組、アイドルグループ等の企画制作・プロデュースを手がける。その他、縦型ショート動画や若年層を中心としたマーケティング支援や企業向けAI導入支援等も展開し、16歳にして単月売上2,700万円を達成。", "topics": "AO・総合型選抜系 ／ 起業・事業 ／ 海外・グローバル", "achievements": ""}, "speaker_takamatsu": {"name": "髙松 優大", "kana": "タカマツ ユウタ", "meta": "18歳 ／ 2026年3月 東京都立国際高等学校 国際バカロレアコース卒業 ／ 9月より 英・マンチェスター大学進学予定 ／ 東京都", "affil": "学生団体EToE 代表", "about": "2007年生まれ、東京出身。小学4年時に東京学芸大学附属小学校から沖縄のIB校へ転校。沖縄での原体験から、現在は「誰もが自分の可能性を発揮できる教育」のあり方を探求している。都立国際高校に入学後は、eスポーツで得た経験と技術をもとに、メタバースを活用した教育プログラム「メタロレア」を開発し、全国で展開。さらに学生団体「EToE」を設立し、多様な学びの場づくりにも取り組む。活動は多岐にわたり、琉球史・文化やマルクス経済学の研究、生徒会での伴走支援、YouTube、動画編集、デザイン、模擬国連、ハッカソンなど、分野を問わず多面的に挑戦を続けている。", "topics": "AO・総合型選抜系 ／ 不登校・休学・違う道 ／ 海外・グローバル ／ 自己探求・問い ／ 人間関係・巻き込み ／ 哲学系（AI時代における人とは） ／ 社会・環境・経済思想", "achievements": "【教育・学生団体】\n・学生団体EToE 代表：メタバース活用の教育プログラム「メタロレア」開発・運営、ハイブリッド形式の教育イベント主催、学生交流Discord運営\n・第68回 旺文社学芸サイエンスコンクール スタートアップ部門 高校生の部 銅賞（2025年3月）\n・SusHi Teck Tokyo 2025「出世魚ピッチ」一次審査通過（2025年4月）\n\n【生徒会】\n・東京都立国際高等学校 生徒会長：生徒総会・中央議会の刷新、ブレザー着用義務緩和\n・第9回 日本生徒会大賞 高校生・個人の部 奨励賞（2025年6月）\n・現役引退後も生徒会の伴走支援\n\n【eスポーツ／ゲーミング組織】\n・Gaming Organization SkyGold 代表（〜2025年5月）\n・X最大フォロワー3,000人超、計4社とスポンサーシップ契約、日本学生eスポーツ協会認定団体\n・30以上のオンラインイベント主催（2021〜2024年）、佐倉市・柏市の自治体と協力\n\n【国際／模擬国連】\n・ハーバード模擬国連など参加\n・明治学院大学民間外交サークル幹部（2024年〜）：複数の大使館訪問、大使館主催イベントのボランティア統括\n・国連大学ミネルバ大学主催イベント、文科省主催IBコンソーシアムなどでスピーカー登壇\n\n【創作・受賞歴】\n・第67回 旺文社学芸サイエンスコンクール 旺文社 赤尾好夫記念賞（銀賞）詩部門 高校生の部（2024年3月）\n・動画編集・デザインの受託、作詞作曲（ボカロ）・Web小説執筆\n\n【大学受験 合格校】\nUniversity of California, San Diego／University of Minnesota Twin Cities／University of Edinburgh／University of Manchester（進学）／University of Bristol／慶應義塾大学 環境情報学部（夏秋AO）"}, "speaker_kuwako": {"name": "桑子 友菜", "kana": "クワコ ユナ", "meta": "17歳 ／ 学校法人 角川ドワンゴ学園 N高等学校 ／ 群馬県", "affil": "湯端温泉 若女将 ／ 群馬県高校生リバースメンター 3期生", "about": "群馬県の小さな温泉宿で若女将として活動。接客や宿の仕事を通して、「手術痕が気になって温泉に入れない」「大浴場に不安がある」といった声を聞いたことをきっかけに、誰もが安心して温泉を楽しめる環境づくりについて探究を始める。現在は、貸切温泉や入浴着の普及、湯治文化の認知拡大をテーマに活動。利用者へのアンケート調査や行政・専門家へのヒアリングを重ねながら群馬県への政策提言を実施。提言内容の一部は県の施策として実現し、実際の情報発信や環境整備にもつながった。温泉の魅力を次世代へつなぎ、多様な人が温泉を楽しめる社会の実現を目指している。", "topics": "起業・事業 ／ 不登校・休学・違う道 ／ 自己探求・問い", "achievements": "【高校】\n・群馬県の温泉宿で若女将として活動\n・群馬県高校生リバースメンター 3期生として、行政・専門家へのヒアリングを行い、群馬県知事へ政策提言を実施（一部施策化）\n・全国マイプロジェクトアワード「全国ロールモデル賞」受賞\n\n【中学】\n・高崎市理科自由研究発表会 最優秀賞\n・中学校人権作文コンテスト群馬県大会 群馬県教育委員会教育長賞\n\n【メディア掲載・出演】\n・NHK「おはよう日本」「ほっとぐんま630」\n・TBS「THE TIME,」\n・テレビ朝日「グッド！モーニング」\n・日本経済新聞 ほか"}, "speaker_noda": {"name": "野田 樹里", "kana": "ノダ ジュリ", "meta": "17歳 ／ 名城大学附属高等学校 ／ 愛知県", "affil": "株式会社JYUNIHITOE 代表取締役CEO", "about": "高校入学後に探究学習と出会い、さまざまなイベントやプロジェクトに参加。その中で、学校だけでは出会えない多様な価値観を持つ人々とつながり、社会課題や新しいアイデアについて語り合う面白さに気付く。その後、ルッキズムや自己肯定感について探究を深め、ネガティブに捉えられがちな一重を強みに変えるコスメブランド「JYUNIHITOE」を立ち上げる。現在は「一重のままの選択肢を世の中に届ける」をミッションに事業やイベント、情報発信を通して、多様な美しさや価値観が尊重される社会づくりに挑戦中。", "topics": "起業・事業 ／ 自己探求・問い", "achievements": "【株式会社JYUNIHITOE 代表取締役CEO】\n「一重のままの選択肢を世の中に届ける」\n\n【JYUNIHITOE 受賞・登壇】\n・STAPS 7期 最優秀賞受賞\n・SusHi Tech Teen Challenge 2026 グランプリ ／ ツクリエ様企業賞受賞\n・Tongali アイデアピッチコンテスト2025 名古屋銀行賞・SMBC日興証券賞\n・JUMP OUT Project 1期生\n・その他登壇多数\n\n【メディア掲載・出演】\nAbema NEWS「わたしとニュース」／NHK「まるっと」／中日新聞／読売新聞／日本経済新聞 ほか\n\n【その他探究活動】\n・Tongali junior competition 2024 最優秀賞受賞\n・全国高校生SBP交流フェア 伊勢市長賞受賞\n・名城大学REALIZE AWARD EXPRESSION賞受賞\n・名城大学附属高等学校 探究Day 総合司会"}, "speaker_sakai": {"name": "酒井 愛瑠", "kana": "サカイ メル", "meta": "19歳 ／ 愛知県", "affil": "tomoni ／ 親子コミュニティ運営", "about": "女子高校生で世界一周に行き、夢は日本列島を愛で繋ぎ、日本の子ども達を幸せにすること。そのために10年以内にフリースクールを運営して親子関係、そして子ども達の自立を目指して現在親子コミュニティの運営をしたり、フリースクールに行ったりして学んでいます。", "topics": "不登校・休学・違う道 ／ 海外・グローバル ／ 人間関係・巻き込み", "achievements": "高校卒業前に世界一周に出発。各国の学校を視察しながら、日本の子どもたちを幸せにするためのオンラインコミュニティを運営。フリースクールでの学びと親子関係の探究を通じて、10年以内にフリースクール開設を目指して活動中。"}, "speaker_matsunaga": {"name": "松長 侑南", "kana": "マツナガ ユウナ", "meta": "17歳 ／ 渋谷教育学園幕張高等学校 ／ 東京都", "affil": "孫正義育英財団 第9期財団生 ／ 未踏ジュニア採択", "about": "渋谷教育学園幕張高校3年生。AIやHCI（Human-Computer Interaction）に興味を持ち、「人のためになるAI」をテーマに研究とプロダクト開発の両方に取り組んでいます。趣味は料理と登山。", "topics": "海外・グローバル系 ／ 自己理解・問いづくり系 ／ 哲学系", "achievements": "・日本人工知能学会 JSAI 2025 に投稿\n・情報科学の達人 6期生 優秀修了\n・未踏ジュニア採択 — 自然言語で画像編集できるAIアプリ「Gen5」を開発\n・進路選択や自己理解を支援するAIアプリ「まいるす」を開発\n・孫正義育英財団 第9期財団生\n・EGOI 2025 銅メダル\n・東京大学松尾研究室 GCI ／ Deep Learning 基礎 ／ 世界モデル講座 修了\n・AI関連企業・大手商社でインターン\n・高校でAIに関する講座を企画・実施"}, "speaker_aburatani": {"name": "油谷 駿杜", "kana": "アブラタニ シュント", "meta": "18歳 ／ 富山県（富山県高岡市出身）", "affil": "株式会社ネルフィン 社長 ／ 株式会社Brownie CEO", "about": "富山県高岡市出身。AI自動検品システムを手がける株式会社Brownie CEO、AI事業を展開する株式会社ネルフィン社長を務めています。中学2年から動画編集の個人事業で活動を始め、高校時代に起業。「AI」と「地域課題解決・地域活性」を軸に活動しています。", "topics": "総合型選抜系 ／ 起業・ビジネス系", "achievements": "高校在学中に株式会社Brownieを設立。町工場の現場ヒアリングを重ねて開発したAI自動検品システム「Ai-Capt」を全国61社以上の工場に展開しています。高校卒業を機に株式会社ネルフィンを新たに設立し、AIコンサルティングやシステム開発を通じて、企業のAI活用支援と地域課題の解決に取り組んでいます。"}, "speaker_takeuchi": {"name": "竹内 翼", "kana": "タケウチ ツバサ", "meta": "17歳 ／ 甲陽学院高等学校 ／ 兵庫県", "affil": "AIプロダクト マーケティング ／ 連続起業家", "about": "高校生ながら、NFT・eスポーツ・SNS運用代行・人事・経営管理など、多岐にわたる事業領域で実績を持つ連続起業家。現在はAIプロダクトのマーケティングに取り組む。", "topics": "起業・ビジネス系 ／ 自己理解・問いづくり系 ／ 人間関係系 ／ 哲学系 ／ マーケ・SNS・採用・働き方など", "achievements": "・NFTコレクションを立ち上げ、取引総額1.5億円\n・eスポーツチーム事業を設立、1年半後に事業譲渡\n・SNS運用代行で、ミリオン再生／月500万円以上の売上創出／採用応募数百件創出\n・スタッフ200名規模の会社で人事責任者\n・年商20億規模の会社で経営管理。月1,000万円弱の固定費カットを実現\n・読売新聞ほかメディア掲載"}, "speaker_miyanaka": {"name": "宮中 沙羅", "kana": "ミヤナカ サラ", "meta": "株式会社セガ 開発者", "affil": "デザイナー → 開発ディレクター", "about": "「やりたいこと」を追いかけて海外に留学。帰国後はゲーム業界で、デザイナーとしてキャリアをスタート。その後、プリクラ開発ディレクターとして企画やチームづくりを担う。現在は、人の創造性を広げる技術に関わりながら、新しいものづくりの可能性に挑戦中。", "topics": "", "achievements": ""}, "speaker_kiyomiya": {"name": "清宮 俊久", "kana": "キヨミヤ トシヒサ", "meta": "セガサミーイノベーション株式会社 代表取締役社長", "affil": "セガサミーホールディングス株式会社 経営企画本部 投資マネジメント部 部長", "about": "1999年 セガ・エンタープライゼス入社、社長室にて経営企画・新規事業開発を担当。2013年 セガネットワークス（現セガ）設立に伴い、経営企画部部長として投資戦略・M&A・アライアンスを主導。2017年よりセガサミーグループCVC部門で現職。150億円を運用するCVCと並行して、イノベーションスペース『TUNNEL TOKYO』を設立し、2026年 セガサミーイノベーション代表取締役に就任。グループのオープンイノベーションを両輪で推進している。", "topics": "", "achievements": ""}, "speaker_yamamoto": {"name": "山本 敏行", "kana": "ヤマモト トシユキ", "meta": "Chatwork 創業者 ／ エンジェル投資家", "affil": "Power Angels CEO ／ 日本エンジェル投資家協会 代表理事", "about": "1979年3月21日、大阪府寝屋川市生まれ。大阪桐蔭高校・中央大学商学部卒。在学中の2000年、ロサンゼルス留学中にEC studioを設立。2004年に法人化。", "topics": "", "achievements": ""}, "speaker_branscombe": {"name": "ブランスクム 文葉", "kana": "Fumiha Branscombe", "meta": "株式会社Fleurinary 代表取締役", "affil": "文部科学省 アントレプレナーシップ推進大使", "about": "オリエンタルランドで店舗管理・人材育成・東京ディズニーシー立ち上げに従事。カルチュア・コンビニエンス・クラブ、野村證券Financial Advisor（15年）を経て、2020年01Boosterに参画し有楽町SAAI立ち上げ・運営に従事。2024年4月独立、Fleurinary設立。", "topics": "", "achievements": ""}, "speaker_tadaishi": {"name": "只石 昌幸", "kana": "タダイシ マサユキ", "meta": "VALX株式会社（旧レバレッジ） 代表取締役CEO", "affil": "フィットネスD2Cブランド「VALX」創業", "about": "1975年10月11日、群馬県出身。群馬県立高崎高校・法政大学経営学部卒。1998年キーエンス入社、3年で退社。グルメブログを経て、2006年ウェブ制作会社「レバレッジ」を設立。", "topics": "", "achievements": ""}, "speaker_hayashi": {"name": "林 裕子", "kana": "ハヤシ ユウコ", "meta": "山口大学大学院 技術経営研究科 特命教授", "affil": "科学技術政策 ／ 技術経営 ／ 医療バイオのイノベーション論", "about": "慶応義塾中等部、慶應義塾女子高校卒。東京大学卒。日本IBMにてシステムやオブジェクト指向型言語を開発。マサチューセッツ工科大学技術政策プログラムにて理学修士取得。東京大学大学院工学系研究科先端学際工学専攻にて博士（学術）取得。現在、山口大学大学院技術経営研究科の特命教授。専門は科学技術政策・技術経営・医療バイオのイノベーション論等。", "topics": "", "achievements": ""}, "mentor_miwa": {"name": "三輪 開人", "kana": "ミワ カイト", "meta": "認定NPO法人e-Education 代表 ／ 株式会社e-Education 代表", "affil": "プレゼン大会 メンター ／ 著書『100%共感プレゼン』", "about": "1986年生まれ。早稲田大学法学部在学中に同大学の後輩とともにNPO法人e-Educationの前身を設立。卒業後JICAで東南アジア・大洋州の教育案件を担当。2013年JICA退職、2014年7月にe-Education代表へ就任。", "topics": "", "achievements": ""}, "speaker_sano": {"name": "佐野 貴", "kana": "サノ タカシ", "meta": "株式会社Play Robotics 代表 ／ TALENT PRENEUR 主宰", "affil": "心理学ベースの才能言語化メソッド開発", "about": "心理学をベースに人々の「才能」や「強み」を言語化する才能診断を延べ1,700名以上に実施。自身の才能をサービスに変える起業スクール「TALENT PRENEUR」を運営。", "topics": "", "achievements": ""}, "speaker_hirano": {"name": "平野 歩", "kana": "ヒラノ アユム", "meta": "SailStep株式会社 代表取締役", "affil": "シリアル・アントレプレナー ／ エンジェル投資家", "about": "2社の会社売却・事業売却の経験があるシリアル・アントレプレナー。現在はSailStep株式会社 代表取締役として、大手企業向けの新規事業立ち上げ支援、スタートアップ数社へのエンジェル投資も行っている。", "topics": "", "achievements": ""}, "speaker_kotosaka": {"name": "琴坂 将広", "kana": "コトサカ マサヒロ", "meta": "慶應義塾大学 総合政策学部 教授", "affil": "オックスフォード大学 サイード・ビジネススクール アソシエイトフェロー", "about": "経営戦略・国際経営を専門とする経営学者。慶應義塾大学 総合政策学部 教授として教育・研究に携わりつつ、オックスフォード大学 サイード・ビジネススクールにてアソシエイトフェローとして研究活動を継続。著書『経営戦略の進化』などを通じて、次世代のリーダーに戦略論を発信している。", "topics": "", "achievements": ""}, "speaker_izawa": {"name": "伊澤 祐太", "kana": "イザワ ユウタ", "meta": "スイミー株式会社 代表", "affil": "広告事業 × 次世代育成 ／ 学生YouTube番組「olly club」「ON MUTE」仕掛け人", "about": "広告事業を展開する一方、次世代育成にも注力。YouTube番組「olly club」や「ON MUTE」など学生主体の番組制作を通じ、学生がメディア活動を通して挑戦できる仕組みを構築。", "topics": "", "achievements": ""}, "speaker_uemura": {"name": "植村 英明", "kana": "ウエムラ ヒデアキ", "meta": "CHEERS株式会社 COO", "affil": "62自治体・1,500社連携 ／ 累計46,000人以上の親子に無償体験を提供", "about": "2022年、CHEERS株式会社の創業メンバーとして参画。事業統括・営業企画・新規事業立案の責任者を兼任。これまでに62の自治体および1,500社を超える企業との連携を築き、累計46,000人以上の親子に無償で「ワクワクする体験の場」を提供している。経済的利益と社会的インパクトを両立させる新時代のスタートアップとして、Forbes JAPAN「2026年版・世界を変える次世代インパクトスタートアップ30社」に選出。", "topics": "", "achievements": ""}, "speaker_watanabe": {"name": "渡邊 渚", "kana": "ワタナベ ナギサ", "meta": "タレント ／ フォトエッセイ『透明を満たす』著者", "affil": "YouTube『ON MUTE』MC ／ 元フジテレビアナウンサー", "about": "慶應義塾大学経済学部卒業後、株式会社フジテレビジョンに入社。2024年8月末に同社を退社。現在はフリーで執筆やタレント活動を行う。<br><br>2025年1月、初のフォトエッセイ『透明を満たす』（講談社）を出版。生きづらさや不安を抱える人、病と向き合う人、将来に悩む同世代の女性など、さまざまな人に言葉を届けたいという思いでフォトエッセイを制作。<br><br>同年、YouTube番組『ON MUTE』MCに就任。言葉にならない思いや違和感に、Z世代とともに光を当てている。", "topics": "", "achievements": ""}, "performer_shio": {"name": "shio", "kana": "シオ", "meta": "16歳 ／ シンガーソングライター ／ 福岡", "affil": "ピアノ弾き語り ／ 福岡拠点", "about": "16歳シンガーソングライター。主にピアノ弾き語り。聴く人の心に寄り添えるアーティストを目指す。", "topics": "音楽 ／ シンガーソングライター ／ 弾き語り", "achievements": "The Creators 2025 出演\nMusic City Tenjin 出演\n特別演奏企画・生歌担当（NEXY SUMMIT 2026）"}, "performer_natsushi": {"name": "夏志", "kana": "ナツシ", "meta": "大学1年 ／ シンガーソングライター ／ 福岡", "affil": "ギター弾き語り ／ 福岡拠点", "about": "福岡拠点の大学1年生シンガーソングライター。自然を愛し、ギター弾き語りで愛と平和、心に寄り添う音楽を届けている。", "topics": "音楽 ／ シンガーソングライター ／ 弾き語り", "achievements": "福岡県軽音楽コンテスト 2年連続グランプリ（高校時代）\n全国大会出場\nSUNSET LIVE 出演\nMusic City 天神 出演\n特別演奏企画・生歌担当（NEXY SUMMIT 2026）"}};
 
 /* ═══ PITCH DATA ═══ */
 const PITCHES = {
@@ -1747,6 +1788,29 @@ const SPONSORS = {"cheers": {"tier": "PLATINUM SPONSOR", "name": "CHEERS!（株�
   closeBtn.addEventListener('click', close);
   modal.addEventListener('click', function(e){ if (e.target===modal) close(); });
   document.addEventListener('keydown', function(e){ if (e.key==='Escape' && modal.classList.contains('is-open')) close(); });
+
+  /* ═══ Hamburger drawer ═══ */
+  const hb = document.getElementById('hamburgerBtn');
+  const drw = document.getElementById('drawer');
+  const drwOv = document.getElementById('drawerOverlay');
+  const drwCl = document.getElementById('drawerClose');
+  function openDrawer(){
+    drw.classList.add('is-open'); drw.setAttribute('aria-hidden','false');
+    drwOv.classList.add('is-open'); drwOv.setAttribute('aria-hidden','false');
+    hb.classList.add('is-open'); hb.setAttribute('aria-expanded','true');
+    document.body.classList.add('drawer-open');
+  }
+  function closeDrawer(){
+    drw.classList.remove('is-open'); drw.setAttribute('aria-hidden','true');
+    drwOv.classList.remove('is-open'); drwOv.setAttribute('aria-hidden','true');
+    hb.classList.remove('is-open'); hb.setAttribute('aria-expanded','false');
+    document.body.classList.remove('drawer-open');
+  }
+  hb.addEventListener('click', function(){ drw.classList.contains('is-open') ? closeDrawer() : openDrawer(); });
+  drwCl.addEventListener('click', closeDrawer);
+  drwOv.addEventListener('click', closeDrawer);
+  drw.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', function(e){ if (e.key==='Escape' && drw.classList.contains('is-open')) closeDrawer(); });
 })();
 </script>
 
