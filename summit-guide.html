@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>当日ガイド｜NEXY SUMMIT 2026｜タイムテーブル・登壇者一覧・プレゼン大会</title>
-<meta name="description" content="NEXY SUMMIT 2026 の当日用ガイド。タイムテーブル・登壇者一覧・プレゼン大会出場者・ブース情報をまとめた1ページ。">
+<title>当日パンフレット｜NEXY SUMMIT 2026｜タイムテーブル・登壇者一覧・プレゼン大会</title>
+<meta name="description" content="NEXY SUMMIT 2026 の当日用パンフレット。タイムテーブル・登壇者一覧・プレゼン大会出場者・ブース情報・よくある質問をまとめた1ページ。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.nexyhub.jp/summit-guide.html">
 <link rel="icon" href="/img/icon.jpg" type="image/jpeg">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexyhub.jp/summit-guide.html">
-<meta property="og:title" content="当日ガイド｜NEXY SUMMIT 2026">
+<meta property="og:title" content="当日パンフレット｜NEXY SUMMIT 2026">
 <meta property="og:description" content="タイムテーブル・登壇者一覧・プレゼン大会を1ページに。8月6日（木）東京たま未来メッセ。">
 <meta property="og:image" content="https://www.nexyhub.jp/img/summit/hero_lp_v5.jpg">
 
@@ -827,6 +827,77 @@ button.tt-item.is-link { display: block; }
 }
 .sponsor-card.is-clickable img { flex: 0 0 auto; }
 
+
+/* ─── FAQ ─── */
+.faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 780px; margin: 0 auto; }
+.faq-item {
+  background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .2s, box-shadow .25s;
+}
+.faq-item[open] {
+  border-color: var(--orange);
+  box-shadow: 0 6px 18px rgba(234,92,31,.14);
+}
+.faq-q {
+  padding: 14px 44px 14px 16px;
+  font-size: .92rem; font-weight: 900; color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  display: flex; align-items: flex-start; gap: 12px;
+  line-height: 1.55;
+  transition: background .2s;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q:hover { background: var(--paper); }
+.faq-q::after {
+  content: '+';
+  position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Manrope', sans-serif; font-weight: 900;
+  font-size: 1.6rem; color: var(--orange);
+  transition: transform .3s;
+  line-height: 1;
+}
+.faq-item[open] .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+.faq-badge {
+  flex-shrink: 0;
+  font-family: 'Manrope', sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .1em;
+  background: linear-gradient(135deg, var(--orange), var(--orange-light));
+  color: #fff; padding: 4px 9px; border-radius: 6px;
+  min-width: 34px; text-align: center;
+  margin-top: 1px;
+}
+.faq-a {
+  padding: 4px 20px 18px 62px;
+  font-size: .84rem; color: var(--text); line-height: 1.85;
+  animation: faqIn .3s ease;
+}
+@keyframes faqIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.faq-a strong { color: var(--navy); }
+.faq-a a { color: var(--orange); font-weight: 900; text-decoration: underline; }
+
+.faq-contact {
+  margin-top: 28px; padding: 20px 22px;
+  background: linear-gradient(135deg, var(--paper-warm), #fff);
+  border: 2px dashed var(--orange); border-radius: 14px;
+  max-width: 720px; margin-left: auto; margin-right: auto;
+  text-align: center;
+}
+.faq-contact-title {
+  font-family: 'Manrope', sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .22em;
+  color: var(--orange); margin-bottom: 8px;
+}
+.faq-contact-body {
+  font-size: .88rem; color: var(--navy); font-weight: 700; line-height: 1.8;
+}
+.faq-contact-body a { color: var(--orange); font-weight: 900; text-decoration: underline; }
+
+
 /* ─── UNIVERSAL MODAL (session / speaker detail) ─── */
 .gm-modal {
   position: fixed; inset: 0; z-index: 500;
@@ -1087,7 +1158,7 @@ body.drawer-open { overflow: hidden; }
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "NEXY SUMMIT 2026 — 当日ガイド",
+  "name": "NEXY SUMMIT 2026 — 当日パンフレット",
   "startDate": "2026-08-06T10:00:00+09:00",
   "endDate": "2026-08-06T18:30:00+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
@@ -1097,7 +1168,7 @@ body.drawer-open { overflow: hidden; }
     "name": "東京たま未来メッセ",
     "address": "東京都八王子市別所2-65"
   },
-  "description": "NEXY SUMMIT 2026 当日ガイド。タイムテーブル、会場マップ、登壇者一覧、プレゼン大会出場者、ブース情報。",
+  "description": "NEXY SUMMIT 2026 当日パンフレット。タイムテーブル、登壇者一覧、プレゼン大会出場者、ブース情報、よくある質問。",
   "url": "https://www.nexyhub.jp/summit-guide.html"
 }
 </script>
@@ -1106,7 +1177,7 @@ body.drawer-open { overflow: hidden; }
 
 <!-- ═══ Top Nav ═══ -->
 <nav class="top-nav">
-  <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT ｜ ガイド</a>
+  <a href="#top" class="top-nav-logo"><em>NEXY</em> SUMMIT ｜ パンフレット</a>
   <button type="button" class="hamburger" id="hamburgerBtn" aria-label="メニューを開く" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -1116,6 +1187,7 @@ body.drawer-open { overflow: hidden; }
     <a href="#pitch">プレゼン大会</a>
     <a href="#booth">ブース</a>
     <a href="#koen">後援</a>
+    <a href="#faq">FAQ</a>
   </div>
 </nav>
 
@@ -1123,7 +1195,7 @@ body.drawer-open { overflow: hidden; }
 <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
 <aside class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-head">
-    <div class="drawer-title"><em>NEXY</em> SUMMIT ／ ガイド</div>
+    <div class="drawer-title"><em>NEXY</em> SUMMIT ／ パンフレット</div>
     <button type="button" class="drawer-close" id="drawerClose" aria-label="閉じる">×</button>
   </div>
   <nav class="drawer-nav">
@@ -1133,6 +1205,7 @@ body.drawer-open { overflow: hidden; }
     <a href="#booth" class="drawer-link"><span class="drawer-num">04</span>ブース</a>
     <a href="#sponsors" class="drawer-link"><span class="drawer-num">05</span>スポンサー</a>
     <a href="#koen" class="drawer-link"><span class="drawer-num">06</span>後援</a>
+    <a href="#faq" class="drawer-link"><span class="drawer-num">07</span>よくある質問</a>
   </nav>
   <div class="drawer-foot">
     <a href="summit.html">サミット詳細ページ</a>
@@ -1148,6 +1221,7 @@ body.drawer-open { overflow: hidden; }
   <a href="#pitch">プレゼン大会</a>
   <a href="#booth">ブース</a>
   <a href="#koen">後援</a>
+  <a href="#faq">FAQ</a>
 </div>
 
 <!-- ═══ Hero ═══ -->
@@ -1155,7 +1229,7 @@ body.drawer-open { overflow: hidden; }
   <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
   <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
   <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
-  <span class="hero-eyebrow">当日ガイド</span>
+  <span class="hero-eyebrow">当日パンフレット</span>
   <h1 class="hero-title">NEXY SUMMIT 2026<br><em>当日の全プログラム</em></h1>
   <p class="hero-sub">1日の流れ・登壇者・プレゼン大会出場者・ブース情報を、この1ページに。<br>迷ったら、まずここを開いてください。</p>
   <div class="hero-meta">
@@ -1530,9 +1604,112 @@ body.drawer-open { overflow: hidden; }
   </div>
 </section>
 
+
+
+<!-- ═══ FAQ ═══ -->
+<section class="section alt" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">よくある<em>質問</em></h2>
+      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">当日のご参加にあたって、よくお問い合わせいただく質問をまとめました。</p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary class="faq-q"><span class="faq-badge">Q1</span>参加費はかかりますか？</summary>
+        <div class="faq-a">完全無料です。事前登録も参加も、当日の飲食物購入以外は一切費用がかかりません。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q2</span>事前予約は必要ですか？</summary>
+        <div class="faq-a">高校生・大学生の方は事前登録をお願いしています（当日エントリーも可能ですが、混雑時は事前登録優先）。<a href="summit-lp.html" style="color:var(--orange);font-weight:900;">エントリーはこちら</a></div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q3</span>会場までのアクセスは？</summary>
+        <div class="faq-a"><strong>東京たま未来メッセ</strong>（東京都八王子市明神町3-19-2）<br>・JR 八王子駅 北口から徒歩約12分<br>・京王線 京王八王子駅から徒歩約8分</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q4</span>何時に会場入りすればいいですか？</summary>
+        <div class="faq-a">開場は 10:00、開会式は 10:30 スタートです。受付混雑を避けるため 10:20 頃までの入場をおすすめします。途中入場も可能です。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q5</span>途中で入退場してもいいですか？</summary>
+        <div class="faq-a">はい、自由に出入りできます。興味あるセッションだけ聞きに来る、途中で常設ブースに立ち寄る、なども歓迎です。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q6</span>お昼ごはんはどうすればいいですか？</summary>
+        <div class="faq-a">昼食時間の枠は設けていないため、各自ご準備ください。JR八王子駅・京王八王子駅周辺に飲食店・コンビニがあります。会場内での飲食は指定エリアでお願いします。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q7</span>服装の指定はありますか？</summary>
+        <div class="faq-a">制服・私服どちらでもOKです。ワークショップや交流会もあるため、動きやすい服装をおすすめします。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q8</span>スマホの充電・Wi-Fiは使えますか？</summary>
+        <div class="faq-a">たま未来メッセの無料Wi-Fiがご利用いただけます。充電コンセントは数に限りがあるため、モバイルバッテリー持参をおすすめします。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q9</span>写真・動画撮影はOKですか？</summary>
+        <div class="faq-a">はい、原則OKです。SNS投稿も歓迎です。<br>ハッシュタグ <strong style="color:var(--orange);">#NEXYSUMMIT2026</strong> でぜひ！<br>※ 一部撮影NGの登壇者・セッションがある場合は、当日会場でご案内します。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q10</span>荷物はどこに置けますか？</summary>
+        <div class="faq-a">クロークをご用意する予定です（無料）。貴重品はご自身で管理をお願いします。大型のスーツケース等は預けられない場合があります。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q11</span>保護者や大人も参加できますか？</summary>
+        <div class="faq-a">保護者の同伴・見学は可能です。イベント自体は高校生・大学生を主対象としているため、セッションによっては学生優先のご案内をさせていただく場合があります。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q12</span>登壇者や他の参加者と話せますか？</summary>
+        <div class="faq-a">各セッション後、常設エリアや交流会（11:30・14:30・15:30）で登壇者・参加者と話す機会があります。積極的に話しかけてください。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q13</span>スタンプラリーとは何ですか？</summary>
+        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示・交流会でも1枚ずつゲット可能。<strong style="color:var(--orange);">シール5枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q14</span>プレゼン大会は誰でも観覧できますか？</summary>
+        <div class="faq-a">はい、D会場メインステージで開催。誰でも自由に観覧できます。全国から選抜された高校生6組が10分ずつピッチします。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q15</span>忘れ物・落とし物をしたら？</summary>
+        <div class="faq-a">総合受付までお声がけください。当日中に見つからなかった場合は、Instagram DM <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--orange);font-weight:900;">@nexy.hub</a> までご連絡ください。</div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-badge">Q16</span>アフターパーティーは参加できますか？</summary>
+        <div class="faq-a">16:30〜18:30のアフターパーティーは登壇者・運営スタッフのみが対象です。参加者の皆さんはサミット終了後（16:20）にお疲れさまでした！</div>
+      </details>
+    </div>
+
+    <div class="faq-contact">
+      <div class="faq-contact-title">その他のご質問は</div>
+      <div class="faq-contact-body">
+        Instagram DM <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener">@nexy.hub</a> までお気軽にどうぞ。<br>
+        当日会場では総合受付でも対応しています。
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ Footer ═══ -->
 <footer class="footer">
-  <div style="font-family:'Manrope',sans-serif;font-weight:900;font-size:1rem;color:#fff;margin-bottom:6px;">NEXY SUMMIT 2026 ／ 当日ガイド</div>
+  <div style="font-family:'Manrope',sans-serif;font-weight:900;font-size:1rem;color:#fff;margin-bottom:6px;">NEXY SUMMIT 2026 ／ 当日パンフレット</div>
   <div>2026年8月6日（木）10:00-16:20 ／ 東京たま未来メッセ</div>
   <div style="margin-top:14px;">
     <a href="summit.html">サミット詳細</a>
