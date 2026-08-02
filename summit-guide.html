@@ -165,7 +165,8 @@ a { color: inherit; text-decoration: none; }
   transition: background .2s;
 }
 .tt-item:first-child { border-top: none; }
-.tt-item.is-link { color: inherit; text-decoration: none; }
+.tt-item.is-link { color: inherit; text-decoration: none; width: 100%; text-align: left; font: inherit; background: transparent; border: none; }
+button.tt-item.is-link { display: block; }
 .tt-item.is-link:hover, .tt-item.is-link:active { background: var(--paper); }
 .tt-item.is-link::after {
   content: '›';
@@ -194,162 +195,200 @@ a { color: inherit; text-decoration: none; }
   .tt-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
 
-/* ─── VENUE MAP（フロアレイアウト詳細） ─── */
-.map-section-title {
-  font-family: 'Manrope', sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .28em;
-  color: var(--navy); margin-bottom: 10px; padding-left: 8px;
-  border-left: 3px solid var(--orange); text-transform: uppercase;
-}
-
-/* D会場マップ */
-.map-d {
-  background: linear-gradient(135deg, rgba(234,92,31,.06), rgba(234,92,31,.02));
-  border: 2px solid var(--orange); border-radius: 12px;
-  padding: 14px 12px; margin-bottom: 18px;
-  position: relative;
-}
-.map-d-inner {
-  display: grid; grid-template-columns: 60px 1fr 60px;
-  gap: 8px; align-items: stretch;
-}
-.map-d-stage {
-  background: linear-gradient(180deg, var(--orange), var(--orange-light));
-  color: #fff; font-weight: 900; font-size: .78rem;
-  padding: 12px 4px; border-radius: 6px;
-  writing-mode: vertical-rl; text-orientation: upright;
-  text-align: center; letter-spacing: .1em;
-  display: flex; align-items: center; justify-content: center;
-  min-height: 320px;
-}
-.map-d-seats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 4px; padding: 6px;
-  background: rgba(255,255,255,.6); border-radius: 6px;
-}
-.map-d-seat-block {
-  background: var(--orange);
-  border-radius: 2px;
-  aspect-ratio: 1/2;
-  min-height: 34px;
-}
-.map-d-right {
-  display: flex; flex-direction: column; gap: 8px;
-  justify-content: center; align-items: center;
-}
-.map-d-light {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: radial-gradient(circle, var(--yellow), rgba(255,201,62,.4));
-  font-size: .5rem; font-weight: 900; color: var(--navy);
-  display: flex; align-items: center; justify-content: center;
-  border: 1px dashed var(--navy);
-}
-.map-d-num {
-  position: absolute; bottom: 10px; right: 12px;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--orange); color: #fff;
-  font-family: 'Manrope', sans-serif; font-weight: 900; font-size: .96rem;
-  display: flex; align-items: center; justify-content: center;
-  border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-
-/* C会場マップ */
-.map-c {
-  background: linear-gradient(135deg, rgba(20,191,174,.06), rgba(20,191,174,.02));
-  border: 2px solid var(--teal); border-radius: 12px;
-  padding: 14px 12px; margin-bottom: 18px;
-  position: relative;
-}
-.map-c-booth-row {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
-  margin-bottom: 6px;
-}
-.map-c-booth {
-  background: #fff; border: 1px dashed var(--teal);
-  padding: 8px 4px; text-align: center;
-  font-size: .56rem; font-weight: 900; color: var(--navy);
-  border-radius: 4px; min-height: 48px;
-  display: flex; align-items: center; justify-content: center;
-  line-height: 1.2;
-}
-.map-c-hicounter-row {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
-  margin: 8px 4px;
-}
-.map-c-hicounter {
-  background: rgba(20,191,174,.15); border: 1px solid var(--teal);
-  min-height: 20px; border-radius: 2px;
-}
-.map-c-panel {
-  height: 4px; background: var(--teal-light); margin: 8px 0; border-radius: 2px;
-}
-.map-c-portal-row {
-  display: grid; grid-template-columns: 1fr 200px 40px; gap: 6px;
-  margin-top: 8px; align-items: center;
-}
-.map-c-portal {
-  background: linear-gradient(180deg, var(--teal), var(--teal-dark));
-  color: #fff; font-weight: 900; font-size: .68rem;
-  padding: 8px 4px; text-align: center; border-radius: 4px;
-  letter-spacing: .04em;
-}
-.map-c-mc {
-  background: rgba(20,191,174,.15); border: 1px dashed var(--teal);
-  padding: 6px 2px; text-align: center;
-  font-size: .5rem; font-weight: 800; color: var(--navy);
-  border-radius: 2px;
-}
-.map-c-seat-block {
-  background: var(--teal);
-  border-radius: 2px; min-height: 12px;
-}
-.map-c-seats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 3px; padding: 6px 4px;
-  background: rgba(255,255,255,.4); border-radius: 4px;
-  margin-top: 6px;
-}
-.map-c-num {
-  position: absolute; top: 10px; right: 12px;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--teal); color: #fff;
-  font-family: 'Manrope', sans-serif; font-weight: 900; font-size: .96rem;
-  display: flex; align-items: center; justify-content: center;
-  border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-
-/* サイドカード */
-.venue-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 500px) { .venue-cards { grid-template-columns: 1fr; } }
-.venue-card {
-  background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
-  padding: 14px 16px;
-}
-.venue-card-title {
-  font-family: 'Manrope', sans-serif; font-size: .62rem; font-weight: 800; letter-spacing: .24em;
-  color: var(--navy); margin-bottom: 8px; text-transform: uppercase;
-  padding-bottom: 6px; border-bottom: 2px solid var(--orange);
-}
-.venue-card-body {
-  font-size: .74rem; color: var(--text2); line-height: 1.75;
-}
-.venue-card-stamp {
-  margin-top: 8px; padding: 6px 10px; background: var(--paper-warm);
-  border-left: 3px solid var(--orange);
-  font-size: .68rem; font-weight: 700; color: var(--navy);
-}
+/* ─── VENUE MAP（カラフルゾーン版） ─── */
 .venue-legend-txt {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-  margin: 16px 0 22px; padding: 12px 14px;
-  background: var(--paper); border-radius: 8px;
-  font-size: .72rem; font-weight: 700; color: var(--navy);
+  margin: 0 0 22px; padding: 12px 14px;
+  background: var(--paper); border-radius: 10px;
+  font-size: .78rem; font-weight: 800; color: var(--navy);
 }
-.venue-legend-txt .num {
-  display: inline-flex; align-items: center; gap: 6px;
-}
+.venue-legend-txt .num { display: inline-flex; align-items: center; gap: 6px; }
 .venue-legend-txt .num span:first-child {
-  width: 22px; height: 22px; border-radius: 50%;
-  color: #fff; font-family: 'Manrope', sans-serif; font-size: .68rem; font-weight: 900;
+  width: 26px; height: 26px; border-radius: 50%;
+  color: #fff; font-family: 'Manrope', sans-serif; font-size: .78rem; font-weight: 900;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.map-container {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 20px;
+}
+.map-container-full {
+  grid-column: 1 / -1;
+}
+.map-zone {
+  position: relative; border-radius: 14px; overflow: hidden;
+  padding: 20px 16px; min-height: 240px;
+  animation: mapPulse 4s ease-in-out infinite;
+}
+.map-zone-d {
+  background: linear-gradient(135deg, rgba(234,92,31,.18) 0%, rgba(234,92,31,.05) 100%);
+  border: 2px solid var(--orange);
+}
+.map-zone-c {
+  background: linear-gradient(135deg, rgba(20,191,174,.18) 0%, rgba(20,191,174,.05) 100%);
+  border: 2px solid var(--teal);
+  animation-delay: 1s;
+}
+.map-zone-b {
+  background: linear-gradient(135deg, rgba(124,58,237,.18) 0%, rgba(124,58,237,.05) 100%);
+  border: 2px solid var(--purple);
+  animation-delay: 2s;
+}
+@keyframes mapPulse {
+  0%,100% { box-shadow: 0 4px 12px rgba(0,0,0,.06); }
+  50% { box-shadow: 0 8px 24px rgba(0,0,0,.14); }
+}
+.map-zone-num {
+  position: absolute; bottom: 12px; right: 12px;
+  width: 44px; height: 44px; border-radius: 50%;
+  color: #fff; font-family: 'Manrope', sans-serif; font-weight: 900; font-size: 1.24rem;
+  display: flex; align-items: center; justify-content: center;
+  border: 3px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.24);
+  z-index: 3;
+  animation: numBounce 2s ease-in-out infinite;
+}
+.map-zone-d .map-zone-num { background: var(--orange); }
+.map-zone-c .map-zone-num { background: var(--teal); }
+.map-zone-b .map-zone-num { background: var(--purple); }
+@keyframes numBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.map-zone-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.02rem; font-weight: 900; color: var(--navy);
+  margin-bottom: 4px; letter-spacing: -.01em;
+}
+.map-zone-sub {
+  font-size: .68rem; color: var(--text2); font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* D会場：ステージ左+椅子群 */
+.map-d-layout {
+  display: grid; grid-template-columns: 42px 1fr; gap: 8px;
+  height: 180px;
+}
+.map-d-stage-visual {
+  background: linear-gradient(180deg, var(--orange), var(--orange-light));
+  color: #fff; font-weight: 900; font-size: .68rem;
+  writing-mode: vertical-rl; text-orientation: upright;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  letter-spacing: .1em;
+  box-shadow: 0 4px 12px rgba(234,92,31,.32);
+}
+.map-d-seats-visual {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
+  background: rgba(255,255,255,.4); border-radius: 6px;
+  padding: 6px;
+}
+.map-d-seat {
+  background: var(--orange);
+  border-radius: 2px; opacity: .55;
+  animation: seatFade 3s ease-in-out infinite;
+}
+.map-d-seat:nth-child(3n) { animation-delay: .5s; }
+.map-d-seat:nth-child(5n) { animation-delay: 1s; }
+@keyframes seatFade {
+  0%,100% { opacity: .55; }
+  50% { opacity: .9; }
+}
+
+/* C会場：ステージ下+椅子群 */
+.map-c-layout {
+  display: flex; flex-direction: column; gap: 6px; height: 180px;
+}
+.map-c-seats-visual {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 3px; padding: 6px;
+  background: rgba(255,255,255,.4); border-radius: 6px;
+  flex: 1;
+}
+.map-c-seat {
+  background: var(--teal);
+  border-radius: 2px; opacity: .55;
+  animation: seatFade 3s ease-in-out infinite;
+}
+.map-c-seat:nth-child(4n) { animation-delay: .3s; }
+.map-c-seat:nth-child(7n) { animation-delay: .8s; }
+.map-c-arrow {
+  text-align: center; color: var(--teal); font-size: 1rem;
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+@keyframes arrowBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+.map-c-stage-visual {
+  background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+  color: #fff; font-weight: 900; font-size: .74rem;
+  padding: 10px 12px; text-align: center; border-radius: 6px;
+  letter-spacing: .04em;
+  box-shadow: 0 4px 12px rgba(20,191,174,.32);
+}
+
+/* 常設ブース */
+.map-b-layout { display: flex; flex-direction: column; gap: 8px; }
+.map-b-story {
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  color: #fff; text-align: center; padding: 10px;
+  font-size: .78rem; font-weight: 900; border-radius: 6px;
+  letter-spacing: .04em;
+  box-shadow: 0 4px 12px rgba(124,58,237,.28);
+}
+.map-b-booth {
+  background: rgba(124,58,237,.15); color: var(--purple);
+  padding: 10px; text-align: center; font-size: .74rem; font-weight: 900;
+  border-radius: 6px; border: 1.5px solid var(--purple);
+}
+.map-b-boxes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.map-b-box {
+  background: rgba(124,58,237,.2); border-radius: 4px;
+  min-height: 24px;
+  animation: boxPulse 2.4s ease-in-out infinite;
+}
+.map-b-box:nth-child(2n) { animation-delay: .3s; }
+.map-b-box:nth-child(3n) { animation-delay: .6s; }
+@keyframes boxPulse {
+  0%,100% { opacity: .55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* 説明カード（マップ横） */
+.venue-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+@media (min-width: 640px) { .venue-cards { grid-template-columns: repeat(4,1fr); } }
+.venue-card {
+  background: #fff; border-radius: 12px;
+  padding: 14px 12px; border: 2px solid transparent;
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+}
+.venue-card:nth-child(1) { border-color: var(--orange); background: linear-gradient(135deg, #fff, rgba(234,92,31,.04)); }
+.venue-card:nth-child(2) { border-color: var(--teal); background: linear-gradient(135deg, #fff, rgba(20,191,174,.04)); }
+.venue-card:nth-child(3) { border-color: var(--purple); background: linear-gradient(135deg, #fff, rgba(124,58,237,.04)); }
+.venue-card:nth-child(4) { border-color: var(--pink); background: linear-gradient(135deg, #fff, rgba(255,62,127,.04)); }
+.venue-card:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 12px 24px rgba(16,35,63,.12); }
+.venue-card-title {
+  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 800; letter-spacing: .22em;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+.venue-card:nth-child(1) .venue-card-title { color: var(--orange); }
+.venue-card:nth-child(2) .venue-card-title { color: var(--teal); }
+.venue-card:nth-child(3) .venue-card-title { color: var(--purple); }
+.venue-card:nth-child(4) .venue-card-title { color: var(--pink); }
+.venue-card-name {
+  font-size: .88rem; font-weight: 900; color: var(--navy); margin-bottom: 6px;
+}
+.venue-card-body {
+  font-size: .7rem; color: var(--text2); line-height: 1.7;
+}
+.venue-card-stamp {
+  margin-top: 8px; padding: 6px 8px; background: var(--paper-warm);
+  border-radius: 4px;
+  font-size: .64rem; font-weight: 700; color: var(--navy);
 }
 
 /* ─── SPEAKERS ─── */
@@ -446,6 +485,141 @@ a { color: inherit; text-decoration: none; }
 }
 .sponsor-card img { max-width: 100%; max-height: 60px; object-fit: contain; }
 
+/* ─── UNIVERSAL MODAL (session / speaker detail) ─── */
+.gm-modal {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(16,35,63,.7); backdrop-filter: blur(8px);
+  display: none; align-items: flex-end; justify-content: center;
+  padding: 0;
+}
+.gm-modal.is-open {
+  display: flex; animation: gmFadeIn .3s ease;
+}
+@keyframes gmFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (min-width: 720px) {
+  .gm-modal { align-items: center; padding: 20px; }
+}
+.gm-modal-body {
+  background: #fff; width: 100%; max-width: 640px;
+  max-height: 90vh; overflow-y: auto;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  animation: gmSlideUp .38s cubic-bezier(.22,.61,.36,1);
+}
+@media (min-width: 720px) {
+  .gm-modal-body {
+    border-radius: 20px;
+    animation: gmPop .35s cubic-bezier(.34,1.36,.64,1);
+  }
+}
+@keyframes gmSlideUp { from { transform: translateY(30%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes gmPop { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.gm-modal-close {
+  position: absolute; top: 12px; right: 12px; z-index: 5;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,.95); border: none; cursor: pointer;
+  font-size: 1.4rem; font-weight: 900; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.14);
+  transition: transform .25s, background .25s, color .25s;
+}
+.gm-modal-close:hover { background: var(--orange); color: #fff; transform: rotate(90deg); }
+.gm-modal-hero {
+  padding: 30px 24px 20px;
+  background: linear-gradient(135deg, var(--paper) 0%, #fff 100%);
+  border-radius: 20px 20px 0 0;
+  border-bottom: 3px solid var(--orange);
+}
+.gm-modal-hero.teal { border-bottom-color: var(--teal); background: linear-gradient(135deg, rgba(20,191,174,.06), #fff); }
+.gm-modal-hero.orange { border-bottom-color: var(--orange); background: linear-gradient(135deg, rgba(234,92,31,.06), #fff); }
+.gm-modal-hero.pink { border-bottom-color: var(--pink); background: linear-gradient(135deg, rgba(255,62,127,.06), #fff); }
+.gm-modal-tag {
+  display: inline-block;
+  font-family: 'Manrope', sans-serif; font-size: .58rem; font-weight: 900; letter-spacing: .22em;
+  padding: 4px 10px; border-radius: 4px;
+  color: #fff; background: var(--navy); margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.gm-modal-title {
+  font-size: 1.34rem; font-weight: 900; color: var(--navy);
+  line-height: 1.5; letter-spacing: -.01em;
+}
+.gm-modal-subtitle {
+  font-size: .88rem; font-weight: 700; color: var(--text2);
+  margin-top: 6px; line-height: 1.75;
+}
+.gm-modal-content { padding: 24px; }
+.gm-modal-lead {
+  font-size: .92rem; font-weight: 500; color: var(--text);
+  line-height: 1.95; margin-bottom: 20px;
+}
+.gm-modal-block { margin-bottom: 18px; }
+.gm-modal-block-label {
+  font-family: 'Manrope', sans-serif; font-size: .6rem; font-weight: 900; letter-spacing: .2em;
+  color: var(--orange); margin-bottom: 8px; text-transform: uppercase;
+}
+.gm-modal-block ul { padding-left: 18px; }
+.gm-modal-block li {
+  font-size: .82rem; line-height: 1.85; color: var(--text); margin-bottom: 4px;
+}
+.gm-modal-spk {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px; background: var(--paper); border-radius: 10px;
+  margin-bottom: 8px;
+}
+.gm-modal-spk-photo {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #eee center 20%/cover no-repeat;
+  border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  flex-shrink: 0;
+}
+.gm-modal-spk-name { font-size: .88rem; font-weight: 900; color: var(--navy); }
+.gm-modal-spk-title { font-size: .68rem; color: var(--text2); font-weight: 700; margin-top: 2px; }
+body.gm-open { overflow: hidden; }
+
+/* Card click affordance */
+.tt-item.is-link, .spk-card.is-clickable, .pitch-card.is-clickable {
+  cursor: pointer;
+}
+.spk-card.is-clickable, .pitch-card.is-clickable {
+  transition: transform .3s, box-shadow .3s;
+}
+.spk-card.is-clickable:hover, .pitch-card.is-clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(16,35,63,.14);
+}
+
+/* Sparkle decorations */
+.sparkle-fx {
+  position: absolute; width: 12px; height: 12px; pointer-events: none;
+  animation: sparkleFloat 5s ease-in-out infinite, sparkleSpin 8s linear infinite;
+}
+@keyframes sparkleFloat {
+  0%,100% { transform: translateY(0) scale(1); opacity: .7; }
+  50% { transform: translateY(-14px) scale(1.2); opacity: 1; }
+}
+@keyframes sparkleSpin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hero enhancement — floating blobs */
+.hero-blob {
+  position: absolute; border-radius: 50%; filter: blur(48px);
+  pointer-events: none; z-index: 0; opacity: .35;
+  animation: heroBlob 12s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-blob-1 { width: 240px; height: 240px; background: var(--teal-light); top: -40px; left: -60px; animation-delay: 0s; }
+.hero-blob-2 { width: 200px; height: 200px; background: var(--orange-light); top: 40px; right: -50px; animation-delay: -4s; }
+.hero-blob-3 { width: 160px; height: 160px; background: var(--pink); bottom: -20px; left: 40%; animation-delay: -8s; opacity: .25; }
+@keyframes heroBlob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(24px,-18px) scale(1.1); }
+  66% { transform: translate(-16px,12px) scale(.94); }
+}
+.hero > * { position: relative; z-index: 1; }
+
 /* Footer */
 .footer {
   padding: 32px 20px; background: var(--navy); color: rgba(255,255,255,.72);
@@ -505,6 +679,9 @@ a { color: inherit; text-decoration: none; }
 
 <!-- ═══ Hero ═══ -->
 <header class="hero" id="top">
+  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
   <span class="hero-eyebrow">当日ガイド</span>
   <h1 class="hero-title">NEXY SUMMIT 2026<br><em>当日の全プログラム</em></h1>
   <p class="hero-sub">1日の流れ・会場マップ・登壇者・プレゼン大会出場者・ブース情報を、この1ページに。<br>迷ったら、まずここを開いてください。</p>
@@ -540,27 +717,24 @@ a { color: inherit; text-decoration: none; }
       <div class="tt-slot">
         <div class="tt-slot-time">10:30 – 11:20</div>
         <div class="tt-slot-body">
-          <a href="summit-sessions.html#d-1" class="tt-item is-link">
+          <button type="button" data-open-session="d-1" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">あの人、なんで人気なんだろう？</div>
-            <div class="tt-desc">応援される人が実はやっていること。「熱量と巻き込みの構造」の話</div>
-          </a>
-          <a href="summit-sessions.html#c-1" class="tt-item is-link">
+            <div class="tt-desc">応援される人が実はやっていること。「熱量と巻き込みの構造」の話</div></button>
+          <button type="button" data-open-session="c-1" class="tt-item is-link">
             <span class="tt-venue-label c">C会場</span>
             <div class="tt-title">モヤモヤを、言葉にしてみる110分</div>
-            <div class="tt-desc">社会・親・環境からの"ミュート"を対話で外していく時間<small>Sponsored by 株式会社スイミー</small></div>
-          </a>
+            <div class="tt-desc">社会・親・環境からの"ミュート"を対話で外していく時間<small>Sponsored by 株式会社スイミー</small></div></button>
         </div>
       </div>
 
       <div class="tt-slot">
         <div class="tt-slot-time">11:30 – 12:20</div>
         <div class="tt-slot-body">
-          <a href="summit-sessions.html#d-2" class="tt-item is-link">
+          <button type="button" data-open-session="d-2" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">学校の勉強、大人になっても使うの？</div>
-            <div class="tt-desc">学校では教えてくれない"学び"から、自分らしい未来を考える50分</div>
-          </a>
+            <div class="tt-desc">学校では教えてくれない"学び"から、自分らしい未来を考える50分</div></button>
           <div class="tt-item">
             <span class="tt-venue-label c">C会場</span>
             <div class="tt-title">交流会01「キックオフ交流会」</div>
@@ -572,64 +746,56 @@ a { color: inherit; text-decoration: none; }
       <div class="tt-slot is-main">
         <div class="tt-slot-time">12:30 – 14:30 <span class="tt-slot-time-tag">MAIN STAGE</span></div>
         <div class="tt-slot-body">
-          <a href="summit-presentation.html" class="tt-item is-link">
+          <button type="button" data-open-session="pitch" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">プレゼン大会「"やりたい"を、ぶつけろ」</div>
-            <div class="tt-desc">全国6組の高校生ピッチバトル（休憩込み120分）<small>プレゼン大会LPで詳細</small></div>
-          </a>
-          <a href="summit-sessions.html#c-2" class="tt-item is-link">
+            <div class="tt-desc">全国6組の高校生ピッチバトル（休憩込み120分）<small>プレゼン大会LPで詳細</small></div></button>
+          <button type="button" data-open-session="c-2" class="tt-item is-link">
             <span class="tt-venue-label c">C会場 12:30-13:20</span>
             <div class="tt-title">"やりたい"に向かって進んできた、セガ開発者の話</div>
-            <div class="tt-desc">プリクラシリーズに携わってきた女性開発者が語るキャリア</div>
-          </a>
-          <a href="summit-sessions.html#c-3" class="tt-item is-link">
+            <div class="tt-desc">プリクラシリーズに携わってきた女性開発者が語るキャリア</div></button>
+          <button type="button" data-open-session="c-3" class="tt-item is-link">
             <span class="tt-venue-label c">C会場 13:30-14:20</span>
             <div class="tt-title">Coming Soon</div>
-            <div class="tt-desc">セッション調整中。決まり次第こちらでお知らせします。</div>
-          </a>
+            <div class="tt-desc">セッション調整中。決まり次第こちらでお知らせします。</div></button>
         </div>
       </div>
 
       <div class="tt-slot is-live">
         <div class="tt-slot-time">13:40 – 13:46 <span class="tt-slot-time-tag">SPECIAL LIVE</span></div>
         <div class="tt-slot-body">
-          <a href="summit.html#live-performance" class="tt-item is-link">
+          <button type="button" data-open-session="live" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">特別演奏「近未来」／プレゼン大会 審査タイム中</div>
-            <div class="tt-desc">YOYOKA feat. Futures Band「近未来」を、shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が生歌＋MV投影で披露<small>特別演奏企画を見る</small></div>
-          </a>
+            <div class="tt-desc">YOYOKA feat. Futures Band「近未来」を、shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が生歌＋MV投影で披露<small>特別演奏企画を見る</small></div></button>
         </div>
       </div>
 
       <div class="tt-slot">
         <div class="tt-slot-time">14:30 – 15:20</div>
         <div class="tt-slot-body">
-          <a href="summit-sessions.html#d-4" class="tt-item is-link">
+          <button type="button" data-open-session="d-4" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">その課外活動、総合型選抜のためだけになってない？</div>
-            <div class="tt-desc">「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方</div>
-          </a>
-          <a href="summit-sessions.html#c-4" class="tt-item is-link">
+            <div class="tt-desc">「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方</div></button>
+          <button type="button" data-open-session="c-4" class="tt-item is-link">
             <span class="tt-venue-label c">C会場</span>
             <div class="tt-title">AIが全部やる時代、人間って何すればいい？</div>
-            <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る<small>交流会02「やりたいを実現化するワークショップ」も同時開催</small></div>
-          </a>
+            <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る<small>交流会02「やりたいを実現化するワークショップ」も同時開催</small></div></button>
         </div>
       </div>
 
       <div class="tt-slot">
         <div class="tt-slot-time">15:30 – 16:20</div>
         <div class="tt-slot-body">
-          <a href="summit-sessions.html#d-5" class="tt-item is-link">
+          <button type="button" data-open-session="d-5" class="tt-item is-link">
             <span class="tt-venue-label d">D会場</span>
             <div class="tt-title">インターン・留学・起業、何のためにやる？</div>
-            <div class="tt-desc">挑戦の選択肢の本質と、後悔しない選び方を考えるパネル</div>
-          </a>
-          <a href="summit-sessions.html#c-5" class="tt-item is-link">
+            <div class="tt-desc">挑戦の選択肢の本質と、後悔しない選び方を考えるパネル</div></button>
+          <button type="button" data-open-session="c-5" class="tt-item is-link">
             <span class="tt-venue-label c">C会場</span>
             <div class="tt-title">君の"ミュートされた やりたい"を、全国へ</div>
-            <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社／交流会03も同時開催</small></div>
-          </a>
+            <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社／交流会03も同時開催</small></div></button>
         </div>
       </div>
 
@@ -647,11 +813,10 @@ a { color: inherit; text-decoration: none; }
       <div class="tt-slot" style="border-left:4px solid #333;">
         <div class="tt-slot-time" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a);">終日オープン <span class="tt-slot-time-tag">BOOTH</span></div>
         <div class="tt-slot-body">
-          <a href="summit-booth.html" class="tt-item is-link">
+          <button type="button" data-open-session="booth-info" class="tt-item is-link">
             <span class="tt-venue-label b">常設エリア</span>
             <div class="tt-title">ブース＋コミュニティ</div>
-            <div class="tt-desc">全8団体・企業のブース＋ワークショップ＋交流エリアが10:30〜16:20の間、常時オープン。自由に出入りできます。<small>ブース一覧を見る</small></div>
-          </a>
+            <div class="tt-desc">全8団体・企業のブース＋ワークショップ＋交流エリアが10:30〜16:20の間、常時オープン。自由に出入りできます。<small>ブース一覧を見る</small></div></button>
         </div>
       </div>
 
@@ -673,162 +838,82 @@ a { color: inherit; text-decoration: none; }
       <span class="num"><span style="background:var(--orange);">3</span>D会場</span>
       <span class="num"><span style="background:var(--teal);">1</span>C会場</span>
       <span class="num"><span style="background:var(--purple);">2</span>常設ブース</span>
-      <span class="num"><span style="background:#6a8ec8;">🎁</span>スタンプラリー</span>
+      <span class="num"><span style="background:var(--pink);">🎁</span>スタンプラリー</span>
     </div>
 
-    <!-- ═══ D会場マップ ═══ -->
-    <div class="map-section-title">D会場（プレゼン大会・登壇セッション）</div>
-    <div class="map-d">
-      <span class="map-d-num">3</span>
-      <div class="map-d-inner">
-        <div class="map-d-stage">D会場ステージ</div>
-        <div class="map-d-seats" aria-label="椅子ブロック（椅子×5が32ブロック）">
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-          <div class="map-d-seat-block"></div>
-        </div>
-        <div class="map-d-right">
-          <div class="map-d-light">照明</div>
-          <div class="map-d-light">照明</div>
-          <div class="map-d-light">照明</div>
+    <div class="map-container">
+      <!-- D会場ゾーン -->
+      <div class="map-zone map-zone-d">
+        <span class="map-zone-num">3</span>
+        <div class="map-zone-title">D会場</div>
+        <div class="map-zone-sub">プレゼン大会・登壇セッション（1,000人）</div>
+        <div class="map-d-layout">
+          <div class="map-d-stage-visual">D会場ステージ</div>
+          <div class="map-d-seats-visual" aria-label="椅子ブロック × 32">
+            <div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div><div class="map-d-seat"></div>
+          </div>
         </div>
       </div>
-      <div style="font-size:.66rem;font-weight:700;color:var(--text2);text-align:center;margin-top:10px;">左：D会場ステージ ／ 中央：椅子×5×32ブロック（避難動線あり）／ 右：ポータルステージ＋照明</div>
+
+      <!-- C会場ゾーン -->
+      <div class="map-zone map-zone-c">
+        <span class="map-zone-num">1</span>
+        <div class="map-zone-title">C会場</div>
+        <div class="map-zone-sub">登壇セッション・ワークショップ（500人）</div>
+        <div class="map-c-layout">
+          <div class="map-c-seats-visual" aria-label="C会場 椅子ブロック × 24">
+            <div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div><div class="map-c-seat"></div>
+          </div>
+          <div class="map-c-arrow">▼</div>
+          <div class="map-c-stage-visual">C会場ステージ</div>
+        </div>
+      </div>
+
+      <!-- 常設ブース ゾーン（全幅） -->
+      <div class="map-zone map-zone-b map-container-full">
+        <span class="map-zone-num">2</span>
+        <div class="map-zone-title">常設ブース＋ストーリー展示＋交流ブース</div>
+        <div class="map-zone-sub">企業ブース／ワークショップ／交流会エリア（終日オープン）</div>
+        <div class="map-b-layout">
+          <div class="map-b-story">ストーリー展示</div>
+          <div class="map-b-booth">交流ブース</div>
+          <div class="map-b-boxes">
+            <div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div><div class="map-b-box"></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ═══ C会場マップ ═══ -->
-    <div class="map-section-title" style="border-left-color:var(--teal);">C会場（登壇セッション・常設ブース）</div>
-    <div class="map-c">
-      <span class="map-c-num">1</span>
-
-      <!-- 上段ブース -->
-      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin-bottom:6px;text-align:center;">上段：ブースエリア</div>
-      <div class="map-c-booth-row">
-        <div class="map-c-booth">NEXY<br>ブース</div>
-        <div class="map-c-booth">AIESEC<br>ブース</div>
-        <div class="map-c-booth">EtoE<br>ブース</div>
-        <div class="map-c-booth">孫正義育英財団<br>ブース</div>
-      </div>
-      <div class="map-c-booth-row">
-        <div class="map-c-booth">CHEERS<br>ブース</div>
-        <div class="map-c-booth">Stitch Lab<br>ブース</div>
-        <div class="map-c-booth">折り鶴平和活動<br>ブース</div>
-        <div class="map-c-booth">KING<br>ブース</div>
-      </div>
-
-      <!-- ハイカウンター -->
-      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin:12px 0 4px;text-align:center;">中段：ハイカウンター（交流）</div>
-      <div class="map-c-hicounter-row">
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-      </div>
-      <div class="map-c-hicounter-row">
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-        <div class="map-c-hicounter"></div>
-      </div>
-
-      <!-- 展示パネル -->
-      <div class="map-c-panel" aria-label="展示パネル×12"></div>
-      <div style="font-size:.52rem;text-align:center;color:var(--text2);font-weight:700;">↑ 展示パネル×12（ストーリー展示）</div>
-
-      <!-- 下段ステージ + 客席 -->
-      <div style="font-family:'Manrope',sans-serif;font-size:.54rem;font-weight:800;letter-spacing:.18em;color:var(--navy);margin:12px 0 4px;text-align:center;">下段：C会場ステージ＋客席</div>
-      <div class="map-c-portal-row">
-        <div style="font-size:.52rem;color:var(--text2);text-align:right;font-weight:700;">階段</div>
-        <div class="map-c-portal">ポータルステージ（照明×3）</div>
-        <div class="map-c-mc">司会台</div>
-      </div>
-      <div class="map-c-seats" aria-label="椅子ブロック（椅子×5が28ブロック）">
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-        <div class="map-c-seat-block"></div>
-      </div>
-      <div style="font-size:.66rem;font-weight:700;color:var(--text2);text-align:center;margin-top:10px;">上：ブース8つ＋ハイカウンター＋展示パネル ／ 下：ポータルステージ＋椅子×5×28ブロック</div>
-    </div>
-
-    <!-- ═══ サイドカード ═══ -->
+    <!-- 説明カード（マップ下） -->
     <div class="venue-cards">
       <div class="venue-card">
-        <div class="venue-card-title">企業ブース</div>
+        <div class="venue-card-title">Booth</div>
+        <div class="venue-card-name">企業ブース</div>
         <div class="venue-card-body">企業の取り組みや事業、働く人の考え方に触れられるブースエリア。</div>
         <div class="venue-card-stamp">🎁 ブースを1つ回るとシール1枚</div>
       </div>
       <div class="venue-card">
-        <div class="venue-card-title">ワークショップ</div>
-        <div class="venue-card-body">参加者自身が手を動かしながら「やりたい」を言葉にし、形にする参加型コンテンツ。</div>
+        <div class="venue-card-title">Workshop</div>
+        <div class="venue-card-name">ワークショップ</div>
+        <div class="venue-card-body">参加者自身が手を動かしながら「やりたい」を形にする参加型コンテンツ。</div>
       </div>
       <div class="venue-card">
-        <div class="venue-card-title">ストーリー展示</div>
+        <div class="venue-card-title">Story</div>
+        <div class="venue-card-name">ストーリー展示</div>
         <div class="venue-card-body">大人・学生登壇者の経歴、運営メンバーのプロフィールを見られる展示。</div>
-        <div class="venue-card-stamp">🎁 展示近くの感想記入でシール1枚</div>
+        <div class="venue-card-stamp">🎁 感想記入でシール1枚</div>
       </div>
       <div class="venue-card">
-        <div class="venue-card-title">交流会</div>
-        <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ高校生・普段出会えない参加者と話せる。</div>
-        <div class="venue-card-stamp">🎁 交流会に参加で1枚</div>
+        <div class="venue-card-title">Meet</div>
+        <div class="venue-card-name">交流会</div>
+        <div class="venue-card-body">テーマごとに交流できるスペース。同じ関心を持つ人と話せる。</div>
+        <div class="venue-card-stamp">🎁 参加で1枚</div>
       </div>
     </div>
-    <div class="venue-card-stamp" style="margin-top:14px;text-align:center;font-size:.78rem;padding:10px 14px;">🎁 <strong>スタンプ5枚</strong>でお菓子の掴み取り！コンテンツごとにシールゲットのチャンスあり</div>
+
+    <div class="venue-card-stamp" style="margin-top:14px;text-align:center;font-size:.86rem;padding:14px 18px;background:linear-gradient(135deg,var(--paper-warm),#fff);border:2px dashed var(--orange);border-radius:12px;">
+      🎁 <strong style="color:var(--orange);">スタンプ5枚</strong>でお菓子の掴み取り！コンテンツごとにシールゲットのチャンスあり
+    </div>
   </div>
 </section>
 
@@ -844,38 +929,38 @@ a { color: inherit; text-decoration: none; }
       <div>
         <div class="spk-group-head">ゲスト登壇者</div>
         <div class="spk-grid">
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg');background-position:center 18%;"></div><div class="spk-name">山本 敏行</div><div class="spk-title">Chatwork創業者</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg');"></div><div class="spk-name">ブランスクム 文葉</div><div class="spk-title">Fleurinary代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg');"></div><div class="spk-name">只石 昌幸</div><div class="spk-title">VALX CEO</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_hayashi.jpg');"></div><div class="spk-name">林 裕子</div><div class="spk-title">山口大学大学院 特命教授</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg');"></div><div class="spk-name">三輪 開人</div><div class="spk-title">e-Education 代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_sano.jpg');"></div><div class="spk-name">佐野 貴</div><div class="spk-title">Play Robotics 代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_hirano.jpg');"></div><div class="spk-name">平野 歩</div><div class="spk-title">SailStep 代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg');"></div><div class="spk-name">琴坂 将広</div><div class="spk-title">慶應SFC 教授</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_izawa.jpg');"></div><div class="spk-name">伊澤 祐太</div><div class="spk-title">スイミー株式会社 代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_uemura.jpg');"></div><div class="spk-name">植村 英明</div><div class="spk-title">CHEERS COO</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_watanabe.jpg');"></div><div class="spk-name">渡邊 渚</div><div class="spk-title">タレント</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg');"></div><div class="spk-name">清宮 俊久</div><div class="spk-title">セガサミーイノベーション 代表</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_miyanaka.jpg');"></div><div class="spk-name">宮中 沙羅</div><div class="spk-title">株式会社セガ 開発者</div></div>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_yamamoto"><div class="spk-photo" style="background-image:url('img/summit/speaker_yamamoto.jpg')"></div><div class="spk-name">山本 敏行</div><div class="spk-title">Chatwork創業者</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_branscombe"><div class="spk-photo" style="background-image:url('img/summit/speaker_branscombe.jpg')"></div><div class="spk-name">ブランスクム 文葉</div><div class="spk-title">Fleurinary代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tadaishi"><div class="spk-photo" style="background-image:url('img/summit/speaker_tadaishi.jpg')"></div><div class="spk-name">只石 昌幸</div><div class="spk-title">VALX CEO</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hayashi"><div class="spk-photo" style="background-image:url('img/summit/speaker_hayashi.jpg')"></div><div class="spk-name">林 裕子</div><div class="spk-title">山口大学大学院 特命教授</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="mentor_miwa"><div class="spk-photo" style="background-image:url('img/summit/mentor_miwa.jpg')"></div><div class="spk-name">三輪 開人</div><div class="spk-title">e-Education 代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sano"><div class="spk-photo" style="background-image:url('img/summit/speaker_sano.jpg')"></div><div class="spk-name">佐野 貴</div><div class="spk-title">Play Robotics 代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_hirano"><div class="spk-photo" style="background-image:url('img/summit/speaker_hirano.jpg')"></div><div class="spk-name">平野 歩</div><div class="spk-title">SailStep 代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kotosaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_kotosaka.jpg')"></div><div class="spk-name">琴坂 将広</div><div class="spk-title">慶應SFC 教授</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_izawa"><div class="spk-photo" style="background-image:url('img/summit/speaker_izawa.jpg')"></div><div class="spk-name">伊澤 祐太</div><div class="spk-title">スイミー株式会社 代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_uemura"><div class="spk-photo" style="background-image:url('img/summit/speaker_uemura.jpg')"></div><div class="spk-name">植村 英明</div><div class="spk-title">CHEERS COO</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_watanabe"><div class="spk-photo" style="background-image:url('img/summit/speaker_watanabe.jpg')"></div><div class="spk-name">渡邊 渚</div><div class="spk-title">タレント</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kiyomiya"><div class="spk-photo" style="background-image:url('img/summit/speaker_kiyomiya.jpg')"></div><div class="spk-name">清宮 俊久</div><div class="spk-title">セガサミーイノベーション 代表</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_miyanaka"><div class="spk-photo" style="background-image:url('img/summit/speaker_miyanaka.jpg')"></div><div class="spk-name">宮中 沙羅</div><div class="spk-title">株式会社セガ 開発者</div></button>
         </div>
       </div>
 
       <div>
         <div class="spk-group-head teal">学生登壇者</div>
         <div class="spk-grid">
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_tani.jpg');"></div><div class="spk-name">谷 昊埜</div><div class="spk-title">19歳／慶應SFC</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_ueda.jpg');"></div><div class="spk-name">植田 晴子</div><div class="spk-title">18歳／慶應SFC</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuno.jpg');"></div><div class="spk-name">久野 美恋彩</div><div class="spk-title">17歳／星の杜高校</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_masuda.jpg');"></div><div class="spk-name">増田 結桜</div><div class="spk-title">15歳／N高</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_ohama.jpg');"></div><div class="spk-name">大濱 裕輝</div><div class="spk-title">18歳／徳島文理高校</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_noritake.jpg');"></div><div class="spk-name">則竹 瑛斗</div><div class="spk-title">16歳／ゼロ高</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_takamatsu.jpg');"></div><div class="spk-name">髙松 優大</div><div class="spk-title">18歳／マンチェスター大進学予定</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg');"></div><div class="spk-name">桑子 友菜</div><div class="spk-title">17歳／N高</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div><div class="spk-name">野田 樹里</div><div class="spk-title">17歳／名城大附属高校</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_sakai.jpg');"></div><div class="spk-name">酒井 愛瑠</div><div class="spk-title">19歳／愛知県</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg');"></div><div class="spk-name">松長 侑南</div><div class="spk-title">17歳／渋幕高校</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_aburatani.jpg');"></div><div class="spk-name">油谷 駿杜</div><div class="spk-title">18歳／富山県</div></div>
-          <div class="spk-card"><div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg');"></div><div class="spk-name">竹内 翼</div><div class="spk-title">17歳／甲陽学院高校</div></div>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_tani"><div class="spk-photo" style="background-image:url('img/summit/speaker_tani.jpg')"></div><div class="spk-name">谷 昊埜</div><div class="spk-title">19歳／慶應SFC</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ueda"><div class="spk-photo" style="background-image:url('img/summit/speaker_ueda.jpg')"></div><div class="spk-name">植田 晴子</div><div class="spk-title">18歳／慶應SFC</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuno"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuno.jpg')"></div><div class="spk-name">久野 美恋彩</div><div class="spk-title">17歳／星の杜高校</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_masuda"><div class="spk-photo" style="background-image:url('img/summit/speaker_masuda.jpg')"></div><div class="spk-name">増田 結桜</div><div class="spk-title">15歳／N高</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_ohama"><div class="spk-photo" style="background-image:url('img/summit/speaker_ohama.jpg')"></div><div class="spk-name">大濱 裕輝</div><div class="spk-title">18歳／徳島文理高校</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noritake"><div class="spk-photo" style="background-image:url('img/summit/speaker_noritake.jpg')"></div><div class="spk-name">則竹 瑛斗</div><div class="spk-title">16歳／ゼロ高</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takamatsu"><div class="spk-photo" style="background-image:url('img/summit/speaker_takamatsu.jpg')"></div><div class="spk-name">髙松 優大</div><div class="spk-title">18歳／マンチェスター大進学予定</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_kuwako"><div class="spk-photo" style="background-image:url('img/summit/speaker_kuwako.jpg')"></div><div class="spk-name">桑子 友菜</div><div class="spk-title">17歳／N高</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_noda"><div class="spk-photo" style="background-image:url('img/summit/speaker_noda.jpg')"></div><div class="spk-name">野田 樹里</div><div class="spk-title">17歳／名城大附属高校</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_sakai"><div class="spk-photo" style="background-image:url('img/summit/speaker_sakai.jpg')"></div><div class="spk-name">酒井 愛瑠</div><div class="spk-title">19歳／愛知県</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_matsunaga"><div class="spk-photo" style="background-image:url('img/summit/speaker_matsunaga.jpg')"></div><div class="spk-name">松長 侑南</div><div class="spk-title">17歳／渋幕高校</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_aburatani"><div class="spk-photo" style="background-image:url('img/summit/speaker_aburatani.jpg')"></div><div class="spk-name">油谷 駿杜</div><div class="spk-title">18歳／富山県</div></button>
+          <button type="button" class="spk-card is-clickable" data-open-speaker="speaker_takeuchi"><div class="spk-photo" style="background-image:url('img/summit/speaker_takeuchi.jpg')"></div><div class="spk-name">竹内 翼</div><div class="spk-title">17歳／甲陽学院高校</div></button>
         </div>
       </div>
     </div>
@@ -895,37 +980,12 @@ a { color: inherit; text-decoration: none; }
     </p>
 
     <div class="pitch-grid">
-      <div class="pitch-card">
-        <div class="pitch-time">12:40 – 12:50 ／ PITCH 1</div>
-        <div class="pitch-photo" style="background-image:url('img/summit/pitch_sato.jpg');"></div>
-        <div class="pitch-name">佐藤 瞭真</div>
-        <div class="pitch-theme">「なぜ私たちは学ぶのか？」</div>
-      </div>
-      <div class="pitch-card">
-        <div class="pitch-time">12:50 – 13:00 ／ PITCH 2</div>
-        <div class="pitch-photo" style="background-image:url('img/summit/pitch_nakanishi.jpg');"></div>
-        <div class="pitch-name">中西 尭</div>
-        <div class="pitch-theme">若者が職人の「最初の一歩」を背負う。</div>
-      </div>
-      <div class="pitch-card pitch-team">
-        <div class="pitch-time">13:00 – 13:10 ／ PITCH 3 TEAM</div>
-        <div class="pitch-photo" style="background-image:url('img/summit/pitch_ellnowa_team.jpg');"></div>
-        <div class="pitch-name">松丸 夏歩 & 海野 仁那 & 中原 瑠夏</div>
-        <div class="pitch-theme">「あなただから輝ける、みんなだからできる」みんなの大運動会</div>
-      </div>
-      <div class="pitch-card">
-        <div class="pitch-time">13:10 – 13:20 ／ PITCH 4</div>
-        <div class="pitch-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div>
-        <div class="pitch-name">野田 樹里</div>
-        <div class="pitch-theme">一重に選択肢を｜JYUNIHITOE</div>
-      </div>
-      <div class="pitch-card">
-        <div class="pitch-time">13:20 – 13:30 ／ PITCH 5</div>
-        <div class="pitch-photo" style="background-image:url('img/summit/pitch_kanda.jpg');"></div>
-        <div class="pitch-name">神田 芙羽</div>
-        <div class="pitch-theme">雑草が世界を救う？！〜雑草の可能性〜</div>
-      </div>
-      <div class="pitch-card pitch-team">
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="sato"><div class="pitch-time">12:40 – 12:50 ／ PITCH 1</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_sato.jpg');"></div><div class="pitch-name">佐藤 瞭真</div><div class="pitch-theme">「なぜ私たちは学ぶのか？」</div></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="nakanishi"><div class="pitch-time">12:50 – 13:00 ／ PITCH 2</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_nakanishi.jpg');"></div><div class="pitch-name">中西 尭</div><div class="pitch-theme">若者が職人の「最初の一歩」を背負う。</div></button>
+      <button type="button" class="pitch-card pitch-team is-clickable" data-open-pitch="ellnowa"><div class="pitch-time">13:00 – 13:10 ／ PITCH 3 TEAM</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_ellnowa_team.jpg');"></div><div class="pitch-name">松丸 夏歩 & 海野 仁那 & 中原 瑠夏</div><div class="pitch-theme">「あなただから輝ける、みんなだからできる」みんなの大運動会</div></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="noda"><div class="pitch-time">13:10 – 13:20 ／ PITCH 4</div><div class="pitch-photo" style="background-image:url('img/summit/speaker_noda.jpg');"></div><div class="pitch-name">野田 樹里</div><div class="pitch-theme">一重に選択肢を｜JYUNIHITOE</div></button>
+      <button type="button" class="pitch-card is-clickable" data-open-pitch="kanda"><div class="pitch-time">13:20 – 13:30 ／ PITCH 5</div><div class="pitch-photo" style="background-image:url('img/summit/pitch_kanda.jpg');"></div><div class="pitch-name">神田 芙羽</div><div class="pitch-theme">雑草が世界を救う？！〜雑草の可能性〜</div></button>
+      <button type="button" class="pitch-card pitch-team is-clickable" data-open-pitch="blesc">
         <div class="pitch-time">13:30 – 13:40 ／ PITCH 6 TEAM</div>
         <div class="pitch-photo pitch-photo-team">
           <div style="background-image:url('img/summit/pitch_wang.jpg');"></div>
@@ -933,7 +993,7 @@ a { color: inherit; text-decoration: none; }
         </div>
         <div class="pitch-name">王 謙蘊 & 松本 龍</div>
         <div class="pitch-theme">Blesc — AIで生徒の「声なきSOS」を検知</div>
-      </div>
+      </button>
     </div>
   </div>
 </section>
@@ -1006,6 +1066,265 @@ a { color: inherit; text-decoration: none; }
   </div>
   <div style="margin-top:16px;font-size:.68rem;color:rgba(255,255,255,.4);">主催：学生団体 NEXY ／ 代表：小助川 晴大<br>&copy; 2026 NEXY</div>
 </footer>
+
+<!-- ═══ Universal Modal ═══ -->
+<div class="gm-modal" id="gmModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="gm-modal-body" id="gmModalBody">
+    <button class="gm-modal-close" id="gmModalClose" aria-label="閉じる">×</button>
+    <div id="gmModalContent"></div>
+  </div>
+</div>
+
+<script>
+/* ═══ SESSION DATA ═══ */
+const SESSIONS = {
+  'd-1': {
+    tag: 'D会場 ／ 10:30-11:20', color: 'orange',
+    title: 'あの人、なんで人気なんだろう？',
+    subtitle: '応援される人が実はやっていること。「熱量と巻き込みの構造」の話',
+    lead: '同じことをやっているのに、なぜかあの人ばかり応援される。その差は「才能」じゃなくて、日常でやっている小さな行動の積み重ね。この50分では、応援されるリーダー・仲間・友人になるための"巻き込みの構造"を、体験談ベースで解きほぐす。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['なぜあの人ばかり応援されるのか、の構造分解','熱量の伝え方 vs 押し付けの違い','1人で頑張らず、周りに動いてもらう仕組み'] },
+      { label: 'こんな人におすすめ', items: ['プロジェクトを立ち上げたけど1人で抱えてしまう人','自分の熱を伝えるのが下手だと感じる人','応援されるリーダーになりたい人'] }
+    ]
+  },
+  'd-2': {
+    tag: 'D会場 ／ 11:30-12:20', color: 'orange',
+    title: '学校の勉強、大人になっても使うの？',
+    subtitle: '学校では教えてくれない"学び"から、自分らしい未来を考える50分',
+    lead: '「因数分解、社会で使うの？」——誰もが1度は思う疑問。この50分では、教科書の外にある"本当の学び"の話を、学び続けている大人の視点で聞く。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['学校の勉強と、社会で使う学びの違い','大学・進路選びで後悔しない考え方','日々の学びを、未来につなげる方法'] },
+      { label: 'こんな人におすすめ', items: ['「勉強の意味」が分からなくなっている人','進路をこれから決める中高生','学び方を変えたいと思っている人'] }
+    ]
+  },
+  'd-4': {
+    tag: 'D会場 ／ 14:30-15:20', color: 'orange',
+    title: 'その課外活動、総合型選抜のためだけになってない？',
+    subtitle: '「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方',
+    lead: '総合型選抜（旧AO）のために、探究・課外活動を始める高校生が増えている。でも、合格した後にその活動が続いていない人も多い。この50分では「受験で終わらせない」ための考え方を、実際に活動を続けている先輩たちが語る。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['受験のためだけの活動と、本気の活動の見分け方','大学入学後に活動を続ける人の共通点','「やらされ探究」から「やりたい探究」への切り替え'] },
+      { label: 'こんな人におすすめ', items: ['総合型選抜を目指している高校生','課外活動が「作業」になっていると感じる人','大学進学後も探究を続けたい人'] }
+    ]
+  },
+  'd-5': {
+    tag: 'D会場 ／ 15:30-16:20', color: 'orange',
+    title: 'インターン・留学・起業、何のためにやる？',
+    subtitle: 'Chatwork創業者・山本敏行氏らが語る、後悔しない挑戦の選び方',
+    lead: 'インターン、留学、起業、地域活動、研究——選択肢は無限にある。でも「何のためにやるのか」がぼんやりしていると、時間だけが過ぎてしまう。この50分では、実際に挑戦を積み重ねてきた大人が「選び方」の話をする。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['自分に合った挑戦の見極め方','失敗を「無駄」にしないための考え方','20代の挑戦が、その後のキャリアにどう繋がったか'] },
+      { label: 'こんな人におすすめ', items: ['選択肢が多すぎて動けない人','挑戦したいけど何から始めていいか分からない人','後悔しない選び方を知りたい人'] }
+    ]
+  },
+  'c-1': {
+    tag: 'C会場 ／ 10:30-12:20 ／ ワークショップ ／ Sponsored by 株式会社スイミー', color: 'teal',
+    title: 'モヤモヤを、言葉にしてみる110分。',
+    subtitle: '進路や社会への疑問を、対話で言葉にする参加型ワークショップ',
+    lead: '「やりたいことが分からない」のではなく、進路や社会への違和感が、まだ言葉になっていないだけ。そのモヤモヤを対話で言葉にし、"自分だけが悩んでるわけじゃない"という安心感を持ち帰る110分。定員50名、7段階構成。',
+    blocks: [
+      { label: 'ワークの流れ（7段階構成）', items: ['第1・1分偏愛マップ：緊張をほぐし全員が発言（10分）','第2・モヤモヤ場面マップ：違和感や不安を洗い出す（12分）','第3・モヤモヤを1文にする：言語化（12分）','休憩10分','第4・モヤモヤ対話リレー：1対1の対話（24分）','第5・対話の前と後：変化を言葉に（10分）','第6・1週間の小さな一歩：具体的行動を決める（10分）','第7・変化と次の一歩共有（12分）'] },
+      { label: '持ち帰れるもの', items: ['自分の言葉で書いた"モヤモヤ"の1文','1週間以内に試す、具体的な小さな一歩','同じような悩みを持つ仲間との出会い'] }
+    ]
+  },
+  'c-2': {
+    tag: 'C会場 ／ 12:30-13:20', color: 'teal',
+    title: '"やりたい"に向かって進んできた、セガ開発者の話。',
+    subtitle: 'プリクラシリーズに携わってきた女性開発者が語る、これまでのキャリア',
+    lead: '"やりたいこと"を叶えるために海外に留学。その後セガに入社し、デザイン職から「プリクラ」ディレクターへ。現在はセガの技術本部に所属。自分の"やりたい"に向き合いながら歩んできた開発者の話を聞く50分。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['"やりたいこと"を叶えるために海外に留学した時の話','学生時代の経験が思わぬ形で仕事につながった話','キャリアの道のりが想像と違った話','学生登壇者との対話'] },
+      { label: 'こんな人におすすめ', items: ['今やっていることに意味があるのか悩んでいる人','ゲーム/エンタメ/ものづくりの世界に興味がある人','正解のないキャリアを歩んだ人の話を聞きたい人','女性開発者のリアルなキャリアを知りたい人'] }
+    ]
+  },
+  'c-3': {
+    tag: 'C会場 ／ 13:30-14:20', color: 'teal',
+    title: 'Coming Soon',
+    subtitle: 'セッション詳細は準備中です。',
+    lead: 'このセッションの詳細は現在準備中です。決まり次第、こちらに掲載します。最新情報は Instagram @nexy.hub にてお知らせします。',
+    blocks: []
+  },
+  'c-4': {
+    tag: 'C会場 ／ 14:30-15:20', color: 'teal',
+    title: 'AIが全部やる時代、人間って何すればいい？',
+    subtitle: 'AI領域で活躍する大人1名＋AIネイティブ高校生2名が本音で語る、"人にしかできないこと"の話',
+    lead: 'ChatGPT・Claude・Geminiが当たり前のインフラになった時代。「AIができることは、人がやる必要ないのでは？」という問いに、AI領域の第一線で活躍する大人1名とAIネイティブ世代の高校生2名が、世代を超えて本音で答える50分。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['AIを使いこなす高校生の、実際の使い方（ワークフロー）','AIができる領域と、人にしかできない領域の見極め方','「AIに置き換えられない自分」を作るために何をしているか','10年後を見据えた、進路・スキル選択の話'] },
+      { label: 'こんな人におすすめ', items: ['AI時代に「何を勉強すればいいか」迷っている人','大学・キャリア選びをAI視点で考えたい人','AIに漠然とした不安を感じている人'] }
+    ]
+  },
+  'c-5': {
+    tag: 'C会場 ／ 15:30-16:20 ／ Presented by スイミー株式会社', color: 'teal',
+    title: '君の"ミュートされた やりたい"を、全国へ。【YouTube『ON MUTE』公開収録】',
+    subtitle: '発掘した"やりたい"を、参加型で全国へ届ける50分',
+    lead: 'YouTube番組『ON MUTE』の公開収録セッション。会場の高校生から"ミュートされた やりたい"を発掘し、その場でカメラを回して全国に届ける。聴くだけじゃなく、参加できる50分。',
+    blocks: [
+      { label: 'こんな話を聞ける', items: ['公開収録形式で、リアルタイムに"やりたい"を発掘','会場の高校生の声が、YouTube番組の一部になる','スイミー株式会社が仕掛ける「学生メディア」の裏側'] },
+      { label: 'こんな人におすすめ', items: ['自分の話を全国に届けたい人','YouTube／メディアに興味がある人','公開収録を体験してみたい人'] }
+    ]
+  },
+  'live': {
+    tag: 'D会場 ／ 13:40-13:46 ／ SPECIAL LIVE', color: 'pink',
+    title: '特別演奏「近未来」／プレゼン大会 審査タイム中',
+    subtitle: 'YOYOKA feat. Futures Band「近未来」を、shio・夏志が生歌で披露',
+    lead: 'プレゼン大会の審査集計時間中、D会場メインステージで特別演奏を実施。世界TOP500ドラマー最年少入りしたYOYOKA、GOING UNDER GROUND松本素生氏作詞、10代6人組バンド Futures Band による楽曲「近未来」を、shio（Piano&Vocal）と夏志（Guitar&Vocal）が生歌＋MV投影で披露する6分間。',
+    blocks: [
+      { label: '演奏者', items: ['shio — 16歳シンガーソングライター（Piano & Vocal・福岡拠点）','夏志（なつし）— 大学1年シンガーソングライター（Guitar & Vocal・福岡拠点）'] }
+    ]
+  },
+  'pitch': {
+    tag: 'D会場メインステージ ／ 12:30-14:30', color: 'orange',
+    title: 'NEXYプレゼン大会「"やりたい"を、ぶつけろ」',
+    subtitle: '全国6組の高校生ピッチバトル（休憩込み120分）',
+    lead: '全国から選抜された高校生6組が、社会課題や自分の"やりたい"をぶつける120分。持ち時間は各10分。審査員8名が3賞（最優秀賞 powered by CHEERS／セガサミー賞／OllyClub賞）を選ぶ。',
+    blocks: [
+      { label: '出場者6組（順次）', items: [
+        '12:40 PITCH 1 佐藤 瞭真「なぜ私たちは学ぶのか？」',
+        '12:50 PITCH 2 中西 尭「若者が職人の"最初の一歩"を背負う」',
+        '13:00 PITCH 3 松丸 夏歩 & 海野 仁那 & 中原 瑠夏 チーム「みんなの大運動会」',
+        '13:10 PITCH 4 野田 樹里「一重に選択肢を｜JYUNIHITOE」',
+        '13:20 PITCH 5 神田 芙羽「雑草が世界を救う？！」',
+        '13:30 PITCH 6 王 謙蘊 & 松本 龍 チーム「Blesc AIで生徒の"声なきSOS"を検知」',
+      ]},
+      { label: '3賞', items: ['最優秀賞 powered by CHEERS（賞金¥100,000）','セガサミー賞','OllyClub賞'] }
+    ]
+  },
+  'booth-info': {
+    tag: '常設エリア ／ 終日オープン', color: 'orange',
+    title: 'ブース＋コミュニティ',
+    subtitle: '全8団体・企業のブース＋ワークショップ＋交流エリア',
+    lead: '10:30〜16:20の間、常時オープン。自由に出入りできます。ブースを回ってスタンプを集めると、お菓子の掴み取りに参加できます。',
+    blocks: [
+      { label: '出展団体・企業（全8組）', items: ['CHEERS!','学生団体NEXY','AIESEC Japan','Stitch Lab','学生団体EToE','Business Contest KING','孫正義育英財団','折り鶴から始める平和活動'] }
+    ]
+  }
+};
+
+/* ═══ SPEAKER DATA ═══ */
+const SPEAKERS = {
+  speaker_yamamoto: { name: '山本 敏行', kana: 'ヤマモト トシユキ', title: 'Chatwork創業者 ／ Power Angels CEO', facts: ['Chatwork創業→東証グロース上場','Power Angels CEO / 日本エンジェル投資家協会 代表理事','大阪桐蔭高校・中央大学商学部卒。留学中にEC studio設立'] },
+  speaker_branscombe: { name: 'ブランスクム 文葉', kana: 'Fumiha Branscombe', title: '株式会社Fleurinary 代表取締役', facts: ['文部科学省 アントレプレナーシップ推進大使','15年勤めた野村證券を辞めて独立・起業','「やりたいが言葉にならない」人の背中を押す活動'] },
+  speaker_tadaishi: { name: '只石 昌幸', kana: 'タダイシ マサユキ', title: 'VALX株式会社（旧レバレッジ） 代表取締役CEO', facts: ['キーエンスを3年でクビ','フィットネスD2Cブランド「VALX」創業→月商1億円','「日本一情熱的な社長」と呼ばれる経営者'] },
+  speaker_hayashi: { name: '林 裕子', kana: 'ハヤシ ユウコ', title: '山口大学大学院 技術経営研究科 特命教授', facts: ['慶應女子高→東大→MIT→日本IBM','MIT技術政策修士 ／ 東大博士（学術）','JCRファーマ 独立社外取締役'] },
+  mentor_miwa: { name: '三輪 開人', kana: 'ミワ カイト', title: '認定NPO法人e-Education 代表', facts: ['ICC FUKUOKAカタパルト・グランプリ 第1回優勝','Forbes 30 Under 30 Asia (2016)','途上国14カ国で3万人の中高生に映像授業を届ける','著書『100%共感プレゼン』'] },
+  speaker_sano: { name: '佐野 貴', kana: 'サノ タカシ', title: '株式会社Play Robotics 代表 ／ TALENT PRENEUR 主宰', facts: ['心理学ベースの才能言語化メソッド開発','才能診断 1,700名以上','高校生の才能を一緒に言語化するプロ'] },
+  speaker_hirano: { name: '平野 歩', kana: 'ヒラノ アユム', title: 'SailStep株式会社 代表取締役', facts: ['シリアル・アントレプレナー（起業→売却を2回）','学研グループ 元取締役','エンジェル投資家'] },
+  speaker_kotosaka: { name: '琴坂 将広', kana: 'コトサカ マサヒロ', title: '慶應義塾大学 総合政策学部 教授', facts: ['オックスフォード大学 サイード・ビジネススクール アソシエイトフェロー','経営戦略・国際経営が専門','著書『経営戦略の進化』'] },
+  speaker_izawa: { name: '伊澤 祐太', kana: 'イザワ ユウタ', title: 'スイミー株式会社 代表', facts: ['LINEヤフー・SmartNewsの正規代理店として広告事業','学生YouTube番組「olly club」「ON MUTE」仕掛け人','WSJ WELL-BEING AWARD受賞'] },
+  speaker_uemura: { name: '植村 英明', kana: 'ウエムラ ヒデアキ', title: 'CHEERS株式会社 COO', facts: ['62自治体・1,500社連携','累計46,000人以上の親子に無償体験','Forbes JAPAN 2026年版 世界を変える次世代インパクトスタートアップ30社選出'] },
+  speaker_watanabe: { name: '渡邊 渚', kana: 'ワタナベ ナギサ', title: 'タレント ／ 元フジテレビアナウンサー', facts: ['慶應経済卒業後、フジテレビにアナウンサー入社','フォトエッセイ『透明を満たす』著者','YouTube『ON MUTE』MC'] },
+  speaker_kiyomiya: { name: '清宮 俊久', kana: 'キヨミヤ トシヒサ', title: 'セガサミーイノベーション株式会社 代表取締役社長', facts: ['セガサミーHD 経営企画本部 投資マネジメント部 部長（CVC部門）','150億円CVCを運用','TUNNEL TOKYO 設立','1999年セガ入社、経営企画→M&A→CVC統括'] },
+  speaker_miyanaka: { name: '宮中 沙羅', kana: 'ミヤナカ サラ', title: '株式会社セガ 開発者（デザイナー → 開発ディレクター）', facts: ['「やりたい」を追いかけて海外に留学','帰国後セガに入社、デザイナーとしてキャリアスタート','プリクラ開発ディレクターとして企画・チームづくり','現在は技術本部に所属'] },
+  speaker_tani: { name: '谷 昊埜', kana: 'たに こうや', title: '19歳 ／ 慶應義塾大学SFC', facts: ['株式会社 The Bedrock Space Group ／ 学生団体ミラコエ','政治・宇宙領域で事業立ち上げ','全日本スキー選手権 出場'] },
+  speaker_ueda: { name: '植田 晴子', kana: 'うえだ はるこ', title: '18歳 ／ 慶應義塾大学SFC', facts: ['309人の学生が在籍中の沖縄県高校生団体 FLARE 初代代表','海風祭2025 実行委員長（1万人規模）','高2で309人規模の学生団体を作った巻き込み力の天才'] },
+  speaker_kuno: { name: '久野 美恋彩', kana: 'クノ ミレア', title: '17歳 ／ 星の杜高等学校', facts: ['株式会社Challink 代表','高校生で株式会社を設立','地域×探究の事業立ち上げ'] },
+  speaker_masuda: { name: '増田 結桜', kana: 'マスダ ユラ', title: '15歳 ／ N高等学校', facts: ['一般社団法人チームゆら 理事','中1で法人化','クラファン500万円達成'] },
+  speaker_ohama: { name: '大濱 裕輝', kana: 'オオハマ ヒロキ', title: '18歳 ／ 徳島文理高等学校', facts: ['三世代教育プロジェクト BridgE³ 創設・代表','対話イベント「アトサキ」累計122名以上'] },
+  speaker_noritake: { name: '則竹 瑛斗', kana: 'ノリタケ エイト', title: '16歳 ／ ゼロ高等学院', facts: ['Challase株式会社 代表取締役CEO','中2で共同創業','山本敏行氏（Chatwork創業者）とタッグ'] },
+  speaker_takamatsu: { name: '髙松 優大', kana: 'タカマツ ユウタ', title: '18歳 ／ 英・マンチェスター大学進学予定', facts: ['学生団体EToE 代表','メタバース教育「メタロレア」開発','旺文社学芸サイエンスコンクール 銅賞'] },
+  speaker_kuwako: { name: '桑子 友菜', kana: 'クワコ ユナ', title: '17歳 ／ N高等学校', facts: ['湯端温泉 若女将','群馬県知事へ政策提言（一部施策化）','全国マイプロ「全国ロールモデル賞」','群馬県高校生リバースメンター 3期生'] },
+  speaker_noda: { name: '野田 樹里', kana: 'ノダ ジュリ', title: '17歳 ／ 名城大学附属高等学校', facts: ['株式会社JYUNIHITOE 代表取締役CEO','STAPS 7期 最優秀賞','SusHi Tech Teen Challenge 2026 グランプリ'] },
+  speaker_sakai: { name: '酒井 愛瑠', kana: 'サカイ メル', title: '19歳 ／ 愛知県', facts: ['tomoni ／ 親子コミュニティ運営','女子高生で世界一周','フリースクール設立を目指す'] },
+  speaker_matsunaga: { name: '松長 侑南', kana: 'マツナガ ユウナ', title: '17歳 ／ 渋谷教育学園幕張高等学校', facts: ['孫正義育英財団 第9期','未踏ジュニア採択','EGOI 2025 銅メダル','日本人工知能学会 JSAI 2025 投稿'] },
+  speaker_aburatani: { name: '油谷 駿杜', kana: 'アブラタニ シュント', title: '18歳 ／ 富山県', facts: ['株式会社ネルフィン 社長 ／ 株式会社Brownie CEO','AI自動検品システム 全国61社+ 展開','高校在学中に株式会社設立'] },
+  speaker_takeuchi: { name: '竹内 翼', kana: 'タケウチ ツバサ', title: '17歳 ／ 甲陽学院高等学校', facts: ['AIプロダクト マーケティング ／ 連続起業家','NFTコレクション 取引総額1.5億円','eスポーツ事業 設立→事業譲渡','SNS運用で月500万円売上'] }
+};
+
+/* ═══ PITCH DATA ═══ */
+const PITCHES = {
+  sato: { pitch: 'PITCH 1 ／ 12:40-12:50', name: '佐藤 瞭真', theme: '「なぜ私たちは学ぶのか？」', img: 'pitch_sato.jpg' },
+  nakanishi: { pitch: 'PITCH 2 ／ 12:50-13:00', name: '中西 尭', theme: '若者が職人の「最初の一歩」を背負う。', img: 'pitch_nakanishi.jpg' },
+  ellnowa: { pitch: 'PITCH 3 TEAM ／ 13:00-13:10', name: '松丸 夏歩 & 海野 仁那 & 中原 瑠夏', theme: '「あなただから輝ける、みんなだからできる」みんなの大運動会', img: 'pitch_ellnowa_team.jpg' },
+  noda: { pitch: 'PITCH 4 ／ 13:10-13:20', name: '野田 樹里', theme: '一重に選択肢を｜JYUNIHITOE', img: 'speaker_noda.jpg' },
+  kanda: { pitch: 'PITCH 5 ／ 13:20-13:30', name: '神田 芙羽', theme: '雑草が世界を救う？！〜雑草の可能性〜', img: 'pitch_kanda.jpg' },
+  blesc: { pitch: 'PITCH 6 TEAM ／ 13:30-13:40', name: '王 謙蘊 & 松本 龍', theme: 'Blesc — AIで生徒の「声なきSOS」を検知', img: 'pitch_wang.jpg' }
+};
+
+/* ═══ Modal Logic ═══ */
+(function(){
+  const modal = document.getElementById('gmModal');
+  const body = document.getElementById('gmModalContent');
+  const closeBtn = document.getElementById('gmModalClose');
+  const heroClass = { orange:'orange', teal:'teal', pink:'pink' };
+
+  function renderSession(s){
+    const blocks = s.blocks.map(b =>
+      `<div class="gm-modal-block"><div class="gm-modal-block-label">${b.label}</div><ul>${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`
+    ).join('');
+    return `
+      <div class="gm-modal-hero ${heroClass[s.color]||''}">
+        <span class="gm-modal-tag" style="background:var(--${s.color}, var(--navy));">${s.tag}</span>
+        <h3 class="gm-modal-title">${s.title}</h3>
+        <p class="gm-modal-subtitle">${s.subtitle}</p>
+      </div>
+      <div class="gm-modal-content">
+        <p class="gm-modal-lead">${s.lead}</p>
+        ${blocks}
+      </div>`;
+  }
+
+  function renderSpeaker(sp, slug){
+    const facts = sp.facts.map(f=>`<li>${f}</li>`).join('');
+    return `
+      <div class="gm-modal-hero">
+        <div class="gm-modal-spk" style="margin-bottom:0;background:transparent;padding:0;">
+          <div class="gm-modal-spk-photo" style="width:88px;height:88px;background-image:url('img/summit/${slug}.jpg');"></div>
+          <div>
+            <div class="gm-modal-spk-name" style="font-size:1.24rem;">${sp.name}</div>
+            <div class="gm-modal-spk-title" style="font-size:.8rem;margin-top:4px;">${sp.kana}</div>
+            <div class="gm-modal-spk-title" style="font-size:.86rem;color:var(--navy);font-weight:800;margin-top:6px;">${sp.title}</div>
+          </div>
+        </div>
+      </div>
+      <div class="gm-modal-content">
+        <div class="gm-modal-block">
+          <div class="gm-modal-block-label">主な実績・活動</div>
+          <ul>${facts}</ul>
+        </div>
+      </div>`;
+  }
+
+  function renderPitch(p, slug){
+    return `
+      <div class="gm-modal-hero orange">
+        <span class="gm-modal-tag" style="background:var(--orange);">${p.pitch}</span>
+        <h3 class="gm-modal-title">${p.name}</h3>
+        <p class="gm-modal-subtitle">${p.theme}</p>
+      </div>
+      <div class="gm-modal-content">
+        <div style="width:100%;aspect-ratio:4/3;background:#eee center/cover no-repeat;background-image:url('img/summit/${p.img}');border-radius:10px;margin-bottom:16px;"></div>
+        <p class="gm-modal-lead">全国から選抜された高校生6組がぶつける120分の一部。持ち時間10分でこのテーマにぶつかる。応援よろしくお願いします。</p>
+      </div>`;
+  }
+
+  function open(html){
+    body.innerHTML = html;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('gm-open');
+    body.parentElement.scrollTo(0,0);
+  }
+  function close(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('gm-open');
+  }
+
+  document.addEventListener('click', function(e){
+    const s = e.target.closest('[data-open-session]');
+    if (s){ const id=s.getAttribute('data-open-session'); if (SESSIONS[id]) open(renderSession(SESSIONS[id])); return; }
+    const sp = e.target.closest('[data-open-speaker]');
+    if (sp){ const id=sp.getAttribute('data-open-speaker'); if (SPEAKERS[id]) open(renderSpeaker(SPEAKERS[id], id)); return; }
+    const pt = e.target.closest('[data-open-pitch]');
+    if (pt){ const id=pt.getAttribute('data-open-pitch'); if (PITCHES[id]) open(renderPitch(PITCHES[id], id)); return; }
+  });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function(e){ if (e.target===modal) close(); });
+  document.addEventListener('keydown', function(e){ if (e.key==='Escape' && modal.classList.contains('is-open')) close(); });
+})();
+</script>
 
 </body>
 </html>
