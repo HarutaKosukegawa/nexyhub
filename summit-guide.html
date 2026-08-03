@@ -178,13 +178,25 @@ a { color: inherit; text-decoration: none; }
   padding-top: 4px;
 }
 .tt-time-start {
-  font-size: 1.02rem; font-weight: 900; letter-spacing: -.02em;
+  font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em;
   line-height: 1.05;
+  color: var(--navy);
 }
 .tt-time-end {
   font-size: .7rem; font-weight: 800; color: var(--text2);
-  margin-top: 3px; line-height: 1.15;
+  margin-top: 4px; line-height: 1.15;
   white-space: nowrap;
+  display: flex; flex-direction: column; align-items: flex-end;
+}
+.tt-time-arrow {
+  display: block;
+  color: var(--orange); font-size: .7rem; line-height: 1;
+  margin-bottom: 1px;
+  animation: ttArrowDown 1.8s ease-in-out infinite;
+}
+@keyframes ttArrowDown {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
 }
 /* 縦タイムライン線 */
 .tt-time-col::after {
@@ -243,16 +255,27 @@ a { color: inherit; text-decoration: none; }
 
 /* スロットヘッダー（種別バッジ） */
 .tt-slot-time {
-  padding: 8px 14px;
+  padding: 10px 12px 10px 14px;
   font-family: 'Manrope', sans-serif;
-  font-size: .78rem; font-weight: 900; color: #fff;
+  color: #fff;
   background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 50%, var(--navy) 100%);
   background-size: 200% 200%;
   animation: ttGradShift 8s ease infinite;
-  letter-spacing: .06em;
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  letter-spacing: .04em;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+}
+.tt-slot-range {
+  font-size: 1.06rem; font-weight: 900; letter-spacing: .01em;
+  flex-shrink: 0;
+}
+.tt-slot-label {
+  font-size: .6rem; font-weight: 800; letter-spacing: .2em;
+  opacity: .85;
+  margin-right: auto;
+  padding-left: 4px; border-left: 1px solid rgba(255,255,255,.35);
+  padding: 0 0 0 8px;
 }
 .tt-slot-time::after {
   content: ''; position: absolute; inset: 0;
@@ -906,6 +929,48 @@ button.tt-item.is-link { display: block; }
 .faq-contact-body a { color: var(--orange); font-weight: 900; text-decoration: underline; }
 
 
+
+/* ─── セッションモーダル内 登壇者バックグラウンド ─── */
+.ss-spk-list { display: flex; flex-direction: column; gap: 14px; }
+.ss-spk {
+  background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 14px 14px;
+}
+.ss-spk-head {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 10px;
+}
+.ss-spk-photo {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #eee center 22%/cover no-repeat;
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgba(16,35,63,.12);
+  flex-shrink: 0;
+}
+.ss-spk-title { min-width: 0; flex: 1; }
+.ss-spk-name {
+  font-size: 1.02rem; font-weight: 900; color: var(--navy);
+  line-height: 1.3;
+}
+.ss-spk-kana { font-size: .64rem; color: var(--text2); font-weight: 700; margin-left: 6px; }
+.ss-spk-meta { font-size: .72rem; color: var(--text2); font-weight: 700; margin-top: 3px; line-height: 1.5; }
+.ss-spk-affil { font-size: .76rem; color: var(--navy); font-weight: 800; margin-top: 4px; line-height: 1.5; }
+.ss-spk-about {
+  font-size: .78rem; color: var(--text); line-height: 1.75;
+  margin-top: 8px; padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.ss-spk-facts-head {
+  font-family: 'Manrope', sans-serif; font-size: .58rem;
+  font-weight: 900; letter-spacing: .18em; color: var(--orange);
+  margin-top: 10px; margin-bottom: 4px;
+}
+.ss-spk-facts {
+  font-size: .74rem; color: var(--text); line-height: 1.75;
+  padding-left: 18px;
+}
+.ss-spk-facts li { margin-bottom: 2px; }
+
 /* ─── UNIVERSAL MODAL (session / speaker detail) ─── */
 .gm-modal {
   position: fixed; inset: 0; z-index: 500;
@@ -1262,10 +1327,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot is-open">
         <div class="tt-time-col">
           <div class="tt-time-start">10:00</div>
-          <div class="tt-time-end">-10:30</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>10:30</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">OPENING <span class="tt-slot-time-tag">30MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:00 – 10:30</span><span class="tt-slot-label">OPENING</span> <span class="tt-slot-time-tag">30MIN</span></div>
           <div class="tt-slot-body">
             <div class="tt-item has-all">
               <span class="tt-venue-label all">全体</span>
@@ -1279,10 +1344,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot">
         <div class="tt-time-col">
           <div class="tt-time-start">10:30</div>
-          <div class="tt-time-end">-11:20</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>11:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">SESSION 01 <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 11:20</span><span class="tt-slot-label">SESSION 01</span> <span class="tt-slot-time-tag">50MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-1" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1303,10 +1368,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot">
         <div class="tt-time-col">
           <div class="tt-time-start">11:30</div>
-          <div class="tt-time-end">-12:20</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>12:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">SESSION 02 <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">11:30 – 12:20</span><span class="tt-slot-label">SESSION 02</span> <span class="tt-slot-time-tag">50MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-2" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1327,10 +1392,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot is-main">
         <div class="tt-time-col">
           <div class="tt-time-start">12:30</div>
-          <div class="tt-time-end">-14:30</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>14:30</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">MAIN STAGE <span class="tt-slot-time-tag">120MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">12:30 – 14:30</span><span class="tt-slot-label">MAIN STAGE</span> <span class="tt-slot-time-tag">120MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="pitch" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1351,10 +1416,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot is-live">
         <div class="tt-time-col">
           <div class="tt-time-start">13:40</div>
-          <div class="tt-time-end">-13:46</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>13:46</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">SPECIAL LIVE <span class="tt-slot-time-tag">6MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">13:40 – 13:46</span><span class="tt-slot-label">SPECIAL LIVE</span> <span class="tt-slot-time-tag">6MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="live" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1369,10 +1434,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot">
         <div class="tt-time-col">
           <div class="tt-time-start">14:30</div>
-          <div class="tt-time-end">-15:20</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>15:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">SESSION 04 <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">14:30 – 15:20</span><span class="tt-slot-label">SESSION 04</span> <span class="tt-slot-time-tag">50MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-4" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1393,10 +1458,10 @@ body.drawer-open { overflow: hidden; }
       <div class="tt-slot">
         <div class="tt-time-col">
           <div class="tt-time-start">15:30</div>
-          <div class="tt-time-end">-16:20</div>
+          <div class="tt-time-end"><span class="tt-time-arrow">↓</span>16:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">SESSION 05 <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">15:30 – 16:20</span><span class="tt-slot-label">SESSION 05</span> <span class="tt-slot-time-tag">50MIN</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-5" class="tt-item has-d is-link">
               <span class="tt-venue-label d">D会場</span>
@@ -1421,7 +1486,7 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end" style="font-size:.58rem;">10:30-<br>16:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time">BOOTH <span class="tt-slot-time-tag">ALL DAY</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 16:20</span><span class="tt-slot-label">BOOTH</span><span class="tt-slot-time-tag">ALL DAY</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="booth-info" class="tt-item has-b is-link">
               <span class="tt-venue-label b">常設エリア（C会場内）</span>
@@ -1642,7 +1707,7 @@ body.drawer-open { overflow: hidden; }
 
       <details class="faq-item">
         <summary class="faq-q"><span class="faq-badge">Q7</span>スタンプラリーとは何ですか？</summary>
-        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示・交流会でも1枚ずつゲット可能。<strong style="color:var(--orange);">シール5枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
+        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示・交流会でも1枚ずつゲット可能。<strong style="color:var(--orange);">シール3枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
       </details>
 
       <details class="faq-item">
@@ -1698,7 +1763,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['なぜあの人ばかり応援されるのか、の構造分解','熱量の伝え方 vs 押し付けの違い','1人で頑張らず、周りに動いてもらう仕組み'] },
       { label: 'こんな人におすすめ', items: ['プロジェクトを立ち上げたけど1人で抱えてしまう人','自分の熱を伝えるのが下手だと感じる人','応援されるリーダーになりたい人'] }
-    , { label: '登壇者', items: ['ブランスクム 文葉（Fleurinary代表）','只石 昌幸（VALX代表）','野田 樹里（JYUNIHITOE代表・17歳）','増田 結桜（チームゆら理事・15歳）'] }]
+    ], speakerIds: ['speaker_branscombe','speaker_tadaishi','speaker_noda','speaker_masuda']
   },
   'd-2': {
     tag: 'D会場 ／ 11:30-12:20', color: 'orange',
@@ -1708,7 +1773,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['学校の勉強と、社会で使う学びの違い','大学・進路選びで後悔しない考え方','日々の学びを、未来につなげる方法'] },
       { label: 'こんな人におすすめ', items: ['「勉強の意味」が分からなくなっている人','進路をこれから決める中高生','学び方を変えたいと思っている人'] }
-    , { label: '登壇者', items: ['琴坂 将広（慶應SFC教授）','髙松 優大（EToE代表・18歳）','松長 侑南（渋幕・17歳）'] }]
+    ], speakerIds: ['speaker_kotosaka','speaker_takamatsu','speaker_matsunaga']
   },
   'd-4': {
     tag: 'D会場 ／ 14:30-15:20', color: 'orange',
@@ -1718,7 +1783,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['受験のためだけの活動と、本気の活動の見分け方','大学入学後に活動を続ける人の共通点','「やらされ探究」から「やりたい探究」への切り替え'] },
       { label: 'こんな人におすすめ', items: ['総合型選抜を目指している高校生','課外活動が「作業」になっていると感じる人','大学進学後も探究を続けたい人'] }
-    , { label: '登壇者', items: ['林 裕子（山口大学院 特命教授）','谷 昊埜（SFC・19歳）','植田 晴子（FLARE初代代表・18歳）'] }]
+    ], speakerIds: ['speaker_hayashi','speaker_tani','speaker_ueda']
   },
   'd-5': {
     tag: 'D会場 ／ 15:30-16:20', color: 'orange',
@@ -1728,7 +1793,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['自分に合った挑戦の見極め方','失敗を「無駄」にしないための考え方','20代の挑戦が、その後のキャリアにどう繋がったか'] },
       { label: 'こんな人におすすめ', items: ['選択肢が多すぎて動けない人','挑戦したいけど何から始めていいか分からない人','後悔しない選び方を知りたい人'] }
-    , { label: '登壇者', items: ['山本 敏行（Chatwork創業者）','則竹 瑛斗（Challase代表・16歳）','久野 美恋彩（Challink代表・17歳）'] }]
+    ], speakerIds: ['speaker_yamamoto','speaker_noritake','speaker_kuno']
   },
   'c-1': {
     tag: 'C会場 ／ 10:30-12:20 ／ ワークショップ ／ Sponsored by 株式会社スイミー', color: 'teal',
@@ -1748,7 +1813,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['"やりたいこと"を叶えるために海外に留学した時の話','学生時代の経験が思わぬ形で仕事につながった話','キャリアの道のりが想像と違った話','学生登壇者との対話'] },
       { label: 'こんな人におすすめ', items: ['今やっていることに意味があるのか悩んでいる人','ゲーム/エンタメ/ものづくりの世界に興味がある人','正解のないキャリアを歩んだ人の話を聞きたい人','女性開発者のリアルなキャリアを知りたい人'] }
-    , { label: '登壇者', items: ['宮中 沙羅（セガ 開発ディレクター）','竹内 翼（連続起業家・17歳）','桑子 友菜（湯端温泉若女将・17歳）'] }]
+    ], speakerIds: ['speaker_miyanaka','speaker_takeuchi','speaker_kuwako']
   },
   'c-4': {
     tag: 'C会場 ／ 14:30-15:20', color: 'teal',
@@ -1758,7 +1823,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['AIを使いこなす高校生の、実際の使い方（ワークフロー）','AIができる領域と、人にしかできない領域の見極め方','「AIに置き換えられない自分」を作るために何をしているか','10年後を見据えた、進路・スキル選択の話'] },
       { label: 'こんな人におすすめ', items: ['AI時代に「何を勉強すればいいか」迷っている人','大学・キャリア選びをAI視点で考えたい人','AIに漠然とした不安を感じている人'] }
-    , { label: '登壇者', items: ['佐野 貴（Play Robotics代表）','油谷 駿杜（ネルフィン社長・18歳）','酒井 愛瑠（tomoni・19歳）'] }]
+    ], speakerIds: ['speaker_sano','speaker_aburatani','speaker_sakai']
   },
   'c-5': {
     tag: 'C会場 ／ 15:30-16:20 ／ Presented by スイミー株式会社', color: 'teal',
@@ -1768,7 +1833,7 @@ const SESSIONS = {
     blocks: [
       { label: 'こんな話を聞ける', items: ['公開収録形式で、リアルタイムに"やりたい"を発掘','会場の高校生の声が、YouTube番組の一部になる','スイミー株式会社が仕掛ける「学生メディア」の裏側'] },
       { label: 'こんな人におすすめ', items: ['自分の話を全国に届けたい人','YouTube／メディアに興味がある人','公開収録を体験してみたい人'] }
-    , { label: '登壇者', items: ['伊澤 祐太（スイミー代表）','渡邊 渚（元フジテレビアナ・ON MUTE MC）'] }]
+    ], speakerIds: ['speaker_izawa','speaker_watanabe']
   },
   'live': {
     tag: 'D会場 ／ 13:40-13:46 ／ SPECIAL LIVE', color: 'pink',
@@ -1777,7 +1842,7 @@ const SESSIONS = {
     lead: 'プレゼン大会の審査集計時間中、D会場メインステージで特別演奏を実施。世界TOP500ドラマー最年少入りしたYOYOKA、GOING UNDER GROUND松本素生氏作詞、10代6人組バンド Futures Band による楽曲「近未来」を、shio（Piano&Vocal）と夏志（Guitar&Vocal）が生歌＋MV投影で披露する6分間。',
     blocks: [
       { label: '演奏者', items: ['shio — 16歳シンガーソングライター（Piano & Vocal・福岡拠点）','夏志（なつし）— 大学1年シンガーソングライター（Guitar & Vocal・福岡拠点）'] }
-    ]
+    ], speakerIds: ['performer_shio','performer_natsushi']
   },
   'pitch': {
     tag: 'D会場メインステージ ／ 12:30-14:30', color: 'orange',
@@ -1829,10 +1894,30 @@ const SPONSORS = {"cheers": {"tier": "PLATINUM SPONSOR", "name": "CHEERS!（株�
   const closeBtn = document.getElementById('gmModalClose');
   const heroClass = { orange:'orange', teal:'teal', pink:'pink' };
 
+  function renderSpeakerInline(slug){
+    const sp = SPEAKERS[slug]; if (!sp) return '';
+    const facts = (sp.achievements||'').split('\n').filter(l=>l.trim()).slice(0,4).map(f=>`<li>${f.replace(/^[・•]\s*/, '')}</li>`).join('');
+    return `
+      <div class="ss-spk">
+        <div class="ss-spk-head">
+          <div class="ss-spk-photo" style="background-image:url('img/summit/${slug}.jpg')"></div>
+          <div class="ss-spk-title">
+            <div class="ss-spk-name">${sp.name}<span class="ss-spk-kana">${sp.kana}</span></div>
+            <div class="ss-spk-meta">${sp.meta}</div>
+            <div class="ss-spk-affil">${sp.affil}</div>
+          </div>
+        </div>
+        ${sp.about ? `<p class="ss-spk-about">${sp.about}</p>` : ''}
+        ${facts ? `<div class="ss-spk-facts-head">主な実績・活動</div><ul class="ss-spk-facts">${facts}</ul>` : ''}
+      </div>`;
+  }
   function renderSession(s){
     const blocks = s.blocks.map(b =>
       `<div class="gm-modal-block"><div class="gm-modal-block-label">${b.label}</div><ul>${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`
     ).join('');
+    const speakersBlock = (s.speakerIds && s.speakerIds.length)
+      ? `<div class="gm-modal-block"><div class="gm-modal-block-label">登壇者</div><div class="ss-spk-list">${s.speakerIds.map(renderSpeakerInline).join('')}</div></div>`
+      : '';
     return `
       <div class="gm-modal-hero ${heroClass[s.color]||''}">
         <span class="gm-modal-tag" style="background:var(--${s.color}, var(--navy));">${s.tag}</span>
@@ -1842,6 +1927,7 @@ const SPONSORS = {"cheers": {"tier": "PLATINUM SPONSOR", "name": "CHEERS!（株�
       <div class="gm-modal-content">
         <p class="gm-modal-lead">${s.lead}</p>
         ${blocks}
+        ${speakersBlock}
       </div>`;
   }
 
