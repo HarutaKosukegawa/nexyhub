@@ -447,7 +447,86 @@ button.tt-item.is-link { display: block; }
   .tt-desc { font-size: .78rem; }
 }
 
-/* ─── VENUE MAP（カラフルゾーン版） ─── */
+
+/* ─── 会場マップ（シンプル・図解） ─── */
+.venue-map {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "d c"
+    "d booth"
+    "foyer foyer";
+  gap: 6px;
+  max-width: 480px; margin: 0 auto 20px;
+  padding: 8px;
+  background: #fff;
+  border: 2px solid var(--navy);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(16,35,63,.1);
+}
+.vm-block {
+  padding: 24px 16px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 70px;
+}
+.vm-d { grid-area: d; background: #C56AE0; color: #fff; min-height: 190px; }
+.vm-c { grid-area: c; background: #6DD5F0; color: #10233F; }
+.vm-booth { grid-area: booth; background: #FFE842; color: #10233F; }
+.vm-foyer { grid-area: foyer; background: #FFCBA0; color: #10233F; padding: 18px; }
+.vm-label {
+  font-size: 1.1rem; font-weight: 900; letter-spacing: .02em;
+  line-height: 1.3;
+}
+.vm-sub {
+  font-size: .82rem; font-weight: 800; margin-top: 4px;
+  opacity: .85;
+}
+.vm-d .vm-label { font-size: 1.24rem; }
+
+.venue-map-legend {
+  max-width: 480px; margin: 0 auto;
+  padding: 14px 16px;
+  background: var(--paper); border-radius: 10px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.vml-item {
+  font-size: .78rem; color: var(--navy); font-weight: 700;
+  line-height: 1.5;
+}
+.vml-arrow { color: var(--orange); font-weight: 900; margin-right: 6px; }
+
+/* ─── セッション種別バッジ ─── */
+.tt-type-badge {
+  display: inline-block;
+  font-size: .58rem; font-weight: 900; letter-spacing: .12em;
+  padding: 3px 8px; border-radius: 4px;
+  margin-left: 6px; margin-bottom: 6px;
+  vertical-align: middle;
+}
+.tt-type-lecture { background: rgba(16,35,63,.1); color: var(--navy); border: 1px solid var(--navy); }
+.tt-type-workshop { background: rgba(20,191,174,.15); color: var(--teal); border: 1px solid var(--teal); }
+.tt-type-pitch { background: rgba(234,92,31,.15); color: var(--orange); border: 1px solid var(--orange); }
+.tt-type-live { background: rgba(255,62,127,.15); color: var(--pink); border: 1px solid var(--pink); }
+.tt-type-koryu { background: rgba(124,58,237,.15); color: var(--purple); border: 1px solid var(--purple); }
+.tt-type-opening { background: rgba(255,201,62,.2); color: #b8860b; border: 1px solid #d4a017; }
+.tt-type-booth { background: rgba(50,50,50,.1); color: #333; border: 1px solid #333; }
+
+/* 定員・予約情報 */
+.tt-capacity {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: .68rem; font-weight: 900;
+  color: #b8860b;
+  background: rgba(255,201,62,.18);
+  padding: 4px 10px; border-radius: 999px;
+  border: 1px solid rgba(212,160,23,.4);
+}
+
+
+/* ─── VENUE MAP（カラフルゾーン版・未使用） ─── */
 .venue-legend-txt {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
   margin: 0 0 22px; padding: 12px 14px;
@@ -1273,13 +1352,14 @@ body.drawer-open { overflow: hidden; }
     <button type="button" class="drawer-close" id="drawerClose" aria-label="閉じる">×</button>
   </div>
   <nav class="drawer-nav">
-    <a href="#schedule" class="drawer-link"><span class="drawer-num">01</span>タイムテーブル</a>
-    <a href="#speakers" class="drawer-link"><span class="drawer-num">02</span>登壇者一覧</a>
-    <a href="#pitch" class="drawer-link"><span class="drawer-num">03</span>プレゼン大会</a>
-    <a href="#booth" class="drawer-link"><span class="drawer-num">04</span>ブース</a>
-    <a href="#sponsors" class="drawer-link"><span class="drawer-num">05</span>スポンサー</a>
-    <a href="#koen" class="drawer-link"><span class="drawer-num">06</span>後援</a>
-    <a href="#faq" class="drawer-link"><span class="drawer-num">07</span>よくある質問</a>
+    <a href="#map" class="drawer-link"><span class="drawer-num">01</span>会場マップ</a>
+    <a href="#schedule" class="drawer-link"><span class="drawer-num">02</span>タイムテーブル</a>
+    <a href="#speakers" class="drawer-link"><span class="drawer-num">03</span>登壇者一覧</a>
+    <a href="#pitch" class="drawer-link"><span class="drawer-num">04</span>プレゼン大会</a>
+    <a href="#booth" class="drawer-link"><span class="drawer-num">05</span>ブース</a>
+    <a href="#sponsors" class="drawer-link"><span class="drawer-num">06</span>スポンサー</a>
+    <a href="#koen" class="drawer-link"><span class="drawer-num">07</span>後援</a>
+    <a href="#faq" class="drawer-link"><span class="drawer-num">08</span>よくある質問</a>
   </nav>
   <div class="drawer-foot">
     <a href="summit.html">サミット詳細ページ</a>
@@ -1290,7 +1370,9 @@ body.drawer-open { overflow: hidden; }
 
 <!-- モバイル用スティッキー クイックナビ -->
 <div class="mobile-quick-nav" aria-label="クイックナビゲーション">
-  <a href="#schedule">タイムテーブル</a>
+  <a href="#map">会場マップ</a>
+    <a href="#map">会場マップ</a>
+    <a href="#schedule">タイムテーブル</a>
     <a href="#speakers">登壇者</a>
   <a href="#pitch">プレゼン大会</a>
   <a href="#booth">ブース</a>
@@ -1314,6 +1396,43 @@ body.drawer-open { overflow: hidden; }
   </div>
 </header>
 
+<!-- ═══ VENUE MAP ═══ -->
+<section class="section" id="map">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">Venue Map</span>
+      <h2 class="section-title">会場<em>マップ</em></h2>
+      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">受付（ホワイエ）から入って、D会場 or 常設会場エリアに移動できます。C会場は常設会場を通ります。</p>
+    </div>
+
+    <div class="venue-map">
+      <div class="vm-block vm-d">
+        <div class="vm-label">D会場</div>
+        <div class="vm-sub">メイン会場</div>
+      </div>
+      <div class="vm-block vm-c">
+        <div class="vm-label">C会場</div>
+        <div class="vm-sub">サブ会場</div>
+      </div>
+      <div class="vm-block vm-booth">
+        <div class="vm-label">常設会場</div>
+        <div class="vm-sub">ブース</div>
+      </div>
+      <div class="vm-block vm-foyer">
+        <div class="vm-label">ホワイエ</div>
+        <div class="vm-sub">受付</div>
+      </div>
+    </div>
+
+    <div class="venue-map-legend">
+      <div class="vml-item"><span class="vml-arrow">▸</span>D会場（メイン）— 講演・プレゼン大会・特別演奏</div>
+      <div class="vml-item"><span class="vml-arrow">▸</span>C会場（サブ）— 講演・ワークショップ・公開収録</div>
+      <div class="vml-item"><span class="vml-arrow">▸</span>常設会場 — ブース・交流会・ワークショップ（終日オープン）</div>
+      <div class="vml-item"><span class="vml-arrow">▸</span>ホワイエ — 受付・入場口</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ TIMETABLE ═══ -->
 <section class="section" id="schedule">
   <div class="wrap">
@@ -1330,10 +1449,10 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>10:30</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">10:00 – 10:30</span><span class="tt-slot-label">OPENING</span> <span class="tt-slot-time-tag">30MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:00 – 10:30</span><span class="tt-slot-label">OPENING</span> <span class="tt-slot-time-tag">30分</span></div>
           <div class="tt-slot-body">
             <div class="tt-item has-all">
-              <span class="tt-venue-label all">全体</span>
+              <span class="tt-venue-label all">全体</span><span class="tt-type-badge tt-type-opening">開会式</span>
               <div class="tt-title">開会式（オープニング）</div>
               <div class="tt-desc">"やりたい"を持ち帰るための、この1日の使い方をご案内。<small>ぜひ最初から会場へ</small></div>
             </div>
@@ -1347,17 +1466,18 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>11:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 11:20</span><span class="tt-slot-label">SESSION 01</span> <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 11:20</span><span class="tt-slot-label">SESSION 01</span> <span class="tt-slot-time-tag">50分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-1" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">あの人、なんで人気なんだろう？</div>
               <div class="tt-desc">応援される人が実はやっていること。「熱量と巻き込みの構造」の話</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_branscombe.jpg')" aria-label="ブランスクム 文葉"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_tadaishi.jpg')" aria-label="只石 昌幸"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_noda.jpg')" aria-label="野田 樹里"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_masuda.jpg')" aria-label="増田 結桜"></div></div><span class="tt-spk-names">ブランスクム 文葉 ・ 只石 昌幸 ・ 野田 樹里 ・ 増田 結桜</span></div>
             </button>
             <button type="button" data-open-session="c-1" class="tt-item has-c is-link">
-              <span class="tt-venue-label c">C会場</span>
+              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-workshop">ワークショップ</span>
               <div class="tt-title">モヤモヤを、言葉にしてみる110分</div>
+              <div class="tt-capacity">定員50名 ／ 当日先着順（受付でご案内）</div>
               <div class="tt-desc">社会・親・環境からの"ミュート"を対話で外していく時間<small>Sponsored by 株式会社スイミー</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_ohama.jpg')" aria-label="大濱 裕輝"></div></div><span class="tt-spk-names">大濱 裕輝<span class="tt-spk-role">ファシリテーター ／ 対話型ワークショップ（定員50名）</span></span></div>
             </button>
@@ -1371,16 +1491,16 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>12:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">11:30 – 12:20</span><span class="tt-slot-label">SESSION 02</span> <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">11:30 – 12:20</span><span class="tt-slot-label">SESSION 02</span> <span class="tt-slot-time-tag">50分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-2" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">学校の勉強、大人になっても使うの？</div>
               <div class="tt-desc">学校では教えてくれない"学び"から、自分らしい未来を考える50分</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_kotosaka.jpg')" aria-label="琴坂 将広"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_takamatsu.jpg')" aria-label="髙松 優大"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_matsunaga.jpg')" aria-label="松長 侑南"></div></div><span class="tt-spk-names">琴坂 将広 ・ 髙松 優大 ・ 松長 侑南</span></div>
             </button>
             <div class="tt-item has-b">
-              <span class="tt-venue-label b">常設会場</span>
+              <span class="tt-venue-label b">常設会場</span><span class="tt-type-badge tt-type-koryu">交流会</span>
               <div class="tt-title">交流会01「キックオフ交流会」</div>
               <div class="tt-desc">猛獣狩り＋テーマ別チーム対話＋共通点探しビンゴ＋自由交流。1日の"最初の1人"を見つける50分</div>
               <div class="tt-speakers"><span class="tt-spk-names">参加者全員<span class="tt-spk-role">交流ファシリテーターがリード（常設会場内）</span></span></div>
@@ -1395,16 +1515,16 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>14:30</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">12:30 – 14:30</span><span class="tt-slot-label">MAIN STAGE</span> <span class="tt-slot-time-tag">120MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">12:30 – 14:30</span><span class="tt-slot-label">MAIN STAGE</span> <span class="tt-slot-time-tag">120分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="pitch" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-pitch">プレゼン大会</span>
               <div class="tt-title">プレゼン大会「"やりたい"を、ぶつけろ」</div>
               <div class="tt-desc">全国6組の高校生ピッチバトル（休憩込み120分）<small>プレゼン大会LPで詳細</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_sato.jpg')" aria-label="佐藤 瞭真"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_nakanishi.jpg')" aria-label="中西 尭"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_ellnowa_team.jpg')" aria-label="TEAM EllnowA"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_noda.jpg')" aria-label="野田 樹里"></div><div class="tt-spk-more">+2</div></div><span class="tt-spk-names">全国6組の高校生ピッチャー<span class="tt-spk-role">＋審査員8名</span></span></div>
             </button>
             <button type="button" data-open-session="c-2" class="tt-item has-c is-link">
-              <span class="tt-venue-label c">C会場</span>
+              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">"やりたい"に向かって進んできた、セガ開発者の話</div>
               <div class="tt-desc">プリクラシリーズに携わってきた女性開発者が語るキャリア</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_miyanaka.jpg')" aria-label="宮中 沙羅"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_takeuchi.jpg')" aria-label="竹内 翼"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_kuwako.jpg')" aria-label="桑子 友菜"></div></div><span class="tt-spk-names">宮中 沙羅 ・ 竹内 翼 ・ 桑子 友菜</span></div>
@@ -1419,10 +1539,10 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>13:46</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">13:40 – 13:46</span><span class="tt-slot-label">SPECIAL LIVE</span> <span class="tt-slot-time-tag">6MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">13:40 – 13:46</span><span class="tt-slot-label">SPECIAL LIVE</span> <span class="tt-slot-time-tag">6分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="live" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-live">特別演奏</span>
               <div class="tt-title">特別講演／演奏「近未来」 <span style="color:var(--pink);">〈13:40〜〉</span></div>
               <div class="tt-desc">プレゼン大会 審査タイム中の6分間、D会場メインステージで shio（Piano&amp;Vocal）／夏志（Guitar&amp;Vocal）が「近未来」を生歌＋MV投影で披露<small>特別演奏企画</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/performer_shio.jpg')" aria-label="shio"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/performer_natsushi.jpg')" aria-label="夏志"></div></div><span class="tt-spk-names">shio（Piano&amp;Vocal）／ 夏志（Guitar&amp;Vocal）<span class="tt-spk-role">YOYOKA feat. Futures Band「近未来」を披露</span></span></div>
@@ -1437,16 +1557,16 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>15:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">14:30 – 15:20</span><span class="tt-slot-label">SESSION 04</span> <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">14:30 – 15:20</span><span class="tt-slot-label">SESSION 04</span> <span class="tt-slot-time-tag">50分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-4" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">その課外活動、総合型選抜のためだけになってない？</div>
               <div class="tt-desc">「もし受験がなくても、その活動を続けたい？」——受験で終わらせない人の考え方</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_hayashi.jpg')" aria-label="林 裕子"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_tani.jpg')" aria-label="谷 昊埜"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_ueda.jpg')" aria-label="植田 晴子"></div></div><span class="tt-spk-names">林 裕子 ・ 谷 昊埜 ・ 植田 晴子</span></div>
             </button>
             <button type="button" data-open-session="c-4" class="tt-item has-c is-link">
-              <span class="tt-venue-label c">C会場</span>
+              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">AIが全部やる時代、人間って何すればいい？</div>
               <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る<small>交流会02も同時開催</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_sano.jpg')" aria-label="佐野 貴"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_aburatani.jpg')" aria-label="油谷 駿杜"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_sakai.jpg')" aria-label="酒井 愛瑠"></div></div><span class="tt-spk-names">佐野 貴 ・ 油谷 駿杜 ・ 酒井 愛瑠</span></div>
@@ -1461,16 +1581,16 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>16:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">15:30 – 16:20</span><span class="tt-slot-label">SESSION 05</span> <span class="tt-slot-time-tag">50MIN</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">15:30 – 16:20</span><span class="tt-slot-label">SESSION 05</span> <span class="tt-slot-time-tag">50分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="d-5" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-lecture">講演（パネル）</span>
               <div class="tt-title">インターン・留学・起業、何のためにやる？</div>
               <div class="tt-desc">挑戦の選択肢の本質と、後悔しない選び方を考えるパネル</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_yamamoto.jpg')" aria-label="山本 敏行"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_noritake.jpg')" aria-label="則竹 瑛斗"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_kuno.jpg')" aria-label="久野 美恋彩"></div></div><span class="tt-spk-names">山本 敏行 ・ 則竹 瑛斗 ・ 久野 美恋彩</span></div>
             </button>
             <button type="button" data-open-session="c-5" class="tt-item has-c is-link">
-              <span class="tt-venue-label c">C会場</span>
+              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">公開収録</span>
               <div class="tt-title">君の"ミュートされた やりたい"を、全国へ</div>
               <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社／交流会03は常設会場で同時開催</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_izawa.jpg')" aria-label="伊澤 祐太"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_watanabe.jpg')" aria-label="渡邊 渚"></div></div><span class="tt-spk-names">伊澤 祐太 ・ 渡邊 渚</span></div>
@@ -1486,10 +1606,10 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-time-end" style="font-size:.58rem;">10:30-<br>16:20</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 16:20</span><span class="tt-slot-label">BOOTH</span><span class="tt-slot-time-tag">ALL DAY</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:30 – 16:20</span><span class="tt-slot-label">BOOTH</span><span class="tt-slot-time-tag">終日</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="booth-info" class="tt-item has-b is-link">
-              <span class="tt-venue-label b">常設エリア（C会場内）</span>
+              <span class="tt-venue-label b">常設会場</span><span class="tt-type-badge tt-type-booth">ブース</span>
               <div class="tt-title">ブース＋コミュニティ</div>
               <div class="tt-desc">全8団体・企業のブース＋ワークショップ＋交流エリアが10:30〜16:20の間、常時オープン。自由に出入りできます。<small>ブース一覧を見る</small></div>
             </button>
