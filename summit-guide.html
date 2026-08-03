@@ -903,6 +903,36 @@ button.tt-item.is-link { display: block; }
   letter-spacing: .02em;
 }
 
+/* ─── クラウドファンディング支援者 ─── */
+.cf-supporters {
+  background: #fff; border: 1.5px solid var(--line);
+  border-radius: 12px; padding: 22px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(16,35,63,.06);
+  position: relative;
+}
+.cf-supporters::before {
+  content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--pink), var(--purple));
+  border-radius: 999px;
+}
+.cf-note {
+  font-size: .82rem; color: var(--text2); font-weight: 700;
+  line-height: 1.7;
+}
+.cf-list {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  margin-top: 4px;
+}
+.cf-name {
+  display: inline-block;
+  font-size: .84rem; font-weight: 800; color: var(--navy);
+  padding: 6px 12px;
+  background: var(--paper);
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
 /* ─── 「詳細を見る」ヒント ─── */
 .spk-card.is-clickable, .pitch-card.is-clickable, .sponsor-card.is-clickable {
   cursor: pointer;
@@ -1340,6 +1370,7 @@ body.drawer-open { overflow: hidden; }
     <a href="#pitch">プレゼン大会</a>
     <a href="#booth">ブース</a>
     <a href="#koen">後援</a>
+    <a href="#crowdfunding">支援者</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -1359,7 +1390,8 @@ body.drawer-open { overflow: hidden; }
     <a href="#booth" class="drawer-link"><span class="drawer-num">05</span>ブース</a>
     <a href="#sponsors" class="drawer-link"><span class="drawer-num">06</span>スポンサー</a>
     <a href="#koen" class="drawer-link"><span class="drawer-num">07</span>後援</a>
-    <a href="#faq" class="drawer-link"><span class="drawer-num">08</span>よくある質問</a>
+    <a href="#crowdfunding" class="drawer-link"><span class="drawer-num">08</span>クラファン支援者</a>
+    <a href="#faq" class="drawer-link"><span class="drawer-num">09</span>よくある質問</a>
   </nav>
   <div class="drawer-foot">
     <a href="summit.html">サミット詳細ページ</a>
@@ -1377,6 +1409,7 @@ body.drawer-open { overflow: hidden; }
   <a href="#pitch">プレゼン大会</a>
   <a href="#booth">ブース</a>
   <a href="#koen">後援</a>
+  <a href="#crowdfunding">支援者</a>
   <a href="#faq">FAQ</a>
 </div>
 
@@ -1779,6 +1812,20 @@ body.drawer-open { overflow: hidden; }
         <div class="koen-label">後援</div>
         <div class="koen-name">八王子市教育委員会</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ クラウドファンディング支援者 ═══ -->
+<section class="section alt" id="crowdfunding">
+  <div class="wrap" style="max-width:720px;">
+    <div class="section-head">
+      <span class="section-tag">Crowdfunding Supporters</span>
+      <h2 class="section-title" style="font-size:1.24rem;">クラウドファンディング<em>支援者</em></h2>
+      <p style="font-size:.82rem;color:var(--text2);margin-top:8px;">クラウドファンディングを通じてNEXY SUMMIT 2026を応援してくださった皆さまへ、心より感謝申し上げます。</p>
+    </div>
+    <div class="cf-supporters">
+      <div class="cf-note">支援者一覧は準備中です。順次掲載いたします。</div>
     </div>
   </div>
 </section>
