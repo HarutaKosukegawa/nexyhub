@@ -1161,6 +1161,14 @@ img { max-width: 100%; display: block; }
 .support-card-logo { display: flex; align-items: center; justify-content: center; padding: 14px 22px; }
 .support-logo { max-width: 100%; max-height: 42px; width: auto; height: auto; display: block; }
 @media (max-width: 600px) { .support-card { min-width: 0; width: 100%; padding: 14px 20px; } }
+
+/* Crowdfunding supporters */
+.cf-lead { max-width: 640px; margin: 0 auto 16px; font-size: .86rem; color: var(--text2); text-align: center; line-height: 1.7; }
+.cf-supporters { max-width: 640px; margin: 0 auto; background: #fff; border: 1px solid var(--line-strong); border-radius: 10px; padding: 22px 20px; text-align: center; position: relative; }
+.cf-supporters::before { content: ''; position: absolute; top: 0; left: 24%; right: 24%; height: 3px; background: linear-gradient(90deg, var(--orange), #ff6b9a, #7C3AED); border-radius: 999px; }
+.cf-note { font-size: .84rem; color: var(--text2); font-weight: 700; line-height: 1.7; }
+.cf-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 4px; }
+.cf-name { display: inline-block; font-size: .88rem; font-weight: 800; color: var(--text); padding: 6px 14px; background: var(--paper); border-radius: 999px; border: 1px solid var(--line); }
 .sponsors-note {
   margin-top: 32px; text-align: center; font-size: .78rem;
   color: var(--text3); font-style: italic;
@@ -4244,6 +4252,18 @@ body.modal-open { overflow: hidden; }
         <div class="support-card">
           <span class="support-name">八王子市教育委員会</span>
         </div>
+      </div>
+    </div>
+
+    <!-- クラウドファンディング支援者 -->
+    <div class="support-block" id="crowdfunding">
+      <div class="support-head">
+        <span class="support-tag">Crowdfunding Supporters</span>
+        <div class="support-title">クラウドファンディング支援者</div>
+      </div>
+      <p class="cf-lead">クラウドファンディングを通じてNEXY SUMMIT 2026を応援してくださった皆さまへ、心より感謝申し上げます。</p>
+      <div class="cf-supporters">
+        <div class="cf-note">支援者一覧は準備中です。順次掲載いたします。</div>
       </div>
     </div>
 
