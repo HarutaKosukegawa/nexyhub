@@ -1051,7 +1051,8 @@ body.gm-open { overflow: hidden; }
   33% { transform: translate(24px,-18px) scale(1.1); }
   66% { transform: translate(-16px,12px) scale(.94); }
 }
-.hero > * { position: relative; z-index: 1; }
+.hero > *:not(.hero-blob) { position: relative; z-index: 1; }
+.hero-blob { position: absolute !important; }
 
 /* Footer */
 .footer {
