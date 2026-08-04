@@ -451,12 +451,12 @@ button.tt-item.is-link { display: block; }
 /* ─── 会場マップ（シンプル・図解） ─── */
 .venue-map {
   display: grid;
-  grid-template-columns: 3fr 32px 2fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: auto auto auto;
   grid-template-areas:
-    "d div c"
-    "d div booth"
-    "foyer foyer foyer";
+    "d c"
+    "d booth"
+    "foyer foyer";
   gap: 6px;
   max-width: 480px; margin: 0 auto 20px;
   padding: 8px;
@@ -477,21 +477,6 @@ button.tt-item.is-link { display: block; }
 .vm-c { grid-area: c; background: #6DD5F0; color: #10233F; }
 .vm-booth { grid-area: booth; background: #FFE842; color: #10233F; }
 .vm-foyer { grid-area: foyer; background: #FFCBA0; color: #10233F; padding: 26px 18px 18px; }
-
-/* 会場の仕切り（縦バー） */
-.vm-divider {
-  grid-area: div;
-  background: linear-gradient(180deg, #FFA36E, #FFCBA0);
-  border-radius: 6px;
-  color: #10233F;
-  font-weight: 900; font-size: .82rem;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: .1em;
-  display: flex; align-items: center; justify-content: center;
-  padding: 12px 4px;
-  box-shadow: 0 2px 6px rgba(16,35,63,.1);
-}
 
 /* ホワイエから上に伸びる矢印 2本 */
 .vm-foyer::before, .vm-foyer::after {
@@ -1641,7 +1626,7 @@ body.drawer-open { overflow: hidden; }
     <div class="section-head">
       <span class="section-tag">Venue Map</span>
       <h2 class="section-title">会場<em>マップ</em></h2>
-      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">受付（ホワイエ）から入って、D会場 or 常設会場エリアに移動できます。C会場は常設会場を通ります。<br>※D会場とC会場・常設会場は<strong>仕切り（オレンジ）</strong>で区切られています。</p>
+      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">受付（ホワイエ）から入って、D会場 or 常設会場エリアに移動できます。C会場は常設会場を通ります。</p>
     </div>
 
     <div class="venue-map">
@@ -1649,7 +1634,6 @@ body.drawer-open { overflow: hidden; }
         <div class="vm-label">D会場</div>
         <div class="vm-sub">メイン会場</div>
       </div>
-      <div class="vm-divider" aria-label="会場の仕切り">会場の仕切り</div>
       <div class="vm-block vm-c">
         <div class="vm-label">C会場</div>
         <div class="vm-sub">サブ会場</div>
@@ -1685,16 +1669,21 @@ body.drawer-open { overflow: hidden; }
 
       <div class="tt-slot is-open">
         <div class="tt-time-col">
-          <div class="tt-time-start">10:00</div>
+          <div class="tt-time-start">10:15</div>
           <div class="tt-time-end"><span class="tt-time-arrow">↓</span>10:30</div>
         </div>
         <div class="tt-slot-content">
-          <div class="tt-slot-time"><span class="tt-slot-range">10:00 – 10:30</span><span class="tt-slot-label">OPENING</span> <span class="tt-slot-time-tag">30分</span></div>
+          <div class="tt-slot-time"><span class="tt-slot-range">10:15 – 10:30</span><span class="tt-slot-label">OPENING</span> <span class="tt-slot-time-tag">15分</span></div>
           <div class="tt-slot-body">
             <div class="tt-item has-all">
               <span class="tt-venue-label all">全体</span><span class="tt-type-badge tt-type-opening">開会式</span>
-              <div class="tt-title">開会式（オープニング）</div>
+              <div class="tt-title">開会式（オープニング）<span style="color:var(--orange);font-size:.82rem;">〈10:15〜〉</span></div>
               <div class="tt-desc">"やりたい"を持ち帰るための、この1日の使い方をご案内。<small>ぜひ最初から会場へ</small></div>
+            </div>
+            <div class="tt-item has-all">
+              <span class="tt-venue-label all">全体</span><span class="tt-type-badge tt-type-lecture">激励の挨拶</span>
+              <div class="tt-title">只石 昌幸 さんからの激励メッセージ<span style="color:var(--orange);font-size:.82rem;">〈10:20頃〜〉</span></div>
+              <div class="tt-desc">プレゼン大会 審査員／VALX代表・只石 昌幸さんから、参加者への熱いエール。</div>
             </div>
           </div>
         </div>
