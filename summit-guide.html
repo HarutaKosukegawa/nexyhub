@@ -1057,6 +1057,78 @@ button.tt-item.is-link { display: block; }
 .sponsor-card.is-clickable img { flex: 0 0 auto; }
 
 
+
+/* ─── Discord バナー ─── */
+.discord-card {
+  position: relative;
+  padding: 36px 24px 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #5865F2 0%, #7289DA 100%);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(88,101,242,.28);
+  overflow: hidden;
+}
+.discord-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.14), transparent 65%);
+  pointer-events: none;
+}
+.discord-card::after {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.08), transparent 65%);
+  pointer-events: none;
+}
+.discord-eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: .62rem; font-weight: 900; letter-spacing: .28em;
+  opacity: .85;
+  margin-bottom: 8px;
+  position: relative; z-index: 2;
+}
+.discord-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.44rem; font-weight: 900; color: #fff;
+  margin-bottom: 10px;
+  position: relative; z-index: 2;
+  line-height: 1.35;
+}
+.discord-title em { color: #ffe15c; font-style: normal; }
+.discord-lead {
+  font-size: .88rem; font-weight: 700;
+  line-height: 1.85; opacity: .95;
+  margin-bottom: 22px;
+  position: relative; z-index: 2;
+}
+.discord-lead strong { color: #ffe15c; font-weight: 900; }
+.discord-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  background: #fff; color: #5865F2;
+  border-radius: 999px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem; font-weight: 900;
+  letter-spacing: .02em;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  transition: transform .2s, box-shadow .2s;
+  position: relative; z-index: 2;
+}
+.discord-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.24);
+}
+.discord-icon { width: 22px; height: 22px; }
+.discord-note {
+  margin-top: 14px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .68rem; font-weight: 800; letter-spacing: .18em;
+  opacity: .7;
+  position: relative; z-index: 2;
+}
+
+
 /* ─── FAQ ─── */
 .faq-list { display: flex; flex-direction: column; gap: 10px; max-width: 780px; margin: 0 auto; }
 .faq-item {
@@ -1460,6 +1532,7 @@ body.drawer-open { overflow: hidden; }
     <a href="#booth">ブース</a>
     <a href="#koen">後援</a>
     <a href="#crowdfunding">支援者</a>
+    <a href="#discord">Discord</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -1480,7 +1553,8 @@ body.drawer-open { overflow: hidden; }
     <a href="#sponsors" class="drawer-link"><span class="drawer-num">06</span>スポンサー</a>
     <a href="#koen" class="drawer-link"><span class="drawer-num">07</span>後援</a>
     <a href="#crowdfunding" class="drawer-link"><span class="drawer-num">08</span>クラファン支援者</a>
-    <a href="#faq" class="drawer-link"><span class="drawer-num">09</span>よくある質問</a>
+    <a href="#discord" class="drawer-link"><span class="drawer-num">09</span>Discord</a>
+    <a href="#faq" class="drawer-link"><span class="drawer-num">10</span>よくある質問</a>
   </nav>
   <div class="drawer-foot">
     <a href="summit.html">サミット詳細ページ</a>
@@ -1498,6 +1572,7 @@ body.drawer-open { overflow: hidden; }
   <a href="#booth">ブース</a>
   <a href="#koen">後援</a>
   <a href="#crowdfunding">支援者</a>
+  <a href="#discord">Discord</a>
   <a href="#faq">FAQ</a>
 </div>
 
@@ -1548,7 +1623,7 @@ body.drawer-open { overflow: hidden; }
     <div class="venue-map-legend">
       <div class="vml-item"><span class="vml-arrow">▸</span>D会場（メイン）— 講演・プレゼン大会・特別演奏</div>
       <div class="vml-item"><span class="vml-arrow">▸</span>C会場（サブ）— 講演・ワークショップ・公開収録</div>
-      <div class="vml-item"><span class="vml-arrow">▸</span>常設会場 — ブース・交流会・ワークショップ（終日オープン）</div>
+      <div class="vml-item"><span class="vml-arrow">▸</span>常設会場 — ブース・ワークショップ（終日オープン）</div>
       <div class="vml-item"><span class="vml-arrow">▸</span>ホワイエ — 受付・入場口</div>
     </div>
   </div>
@@ -1620,12 +1695,6 @@ body.drawer-open { overflow: hidden; }
               <div class="tt-desc">学校では教えてくれない"学び"から、自分らしい未来を考える50分</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_kotosaka.jpg')" aria-label="琴坂 将広"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_takamatsu.jpg')" aria-label="髙松 優大"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_matsunaga.jpg')" aria-label="松長 侑南"></div></div><span class="tt-spk-names">琴坂 将広 ・ 髙松 優大 ・ 松長 侑南</span></div>
             </button>
-            <div class="tt-item has-b">
-              <span class="tt-venue-label b">常設会場</span><span class="tt-type-badge tt-type-koryu">交流会</span>
-              <div class="tt-title">交流会01「キックオフ交流会」</div>
-              <div class="tt-desc">猛獣狩り＋テーマ別チーム対話＋共通点探しビンゴ＋自由交流。1日の"最初の1人"を見つける50分</div>
-              <div class="tt-speakers"><span class="tt-spk-names">参加者全員<span class="tt-spk-role">交流ファシリテーターがリード（常設会場内）</span></span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -1689,7 +1758,7 @@ body.drawer-open { overflow: hidden; }
             <button type="button" data-open-session="c-4" class="tt-item has-c is-link">
               <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
               <div class="tt-title">AIが全部やる時代、人間って何すればいい？</div>
-              <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る<small>交流会02も同時開催</small></div>
+              <div class="tt-desc">AI領域の第一線＋AIネイティブ高校生2名が本音で語る</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_sano.jpg')" aria-label="佐野 貴"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_aburatani.jpg')" aria-label="油谷 駿杜"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_sakai.jpg')" aria-label="酒井 愛瑠"></div></div><span class="tt-spk-names">佐野 貴 ・ 油谷 駿杜 ・ 酒井 愛瑠</span></div>
             </button>
           </div>
@@ -1713,7 +1782,7 @@ body.drawer-open { overflow: hidden; }
             <button type="button" data-open-session="c-5" class="tt-item has-c is-link">
               <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">公開収録</span>
               <div class="tt-title">君の"ミュートされた やりたい"を、全国へ</div>
-              <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社／交流会03は常設会場で同時開催</small></div>
+              <div class="tt-desc">【YouTube『ON MUTE』公開収録】参加型で全国へ届ける50分<small>Presented by スイミー株式会社</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_izawa.jpg')" aria-label="伊澤 祐太"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_watanabe.jpg')" aria-label="渡邊 渚"></div></div><span class="tt-spk-names">伊澤 祐太 ・ 渡邊 渚</span></div>
             </button>
           </div>
@@ -1938,6 +2007,23 @@ body.drawer-open { overflow: hidden; }
 
 
 
+
+<!-- ═══ Discord ═══ -->
+<section class="section" id="discord">
+  <div class="wrap" style="max-width:720px;">
+    <div class="discord-card">
+      <div class="discord-eyebrow">FOR ATTENDEES</div>
+      <h2 class="discord-title">参加者用 <em>Discord サーバー</em></h2>
+      <p class="discord-lead">当日の情報共有・登壇者へのフォロー・参加者どうしの交流に使えます。<br><strong>ここから入ってね！！</strong></p>
+      <a href="https://discord.gg/cP4R3b4U" target="_blank" rel="noopener" class="discord-btn">
+        <svg class="discord-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        Discord サーバーに参加する
+      </a>
+      <div class="discord-note">discord.gg/cP4R3b4U</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ FAQ ═══ -->
 <section class="section alt" id="faq">
   <div class="wrap">
@@ -1981,12 +2067,12 @@ body.drawer-open { overflow: hidden; }
 
       <details class="faq-item">
         <summary class="faq-q"><span class="faq-badge">Q7</span>登壇者や他の参加者と話せますか？</summary>
-        <div class="faq-a">各セッション後、常設エリアや交流会（11:30・14:30・15:30）で登壇者・参加者と話す機会があります。積極的に話しかけてください。</div>
+        <div class="faq-a">各セッション後や休憩時間に、常設エリア（ブース・ストーリー展示エリア）で登壇者・参加者と話す機会があります。積極的に話しかけてください。</div>
       </details>
 
       <details class="faq-item">
         <summary class="faq-q"><span class="faq-badge">Q8</span>スタンプラリーとは何ですか？</summary>
-        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示・交流会でも1枚ずつゲット可能。<strong style="color:var(--orange);">シール3枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
+        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示でも1枚ゲット可能。<strong style="color:var(--orange);">シール3枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
       </details>
 
       <details class="faq-item">
