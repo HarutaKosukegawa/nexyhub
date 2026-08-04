@@ -542,6 +542,20 @@ button.tt-item.is-link { display: block; }
 .tt-type-opening { background: rgba(255,201,62,.2); color: #b8860b; border: 1px solid #d4a017; }
 .tt-type-booth { background: rgba(50,50,50,.1); color: #333; border: 1px solid #333; }
 
+
+/* セッションアイテム内の時刻明示チップ */
+.tt-item-time {
+  display: inline-block;
+  font-family: 'Manrope', sans-serif;
+  font-size: .58rem; font-weight: 900; letter-spacing: .08em;
+  color: #b8860b;
+  background: rgba(255,201,62,.18);
+  padding: 3px 9px; border-radius: 4px;
+  border: 1px solid rgba(212,160,23,.4);
+  margin-left: 6px; margin-bottom: 6px;
+  vertical-align: middle;
+}
+
 /* 定員・予約情報 */
 .tt-capacity {
   display: inline-block;
@@ -1914,13 +1928,13 @@ body.drawer-open { overflow: hidden; }
           <div class="tt-slot-time"><span class="tt-slot-range">12:30 – 14:30</span><span class="tt-slot-label">MAIN STAGE</span> <span class="tt-slot-time-tag">120分</span></div>
           <div class="tt-slot-body">
             <button type="button" data-open-session="pitch" class="tt-item has-d is-link">
-              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-pitch">プレゼン大会</span>
+              <span class="tt-venue-label d">D会場</span><span class="tt-type-badge tt-type-pitch">プレゼン大会</span><span class="tt-item-time">12:30 – 14:20 ／ 110分（休憩なし）</span>
               <div class="tt-title">プレゼン大会「"やりたい"を、ぶつけろ」</div>
               <div class="tt-desc">全国6組の高校生ピッチバトル（<strong>110分 ／ 休憩なし</strong>）<small>プレゼン大会LPで詳細</small></div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_sato.jpg')" aria-label="佐藤 瞭真"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_nakanishi.jpg')" aria-label="中西 尭"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/pitch_ellnowa_team.jpg')" aria-label="TEAM EllnowA"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_noda.jpg')" aria-label="野田 樹里"></div><div class="tt-spk-more">+2</div></div><span class="tt-spk-names">全国6組の高校生ピッチャー<span class="tt-spk-role">＋審査員8名</span></span></div>
             </button>
             <button type="button" data-open-session="c-2" class="tt-item has-c is-link">
-              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">講演</span>
+              <span class="tt-venue-label c">C会場</span><span class="tt-type-badge tt-type-lecture">講演</span><span class="tt-item-time">12:30 – 13:20 ／ 50分</span>
               <div class="tt-title">"やりたい"に向かって進んできた、セガ開発者の話</div>
               <div class="tt-desc">プリクラシリーズに携わってきた女性開発者が語るキャリア</div>
               <div class="tt-speakers"><div class="tt-spk-avatars"><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_miyanaka.jpg')" aria-label="宮中 沙羅"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_takeuchi.jpg')" aria-label="竹内 翼"></div><div class="tt-spk-thumb" style="background-image:url('img/summit/speaker_kuwako.jpg')" aria-label="桑子 友菜"></div></div><span class="tt-spk-names">宮中 沙羅 ・ 竹内 翼 ・ 桑子 友菜</span></div>
