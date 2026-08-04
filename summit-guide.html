@@ -851,6 +851,73 @@ button.tt-item.is-link { display: block; }
 }
 .booth-card img { max-width: 100%; max-height: 40px; object-fit: contain; }
 .booth-card span { font-size: .66rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
+.booth-card.is-nexy-drink {
+  border: 2px solid var(--orange);
+  background: linear-gradient(135deg, #fff, #fff5ea);
+  box-shadow: 0 4px 12px rgba(234,92,31,.14);
+  position: relative;
+}
+.booth-card .booth-badge {
+  display: inline-block;
+  font-family: 'Manrope', sans-serif;
+  font-size: .54rem; font-weight: 900; letter-spacing: .1em;
+  color: #fff; background: var(--orange);
+  padding: 3px 8px; border-radius: 999px;
+  margin-top: 4px;
+  line-height: 1.2;
+  animation: badgePulse 1.8s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* NEXY 冷たい飲み物 バナー */
+.nexy-drink-banner {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 20px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #E6F7FF 0%, #B3E5FC 55%, #81D4FA 100%);
+  border: 2px solid #35B4E0;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(53,180,224,.22);
+  position: relative;
+  overflow: hidden;
+}
+.nexy-drink-banner::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.55), transparent 70%);
+  pointer-events: none;
+}
+.ndb-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #fff; color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(16,35,63,.14);
+  animation: ndbFloat 2.4s ease-in-out infinite;
+}
+.ndb-icon svg { width: 26px; height: 26px; }
+@keyframes ndbFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.ndb-title {
+  font-size: .96rem; font-weight: 900; color: var(--navy);
+  line-height: 1.4;
+}
+.ndb-title em { color: var(--orange); font-style: normal; }
+.ndb-sub {
+  font-size: .74rem; font-weight: 700; color: var(--navy);
+  opacity: .78; margin-top: 4px; line-height: 1.55;
+}
+@media (max-width: 480px) {
+  .nexy-drink-banner { padding: 14px 16px; gap: 12px; }
+  .ndb-icon { width: 40px; height: 40px; }
+  .ndb-icon svg { width: 22px; height: 22px; }
+  .ndb-title { font-size: .9rem; }
+}
 
 /* ─── SPONSOR ─── */
 .sponsor-tier { margin-bottom: 28px; text-align: center; }
@@ -1939,7 +2006,7 @@ body.drawer-open { overflow: hidden; }
     </div>
     <div class="booth-grid">
       <div class="booth-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"><span>CHEERS!</span></div>
-      <div class="booth-card"><img src="img/summit/nexy_logo.png" alt="学生団体NEXY"><span>学生団体NEXY</span></div>
+      <div class="booth-card is-nexy-drink"><img src="img/summit/nexy_logo.png" alt="学生団体NEXY"><span>学生団体NEXY</span><span class="booth-badge">冷たい飲み物 販売中</span></div>
       <div class="booth-card"><img src="img/summit/sponsor_aiesec.png" alt="AIESEC"><span>AIESEC Japan</span></div>
       <div class="booth-card"><img src="img/summit/booth_stitchlab.png" alt="Stitch Lab"><span>Stitch Lab</span></div>
       <div class="booth-card"><img src="img/summit/booth_etoe.jpg" alt="EToE"><span>学生団体EToE</span></div>
@@ -1947,6 +2014,16 @@ body.drawer-open { overflow: hidden; }
       <div class="booth-card"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"><span>孫正義育英財団</span></div>
       <div class="booth-card"><img src="img/summit/booth_origami_peace.png" alt="折り鶴から始める平和活動"><span>折り鶴から始める平和活動</span></div>
       <div class="booth-card"><img src="img/summit/booth_seijika.jpg" alt="政治家に会いに行こう"><span>政治家に会いに行こう</span></div>
+    </div>
+
+    <div class="nexy-drink-banner">
+      <div class="ndb-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 5H7L6 3z"/><path d="M7 8l1.5 12h7L17 8"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+      </div>
+      <div class="ndb-body">
+        <div class="ndb-title">NEXYブースで<em>キンキンに冷えた飲み物</em>を販売中</div>
+        <div class="ndb-sub">常設会場内・学生団体NEXY ブースにて。当日は水分補給をこまめに。</div>
+      </div>
     </div>
   </div>
 </section>
