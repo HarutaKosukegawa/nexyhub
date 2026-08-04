@@ -872,7 +872,113 @@ button.tt-item.is-link { display: block; }
   50% { transform: scale(1.06); }
 }
 
-/* NEXY 冷たい飲み物 バナー */
+
+/* ─── 常設会場コンテンツ（ブロック） ─── */
+.booth-block {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(16,35,63,.05);
+}
+.booth-block-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.booth-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; height: 36px; padding: 0 10px;
+  border-radius: 999px;
+  font-family: 'Manrope', sans-serif;
+  font-size: .82rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--orange), #ff8a3d);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(234,92,31,.24);
+}
+.booth-block-title {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.08rem; font-weight: 900; color: var(--navy);
+  line-height: 1.4;
+  margin: 0;
+}
+.booth-block-lead {
+  font-size: .86rem; color: var(--text); font-weight: 500;
+  line-height: 1.85;
+  margin-bottom: 10px;
+}
+.booth-block-lead strong { color: var(--navy); font-weight: 900; }
+.booth-block-sub {
+  font-size: .78rem; color: var(--text2); font-weight: 700;
+  line-height: 1.8;
+  padding: 10px 14px;
+  background: var(--paper);
+  border-left: 3px solid var(--orange);
+  border-radius: 6px;
+  margin-top: 8px;
+}
+.booth-block .booth-grid { margin-top: 14px; }
+
+/* NEXYブロック特別スタイル */
+.booth-block-nexy {
+  background: linear-gradient(135deg, #fff, #fff5ea);
+  border: 2px solid var(--orange);
+  box-shadow: 0 8px 22px rgba(234,92,31,.14);
+}
+.booth-block-nexy .booth-num {
+  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  box-shadow: 0 3px 8px rgba(16,35,63,.24);
+}
+
+/* NEXYブースの特典行 */
+.nexy-perk {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid rgba(234,92,31,.28);
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.nexy-perk-stamp {
+  border-color: rgba(255,201,62,.5);
+  background: linear-gradient(135deg, #fffef5, #fff9e6);
+}
+.nexy-perk-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--orange); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 3px 8px rgba(234,92,31,.24);
+}
+.nexy-perk-stamp .nexy-perk-icon {
+  background: #d4a017;
+  box-shadow: 0 3px 8px rgba(212,160,23,.24);
+}
+.nexy-perk-icon svg { width: 22px; height: 22px; }
+.nexy-perk-title {
+  font-size: .92rem; font-weight: 900; color: var(--navy);
+  line-height: 1.4;
+}
+.nexy-perk-title em {
+  color: var(--orange); font-style: normal;
+}
+.nexy-perk-stamp .nexy-perk-title em { color: #b8860b; }
+.nexy-perk-sub {
+  font-size: .76rem; color: var(--text2); font-weight: 700;
+  line-height: 1.7; margin-top: 4px;
+}
+.nexy-perk-sub a { color: var(--orange); font-weight: 900; text-decoration: underline; }
+
+.nexy-cta {
+  margin-top: 14px; padding: 12px 14px;
+  background: rgba(16,35,63,.06);
+  border-radius: 8px;
+  font-size: .82rem; color: var(--navy); font-weight: 800;
+  text-align: center;
+}
+.nexy-cta a { color: var(--orange); text-decoration: underline; font-weight: 900; }
+
+/* NEXY 冷たい飲み物 バナー（旧・未使用） */
 .nexy-drink-banner {
   display: flex; align-items: center; gap: 16px;
   margin-top: 20px;
@@ -2001,28 +2107,80 @@ body.drawer-open { overflow: hidden; }
 <section class="section" id="booth">
   <div class="wrap">
     <div class="section-head">
-      <span class="section-tag">Booth Exhibitors</span>
-      <h2 class="section-title">ブース<em>出展</em></h2>
-    </div>
-    <div class="booth-grid">
-      <div class="booth-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"><span>CHEERS!</span></div>
-      <div class="booth-card is-nexy-drink"><img src="img/summit/nexy_logo.png" alt="学生団体NEXY"><span>学生団体NEXY</span><span class="booth-badge">冷たい飲み物 販売中</span></div>
-      <div class="booth-card"><img src="img/summit/sponsor_aiesec.png" alt="AIESEC"><span>AIESEC Japan</span></div>
-      <div class="booth-card"><img src="img/summit/booth_stitchlab.png" alt="Stitch Lab"><span>Stitch Lab</span></div>
-      <div class="booth-card"><img src="img/summit/booth_etoe.jpg" alt="EToE"><span>学生団体EToE</span></div>
-      <div class="booth-card"><img src="img/summit/sponsor_king.png" alt="KING"><span>Business Contest KING</span></div>
-      <div class="booth-card"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"><span>孫正義育英財団</span></div>
-      <div class="booth-card"><img src="img/summit/booth_origami_peace.png" alt="折り鶴から始める平和活動"><span>折り鶴から始める平和活動</span></div>
-      <div class="booth-card"><img src="img/summit/booth_seijika.jpg" alt="政治家に会いに行こう"><span>政治家に会いに行こう</span></div>
+      <span class="section-tag">Booth &amp; Story</span>
+      <h2 class="section-title">常設会場<em>コンテンツ</em></h2>
+      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">常設会場では、9つの出展ブース、ストーリー展、寄せ書き模造紙、NEXY公式ブースを展開。10:30〜16:20 の間、自由に立ち寄れます。</p>
     </div>
 
-    <div class="nexy-drink-banner">
-      <div class="ndb-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 5H7L6 3z"/><path d="M7 8l1.5 12h7L17 8"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+    <!-- ① ストーリー展 -->
+    <div class="booth-block">
+      <div class="booth-block-head">
+        <span class="booth-num">01</span>
+        <h3 class="booth-block-title">ストーリー展</h3>
       </div>
-      <div class="ndb-body">
-        <div class="ndb-title">NEXYブースで<em>キンキンに冷えた飲み物</em>を販売中</div>
-        <div class="ndb-sub">常設会場内・学生団体NEXY ブースにて。当日は水分補給をこまめに。</div>
+      <p class="booth-block-lead">運営メンバーの個人プロフィールや、登壇者の <strong>&quot;現在までの人生グラフ&quot;</strong> を展示中。<br>「あのすごい経営者にも、こんな過去があったのか」という気づきや、「これなら自分にもできるかも」という発見につながるかも？</p>
+      <p class="booth-block-sub">ブースでは、見て感じたことをその場で付箋に書いて貼れるシステムを採用。参加者みんなの &quot;感じたこと&quot; がその場で可視化されていきます。</p>
+    </div>
+
+    <!-- ② 寄せ書き模造紙 -->
+    <div class="booth-block">
+      <div class="booth-block-head">
+        <span class="booth-num">02</span>
+        <h3 class="booth-block-title">寄せ書き模造紙</h3>
+      </div>
+      <p class="booth-block-lead">大きな模造紙を設置。このイベントを通して感じたこと、思ったこと、<strong>これから実行したいこと</strong> を、参加者同士で自由に寄せ書きしましょう。</p>
+    </div>
+
+    <!-- ③ 出展ブース -->
+    <div class="booth-block">
+      <div class="booth-block-head">
+        <span class="booth-num">03</span>
+        <h3 class="booth-block-title">出展ブース（9団体）</h3>
+      </div>
+      <p class="booth-block-lead">CHEERS株式会社・学生団体NEXY・AIESEC Japan・Stitch Lab・学生団体EToE・Business Contest KING・孫正義育英財団・折り鶴から始める平和活動・政治家に会いに行こう など、<strong>9つの企業・団体が出展</strong>。実際の話を聞けて、視野が広がるチャンス。気軽にブースに立ち寄ってください。</p>
+      <div class="booth-grid">
+        <div class="booth-card"><img src="img/summit/sponsor_cheers.png" alt="CHEERS!"><span>CHEERS!</span></div>
+        <div class="booth-card is-nexy-drink"><img src="img/summit/nexy_logo.png" alt="学生団体NEXY"><span>学生団体NEXY</span><span class="booth-badge">飲み物・グッズ</span></div>
+        <div class="booth-card"><img src="img/summit/sponsor_aiesec.png" alt="AIESEC"><span>AIESEC Japan</span></div>
+        <div class="booth-card"><img src="img/summit/booth_stitchlab.png" alt="Stitch Lab"><span>Stitch Lab</span></div>
+        <div class="booth-card"><img src="img/summit/booth_etoe.jpg" alt="EToE"><span>学生団体EToE</span></div>
+        <div class="booth-card"><img src="img/summit/sponsor_king.png" alt="KING"><span>Business Contest KING</span></div>
+        <div class="booth-card"><img src="img/summit/sponsor_son_foundation.jpg" alt="孫正義育英財団"><span>孫正義育英財団</span></div>
+        <div class="booth-card"><img src="img/summit/booth_origami_peace.png" alt="折り鶴から始める平和活動"><span>折り鶴から始める平和活動</span></div>
+        <div class="booth-card"><img src="img/summit/booth_seijika.jpg" alt="政治家に会いに行こう"><span>政治家に会いに行こう</span></div>
+      </div>
+    </div>
+
+    <!-- ④ NEXYブース -->
+    <div class="booth-block booth-block-nexy">
+      <div class="booth-block-head">
+        <span class="booth-num">04</span>
+        <h3 class="booth-block-title">NEXYブース（ドリンク・グッズ・お菓子つかみ取り）</h3>
+      </div>
+      <p class="booth-block-lead">常設エリア内の <strong>NEXYブース</strong> では、<strong>ドリンク販売・NEXYオリジナルステッカー販売・お菓子のつかみ取り</strong> を実施。</p>
+
+      <div class="nexy-perk">
+        <div class="nexy-perk-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 5H7L6 3z"/><path d="M7 8l1.5 12h7L17 8"/></svg>
+        </div>
+        <div>
+          <div class="nexy-perk-title">Discord 提示で <em>ドリンク 200円 → 100円</em></div>
+          <div class="nexy-perk-sub">当日、NEXYサミット公式 Discord の参加画面を提示するとドリンクが半額に。<a href="#discord" style="color:var(--orange);font-weight:900;">Discord に参加する</a></div>
+        </div>
+      </div>
+
+      <div class="nexy-perk nexy-perk-stamp">
+        <div class="nexy-perk-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7l1.6 3.4 3.7.5-2.7 2.6.6 3.7L12 15.5l-3.2 1.7.6-3.7-2.7-2.6 3.7-.5z"/></svg>
+        </div>
+        <div>
+          <div class="nexy-perk-title">お菓子つかみ取りは <em>シール5枚</em> でチャレンジ！</div>
+          <div class="nexy-perk-sub">出展ブースを1つ回るごとに1枚、模造紙に寄せ書きすると1枚もらえます。<br>5枚集まったら NEXYブースへお越しください。</div>
+        </div>
+      </div>
+
+      <div class="nexy-cta">
+        ぜひ <a href="#discord">Discord</a> にご登録の上、会場にお越しください。
       </div>
     </div>
   </div>
@@ -2182,7 +2340,7 @@ body.drawer-open { overflow: hidden; }
 
       <details class="faq-item">
         <summary class="faq-q"><span class="faq-badge">Q8</span>スタンプラリーとは何ですか？</summary>
-        <div class="faq-a">常設ブースを回るとシールがもらえます。ブース1つ回るごとに1枚、ストーリー展示でも1枚ゲット可能。<strong style="color:var(--orange);">シール3枚集めるとお菓子の掴み取り</strong>に参加できます。</div>
+        <div class="faq-a">出展ブースを1つ回るごとにシール1枚、寄せ書き模造紙にメッセージを書くとシール1枚もらえます。<strong style="color:var(--orange);">シール5枚集めるとお菓子のつかみ取り</strong>にチャレンジできます（NEXYブースにて）。</div>
       </details>
 
       <details class="faq-item">
