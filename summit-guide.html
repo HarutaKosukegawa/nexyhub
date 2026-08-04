@@ -451,12 +451,12 @@ button.tt-item.is-link { display: block; }
 /* ─── 会場マップ（シンプル・図解） ─── */
 .venue-map {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 3fr 32px 2fr;
   grid-template-rows: auto auto auto;
   grid-template-areas:
-    "d c"
-    "d booth"
-    "foyer foyer";
+    "d div c"
+    "d div booth"
+    "foyer foyer foyer";
   gap: 6px;
   max-width: 480px; margin: 0 auto 20px;
   padding: 8px;
@@ -471,11 +471,54 @@ button.tt-item.is-link { display: block; }
   text-align: center;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   min-height: 70px;
+  position: relative;
 }
 .vm-d { grid-area: d; background: #C56AE0; color: #fff; min-height: 190px; }
 .vm-c { grid-area: c; background: #6DD5F0; color: #10233F; }
 .vm-booth { grid-area: booth; background: #FFE842; color: #10233F; }
-.vm-foyer { grid-area: foyer; background: #FFCBA0; color: #10233F; padding: 18px; }
+.vm-foyer { grid-area: foyer; background: #FFCBA0; color: #10233F; padding: 26px 18px 18px; }
+
+/* 会場の仕切り（縦バー） */
+.vm-divider {
+  grid-area: div;
+  background: linear-gradient(180deg, #FFA36E, #FFCBA0);
+  border-radius: 6px;
+  color: #10233F;
+  font-weight: 900; font-size: .82rem;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: .1em;
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px 4px;
+  box-shadow: 0 2px 6px rgba(16,35,63,.1);
+}
+
+/* ホワイエから上に伸びる矢印 2本 */
+.vm-foyer::before, .vm-foyer::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 14px solid #fff;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 -1px 1px rgba(16,35,63,.15));
+  animation: vmArrow 2s ease-in-out infinite;
+}
+.vm-foyer::before {
+  /* 左：D会場へ */
+  left: 22%;
+}
+.vm-foyer::after {
+  /* 右：常設会場へ */
+  right: 18%;
+  animation-delay: .5s;
+}
+@keyframes vmArrow {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
 .vm-label {
   font-size: 1.1rem; font-weight: 900; letter-spacing: .02em;
   line-height: 1.3;
@@ -1598,7 +1641,7 @@ body.drawer-open { overflow: hidden; }
     <div class="section-head">
       <span class="section-tag">Venue Map</span>
       <h2 class="section-title">会場<em>マップ</em></h2>
-      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">受付（ホワイエ）から入って、D会場 or 常設会場エリアに移動できます。C会場は常設会場を通ります。</p>
+      <p style="font-size:.86rem;color:var(--text2);margin-top:10px;">受付（ホワイエ）から入って、D会場 or 常設会場エリアに移動できます。C会場は常設会場を通ります。<br>※D会場とC会場・常設会場は<strong>仕切り（オレンジ）</strong>で区切られています。</p>
     </div>
 
     <div class="venue-map">
@@ -1606,6 +1649,7 @@ body.drawer-open { overflow: hidden; }
         <div class="vm-label">D会場</div>
         <div class="vm-sub">メイン会場</div>
       </div>
+      <div class="vm-divider" aria-label="会場の仕切り">会場の仕切り</div>
       <div class="vm-block vm-c">
         <div class="vm-label">C会場</div>
         <div class="vm-sub">サブ会場</div>
