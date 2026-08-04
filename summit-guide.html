@@ -526,6 +526,19 @@ button.tt-item.is-link { display: block; }
 }
 
 
+
+/* タイムテーブルセクション：モバイルで余白を詰めて横幅を最大化 */
+@media (max-width: 720px) {
+  #schedule { padding-left: 4px !important; padding-right: 4px !important; }
+  #schedule .wrap { padding-left: 4px !important; padding-right: 4px !important; }
+  .tt-slot { grid-template-columns: 60px 1fr; }
+  .tt-time-col { padding-right: 14px; }
+  .tt-slot-content { margin-left: 6px; }
+  .tt-item { padding: 14px 14px 14px 14px; }
+  .tt-item.is-link::after { right: 8px; }
+  .tt-title { padding-right: 20px; }
+}
+
 /* ─── VENUE MAP（カラフルゾーン版・未使用） ─── */
 .venue-legend-txt {
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
