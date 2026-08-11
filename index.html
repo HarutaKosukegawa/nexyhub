@@ -488,6 +488,22 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
 
 /* SEO用視覚非表示 */
 .seo-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* Solutions タブ（イベント / 人材） */
+.sol-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 700px; margin: 0 auto 32px; }
+.sol-tab { background: #fff; border: 2px solid #eee; border-radius: 14px; padding: 18px 20px; cursor: pointer; text-align: left; transition: border-color .2s, box-shadow .2s, transform .2s; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-family: inherit; }
+.sol-tab:hover { border-color: #FFB380; transform: translateY(-2px); }
+.sol-tab.is-active { border-color: #F28B3D; background: linear-gradient(135deg, #FFF6EE, #fff); box-shadow: 0 6px 18px rgba(242,139,61,.16); }
+.sol-tab-num { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 900; letter-spacing: .18em; color: #F28B3D; }
+.sol-tab-label { font-size: 1.08rem; font-weight: 900; color: #1a1a1a; }
+.sol-tab-desc { font-size: .74rem; color: #777; font-weight: 700; }
+.sol-pane { display: none; }
+.sol-pane.is-active { display: block; animation: solPaneIn .3s ease; }
+@keyframes solPaneIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.sol-card-coming { pointer-events: none; opacity: .82; background: #fafafa; }
+.sol-card-coming .sol-arrow { color: #999; }
+.sol-thumb-placeholder { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f0f0f0, #e8e8e8); color: #999; font-family: 'Inter', sans-serif; font-weight: 900; letter-spacing: .18em; font-size: .9rem; aspect-ratio: 16/9; }
+
 </style>
 </head>
 <body>
@@ -550,19 +566,7 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   </div>
 
   <aside class="hero-right">
-    <div class="next-event-card fi-r" style="transition-delay:.20s">
-      <div class="ne-eyebrow">ゆうげの若き熱論会 — 参加者募集中</div>
-      <div class="ne-tag">Presented by ラクーンHD</div>
-      <div class="ne-date-row">
-        <span class="ne-day">08.03</span>
-        <span class="ne-dow">開催</span>
-      </div>
-      <div class="ne-venue">19:00-21:00 ／ 日本橋蛎殻町 ラクーンHD本社<br>参加費無料 ／ 夜ご飯付き ／ 定員20〜25名</div>
-      <a href="https://forms.gle/Q9JztQvtVkK5WBs56" target="_blank" rel="noopener" class="ne-cta">
-        <span>無料で参加を申し込む</span><span class="ne-arrow">→</span>
-      </a>
-    </div>
-    <div class="hero-photo-grid fi-r" style="transition-delay:.32s">
+<div class="hero-photo-grid fi-r" style="transition-delay:.32s">
       <a href="news.html#yoru2" aria-label="深夜の語り場 第2回"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回" loading="lazy"></a>
       <a href="news.html#yoisho1" aria-label="よいしょ徳島 第1回"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></a>
       <a href="news.html#asage3" aria-label="あさげの会 第3回"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの会 第3回" loading="lazy"></a>
@@ -866,64 +870,101 @@ footer{background:#fff;border-top:1px solid rgba(0,0,0,.08);}
   <div class="section-wrap">
     <div class="s-label fi">NEXYの事業</div>
     <div class="s-title fi" style="transition-delay:.06s">What we do</div>
-    <div class="sol-grid3">
-      <a href="yoru.html" class="sol-card sc-yoru fi">
-        <img src="img/solutions/yoru_thumb.jpg" alt="深夜の語り場" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">深夜の語り場</span>
-          <div class="sol-name">考え途中のことを、<br>そのまま話していい夜</div>
-          <div class="sol-desc">企業オフィスをひらき、学生が未来について"考え途中"のまま語り合う場。進路・将来・挑戦前の迷い——まだ整理しきれていない思考の途中を、そのまま話せる夜をつくります。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
-      <a href="asa.html" class="sol-card sc-asa fi" style="transition-delay:.16s">
-        <img src="img/solutions/asa_thumb.jpg" alt="朝食会" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">朝食会</span>
-          <div class="sol-name">日本の夜明け<br>ここから始まる</div>
-          <div class="sol-desc">高校生と大人が"自然と混ざる"朝食コミュニティ。経営者・アーティストとの対話で選択肢を広げます。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
-      <a href="yuuge.html" class="sol-card sc-yuuge fi" style="transition-delay:.24s">
-        <img src="img/yuuge/yuuge_thumb.jpg" alt="ゆうげの討論会" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">ゆうげの討論会</span>
-          <div class="sol-name">本気の学生と出会う<br>クローズド座談会</div>
-          <div class="sol-desc">東大・早慶・MARCH以上の大学1〜2年生 20名と、御社だけで語り合う 2時間のクローズド座談会。就活解禁前の早期接点を、企業様向けに提供します。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
-      <a href="yoisho.html" class="sol-card sc-yoisho fi" style="transition-delay:.32s">
-        <img src="img/yoisho/yoisho_thumb.jpg" alt="よいしょ〇〇！！シリーズ" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">よいしょ〇〇！！シリーズ</span>
-          <div class="sol-name">「やってみたい」を、<br>地方から始めよう。</div>
-          <div class="sol-desc">首都圏以外の地方主要都市を巡回する、半ワーク・半交流の4時間。中学生〜社会人（メインは高校生〜大学生）が、地元で「やってみたい」を形にする場。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
-      <a href="summit.html" class="sol-card sc-summit fi" style="transition-delay:.4s">
-        <img src="img/summit/summit_kv_thumb.png" alt="NEXY Summit 2026" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">NEXY Summit 2026</span>
-          <div class="sol-name">日本最大級の<br>高校生サミット</div>
-          <div class="sol-desc">2026年夏・東京、高校生1,000人が集う1DAYサミット。<strong>NEXYプレゼン大会</strong>・登壇セッション・ワークショップ・ブース出展などを実施。未完成の違和感や好奇心を持ち寄り、自分の可能性が今ここにあると気づく場所。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
-      <a href="kataribi.html" class="sol-card sc-kataribi fi" style="transition-delay:.48s">
-        <img src="img/kataribi/hero.png" alt="カタリビ 2026 サマーキャンプ" class="sol-thumb">
-        <div class="sol-body">
-          <span class="sol-tag-pill">カタリビ 2026 サマーキャンプ</span>
-          <div class="sol-name">語れ、その先で、<br>夜が明ける。</div>
-          <div class="sol-desc">U-18向けの2泊3日 宿泊型キャンプ。2026年8月17日〜19日、神奈川県立 足柄ふれあいの村にて開催。何かを成し遂げなくても、君の熱には価値がある。</div>
-          <div class="sol-arrow">詳しく見る →</div>
-        </div>
-      </a>
+    <div class="sol-tabs" role="tablist">
+      <button type="button" class="sol-tab is-active" data-tab="event" role="tab" aria-selected="true">
+        <span class="sol-tab-num">01</span>
+        <span class="sol-tab-label">イベント系</span>
+        <span class="sol-tab-desc">学生・若者が集う場の運営</span>
+      </button>
+      <button type="button" class="sol-tab" data-tab="hr" role="tab" aria-selected="false">
+        <span class="sol-tab-num">02</span>
+        <span class="sol-tab-label">人材系</span>
+        <span class="sol-tab-desc">企業と学生をつなぐ場の提供</span>
+      </button>
     </div>
-  </div>
-</section>
+
+    <div class="sol-pane is-active" data-pane="event">
+      <div class="sol-grid3">
+        <a href="summit.html" class="sol-card sc-summit fi">
+          <img src="img/summit/summit_kv_thumb.png" alt="NEXY Summit 2026" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">NEXY Summit 2026</span>
+            <div class="sol-name">日本最大級の<br>高校生サミット</div>
+            <div class="sol-desc">2026年夏・東京、高校生1,000人が集う1DAYサミット。<strong>NEXYプレゼン大会</strong>・登壇セッション・ワークショップ・ブース出展などを実施。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+        <a href="kataribi.html" class="sol-card sc-kataribi fi" style="transition-delay:.08s">
+          <img src="img/kataribi/hero.png" alt="カタリビ 2026 サマーキャンプ" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">カタリビ 2026 サマーキャンプ</span>
+            <div class="sol-name">語れ、その先で、<br>夜が明ける。</div>
+            <div class="sol-desc">U-18向けの2泊3日 宿泊型キャンプ。2026年8月17日〜19日、神奈川県立 足柄ふれあいの村にて開催。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+        <a href="yoru.html" class="sol-card sc-yoru fi" style="transition-delay:.16s">
+          <img src="img/solutions/yoru_thumb.jpg" alt="深夜の語り場" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">深夜の語り場</span>
+            <div class="sol-name">考え途中のことを、<br>そのまま話していい夜</div>
+            <div class="sol-desc">企業オフィスをひらき、学生が未来について"考え途中"のまま語り合う場。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+        <a href="asa.html" class="sol-card sc-asa fi" style="transition-delay:.24s">
+          <img src="img/solutions/asa_thumb.jpg" alt="朝食会" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">朝食会</span>
+            <div class="sol-name">日本の夜明け<br>ここから始まる</div>
+            <div class="sol-desc">高校生と大人が"自然と混ざる"朝食コミュニティ。経営者・アーティストとの対話で選択肢を広げます。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+        <a href="yoisho.html" class="sol-card sc-yoisho fi" style="transition-delay:.32s">
+          <img src="img/yoisho/yoisho_thumb.jpg" alt="よいしょ〇〇！！シリーズ" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">よいしょ〇〇！！シリーズ</span>
+            <div class="sol-name">「やってみたい」を、<br>地方から始めよう。</div>
+            <div class="sol-desc">首都圏以外の地方主要都市を巡回する、半ワーク・半交流の4時間。中学生〜社会人が地元で「やってみたい」を形にする場。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sol-pane" data-pane="hr">
+      <div class="sol-grid3">
+        <a href="yuuge.html" class="sol-card sc-yuuge fi">
+          <img src="img/yuuge/yuuge_thumb.jpg" alt="ゆうげの討論会" class="sol-thumb">
+          <div class="sol-body">
+            <span class="sol-tag-pill">ゆうげの討論会</span>
+            <div class="sol-name">本気の学生と出会う<br>クローズド座談会</div>
+            <div class="sol-desc">東大・早慶・MARCH以上の大学1〜2年生 20名と、御社だけで語り合う 2時間のクローズド座談会。就活解禁前の早期接点を、企業様向けに提供します。</div>
+            <div class="sol-arrow">詳しく見る →</div>
+          </div>
+        </a>
+        <div class="sol-card sol-card-coming fi" style="transition-delay:.08s">
+          <div class="sol-thumb sol-thumb-placeholder">Coming Soon</div>
+          <div class="sol-body">
+            <span class="sol-tag-pill">スカウト事業（準備中）</span>
+            <div class="sol-name">挑戦する学生を<br>企業に直接つなぐ</div>
+            <div class="sol-desc">NEXYコミュニティで挑戦してきた学生を、企業の採用・インターンに直接つなぐスカウト事業を準備中です。</div>
+            <div class="sol-arrow">近日公開</div>
+          </div>
+        </div>
+        <div class="sol-card sol-card-coming fi" style="transition-delay:.16s">
+          <div class="sol-thumb sol-thumb-placeholder">Coming Soon</div>
+          <div class="sol-body">
+            <span class="sol-tag-pill">企業向け研修・共催（準備中）</span>
+            <div class="sol-name">学生と企業の<br>共創プログラム</div>
+            <div class="sol-desc">企業様のCSR・新規事業・採用ブランディングに、NEXYの学生コミュニティを活用いただく共創プログラムを準備中です。</div>
+            <div class="sol-arrow">近日公開</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
 
 <!-- ===== SNS ===== -->
 <section id="sns">
@@ -1327,6 +1368,20 @@ function toggleMem(card) {
     setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
   }
 }
+</script>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('.sol-tab');
+  const panes = document.querySelectorAll('.sol-pane');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const key = tab.getAttribute('data-tab');
+      tabs.forEach(t => { t.classList.toggle('is-active', t === tab); t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      panes.forEach(p => p.classList.toggle('is-active', p.getAttribute('data-pane') === key));
+    });
+  });
+})();
 </script>
 </body>
 </html>
