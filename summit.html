@@ -2974,6 +2974,42 @@ body.modal-open { overflow: hidden; }
   .qs-main { font-size: .98rem; }
   .qs-badge { font-size: .82rem; padding: 9px 12px; }
 }
+
+/* 開催終了バナー */
+.end-banner {
+  position: relative; z-index: 300;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2b3d6e 100%);
+  color: #fff;
+  padding: 14px 20px;
+  border-bottom: 3px solid #F28B3D;
+  box-shadow: 0 4px 14px rgba(0,0,0,.2);
+}
+.end-banner-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.end-banner-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: .64rem; font-weight: 900; letter-spacing: .28em;
+  background: #F28B3D; color: #fff;
+  padding: 5px 12px; border-radius: 999px;
+  flex-shrink: 0;
+}
+.end-banner-title {
+  font-size: 1rem; font-weight: 900; line-height: 1.5;
+}
+.end-banner-title strong { color: #ffd28a; }
+.end-banner-sub {
+  font-size: .78rem; opacity: .82; font-weight: 500;
+  margin-top: 3px; line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .end-banner { padding: 12px 14px; }
+  .end-banner-inner { gap: 10px; }
+  .end-banner-title { font-size: .92rem; }
+  .end-banner-sub { font-size: .72rem; }
+}
 </style>
 
 <script type="application/ld+json">
@@ -3048,16 +3084,28 @@ body.modal-open { overflow: hidden; }
 </head>
 <body>
 
-<!-- フローティング応募ボタン -->
-<a href="#entry-form" class="float-apply" aria-label="30秒で無料エントリー（高校生・大学生・社会人OK）">
+<!-- 開催終了バナー -->
+<div class="end-banner">
+  <div class="end-banner-inner">
+    <span class="end-banner-tag">EVENT CLOSED</span>
+    <div class="end-banner-body">
+      <div class="end-banner-title">NEXY SUMMIT 2026 は<strong>無事終了しました。</strong></div>
+      <div class="end-banner-sub">2026年8月6日（木）東京たま未来メッセにてご参加・ご支援いただいた皆さま、本当にありがとうございました。</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- フローティング応募ボタン（終了により非表示） -->
+<a href="#entry-form" class="float-apply" style="display:none !important;" aria-label="30秒で無料エントリー（高校生・大学生・社会人OK）">
   <div>
     <span class="float-apply-main">30秒で無料エントリー →</span>
     <span class="float-apply-sub">中学生・高校生・大学生・社会人 OK</span>
   </div>
 </a>
 
-<!-- 紹介キャンペーンバッジ -->
-<a href="#entry-form" class="referral-badge" aria-label="紹介キャンペーン：1人紹介ごとに500円分商品券プレゼント（最大50人まで）">
+<!-- 紹介キャンペーンバッジ（終了により非表示） -->
+<a href="#entry-form" class="referral-badge" style="display:none !important;" aria-label="紹介キャンペーン：1人紹介ごとに500円分商品券プレゼント（最大50人まで）">
   <span class="referral-badge-main">紹介1人につき <span class="referral-badge-strong">¥500</span> 商品券プレゼント</span>
   <span class="referral-badge-note">※ エントリー時に紹介者名を記入</span>
 </a>
