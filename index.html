@@ -1444,22 +1444,19 @@
   }
   .photo-card:hover .photo-card-image { transform: scale(1.05); }
   .photo-card-image-1 {
-    background:
-      linear-gradient(135deg, rgba(234,92,31,0.55), rgba(124,58,237,0.45)),
-      radial-gradient(circle at 30% 40%, #FFC93E 0%, transparent 60%),
-      linear-gradient(180deg, #4A5568 0%, #2D3748 100%);
+    background-image: url("img/site/about_top.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .photo-card-image-2 {
-    background:
-      linear-gradient(135deg, rgba(20,191,174,0.5), rgba(56,189,248,0.45)),
-      radial-gradient(circle at 65% 55%, rgba(255,255,255,0.15) 0%, transparent 50%),
-      linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+    background-image: url("img/site/works_top.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .photo-card-image-3 {
-    background:
-      linear-gradient(135deg, rgba(255,201,62,0.5), rgba(234,92,31,0.5)),
-      radial-gradient(circle at 40% 30%, rgba(255,255,255,0.18) 0%, transparent 50%),
-      linear-gradient(180deg, #334155 0%, #1E293B 100%);
+    background-image: url("img/site/recruit.jpg");
+    background-size: cover;
+    background-position: center;
   }
   .photo-card-bar {
     position: absolute;
@@ -3115,9 +3112,6 @@
   <!-- About NEXY -->
   <section class="mission section-striped">
     <div class="wrap-tight">
-      <div class="about-hero-photo">
-        <img src="img/site/about_top.jpg" alt="NEXY 活動風景" loading="lazy">
-      </div>
       <div class="mission-en">About NEXY</div>
       <h2 class="mission-title">
         <em>「やりたい」</em>を、<br>
@@ -3454,7 +3448,6 @@
         <li><a href="#about-greeting">挨拶</a></li>
         <li><a href="#about-officers">代表</a></li>
         <li><a href="#about-company">会社概要</a></li>
-        <li><a href="#about-products">プロダクト</a></li>
       </ul>
     </div>
   </div>
@@ -3507,7 +3500,7 @@
           <div class="officer-role">代表</div>
           <div class="officer-name">小助川 晴大 <span>コスケガワ ハルタ</span></div>
           <p class="officer-desc">
-            2026年、学生団体NEXYを設立。以降、NEXYサミット2026・深夜の語り場・カタリビ・朝食会など複数のイベントを企画運営。9歳でWRO世界大会に最年少で出場(世界7位)、11歳で孫正義育英財団3期生に選抜、2026年にはN高起業部ビジネスコンテストで1,600名の中から優勝。ネルフィン株式会社の取締役COOも兼任。
+            2026年、学生団体NEXYを設立。以降、NEXYサミット2026・深夜の語り場・カタリビ・朝食会など複数のイベントを企画運営。9歳でWRO世界大会に最年少で出場(世界7位)、11歳で孫正義育英財団3期生に選抜、2026年にはN高起業部ビジネスコンテストで1,600名の中から優勝。ネルフィン株式会社 COO も兼任。
           </p>
           <ul class="officer-tags">
             <li>WRO世界最年少7位</li>
@@ -3549,54 +3542,6 @@
     </div>
   </section>
 
-  <!-- プロダクト -->
-  <section class="section" id="about-products">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom: 48px;">
-        <div class="section-head-l">
-          <div class="heading-en">Products</div>
-          <div class="section-head-jp">プロダクト</div>
-        </div>
-      </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-cat">In-House App</div>
-          <div class="product-visual" style="background: linear-gradient(135deg, #7C3AED 0%, #FF3E7F 100%);">
-            <div class="product-visual-icon">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.8"><rect x="12" y="4" width="24" height="40" rx="4"/><path d="M20 40 H28"/><circle cx="24" cy="14" r="4"/></svg>
-            </div>
-          </div>
-          <h3 class="product-name">深夜の語り場アプリ</h3>
-          <p class="product-desc">自社開発の参加者管理・マッチングアプリ。事前プロフィール登録、当日参加者の一覧表示、1on1マッチング等の機能を搭載。深夜の語り場 第2回より本格運用。</p>
-          <div class="product-status">運用中</div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-cat">Website</div>
-          <div class="product-visual" style="background: linear-gradient(135deg, #EA5C1F 0%, #FFC93E 100%);">
-            <div class="product-visual-icon">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.8"><rect x="4" y="8" width="40" height="32" rx="3"/><path d="M4 16 H44"/><circle cx="10" cy="12" r="1" fill="white"/><circle cx="14" cy="12" r="1" fill="white"/><circle cx="18" cy="12" r="1" fill="white"/></svg>
-            </div>
-          </div>
-          <h3 class="product-name">NEXY 公式Webサイト</h3>
-          <p class="product-desc">団体紹介・イベント告知・お知らせ配信を担う公式サイト。イベント別のLP・申込フォームも自社で運用しております。</p>
-          <div class="product-status">運用中</div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-cat">Podcast</div>
-          <div class="product-visual" style="background: linear-gradient(135deg, #14BFAE 0%, #38BDF8 100%);">
-            <div class="product-visual-icon">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="white" stroke-width="1.8"><rect x="18" y="6" width="12" height="24" rx="6"/><path d="M12 22 V26 A12 12 0 0 0 36 26 V22"/><path d="M24 34 V42"/><path d="M18 42 H30"/></svg>
-            </div>
-          </div>
-          <h3 class="product-name">帰り道トレイン(Podcast)</h3>
-          <p class="product-desc">運営メンバー・登壇者との対話を届けるオリジナルPodcast。YouTubeでも動画版を配信予定。</p>
-          <div class="product-status">準備中</div>
-        </div>
-      </div>
-    </div>
-  </section>
 </section>
 
 <!-- ========== WORKS PAGE ========== -->
@@ -3607,10 +3552,6 @@
       <div class="page-hero-en">Works</div>
       <div class="page-hero-jp">事業・実績</div>
     </div>
-  </div>
-
-  <div class="page-hero-photo">
-    <img src="img/site/works_top.jpg" alt="NEXY STAFF" loading="lazy">
   </div>
 
   <!-- 事業の2軸(大枠ボックス) -->
@@ -3896,8 +3837,8 @@
           </p>
           <ul class="officer-tags">
             <li>学生団体NEXY 代表</li>
-            <li>ネルフィン株式会社 元 取締役COO</li>
-            <li>ジンベエザメ株式会社 元 取締役COO</li>
+            <li>ネルフィン株式会社 COO</li>
+            <li>ジンベエザメ株式会社 COO</li>
             <li>孫正義育英財団3期生</li>
             <li>Tokyo Startup Gateway 3期生</li>
             <li>N高等学校 BLP 正規生</li>
@@ -4290,10 +4231,6 @@
     </div>
   </div>
 
-  <div class="page-hero-photo">
-    <img src="img/site/recruit.jpg" alt="NEXY 運営メンバー" loading="lazy">
-  </div>
-
   <section class="recruit-lead">
     <div class="wrap-tight">
       <div class="mission-en">Message From Leader</div>
@@ -4406,10 +4343,6 @@
       <div>
         <div class="footer-brand-mission">
           やりたいを、<br>ひとりにしない。
-        </div>
-        <div class="footer-brand-sub">
-          学生団体NEXY(ネクシー)は 2025年設立、<br>
-          全員高校生52名で運営するコミュニティです。
         </div>
       </div>
       <div class="footer-nav">
