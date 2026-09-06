@@ -858,6 +858,125 @@
     .news-article-gallery img { height: 140px; }
   }
 
+  /* -------- 実績 Card Grid (Nelfin風) -------- */
+  .jisseki-section {
+    position: relative;
+    background: var(--ground);
+    padding: 88px 0 96px;
+    overflow: hidden;
+  }
+  .jisseki-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(115deg, transparent 0, transparent calc(50% - 1px), rgba(20,191,174,.06) calc(50% - 1px), rgba(20,191,174,.06) 50%, transparent 50%),
+      linear-gradient(115deg, transparent 0, transparent calc(30% - 1px), rgba(255,201,62,.05) calc(30% - 1px), rgba(255,201,62,.05) 30%, transparent 30%),
+      linear-gradient(115deg, transparent 0, transparent calc(78% - 1px), rgba(56,189,248,.05) calc(78% - 1px), rgba(56,189,248,.05) 78%, transparent 78%);
+    background-size: 260px 100%, 200px 100%, 320px 100%;
+    pointer-events: none;
+    opacity: .8;
+  }
+  .jisseki-section > * { position: relative; z-index: 1; }
+  .jisseki-title {
+    text-align: center;
+    font-family: var(--f-jp-disp);
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    color: var(--navy);
+    margin: 0 0 56px;
+    line-height: 1.2;
+  }
+  .jisseki-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .jisseki-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(20,30,60,0.06);
+    display: flex; flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .jisseki-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(20,30,60,0.10);
+  }
+  .jisseki-card-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--ground-cool);
+  }
+  .jisseki-card-media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .jisseki-card:hover .jisseki-card-media img { transform: scale(1.04); }
+  .jisseki-card-body {
+    padding: 22px 22px 24px;
+    display: flex; flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .jisseki-card-sub {
+    font-family: var(--f-jp-disp);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+  }
+  .jisseki-card-heading {
+    font-family: var(--f-jp-disp);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    margin: 0;
+  }
+  .jisseki-card-tags {
+    margin-top: auto;
+    display: flex; flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 14px;
+  }
+  .jisseki-card-tags span {
+    font-family: var(--f-jp-disp);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--ground-alt);
+    padding: 5px 11px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+  .jisseki-card-tags span.tag-event { background: rgba(234,92,31,.10); color: var(--accent); }
+  .jisseki-card-tags span.tag-award { background: rgba(255,201,62,.16); color: #A17400; }
+  .jisseki-card-tags span.tag-report { background: rgba(20,191,174,.10); color: var(--accent-2); }
+  .jisseki-card-tags span.tag-recruit { background: rgba(56,189,248,.10); color: #0284C7; }
+
+  @media (max-width: 960px) {
+    .jisseki-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 20px; }
+    .jisseki-title { font-size: 26px; margin-bottom: 44px; }
+  }
+  @media (max-width: 600px) {
+    .jisseki-section { padding: 64px 0 72px; }
+    .jisseki-grid { grid-template-columns: 1fr; gap: 22px; padding: 0 20px; }
+    .jisseki-card-body { padding: 20px 20px 22px; }
+    .jisseki-title { font-size: 22px; margin-bottom: 36px; letter-spacing: 0.14em; }
+    .jisseki-card-heading { font-size: 15.5px; }
+  }
+
   /* -------- Photo Gallery (Moments) -------- */
   .gallery-section { background: var(--ground); padding: 96px 0; }
   .gallery-mosaic {
@@ -3306,7 +3425,7 @@
       <a href="#about" data-nav="about">会社概要</a>
       <a href="#business" data-nav="business">事業</a>
       <a href="#members" data-nav="members">メンバー</a>
-      <a href="#news" data-nav="news">お知らせ</a>
+      <a href="#news" data-nav="news">実績</a>
       <a href="#recruit" data-nav="recruit">採用情報</a>
       <a href="#contact" data-nav="contact" class="nav-cta">お問い合わせ</a>
     </nav>
@@ -3543,62 +3662,56 @@
     </div>
   </section>
 
-<!-- News -->
-  <section class="section section-alt">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-l">
-          <div class="heading-en">News</div>
-          <div class="section-head-jp">最新情報</div>
+<!-- 実績 (Works) -->
+  <section class="jisseki-section">
+    <h2 class="jisseki-title">実 績</h2>
+    <div class="jisseki-grid">
+
+      <a href="#news" class="jisseki-card" data-nav="news">
+        <div class="jisseki-card-media">
+          <img src="img/news_yoru_20260607/scene01.jpg" alt="深夜の語り場 第3回" loading="lazy">
         </div>
-        <a href="#news" class="view-all" data-nav="news">すべてのお知らせを見る →</a>
-      </div>
-      <div class="news-list">
-        <a href="#news" class="news-item" data-nav="news">
-          <div class="news-thumb">受付終了</div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span class="news-cat event">受付終了</span>
-              <span class="news-date">2026.06.06</span>
-            </div>
-            <div class="news-title">プレゼン大会 応募受付終了 — 通過者へ順次連絡中／観覧はサミット当日8/6・参加無料</div>
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">満足度 4.79 / NPS 9.5 / 24名参加</div>
+          <h3 class="jisseki-card-heading">「深夜の語り場」第3回 実施報告 — 孫正義育英財団・渋谷にて開催</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>2026.06.07</span>
           </div>
-          <div class="news-arrow">→</div>
-        </a>
-        <a href="#news" class="news-item" data-nav="news">
-          <div class="news-thumb">報告</div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span class="news-cat press">報告</span>
-              <span class="news-date">2026.06.07</span>
-            </div>
-            <div class="news-title">「深夜の語り場」第3回 実施報告 — 24名参加・満足度4.79／5・NPS9.5／10(孫正義育英財団・渋谷)</div>
+        </div>
+      </a>
+
+      <a href="#news" class="jisseki-card" data-nav="news">
+        <div class="jisseki-card-media">
+          <img src="img/news_nhigh/nhigh_main.jpg" alt="N高起業部 ビジネスコンテスト2026 優勝" loading="lazy">
+        </div>
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">応募 1,600名の頂点</div>
+          <h3 class="jisseki-card-heading">NEXY代表 小助川晴大 が N高起業部 ビジネスコンテスト2026 で優勝</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-award">受賞</span>
+            <span>2026.02.27</span>
           </div>
-          <div class="news-arrow">→</div>
-        </a>
-        <a href="#news" class="news-item" data-nav="news">
-          <div class="news-thumb">報告</div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span class="news-cat press">報告</span>
-              <span class="news-date">2026.05.16</span>
-            </div>
-            <div class="news-title">「深夜の語り場」第2回 実施報告 — 26名参加・満足度4.86／5・NPS9.33／10</div>
+        </div>
+      </a>
+
+      <a href="#news" class="jisseki-card" data-nav="news">
+        <div class="jisseki-card-media">
+          <img src="img/site/pitch_thumb.jpg" alt="プレゼン大会 NEXY Summit 2026" loading="lazy">
+        </div>
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">NEXY Summit 2026 メインステージ</div>
+          <h3 class="jisseki-card-heading">プレゼン大会 登壇者募集 — 受付終了。当日観覧は参加無料</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-event">イベント</span>
+            <span>2026.08.06</span>
           </div>
-          <div class="news-arrow">→</div>
-        </a>
-        <a href="#news" class="news-item" data-nav="news">
-          <div class="news-thumb">報告</div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span class="news-cat media">報告</span>
-              <span class="news-date">2026.05.10</span>
-            </div>
-            <div class="news-title">「よいしょ!徳島」第1回 実施報告 — 満足度4.6／5・NPS9.1／10</div>
-          </div>
-          <div class="news-arrow">→</div>
-        </a>
-      </div>
+        </div>
+      </a>
+
+    </div>
+    <div style="text-align:center; margin-top:44px;">
+      <a href="#news" class="view-all" data-nav="news" style="display:inline-flex; align-items:center; gap:10px; padding:14px 36px; background:var(--navy); color:#fff; border-radius:2px; font-family:var(--f-jp-disp); font-weight:700; letter-spacing:0.08em; font-size:14px;">すべての実績を見る →</a>
     </div>
   </section>
 
@@ -4345,169 +4458,127 @@
 <section class="page" data-page="news">
   <div class="page-hero">
     <div class="wrap">
-      <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>NEWS</span></div>
-      <div class="page-hero-en">News</div>
-      <div class="page-hero-jp">お知らせ</div>
+      <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>WORKS</span></div>
+      <div class="page-hero-en">Works</div>
+      <div class="page-hero-jp">実績</div>
     </div>
   </div>
 
-  <section class="section">
-    <div class="wrap-tight">
+  <section class="jisseki-section">
+    <h2 class="jisseki-title">実 績</h2>
+    <div class="jisseki-grid">
 
-      <!-- Article 1 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.06.06</span>
-          <span class="news-cat event">受付終了</span>
+      <!-- 1. プレゼン大会 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/site/pitch_thumb.jpg" alt="プレゼン大会 NEXY Summit 2026" loading="lazy">
         </div>
-        <h2 class="news-article-title">プレゼン大会 登壇者募集開始</h2>
-        <div class="news-article-sub">2026年8月6日(木)本番／応募締切 2026年7月6日(月)23:59</div>
-        <div class="news-article-body">
-          <p>NEXY Summit 2026 のメインステージで開催される プレゼン大会の登壇者を募集します。1,000人規模の会場で、高校生6名が7分間のプレゼンと3分間の質疑応答を行う、日本最大級の若者プレゼンの場です。</p>
-          <p>「自分が登壇していいのか」と迷っている高校生こそ、応募してほしい。完成度は問いません。本気で動こうとする意志があれば、十分です。</p>
-          <h3>大会概要</h3>
-          <table class="mini-info-table">
-            <tr><th>大会名</th><td>プレゼン大会(NEXY Summit 2026 メインステージ)</td></tr>
-            <tr><th>開催日時</th><td>2026年8月6日(木)13:00–15:00</td></tr>
-            <tr><th>会場</th><td>東京たま未来メッセ(東京都八王子市別所2-65)</td></tr>
-            <tr><th>登壇枠</th><td>6名(高校生対象／テーマ自由)</td></tr>
-            <tr><th>持ち時間</th><td>プレゼン7分 + 質疑応答3分</td></tr>
-            <tr><th>最優秀賞</th><td>¥100,000(プレゼン大会優勝者1名)</td></tr>
-            <tr><th>交通費</th><td>登壇者6名に全額支援(全国どこからでも応募可)</td></tr>
-            <tr><th>メンター</th><td>三輪 開人 氏(認定NPO法人e-Education代表)</td></tr>
-          </table>
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">NEXY Summit 2026 メインステージ / 2026.08.06</div>
+          <h3 class="jisseki-card-heading">プレゼン大会 登壇者募集 — 受付終了。通過者へ順次連絡中／観覧はサミット当日 参加無料</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-event">イベント</span>
+            <span>登壇募集</span>
+            <span>受付終了</span>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 2 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.06.07</span>
-          <span class="news-cat press">報告</span>
+      <!-- 2. 深夜の語り場 第3回 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_yoru_20260607/scene01.jpg" alt="深夜の語り場 第3回" loading="lazy">
         </div>
-        <h2 class="news-article-title">6月7日「深夜の語り場」第3回 実施報告</h2>
-        <div class="news-article-sub">2026年6月7日(土)@ 孫正義育英財団・渋谷</div>
-        <div class="news-article-hero"><img src="img/news_yoru_20260607/scene01.jpg" alt="深夜の語り場 第3回" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>2026年6月7日(土)、学生コミュニティNEXYとして「深夜の語り場」第3回を開催いたしました。会場は孫正義育英財団のスペースをご提供いただき、当日は24名の高校生・大学生が集い、自身のテーマや活動、これからの一歩を本音で語り合う一夜となりました。</p>
-          <p>本イベントの参加後アンケートでは、満足度 4.79／5、再参加意向 4.75／5、推奨度(NPS換算) 9.5／10と、第2回に続いて高い評価をいただきました。さらに参加者の87.5%が推奨者(9-10点)に分類される結果となりました。</p>
-          <div class="article-stats">
-            <div class="article-stat"><div class="article-stat-num">4.79</div><div class="article-stat-label">満足度(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">4.75</div><div class="article-stat-label">再参加意向(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">9.5</div><div class="article-stat-label">推奨度(/10)</div></div>
-          </div>
-          <h3>参加者の声</h3>
-          <blockquote>「『自分の好き』にまっすぐ生きてる人たちと出会えるこのイベント、やっぱり大好きです!自分の直感を信じること。ちゃんと言葉にしていく。」</blockquote>
-          <blockquote>「夢でしか考えていなかったことを実践していて、しかも年が近い人達と話すことができて、こういう生き方もあるんだという発見がたくさんありました。」</blockquote>
-          <blockquote>「行動を起こすことに躊躇していた私の背中を、みなさんに押してもらった気がします。外の世界に出ることを怖がらずにいようと思えました。」</blockquote>
-          <div class="news-article-gallery">
-            <img src="img/news_yoru_20260607/scene02.jpg" alt="深夜の語り場 第3回 対話1" loading="lazy">
-            <img src="img/news_yoru_20260607/scene03.jpg" alt="深夜の語り場 第3回 対話2" loading="lazy">
-            <img src="img/news_yoru_20260607/scene04.jpg" alt="深夜の語り場 第3回 対話3" loading="lazy">
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">満足度 4.79 / NPS 9.5 / 24名参加</div>
+          <h3 class="jisseki-card-heading">「深夜の語り場」第3回 実施報告 — 孫正義育英財団・渋谷にて開催</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>交流会</span>
+            <span>2026.06.07</span>
           </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 3 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.05.16</span>
-          <span class="news-cat press">報告</span>
+      <!-- 3. 深夜の語り場 第2回 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回" loading="lazy">
         </div>
-        <h2 class="news-article-title">5月16日「深夜の語り場」第2回 実施報告</h2>
-        <div class="news-article-sub">2026年5月16日(土) @ 株式会社ラクーンホールディングス様</div>
-        <div class="news-article-hero"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回 集合" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>2026年5月16日(土)、学生コミュニティNEXYとして「深夜の語り場」第2回を開催いたしました。今回は中学生から大学2年生まで合計26名が集まり、活動・悩み・将来像を、学生同士だからこそ語れる距離感で本音で語り合う一夜となりました。</p>
-          <p>第1回からの大きなアップデートとして、自社開発の「深夜の語り場」アプリを当日から初めて導入。参加者全員が事前にプロフィールカードを登録し、当日の場に「誰がいるのか」「その人が何をやっている人なのか」を可視化することで、初対面同士でも一歩目の交流が大きく加速しました。</p>
-          <div class="article-stats">
-            <div class="article-stat"><div class="article-stat-num">4.86</div><div class="article-stat-label">満足度(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">4.67</div><div class="article-stat-label">再参加意向(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">9.33</div><div class="article-stat-label">推奨度(/10)</div></div>
-          </div>
-          <div class="news-article-gallery">
-            <img src="img/news_yoru_20260516/scene01.jpg" alt="第2回 ワークショップ1" loading="lazy">
-            <img src="img/news_yoru_20260516/scene02.jpg" alt="第2回 ワークショップ2" loading="lazy">
-            <img src="img/news_yoru_20260516/scene03.jpg" alt="第2回 ワークショップ3" loading="lazy">
-            <img src="img/news_yoru_20260516/scene04.jpg" alt="第2回 ワークショップ4" loading="lazy">
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">満足度 4.86 / NPS 9.33 / 26名参加</div>
+          <h3 class="jisseki-card-heading">「深夜の語り場」第2回 実施報告 — ラクーンHD様会場、自社開発アプリ初導入</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>交流会</span>
+            <span>2026.05.16</span>
           </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 4 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.05.10</span>
-          <span class="news-cat media">報告</span>
+      <!-- 4. よいしょ徳島 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ!徳島 第1回" loading="lazy">
         </div>
-        <h2 class="news-article-title">5月10日 立食交流会「よいしょ!徳島」第1回 実施報告</h2>
-        <div class="news-article-sub">2026年5月10日 @ cocoatta (徳島市籠屋町)</div>
-        <div class="news-article-hero"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>2026年5月10日(日)、徳島市籠屋町の「cocoatta」にて、立食交流会「よいしょ!徳島」第1回を開催いたしました。「書いて、破って、話す」をリズムに据えた体験型の立食交流会で、徳島の食材を最高の状態で味わいながら、普段の役割を一度脱ぎ捨て、一人ひとりが本来やりたいこと・在りたい姿を語り合う場として企画したものです。</p>
-          <p>中学生から社会人まで、神山まるごと高専・徳島文理高校・鳥取城北高校・立命館宇治中・四国大学・徳島大学などから22名が事前申込。</p>
-          <div class="article-stats">
-            <div class="article-stat"><div class="article-stat-num">4.6</div><div class="article-stat-label">満足度(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">4.6</div><div class="article-stat-label">再参加意向(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">9.1</div><div class="article-stat-label">NPS(/10)</div></div>
-          </div>
-          <div class="news-article-gallery">
-            <img src="img/news_yoisho_20260510/photo02.jpg" alt="よいしょ徳島 会場" loading="lazy">
-            <img src="img/news_yoisho_20260510/photo03.jpg" alt="よいしょ徳島 交流" loading="lazy">
-            <img src="img/news_yoisho_20260510/photo04.jpg" alt="よいしょ徳島 対話" loading="lazy">
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">満足度 4.6 / NPS 9.1 / 22名参加</div>
+          <h3 class="jisseki-card-heading">立食交流会「よいしょ!徳島」第1回 実施報告 — 徳島発・地域を超えた対話の場</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>地方連携</span>
+            <span>2026.05.10</span>
           </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 5 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.04.03</span>
-          <span class="news-cat press">報告</span>
+      <!-- 5. あさげ第3回 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの若き情熱会 第3回" loading="lazy">
         </div>
-        <h2 class="news-article-title">第3回「あさげの若き情熱会」実施報告 — 現役高校生20名×経営者9社</h2>
-        <div class="news-article-hero"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの若き情熱会 第3回 集合" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>現役高校生20名と経営者9社が朝の時間帯に集い、自然と混ざる朝食コミュニティ「あさげの若き情熱会」第3回を開催しました。経営者・アーティストとの対話を通じて、参加した高校生が自身の選択肢を広げるきっかけとなる場を提供しました。</p>
-          <div class="news-article-gallery">
-            <img src="img/news_asage3_20260403/asage3_food.jpg" alt="ケータリング おにぎり" loading="lazy">
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">現役高校生20名 × 経営者9社</div>
+          <h3 class="jisseki-card-heading">「あさげの若き情熱会」第3回 実施報告 — 経営者との朝食対話コミュニティ</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>経営者×学生</span>
+            <span>2026.04.03</span>
           </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 6 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.02.27</span>
-          <span class="news-cat news">受賞</span>
+      <!-- 6. N高ビジコン優勝 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_nhigh/nhigh_main.jpg" alt="N高起業部 ビジネスコンテスト2026 優勝" loading="lazy">
         </div>
-        <h2 class="news-article-title">NEXY代表がN高起業部 ビジネスコンテスト2026で優勝(1,600人中)</h2>
-        <div class="news-article-hero"><img src="img/news_nhigh/nhigh_main.jpg" alt="N高起業部ビジネスコンテスト2026 優勝" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>NEXY代表・小助川晴大が、N高等学校起業部が主催する「ビジネスコンテスト2026」において、応募者1,600名の中から優勝を果たしました。学生コミュニティNEXYの構想と実行力が高く評価される結果となりました。</p>
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">応募 1,600名の頂点</div>
+          <h3 class="jisseki-card-heading">NEXY代表 小助川晴大 が N高起業部 ビジネスコンテスト2026 で優勝</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-award">受賞</span>
+            <span>代表</span>
+            <span>2026.02.27</span>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <!-- Article 7 -->
-      <article class="news-article">
-        <div class="news-article-meta">
-          <span class="news-date">2026.02.22</span>
-          <span class="news-cat press">報告</span>
+      <!-- 7. 深夜の語り場 第1回 -->
+      <div class="jisseki-card">
+        <div class="jisseki-card-media">
+          <img src="img/news_yoru1/group.jpg" alt="深夜の語り場 第1回" loading="lazy">
         </div>
-        <h2 class="news-article-title">「深夜の語り場」第1回 実施報告 — 34名参加・満足度4.82/5</h2>
-        <div class="news-article-hero"><img src="img/news_yoru1/group.jpg" alt="深夜の語り場 第1回 集合" loading="lazy"></div>
-        <div class="news-article-body">
-          <p>NEXYの初イベントとして「深夜の語り場」第1回を開催。34名の高校生・大学生が集い、本音で語り合う夜となりました。満足度4.82/5と極めて高い評価をいただき、NEXYコミュニティの原点となる会となりました。</p>
-          <div class="article-stats">
-            <div class="article-stat"><div class="article-stat-num">34</div><div class="article-stat-label">参加人数(名)</div></div>
-            <div class="article-stat"><div class="article-stat-num">4.82</div><div class="article-stat-label">満足度(/5)</div></div>
-            <div class="article-stat"><div class="article-stat-num">1st</div><div class="article-stat-label">NEXY原点イベント</div></div>
-          </div>
-          <div class="news-article-gallery">
-            <img src="img/news_yoru1/scene01.jpg" alt="第1回 現場の様子" loading="lazy">
+        <div class="jisseki-card-body">
+          <div class="jisseki-card-sub">NEXY原点イベント / 満足度 4.82 / 34名参加</div>
+          <h3 class="jisseki-card-heading">「深夜の語り場」第1回 実施報告 — NEXYコミュニティのはじまりの夜</h3>
+          <div class="jisseki-card-tags">
+            <span class="tag-report">実施報告</span>
+            <span>NEXY起点</span>
+            <span>2026.02.22</span>
           </div>
         </div>
-      </article>
+      </div>
 
     </div>
   </section>
@@ -4738,8 +4809,8 @@
           <div class="footer-nav-jp">事業内容</div>
         </a>
         <a class="footer-nav-item" href="#news" data-nav="news">
-          <div class="footer-nav-en">News</div>
-          <div class="footer-nav-jp">お知らせ</div>
+          <div class="footer-nav-en">Works</div>
+          <div class="footer-nav-jp">実績</div>
         </a>
         <a class="footer-nav-item" href="#recruit" data-nav="recruit">
           <div class="footer-nav-en">Recruit</div>
