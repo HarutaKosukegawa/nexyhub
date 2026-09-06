@@ -1997,7 +1997,7 @@
     margin-bottom: 16px;
   }
   .event-visual {
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
     border-radius: 12px;
     display: grid; place-items: center;
     color: #fff;
@@ -2008,21 +2008,22 @@
     letter-spacing: 0.06em;
     text-align: center;
     margin-bottom: 16px;
-    padding: 16px;
+    padding: 0;
     text-shadow: 0 2px 8px rgba(0,0,0,.25);
     position: relative;
     overflow: hidden;
+    background: #F5F7FA;
   }
   .event-visual img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     display: block;
     z-index: 0;
     transition: transform .6s cubic-bezier(.22,.61,.36,1);
   }
-  .event-card:hover .event-visual img { transform: scale(1.05); }
+  .event-card:hover .event-visual img { transform: scale(1.03); }
   /* テーマ別ビジュアル(イラストのイメージを踏襲) */
   /* Summit: メインイベント・ネイビー×オレンジ×パープル */
   .event-visual-summit {
@@ -3094,31 +3095,31 @@
         <div class="biz-mini-tagline">学生・若者が集う場の運営。5つのイベントを展開。</div>
       </div>
       <div class="event-grid" style="margin-bottom: 60px;">
-        <a class="event-card" href="#works" data-nav="works">
+        <a class="event-card" href="summit.html" target="_blank" rel="noopener">
           <div class="event-tag">01 · SUMMIT</div>
           <div class="event-visual event-visual-summit"><img src="img/site/summit_thumb.jpg" alt="NEXY Summit 2026" loading="lazy"></div>
           <div class="event-name">NEXY Summit 2026</div>
           <div class="event-tagline">日本最大級の高校生サミット</div>
         </a>
-        <a class="event-card" href="#works" data-nav="works">
+        <a class="event-card" href="yoru.html" target="_blank" rel="noopener">
           <div class="event-tag">02 · TALK</div>
           <div class="event-visual event-visual-talk"><img src="img/site/yoru_thumb.jpg" alt="深夜の語り場" loading="lazy"></div>
           <div class="event-name">深夜の語り場</div>
           <div class="event-tagline">月次開催の少人数対話会</div>
         </a>
-        <a class="event-card" href="#works" data-nav="works">
+        <a class="event-card" href="asa.html" target="_blank" rel="noopener">
           <div class="event-tag">03 · MORNING</div>
           <div class="event-visual event-visual-morning"><img src="img/site/asa_thumb.jpg" alt="あさげの若き情熱会" loading="lazy"></div>
           <div class="event-name">あさげの若き情熱会</div>
           <div class="event-tagline">高校生×経営者の朝食コミュニティ</div>
         </a>
-        <a class="event-card" href="#works" data-nav="works">
+        <a class="event-card" href="yoisho.html" target="_blank" rel="noopener">
           <div class="event-tag">04 · LOCAL</div>
           <div class="event-visual event-visual-yoisho"><img src="img/site/yoisho_thumb.jpg" alt="よいしょ〇〇!! シリーズ" loading="lazy"></div>
           <div class="event-name">よいしょ〇〇!! シリーズ</div>
           <div class="event-tagline">地方巡回型の交流会</div>
         </a>
-        <a class="event-card" href="#works" data-nav="works">
+        <a class="event-card" href="summit.html#pitch" target="_blank" rel="noopener">
           <div class="event-tag">05 · CONTEST</div>
           <div class="event-visual event-visual-pitch"><img src="img/site/pitch_thumb.jpg" alt="プレゼン大会" loading="lazy"></div>
           <div class="event-name">プレゼン大会</div>
@@ -3457,7 +3458,7 @@
 
       <!-- イベント5枚グリッド -->
       <div class="event-grid">
-        <div class="event-card">
+        <a class="event-card" href="summit.html" target="_blank" rel="noopener">
           <div class="event-tag">01 · SUMMIT</div>
           <div class="event-visual event-visual-summit"><img src="img/site/summit_thumb.jpg" alt="NEXY Summit 2026" loading="lazy"></div>
           <div class="event-name">NEXY Summit 2026</div>
@@ -3466,9 +3467,7 @@
             <span>2026.08.06</span>
             <span>参加者357名</span>
           </div>
-        </div>
-
-        <div class="event-card">
+        </a><a class="event-card" href="yoru.html" target="_blank" rel="noopener">
           <div class="event-tag">02 · TALK</div>
           <div class="event-visual event-visual-talk"><img src="img/site/yoru_thumb.jpg" alt="深夜の語り場" loading="lazy"></div>
           <div class="event-name">深夜の語り場</div>
@@ -3477,9 +3476,7 @@
             <span>月1回</span>
             <span>満足度4.82/5</span>
           </div>
-        </div>
-
-        <div class="event-card">
+        </a><a class="event-card" href="asa.html" target="_blank" rel="noopener">
           <div class="event-tag">03 · MORNING</div>
           <div class="event-visual event-visual-morning"><img src="img/site/asa_thumb.jpg" alt="あさげの若き情熱会" loading="lazy"></div>
           <div class="event-name">あさげの若き情熱会</div>
@@ -3488,9 +3485,7 @@
             <span>月次</span>
             <span>高校生×経営者</span>
           </div>
-        </div>
-
-        <div class="event-card">
+        </a><a class="event-card" href="yoisho.html" target="_blank" rel="noopener">
           <div class="event-tag">04 · LOCAL</div>
           <div class="event-visual event-visual-yoisho"><img src="img/site/yoisho_thumb.jpg" alt="よいしょ〇〇!! シリーズ" loading="lazy"></div>
           <div class="event-name">よいしょ〇〇!! シリーズ</div>
@@ -3499,9 +3494,7 @@
             <span>徳島(第1回)</span>
             <span>4.6/5・NPS9.1</span>
           </div>
-        </div>
-
-        <div class="event-card">
+        </a><a class="event-card" href="summit.html#pitch" target="_blank" rel="noopener">
           <div class="event-tag">05 · CONTEST</div>
           <div class="event-visual event-visual-pitch"><img src="img/site/pitch_thumb.jpg" alt="プレゼン大会" loading="lazy"></div>
           <div class="event-name">プレゼン大会</div>
@@ -3509,8 +3502,7 @@
           <div class="event-mini-meta">
             <span>最優秀¥100,000</span>
             <span>交通費全額支援</span>
-          </div>
-        </div>
+          </a></div>
       </div>
     </div>
   </section>
