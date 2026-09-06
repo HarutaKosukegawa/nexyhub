@@ -235,19 +235,23 @@
   }
   .lead { font-size: 15px; color: var(--text-2); line-height: 1.9; }
 
-  /* -------- Hero Video -------- */
+  /* -------- Hero Video (フルブリード) -------- */
   .hero-video-wrap {
-    padding: 24px 32px 0;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
   }
   .hero-video {
     position: relative;
     aspect-ratio: 16/9;
-    border-radius: 16px;
+    max-height: calc(100vh - 76px);
+    border-radius: 0;
     overflow: hidden;
     background: #10233F;
-    box-shadow: 0 24px 60px -24px rgba(16,35,63,.35);
+    width: 100%;
+  }
+  @media (max-width: 720px) {
+    .hero-video { aspect-ratio: 4/5; }
   }
   /* Hero Slideshow */
   .hero-slides {
@@ -3102,7 +3106,6 @@
         <img src="img/site/hero_photo_1.jpg" alt="" class="hero-photo active" loading="eager">
         <img src="img/site/hero_photo_2.jpg" alt="" class="hero-photo" loading="eager">
         <img src="img/site/hero_photo_3.jpg" alt="" class="hero-photo" loading="lazy">
-        <img src="img/site/hero_photo_4.jpg" alt="" class="hero-photo" loading="lazy">
         <img src="img/site/hero_photo_5.jpg" alt="" class="hero-photo" loading="lazy">
         <img src="img/site/hero_photo_6.jpg" alt="" class="hero-photo" loading="lazy">
       </div>
