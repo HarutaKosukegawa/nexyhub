@@ -824,6 +824,40 @@
     .work-card-title { font-size: 15px; }
   }
 
+  /* -------- News article hero image + gallery -------- */
+  .news-article-hero {
+    margin: 24px 0 28px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--ground-cool);
+  }
+  .news-article-hero img {
+    width: 100%; height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 16/9;
+  }
+  .news-article-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 24px 0 8px;
+  }
+  .news-article-gallery img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    background: var(--ground-cool);
+  }
+  @media (max-width: 640px) {
+    .news-article-hero { margin: 18px -16px 24px; border-radius: 0; }
+    .news-article-hero img { aspect-ratio: 4/3; }
+    .news-article-gallery { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .news-article-gallery img { height: 140px; }
+  }
+
   /* -------- Photo Gallery (Moments) -------- */
   .gallery-section { background: var(--ground); padding: 96px 0; }
   .gallery-mosaic {
@@ -4353,6 +4387,7 @@
         </div>
         <h2 class="news-article-title">6月7日「深夜の語り場」第3回 実施報告</h2>
         <div class="news-article-sub">2026年6月7日(土)@ 孫正義育英財団・渋谷</div>
+        <div class="news-article-hero"><img src="img/news_yoru_20260607/scene01.jpg" alt="深夜の語り場 第3回" loading="lazy"></div>
         <div class="news-article-body">
           <p>2026年6月7日(土)、学生コミュニティNEXYとして「深夜の語り場」第3回を開催いたしました。会場は孫正義育英財団のスペースをご提供いただき、当日は24名の高校生・大学生が集い、自身のテーマや活動、これからの一歩を本音で語り合う一夜となりました。</p>
           <p>本イベントの参加後アンケートでは、満足度 4.79／5、再参加意向 4.75／5、推奨度(NPS換算) 9.5／10と、第2回に続いて高い評価をいただきました。さらに参加者の87.5%が推奨者(9-10点)に分類される結果となりました。</p>
@@ -4365,6 +4400,11 @@
           <blockquote>「『自分の好き』にまっすぐ生きてる人たちと出会えるこのイベント、やっぱり大好きです!自分の直感を信じること。ちゃんと言葉にしていく。」</blockquote>
           <blockquote>「夢でしか考えていなかったことを実践していて、しかも年が近い人達と話すことができて、こういう生き方もあるんだという発見がたくさんありました。」</blockquote>
           <blockquote>「行動を起こすことに躊躇していた私の背中を、みなさんに押してもらった気がします。外の世界に出ることを怖がらずにいようと思えました。」</blockquote>
+          <div class="news-article-gallery">
+            <img src="img/news_yoru_20260607/scene02.jpg" alt="深夜の語り場 第3回 対話1" loading="lazy">
+            <img src="img/news_yoru_20260607/scene03.jpg" alt="深夜の語り場 第3回 対話2" loading="lazy">
+            <img src="img/news_yoru_20260607/scene04.jpg" alt="深夜の語り場 第3回 対話3" loading="lazy">
+          </div>
         </div>
       </article>
 
@@ -4376,6 +4416,7 @@
         </div>
         <h2 class="news-article-title">5月16日「深夜の語り場」第2回 実施報告</h2>
         <div class="news-article-sub">2026年5月16日(土) @ 株式会社ラクーンホールディングス様</div>
+        <div class="news-article-hero"><img src="img/news_yoru_20260516/group.jpg" alt="深夜の語り場 第2回 集合" loading="lazy"></div>
         <div class="news-article-body">
           <p>2026年5月16日(土)、学生コミュニティNEXYとして「深夜の語り場」第2回を開催いたしました。今回は中学生から大学2年生まで合計26名が集まり、活動・悩み・将来像を、学生同士だからこそ語れる距離感で本音で語り合う一夜となりました。</p>
           <p>第1回からの大きなアップデートとして、自社開発の「深夜の語り場」アプリを当日から初めて導入。参加者全員が事前にプロフィールカードを登録し、当日の場に「誰がいるのか」「その人が何をやっている人なのか」を可視化することで、初対面同士でも一歩目の交流が大きく加速しました。</p>
@@ -4383,6 +4424,12 @@
             <div class="article-stat"><div class="article-stat-num">4.86</div><div class="article-stat-label">満足度(/5)</div></div>
             <div class="article-stat"><div class="article-stat-num">4.67</div><div class="article-stat-label">再参加意向(/5)</div></div>
             <div class="article-stat"><div class="article-stat-num">9.33</div><div class="article-stat-label">推奨度(/10)</div></div>
+          </div>
+          <div class="news-article-gallery">
+            <img src="img/news_yoru_20260516/scene01.jpg" alt="第2回 ワークショップ1" loading="lazy">
+            <img src="img/news_yoru_20260516/scene02.jpg" alt="第2回 ワークショップ2" loading="lazy">
+            <img src="img/news_yoru_20260516/scene03.jpg" alt="第2回 ワークショップ3" loading="lazy">
+            <img src="img/news_yoru_20260516/scene04.jpg" alt="第2回 ワークショップ4" loading="lazy">
           </div>
         </div>
       </article>
@@ -4395,6 +4442,7 @@
         </div>
         <h2 class="news-article-title">5月10日 立食交流会「よいしょ!徳島」第1回 実施報告</h2>
         <div class="news-article-sub">2026年5月10日 @ cocoatta (徳島市籠屋町)</div>
+        <div class="news-article-hero"><img src="img/news_yoisho_20260510/photo01.jpg" alt="よいしょ徳島 第1回" loading="lazy"></div>
         <div class="news-article-body">
           <p>2026年5月10日(日)、徳島市籠屋町の「cocoatta」にて、立食交流会「よいしょ!徳島」第1回を開催いたしました。「書いて、破って、話す」をリズムに据えた体験型の立食交流会で、徳島の食材を最高の状態で味わいながら、普段の役割を一度脱ぎ捨て、一人ひとりが本来やりたいこと・在りたい姿を語り合う場として企画したものです。</p>
           <p>中学生から社会人まで、神山まるごと高専・徳島文理高校・鳥取城北高校・立命館宇治中・四国大学・徳島大学などから22名が事前申込。</p>
@@ -4402,6 +4450,11 @@
             <div class="article-stat"><div class="article-stat-num">4.6</div><div class="article-stat-label">満足度(/5)</div></div>
             <div class="article-stat"><div class="article-stat-num">4.6</div><div class="article-stat-label">再参加意向(/5)</div></div>
             <div class="article-stat"><div class="article-stat-num">9.1</div><div class="article-stat-label">NPS(/10)</div></div>
+          </div>
+          <div class="news-article-gallery">
+            <img src="img/news_yoisho_20260510/photo02.jpg" alt="よいしょ徳島 会場" loading="lazy">
+            <img src="img/news_yoisho_20260510/photo03.jpg" alt="よいしょ徳島 交流" loading="lazy">
+            <img src="img/news_yoisho_20260510/photo04.jpg" alt="よいしょ徳島 対話" loading="lazy">
           </div>
         </div>
       </article>
@@ -4413,8 +4466,12 @@
           <span class="news-cat press">報告</span>
         </div>
         <h2 class="news-article-title">第3回「あさげの若き情熱会」実施報告 — 現役高校生20名×経営者9社</h2>
+        <div class="news-article-hero"><img src="img/news_asage3_20260403/asage3_group.jpg" alt="あさげの若き情熱会 第3回 集合" loading="lazy"></div>
         <div class="news-article-body">
           <p>現役高校生20名と経営者9社が朝の時間帯に集い、自然と混ざる朝食コミュニティ「あさげの若き情熱会」第3回を開催しました。経営者・アーティストとの対話を通じて、参加した高校生が自身の選択肢を広げるきっかけとなる場を提供しました。</p>
+          <div class="news-article-gallery">
+            <img src="img/news_asage3_20260403/asage3_food.jpg" alt="ケータリング おにぎり" loading="lazy">
+          </div>
         </div>
       </article>
 
@@ -4425,6 +4482,7 @@
           <span class="news-cat news">受賞</span>
         </div>
         <h2 class="news-article-title">NEXY代表がN高起業部 ビジネスコンテスト2026で優勝(1,600人中)</h2>
+        <div class="news-article-hero"><img src="img/news_nhigh/nhigh_main.jpg" alt="N高起業部ビジネスコンテスト2026 優勝" loading="lazy"></div>
         <div class="news-article-body">
           <p>NEXY代表・小助川晴大が、N高等学校起業部が主催する「ビジネスコンテスト2026」において、応募者1,600名の中から優勝を果たしました。学生コミュニティNEXYの構想と実行力が高く評価される結果となりました。</p>
         </div>
@@ -4437,12 +4495,16 @@
           <span class="news-cat press">報告</span>
         </div>
         <h2 class="news-article-title">「深夜の語り場」第1回 実施報告 — 34名参加・満足度4.82/5</h2>
+        <div class="news-article-hero"><img src="img/news_yoru1/group.jpg" alt="深夜の語り場 第1回 集合" loading="lazy"></div>
         <div class="news-article-body">
           <p>NEXYの初イベントとして「深夜の語り場」第1回を開催。34名の高校生・大学生が集い、本音で語り合う夜となりました。満足度4.82/5と極めて高い評価をいただき、NEXYコミュニティの原点となる会となりました。</p>
           <div class="article-stats">
             <div class="article-stat"><div class="article-stat-num">34</div><div class="article-stat-label">参加人数(名)</div></div>
             <div class="article-stat"><div class="article-stat-num">4.82</div><div class="article-stat-label">満足度(/5)</div></div>
             <div class="article-stat"><div class="article-stat-num">1st</div><div class="article-stat-label">NEXY原点イベント</div></div>
+          </div>
+          <div class="news-article-gallery">
+            <img src="img/news_yoru1/scene01.jpg" alt="第1回 現場の様子" loading="lazy">
           </div>
         </div>
       </article>
