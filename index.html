@@ -712,6 +712,82 @@
     letter-spacing: 0.02em;
   }
 
+  /* -------- Photo Gallery (Moments) -------- */
+  .gallery-section { background: var(--ground); padding: 96px 0; }
+  .gallery-mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 12px;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 24px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    display: block;
+    background: var(--navy);
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(16,35,63,.7) 100%);
+    pointer-events: none;
+  }
+  .gallery-caption {
+    position: absolute;
+    left: 16px; right: 16px; bottom: 14px;
+    z-index: 2;
+    color: #fff;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .gallery-tag {
+    font-family: var(--f-latin);
+    font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+    padding: 3px 9px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 4px;
+    align-self: flex-start;
+  }
+  .gallery-txt {
+    font-family: var(--f-jp-disp);
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 6px rgba(0,0,0,.5);
+  }
+  .gallery-item-lg {
+    grid-row: 1 / 3;
+    grid-column: 1 / 2;
+  }
+  .gallery-item-lg .gallery-txt { font-size: 18px; }
+  @media (max-width: 900px) {
+    .gallery-mosaic {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 260px 200px 200px;
+      gap: 10px;
+    }
+    .gallery-item-lg {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+    }
+  }
+  @media (max-width: 560px) {
+    .gallery-section { padding: 64px 0; }
+    .gallery-mosaic {
+      grid-template-columns: 1fr;
+      grid-template-rows: 220px 180px 180px 180px 180px;
+    }
+    .gallery-item-lg { grid-column: 1 / 2; }
+  }
+
   /* -------- Numbers Section (半年間の歩み) -------- */
   .numbers-section {
     padding: 120px 0 100px;
@@ -3203,6 +3279,55 @@
           <div class="number-value">15<span class="number-unit">社</span></div>
           <div class="number-label">関係企業(系列含む)</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section class="section gallery-section">
+    <div class="wrap">
+      <div class="section-head" style="justify-content:center; text-align:center; margin-bottom:48px;">
+        <div style="margin: 0 auto;">
+          <div class="heading-en" style="font-size:32px;">Moments</div>
+          <div class="section-head-jp" style="margin-top:8px;">現場の風景</div>
+        </div>
+      </div>
+      <div class="gallery-mosaic">
+        <a href="#works" data-nav="works" class="gallery-item gallery-item-lg">
+          <img src="img/site/gallery_summit_stage.jpg" alt="NEXY Summit プレゼン大会 表彰式" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-tag">SUMMIT</span>
+            <span class="gallery-txt">プレゼン大会 表彰式</span>
+          </div>
+        </a>
+        <a href="#works" data-nav="works" class="gallery-item">
+          <img src="img/site/gallery_summit_table.jpg" alt="ブース 対話の様子" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-tag">BOOTH</span>
+            <span class="gallery-txt">ブースでの対話</span>
+          </div>
+        </a>
+        <a href="#works" data-nav="works" class="gallery-item">
+          <img src="img/site/gallery_summit_wall.jpg" alt="運営メンバー ストーリー展" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-tag">STORY</span>
+            <span class="gallery-txt">運営プロフィール展示</span>
+          </div>
+        </a>
+        <a href="#works" data-nav="works" class="gallery-item">
+          <img src="img/site/gallery_asa_group.jpg" alt="あさげの若き情熱会 集合" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-tag">MORNING</span>
+            <span class="gallery-txt">あさげの若き情熱会</span>
+          </div>
+        </a>
+        <a href="#works" data-nav="works" class="gallery-item">
+          <img src="img/site/gallery_summit_food.jpg" alt="ケータリング おにぎり" loading="lazy">
+          <div class="gallery-caption">
+            <span class="gallery-tag">EAT</span>
+            <span class="gallery-txt">ケータリング</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
