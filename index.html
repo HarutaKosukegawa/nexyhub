@@ -85,6 +85,14 @@
     font-family: var(--f-latin); font-size: 14px; font-weight: 800;
     box-shadow: 0 4px 12px rgba(234,92,31,.35);
   }
+  .brand-logo-img {
+    display: block;
+    height: 40px; width: auto;
+    max-width: 200px;
+  }
+  @media (max-width: 720px) {
+    .brand-logo-img { height: 32px; }
+  }
   .nav {
     display: flex; align-items: center; gap: 4px; margin-left: auto;
   }
@@ -2457,6 +2465,22 @@
     max-width: 720px; margin: 0 auto;
     display: grid; gap: 24px;
   }
+  .contact-embed { display: block; max-width: 780px; margin: 0 auto; }
+  .gform-wrap {
+    background: var(--ground);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(16,35,63,.06);
+  }
+  .gform-iframe {
+    display: block;
+    width: 100%; min-height: 800px; height: 1200px;
+    border: 0;
+  }
+  @media (max-width: 640px) {
+    .gform-iframe { height: 1400px; }
+  }
   .field label {
     display: block; font-family: var(--f-jp-disp); font-weight: 700;
     font-size: 13px; color: var(--navy); margin-bottom: 8px;
@@ -2862,9 +2886,8 @@
 <!-- ========== HEADER ========== -->
 <header class="site-header">
   <div class="wrap">
-    <a href="#top" class="brand" data-nav="top">
-      <span class="brand-mark">N</span>
-      <span>NEXY</span>
+    <a href="#top" class="brand" data-nav="top" aria-label="NEXY トップへ">
+      <img src="img/site/nexy_logo_wordmark.png" alt="NEXY" class="brand-logo-img">
     </a>
     <nav class="nav" id="nav">
       <a href="#top" data-nav="top">トップ</a>
@@ -4147,13 +4170,23 @@
         お気軽にお問い合わせください。3営業日以内にご返信いたします。
       </p>
     </div>
-    <div class="contact-form" style="text-align:center;">
-      <a href="https://docs.google.com/forms/d/1_P5wEYQL29q7vd_A8m1-4ZRvuYSb6_1dDeVqjjjN204/viewform" target="_blank" rel="noopener" class="form-submit" style="display:inline-block; text-decoration:none; padding:20px 48px; font-size:16px;">
-        お問い合わせフォームを開く →
-      </a>
-      <p style="margin-top:20px; font-size:13px; color:var(--text-muted);">
-        Google フォームが別ウィンドウで開きます。<br>
-        直接アクセス: <a href="https://docs.google.com/forms/d/1_P5wEYQL29q7vd_A8m1-4ZRvuYSb6_1dDeVqjjjN204/viewform" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:underline;">こちら</a>
+    <div class="contact-form contact-embed">
+      <div class="gform-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdEmbed_placeholder/viewform?embedded=true"
+          data-src="https://docs.google.com/forms/d/1_P5wEYQL29q7vd_A8m1-4ZRvuYSb6_1dDeVqjjjN204/viewform?embedded=true"
+          onload="if(this.src.includes('_placeholder')){this.src=this.dataset.src;}"
+          width="640" height="1200"
+          frameborder="0" marginheight="0" marginwidth="0"
+          title="NEXY お問い合わせフォーム"
+          class="gform-iframe">
+          読み込み中…
+        </iframe>
+      </div>
+      <p style="text-align:center; margin-top:20px; font-size:13px; color:var(--text-muted);">
+        表示されない場合は
+        <a href="https://docs.google.com/forms/d/1_P5wEYQL29q7vd_A8m1-4ZRvuYSb6_1dDeVqjjjN204/viewform" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:underline; font-weight:700;">こちら</a>
+        から別ウィンドウでお開きください。
       </p>
     </div>
   </section>
