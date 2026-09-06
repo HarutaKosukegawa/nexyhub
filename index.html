@@ -281,6 +281,22 @@
   .hero-slide-dot.active {
     background: #fff;
   }
+  /* YouTube 動画背景 */
+  .hero-yt {
+    position: absolute; inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    background: #10233F;
+  }
+  .hero-yt-iframe {
+    position: absolute; top: 50%; left: 50%;
+    /* 16:9 動画をコンテナ全面に敷き詰める：幅・高さともに拡大してから中央合わせ */
+    width: 100vw; height: 56.25vw; /* 16:9 */
+    min-width: 177.78vh; min-height: 100vh; /* 逆比 */
+    transform: translate(-50%, -50%) scale(1.35);
+    border: 0;
+    pointer-events: none;
+  }
 
   .hero-video-iframe {
     position: absolute; inset: 0;
@@ -2909,16 +2925,19 @@
 <!-- ========== TOP PAGE ========== -->
 <section class="page active" data-page="top">
 
-  <!-- Hero Slideshow (2秒自動送り) -->
+  <!-- Hero Video (YouTube 自動再生・ミュート・ループ) -->
   <div class="hero-video-wrap">
     <div class="hero-video">
-      <div class="hero-slides" id="heroSlides">
-        <div class="hero-slide-item active hero-slide-1"></div>
-        <div class="hero-slide-item hero-slide-2"></div>
-        <div class="hero-slide-item hero-slide-3"></div>
+      <div class="hero-yt">
+        <iframe
+          class="hero-yt-iframe"
+          src="https://www.youtube-nocookie.com/embed/fddgorgEkJc?autoplay=1&mute=1&loop=1&playlist=fddgorgEkJc&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1"
+          title="NEXY"
+          frameborder="0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
       <div class="hero-video-overlay">
-        <div class="hero-video-kicker">STUDENT COMMUNITY</div>
         <h1 class="hero-video-title">
           「やりたい」を<br>
           <em>ひとりにしない</em>。
@@ -2926,13 +2945,8 @@
         <p class="hero-video-sub">学生の思いが出会い、未来を創る場所。<br>挑戦する学生が交わり、次の一歩が生まれるコミュニティです。</p>
         <div class="hero-video-cta">
           <a class="btn-primary" href="#works" data-nav="works">サミット詳細を見る <span>→</span></a>
-          <a class="btn-ghost" href="https://www.youtube.com/watch?v=fddgorgEkJc" target="_blank" rel="noopener">ムービーを見る</a>
+          <a class="btn-ghost" href="https://www.youtube.com/watch?v=fddgorgEkJc" target="_blank" rel="noopener">音声ありで見る</a>
         </div>
-      </div>
-      <div class="hero-slide-dots">
-        <span class="hero-slide-dot active" data-slide="0"></span>
-        <span class="hero-slide-dot" data-slide="1"></span>
-        <span class="hero-slide-dot" data-slide="2"></span>
       </div>
     </div>
   </div>
