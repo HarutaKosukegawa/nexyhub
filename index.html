@@ -455,6 +455,38 @@
   }
   .mission-link:hover { background: var(--navy); color: var(--ground); }
 
+
+  /* TOP About セクションの上部大画像 */
+  .about-hero-photo {
+    max-width: 1080px; margin: 0 auto 56px;
+    border-radius: 20px; overflow: hidden;
+    aspect-ratio: 16/9;
+    box-shadow: 0 20px 60px rgba(16,35,63,.14);
+  }
+  .about-hero-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .about-hero-photo { margin: 0 auto 32px; border-radius: 12px; }
+  }
+  /* WORKS / RECRUIT ページヒーロー下大画像 */
+  .page-hero-photo {
+    max-width: 1280px; margin: 0 auto 60px;
+    padding: 0 24px;
+  }
+  .page-hero-photo img {
+    width: 100%; height: auto; display: block;
+    border-radius: 16px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    box-shadow: 0 16px 40px rgba(16,35,63,.12);
+  }
+  @media (max-width: 720px) {
+    .page-hero-photo { padding: 0 16px; margin-bottom: 32px; }
+    .page-hero-photo img { border-radius: 10px; }
+  }
+
   /* -------- About Flow (3ステップ) -------- */
   .about-flow {
     display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
@@ -1672,6 +1704,15 @@
     font-family: var(--f-latin);
     font-weight: 800; font-size: 36px;
     letter-spacing: 0.1em;
+    overflow: hidden;
+    position: relative;
+  }
+  .officer-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
   }
   .officer-body { padding-top: 8px; }
   .officer-role {
@@ -3074,6 +3115,9 @@
   <!-- About NEXY -->
   <section class="mission section-striped">
     <div class="wrap-tight">
+      <div class="about-hero-photo">
+        <img src="img/site/about_top.jpg" alt="NEXY 活動風景" loading="lazy">
+      </div>
       <div class="mission-en">About NEXY</div>
       <h2 class="mission-title">
         <em>「やりたい」</em>を、<br>
@@ -3458,7 +3502,7 @@
       </div>
 
       <div class="officer">
-        <div class="officer-photo" style="background:linear-gradient(135deg,#EA5C1F,#FF3E7F);">HK</div>
+        <div class="officer-photo"><img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy"></div>
         <div class="officer-body">
           <div class="officer-role">代表</div>
           <div class="officer-name">小助川 晴大 <span>コスケガワ ハルタ</span></div>
@@ -3563,6 +3607,10 @@
       <div class="page-hero-en">Works</div>
       <div class="page-hero-jp">事業・実績</div>
     </div>
+  </div>
+
+  <div class="page-hero-photo">
+    <img src="img/site/works_top.jpg" alt="NEXY STAFF" loading="lazy">
   </div>
 
   <!-- 事業の2軸(大枠ボックス) -->
@@ -3839,7 +3887,7 @@
     <div class="wrap">
       <!-- 代表プロフィールカード -->
       <div class="officer">
-        <div class="officer-photo" style="background:linear-gradient(135deg,#EA5C1F,#FF3E7F);">HK</div>
+        <div class="officer-photo"><img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy"></div>
         <div class="officer-body">
           <div class="officer-role">代表</div>
           <div class="officer-name">小助川 晴大 <span>Haruta Kosukegawa</span></div>
@@ -4240,6 +4288,10 @@
       <div class="page-hero-en">Recruit</div>
       <div class="page-hero-jp">採用情報・運営メンバー募集</div>
     </div>
+  </div>
+
+  <div class="page-hero-photo">
+    <img src="img/site/recruit.jpg" alt="NEXY 運営メンバー" loading="lazy">
   </div>
 
   <section class="recruit-lead">
