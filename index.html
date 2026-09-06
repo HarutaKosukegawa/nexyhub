@@ -1073,19 +1073,32 @@
     background: var(--ground);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 22px 12px;
+    padding: 20px 16px;
     text-align: center;
     font-family: var(--f-jp-disp); font-weight: 700; font-size: 12.5px;
     color: var(--navy);
     letter-spacing: 0.02em;
-    min-height: 76px;
+    min-height: 88px;
     display: grid; place-items: center;
     transition: border-color .2s, box-shadow .2s;
     line-height: 1.4;
+    overflow: hidden;
+  }
+  .partner-logo img {
+    max-width: 100%;
+    max-height: 48px;
+    width: auto; height: auto;
+    object-fit: contain;
+    display: block;
+    filter: none;
   }
   .partner-logo:hover {
     border-color: var(--accent);
     box-shadow: 0 4px 12px rgba(234,92,31,0.08);
+  }
+  @media (max-width: 720px) {
+    .partner-logo img { max-height: 36px; }
+    .partner-logo { padding: 16px 12px; min-height: 68px; }
   }
   .partners-note {
     margin-top: 32px;
@@ -2999,7 +3012,7 @@
         </div>
       </div>
       <p class="partners-lead">
-        NEXYの各種事業にご協力いただいている企業・団体様(15社系・順不同)
+        NEXYの各種事業にご協力いただいている企業・団体様(順不同)
       </p>
 
       <div class="partners-cat-block">
@@ -3007,37 +3020,23 @@
         <div class="marquee">
           <div class="marquee-track">
             <!-- 1周目 -->
-            <div class="partner-logo">SEGA SAMMY HOLDINGS</div>
-            <div class="partner-logo">株式会社SMBC</div>
-            <div class="partner-logo">孫正義育英財団</div>
-            <div class="partner-logo">SWIMMY</div>
-            <div class="partner-logo">SymEnergy</div>
-            <div class="partner-logo">デジアラ HOLDINGS</div>
-            <div class="partner-logo">Gaiax</div>
-            <div class="partner-logo">Qulii</div>
-            <div class="partner-logo">Singerly</div>
-            <div class="partner-logo">Raccoon HOLDINGS</div>
-            <div class="partner-logo">小学館</div>
-            <div class="partner-logo">パーソルキャリア</div>
-            <div class="partner-logo">TOMAP, inc.</div>
-            <div class="partner-logo">CHEERS!</div>
-            <div class="partner-logo">Bridge</div>
+            <div class="partner-logo"><img src="img/site/partner_cheers.png" alt="CHEERS!"></div>
+            <div class="partner-logo"><img src="img/site/partner_segasammy.png" alt="SEGA SAMMY HOLDINGS"></div>
+            <div class="partner-logo"><img src="img/site/partner_smbc.png" alt="SMBC"></div>
+            <div class="partner-logo"><img src="img/site/partner_swimmy.png" alt="SWIMMY"></div>
+            <div class="partner-logo"><img src="img/site/partner_son_foundation.png" alt="孫正義育英財団"></div>
+            <div class="partner-logo"><img src="img/site/partner_dejiara.png" alt="デジアラHOLDINGS"></div>
+            <div class="partner-logo"><img src="img/site/partner_gaiax.png" alt="Gaiax"></div>
+            <div class="partner-logo"><img src="img/site/partner_symenergy.png" alt="SymEnergy"></div>
             <!-- 2周目(seamless loopのため複製) -->
-            <div class="partner-logo" aria-hidden="true">SEGA SAMMY HOLDINGS</div>
-            <div class="partner-logo" aria-hidden="true">株式会社SMBC</div>
-            <div class="partner-logo" aria-hidden="true">孫正義育英財団</div>
-            <div class="partner-logo" aria-hidden="true">SWIMMY</div>
-            <div class="partner-logo" aria-hidden="true">SymEnergy</div>
-            <div class="partner-logo" aria-hidden="true">デジアラ HOLDINGS</div>
-            <div class="partner-logo" aria-hidden="true">Gaiax</div>
-            <div class="partner-logo" aria-hidden="true">Qulii</div>
-            <div class="partner-logo" aria-hidden="true">Singerly</div>
-            <div class="partner-logo" aria-hidden="true">Raccoon HOLDINGS</div>
-            <div class="partner-logo" aria-hidden="true">小学館</div>
-            <div class="partner-logo" aria-hidden="true">パーソルキャリア</div>
-            <div class="partner-logo" aria-hidden="true">TOMAP, inc.</div>
-            <div class="partner-logo" aria-hidden="true">CHEERS!</div>
-            <div class="partner-logo" aria-hidden="true">Bridge</div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_cheers.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_segasammy.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_smbc.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_swimmy.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_son_foundation.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_dejiara.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_gaiax.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_symenergy.png" alt=""></div>
           </div>
         </div>
       </div>
@@ -3046,18 +3045,17 @@
         <div class="partners-cat-label">Community / Student Organizations</div>
         <div class="marquee">
           <div class="marquee-track marquee-track-reverse">
-            <div class="partner-logo">STITCH LAB</div>
-            <div class="partner-logo">AIESEC</div>
-            <div class="partner-logo">Business Contest KING</div>
-            <div class="partner-logo">政治家に会おう</div>
-            <div class="partner-logo">STITCH LAB</div>
-            <div class="partner-logo">AIESEC</div>
-            <div class="partner-logo">Business Contest KING</div>
-            <div class="partner-logo">政治家に会おう</div>
-            <div class="partner-logo" aria-hidden="true">STITCH LAB</div>
-            <div class="partner-logo" aria-hidden="true">AIESEC</div>
-            <div class="partner-logo" aria-hidden="true">Business Contest KING</div>
-            <div class="partner-logo" aria-hidden="true">政治家に会おう</div>
+            <div class="partner-logo"><img src="img/site/partner_aiesec.png" alt="AIESEC"></div>
+            <div class="partner-logo"><img src="img/site/partner_stitchlab.png" alt="STITCH LAB"></div>
+            <div class="partner-logo"><img src="img/site/partner_etoe.png" alt="EToE"></div>
+            <div class="partner-logo"><img src="img/site/partner_king.png" alt="Business Contest KING"></div>
+            <div class="partner-logo"><img src="img/site/partner_seijika.png" alt="政治家に会おう"></div>
+            <!-- 2周目 -->
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_aiesec.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_stitchlab.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_etoe.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_king.png" alt=""></div>
+            <div class="partner-logo" aria-hidden="true"><img src="img/site/partner_seijika.png" alt=""></div>
           </div>
         </div>
       </div>
