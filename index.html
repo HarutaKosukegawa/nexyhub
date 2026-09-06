@@ -713,7 +713,62 @@
   }
 
 
-  /* -------- 実績カード(ニュースカード風) -------- */
+  /* -------- 実績: news.html スタイルの art-card -------- */
+  .works-list-wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .article-list { display: flex; flex-direction: column; gap: 12px; }
+  .art-card {
+    background: var(--ground);
+    border: 2px solid var(--text);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .art-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 0 var(--text);
+  }
+  .art-meta {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+  .art-date {
+    font-family: 'Space Mono', 'Inter', monospace;
+    font-size: .78rem; font-weight: 700; color: rgba(0,0,0,.45);
+    letter-spacing: 0.04em;
+  }
+  .art-tag {
+    font-size: .68rem; font-weight: 700;
+    padding: 3px 9px;
+    border: 1.5px solid currentColor;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .art-tag.report { color: var(--accent-2); }
+  .art-tag.award { color: var(--accent); }
+  .art-tag.event { color: var(--accent); }
+  .art-title {
+    font-family: var(--f-jp-disp);
+    font-size: 1.06rem; font-weight: 900;
+    padding: 18px 24px 8px;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+  .art-summary {
+    font-size: .88rem; line-height: 1.9;
+    color: rgba(0,0,0,.6);
+    padding: 0 24px 22px;
+  }
+  @media (max-width: 640px) {
+    .works-list-wrap { padding: 0 16px; }
+    .art-title { font-size: 1rem; padding: 16px 20px 6px; }
+    .art-summary { font-size: .84rem; padding: 0 20px 18px; }
+    .art-meta { padding: 16px 20px; }
+  }
+
+  /* -------- 実績カード(旧・未使用) -------- */
   .works-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -3455,79 +3510,7 @@
     </div>
   </section>
 
-  <!-- What we do (事業) -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-l">
-          <div class="heading-en">What We Do</div>
-          <div class="section-head-jp">NEXYの事業</div>
-        </div>
-        <a href="#works" class="view-all" data-nav="works">すべて見る →</a>
-      </div>
-      <!-- 事業01: イベント -->
-      <div class="biz-mini-nav">
-        <div class="biz-mini-badge biz-mini-badge-orange">Business 01 · イベント事業</div>
-        <div class="biz-mini-tagline">学生・若者が集う場の運営。5つのイベントを展開。</div>
-      </div>
-      <div class="event-grid" style="margin-bottom: 60px;">
-        <a class="event-card" href="summit.html" target="_blank" rel="noopener">
-          <div class="event-tag">01 · SUMMIT</div>
-          <div class="event-visual event-visual-summit"><img src="img/site/summit_thumb.jpg" alt="NEXY Summit 2026" loading="lazy"></div>
-          <div class="event-name">NEXY Summit 2026</div>
-          <div class="event-tagline">日本最大級の高校生サミット</div>
-        </a>
-        <a class="event-card" href="yoru.html" target="_blank" rel="noopener">
-          <div class="event-tag">02 · TALK</div>
-          <div class="event-visual event-visual-talk"><img src="img/site/yoru_thumb.jpg" alt="深夜の語り場" loading="lazy"></div>
-          <div class="event-name">深夜の語り場</div>
-          <div class="event-tagline">月次開催の少人数対話会</div>
-        </a>
-        <a class="event-card" href="asa.html" target="_blank" rel="noopener">
-          <div class="event-tag">03 · MORNING</div>
-          <div class="event-visual event-visual-morning"><img src="img/site/asa_thumb.jpg" alt="あさげの若き情熱会" loading="lazy"></div>
-          <div class="event-name">あさげの若き情熱会</div>
-          <div class="event-tagline">高校生×経営者の朝食コミュニティ</div>
-        </a>
-        <a class="event-card" href="yoisho.html" target="_blank" rel="noopener">
-          <div class="event-tag">04 · LOCAL</div>
-          <div class="event-visual event-visual-yoisho"><img src="img/site/yoisho_thumb.jpg" alt="よいしょ〇〇!! シリーズ" loading="lazy"></div>
-          <div class="event-name">よいしょ〇〇!! シリーズ</div>
-          <div class="event-tagline">地方巡回型の交流会</div>
-        </a>
-        <a class="event-card" href="summit.html#pitch" target="_blank" rel="noopener">
-          <div class="event-tag">05 · CONTEST</div>
-          <div class="event-visual event-visual-pitch"><img src="img/site/pitch_thumb.jpg" alt="プレゼン大会" loading="lazy"></div>
-          <div class="event-name">プレゼン大会</div>
-          <div class="event-tagline">高校生の本気ステージ</div>
-        </a>
-      </div>
-
-      <!-- 事業02: 人材 -->
-      <div class="biz-mini-nav">
-        <div class="biz-mini-badge biz-mini-badge-mint">Business 02 · 人材事業</div>
-        <div class="biz-mini-tagline">企業と学生をつなぐ場の提供。2つのソリューション。</div>
-      </div>
-      <div class="hr-mini-grid">
-        <a class="hr-mini-card" href="#works" data-nav="works">
-          <div class="hr-mini-icon" style="background:var(--accent-2);"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="white" stroke-width="1.8"><rect x="2" y="6" width="18" height="13" rx="2"/><path d="M7 6 V3 H15 V6"/></svg></div>
-          <div>
-            <div class="hr-mini-title">企業ブース出展</div>
-            <div class="hr-mini-desc">サミット・イベントで高校生1,000名+と直接接点。</div>
-          </div>
-        </a>
-        <a class="hr-mini-card" href="#works" data-nav="works">
-          <div class="hr-mini-icon" style="background:var(--accent-3);"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="white" stroke-width="1.8"><path d="M11 3 L14 9 L20 9 L15 13 L17 19 L11 15 L5 19 L7 13 L2 9 L8 9 Z"/></svg></div>
-          <div>
-            <div class="hr-mini-title">スポンサーパートナーシップ</div>
-            <div class="hr-mini-desc">冠賞・共同企画・中長期パートナーシップ。</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- News -->
+<!-- News -->
   <section class="section section-alt">
     <div class="wrap">
       <div class="section-head">
@@ -4079,111 +4062,61 @@
   </div>
 
   <section class="section">
-    <div class="wrap">
-      <div class="works-grid">
+    <div class="works-list-wrap">
+      <div class="article-list">
 
-        <a class="work-card" href="summit.html" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/site/gallery_summit_stage.jpg" alt="NEXY Summit 2026" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#summit" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.08.06</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">NEXY Summit 2026 開催報告 — 全国から高校生・大学生357名が集結した1DAYサミット</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">サミット</span>
-            </div>
-          </div>
+          <div class="art-title">NEXY Summit 2026 開催報告 — 全国から高校生・大学生357名が集結した1DAYサミット</div>
+          <div class="art-summary">2026年夏・東京、NEXYプレゼン大会・登壇セッション・ワークショップ・ブース出展などを1日に凝縮して実施。全国から集まった学生357名と、15社系の共創パートナーで彩られた1日となりました。</div>
         </a>
 
-        <a class="work-card" href="summit.html#pitch" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/site/pitch_thumb.jpg" alt="NEXYプレゼン大会" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#yoru3" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.06.07</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">NEXYプレゼン大会 — 高校生6名が本気でプレゼン、最優秀¥100,000+交通費全額支援</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">コンテスト</span>
-            </div>
-          </div>
+          <div class="art-title">6月7日「深夜の語り場」第3回 実施報告</div>
+          <div class="art-summary">孫正義育英財団オフィスにて開催。24名の高校生・大学生が参加し、満足度4.79/5・再参加意向4.75/5・推奨度9.5/10(NPS)。参加者の87.5%が推奨者に分類される極めて高い評価をいただきました。</div>
         </a>
 
-        <a class="work-card" href="yoru.html" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/site/gallery_summit_wall.jpg" alt="深夜の語り場 第3回" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#yoru2" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.05.16</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">深夜の語り場 第3回 実施報告 — 24名参加・満足度4.79/5・NPS9.5(孫正義育英財団オフィス)</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">対話</span>
-            </div>
-          </div>
+          <div class="art-title">5月16日「深夜の語り場」第2回 実施報告</div>
+          <div class="art-summary">26名の高校生・大学生が集い、"考え途中"のテーマを本音で語り合う一夜。参加後アンケートは満足度4.86/5・NPS9.33/10と、第1回に続いて高い評価となりました。</div>
         </a>
 
-        <a class="work-card" href="asa.html" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/site/gallery_asa_group.jpg" alt="あさげの若き情熱会" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#yoisho1" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.05.10</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">あさげの若き情熱会 第3回 実施報告 — 現役高校生20名×経営者9社が集結</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">朝食コミュニティ</span>
-            </div>
-          </div>
+          <div class="art-title">5月10日 立食交流会「よいしょ！徳島」第1回 実施報告</div>
+          <div class="art-summary">首都圏以外の地方主要都市を巡回する新シリーズが徳島でスタート。中学生〜社会人が地元で「やってみたい」を形にする4時間。満足度4.6/5・NPS9.1で始動しました。</div>
         </a>
 
-        <a class="work-card" href="yoisho.html" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/site/yoisho_thumb.jpg" alt="よいしょ徳島" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#asage3" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.04.03</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">よいしょ!徳島 第1回 実施報告 — 満足度4.6/5・NPS9.1で地方巡回シリーズが始動</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">地方</span>
-            </div>
-          </div>
+          <div class="art-title">第3回「あさげの若き情熱会」実施報告</div>
+          <div class="art-summary">現役高校生20名 × 経営者9社が集った朝食コミュニティ。経営者・アーティストとの対話を通じて、参加者が自身の選択肢を広げる場となりました。</div>
         </a>
 
-        <a class="work-card" href="https://www.nexyhub.jp/kataribi.html" target="_blank" rel="noopener">
-          <div class="work-card-thumb">
-            <img src="img/kataribi/hero.png" alt="カタリビ 2026" loading="lazy">
+        <a class="art-card" href="https://www.nexyhub.jp/news.html#yoru1" target="_blank" rel="noopener">
+          <div class="art-meta">
+            <span class="art-date">2026.02.22</span>
+            <span class="art-tag report">実施報告</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-title">カタリビ 2026 サマーキャンプ — U-18向け2泊3日 宿泊型キャンプ(神奈川県立 足柄ふれあいの村)</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-event">イベント</span>
-              <span class="work-tag">キャンプ</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="work-card" href="#business" data-nav="business">
-          <div class="work-card-thumb">
-            <img src="img/site/gallery_summit_table.jpg" alt="企業ブース出展" loading="lazy">
-          </div>
-          <div class="work-card-body">
-            <div class="work-card-title">企業ブース出展 — NEXY SUMMITで日本最大級の高校生リーチを実現(15社系連携)</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-hr">人材</span>
-              <span class="work-tag">パートナーシップ</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="work-card" href="#business" data-nav="business">
-          <div class="work-card-thumb">
-            <img src="img/site/partner_segasammy.png" alt="スポンサーパートナーシップ" loading="lazy" style="object-fit:contain; background:#F5F7FA;">
-          </div>
-          <div class="work-card-body">
-            <div class="work-card-title">スポンサーパートナーシップ — SEGA・SMBC・孫正義育英財団 他、冠賞・冠セッションの中長期パートナー</div>
-            <div class="work-card-tags">
-              <span class="work-tag work-tag-hr">人材</span>
-              <span class="work-tag">協賛</span>
-            </div>
-          </div>
+          <div class="art-title">2月22日「深夜の語り場」第1回 実施報告</div>
+          <div class="art-summary">学生団体NEXYの記念すべき第1回イベント。34名の高校生・大学生が参加し、満足度4.82/5を記録。NEXYの原点となる、"未完成のまま語り合える夜"が始まった1日でした。</div>
         </a>
 
       </div>
