@@ -281,22 +281,21 @@
   .hero-slide-dot.active {
     background: #fff;
   }
-  /* YouTube 動画背景 */
-  .hero-yt {
+  /* Hero フォトスライドショー */
+  .hero-photos {
     position: absolute; inset: 0;
-    overflow: hidden;
     z-index: 0;
     background: #10233F;
   }
-  .hero-yt-iframe {
-    position: absolute; top: 50%; left: 50%;
-    /* 16:9 動画をコンテナ全面に敷き詰める：幅・高さともに拡大してから中央合わせ */
-    width: 100vw; height: 56.25vw; /* 16:9 */
-    min-width: 177.78vh; min-height: 100vh; /* 逆比 */
-    transform: translate(-50%, -50%) scale(1.35);
-    border: 0;
-    pointer-events: none;
+  .hero-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 800ms ease-in-out;
   }
+  .hero-photo.active { opacity: 1; }
 
   .hero-video-iframe {
     position: absolute; inset: 0;
@@ -2925,17 +2924,12 @@
 <!-- ========== TOP PAGE ========== -->
 <section class="page active" data-page="top">
 
-  <!-- Hero Video (YouTube 自動再生・ミュート・ループ) -->
+  <!-- Hero フォトスライドショー (2秒ごとに切替) -->
   <div class="hero-video-wrap">
     <div class="hero-video">
-      <div class="hero-yt">
-        <iframe
-          class="hero-yt-iframe"
-          src="https://www.youtube-nocookie.com/embed/fddgorgEkJc?autoplay=1&mute=1&loop=1&playlist=fddgorgEkJc&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&playsinline=1"
-          title="NEXY"
-          frameborder="0"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="hero-photos" id="heroPhotos">
+        <img src="img/site/hero_photo_1.jpg" alt="NEXY メンバー集合" class="hero-photo active" loading="eager">
+        <img src="img/site/hero_photo_2.jpg" alt="NEXY イベント集合" class="hero-photo" loading="eager">
       </div>
       <div class="hero-video-overlay">
         <h1 class="hero-video-title">
@@ -2945,7 +2939,7 @@
         <p class="hero-video-sub">学生の思いが出会い、未来を創る場所。<br>挑戦する学生が交わり、次の一歩が生まれるコミュニティです。</p>
         <div class="hero-video-cta">
           <a class="btn-primary" href="#works" data-nav="works">サミット詳細を見る <span>→</span></a>
-          <a class="btn-ghost" href="https://www.youtube.com/watch?v=fddgorgEkJc" target="_blank" rel="noopener">音声ありで見る</a>
+          <a class="btn-ghost" href="https://www.youtube.com/watch?v=fddgorgEkJc" target="_blank" rel="noopener">ムービーを見る</a>
         </div>
       </div>
     </div>
@@ -4382,7 +4376,7 @@
 
   // ---- Hero Slideshow(2秒ごとに自動送り) ----
   (function initHeroSlideshow() {
-    const slides = document.querySelectorAll('.hero-slide-item');
+    const slides = document.querySelectorAll('.hero-photo');
     const dots = document.querySelectorAll('.hero-slide-dot');
     if (slides.length === 0) return;
     let current = 0;
