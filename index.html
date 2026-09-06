@@ -712,6 +712,63 @@
     letter-spacing: 0.02em;
   }
 
+
+  /* -------- 実績カード(ニュースカード風) -------- */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .work-card {
+    display: flex; flex-direction: column;
+    background: transparent;
+    text-decoration: none;
+    transition: transform .3s;
+  }
+  .work-card:hover { transform: translateY(-4px); }
+  .work-card-thumb {
+    aspect-ratio: 4/3;
+    background: var(--ground-cool);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .work-card-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .work-card:hover .work-card-thumb img { transform: scale(1.05); }
+  .work-card-body { padding: 0 4px; }
+  .work-card-title {
+    font-family: var(--f-jp-disp);
+    font-weight: 700; font-size: 15.5px;
+    line-height: 1.7; color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .work-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .work-tag {
+    display: inline-block;
+    font-family: var(--f-jp-disp);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px;
+    background: var(--ground-cool);
+    color: var(--text-2);
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  .work-tag-event { background: rgba(234,92,31,.12); color: var(--accent); }
+  .work-tag-hr { background: rgba(20,191,174,.14); color: var(--accent-2); }
+  @media (max-width: 900px) {
+    .works-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+  }
+  @media (max-width: 560px) {
+    .works-grid { grid-template-columns: 1fr; gap: 32px; }
+    .work-card-title { font-size: 15px; }
+  }
+
   /* -------- Photo Gallery (Moments) -------- */
   .gallery-section { background: var(--ground); padding: 96px 0; }
   .gallery-mosaic {
@@ -3158,6 +3215,7 @@
     <nav class="nav" id="nav">
       <a href="#top" data-nav="top">トップ</a>
       <a href="#about" data-nav="about">会社概要</a>
+      <a href="#business" data-nav="business">事業</a>
       <a href="#members" data-nav="members">メンバー</a>
       <a href="#works" data-nav="works">実績</a>
       <a href="#news" data-nav="news">お知らせ</a>
@@ -3718,12 +3776,12 @@
 </section>
 
 <!-- ========== WORKS PAGE ========== -->
-<section class="page" data-page="works">
+<section class="page" data-page="business">
   <div class="page-hero">
     <div class="wrap">
-      <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>WORKS</span></div>
-      <div class="page-hero-en">Works</div>
-      <div class="page-hero-jp">事業・実績</div>
+      <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>BUSINESS</span></div>
+      <div class="page-hero-en">Business</div>
+      <div class="page-hero-jp">事業内容</div>
     </div>
   </div>
 
@@ -3731,7 +3789,7 @@
   <section class="section">
     <div class="wrap-tight" style="text-align: center; margin-bottom: 60px;">
       <div class="eyebrow">What We Do</div>
-      <h2 class="heading-l">NEXYの2つの事業。</h2>
+      <h2 class="heading-l">NEXYの2つの事業</h2>
       <p class="lead" style="margin-top: 24px;">
         NEXYは大きく分けて<strong style="color:var(--accent);">「イベント事業」</strong>と<strong style="color:var(--accent-2);">「人材事業」</strong>の2つの柱で展開しています。
       </p>
@@ -4011,6 +4069,157 @@
 </section>
 
 <!-- ========== MEMBERS PAGE ========== -->
+<section class="page" data-page="works">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>WORKS</span></div>
+      <div class="page-hero-en">Works</div>
+      <div class="page-hero-jp">実績</div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="works-grid">
+
+        <a class="work-card" href="summit.html" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/site/gallery_summit_stage.jpg" alt="NEXY Summit 2026" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">NEXY Summit 2026 開催報告 — 全国から高校生・大学生357名が集結した1DAYサミット</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">サミット</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="summit.html#pitch" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/site/pitch_thumb.jpg" alt="NEXYプレゼン大会" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">NEXYプレゼン大会 — 高校生6名が本気でプレゼン、最優秀¥100,000+交通費全額支援</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">コンテスト</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="yoru.html" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/site/gallery_summit_wall.jpg" alt="深夜の語り場 第3回" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">深夜の語り場 第3回 実施報告 — 24名参加・満足度4.79/5・NPS9.5(孫正義育英財団オフィス)</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">対話</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="asa.html" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/site/gallery_asa_group.jpg" alt="あさげの若き情熱会" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">あさげの若き情熱会 第3回 実施報告 — 現役高校生20名×経営者9社が集結</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">朝食コミュニティ</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="yoisho.html" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/site/yoisho_thumb.jpg" alt="よいしょ徳島" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">よいしょ!徳島 第1回 実施報告 — 満足度4.6/5・NPS9.1で地方巡回シリーズが始動</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">地方</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="https://www.nexyhub.jp/kataribi.html" target="_blank" rel="noopener">
+          <div class="work-card-thumb">
+            <img src="img/kataribi/hero.png" alt="カタリビ 2026" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">カタリビ 2026 サマーキャンプ — U-18向け2泊3日 宿泊型キャンプ(神奈川県立 足柄ふれあいの村)</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-event">イベント</span>
+              <span class="work-tag">キャンプ</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="#business" data-nav="business">
+          <div class="work-card-thumb">
+            <img src="img/site/gallery_summit_table.jpg" alt="企業ブース出展" loading="lazy">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">企業ブース出展 — NEXY SUMMITで日本最大級の高校生リーチを実現(15社系連携)</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-hr">人材</span>
+              <span class="work-tag">パートナーシップ</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="work-card" href="#business" data-nav="business">
+          <div class="work-card-thumb">
+            <img src="img/site/partner_segasammy.png" alt="スポンサーパートナーシップ" loading="lazy" style="object-fit:contain; background:#F5F7FA;">
+          </div>
+          <div class="work-card-body">
+            <div class="work-card-title">スポンサーパートナーシップ — SEGA・SMBC・孫正義育英財団 他、冠賞・冠セッションの中長期パートナー</div>
+            <div class="work-card-tags">
+              <span class="work-tag work-tag-hr">人材</span>
+              <span class="work-tag">協賛</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Photo Cards Block (共通フッターナビ) -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="photo-cards">
+        <a href="#about" class="photo-card" data-nav="about">
+          <div class="photo-card-image photo-card-image-1"></div>
+          <div class="photo-card-bar">
+            <div class="photo-card-en">About</div>
+            <div class="photo-card-jp">会社概要</div>
+          </div>
+        </a>
+        <a href="#works" class="photo-card" data-nav="works">
+          <div class="photo-card-image photo-card-image-2"></div>
+          <div class="photo-card-bar">
+            <div class="photo-card-en">Works</div>
+            <div class="photo-card-jp">事業・実績</div>
+          </div>
+        </a>
+        <a href="#recruit" class="photo-card" data-nav="recruit">
+          <div class="photo-card-image photo-card-image-3"></div>
+          <div class="photo-card-bar">
+            <div class="photo-card-en">Recruit</div>
+            <div class="photo-card-jp">採用情報</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</section>
+
 <section class="page" data-page="members">
   <div class="page-hero">
     <div class="wrap">
