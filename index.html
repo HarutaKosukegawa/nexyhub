@@ -3158,20 +3158,17 @@
   }
   .work-block-meta {
     display: grid;
-    gap: 0;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
+    gap: 6px;
+    padding-top: 8px;
   }
   .work-block-meta li {
     display: grid;
     grid-template-columns: 90px 1fr;
     gap: 24px;
-    padding: 12px 0;
+    padding: 6px 0;
     font-size: 13.5px;
     color: var(--text-2);
-    border-bottom: 1px dashed var(--border);
   }
-  .work-block-meta li:last-child { border-bottom: 0; }
   .work-block-meta strong {
     font-family: var(--f-jp-disp);
     color: var(--navy);
@@ -4120,6 +4117,164 @@
     .vh-dots span { width: 7px; height: 7px; }
   }
 
+  /* -------- Message Split (SOZOW風・写真+メッセージ左右分割) -------- */
+  .msg-split-section {
+    padding: clamp(80px, 12vw, 140px) 24px;
+    background: #FFFFFF;
+  }
+  .msg-split {
+    display: grid;
+    grid-template-columns: minmax(300px, 480px) 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    max-width: 1120px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .msg-split-photo {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--ground-cool);
+    position: sticky;
+    top: 100px;
+  }
+  .msg-split-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .msg-split-body {
+    padding-top: 12px;
+  }
+  .msg-split-label {
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .msg-split-title {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(26px, 3.6vw, 36px);
+    line-height: 1.65;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin: 0 0 40px;
+    text-wrap: balance;
+  }
+  .msg-split-body p {
+    font-size: 14.5px;
+    line-height: 2.15;
+    color: var(--text-2);
+    margin: 0 0 20px;
+    letter-spacing: 0.03em;
+  }
+  .msg-split-signature {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: "Zen Old Mincho", serif;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.9;
+  }
+  .msg-split-signature strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 6px;
+    letter-spacing: 0.06em;
+  }
+  @media (max-width: 900px) {
+    .msg-split { grid-template-columns: 1fr; gap: 40px; }
+    .msg-split-photo { max-width: 360px; margin: 0 auto; position: static; aspect-ratio: 4/5; }
+    .msg-split-title { font-size: 24px; }
+  }
+
+  /* -------- Executive Card Grid (Memberページ・SOZOW風) -------- */
+  .exec-grid-section {
+    padding: clamp(64px, 10vw, 120px) 24px;
+  }
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 28px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .exec-grid.solo {
+    grid-template-columns: minmax(320px, 420px);
+    justify-content: center;
+  }
+  .exec-card {
+    text-align: left;
+  }
+  .exec-card-photo {
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #EFEFF3 0%, #DEDFE3 100%);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(20,30,60,0.06);
+  }
+  .exec-card-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .exec-card-role {
+    font-family: var(--f-jp-disp);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-2);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .exec-card-name {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .exec-card-name::before {
+    content: "";
+    display: inline-block;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    background:
+      linear-gradient(var(--accent), var(--accent)) center/8px 1.5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) center/1.5px 8px no-repeat;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .exec-card-name-kana {
+    display: block;
+    font-family: var(--f-jp-disp);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    margin-top: 6px;
+  }
+  @media (max-width: 900px) {
+    .exec-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  }
+  @media (max-width: 600px) {
+    .exec-grid { grid-template-columns: 1fr; gap: 28px; max-width: 360px; }
+    .exec-grid.solo { grid-template-columns: 1fr; }
+  }
+
   /* Statement Panel - VISION / MISSION 共通シンプル版 */
   .st-panel {
     text-align: center;
@@ -4532,31 +4687,36 @@
     <h2 class="st-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
   </section>
 
-  <!-- 代表からのメッセージ -->
-  <section class="section" id="about-message">
-    <div class="wrap-tight" style="text-align: center; margin-bottom: 48px;">
-      <div class="eyebrow">Message</div>
-      <h3 class="heading-l" style="font-size: 24px; margin-top: 20px;">代表からのメッセージ</h3>
-    </div>
-    <div class="wrap-tight about-greeting-body">
-      <p>
-        私はこれまで、ロボット、起業、教育など多分野で挑戦を重ねてまいりました。その中で確信したのは、「挑戦は人との出会いによって加速する」ということです。
-      </p>
-      <p>
-        実際に自身の人生を大きく変えたのは、環境と人との出会いでした。本気で取り組む同世代と対話を重ね、互いに刺激し合うことで、自身の可能性が広がっていく経験を得ることができました。
-      </p>
-      <p>
-        一方で、そのような出会いは意図的に設計しなければ生まれにくいのも事実です。そこで私は、挑戦する学生同士が交わり、新たな契機が生まれる場を提供したいと考え、NEXYを設立いたしました。
-      </p>
-      <p>
-        今、何かに挑戦したいと思っていても、同じ熱量で語り合える仲間に出会う機会は多くありません。すごい学生は確かに存在する。しかし、その学生同士が本気でつながり、刺激し合える場はほとんどないのが現状です。
-      </p>
-      <p>
-        NEXYは、単なるコミュニティではございません。それぞれの「やりたい」が交差し、次の挑戦へとつながる場です。ここでの出会いが誰かの人生を変える契機となる、そうした連鎖が生まれる場を本気で構築してまいります。
-      </p>
-      <div class="greeting-signature">
-        学生団体NEXY<br>
-        <strong>代表　小助川 晴大</strong>
+  <!-- 代表からのメッセージ (SOZOW風 左右分割) -->
+  <section class="msg-split-section" id="about-message">
+    <div class="msg-split">
+      <div class="msg-split-photo">
+        <img src="img/site/rep_haruta.jpg" alt="代表 小助川 晴大" loading="lazy">
+      </div>
+      <div class="msg-split-body">
+        <div class="msg-split-label">Message</div>
+        <h3 class="msg-split-title">
+          挑戦は、<br>人との出会いによって加速する。
+        </h3>
+        <p>
+          私はこれまで、ロボット、起業、教育など多分野で挑戦を重ねてまいりました。その中で確信したのは、「挑戦は人との出会いによって加速する」ということです。
+        </p>
+        <p>
+          実際に自身の人生を大きく変えたのは、環境と人との出会いでした。本気で取り組む同世代と対話を重ね、互いに刺激し合うことで、自身の可能性が広がっていく経験を得ることができました。
+        </p>
+        <p>
+          一方で、そのような出会いは意図的に設計しなければ生まれにくいのも事実です。そこで私は、挑戦する学生同士が交わり、新たな契機が生まれる場を提供したいと考え、NEXYを設立いたしました。
+        </p>
+        <p>
+          今、何かに挑戦したいと思っていても、同じ熱量で語り合える仲間に出会う機会は多くありません。すごい学生は確かに存在する。しかし、その学生同士が本気でつながり、刺激し合える場はほとんどないのが現状です。
+        </p>
+        <p>
+          NEXYは、単なるコミュニティではございません。それぞれの「やりたい」が交差し、次の挑戦へとつながる場です。ここでの出会いが誰かの人生を変える契機となる、そうした連鎖が生まれる場を本気で構築してまいります。
+        </p>
+        <div class="msg-split-signature">
+          学生団体NEXY<br>
+          <strong>代表　小助川 晴大</strong>
+        </div>
       </div>
     </div>
   </section>
@@ -4902,40 +5062,46 @@
     </div>
   </div>
 
-  <!-- ============ 1. Intro (代表挨拶) ============ -->
+  <!-- ============ 1. Intro ============ -->
   <section class="section" style="padding-bottom: 32px;">
     <div class="wrap-tight" style="text-align: center;">
       <div class="mem-section-label">Representative</div>
-      <h2 class="mem-section-title" style="margin-bottom: 20px;">NEXYを代表として運営しております。</h2>
-      <p class="lead" style="max-width: 640px; margin: 0 auto;">
-        NEXYは、代表・小助川晴大を中心に、全国から集まった学生スタッフにより運営されております。
-      </p>
+      <h2 class="mem-section-title" style="margin-bottom: 0;">代表</h2>
     </div>
   </section>
 
-  <!-- ============ 2. 代表プロフィールカード (大) ============ -->
-  <section class="section" style="padding-top: 24px;">
-    <div class="wrap">
-      <div class="rep-hero">
-        <div class="rep-hero-photo">
+  <!-- ============ 2. 代表 Executive Card (SOZOW風) ============ -->
+  <section class="exec-grid-section" style="padding-top: 0;">
+    <div class="exec-grid solo">
+      <div class="exec-card">
+        <div class="exec-card-photo">
           <img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy">
         </div>
-        <div class="rep-hero-body">
-          <div class="rep-hero-role">Representative</div>
-          <h3 class="rep-hero-name">小助川 晴大<span class="rep-hero-name-en">Haruta Kosukegawa</span></h3>
-          <ul class="rep-hero-titles">
-            <li class="primary">学生団体NEXY 代表</li>
-            <li>ネルフィン株式会社 COO</li>
-            <li>ジンベエザメ株式会社 COO</li>
-            <li class="accent">孫正義育英財団 3期生</li>
-            <li>Tokyo Startup Gateway 3期生</li>
-            <li>N高等学校 BLP 正規生</li>
-          </ul>
-          <p class="rep-hero-bio">
-            2008年、神奈川県横浜市生まれ。現在は富山県富山市在住。9歳でロボット競技WROに出場し、史上最年少で世界7位を獲得。孫正義育英財団3期生として選抜され、小学校卒業後にシンガポールへ単身留学。中学2年でジンベエザメ株式会社を設立し、N高起業部ビジネスコンテスト2026では応募1,600名の頂点となる優勝を果たしました。学生の「やりたい」を、ひとりにしない —— このコンセプトのもとでNEXYを代表として運営しております。
-          </p>
+        <div class="exec-card-role">代表 / Representative</div>
+        <div class="exec-card-name">
+          <div>
+            小助川 晴大
+            <span class="exec-card-name-kana">こすけがわ はるた</span>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. 詳細プロフィール (肩書き＋バイオ) ============ -->
+  <section class="section" style="padding-top: 32px; padding-bottom: 64px;">
+    <div class="wrap-tight">
+      <ul class="rep-hero-titles" style="justify-content: center; margin-bottom: 32px;">
+        <li class="primary">学生団体NEXY 代表</li>
+        <li>ネルフィン株式会社 COO</li>
+        <li>ジンベエザメ株式会社 COO</li>
+        <li class="accent">孫正義育英財団 3期生</li>
+        <li>Tokyo Startup Gateway 3期生</li>
+        <li>N高等学校 BLP 正規生</li>
+      </ul>
+      <p class="rep-hero-bio" style="max-width: 720px; margin: 0 auto; text-align: justify;">
+        2008年、神奈川県横浜市生まれ。現在は富山県富山市在住。9歳でロボット競技WROに出場し、史上最年少で世界7位を獲得。孫正義育英財団3期生として選抜され、小学校卒業後にシンガポールへ単身留学。中学2年でジンベエザメ株式会社を設立し、N高起業部ビジネスコンテスト2026では応募1,600名の頂点となる優勝を果たしました。学生の「やりたい」を、ひとりにしない —— このコンセプトのもとでNEXYを代表として運営しております。
+      </p>
     </div>
   </section>
 
