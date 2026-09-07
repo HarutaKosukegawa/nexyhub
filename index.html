@@ -3973,6 +3973,154 @@
     .nx-finale{ padding: 2.4rem 1.4rem 2.8rem; margin-top: 4rem; }
     .nx-network{ height: 170px; }
   }
+
+  /* ================================================================
+     Vision Editorial Hero (Aboutページ) — navy full-bleed
+     ================================================================ */
+  .vh-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 20%, #14263F 0%, #10233F 45%, #0A1728 100%);
+    color: #F5EFE1;
+    padding: clamp(80px, 12vw, 160px) 24px clamp(96px, 14vw, 180px);
+    text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .vh-section::before {
+    /* soft coral glow behind title */
+    content: '';
+    position: absolute;
+    top: 46%; left: 50%;
+    width: 780px; height: 780px;
+    max-width: 90vw;
+    max-height: 90vw;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(234,92,31,0.18) 0%, rgba(234,92,31,0.05) 40%, transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .vh-section::after {
+    /* subtle grain/scatter dots */
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 8% 22%, rgba(255,201,62,0.35) 1px, transparent 1.5px),
+      radial-gradient(circle at 92% 18%, rgba(56,189,248,0.35) 1px, transparent 1.5px),
+      radial-gradient(circle at 15% 82%, rgba(168,216,44,0.30) 1px, transparent 1.5px),
+      radial-gradient(circle at 88% 76%, rgba(124,58,237,0.35) 1px, transparent 1.5px),
+      radial-gradient(circle at 30% 12%, rgba(255,62,127,0.28) 1px, transparent 1.5px),
+      radial-gradient(circle at 74% 88%, rgba(20,191,174,0.30) 1px, transparent 1.5px);
+    pointer-events: none;
+    opacity: .7;
+    z-index: -1;
+  }
+  .vh-inner {
+    position: relative;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .vh-tag {
+    display: inline-block;
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    color: #FFC93E;
+    text-transform: uppercase;
+    padding: 8px 22px;
+    border: 1px solid rgba(255,201,62,0.35);
+    border-radius: 999px;
+    margin-bottom: 40px;
+  }
+  .vh-title {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(28px, 5.6vw, 56px);
+    line-height: 1.5;
+    color: #F5EFE1;
+    letter-spacing: 0.02em;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .vh-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, #FFC93E, #EA5C1F 35%, #FF3E7F 65%, #7C3AED);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.06em;
+  }
+  .vh-title-sub {
+    display: block;
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.36em;
+    color: rgba(245,239,225,0.5);
+    margin-top: 22px;
+    text-transform: uppercase;
+  }
+  .vh-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 44px auto 44px;
+    max-width: 380px;
+  }
+  .vh-dots::before, .vh-dots::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,239,225,0.22), transparent);
+  }
+  .vh-dots span {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: vh-pulse 3.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .vh-dots span:nth-child(1) { color: #EA5C1F; animation-delay: 0s; }
+  .vh-dots span:nth-child(2) { color: #FFC93E; animation-delay: 0.25s; }
+  .vh-dots span:nth-child(3) { color: #A8D82C; animation-delay: 0.50s; }
+  .vh-dots span:nth-child(4) { color: #14BFAE; animation-delay: 0.75s; }
+  .vh-dots span:nth-child(5) { color: #38BDF8; animation-delay: 1.00s; }
+  .vh-dots span:nth-child(6) { color: #7C3AED; animation-delay: 1.25s; }
+  .vh-dots span:nth-child(7) { color: #FF3E7F; animation-delay: 1.50s; }
+  @keyframes vh-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.55;
+      box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    }
+    50% {
+      transform: scale(1.6);
+      opacity: 1;
+      box-shadow: 0 0 14px 2px currentColor;
+    }
+  }
+  .vh-body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: clamp(14px, 1.6vw, 15.5px);
+    line-height: 2.15;
+    color: rgba(245,239,225,0.72);
+    max-width: 580px;
+    margin: 0 auto;
+    letter-spacing: 0.04em;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vh-dots span { animation: none !important; }
+  }
+  @media (max-width: 640px) {
+    .vh-section { padding: 80px 20px 96px; }
+    .vh-tag { font-size: 10px; letter-spacing: 0.32em; padding: 7px 18px; margin-bottom: 32px; }
+    .vh-title { line-height: 1.55; letter-spacing: 0.015em; }
+    .vh-body { line-height: 2.0; }
+    .vh-dots { gap: 12px; margin: 36px auto; }
+    .vh-dots span { width: 7px; height: 7px; }
+  }
 </style>
 
 <!-- ========== HEADER ========== -->
@@ -4331,54 +4479,36 @@
     <div class="wrap">
       <ul class="about-toc">
         <li><a href="#about-vision">ビジョン</a></li>
-        <li><a href="#about-greeting">挨拶</a></li>
+        <li><a href="#about-mission">ミッション</a></li>
         <li><a href="#about-officers">代表</a></li>
         <li><a href="#about-company">会社概要</a></li>
       </ul>
     </div>
   </div>
 
-  <!-- Vision (Finale パネル) -->
-  <section class="nx-section" id="about-vision">
-    <div class="nx-stage" style="padding-top: 4rem; padding-bottom: 4rem;">
-      <div class="nx-finale" id="nxFinaleAbout" style="margin-top: 0;">
-        <svg class="nx-network" viewBox="0 0 460 200" aria-hidden="true">
-          <path class="nx-net-edge" d="M60,150 L150,90" />
-          <path class="nx-net-edge" d="M150,90 L230,130" />
-          <path class="nx-net-edge" d="M150,90 L200,40" />
-          <path class="nx-net-edge" d="M230,130 L310,80" />
-          <path class="nx-net-edge" d="M200,40 L280,55" />
-          <path class="nx-net-edge" d="M280,55 L310,80" />
-          <path class="nx-net-edge" d="M310,80 L390,45" />
-          <path class="nx-net-edge" d="M310,80 L385,120" />
-          <path class="nx-net-pulse" style="animation-delay:0s"    d="M60,150 L150,90" />
-          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L200,40" />
-          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L230,130" />
-          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M200,40 L280,55" />
-          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M230,130 L310,80" />
-          <path class="nx-net-pulse" style="animation-delay:1.05s" d="M280,55 L310,80" />
-          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L390,45" />
-          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L385,120" />
-          <circle class="nx-net-node" cx="60"  cy="150" r="7" fill="var(--nx-c1)" style="animation-delay:0s"/>
-          <circle class="nx-net-node" cx="150" cy="90"  r="7" fill="var(--nx-c2)" style="animation-delay:.35s"/>
-          <circle class="nx-net-node" cx="200" cy="40"  r="6" fill="var(--nx-c3)" style="animation-delay:.7s"/>
-          <circle class="nx-net-node" cx="230" cy="130" r="6" fill="var(--nx-c4)" style="animation-delay:.7s"/>
-          <circle class="nx-net-node" cx="280" cy="55"  r="6" fill="var(--nx-c5)" style="animation-delay:1.05s"/>
-          <circle class="nx-net-node" cx="310" cy="80"  r="7" fill="var(--nx-c6)" style="animation-delay:1.4s"/>
-          <circle class="nx-net-node" cx="390" cy="45"  r="6" fill="var(--nx-c7)" style="animation-delay:1.75s"/>
-          <circle class="nx-net-node" cx="385" cy="120" r="6" fill="var(--nx-c1)" style="animation-delay:1.75s"/>
-        </svg>
-        <p class="nx-finale-tag">Vision</p>
-        <h2 class="nx-finale-title">思いが連鎖する社会を創る。</h2>
-        <p class="nx-finale-body">NEXYで生まれた一つの出会いが、次の誰かの一歩になる。ここで生まれた"思い"が世代や地域を越えて連鎖し、挑戦が挑戦を生む社会をつくっていきます。</p>
+  <!-- Vision (Editorial Hero) -->
+  <section class="vh-section" id="about-vision">
+    <div class="vh-inner">
+      <div class="vh-tag">Vision</div>
+      <h2 class="vh-title">
+        思いが<em>連鎖する</em>社会を、<br>創る。
+        <span class="vh-title-sub">— A chain of intent, unlocking the next step.</span>
+      </h2>
+      <div class="vh-dots" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
+      <p class="vh-body">
+        NEXYで生まれた一つの出会いが、次の誰かの一歩になる。<br>
+        ここで生まれた"思い"が世代や地域を越えて連鎖し、<br>
+        挑戦が挑戦を生む社会をつくっていきます。
+      </p>
     </div>
   </section>
 
-  <!-- 挨拶 -->
-  <section class="section" id="about-greeting">
+  <!-- Mission (代表からのメッセージ) -->
+  <section class="section" id="about-mission">
     <div class="wrap-tight" style="text-align: center; margin-bottom: 64px;">
-      <div class="eyebrow">Greeting</div>
+      <div class="eyebrow">Mission</div>
       <h2 class="mission-title" style="margin-bottom: 40px;">
         「やりたい」を、<br>
         <em>ひとりにしない</em>。
