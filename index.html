@@ -4249,6 +4249,37 @@
     object-position: center top;
     display: block;
   }
+  .exec-card-photo-placeholder {
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .exec-card-photo-placeholder::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 55%);
+  }
+  .exec-card-initial {
+    position: relative; z-index: 1;
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 8vw, 88px);
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.94);
+    text-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+  .exec-card-initial-sub {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    z-index: 1;
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
   .exec-card-role {
     font-family: var(--f-jp-disp);
     font-size: 12.5px;
@@ -5210,17 +5241,17 @@
   <!-- ============ 1. Intro ============ -->
   <section class="section" style="padding-bottom: 24px;">
     <div class="wrap-tight" style="text-align: center;">
-      <div class="mem-section-label">Representative</div>
-      <h2 class="mem-section-title" style="margin-bottom: 12px;">代表</h2>
+      <div class="mem-section-label">Core Team</div>
+      <h2 class="mem-section-title" style="margin-bottom: 12px;">コアチーム</h2>
       <p class="lead" style="max-width: 520px; margin: 0 auto; font-size: 14px; color: var(--text-muted);">
         カードをクリックすると、詳細プロフィールが展開されます。
       </p>
     </div>
   </section>
 
-  <!-- ============ 2. Executive Card (click to expand) ============ -->
+  <!-- ============ 2. Executive Cards (click to expand) ============ -->
   <section class="exec-grid-section" style="padding-top: 0;">
-    <div class="exec-grid solo">
+    <div class="exec-grid">
       <div class="exec-card" id="exec-haruta">
         <button type="button" class="exec-card-summary" aria-expanded="false" aria-controls="exec-haruta-detail" onclick="toggleExec('exec-haruta')">
           <div class="exec-card-photo">
@@ -5285,6 +5316,119 @@
           </div>
         </div>
       </div>
+
+      <!-- ============ CTO 片岡嗣葉 ============ -->
+      <div class="exec-card" id="exec-kataoka">
+        <button type="button" class="exec-card-summary" aria-expanded="false" aria-controls="exec-kataoka-detail" onclick="toggleExec('exec-kataoka')">
+          <div class="exec-card-photo exec-card-photo-placeholder" style="background: linear-gradient(135deg, #14BFAE 0%, #38BDF8 60%, #7C3AED 100%);">
+            <div class="exec-card-initial">T</div>
+            <div class="exec-card-initial-sub">Tsuguha</div>
+          </div>
+          <div class="exec-card-role">CTO / Technology</div>
+          <div class="exec-card-name">
+            <span class="exec-card-name-toggle" aria-hidden="true"></span>
+            <span class="exec-card-name-inner">
+              片岡 嗣葉
+              <span class="exec-card-name-kana">かたおか つぐは</span>
+            </span>
+          </div>
+        </button>
+
+        <div class="exec-card-detail" id="exec-kataoka-detail" role="region" aria-label="片岡 嗣葉 詳細プロフィール">
+          <div class="exec-card-detail-inner">
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Titles</div>
+              <ul class="exec-detail-titles">
+                <li class="primary">学生団体NEXY CTO</li>
+                <li>ジンベエザメ株式会社 CTO</li>
+                <li class="accent">孫正義育英財団 5期生</li>
+              </ul>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Bio</div>
+              <p class="exec-detail-bio">
+                小学生時代からロボット競技WROに挑戦し、2017年に世界7位(小学生部門)、2018年には世界8位を獲得。孫正義育英財団5期生に選抜され、現在は単身でアメリカNY州の高校に留学中。ジンベエザメ株式会社ではCTOとしてプロダクト開発を統括。NEXYではCTOとしてサミット・深夜の語り場アプリなど、テクノロジー領域の設計と実装を担当しています。
+              </p>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Career Highlights</div>
+              <ul class="exec-detail-list">
+                <li><strong>2017</strong><span><span class="yr-title">WRO世界大会 世界7位 (小学生部門)</span>小学生時代からロボット競技に取り組み、世界大会入賞</span></li>
+                <li><strong>2018</strong><span><span class="yr-title">WRO世界大会 世界8位</span>2年連続で世界大会入賞</span></li>
+                <li><strong>2021</strong><span><span class="yr-title">孫正義育英財団 5期生 選抜</span>次世代の若き才能として選抜</span></li>
+                <li><strong>-</strong><span><span class="yr-title">ジンベエザメ株式会社 CTO 就任</span>子ども向けデジタル教育サービスの技術統括</span></li>
+                <li><strong>-</strong><span><span class="yr-title">アメリカNY州の高校に単身留学</span>海外での学びとテクノロジー領域の探求</span></li>
+                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY CTO 就任</span>NEXYの技術基盤・プロダクト設計を担当</span></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ Member 髙松優大 ============ -->
+      <div class="exec-card" id="exec-takamatsu">
+        <button type="button" class="exec-card-summary" aria-expanded="false" aria-controls="exec-takamatsu-detail" onclick="toggleExec('exec-takamatsu')">
+          <div class="exec-card-photo exec-card-photo-placeholder" style="background: linear-gradient(135deg, #FFC93E 0%, #EA5C1F 60%, #FF3E7F 100%);">
+            <div class="exec-card-initial">Y</div>
+            <div class="exec-card-initial-sub">Yuta</div>
+          </div>
+          <div class="exec-card-role">Member / Education</div>
+          <div class="exec-card-name">
+            <span class="exec-card-name-toggle" aria-hidden="true"></span>
+            <span class="exec-card-name-inner">
+              髙松 優大
+              <span class="exec-card-name-kana">たかまつ ゆうた</span>
+            </span>
+          </div>
+        </button>
+
+        <div class="exec-card-detail" id="exec-takamatsu-detail" role="region" aria-label="髙松 優大 詳細プロフィール">
+          <div class="exec-card-detail-inner">
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Titles</div>
+              <ul class="exec-detail-titles">
+                <li class="primary">学生団体NEXY メンバー</li>
+                <li>学生団体EToE 代表</li>
+                <li class="accent">メタロレア 開発・全国展開</li>
+              </ul>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Bio</div>
+              <p class="exec-detail-bio">
+                2007年生まれ、東京出身。学生団体EToE代表として、メタバース教育プログラム「メタロレア」の開発・全国展開を推進。沖縄での原体験を起点に、「誰もが自分の可能性を最大限発揮できる学び」をテーマに教育領域の探求を続けています。NEXYではメンバーとして、教育・学生コミュニティの企画運営に参画。
+              </p>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Career Highlights</div>
+              <ul class="exec-detail-list">
+                <li><strong>2007</strong><span><span class="yr-title">東京にて生まれる</span></span></li>
+                <li><strong>-</strong><span><span class="yr-title">沖縄での原体験</span>「誰もが自分の可能性を最大限発揮できる学び」というテーマの起点</span></li>
+                <li><strong>-</strong><span><span class="yr-title">学生団体EToE 設立・代表就任</span>教育をテーマにした学生コミュニティ運営</span></li>
+                <li><strong>-</strong><span><span class="yr-title">メタロレア 開発・全国展開</span>メタバース教育プログラムの企画・実装・展開</span></li>
+                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY メンバーとして参画</span>教育・コミュニティ企画の中核として活動</span></li>
+              </ul>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Basic Info</div>
+              <ul class="exec-detail-list">
+                <li><strong>生年</strong>2007年</li>
+                <li><strong>出身</strong>東京</li>
+                <li><strong>原体験</strong>沖縄</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
