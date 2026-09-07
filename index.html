@@ -4602,14 +4602,14 @@
   .st-split-section.alt { background: #FFFFFF; }
   .st-split {
     display: grid;
-    grid-template-columns: minmax(300px, 520px) 1fr;
-    gap: clamp(40px, 6vw, 80px);
-    max-width: 1180px;
+    grid-template-columns: minmax(360px, 720px) 1fr;
+    gap: clamp(40px, 5vw, 72px);
+    max-width: 1360px;
     margin: 0 auto;
     align-items: start;
   }
   .st-split.reverse {
-    grid-template-columns: 1fr minmax(300px, 520px);
+    grid-template-columns: 1fr minmax(360px, 720px);
   }
   .st-split-media { position: sticky; top: 100px; }
   .st-split-media video,
@@ -4685,7 +4685,7 @@
     line-height: 1.9;
     letter-spacing: 0.04em;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     .st-split,
     .st-split.reverse {
       grid-template-columns: 1fr;
@@ -4693,7 +4693,7 @@
     }
     .st-split-media {
       position: static;
-      max-width: 520px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .st-split.reverse .st-split-media { order: -1; }
