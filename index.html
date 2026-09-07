@@ -4451,40 +4451,112 @@
     .exec-grid.solo { grid-template-columns: 1fr; }
   }
 
-  /* Statement Panel - VISION / MISSION 共通シンプル版 */
-  .st-panel {
-    text-align: center;
-    padding: clamp(96px, 14vw, 160px) 24px;
+  /* -------- Statement Split (VISION/MISSION Long版・左右分割) -------- */
+  .st-split-section {
+    padding: clamp(80px, 12vw, 140px) 24px;
     background: #FFF9F0;
   }
-  .st-panel-alt { background: #FFFFFF; }
-  .st-label {
+  .st-split-section.alt { background: #FFFFFF; }
+  .st-split {
+    display: grid;
+    grid-template-columns: minmax(300px, 520px) 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    max-width: 1180px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .st-split.reverse {
+    grid-template-columns: 1fr minmax(300px, 520px);
+  }
+  .st-split-media { position: sticky; top: 100px; }
+  .st-split-media video,
+  .st-split-media img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 6px 30px rgba(20,30,60,0.10);
+  }
+  .st-split-media video {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    background: #000;
+  }
+  .st-split-media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .st-split-media-grid img {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(20,30,60,0.08);
+  }
+  .st-split-body {
+    padding-top: 8px;
+  }
+  .st-split-label {
     font-family: "Big Shoulders Display", "Manrope", sans-serif;
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.44em;
     color: var(--accent);
     text-transform: uppercase;
-    margin: 0 0 40px;
+    margin: 0 0 24px;
   }
-  .st-title {
+  .st-split-title {
     font-family: "Zen Old Mincho", "Yu Mincho", serif;
     font-weight: 600;
-    font-size: clamp(30px, 5.4vw, 54px);
+    font-size: clamp(28px, 4vw, 42px);
     line-height: 1.55;
     color: var(--navy);
     letter-spacing: 0.02em;
-    margin: 0;
+    margin: 0 0 36px;
     text-wrap: balance;
   }
-  .st-title em {
+  .st-split-title em {
     font-style: normal;
     color: var(--accent);
   }
-  @media (max-width: 640px) {
-    .st-panel { padding: 72px 20px; }
-    .st-label { font-size: 10.5px; letter-spacing: 0.36em; margin-bottom: 28px; }
-    .st-title { line-height: 1.6; }
+  .st-split-body p {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    font-size: clamp(15px, 1.5vw, 16.5px);
+    line-height: 2.15;
+    color: var(--text-2);
+    margin: 0 0 20px;
+    letter-spacing: 0.03em;
+  }
+  .st-split-body p strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+  .st-split-body p.quote {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: var(--navy);
+    margin: 24px 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 900px) {
+    .st-split,
+    .st-split.reverse {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .st-split-media {
+      position: static;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .st-split.reverse .st-split-media { order: -1; }
+  }
+  @media (max-width: 600px) {
+    .st-split-section { padding: 64px 20px; }
+    .st-split-title { font-size: 24px; margin-bottom: 24px; }
   }
 </style>
 
@@ -4851,16 +4923,77 @@
     </div>
   </div>
 
-  <!-- Vision -->
-  <section class="st-panel" id="about-vision">
-    <div class="st-label">Vision</div>
-    <h2 class="st-title">思いが<em>連鎖する</em>社会を創る。</h2>
+  <!-- Vision (動画+テキスト) -->
+  <section class="st-split-section" id="about-vision">
+    <div class="st-split">
+      <div class="st-split-media">
+        <video src="img/site/summit_movie.mp4" autoplay muted loop playsinline preload="metadata" aria-label="NEXY Summit 2026 ハイライトムービー"></video>
+      </div>
+      <div class="st-split-body">
+        <div class="st-split-label">Vision</div>
+        <h2 class="st-split-title">思いが<em>連鎖する</em>社会をつくる。</h2>
+
+        <p>誰かが本気で語る「やりたい」に触れて、自分の心まで動き出したことはありませんか。</p>
+
+        <p class="quote">
+          「自分も挑戦してみたい」<br>
+          「もっと、自分らしく生きていいのかもしれない」
+        </p>
+
+        <p>人の思いには、誰かの心に火を灯す力があります。</p>
+
+        <p>AIがどんな問いにも答えてくれる時代になっても、<strong>「これがやりたい」「こんなふうに生きたい」という思いは、その人だけの経験や出会い、悩みから生まれるもの</strong>です。</p>
+
+        <p>一人の「やりたい」が、誰かの一歩を生み、その一歩が、また次の誰かを動かしていく。</p>
+
+        <p>そんな連鎖を、一部の特別な人だけのものにしない。<strong>すべての学生が、自分の人生に思いと熱を持って生きられる社会へ。</strong></p>
+
+        <p>NEXYは、思いが思いを動かす社会をつくります。</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Mission -->
-  <section class="st-panel st-panel-alt" id="about-mission">
-    <div class="st-label">Mission</div>
-    <h2 class="st-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
+  <!-- Mission (テキスト+画像4枚) -->
+  <section class="st-split-section alt" id="about-mission">
+    <div class="st-split reverse">
+      <div class="st-split-body">
+        <div class="st-split-label">Mission</div>
+        <h2 class="st-split-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
+
+        <p class="quote">「これ、やってみたいんだよね」</p>
+
+        <p>勇気を出して口にしたのに、<br>
+        「それって意味あるの？」<br>
+        「そんなの無理じゃない？」<br>
+        と言われて、話すことをやめてしまった。</p>
+
+        <p>そんな経験はありませんか。</p>
+
+        <p>否定されるのが怖くて、誰にも話せない。何から始めればいいのか分からない。一緒に挑戦できる仲間もいない。</p>
+
+        <p>心の中には確かに「やりたい」があるのに、<strong>いつの間にか「やりたいことなんてない」と思い込んでしまう。</strong></p>
+
+        <p>私たちは、そんな学生をひとりにしたくありません。</p>
+
+        <p class="quote">
+          実績がなくてもいい。<br>
+          まだ言葉になっていなくてもいい。<br>
+          途中で迷っていてもいい。
+        </p>
+
+        <p>「それ、いいじゃん」と受け止めてくれる人がいる。一緒に考え、動き出せる仲間がいる。挑戦した先で、また新しい誰かと出会える。</p>
+
+        <p><strong>NEXYは、一人ひとりの「やりたい」が、孤独の中で消えてしまわない場所をつくります。</strong></p>
+      </div>
+      <div class="st-split-media">
+        <div class="st-split-media-grid">
+          <img src="img/site/mission_01.jpg" alt="深夜の語り場 対話シーン" loading="lazy">
+          <img src="img/site/mission_02.jpg" alt="NEXY 活動シーン" loading="lazy">
+          <img src="img/site/mission_03.jpg" alt="NEXY 活動シーン" loading="lazy">
+          <img src="img/site/mission_04.jpg" alt="NEXY 活動シーン" loading="lazy">
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 代表からのメッセージ (SOZOW風 左右分割) -->
