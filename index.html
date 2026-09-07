@@ -977,6 +977,124 @@
     .jisseki-card-heading { font-size: 15.5px; }
   }
 
+  /* -------- SNS Follow Section -------- */
+  .sns-follow-section {
+    background: var(--ground);
+    padding: 88px 0 96px;
+  }
+  .sns-follow-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .sns-bubble-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .sns-bubble {
+    position: relative;
+    background: var(--ground-alt);
+    border-radius: 24px;
+    padding: 20px 36px;
+    font-family: var(--f-jp-disp);
+    font-size: 17px;
+    color: var(--navy);
+    text-align: center;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    max-width: 480px;
+  }
+  .sns-bubble strong {
+    font-weight: 900;
+    color: var(--navy);
+  }
+  .sns-bubble::after {
+    content: '';
+    position: absolute;
+    left: 50%; bottom: -12px;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 14px solid var(--ground-alt);
+  }
+  .sns-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .sns-card {
+    background: var(--ground-alt);
+    border-radius: 12px;
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .25s ease;
+  }
+  .sns-card:hover { transform: translateY(-3px); }
+  .sns-card-icon {
+    width: 64px; height: 64px;
+    background: #fff;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .sns-card-icon svg { width: 32px; height: 32px; }
+  .sns-card-name {
+    text-align: center;
+    font-family: var(--f-jp-disp);
+    font-size: 17px; font-weight: 800;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .sns-card-handle {
+    text-align: center;
+    font-family: var(--f-latin);
+    font-size: 12px; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  }
+  .sns-card-desc {
+    font-family: var(--f-jp-body);
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.85;
+    margin-bottom: 22px;
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+  .sns-card-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    color: #fff;
+    font-family: var(--f-jp-disp);
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .sns-card-btn:hover { opacity: 0.88; }
+  .sns-btn-x       { background: #000; }
+  .sns-btn-insta   { background: linear-gradient(135deg, #F58529, #DD2A7B 50%, #8134AF); }
+  .sns-btn-youtube { background: #FF0000; }
+  .sns-btn-tiktok  { background: linear-gradient(135deg, #25F4EE, #000 50%, #FE2C55); }
+
+  @media (max-width: 900px) {
+    .sns-cards { grid-template-columns: 1fr; gap: 16px; }
+    .sns-follow-section { padding: 64px 0 72px; }
+    .sns-bubble { font-size: 15px; padding: 16px 28px; }
+  }
+
   /* 詳細ボタン */
   .jisseki-card-cta {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -3947,6 +4065,61 @@
     </div>
     <div style="text-align:center; margin-top:44px;">
       <a href="#news" class="view-all" data-nav="news" style="display:inline-flex; align-items:center; gap:10px; padding:14px 36px; background:var(--navy); color:#fff; border-radius:2px; font-family:var(--f-jp-disp); font-weight:700; letter-spacing:0.08em; font-size:14px;">すべての実績を見る →</a>
+    </div>
+  </section>
+
+  <!-- SNS Follow -->
+  <section class="sns-follow-section">
+    <div class="sns-follow-inner">
+      <div class="sns-bubble-wrap">
+        <div class="sns-bubble">
+          <strong>各種 SNS のフォロー</strong> も<br>よろしくお願いします!
+        </div>
+      </div>
+      <div class="sns-cards">
+        <a href="https://x.com/nexy_hub" target="_blank" rel="noopener noreferrer" class="sns-card">
+          <div class="sns-card-icon">
+            <svg viewBox="0 0 24 24" fill="#000" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <div class="sns-card-name">X (Twitter)</div>
+          <div class="sns-card-handle">@nexy_hub</div>
+          <p class="sns-card-desc">NEXYの最新情報・イベント告知・活動報告をリアルタイムでお届けいたします。</p>
+          <span class="sns-card-btn sns-btn-x">フォローする</span>
+        </a>
+
+        <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener noreferrer" class="sns-card">
+          <div class="sns-card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="igGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F58529"/>
+                  <stop offset="50%" stop-color="#DD2A7B"/>
+                  <stop offset="100%" stop-color="#8134AF"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#igGrad)" d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.265.058-1.645.07-4.849.07-3.204 0-3.584-.012-4.849-.07-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.849c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0 5.351a4.486 4.486 0 100 8.972 4.486 4.486 0 000-8.972zm0 7.4a2.914 2.914 0 110-5.828 2.914 2.914 0 010 5.828zm4.673-7.567a1.048 1.048 0 100-2.096 1.048 1.048 0 000 2.096z"/>
+            </svg>
+          </div>
+          <div class="sns-card-name">Instagram</div>
+          <div class="sns-card-handle">@nexy.hub</div>
+          <p class="sns-card-desc">イベント当日の空気感やメンバーの活動風景をビジュアル中心にお届けします。</p>
+          <span class="sns-card-btn sns-btn-insta">フォローする</span>
+        </a>
+
+        <a href="https://www.youtube.com/@NEXYhub-l1b" target="_blank" rel="noopener noreferrer" class="sns-card">
+          <div class="sns-card-icon">
+            <svg viewBox="0 0 24 24" fill="#FF0000" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="sns-card-name">YouTube</div>
+          <div class="sns-card-handle">@NEXYhub</div>
+          <p class="sns-card-desc">サミット登壇動画・イベントダイジェスト・代表インタビューなどを配信しております。</p>
+          <span class="sns-card-btn sns-btn-youtube">チャンネル登録</span>
+        </a>
+      </div>
     </div>
   </section>
 
