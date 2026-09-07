@@ -3,7 +3,7 @@
 <meta name="color-scheme" content="light only">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&family=Manrope:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@400;600;900&family=Big+Shoulders+Display:wght@500;700;800&display=swap">
 <style>
   :root {
     /* NEXY Brand Palette (Summit LP準拠) */
@@ -3811,6 +3811,170 @@
       transform: none !important;
     }
   }
+
+  /* ================================================================
+     NEXY 連鎖ビジョン (About / VISION 統合セクション)
+     ================================================================ */
+  :root{
+    --nx-bg-top: #FFF9F0;
+    --nx-bg: #FFFFFF;
+    --nx-surface: #FFFFFF;
+    --nx-surface-2: #F3EEE4;
+    --nx-ink: #10233F;
+    --nx-ink-soft: #5B6779;
+    --nx-coral: #EA5C1F;
+    --nx-coral-ink: #FFFFFF;
+    --nx-coral-soft: #FDE1D2;
+    --nx-line: rgba(16,35,63,0.14);
+    --nx-ring: rgba(234,92,31,0.30);
+    --nx-c1:#EA5C1F; --nx-c2:#FFC93E; --nx-c3:#A8D82C; --nx-c4:#14BFAE;
+    --nx-c5:#38BDF8; --nx-c6:#7C3AED; --nx-c7:#FF3E7F;
+  }
+
+  .nx-section{
+    background: linear-gradient(var(--nx-bg-top) 0%, var(--nx-bg) 420px);
+    padding: 0;
+  }
+
+  .nx-stage{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+    color: var(--nx-ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Opening ---- */
+  .nx-opening{ text-align:center; margin-bottom: 5rem; }
+  .nx-eyebrow{
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: .38em;
+    color: var(--nx-coral);
+    text-transform: uppercase;
+    margin: 0 0 1.1rem;
+  }
+  .nx-headline{
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5.4vw, 3rem);
+    line-height: 1.55;
+    color: var(--nx-ink);
+    margin: 0 0 1.2rem;
+    text-wrap: balance;
+  }
+  .nx-sub{
+    font-size: 0.98rem;
+    line-height: 2;
+    color: var(--nx-ink-soft);
+    max-width: 34em;
+    margin: 0 auto;
+  }
+
+  /* ---- Chain story ---- */
+  .nx-chain{
+    position: relative;
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    column-gap: 1.6rem;
+  }
+  .nx-chain-rail{ grid-column: 1; position: relative; }
+  .nx-chain-rail svg{ position: sticky; top: 2rem; display:block; width: 76px; height: calc(100% + 0px); }
+  .nx-rail-path{ fill:none; stroke: var(--nx-line); stroke-width: 2; }
+  .nx-rail-progress{
+    fill:none; stroke: var(--nx-coral); stroke-width: 3; stroke-linecap: round;
+    stroke-dasharray: 900; stroke-dashoffset: 900;
+    transition: stroke-dashoffset 1s cubic-bezier(.22,.7,.2,1);
+  }
+  .nx-badge{ transition: transform .5s cubic-bezier(.22,.7,.2,1); transform-origin: center; }
+  .nx-badge circle{ fill: var(--nx-surface); stroke: var(--nx-line); stroke-width: 2; transition: fill .4s ease, stroke .4s ease; }
+  .nx-badge text{
+    font-family: "Big Shoulders Display", sans-serif; font-weight: 800; font-size: 20px;
+    fill: var(--nx-ink-soft); transition: fill .4s ease;
+    text-anchor: middle; dominant-baseline: central;
+  }
+  .nx-badge.is-in circle{ fill: var(--nx-coral); stroke: var(--nx-coral); }
+  .nx-badge.is-in text{ fill: var(--nx-coral-ink); }
+  .nx-badge.is-in{ transform: scale(1.12); }
+
+  .nx-steps{ grid-column: 2; display: flex; flex-direction: column; gap: 4.6rem; }
+  .nx-step{ opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.22,.7,.2,1); }
+  .nx-js .nx-step{ opacity: 0; transform: translateY(22px); }
+  .nx-js .nx-step.is-in{ opacity: 1; transform: translateY(0); }
+
+  .nx-step-icon{ width: 52px; height: 52px; margin-bottom: .9rem; }
+  .nx-step-tag{
+    font-family: "Big Shoulders Display", sans-serif; font-weight: 700; font-size: .78rem;
+    letter-spacing: .3em; color: var(--nx-coral); text-transform: uppercase; margin: 0 0 .55rem;
+  }
+  .nx-step-title{
+    font-family: "Zen Old Mincho", serif; font-weight: 600;
+    font-size: clamp(1.3rem, 3.4vw, 1.7rem); line-height: 1.5;
+    color: var(--nx-ink);
+    margin: 0 0 .8rem; text-wrap: balance;
+  }
+  .nx-step-body{ font-size: .93rem; line-height: 1.95; color: var(--nx-ink-soft); max-width: 30em; }
+
+  /* ---- Vision finale ---- */
+  .nx-finale{
+    margin-top: 5.5rem; padding: 3.2rem 2rem 3.6rem; border-radius: 6px; text-align: center;
+    position: relative; background: var(--nx-surface); border: 1px solid var(--nx-line); overflow: hidden;
+    opacity: 1; transform: none; transition: opacity .8s ease, transform .8s cubic-bezier(.22,.7,.2,1);
+  }
+  .nx-js .nx-finale{ opacity: 0; transform: translateY(22px); }
+  .nx-js .nx-finale.is-in{ opacity:1; transform: translateY(0); }
+
+  .nx-network{ width: min(100%, 460px); height: 200px; margin: 0 auto 1.6rem; display:block; }
+  .nx-net-edge{ fill:none; stroke: var(--nx-line); stroke-width: 1.6; }
+  .nx-net-pulse{ fill:none; stroke: var(--nx-coral); stroke-width: 2.4; stroke-linecap: round;
+    stroke-dasharray: 26 400; stroke-dashoffset: 0; opacity: 0; }
+  .nx-js .nx-finale.is-in .nx-net-pulse{ animation: nx-travel 2.6s ease-in-out infinite; }
+  .nx-net-node{ transform-origin: center; transform-box: fill-box; }
+  .nx-js .nx-finale.is-in .nx-net-node{ animation: nx-ping 2.6s ease-in-out infinite; }
+  @keyframes nx-travel{
+    0%{ opacity: 0; stroke-dashoffset: 420; }
+    6%{ opacity: 1; }
+    55%{ opacity: 1; }
+    62%{ opacity: 0; }
+    100%{ opacity: 0; stroke-dashoffset: 0; }
+  }
+  @keyframes nx-ping{
+    0%, 100%{ transform: scale(1); }
+    58%{ transform: scale(1); }
+    64%{ transform: scale(1.35); }
+    72%{ transform: scale(1); }
+  }
+
+  .nx-finale-tag{
+    position:relative; font-family: "Big Shoulders Display", sans-serif; font-weight: 700; font-size: .8rem;
+    letter-spacing: .35em; color: var(--nx-coral); text-transform: uppercase; margin:0 0 .9rem;
+  }
+  .nx-finale-title{
+    position:relative; font-family: "Zen Old Mincho", serif; font-weight: 600;
+    font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.6;
+    color: var(--nx-ink);
+    margin: 0 0 1.1rem; text-wrap: balance;
+  }
+  .nx-finale-body{ position:relative; font-size: .95rem; line-height: 2; color: var(--nx-ink-soft); max-width: 32em; margin: 0 auto; }
+
+  @media (prefers-reduced-motion: reduce){
+    .nx-step, .nx-finale, .nx-badge{ transition:none; opacity:1; transform:none; }
+    .nx-rail-progress{ transition:none; }
+    .nx-net-pulse{ animation:none !important; opacity: 0; }
+    .nx-net-node{ animation:none !important; }
+  }
+
+  @media (max-width: 560px){
+    .nx-chain{ grid-template-columns: 48px 1fr; column-gap: 1rem; }
+    .nx-chain-rail svg{ width: 48px; }
+    .nx-stage{ padding: 2.5rem 1.25rem 4.5rem; }
+    .nx-steps{ gap: 3.6rem; }
+    .nx-opening{ margin-bottom: 3.5rem; }
+    .nx-finale{ padding: 2.4rem 1.4rem 2.8rem; margin-top: 4rem; }
+    .nx-network{ height: 170px; }
+  }
 </style>
 
 <!-- ========== HEADER ========== -->
@@ -3852,59 +4016,98 @@
     </div>
   </div>
 
-  <!-- About NEXY -->
-  <section class="mission section-striped">
-    <div class="wrap-tight">
-      <div class="mission-en">About NEXY</div>
-      <h2 class="mission-title">
-        <em>「やりたい」</em>を、<br>
-        ひとりにしない。
-      </h2>
-      <p class="mission-lead">
-        挑戦する高校生・大学生が本気で語り合える場を、<br>
-        全国に、日常に、届けるコミュニティ。
-      </p>
+  <!-- About NEXY (連鎖ビジョン統合セクション) -->
+  <section class="nx-section" id="about-chain">
+    <div class="nx-stage">
 
-      <div class="about-flow">
-        <!-- STEP 01 -->
-        <div class="about-step">
-          <div class="about-step-num">01</div>
-          <div class="about-step-tag">PROBLEM</div>
-          <h3 class="about-step-title">挑戦は、<br>ひとりでは続かない。</h3>
-          <p class="about-step-body">
-            挑戦したい気持ちはあっても、<strong>同じ熱量で語り合える仲間</strong>と出会う機会は限られている。<br>
-            意欲的な学生同士が本気でつながり、刺激し合える場は、まだ十分にありません。
-          </p>
+      <div class="nx-opening">
+        <p class="nx-eyebrow">About NEXY</p>
+        <h2 class="nx-headline">「やりたい」を、ひとりにしない。</h2>
+        <p class="nx-sub">挑戦する高校生・大学生が本気で語り合える場を、全国に、日常に、届けるコミュニティ。</p>
+      </div>
+
+      <div class="nx-chain">
+        <div class="nx-chain-rail">
+          <svg viewBox="0 0 76 900" preserveAspectRatio="none" aria-hidden="true">
+            <path class="nx-rail-path" d="M38,26 L38,874" />
+            <path class="nx-rail-progress" id="nxRailProgress" d="M38,26 L38,874" />
+            <g class="nx-badge" data-node="0"><circle cx="38" cy="60"  r="20" /><text x="38" y="61">01</text></g>
+            <g class="nx-badge" data-node="1"><circle cx="38" cy="460" r="20" /><text x="38" y="461">02</text></g>
+            <g class="nx-badge" data-node="2"><circle cx="38" cy="850" r="20" /><text x="38" y="851">03</text></g>
+          </svg>
         </div>
 
-        <div class="about-arrow" aria-hidden="true">→</div>
+        <div class="nx-steps">
+          <section class="nx-step" data-step="0">
+            <svg class="nx-step-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+              <circle cx="26" cy="26" r="21" stroke="var(--nx-line)" stroke-width="2" stroke-dasharray="3 5"/>
+              <circle cx="26" cy="26" r="6.5" fill="var(--nx-ink-soft)"/>
+            </svg>
+            <p class="nx-step-tag">Problem</p>
+            <h3 class="nx-step-title">挑戦は、ひとりでは続かない。</h3>
+            <p class="nx-step-body">挑戦したい気持ちはあっても、同じ熱量で語り合える仲間と出会う機会は限られている。意欲的な学生同士が本気でつながり、刺激し合える場は、まだ十分にありません。</p>
+          </section>
 
-        <!-- STEP 02 -->
-        <div class="about-step">
-          <div class="about-step-num">02</div>
-          <div class="about-step-tag about-step-tag-accent">APPROACH</div>
-          <h3 class="about-step-title">"考え途中"を、<br>そのまま話せる場所。</h3>
-          <p class="about-step-body">
-            NEXYは、挑戦する学生が集まり、<strong>活動・悩み・葛藤・未来</strong>について本音で語り合うコミュニティ。<br>
-            未完成のまま、集まっていい。答えを持たなくていい。
-          </p>
-        </div>
+          <section class="nx-step" data-step="1">
+            <svg class="nx-step-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+              <line x1="17" y1="26" x2="35" y2="26" stroke="var(--nx-coral)" stroke-width="2.4"/>
+              <circle cx="17" cy="26" r="7" fill="var(--nx-coral-soft)" stroke="var(--nx-coral)" stroke-width="2"/>
+              <circle cx="35" cy="26" r="7" fill="var(--nx-coral-soft)" stroke="var(--nx-coral)" stroke-width="2"/>
+            </svg>
+            <p class="nx-step-tag">Approach</p>
+            <h3 class="nx-step-title">"考え途中"を、そのまま話せる場所。</h3>
+            <p class="nx-step-body">NEXYは、挑戦する学生が集まり、活動・悩み・葛藤・未来について本音で語り合うコミュニティ。未完成のまま、集まっていい。答えを持たなくていい。</p>
+          </section>
 
-        <div class="about-arrow" aria-hidden="true">→</div>
-
-        <!-- STEP 03 -->
-        <div class="about-step">
-          <div class="about-step-num">03</div>
-          <div class="about-step-tag">VISION</div>
-          <h3 class="about-step-title">思いが連鎖する、<br>次の一歩へ。</h3>
-          <p class="about-step-body">
-            NEXYで生まれた出会いが、次の挑戦へつながる。<br>
-            <strong>「思いの連鎖」</strong>を当たり前に。挑戦が挑戦を生む社会を、学生から。
-          </p>
+          <section class="nx-step" data-step="2">
+            <svg class="nx-step-icon" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+              <line x1="14" y1="34" x2="26" y2="16" stroke="var(--nx-coral)" stroke-width="2.2"/>
+              <line x1="26" y1="16" x2="38" y2="34" stroke="var(--nx-coral)" stroke-width="2.2"/>
+              <line x1="14" y1="34" x2="38" y2="34" stroke="var(--nx-coral)" stroke-width="2.2"/>
+              <circle cx="14" cy="34" r="5.5" fill="var(--nx-c1)"/>
+              <circle cx="26" cy="16" r="5.5" fill="var(--nx-c4)"/>
+              <circle cx="38" cy="34" r="5.5" fill="var(--nx-c6)"/>
+            </svg>
+            <p class="nx-step-tag">Vision</p>
+            <h3 class="nx-step-title">思いが連鎖する、次の一歩へ。</h3>
+            <p class="nx-step-body">NEXYで生まれた出会いが、次の挑戦へつながる。「思いの連鎖」を当たり前に。挑戦が挑戦を生む社会を、学生から。</p>
+          </section>
         </div>
       </div>
 
-      <div class="about-cta-wrap">
+      <div class="nx-finale" id="nxFinale">
+        <svg class="nx-network" viewBox="0 0 460 200" aria-hidden="true">
+          <path class="nx-net-edge" d="M60,150 L150,90" />
+          <path class="nx-net-edge" d="M150,90 L230,130" />
+          <path class="nx-net-edge" d="M150,90 L200,40" />
+          <path class="nx-net-edge" d="M230,130 L310,80" />
+          <path class="nx-net-edge" d="M200,40 L280,55" />
+          <path class="nx-net-edge" d="M280,55 L310,80" />
+          <path class="nx-net-edge" d="M310,80 L390,45" />
+          <path class="nx-net-edge" d="M310,80 L385,120" />
+          <path class="nx-net-pulse" style="animation-delay:0s"    d="M60,150 L150,90" />
+          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L200,40" />
+          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L230,130" />
+          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M200,40 L280,55" />
+          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M230,130 L310,80" />
+          <path class="nx-net-pulse" style="animation-delay:1.05s" d="M280,55 L310,80" />
+          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L390,45" />
+          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L385,120" />
+          <circle class="nx-net-node" cx="60"  cy="150" r="7" fill="var(--nx-c1)" style="animation-delay:0s"/>
+          <circle class="nx-net-node" cx="150" cy="90"  r="7" fill="var(--nx-c2)" style="animation-delay:.35s"/>
+          <circle class="nx-net-node" cx="200" cy="40"  r="6" fill="var(--nx-c3)" style="animation-delay:.7s"/>
+          <circle class="nx-net-node" cx="230" cy="130" r="6" fill="var(--nx-c4)" style="animation-delay:.7s"/>
+          <circle class="nx-net-node" cx="280" cy="55"  r="6" fill="var(--nx-c5)" style="animation-delay:1.05s"/>
+          <circle class="nx-net-node" cx="310" cy="80"  r="7" fill="var(--nx-c6)" style="animation-delay:1.4s"/>
+          <circle class="nx-net-node" cx="390" cy="45"  r="6" fill="var(--nx-c7)" style="animation-delay:1.75s"/>
+          <circle class="nx-net-node" cx="385" cy="120" r="6" fill="var(--nx-c1)" style="animation-delay:1.75s"/>
+        </svg>
+        <p class="nx-finale-tag">Vision</p>
+        <h2 class="nx-finale-title">思いが連鎖する社会を創る。</h2>
+        <p class="nx-finale-body">NEXYで生まれた一つの出会いが、次の誰かの一歩になる。ここで生まれた"思い"が世代や地域を越えて連鎖し、挑戦が挑戦を生む社会をつくっていきます。</p>
+      </div>
+
+      <div class="about-cta-wrap" style="text-align:center; margin-top: 3rem;">
         <a href="#about" class="mission-link" data-nav="about">
           NEXYを詳しく知る
           <span>→</span>
@@ -4176,19 +4379,40 @@
     </div>
   </div>
 
-  <!-- Vision -->
-  <section class="section" id="about-vision" style="background: linear-gradient(180deg, #FFF9F0 0%, #FFFFFF 100%);">
-    <div class="wrap-tight" style="text-align: center;">
-      <div class="eyebrow" style="color: var(--accent);">Vision</div>
-      <h2 class="mission-title" style="margin-top: 24px; margin-bottom: 32px;">
-        思いが連鎖する、<br>
-        <em>社会へ。</em>
-      </h2>
-      <p class="lead" style="max-width: 640px; margin: 0 auto; font-size: 17px; line-height: 2.0;">
-        誰かの挑戦が、次の誰かの一歩になる。<br>
-        NEXYが目指すのは、"思い"が世代や地域を越えて<br>
-        連鎖していく社会です。
-      </p>
+  <!-- Vision (Finale パネル) -->
+  <section class="nx-section" id="about-vision">
+    <div class="nx-stage" style="padding-top: 4rem; padding-bottom: 4rem;">
+      <div class="nx-finale" id="nxFinaleAbout" style="margin-top: 0;">
+        <svg class="nx-network" viewBox="0 0 460 200" aria-hidden="true">
+          <path class="nx-net-edge" d="M60,150 L150,90" />
+          <path class="nx-net-edge" d="M150,90 L230,130" />
+          <path class="nx-net-edge" d="M150,90 L200,40" />
+          <path class="nx-net-edge" d="M230,130 L310,80" />
+          <path class="nx-net-edge" d="M200,40 L280,55" />
+          <path class="nx-net-edge" d="M280,55 L310,80" />
+          <path class="nx-net-edge" d="M310,80 L390,45" />
+          <path class="nx-net-edge" d="M310,80 L385,120" />
+          <path class="nx-net-pulse" style="animation-delay:0s"    d="M60,150 L150,90" />
+          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L200,40" />
+          <path class="nx-net-pulse" style="animation-delay:.35s"  d="M150,90 L230,130" />
+          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M200,40 L280,55" />
+          <path class="nx-net-pulse" style="animation-delay:.7s"   d="M230,130 L310,80" />
+          <path class="nx-net-pulse" style="animation-delay:1.05s" d="M280,55 L310,80" />
+          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L390,45" />
+          <path class="nx-net-pulse" style="animation-delay:1.4s"  d="M310,80 L385,120" />
+          <circle class="nx-net-node" cx="60"  cy="150" r="7" fill="var(--nx-c1)" style="animation-delay:0s"/>
+          <circle class="nx-net-node" cx="150" cy="90"  r="7" fill="var(--nx-c2)" style="animation-delay:.35s"/>
+          <circle class="nx-net-node" cx="200" cy="40"  r="6" fill="var(--nx-c3)" style="animation-delay:.7s"/>
+          <circle class="nx-net-node" cx="230" cy="130" r="6" fill="var(--nx-c4)" style="animation-delay:.7s"/>
+          <circle class="nx-net-node" cx="280" cy="55"  r="6" fill="var(--nx-c5)" style="animation-delay:1.05s"/>
+          <circle class="nx-net-node" cx="310" cy="80"  r="7" fill="var(--nx-c6)" style="animation-delay:1.4s"/>
+          <circle class="nx-net-node" cx="390" cy="45"  r="6" fill="var(--nx-c7)" style="animation-delay:1.75s"/>
+          <circle class="nx-net-node" cx="385" cy="120" r="6" fill="var(--nx-c1)" style="animation-delay:1.75s"/>
+        </svg>
+        <p class="nx-finale-tag">Vision</p>
+        <h2 class="nx-finale-title">思いが連鎖する社会を創る。</h2>
+        <p class="nx-finale-body">NEXYで生まれた一つの出会いが、次の誰かの一歩になる。ここで生まれた"思い"が世代や地域を越えて連鎖し、挑戦が挑戦を生む社会をつくっていきます。</p>
+      </div>
     </div>
   </section>
 
@@ -4268,15 +4492,18 @@
         <tr><th>団体名</th><td>学生団体 NEXY<br><span style="font-size:12px;color:var(--text-muted);letter-spacing:.1em;">NEXY (Student Community)</span></td></tr>
         <tr><th>設立</th><td>2026年2月</td></tr>
         <tr><th>代表</th><td>小助川 晴大(Haruta Kosukegawa)</td></tr>
+        <tr><th>所在地</th><td><span style="color:var(--text-muted);">— 準備中 —</span></td></tr>
+        <tr><th>運営形態</th><td>任意団体(2026年10月上旬 法人化予定)</td></tr>
         <tr><th>Mission</th><td>「やりたい」をひとりにしない</td></tr>
         <tr><th>Vision</th><td>思いが連鎖する社会を創る</td></tr>
         <tr><th>事業内容</th><td>
           学生・若者が集う場の運営 / 企業と学生をつなぐ場の提供<br>
           <span style="font-size:12.5px;color:var(--text-muted);">NEXY Summit / カタリビ / 深夜の語り場 / 朝食会 / よいしょ!!シリーズ 他</span>
         </td></tr>
+        <tr><th>主な実績</th><td>開催11回 / 延べ参加者743名 / SNS累計160万インプレッション / 連携企業15社</td></tr>
         <tr><th>連絡先</th><td>h.kosuke@nexyhub.jp</td></tr>
         <tr><th>Web</th><td>https://www.nexyhub.jp/</td></tr>
-        <tr><th>SNS</th><td>X: @nexy.hub / Instagram: @nexy.hub / YouTube: @nexy.hub</td></tr>
+        <tr><th>SNS</th><td>X / Instagram / YouTube: @nexy.hub</td></tr>
       </table>
     </div>
   </section>
@@ -5749,6 +5976,65 @@
   document.getElementById('menuToggle').addEventListener('click', () => {
     document.getElementById('nav').classList.toggle('open');
   });
+
+  // ---- NEXY 連鎖ビジョン (nx-*) IntersectionObserver ----
+  (function initNxChain() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return; // reduced-motionはCSSで最終状態を表示
+
+    document.documentElement.classList.add('nx-js');
+
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.nx-chain .nx-step'));
+    var badges = Array.prototype.slice.call(document.querySelectorAll('.nx-chain .nx-badge'));
+    var finales = Array.prototype.slice.call(document.querySelectorAll('.nx-finale'));
+    var progress = document.getElementById('nxRailProgress');
+    var nodeY = [60, 460, 850];
+    var railLen = 900;
+
+    function setProgressTo(index) {
+      if (!progress) return;
+      var y = nodeY[index];
+      var frac = (y - 26) / (874 - 26);
+      var offset = railLen - railLen * frac;
+      progress.style.strokeDashoffset = Math.max(0, offset);
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      steps.forEach(function(s) { s.classList.add('is-in'); });
+      badges.forEach(function(b) { b.classList.add('is-in'); });
+      finales.forEach(function(f) { f.classList.add('is-in'); });
+      setProgressTo(2);
+      return;
+    }
+
+    if (steps.length) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            var idx = steps.indexOf(entry.target);
+            if (idx > -1) {
+              if (badges[idx]) badges[idx].classList.add('is-in');
+              setProgressTo(idx);
+            }
+          }
+        });
+      }, { threshold: 0.45 });
+      steps.forEach(function(s) { io.observe(s); });
+    }
+
+    if (finales.length) {
+      var fio = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            if (progress) setProgressTo(2);
+          }
+        });
+      }, { threshold: 0.3 });
+      finales.forEach(function(f) { fio.observe(f); });
+    }
+  })();
 
   // ---- スクロール連動アニメーション ----
   (function initScrollAnimations() {
