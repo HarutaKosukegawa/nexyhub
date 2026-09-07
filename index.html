@@ -4121,6 +4121,42 @@
     .vh-dots { gap: 12px; margin: 36px auto; }
     .vh-dots span { width: 7px; height: 7px; }
   }
+
+  /* Statement Panel - VISION / MISSION 共通シンプル版 */
+  .st-panel {
+    text-align: center;
+    padding: clamp(96px, 14vw, 160px) 24px;
+    background: #FFF9F0;
+  }
+  .st-panel-alt { background: #FFFFFF; }
+  .st-label {
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.44em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 40px;
+  }
+  .st-title {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5.4vw, 54px);
+    line-height: 1.55;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .st-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .st-panel { padding: 72px 20px; }
+    .st-label { font-size: 10.5px; letter-spacing: 0.36em; margin-bottom: 28px; }
+    .st-title { line-height: 1.6; }
+  }
 </style>
 
 <!-- ========== HEADER ========== -->
@@ -4480,39 +4516,30 @@
       <ul class="about-toc">
         <li><a href="#about-vision">ビジョン</a></li>
         <li><a href="#about-mission">ミッション</a></li>
+        <li><a href="#about-message">代表メッセージ</a></li>
         <li><a href="#about-officers">代表</a></li>
         <li><a href="#about-company">会社概要</a></li>
       </ul>
     </div>
   </div>
 
-  <!-- Vision (Editorial Hero) -->
-  <section class="vh-section" id="about-vision">
-    <div class="vh-inner">
-      <div class="vh-tag">Vision</div>
-      <h2 class="vh-title">
-        思いが<em>連鎖する</em>社会を、<br>創る。
-        <span class="vh-title-sub">— A chain of intent, unlocking the next step.</span>
-      </h2>
-      <div class="vh-dots" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <p class="vh-body">
-        NEXYで生まれた一つの出会いが、次の誰かの一歩になる。<br>
-        ここで生まれた"思い"が世代や地域を越えて連鎖し、<br>
-        挑戦が挑戦を生む社会をつくっていきます。
-      </p>
-    </div>
+  <!-- Vision -->
+  <section class="st-panel" id="about-vision">
+    <div class="st-label">Vision</div>
+    <h2 class="st-title">思いが<em>連鎖する</em>社会を創る。</h2>
   </section>
 
-  <!-- Mission (代表からのメッセージ) -->
-  <section class="section" id="about-mission">
-    <div class="wrap-tight" style="text-align: center; margin-bottom: 64px;">
-      <div class="eyebrow">Mission</div>
-      <h2 class="mission-title" style="margin-bottom: 40px;">
-        「やりたい」を、<br>
-        <em>ひとりにしない</em>。
-      </h2>
+  <!-- Mission -->
+  <section class="st-panel st-panel-alt" id="about-mission">
+    <div class="st-label">Mission</div>
+    <h2 class="st-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
+  </section>
+
+  <!-- 代表からのメッセージ -->
+  <section class="section" id="about-message">
+    <div class="wrap-tight" style="text-align: center; margin-bottom: 48px;">
+      <div class="eyebrow">Message</div>
+      <h3 class="heading-l" style="font-size: 24px; margin-top: 20px;">代表からのメッセージ</h3>
     </div>
     <div class="wrap-tight about-greeting-body">
       <p>
