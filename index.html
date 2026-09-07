@@ -4213,6 +4213,22 @@
   .exec-card {
     text-align: left;
   }
+  .exec-card-summary {
+    cursor: pointer;
+    display: block;
+    background: none;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+  }
+  .exec-card-summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
   .exec-card-photo {
     aspect-ratio: 4/3;
     border-radius: 6px;
@@ -4220,6 +4236,12 @@
     overflow: hidden;
     margin-bottom: 20px;
     box-shadow: 0 2px 12px rgba(20,30,60,0.06);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .exec-card:hover .exec-card-photo,
+  .exec-card.is-open .exec-card-photo {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(20,30,60,0.10);
   }
   .exec-card-photo img {
     width: 100%; height: 100%;
@@ -4242,21 +4264,45 @@
     color: var(--navy);
     letter-spacing: 0.03em;
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     line-height: 1.4;
   }
-  .exec-card-name::before {
-    content: "";
+  .exec-card-name-toggle {
     display: inline-block;
-    width: 18px; height: 18px;
+    width: 22px; height: 22px;
     border-radius: 50%;
     border: 1.5px solid var(--accent);
-    background:
-      linear-gradient(var(--accent), var(--accent)) center/8px 1.5px no-repeat,
-      linear-gradient(var(--accent), var(--accent)) center/1.5px 8px no-repeat;
+    position: relative;
     flex-shrink: 0;
-    align-self: center;
+    transition: transform .3s ease, background .25s ease;
+  }
+  .exec-card-name-toggle::before,
+  .exec-card-name-toggle::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    background: var(--accent);
+    transition: opacity .25s ease, transform .3s ease;
+  }
+  .exec-card-name-toggle::before {
+    width: 10px; height: 1.6px;
+    transform: translate(-50%, -50%);
+  }
+  .exec-card-name-toggle::after {
+    width: 1.6px; height: 10px;
+    transform: translate(-50%, -50%);
+  }
+  .exec-card.is-open .exec-card-name-toggle {
+    background: var(--accent);
+    transform: rotate(180deg);
+  }
+  .exec-card.is-open .exec-card-name-toggle::before,
+  .exec-card.is-open .exec-card-name-toggle::after {
+    background: #fff;
+  }
+  .exec-card.is-open .exec-card-name-toggle::after {
+    opacity: 0;
   }
   .exec-card-name-kana {
     display: block;
@@ -4266,6 +4312,105 @@
     color: var(--text-muted);
     letter-spacing: 0.14em;
     margin-top: 6px;
+  }
+  .exec-card-name-inner {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* 展開エリア */
+  .exec-card-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s cubic-bezier(.22,.7,.2,1), margin-top .3s ease, opacity .3s ease;
+    opacity: 0;
+    margin-top: 0;
+  }
+  .exec-card.is-open .exec-card-detail {
+    max-height: 3600px;
+    opacity: 1;
+    margin-top: 32px;
+  }
+  .exec-card-detail-inner {
+    padding: 32px;
+    background: #FFF9F0;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .exec-detail-section {
+    margin-bottom: 32px;
+  }
+  .exec-detail-section:last-child { margin-bottom: 0; }
+  .exec-detail-section-title {
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .exec-detail-bio {
+    font-family: var(--f-jp-body);
+    font-size: 14.5px;
+    line-height: 2.05;
+    color: var(--text-2);
+    letter-spacing: 0.02em;
+  }
+  .exec-detail-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .exec-detail-list li {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding: 4px 0;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  .exec-detail-list li strong {
+    font-family: var(--f-latin);
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .exec-detail-list li .yr-title {
+    font-family: var(--f-jp-disp);
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .exec-detail-titles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .exec-detail-titles li {
+    font-family: var(--f-jp-disp);
+    font-size: 12px; font-weight: 700;
+    color: var(--navy);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 6px 12px;
+    letter-spacing: 0.02em;
+  }
+  .exec-detail-titles li.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .exec-detail-titles li.accent { background: rgba(234,92,31,.08); color: var(--accent); border-color: rgba(234,92,31,.24); }
+
+  @media (max-width: 600px) {
+    .exec-card-detail-inner { padding: 24px 20px; }
+    .exec-detail-list li { grid-template-columns: 52px 1fr; gap: 14px; font-size: 13px; }
   }
   @media (max-width: 900px) {
     .exec-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
@@ -5063,67 +5208,81 @@
   </div>
 
   <!-- ============ 1. Intro ============ -->
-  <section class="section" style="padding-bottom: 32px;">
+  <section class="section" style="padding-bottom: 24px;">
     <div class="wrap-tight" style="text-align: center;">
       <div class="mem-section-label">Representative</div>
-      <h2 class="mem-section-title" style="margin-bottom: 0;">代表</h2>
-    </div>
-  </section>
-
-  <!-- ============ 2. 代表 Executive Card (SOZOW風) ============ -->
-  <section class="exec-grid-section" style="padding-top: 0;">
-    <div class="exec-grid solo">
-      <div class="exec-card">
-        <div class="exec-card-photo">
-          <img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy">
-        </div>
-        <div class="exec-card-role">代表 / Representative</div>
-        <div class="exec-card-name">
-          <div>
-            小助川 晴大
-            <span class="exec-card-name-kana">こすけがわ はるた</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 3. 詳細プロフィール (肩書き＋バイオ) ============ -->
-  <section class="section" style="padding-top: 32px; padding-bottom: 64px;">
-    <div class="wrap-tight">
-      <ul class="rep-hero-titles" style="justify-content: center; margin-bottom: 32px;">
-        <li class="primary">学生団体NEXY 代表</li>
-        <li>ネルフィン株式会社 COO</li>
-        <li>ジンベエザメ株式会社 COO</li>
-        <li class="accent">孫正義育英財団 3期生</li>
-        <li>Tokyo Startup Gateway 3期生</li>
-        <li>N高等学校 BLP 正規生</li>
-      </ul>
-      <p class="rep-hero-bio" style="max-width: 720px; margin: 0 auto; text-align: justify;">
-        2008年、神奈川県横浜市生まれ。現在は富山県富山市在住。9歳でロボット競技WROに出場し、史上最年少で世界7位を獲得。孫正義育英財団3期生として選抜され、小学校卒業後にシンガポールへ単身留学。中学2年でジンベエザメ株式会社を設立し、N高起業部ビジネスコンテスト2026では応募1,600名の頂点となる優勝を果たしました。学生の「やりたい」を、ひとりにしない —— このコンセプトのもとでNEXYを代表として運営しております。
+      <h2 class="mem-section-title" style="margin-bottom: 12px;">代表</h2>
+      <p class="lead" style="max-width: 520px; margin: 0 auto; font-size: 14px; color: var(--text-muted);">
+        カードをクリックすると、詳細プロフィールが展開されます。
       </p>
     </div>
   </section>
 
-  <!-- ============ 3. Key Facts (4枚) ============ -->
-  <section class="section" style="padding-top: 40px;">
-    <div class="wrap">
-      <div class="profile-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 1080px; margin: 0 auto;">
-        <div class="profile-card">
-          <div class="profile-label">生年月日</div>
-          <div class="profile-value">2008.12.09</div>
-        </div>
-        <div class="profile-card">
-          <div class="profile-label">出身 / 現在地</div>
-          <div class="profile-value">神奈川県横浜市<br><span>→ 富山県富山市</span></div>
-        </div>
-        <div class="profile-card">
-          <div class="profile-label">財団・所属</div>
-          <div class="profile-value">孫正義育英財団<br><span>3期生 / N高BLP</span></div>
-        </div>
-        <div class="profile-card">
-          <div class="profile-label">起業</div>
-          <div class="profile-value">2社 COO<br><span>ネルフィン / ジンベエザメ</span></div>
+  <!-- ============ 2. Executive Card (click to expand) ============ -->
+  <section class="exec-grid-section" style="padding-top: 0;">
+    <div class="exec-grid solo">
+      <div class="exec-card" id="exec-haruta">
+        <button type="button" class="exec-card-summary" aria-expanded="false" aria-controls="exec-haruta-detail" onclick="toggleExec('exec-haruta')">
+          <div class="exec-card-photo">
+            <img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy">
+          </div>
+          <div class="exec-card-role">代表 / Representative</div>
+          <div class="exec-card-name">
+            <span class="exec-card-name-toggle" aria-hidden="true"></span>
+            <span class="exec-card-name-inner">
+              小助川 晴大
+              <span class="exec-card-name-kana">こすけがわ はるた</span>
+            </span>
+          </div>
+        </button>
+
+        <div class="exec-card-detail" id="exec-haruta-detail" role="region" aria-label="小助川 晴大 詳細プロフィール">
+          <div class="exec-card-detail-inner">
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Titles</div>
+              <ul class="exec-detail-titles">
+                <li class="primary">学生団体NEXY 代表</li>
+                <li>ネルフィン株式会社 COO</li>
+                <li>ジンベエザメ株式会社 COO</li>
+                <li class="accent">孫正義育英財団 3期生</li>
+                <li>Tokyo Startup Gateway 3期生</li>
+                <li>N高等学校 BLP 正規生</li>
+              </ul>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Bio</div>
+              <p class="exec-detail-bio">
+                2008年、神奈川県横浜市生まれ。現在は富山県富山市在住。9歳でロボット競技WROに出場し、史上最年少で世界7位を獲得。孫正義育英財団3期生として選抜され、小学校卒業後にシンガポールへ単身留学。中学2年でジンベエザメ株式会社を設立し、N高起業部ビジネスコンテスト2026では応募1,600名の頂点となる優勝を果たしました。学生の「やりたい」を、ひとりにしない —— このコンセプトのもとでNEXYを代表として運営しております。
+              </p>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Career Highlights</div>
+              <ul class="exec-detail-list">
+                <li><strong>2017</strong><span><span class="yr-title">WRO世界大会 世界7位(史上最年少)</span>「地球温暖化を解決するロボット」開発・英語プレゼン／算数オリンピック キッズBEE 銅メダル</span></li>
+                <li><strong>2019</strong><span><span class="yr-title">孫正義育英財団 3期生 選抜 / Startup Jr. 初代大賞</span>ソーシャルイノベーション部門 初代大賞受賞</span></li>
+                <li><strong>2020</strong><span><span class="yr-title">HACHIKO PITCH 小学生初登壇 / TBS出演</span>渋谷QWS登壇／TBS「ニュースキャスター」「Nスタ」出演／JCI World Congress 横浜で孫正義氏の後にプレゼン</span></li>
+                <li><strong>2021</strong><span><span class="yr-title">クラファン34万円寄付 / シンガポール単身留学</span>貧困世帯の子ども支援へ全額寄付／小学校卒業後シンガポールへ単身留学</span></li>
+                <li><strong>2023</strong><span><span class="yr-title">ジンベエザメ株式会社 設立</span>中学生起業家として Learning Base 登壇／SOZOW FES ピッチ／同社COO就任</span></li>
+                <li><strong>2024</strong><span><span class="yr-title">リクルート地方創生インターン / ひきだしkids リリース</span>愛知県設楽町インターン参加／教育サービスリリース</span></li>
+                <li><strong>2025</strong><span><span class="yr-title">LITALICO特別ゲスト / Steez掲載 / メンター活動</span>ICC福岡・京都スタッフ／ワンダーメイクフェス登壇／Steez10代名鑑掲載／不登校児メンター(延べ50名以上)</span></li>
+                <li><strong>2026</strong><span><span class="yr-title">NEXY設立 / N高起業部 1,600人中優勝 / ネルフィン設立 / 富山移住</span>学生団体NEXY設立・代表就任／深夜の語り場 第1回開催／N高ビジコン優勝／リクルート地方創生 最優秀賞(宮古島採択)／ネルフィン設立・COO就任／Tokyo Startup Gateway 3期生選出／神奈川→富山へ単身移住</span></li>
+              </ul>
+            </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Basic Info</div>
+              <ul class="exec-detail-list">
+                <li><strong>生年月日</strong>2008年12月9日</li>
+                <li><strong>出身</strong>神奈川県横浜市</li>
+                <li><strong>現在地</strong>富山県富山市</li>
+                <li><strong>学校</strong>N高等学校 (BLP 正規生)</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -5159,100 +5318,6 @@
           <p class="project-desc">中学2年生で設立。「ひきだしkids」など、子どもの中に眠る好きや才能を引き出すデジタル教育サービスを展開しております。</p>
           <div class="project-url">jinbezame.jp</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 5. Milestones (これまでの歩み) ============ -->
-  <section class="section">
-    <div class="wrap">
-      <div style="text-align: center;">
-        <div class="mem-section-label">Career</div>
-        <h2 class="mem-section-title">これまでの歩み</h2>
-      </div>
-      <div class="milestones">
-
-        <div class="milestone-card">
-          <div class="milestone-year">2017</div>
-          <div class="milestone-title">WRO世界大会 世界7位 <br>(史上最年少)</div>
-          <ul class="milestone-items">
-            <li>「地球温暖化を解決するロボット」開発・英語プレゼン</li>
-            <li>算数オリンピック キッズBEE 銅メダル</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2019</div>
-          <div class="milestone-title">孫正義育英財団 3期生 / Startup Jr. 初代大賞</div>
-          <ul class="milestone-items">
-            <li>孫正義育英財団 3期生として選抜</li>
-            <li>スタートアップJr.アワード ソーシャルイノベーション部門 初代大賞</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2020</div>
-          <div class="milestone-title">HACHIKO PITCH 小学生初登壇 / TBS出演</div>
-          <ul class="milestone-items">
-            <li>渋谷QWS「HACHIKO PITCH」小学生初登壇</li>
-            <li>TBS「ニュースキャスター」「Nスタ」出演</li>
-            <li>JCI World Congress 横浜にて孫正義氏の後にプレゼン</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2021</div>
-          <div class="milestone-title">クラファン34万円寄付 / シンガポール単身留学</div>
-          <ul class="milestone-items">
-            <li>クラファンで34万円を集め、貧困世帯の子ども支援へ全額寄付</li>
-            <li>小学校卒業後、シンガポールへ単身留学</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2023</div>
-          <div class="milestone-title">ジンベエザメ株式会社 設立</div>
-          <ul class="milestone-items">
-            <li>中学生起業家として Learning Base 登壇</li>
-            <li>SOZOW FES テレビ朝日SDGsチャレンジアワードへピッチ</li>
-            <li>ジンベエザメ株式会社を設立・COO 就任</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2024</div>
-          <div class="milestone-title">リクルート地方創生インターン / ひきだしkids リリース</div>
-          <ul class="milestone-items">
-            <li>リクルート地方創生インターン参加(愛知県設楽町)</li>
-            <li>デジタル教育サービス「ひきだしkids」リリース</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-year">2025</div>
-          <div class="milestone-title">LITALICO特別ゲスト / Steez掲載 / メンター活動</div>
-          <ul class="milestone-items">
-            <li>ICC福岡・京都 スタッフ参加</li>
-            <li>LITALICO「ワンダーメイクフェス」特別ゲスト登壇</li>
-            <li>Steez 10代名鑑インタビュー掲載</li>
-            <li>不登校児向けメンター(延べ50名以上)</li>
-          </ul>
-        </div>
-
-        <div class="milestone-card now">
-          <div class="milestone-year">2026</div>
-          <div class="milestone-title">NEXY設立 / N高起業部優勝 / ネルフィン設立 / 富山移住</div>
-          <ul class="milestone-items">
-            <li>学生団体NEXY設立・代表就任</li>
-            <li>深夜の語り場 第1回開催</li>
-            <li>N高起業部ビジコン 1,600人中1位・優勝</li>
-            <li>リクルート地方創生インターン 最優秀賞(宮古島市採択)</li>
-            <li>株式会社ネルフィンを設立・COO 就任</li>
-            <li>Tokyo Startup Gateway 3期生 選出</li>
-            <li>神奈川→富山へ単身移住</li>
-          </ul>
-        </div>
-
       </div>
     </div>
   </section>
@@ -6203,6 +6268,16 @@
   document.getElementById('menuToggle').addEventListener('click', () => {
     document.getElementById('nav').classList.toggle('open');
   });
+
+  // ---- Executive Card 展開 (Members ページ) ----
+  window.toggleExec = function(cardId) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    var summary = card.querySelector('.exec-card-summary');
+    var willOpen = !card.classList.contains('is-open');
+    card.classList.toggle('is-open', willOpen);
+    if (summary) summary.setAttribute('aria-expanded', String(willOpen));
+  };
 
   // ---- NEXY 連鎖ビジョン (nx-*) IntersectionObserver ----
   (function initNxChain() {
