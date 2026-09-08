@@ -3111,6 +3111,102 @@
   .cta-box-desc {
     font-size: 14px; opacity: .85; line-height: 1.9;
   }
+  .cta-box-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .cta-box-actions .btn-primary,
+  .cta-box-actions .btn-outline {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    padding: 14px 28px;
+    font-family: var(--f-jp-disp);
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: 0.06em;
+    border-radius: 2px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform .2s, background .2s;
+  }
+  .cta-box-actions .btn-primary { background: var(--accent); color: #fff; }
+  .cta-box-actions .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.6); }
+  .cta-box-actions .btn-primary:hover { transform: translateY(-2px); background: #ff7541; }
+  .cta-box-actions .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+  @media (max-width: 640px) {
+    .cta-box-actions { flex-direction: column; }
+  }
+
+  /* 事業間の相互関係バー */
+  .biz-relation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 48px auto 12px;
+    padding: 20px 32px;
+    max-width: 780px;
+    background: var(--ground);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    font-family: var(--f-jp-disp);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .biz-relation-a { color: var(--accent); }
+  .biz-relation-b { color: var(--accent-2); }
+  .biz-relation-mid {
+    padding: 4px 12px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 2px;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+  }
+  .biz-relation-arrow {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .biz-relation-note {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .biz-relation { font-size: 12.5px; gap: 10px; padding: 16px 20px; }
+    .biz-relation-mid { font-size: 11px; }
+  }
+
+  /* HR カード ロゴ引用 */
+  .hr-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+  }
+  .hr-logos img {
+    width: 100%;
+    height: 32px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: opacity .3s;
+  }
+  .hr-card:hover .hr-logos img { opacity: 1; }
+  @media (max-width: 640px) {
+    .hr-logos { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .hr-logos img { height: 28px; }
+  }
 
   /* -------- Works page (block style) -------- */
   .work-block {
@@ -5034,7 +5130,7 @@
         <div class="number-card">
           <div class="number-icon">03</div>
           <div class="number-value">15<span class="number-unit">社</span></div>
-          <div class="number-label">関係企業(系列含む)</div>
+          <div class="number-label">連携企業</div>
         </div>
       </div>
     </div>
@@ -5511,6 +5607,15 @@
           <div class="biz-arrow">↓ 詳細を見る</div>
         </a>
       </div>
+
+      <div class="biz-relation">
+        <span class="biz-relation-a">イベント事業</span>
+        <span class="biz-relation-arrow">→</span>
+        <span class="biz-relation-mid">熱量のある学生プール</span>
+        <span class="biz-relation-arrow">→</span>
+        <span class="biz-relation-b">人材事業</span>
+      </div>
+      <p class="biz-relation-note">2つの事業は独立ではなく、相互に価値を生み出す構造で運営しています。</p>
     </div>
   </section>
 
@@ -5519,8 +5624,8 @@
     <div class="wrap">
       <div class="biz-header">
         <div class="biz-header-badge biz-header-badge-orange">Business 01 · Events</div>
-        <h2 class="biz-header-title">イベント事業</h2>
-        <p class="biz-header-desc">学生・若者が集う場の運営。5つのイベントを企画・運営しています。</p>
+        <h2 class="biz-header-title">学生・若者が集う 5つの場。</h2>
+        <p class="biz-header-desc">大型サミットから月次の少人数対話会まで、"やりたい"に火をつける場を全国で展開しています。</p>
       </div>
 
       <!-- イベント5枚グリッド -->
@@ -5549,7 +5654,7 @@
           <div class="event-name">あさげの若き情熱会</div>
           <div class="event-tagline">日本の夜明け、ここから始まる</div>
           <div class="event-mini-meta">
-            <span>月次</span>
+            <span>月次(不定期)</span>
             <span>高校生×経営者</span>
           </div>
         </a><a class="event-card" href="yoisho.html" target="_blank" rel="noopener">
@@ -5566,6 +5671,10 @@
           <div class="event-visual event-visual-pitch"><img src="img/site/pitch_thumb.jpg" alt="プレゼン大会" loading="lazy"></div>
           <div class="event-name">プレゼン大会</div>
           <div class="event-tagline">高校生6名の本気ステージ</div>
+          <div class="event-mini-meta">
+            <span>2026.08.06</span>
+            <span>メンター 三輪開人氏</span>
+          </div>
         </a>
       </div>
     </div>
@@ -5576,8 +5685,8 @@
     <div class="wrap">
       <div class="biz-header">
         <div class="biz-header-badge biz-header-badge-mint">Business 02 · Talent</div>
-        <h2 class="biz-header-title">人材事業</h2>
-        <p class="biz-header-desc">企業と学生をつなぐ場の提供。挑戦する学生と、そのポテンシャルを求める企業の"最初の出会い"を設計します。</p>
+        <h2 class="biz-header-title">企業と学生をつなぐ 2つの入口。</h2>
+        <p class="biz-header-desc">挑戦する学生と、そのポテンシャルを求める企業の"最初の出会い"を設計します。</p>
       </div>
 
       <div class="hr-grid">
@@ -5588,7 +5697,7 @@
           <p class="hr-desc">NEXY SUMMITやカタリビでの企業ブース出展。1,000名規模の高校生と直接接点を持てる、日本最大級の若者リーチの場。</p>
           <div class="hr-meta">
             <div><span>接点対象</span><strong>高校生1,000名+</strong></div>
-            <div><span>実績</span><strong>15社系企業</strong></div>
+            <div><span>連携企業</span><strong>15社</strong></div>
           </div>
         </div>
 
@@ -5599,7 +5708,13 @@
           <p class="hr-desc">単なるロゴ露出ではなく、コンテンツ企画から一緒に作る中長期パートナーシップ。冠賞・冠セッション・共同企画等。</p>
           <div class="hr-meta">
             <div><span>プラン</span><strong>Platinum/Gold/Silver/Bronze</strong></div>
-            <div><span>実績</span><strong>SEGA・SMBC・孫財団 他</strong></div>
+            <div><span>ご協賛実績</span><strong>下記企業様 他</strong></div>
+          </div>
+          <div class="hr-logos">
+            <img src="img/site/partner_segasammy.png" alt="SEGA SAMMY" loading="lazy">
+            <img src="img/site/partner_smbc.png" alt="SMBC" loading="lazy">
+            <img src="img/site/partner_son_foundation.png" alt="孫正義育英財団" loading="lazy">
+            <img src="img/site/partner_gaiax.png" alt="Gaiax" loading="lazy">
           </div>
         </div>
       </div>
@@ -5608,9 +5723,12 @@
         <div>
           <div class="cta-box-label">For Company</div>
           <div class="cta-box-title">企業様のご担当者へ</div>
-          <div class="cta-box-desc">高校生・大学生の"上澄み層"に直接リーチできる、日本最大級の若者コミュニティです。まずはお気軽にご相談ください。</div>
+          <div class="cta-box-desc">挑戦意欲の高い高校生・大学生に直接リーチできる、日本最大級の若者コミュニティです。まずはお気軽にご相談ください。</div>
         </div>
-        <a href="#contact" class="btn-primary" data-nav="contact">協賛に関するお問い合わせ →</a>
+        <div class="cta-box-actions">
+          <a href="#contact" class="btn-primary" data-nav="contact">協賛のご相談 →</a>
+          <a href="#contact" class="btn-outline" data-nav="contact">取材のお問い合わせ →</a>
+        </div>
       </div>
     </div>
   </section>
