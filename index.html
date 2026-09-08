@@ -1373,6 +1373,7 @@
   .numbers-grid {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
   }
+  .numbers-grid.numbers-grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto; }
   .number-card {
     padding: 40px 32px;
     background: #FDFCF9;
@@ -2276,8 +2277,17 @@
 
   /* -------- About page specific -------- */
   .about-toc-wrap {
-    padding: 32px 0;
+    padding: 20px 0;
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 64px;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    z-index: 90;
+  }
+  @media (max-width: 640px) {
+    .about-toc-wrap { padding: 14px 0; top: 56px; }
   }
   .about-toc {
     display: flex;
@@ -4612,6 +4622,7 @@
     grid-template-columns: 1fr minmax(360px, 720px);
   }
   .st-split-media { position: sticky; top: 100px; }
+  .st-split-media-wrap { position: relative; }
   .st-split-media video,
   .st-split-media img {
     width: 100%;
@@ -4623,6 +4634,35 @@
     aspect-ratio: 16/9;
     object-fit: cover;
     background: #000;
+  }
+  .st-media-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .st-media-tag::before {
+    content: "";
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: st-media-pulse 2s ease-in-out infinite;
+  }
+  @keyframes st-media-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
   }
   .st-split-media-grid {
     display: grid;
@@ -4716,7 +4756,6 @@
       <a href="#business" data-nav="business">事業</a>
       <a href="#members" data-nav="members">メンバー</a>
       <a href="#news" data-nav="news">実績</a>
-      <a href="#recruit" data-nav="recruit">採用情報</a>
       <a href="#contact" data-nav="contact" class="nav-cta">お問い合わせ</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
@@ -4787,7 +4826,7 @@
         <div class="about-step">
           <div class="about-step-num">03</div>
           <div class="about-step-tag">VISION</div>
-          <h3 class="about-step-title">思いが連鎖する、<br>次の一歩へ。</h3>
+          <h3 class="about-step-title">思いが連鎖する<br>社会へ。</h3>
           <p class="about-step-body">
             NEXYで生まれた出会いが、次の挑戦へつながる。<br>
             <strong>「思いの連鎖」</strong>を当たり前に。挑戦が挑戦を生む社会を、学生から。
@@ -4813,7 +4852,7 @@
         <h2 class="numbers-title">半年間の歩み。</h2>
         <p class="numbers-sub">2026年2月の設立から、半年間で積み上げてきた実績。</p>
       </div>
-      <div class="numbers-grid">
+      <div class="numbers-grid numbers-grid-3">
         <div class="number-card">
           <div class="number-icon">01</div>
           <div class="number-value">11<span class="number-unit">回</span></div>
@@ -4821,16 +4860,11 @@
         </div>
         <div class="number-card">
           <div class="number-icon">02</div>
-          <div class="number-value">743<span class="number-unit">人</span></div>
-          <div class="number-label">参加者数(累計)</div>
-        </div>
-        <div class="number-card">
-          <div class="number-icon">03</div>
           <div class="number-value">160<span class="number-unit">万</span></div>
           <div class="number-label">SNSインプレッション</div>
         </div>
         <div class="number-card">
-          <div class="number-icon">04</div>
+          <div class="number-icon">03</div>
           <div class="number-value">15<span class="number-unit">社</span></div>
           <div class="number-label">関係企業(系列含む)</div>
         </div>
@@ -5071,7 +5105,10 @@
   <section class="st-split-section" id="about-vision">
     <div class="st-split">
       <div class="st-split-media">
-        <video src="img/site/summit_movie.mp4" autoplay muted loop playsinline preload="metadata" aria-label="NEXY Summit 2026 ハイライトムービー"></video>
+        <div class="st-split-media-wrap">
+          <span class="st-media-tag">MOVIE</span>
+          <video src="img/site/summit_movie.mp4" autoplay muted loop playsinline preload="metadata" aria-label="NEXY Summit 2026 ハイライトムービー"></video>
+        </div>
       </div>
       <div class="st-split-body">
         <div class="st-split-label">Vision</div>
@@ -5195,7 +5232,7 @@
           学生・若者が集う場の運営 / 企業と学生をつなぐ場の提供<br>
           <span style="font-size:12.5px;color:var(--text-muted);">NEXY Summit / カタリビ / 深夜の語り場 / 朝食会 / よいしょ!!シリーズ 他</span>
         </td></tr>
-        <tr><th>主な実績</th><td>開催11回 / 延べ参加者743名 / SNS累計160万インプレッション / 連携企業15社</td></tr>
+        <tr><th>主な実績</th><td>開催11回 / SNS累計160万インプレッション / 連携企業15社</td></tr>
         <tr><th>連絡先</th><td>info@nexyhub.jp</td></tr>
         <tr><th>Web</th><td>https://www.nexyhub.jp/</td></tr>
         <tr><th>SNS</th><td>X / Instagram / YouTube: @nexy.hub</td></tr>
