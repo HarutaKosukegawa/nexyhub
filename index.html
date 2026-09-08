@@ -6535,6 +6535,30 @@
     document.getElementById('nav').classList.toggle('open');
   });
 
+  // ---- 事業ページ内アンカースクロール (SPAルーターを回避) ----
+  (function initBizAnchors() {
+    var targets = ['works-events', 'works-hr'];
+    targets.forEach(function(id) {
+      document.querySelectorAll('a[href="#' + id + '"]').forEach(function(a) {
+        // dataset.nav が既にある場合は SPA ルータに任せるので触らない
+        if (a.dataset && a.dataset.nav) return;
+        a.addEventListener('click', function(e) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          e.preventDefault();
+          // 現在のページを維持したままスクロール
+          var rect = el.getBoundingClientRect();
+          window.scrollTo({
+            top: window.pageYOffset + rect.top - 80,
+            behavior: 'smooth'
+          });
+          // ハッシュだけ更新 (履歴は増やさない)
+          history.replaceState(null, '', '#' + id);
+        });
+      });
+    });
+  })();
+
   // ---- Executive Card 展開 (Members ページ) ----
   window.toggleExec = function(cardId) {
     var card = document.getElementById(cardId);
