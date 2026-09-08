@@ -4611,6 +4611,36 @@
     flex: 1;
     min-width: 0;
   }
+  .exec-card-mini-bio {
+    font-family: var(--f-jp-body);
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--text-2);
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    letter-spacing: 0.02em;
+    text-align: left;
+  }
+  .exec-detail-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    font-family: var(--f-jp-disp);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background .2s, color .2s;
+  }
+  .exec-detail-close:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .exec-detail-close::before { content: "▲"; font-size: 9px; }
 
   /* 展開エリア */
   .exec-card-detail {
@@ -5768,9 +5798,16 @@
   <section class="section" style="padding-bottom: 24px;">
     <div class="wrap-tight" style="text-align: center;">
       <div class="mem-section-label">Core Team</div>
-      <h2 class="mem-section-title" style="margin-bottom: 12px;">コアチーム</h2>
-      <p class="lead" style="max-width: 520px; margin: 0 auto; font-size: 14px; color: var(--text-muted);">
-        カードをクリックすると、詳細プロフィールが展開されます。
+      <h2 class="mem-section-title" style="margin-bottom: 16px;">コアチーム</h2>
+      <p class="lead" style="max-width: 640px; margin: 0 auto 12px; font-size: 15px; line-height: 1.9;">
+        NEXYの企画・技術・教育プログラムを担う3名の中核組織。<br>
+        うち<strong>孫正義育英財団3期生・5期生の2名</strong>を擁しています。
+      </p>
+      <p class="lead" style="max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em;">
+        NEXY Summit 期間中は、7チーム 52名の運営体制で企画・実施しております。
+      </p>
+      <p class="lead" style="max-width: 520px; margin: 0 auto; font-size: 12.5px; color: var(--text-muted); letter-spacing: 0.06em;">
+        ※ カードをクリックすると詳細プロフィールが展開されます
       </p>
     </div>
   </section>
@@ -5783,7 +5820,7 @@
           <div class="exec-card-photo">
             <img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy">
           </div>
-          <div class="exec-card-role">代表 / Representative</div>
+          <div class="exec-card-role">代表 · Representative</div>
           <div class="exec-card-name">
             <span class="exec-card-name-toggle" aria-hidden="true"></span>
             <span class="exec-card-name-inner">
@@ -5791,6 +5828,9 @@
               <span class="exec-card-name-kana">こすけがわ はるた</span>
             </span>
           </div>
+          <p class="exec-card-mini-bio">
+            孫正義育英財団3期生・N高起業部ビジコン2026 応募1,600名中優勝。ネルフィン・ジンベエザメ 両社COO。
+          </p>
         </button>
 
         <div class="exec-card-detail" id="exec-haruta-detail" role="region" aria-label="小助川 晴大 詳細プロフィール">
@@ -5839,6 +5879,8 @@
               </ul>
             </div>
 
+            <button type="button" class="exec-detail-close" onclick="toggleExec('exec-haruta')">閉じる</button>
+
           </div>
         </div>
       </div>
@@ -5849,7 +5891,7 @@
           <div class="exec-card-photo">
             <img src="img/site/rep_kataoka.jpg" alt="片岡 嗣葉" loading="lazy">
           </div>
-          <div class="exec-card-role">CTO / Technology</div>
+          <div class="exec-card-role">CTO · Product & Technology</div>
           <div class="exec-card-name">
             <span class="exec-card-name-toggle" aria-hidden="true"></span>
             <span class="exec-card-name-inner">
@@ -5857,6 +5899,9 @@
               <span class="exec-card-name-kana">かたおか つぐは</span>
             </span>
           </div>
+          <p class="exec-card-mini-bio">
+            孫正義育英財団5期生・WRO世界7位/8位を2年連続獲得。現在NY州の高校に単身留学中。
+          </p>
         </button>
 
         <div class="exec-card-detail" id="exec-kataoka-detail" role="region" aria-label="片岡 嗣葉 詳細プロフィール">
@@ -5881,14 +5926,28 @@
             <div class="exec-detail-section">
               <div class="exec-detail-section-title">Career Highlights</div>
               <ul class="exec-detail-list">
-                <li><strong>2017</strong><span><span class="yr-title">WRO世界大会 世界7位 (小学生部門)</span>小学生時代からロボット競技に取り組み、世界大会入賞</span></li>
+                <li><strong>2017</strong><span><span class="yr-title">WRO世界大会 世界7位(小学生部門)</span>小学生時代からロボット競技に取り組み、世界大会入賞</span></li>
                 <li><strong>2018</strong><span><span class="yr-title">WRO世界大会 世界8位</span>2年連続で世界大会入賞</span></li>
-                <li><strong>2021</strong><span><span class="yr-title">孫正義育英財団 5期生 選抜</span>次世代の若き才能として選抜</span></li>
-                <li><strong>-</strong><span><span class="yr-title">ジンベエザメ株式会社 CTO 就任</span>子ども向けデジタル教育サービスの技術統括</span></li>
-                <li><strong>-</strong><span><span class="yr-title">アメリカNY州の高校に単身留学</span>海外での学びとテクノロジー領域の探求</span></li>
-                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY CTO 就任</span>NEXYの技術基盤・プロダクト設計を担当</span></li>
+                <li><strong>2020</strong><span><span class="yr-title">WRO 全国大会 1位</span>全国大会を制覇し、世界大会代表権を継続</span></li>
+                <li><strong>2021</strong><span><span class="yr-title">孫正義育英財団 5期生 選抜</span>次世代の若き才能として財団入り</span></li>
+                <li><strong>2023</strong><span><span class="yr-title">ジンベエザメ株式会社 CTO 就任</span>子ども向けデジタル教育サービスの技術統括</span></li>
+                <li><strong>2024</strong><span><span class="yr-title">アメリカNY州の高校に単身留学</span>海外での学びとテクノロジー領域の探求を開始</span></li>
+                <li><strong>2025</strong><span><span class="yr-title">Web/モバイル開発の技術習得を継続</span>NY州で複数プロダクト開発に従事</span></li>
+                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY CTO 就任</span>NEXYの技術基盤・深夜の語り場アプリ等を設計</span></li>
               </ul>
             </div>
+
+            <div class="exec-detail-section">
+              <div class="exec-detail-section-title">Basic Info</div>
+              <ul class="exec-detail-list">
+                <li><strong>出身</strong>日本</li>
+                <li><strong>現在地</strong>アメリカ・ニューヨーク州</li>
+                <li><strong>学校</strong>ニューヨーク州の高校 (留学中)</li>
+                <li><strong>専門</strong>ロボティクス / Web・モバイル開発</li>
+              </ul>
+            </div>
+
+            <button type="button" class="exec-detail-close" onclick="toggleExec('exec-kataoka')">閉じる</button>
 
           </div>
         </div>
@@ -5900,7 +5959,7 @@
           <div class="exec-card-photo">
             <img src="img/site/rep_takamatsu.jpg" alt="髙松 優大" loading="lazy">
           </div>
-          <div class="exec-card-role">Member / Education</div>
+          <div class="exec-card-role">Member · Education Program</div>
           <div class="exec-card-name">
             <span class="exec-card-name-toggle" aria-hidden="true"></span>
             <span class="exec-card-name-inner">
@@ -5908,6 +5967,9 @@
               <span class="exec-card-name-kana">たかまつ ゆうた</span>
             </span>
           </div>
+          <p class="exec-card-mini-bio">
+            学生団体EToE代表・メタバース教育プログラム「メタロレア」を開発、全国展開中。
+          </p>
         </button>
 
         <div class="exec-card-detail" id="exec-takamatsu-detail" role="region" aria-label="髙松 優大 詳細プロフィール">
@@ -5916,7 +5978,7 @@
             <div class="exec-detail-section">
               <div class="exec-detail-section-title">Titles</div>
               <ul class="exec-detail-titles">
-                <li class="primary">学生団体NEXY メンバー</li>
+                <li class="primary">学生団体NEXY メンバー (教育プログラム担当)</li>
                 <li>学生団体EToE 代表</li>
                 <li class="accent">メタロレア 開発・全国展開</li>
               </ul>
@@ -5925,7 +5987,7 @@
             <div class="exec-detail-section">
               <div class="exec-detail-section-title">Bio</div>
               <p class="exec-detail-bio">
-                2007年生まれ、東京出身。学生団体EToE代表として、メタバース教育プログラム「メタロレア」の開発・全国展開を推進。沖縄での原体験を起点に、「誰もが自分の可能性を最大限発揮できる学び」をテーマに教育領域の探求を続けています。NEXYではメンバーとして、教育・学生コミュニティの企画運営に参画。
+                2007年生まれ、東京出身。学生団体EToE代表として、メタバース教育プログラム「メタロレア」の開発・全国展開を推進。沖縄での原体験を起点に、「誰もが自分の可能性を最大限発揮できる学び」をテーマに教育領域の探求を続けています。NEXYでは教育プログラム担当として、学生コミュニティの企画運営に参画。
               </p>
             </div>
 
@@ -5933,10 +5995,11 @@
               <div class="exec-detail-section-title">Career Highlights</div>
               <ul class="exec-detail-list">
                 <li><strong>2007</strong><span><span class="yr-title">東京にて生まれる</span></span></li>
-                <li><strong>-</strong><span><span class="yr-title">沖縄での原体験</span>「誰もが自分の可能性を最大限発揮できる学び」というテーマの起点</span></li>
-                <li><strong>-</strong><span><span class="yr-title">学生団体EToE 設立・代表就任</span>教育をテーマにした学生コミュニティ運営</span></li>
-                <li><strong>-</strong><span><span class="yr-title">メタロレア 開発・全国展開</span>メタバース教育プログラムの企画・実装・展開</span></li>
-                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY メンバーとして参画</span>教育・コミュニティ企画の中核として活動</span></li>
+                <li><strong>2022</strong><span><span class="yr-title">沖縄での原体験</span>「誰もが自分の可能性を最大限発揮できる学び」というテーマの起点</span></li>
+                <li><strong>2023</strong><span><span class="yr-title">学生団体EToE 設立・代表就任</span>教育をテーマにした学生コミュニティを立ち上げ</span></li>
+                <li><strong>2024</strong><span><span class="yr-title">メタロレア 開発開始</span>メタバース×国際バカロレアの教育プログラムを設計</span></li>
+                <li><strong>2025</strong><span><span class="yr-title">メタロレア 全国展開</span>柏の葉eスポーツ研究会等と連携し全国拠点で実施</span></li>
+                <li><strong>2026</strong><span><span class="yr-title">学生団体NEXY メンバーとして参画</span>教育プログラム・コミュニティ企画の中核として活動</span></li>
               </ul>
             </div>
 
@@ -5946,13 +6009,32 @@
                 <li><strong>生年</strong>2007年</li>
                 <li><strong>出身</strong>東京</li>
                 <li><strong>原体験</strong>沖縄</li>
+                <li><strong>専門</strong>教育プログラム設計 / メタバース活用</li>
               </ul>
             </div>
+
+            <button type="button" class="exec-detail-close" onclick="toggleExec('exec-takamatsu')">閉じる</button>
 
           </div>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- 底部 CTA (取材・登壇のご相談) -->
+  <section class="about-bottom-cta">
+    <div class="about-bottom-cta-inner">
+      <div class="about-bottom-cta-label">Get In Touch</div>
+      <h3 class="about-bottom-cta-title">取材・登壇・共同企画などの<br>ご相談はこちらから。</h3>
+      <p class="about-bottom-cta-desc">
+        代表・メンバーへの取材、講演・登壇のご依頼、共同企画のご相談などを承っております。<br>
+        3営業日以内にご返信いたします。
+      </p>
+      <div class="about-cta-btns">
+        <a href="#contact" data-nav="contact" class="about-cta-btn-primary">取材のお問い合わせ →</a>
+        <a href="#contact" data-nav="contact" class="about-cta-btn-outline">登壇・共同企画のご相談 →</a>
+      </div>
     </div>
   </section>
 
