@@ -5236,6 +5236,281 @@
   .about-cta-btns a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,30,60,0.12); }
   .about-cta-btn-primary { background: var(--navy); color: #fff; }
   .about-cta-btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
+
+  /* ================================================================
+     MOBILE OPTIMIZATIONS (スマートフォン全ページ統一)
+     - 520px以下: 標準スマホ
+     - 380px以下: 小型スマホ (iPhone SE等)
+     ================================================================ */
+
+  @media (max-width: 520px) {
+    /* ------- ヘッダー ------- */
+    .site-header .wrap { padding: 0 16px; }
+    .brand-logo-img { height: 22px; }
+
+    /* ------- ヒーロー (TOP) ------- */
+    .hero { min-height: 70vh; }
+    .hero-content { padding: 32px 20px; }
+
+    /* ------- ページヒーロー ------- */
+    .page-hero { padding: 88px 20px 40px; }
+    .page-hero-en { font-size: 44px; letter-spacing: 0.02em; }
+    .page-hero-jp { font-size: 13px; margin-top: 6px; }
+    .breadcrumb { font-size: 11px; }
+
+    /* ------- Section paddings ------- */
+    .section { padding: 56px 0; }
+    .section.tight { padding: 40px 0; }
+    .wrap { padding: 0 20px; }
+    .wrap-tight { padding: 0 20px; }
+
+    /* ------- Mission ------- */
+    .mission { padding: 48px 20px; }
+    .mission-title { font-size: 28px !important; line-height: 1.5; letter-spacing: 0.02em; }
+    .mission-lead { font-size: 14px; line-height: 1.9; }
+    .mission-en { font-size: 11px; letter-spacing: 0.24em; }
+
+    /* ------- About NEXY 3-step (TOP) ------- */
+    .about-flow { gap: 20px; padding: 0; margin: 40px 0; }
+    .about-arrow { display: none; }
+    .about-step { padding: 24px 22px; }
+    .about-step-num { font-size: 44px; }
+    .about-step-title { font-size: 20px; line-height: 1.55; }
+    .about-step-body { font-size: 13px; line-height: 1.9; }
+
+    /* ------- Track Record 数字カード ------- */
+    .numbers-section { padding: 56px 0; }
+    .numbers-grid, .numbers-grid.numbers-grid-3 {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 100%;
+    }
+    .number-card { padding: 24px 16px; }
+    .number-icon { font-size: 12px; letter-spacing: 0.18em; }
+    .number-value { font-size: 36px; }
+    .number-unit { font-size: 15px; }
+    .number-label { font-size: 11.5px; margin-top: 6px; }
+    .numbers-title { font-size: 24px; }
+    .numbers-sub { font-size: 13px; }
+
+    /* ------- Partners Section ------- */
+    .partners-section { padding: 48px 0 56px; }
+    .partners-lead { font-size: 12px; padding: 0 12px; }
+    .partners-cat-title { font-size: 11px; letter-spacing: 0.2em; }
+    .partners-marquee { padding: 12px 0; }
+    .partners-marquee img { height: 30px; margin: 0 20px; }
+
+    /* ------- 実績 Jisseki Grid ------- */
+    .jisseki-section { padding: 48px 0 56px; }
+    .jisseki-title { font-size: 20px; margin-bottom: 28px; letter-spacing: 0.16em; }
+    .jisseki-grid,
+    [data-page="news"] .jisseki-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 0 16px;
+    }
+    [data-page="news"] .jisseki-grid > .jisseki-card:last-child:nth-child(3n+1) {
+      grid-column: auto;
+    }
+    .jisseki-card-body { padding: 18px 18px 20px; }
+    .jisseki-card-heading { font-size: 15px; line-height: 1.55; }
+    .jisseki-card-sub { font-size: 11.5px; }
+    .jisseki-card-cta { font-size: 11px; padding: 9px 14px; }
+
+    /* ------- SNS Follow ------- */
+    .sns-follow-section { padding: 48px 0 56px; }
+    .sns-follow-inner { padding: 0 16px; }
+    .sns-cards { grid-template-columns: 1fr; gap: 14px; }
+    .sns-card { padding: 24px 22px 22px; }
+    .sns-bubble { font-size: 14px; padding: 14px 22px; max-width: 320px; }
+
+    /* ------- Footer 3 Photo cards ------- */
+    .photo-cards { grid-template-columns: 1fr; gap: 10px; }
+    .photo-card { aspect-ratio: 16/8; }
+    .photo-card-en { font-size: 18px; }
+    .photo-card-jp { font-size: 11px; }
+
+    /* ------- Footer ------- */
+    .site-footer { padding: 40px 0 24px; }
+    .footer-brand-mission { font-size: 26px; line-height: 1.4; margin-bottom: 32px; }
+    .footer-nav { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .footer-nav-en { font-size: 12px; }
+    .footer-nav-jp { font-size: 10.5px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding: 20px 20px 0; }
+    .footer-copy { font-size: 11px; }
+
+    /* ------- About page ------- */
+    .about-toc-wrap { padding: 12px 0; top: 56px; }
+    .about-toc { gap: 14px; padding: 0 12px; }
+    .about-toc li a { font-size: 11px; letter-spacing: 0.14em; }
+    .about-toc li a .toc-num { font-size: 10px; }
+
+    .st-split-section { padding: 56px 20px !important; }
+    .st-split, .st-split.reverse { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .st-split-media { position: static !important; }
+    .st-split-title { font-size: 24px !important; margin-bottom: 24px !important; line-height: 1.55; }
+    .st-split-body p { font-size: 14px !important; line-height: 2.0 !important; }
+    .st-split-body p.quote { font-size: 15px !important; padding-left: 16px; }
+    .st-split-more { font-size: 12px; padding: 9px 16px; }
+    .st-media-tag { font-size: 9px; padding: 5px 10px; top: 10px; left: 10px; }
+
+    .msg-split-section { padding: 48px 20px !important; }
+    .msg-split { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .msg-split-photo { max-width: 260px !important; margin: 0 auto !important; position: static !important; }
+    .msg-split-title { font-size: 22px !important; line-height: 1.6; margin-bottom: 24px !important; }
+    .msg-split-body p { font-size: 13.5px !important; line-height: 1.95 !important; }
+
+    /* Info Table (Company) → stacked list style on mobile */
+    #about-company { padding: 48px 0 56px !important; }
+    .info-table { font-size: 12.5px; }
+    .info-table th {
+      display: block;
+      width: 100%;
+      padding: 12px 16px 4px !important;
+      font-size: 11px;
+      color: var(--accent);
+      border-bottom: 0 !important;
+      background: transparent !important;
+    }
+    .info-table td {
+      display: block;
+      width: 100%;
+      padding: 0 16px 16px !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+      font-size: 13px;
+    }
+    .info-table tr.info-group-head td {
+      padding: 20px 16px 6px !important;
+      border-bottom: 0 !important;
+    }
+
+    .about-bottom-cta { padding: 48px 20px !important; }
+    .about-bottom-cta-title { font-size: 20px !important; line-height: 1.55; }
+    .about-cta-btns { flex-direction: column; gap: 10px; }
+    .about-cta-btns a { width: 100%; justify-content: center; padding: 13px 20px; font-size: 13px; }
+
+    /* ------- Business page ------- */
+    .biz-2col { grid-template-columns: 1fr !important; gap: 16px; }
+    .biz-card { padding: 28px 22px; }
+    .biz-name { font-size: 22px; }
+    .biz-desc { font-size: 13px; line-height: 1.85; }
+    .biz-count { font-size: 12px; }
+    .biz-arrow { font-size: 12px; }
+
+    .biz-header-title { font-size: 24px !important; line-height: 1.55; }
+    .biz-header-desc { font-size: 13px; line-height: 1.85; }
+    .biz-header-badge { font-size: 10px; letter-spacing: 0.24em; }
+
+    .event-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .event-card { padding: 20px; }
+    .event-name { font-size: 18px; }
+    .event-tagline { font-size: 12px !important; min-height: auto !important; margin-bottom: 12px; }
+    .event-tag { font-size: 10.5px; }
+    .event-mini-meta { font-size: 11px; gap: 8px; }
+
+    .hr-grid { grid-template-columns: 1fr; gap: 16px; }
+    .hr-card { padding: 28px 24px; }
+    .hr-name { font-size: 18px; }
+    .hr-desc { font-size: 13px; line-height: 1.9; }
+    .hr-meta { font-size: 11.5px; }
+
+    .cta-box {
+      grid-template-columns: 1fr !important;
+      padding: 24px 22px !important;
+      gap: 20px !important;
+      text-align: center;
+    }
+    .cta-box-title { font-size: 20px !important; }
+    .cta-box-desc { font-size: 13px; }
+    .cta-box-actions { flex-direction: column !important; }
+
+    /* ------- Members page ------- */
+    .mem-section-title { font-size: 24px !important; }
+    .mem-section-label { font-size: 10.5px; letter-spacing: 0.28em; }
+    .exec-grid { grid-template-columns: 1fr !important; gap: 24px; max-width: 400px; }
+    .exec-card-name { font-size: 20px; }
+    .exec-card-role { font-size: 12px; letter-spacing: 0.06em; }
+    .exec-card-mini-bio { font-size: 12px; }
+    .exec-detail-section-title { font-size: 10.5px; letter-spacing: 0.28em; }
+    .exec-detail-titles li { font-size: 11.5px; padding: 5px 10px; }
+    .exec-detail-bio { font-size: 13.5px; line-height: 1.95; }
+    .exec-detail-list li { grid-template-columns: 44px 1fr; gap: 12px; font-size: 12.5px; }
+    .exec-detail-list li strong { font-size: 12.5px; }
+    .exec-detail-list li .yr-title { font-size: 12.5px; }
+
+    /* ------- Contact page ------- */
+    .contact-topics { grid-template-columns: 1fr !important; gap: 10px; padding: 0 4px; }
+    .contact-topic { padding: 18px 18px 16px; }
+    .contact-topic-title { font-size: 13.5px; }
+    .contact-topic-desc { font-size: 12px; line-height: 1.75; }
+
+    .contact-flow { grid-template-columns: 1fr !important; gap: 12px; padding: 0 4px; }
+    .contact-flow-step { padding: 20px 18px; }
+    .contact-flow-step-title { font-size: 13.5px; }
+
+    .contact-sec-title { font-size: 20px !important; margin-bottom: 28px !important; }
+    .contact-mail { padding: 22px 18px; }
+    .contact-mail-note { font-size: 12px; }
+    .contact-mail-addr { font-size: 15px; padding: 5px 12px; }
+    .contact-privacy { font-size: 11px; padding: 0 12px; }
+
+    .contact-faq summary { padding: 15px 40px 15px 40px; font-size: 13px; }
+    .contact-faq summary::before { left: 18px; font-size: 12.5px; }
+    .contact-faq summary::after { right: 18px; }
+    .contact-faq-body { padding: 4px 20px 20px 40px; font-size: 12.5px; line-height: 1.9; }
+
+    .gform-wrap { padding: 4px 2px; border-radius: 4px; }
+    .gform-iframe { min-height: 900px; height: 1400px; }
+
+    /* ------- 実績 詳細ページ ------- */
+    .jd-hero { padding: 64px 20px 32px; }
+    .jd-hero-title { font-size: 24px !important; letter-spacing: 0.01em; }
+    .jd-hero-label { font-size: 10px; letter-spacing: 0.2em; }
+    .jd-wrap { padding: 40px 16px 56px; }
+    .jd-article { padding: 24px 18px 28px; border-width: 2px; }
+    .jd-title { font-size: 19px !important; line-height: 1.5; }
+    .jd-subdate { font-size: 11.5px; }
+    .jd-section p { font-size: 13.5px; line-height: 1.95; }
+    .jd-section-title { font-size: 10.5px; letter-spacing: 0.14em; padding: 4px 10px; }
+    .jd-stats { grid-template-columns: 1fr !important; gap: 10px; }
+    .jd-stat { padding: 18px 12px; }
+    .jd-stat-num { font-size: 28px; }
+    .jd-photo-full img { max-height: 320px; }
+    .jd-back { font-size: 11.5px; padding: 10px 16px; }
+
+    /* ------- Recruit page ------- */
+    .recruit-lead { padding: 40px 20px; }
+    .recruit-message { font-size: 14px; line-height: 2.0; }
+
+    /* ------- Mobile menu overlay (hamburger) ------- */
+    .nav.open a {
+      padding: 14px 20px;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .brand-logo-img { height: 20px; }
+    .page-hero-en { font-size: 36px; }
+    .mission-title { font-size: 24px !important; }
+    .about-step-title { font-size: 18px; }
+    .number-value { font-size: 32px; }
+    .jisseki-card-heading { font-size: 14px; }
+    .biz-name { font-size: 20px; }
+    .biz-header-title { font-size: 22px !important; }
+    .st-split-title, .msg-split-title { font-size: 20px !important; }
+    .contact-sec-title { font-size: 18px !important; }
+    .jd-hero-title { font-size: 22px !important; }
+    .jd-title { font-size: 17px !important; }
+    .footer-brand-mission { font-size: 22px; }
+  }
+
+  /* iOS Safari 対策: iframe が横スクロールしないように */
+  @media (max-width: 640px) {
+    iframe { max-width: 100%; }
+    .gform-iframe { width: 100% !important; }
+  }
 </style>
 
 <!-- ========== HEADER ========== -->
