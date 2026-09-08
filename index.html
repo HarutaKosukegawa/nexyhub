@@ -2296,20 +2296,34 @@
     flex-wrap: wrap;
   }
   .about-toc li a {
-    font-family: var(--f-jp-disp);
-    font-weight: 700; font-size: 14px;
+    font-family: "Big Shoulders Display", "Manrope", sans-serif;
+    font-weight: 700; font-size: 13px;
     color: var(--text-2);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.22em;
     position: relative;
     padding: 4px 0;
+    text-transform: uppercase;
     transition: color .2s;
+    display: inline-flex; align-items: baseline; gap: 6px;
+  }
+  .about-toc li a .toc-num {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
   }
   .about-toc li a::after {
-    content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
-    background: var(--accent); transition: width .2s;
+    content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+    background: var(--accent); transition: width .3s cubic-bezier(.22,.61,.36,1);
   }
   .about-toc li a:hover { color: var(--accent); }
   .about-toc li a:hover::after { width: 100%; }
+  .about-toc li a.is-active {
+    color: var(--navy);
+  }
+  .about-toc li a.is-active::after { width: 100%; background: var(--accent); }
+  .about-toc li a.is-active .toc-num { color: var(--accent); }
 
   .about-greeting-body p {
     font-size: 15.5px;
@@ -4273,7 +4287,7 @@
   /* -------- Message Split (SOZOW風・写真+メッセージ左右分割) -------- */
   .msg-split-section {
     padding: clamp(80px, 12vw, 140px) 24px;
-    background: #FFFFFF;
+    background: #FFF9F0;
   }
   .msg-split {
     display: grid;
@@ -4742,6 +4756,160 @@
     .st-split-section { padding: 64px 20px; }
     .st-split-title { font-size: 24px; margin-bottom: 24px; }
   }
+
+  /* -------- St-Split アコーディオン (長文を折り畳み) -------- */
+  .st-split-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .6s cubic-bezier(.22,.7,.2,1), opacity .4s ease, margin-top .3s ease;
+    margin-top: 0;
+  }
+  .st-split-body.is-expanded .st-split-collapse {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 4px;
+  }
+  .st-split-more {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .st-split-more:hover { background: var(--navy); color: #fff; }
+  .st-split-more::after {
+    content: "▼";
+    font-size: 9px;
+    transition: transform .3s;
+  }
+  .st-split-body.is-expanded .st-split-more::after { transform: rotate(180deg); }
+  .st-split-body.is-expanded .st-split-more-label::before {
+    content: "閉じる";
+  }
+  .st-split-more-label::before {
+    content: "続きを読む";
+  }
+
+  /* -------- Reader宣言 (Aboutページ上部・For Companies) -------- */
+  .about-audience {
+    background: var(--navy);
+    color: #fff;
+    padding: 24px;
+    text-align: center;
+  }
+  .about-audience-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .about-audience-label {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--accent);
+    padding-right: 20px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .about-audience-text {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.03em;
+  }
+  @media (max-width: 640px) {
+    .about-audience-inner { flex-direction: column; gap: 12px; }
+    .about-audience-label { border-right: 0; padding-right: 0; }
+    .about-audience-text { font-size: 13px; }
+  }
+
+  /* -------- 会社概要テーブル グループ見出し -------- */
+  .info-table tr.info-group-head td {
+    padding: 24px 0 8px !important;
+    border-bottom: 0 !important;
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--accent);
+    text-transform: uppercase;
+    background: transparent;
+  }
+  .info-table tr.info-group-head:first-child td { padding-top: 0 !important; }
+
+  /* -------- 底部 CTA (協賛・取材) -------- */
+  .about-bottom-cta {
+    background: linear-gradient(180deg, #FFF9F0 0%, #FFFFFF 100%);
+    padding: clamp(64px, 8vw, 96px) 24px;
+  }
+  .about-bottom-cta-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .about-bottom-cta-label {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .about-bottom-cta-title {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.55;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+  .about-bottom-cta-desc {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 14.5px;
+    line-height: 2;
+    color: var(--text-2);
+    margin-bottom: 36px;
+    letter-spacing: 0.02em;
+  }
+  .about-cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .about-cta-btns a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .about-cta-btns a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,30,60,0.12); }
+  .about-cta-btn-primary { background: var(--navy); color: #fff; }
+  .about-cta-btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
 </style>
 
 <!-- ========== HEADER ========== -->
@@ -5089,14 +5257,22 @@
     </div>
   </div>
 
+  <!-- Reader 宣言 (For Companies / Media) -->
+  <div class="about-audience">
+    <div class="about-audience-inner">
+      <span class="about-audience-label">For Companies · Media</span>
+      <span class="about-audience-text">協賛・取材のご検討をされている企業・メディア様に、NEXYの理念と事業概要をご案内するページです。</span>
+    </div>
+  </div>
+
   <!-- 目次(nelfin風) -->
   <div class="about-toc-wrap">
     <div class="wrap">
       <ul class="about-toc">
-        <li><a href="#about-vision">ビジョン</a></li>
-        <li><a href="#about-mission">ミッション</a></li>
-        <li><a href="#about-message">代表メッセージ</a></li>
-        <li><a href="#about-company">会社概要</a></li>
+        <li><a href="#about-vision" data-toc="about-vision"><span class="toc-num">01</span> Vision</a></li>
+        <li><a href="#about-mission" data-toc="about-mission"><span class="toc-num">02</span> Mission</a></li>
+        <li><a href="#about-message" data-toc="about-message"><span class="toc-num">03</span> Message</a></li>
+        <li><a href="#about-company" data-toc="about-company"><span class="toc-num">04</span> Company</a></li>
       </ul>
     </div>
   </div>
@@ -5107,10 +5283,13 @@
       <div class="st-split-media">
         <div class="st-split-media-wrap">
           <span class="st-media-tag">MOVIE</span>
-          <video src="img/site/summit_movie.mp4" autoplay muted loop playsinline preload="metadata" aria-label="NEXY Summit 2026 ハイライトムービー"></video>
+          <video src="img/site/summit_movie.mp4"
+                 poster="img/site/summit_thumb.jpg"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="NEXY Summit 2026 ハイライトムービー"></video>
         </div>
       </div>
-      <div class="st-split-body">
+      <div class="st-split-body" data-collapse="vision">
         <div class="st-split-label">Vision</div>
         <h2 class="st-split-title">思いが<em>連鎖する</em>社会をつくる。</h2>
 
@@ -5121,15 +5300,19 @@
           「もっと、自分らしく生きていいのかもしれない」
         </p>
 
-        <p>人の思いには、誰かの心に火を灯す力があります。</p>
+        <p>人の思いには、誰かの心に火を灯す力があります。<strong>NEXYは、思いが思いを動かす社会をつくります。</strong></p>
 
-        <p>AIがどんな問いにも答えてくれる時代になっても、<strong>「これがやりたい」「こんなふうに生きたい」という思いは、その人だけの経験や出会い、悩みから生まれるもの</strong>です。</p>
+        <div class="st-split-collapse">
+          <p>AIがどんな問いにも答えてくれる時代になっても、<strong>「これがやりたい」「こんなふうに生きたい」という思いは、その人だけの経験や出会い、悩みから生まれるもの</strong>です。</p>
 
-        <p>一人の「やりたい」が、誰かの一歩を生み、その一歩が、また次の誰かを動かしていく。</p>
+          <p>一人の「やりたい」が、誰かの一歩を生み、その一歩が、また次の誰かを動かしていく。</p>
 
-        <p>そんな連鎖を、一部の特別な人だけのものにしない。<strong>すべての学生が、自分の人生に思いと熱を持って生きられる社会へ。</strong></p>
+          <p>そんな連鎖を、一部の特別な人だけのものにしない。<strong>すべての学生が、自分の人生に思いと熱を持って生きられる社会へ。</strong></p>
+        </div>
 
-        <p>NEXYは、思いが思いを動かす社会をつくります。</p>
+        <button type="button" class="st-split-more" onclick="toggleCollapse('vision')">
+          <span class="st-split-more-label"></span>
+        </button>
       </div>
     </div>
   </section>
@@ -5137,34 +5320,35 @@
   <!-- Mission (テキスト+画像4枚) -->
   <section class="st-split-section alt" id="about-mission">
     <div class="st-split reverse">
-      <div class="st-split-body">
+      <div class="st-split-body" data-collapse="mission">
         <div class="st-split-label">Mission</div>
         <h2 class="st-split-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
 
         <p class="quote">「これ、やってみたいんだよね」</p>
 
-        <p>勇気を出して口にしたのに、<br>
-        「それって意味あるの？」<br>
-        「そんなの無理じゃない？」<br>
-        と言われて、話すことをやめてしまった。</p>
-
-        <p>そんな経験はありませんか。</p>
-
-        <p>否定されるのが怖くて、誰にも話せない。何から始めればいいのか分からない。一緒に挑戦できる仲間もいない。</p>
-
-        <p>心の中には確かに「やりたい」があるのに、<strong>いつの間にか「やりたいことなんてない」と思い込んでしまう。</strong></p>
-
-        <p>私たちは、そんな学生をひとりにしたくありません。</p>
-
-        <p class="quote">
-          実績がなくてもいい。<br>
-          まだ言葉になっていなくてもいい。<br>
-          途中で迷っていてもいい。
-        </p>
-
-        <p>「それ、いいじゃん」と受け止めてくれる人がいる。一緒に考え、動き出せる仲間がいる。挑戦した先で、また新しい誰かと出会える。</p>
+        <p>勇気を出して口にしたのに、「それって意味あるの？」「そんなの無理じゃない？」と言われて、話すことをやめてしまった。そんな経験はありませんか。</p>
 
         <p><strong>NEXYは、一人ひとりの「やりたい」が、孤独の中で消えてしまわない場所をつくります。</strong></p>
+
+        <div class="st-split-collapse">
+          <p>否定されるのが怖くて、誰にも話せない。何から始めればいいのか分からない。一緒に挑戦できる仲間もいない。</p>
+
+          <p>心の中には確かに「やりたい」があるのに、<strong>いつの間にか「やりたいことなんてない」と思い込んでしまう。</strong></p>
+
+          <p>私たちは、そんな学生をひとりにしたくありません。</p>
+
+          <p class="quote">
+            実績がなくてもいい。<br>
+            まだ言葉になっていなくてもいい。<br>
+            途中で迷っていてもいい。
+          </p>
+
+          <p>「それ、いいじゃん」と受け止めてくれる人がいる。一緒に考え、動き出せる仲間がいる。挑戦した先で、また新しい誰かと出会える。</p>
+        </div>
+
+        <button type="button" class="st-split-more" onclick="toggleCollapse('mission')">
+          <span class="st-split-more-label"></span>
+        </button>
       </div>
       <div class="st-split-media">
         <div class="st-split-media-grid">
@@ -5221,22 +5405,45 @@
         </div>
       </div>
       <table class="info-table">
+        <tr class="info-group-head"><td colspan="2">Identity</td></tr>
         <tr><th>団体名</th><td>学生団体 NEXY<br><span style="font-size:12px;color:var(--text-muted);letter-spacing:.1em;">NEXY (Student Community)</span></td></tr>
         <tr><th>設立</th><td>2026年2月</td></tr>
         <tr><th>代表</th><td>小助川 晴大(Haruta Kosukegawa)</td></tr>
         <tr><th>所在地</th><td><span style="color:var(--text-muted);">— 準備中 —</span></td></tr>
         <tr><th>運営形態</th><td>任意団体(2026年10月上旬 法人化)</td></tr>
+
+        <tr class="info-group-head"><td colspan="2">Philosophy</td></tr>
         <tr><th>Mission</th><td>「やりたい」をひとりにしない</td></tr>
         <tr><th>Vision</th><td>思いが連鎖する社会を創る</td></tr>
+
+        <tr class="info-group-head"><td colspan="2">Business</td></tr>
         <tr><th>事業内容</th><td>
           学生・若者が集う場の運営 / 企業と学生をつなぐ場の提供<br>
           <span style="font-size:12.5px;color:var(--text-muted);">NEXY Summit / カタリビ / 深夜の語り場 / 朝食会 / よいしょ!!シリーズ 他</span>
         </td></tr>
         <tr><th>主な実績</th><td>開催11回 / SNS累計160万インプレッション / 連携企業15社</td></tr>
+
+        <tr class="info-group-head"><td colspan="2">Contact</td></tr>
         <tr><th>連絡先</th><td>info@nexyhub.jp</td></tr>
         <tr><th>Web</th><td>https://www.nexyhub.jp/</td></tr>
         <tr><th>SNS</th><td>X / Instagram / YouTube: @nexy.hub</td></tr>
       </table>
+    </div>
+  </section>
+
+  <!-- 底部 CTA (協賛・取材) -->
+  <section class="about-bottom-cta">
+    <div class="about-bottom-cta-inner">
+      <div class="about-bottom-cta-label">Get In Touch</div>
+      <h3 class="about-bottom-cta-title">協賛・取材のご相談は、<br>お気軽にお問い合わせください。</h3>
+      <p class="about-bottom-cta-desc">
+        NEXYの活動へのご協賛、メディア掲載、その他のご相談を承っております。<br>
+        3営業日以内にご返信いたします。
+      </p>
+      <div class="about-cta-btns">
+        <a href="#contact" data-nav="contact" class="about-cta-btn-primary">協賛のご相談 →</a>
+        <a href="#contact" data-nav="contact" class="about-cta-btn-outline">取材のお問い合わせ →</a>
+      </div>
     </div>
   </section>
 
@@ -6594,6 +6801,48 @@
         });
       });
     });
+  })();
+
+  // ---- St-Split アコーディオン (Aboutページ VISION/MISSION) ----
+  window.toggleCollapse = function(id) {
+    var body = document.querySelector('[data-collapse="' + id + '"]');
+    if (!body) return;
+    body.classList.toggle('is-expanded');
+  };
+
+  // ---- Aboutページ TOC scrollspy ----
+  (function initAboutTocSpy() {
+    var links = document.querySelectorAll('.about-toc a[data-toc]');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var idToLink = {};
+    links.forEach(function(a) {
+      idToLink[a.dataset.toc] = a;
+    });
+    var sections = Object.keys(idToLink).map(function(id) { return document.getElementById(id); }).filter(Boolean);
+    if (!sections.length) return;
+
+    function setActive(id) {
+      links.forEach(function(a) { a.classList.remove('is-active'); });
+      var target = idToLink[id];
+      if (target) target.classList.add('is-active');
+    }
+
+    var io = new IntersectionObserver(function(entries) {
+      // Find best-visible section
+      var best = null;
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (!best || entry.intersectionRatio > best.intersectionRatio) {
+            best = entry;
+          }
+        }
+      });
+      if (best) setActive(best.target.id);
+    }, {
+      rootMargin: '-120px 0px -60% 0px',
+      threshold: [0, 0.15, 0.3]
+    });
+    sections.forEach(function(s) { io.observe(s); });
   })();
 
   // ---- Executive Card 展開 (Members ページ) ----
