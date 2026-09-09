@@ -81,6 +81,95 @@
 }
 </script>
 
+<!-- JSON-LD (Event: NEXY Summit 2026) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "NEXY Summit 2026",
+  "description": "全国から高校生1,000人が集う日本最大級の高校生サミット。NEXYプレゼン大会・登壇セッション・ワークショップ・ブース出展などを1日に凝縮して実施。",
+  "startDate": "2026-08-06T10:00:00+09:00",
+  "endDate": "2026-08-06T18:00:00+09:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "東京たま未来メッセ",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "八王子市",
+      "addressRegion": "東京都",
+      "addressCountry": "JP",
+      "streetAddress": "別所2-65"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "学生団体NEXY",
+    "url": "https://www.nexyhub.jp/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.nexyhub.jp/summit.html"
+  },
+  "image": "https://www.nexyhub.jp/img/site/summit_thumb.jpg"
+}
+</script>
+
+<!-- JSON-LD (Person: 代表 小助川晴大) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "小助川 晴大",
+  "alternateName": ["Haruta Kosukegawa", "こすけがわ はるた"],
+  "jobTitle": "学生団体NEXY 代表",
+  "birthDate": "2008-12-09",
+  "affiliation": [
+    {
+      "@type": "Organization",
+      "name": "学生団体NEXY",
+      "url": "https://www.nexyhub.jp/"
+    },
+    {
+      "@type": "Organization",
+      "name": "ネルフィン株式会社"
+    },
+    {
+      "@type": "Organization",
+      "name": "ジンベエザメ株式会社"
+    }
+  ],
+  "award": [
+    "孫正義育英財団 3期生",
+    "N高起業部 ビジネスコンテスト2026 優勝(応募1,600名中1位)",
+    "Tokyo Startup Gateway 3期生"
+  ],
+  "image": "https://www.nexyhub.jp/img/site/rep_haruta.jpg"
+}
+</script>
+
+<!-- Google Search Console 所有権確認 (登録時に置き換え) -->
+<!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE"> -->
+
+<!-- Bing Webmaster Tools 所有権確認 (登録時に置き換え) -->
+<!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE"> -->
+
+<!-- テーマカラー (モバイルブラウザ) -->
+<meta name="theme-color" content="#10233F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NEXY">
+
+<!-- LCP最適化: 主要ヒーロー画像プリロード -->
+<link rel="preload" as="image" href="/img/site/hero_photo_1.jpg" fetchpriority="high">
+
+<!-- DNS Prefetch (外部リソース) -->
+<link rel="dns-prefetch" href="https://docs.google.com">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&family=Manrope:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@400;600;900&family=Big+Shoulders+Display:wght@500;700;800&display=swap">
@@ -5317,6 +5406,15 @@
   .about-cta-btn-primary { background: var(--navy); color: #fff; }
   .about-cta-btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
 
+  /* SEO/A11y: 視覚的に隠すがスクリーンリーダー/検索エンジンに読ませる */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
   /* Skip-to-content for a11y */
   .skip-link {
     position: absolute; left: -9999px; top: 0;
@@ -5630,6 +5728,9 @@
 
 <!-- ========== TOP PAGE ========== -->
 <section class="page active" data-page="top">
+
+  <!-- SEO用 H1 (視覚的に隠す・スクリーンリーダー/検索エンジン向け) -->
+  <h1 class="sr-only">学生団体NEXY - 「やりたい」を、ひとりにしない。挑戦する高校生・大学生のコミュニティ</h1>
 
   <!-- Hero フォトスライドショー (2秒ごとに切替) -->
   <div class="hero-video-wrap">
@@ -5946,7 +6047,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>ABOUT</span></div>
-      <div class="page-hero-en">About</div>
+      <h1 class="page-hero-en">About</h1>
       <div class="page-hero-jp">会社概要</div>
     </div>
   </div>
@@ -6169,7 +6270,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>BUSINESS</span></div>
-      <div class="page-hero-en">Business</div>
+      <h1 class="page-hero-en">Business</h1>
       <div class="page-hero-jp">事業内容</div>
     </div>
   </div>
@@ -6357,7 +6458,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>MEMBERS</span></div>
-      <div class="page-hero-en">Members</div>
+      <h1 class="page-hero-en">Members</h1>
       <div class="page-hero-jp">メンバー紹介</div>
     </div>
   </div>
@@ -6638,7 +6739,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>WORKS</span></div>
-      <div class="page-hero-en">Works</div>
+      <h1 class="page-hero-en">Works</h1>
       <div class="page-hero-jp">実績</div>
     </div>
   </div>
@@ -6814,7 +6915,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>RECRUIT</span></div>
-      <div class="page-hero-en">Recruit</div>
+      <h1 class="page-hero-en">Recruit</h1>
       <div class="page-hero-jp">採用情報</div>
     </div>
   </div>
@@ -6895,7 +6996,7 @@
   <div class="page-hero">
     <div class="wrap">
       <div class="breadcrumb"><a href="#top" data-nav="top">HOME</a><span>/</span><span>CONTACT</span></div>
-      <div class="page-hero-en">Contact</div>
+      <h1 class="page-hero-en">Contact</h1>
       <div class="page-hero-jp">お問い合わせ</div>
     </div>
   </div>
