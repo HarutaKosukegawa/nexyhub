@@ -1,6 +1,86 @@
-<title>NEXY 公式サイト</title>
-<meta name="description" content="学生団体NEXY公式サイト。やりたいを、ひとりにしない。">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="color-scheme" content="light only">
+
+<title>学生団体NEXY | 「やりたい」を、ひとりにしない。 - 高校生・大学生コミュニティ</title>
+<meta name="description" content="学生団体NEXY公式サイト。「やりたい」を、ひとりにしない。挑戦する高校生・大学生が本気で語り合えるコミュニティ。深夜の語り場、NEXY Summit、あさげの若き情熱会などを全国で運営。">
+<meta name="keywords" content="NEXY,学生団体,高校生,大学生,コミュニティ,深夜の語り場,NEXY Summit,あさげの若き情熱会,よいしょ徳島,若者,挑戦,対話,交流会,ネクシー">
+<meta name="author" content="学生団体NEXY">
+<link rel="canonical" href="https://www.nexyhub.jp/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/img/site/nexy_logo_wordmark.png">
+<link rel="apple-touch-icon" href="/img/site/nexy_logo_wordmark.png">
+
+<!-- Open Graph / Facebook / LINE -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nexyhub.jp/">
+<meta property="og:title" content="学生団体NEXY | 「やりたい」を、ひとりにしない。">
+<meta property="og:description" content="挑戦する高校生・大学生が本気で語り合える場を全国に届けるコミュニティ。深夜の語り場、NEXY Summit、あさげの若き情熱会などを運営しています。">
+<meta property="og:image" content="https://www.nexyhub.jp/img/site/hero_photo_1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="学生団体NEXY 集合写真">
+<meta property="og:site_name" content="学生団体NEXY">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nexy_hub">
+<meta name="twitter:creator" content="@nexy_hub">
+<meta name="twitter:title" content="学生団体NEXY | 「やりたい」を、ひとりにしない。">
+<meta name="twitter:description" content="挑戦する高校生・大学生が本気で語り合える場を全国に届けるコミュニティ。">
+<meta name="twitter:image" content="https://www.nexyhub.jp/img/site/hero_photo_1.jpg">
+
+<!-- JSON-LD Structured Data (Organization) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "学生団体NEXY",
+  "alternateName": ["NEXY", "ネクシー"],
+  "url": "https://www.nexyhub.jp/",
+  "logo": "https://www.nexyhub.jp/img/site/nexy_logo_wordmark.png",
+  "email": "info@nexyhub.jp",
+  "foundingDate": "2026-02",
+  "description": "「やりたい」を、ひとりにしない。挑戦する高校生・大学生が本気で語り合える場を全国に届けるコミュニティ。",
+  "slogan": "「やりたい」を、ひとりにしない。",
+  "sameAs": [
+    "https://x.com/nexy_hub",
+    "https://www.instagram.com/nexy.hub/",
+    "https://www.youtube.com/@NEXYhub-l1b"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "小助川 晴大",
+    "alternateName": "Haruta Kosukegawa",
+    "jobTitle": "代表"
+  }
+}
+</script>
+
+<!-- JSON-LD (WebSite - サイト内検索対応) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "学生団体NEXY 公式サイト",
+  "alternateName": "NEXY",
+  "url": "https://www.nexyhub.jp/",
+  "inLanguage": "ja",
+  "publisher": {
+    "@type": "Organization",
+    "name": "学生団体NEXY",
+    "url": "https://www.nexyhub.jp/"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&family=Manrope:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@400;600;900&family=Big+Shoulders+Display:wght@500;700;800&display=swap">
@@ -5237,6 +5317,15 @@
   .about-cta-btn-primary { background: var(--navy); color: #fff; }
   .about-cta-btn-outline { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
 
+  /* Skip-to-content for a11y */
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--navy); color: #fff;
+    padding: 12px 24px; z-index: 10000;
+    font-family: var(--f-jp-disp); font-weight: 700; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; top: 12px; }
+
   /* ================================================================
      MOBILE OPTIMIZATIONS (スマートフォン全ページ統一)
      - 520px以下: 標準スマホ
@@ -5512,6 +5601,10 @@
     .gform-iframe { width: 100% !important; }
   }
 </style>
+</head>
+<body>
+
+<a class="skip-link" href="#top">メインコンテンツへスキップ</a>
 
 <!-- ========== HEADER ========== -->
 <header class="site-header">
@@ -5542,11 +5635,11 @@
   <div class="hero-video-wrap">
     <div class="hero-video">
       <div class="hero-photos" id="heroPhotos">
-        <img src="img/site/hero_photo_1.jpg" alt="" class="hero-photo active" loading="eager">
-        <img src="img/site/hero_photo_2.jpg" alt="" class="hero-photo" loading="eager">
-        <img src="img/site/hero_photo_3.jpg" alt="" class="hero-photo" loading="lazy">
-        <img src="img/site/hero_photo_5.jpg" alt="" class="hero-photo" loading="lazy">
-        <img src="img/site/hero_photo_6.jpg" alt="" class="hero-photo" loading="lazy">
+        <img src="img/site/hero_photo_1.jpg" alt="NEXY コミュニティ 集合写真" class="hero-photo active" loading="eager">
+        <img src="img/site/hero_photo_2.jpg" alt="NEXY 深夜の語り場 対話シーン" class="hero-photo" loading="eager">
+        <img src="img/site/hero_photo_3.jpg" alt="NEXY イベント会場の様子" class="hero-photo" loading="lazy">
+        <img src="img/site/hero_photo_5.jpg" alt="NEXY メンバーの活動風景" class="hero-photo" loading="lazy">
+        <img src="img/site/hero_photo_6.jpg" alt="NEXY イベント参加者の集合" class="hero-photo" loading="lazy">
       </div>
     </div>
   </div>
@@ -7844,3 +7937,6 @@
     });
   })();
 </script>
+
+</body>
+</html>
