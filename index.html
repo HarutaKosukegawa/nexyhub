@@ -1574,16 +1574,24 @@
   .number-card:nth-child(3) .number-icon { color: var(--accent-3); }
   .number-card:nth-child(4) .number-icon { color: var(--accent-4); }
   .number-value {
-    font-family: var(--f-latin); font-weight: 800; font-size: 68px; line-height: 1;
+    font-family: var(--f-latin); font-weight: 800;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1;
     color: var(--accent); letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: baseline;
   }
   .number-card:nth-child(2) .number-value { color: var(--accent-2); }
   .number-card:nth-child(3) .number-value { color: var(--accent-3); }
   .number-card:nth-child(4) .number-value { color: var(--accent-4); }
   .number-unit {
-    font-family: var(--f-jp-disp); font-size: 22px; font-weight: 700;
+    font-family: var(--f-jp-disp);
+    font-size: 0.36em;
+    font-weight: 700;
     color: var(--text); margin-left: 6px;
+    white-space: nowrap;
   }
   .number-label {
     margin-top: 16px;
@@ -3956,8 +3964,8 @@
     .numbers-section { padding: 64px 0; }
     .numbers-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
     .number-card { padding: 24px 20px; }
-    .number-value { font-size: 44px; }
-    .number-unit { font-size: 16px; }
+    .number-value { font-size: 40px; white-space: nowrap; }
+    .number-unit { font-size: 0.4em; }
     .partners-section { padding: 48px 0 64px; }
     .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .partner-logo { padding: 16px 8px; min-height: 60px; font-size: 11px; }
@@ -5474,8 +5482,8 @@
     }
     .number-card { padding: 24px 16px; }
     .number-icon { font-size: 12px; letter-spacing: 0.18em; }
-    .number-value { font-size: 36px; }
-    .number-unit { font-size: 15px; }
+    .number-value { font-size: 32px; white-space: nowrap; }
+    .number-unit { font-size: 0.4em; }
     .number-label { font-size: 11.5px; margin-top: 6px; }
     .numbers-title { font-size: 24px; }
     .numbers-sub { font-size: 13px; }
