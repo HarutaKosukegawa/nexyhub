@@ -785,6 +785,24 @@
   }
   .nav-cta:hover { background: var(--accent-hover) !important; }
   .nav-cta::before { display: none !important; }
+  .nav-recruit {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent) !important;
+    font-weight: 700 !important;
+  }
+  .nav-recruit:hover { color: var(--accent-hover) !important; }
+  .nav-recruit-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(234,92,31,0.18);
+    animation: nav-recruit-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes nav-recruit-pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(234,92,31,0.18); }
+    50% { box-shadow: 0 0 0 6px rgba(234,92,31,0.05); }
+  }
   .menu-toggle { display: none; }
 
   /* -------- Layout Base -------- */
@@ -6204,6 +6222,7 @@
       <a href="#business" data-nav="business">活動</a>
       <a href="#members" data-nav="members">メンバー</a>
       <a href="#news" data-nav="news">活動実績</a>
+      <a href="#recruit" data-nav="recruit" class="nav-recruit"><span class="nav-recruit-dot" aria-hidden="true"></span>メンバー募集</a>
       <a href="#contact" data-nav="contact" class="nav-cta">お問い合わせ</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
