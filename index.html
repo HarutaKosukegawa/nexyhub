@@ -5366,6 +5366,37 @@
     outline-offset: 6px;
     border-radius: 8px;
   }
+  /* 代表カード (別ページリンク) */
+  .exec-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .25s ease;
+  }
+  .exec-card-link:hover {
+    transform: translateY(-3px);
+  }
+  .exec-card-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+  .exec-card-detail-link {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-jp-disp);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    transition: gap .2s ease;
+  }
+  .exec-card-link:hover .exec-card-detail-link {
+    gap: 10px;
+    color: var(--accent-hover);
+  }
   .exec-card-photo {
     aspect-ratio: 4/3;
     border-radius: 6px;
@@ -7003,8 +7034,8 @@
       <p class="lead" style="max-width: 640px; margin: 0 auto 8px; font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em;">
         NEXY Summit 期間中は、7チーム 52名の運営体制で企画・実施しております。
       </p>
-      <p class="lead" style="max-width: 520px; margin: 0 auto; font-size: 12.5px; color: var(--text-muted); letter-spacing: 0.06em;">
-        ※ カードをクリックすると詳細プロフィールが展開されます
+      <p class="lead" style="max-width: 560px; margin: 0 auto; font-size: 12.5px; color: var(--text-muted); letter-spacing: 0.06em;">
+        ※ 代表のカードをクリックすると専用ページへ、他のカードは詳細プロフィールが展開されます
       </p>
     </div>
   </section>
@@ -7012,14 +7043,13 @@
   <!-- ============ 2. Executive Cards (click to expand) ============ -->
   <section class="exec-grid-section" style="padding-top: 0;">
     <div class="exec-grid">
-      <div class="exec-card" id="exec-haruta">
-        <button type="button" class="exec-card-summary" aria-expanded="false" aria-controls="exec-haruta-detail" onclick="toggleExec('exec-haruta')">
+      <a class="exec-card exec-card-link" id="exec-haruta" href="haruta.html" aria-label="代表 小助川晴大の詳細プロフィールページへ">
+        <div class="exec-card-summary">
           <div class="exec-card-photo">
             <img src="img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy">
           </div>
           <div class="exec-card-role">代表 · Representative</div>
           <div class="exec-card-name">
-            <span class="exec-card-name-toggle" aria-hidden="true"></span>
             <span class="exec-card-name-inner">
               小助川 晴大
               <span class="exec-card-name-kana">こすけがわ はるた</span>
@@ -7028,59 +7058,9 @@
           <p class="exec-card-mini-bio">
             孫正義育英財団3期生・N高起業部ビジコン2026 応募1,600名中優勝。ネルフィン・ジンベエザメ 両社COO。
           </p>
-        </button>
-
-        <div class="exec-card-detail" id="exec-haruta-detail" role="region" aria-label="小助川 晴大 詳細プロフィール">
-          <div class="exec-card-detail-inner">
-
-            <div class="exec-detail-section">
-              <div class="exec-detail-section-title">Titles</div>
-              <ul class="exec-detail-titles">
-                <li class="primary">学生団体NEXY 代表</li>
-                <li>ネルフィン株式会社 COO</li>
-                <li>ジンベエザメ株式会社 COO</li>
-                <li class="accent">孫正義育英財団 3期生</li>
-                <li>Tokyo Startup Gateway 3期生</li>
-                <li>N高等学校 BLP 正規生</li>
-              </ul>
-            </div>
-
-            <div class="exec-detail-section">
-              <div class="exec-detail-section-title">Bio</div>
-              <p class="exec-detail-bio">
-                2008年、神奈川県横浜市生まれ。現在は富山県富山市在住。9歳でロボット競技WROに出場し、史上最年少で世界7位を獲得。孫正義育英財団3期生として選抜され、小学校卒業後にシンガポールへ単身留学。中学2年でジンベエザメ株式会社を設立し、N高起業部ビジネスコンテスト2026では応募1,600名の頂点となる優勝を果たしました。学生の「やりたい」を、ひとりにしない —— このコンセプトのもとでNEXYを代表として運営しております。
-              </p>
-            </div>
-
-            <div class="exec-detail-section">
-              <div class="exec-detail-section-title">Career Highlights</div>
-              <ul class="exec-detail-list">
-                <li><strong>2017</strong><span><span class="yr-title">WRO世界大会 世界7位(史上最年少)</span>「地球温暖化を解決するロボット」開発・英語プレゼン／算数オリンピック キッズBEE 銅メダル</span></li>
-                <li><strong>2019</strong><span><span class="yr-title">孫正義育英財団 3期生 選抜 / Startup Jr. 初代大賞</span>ソーシャルイノベーション部門 初代大賞受賞</span></li>
-                <li><strong>2020</strong><span><span class="yr-title">HACHIKO PITCH 小学生初登壇 / TBS出演</span>渋谷QWS登壇／TBS「ニュースキャスター」「Nスタ」出演／JCI World Congress 横浜で孫正義氏の後にプレゼン</span></li>
-                <li><strong>2021</strong><span><span class="yr-title">クラファン34万円寄付 / シンガポール単身留学</span>貧困世帯の子ども支援へ全額寄付／小学校卒業後シンガポールへ単身留学</span></li>
-                <li><strong>2023</strong><span><span class="yr-title">ジンベエザメ株式会社 設立</span>中学生起業家として Learning Base 登壇／SOZOW FES ピッチ／同社COO就任</span></li>
-                <li><strong>2024</strong><span><span class="yr-title">リクルート地方創生インターン / ひきだしkids リリース</span>愛知県設楽町インターン参加／教育サービスリリース</span></li>
-                <li><strong>2025</strong><span><span class="yr-title">LITALICO特別ゲスト / Steez掲載 / メンター活動</span>ICC福岡・京都スタッフ／ワンダーメイクフェス登壇／Steez10代名鑑掲載／不登校児メンター(延べ50名以上)</span></li>
-                <li><strong>2026</strong><span><span class="yr-title">NEXY設立 / N高起業部 1,600人中優勝 / ネルフィン設立 / 富山移住</span>学生団体NEXY設立・代表就任／深夜の語り場 第1回開催／N高ビジコン優勝／リクルート地方創生 最優秀賞(宮古島採択)／ネルフィン設立・COO就任／Tokyo Startup Gateway 3期生選出／神奈川→富山へ単身移住</span></li>
-              </ul>
-            </div>
-
-            <div class="exec-detail-section">
-              <div class="exec-detail-section-title">Basic Info</div>
-              <ul class="exec-detail-list">
-                <li><strong>生年月日</strong>2008年12月9日</li>
-                <li><strong>出身</strong>神奈川県横浜市</li>
-                <li><strong>現在地</strong>富山県富山市</li>
-                <li><strong>学校</strong>N高等学校 (BLP 正規生)</li>
-              </ul>
-            </div>
-
-            <button type="button" class="exec-detail-close" onclick="toggleExec('exec-haruta')">閉じる</button>
-
-          </div>
+          <div class="exec-card-detail-link">詳細プロフィールを見る →</div>
         </div>
-      </div>
+      </a>
 
       <!-- ============ CTO 片岡嗣葉 ============ -->
       <div class="exec-card" id="exec-kataoka">
