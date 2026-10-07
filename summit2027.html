@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<title>NEXY Summit 2027（ネクシーサミット）｜高校生のための挑戦交差点</title>
+<meta name="description" content="NEXY Summit 2027（ネクシーサミット）｜学生団体NEXY主催の高校生・大学生向け年次サミット。詳細は準備中。">
+<link rel="canonical" href="https://www.nexyhub.jp/summit2027.html">
+<link rel="icon" href="/img/site/nexy_logo_wordmark.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nexyhub.jp/summit2027.html">
+<meta property="og:title" content="NEXY Summit 2027｜ネクシーサミット (準備中)">
+<meta property="og:description" content="学生団体NEXY主催の年次サミット、NEXY Summit 2027。詳細は準備中。">
+<meta property="og:site_name" content="NEXY">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nexy_hub">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --orange: #F28B3D;
+  --orange-deep: #ff5e2c;
+  --mint: #74D4C3;
+  --mint-deep: #2EBDB6;
+  --bg: #FFFFFF;
+  --paper: #FAFAF7;
+  --text: #000000;
+  --text2: #333333;
+  --text3: #777777;
+  --line: rgba(0,0,0,0.08);
+  --line-strong: rgba(0,0,0,0.16);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg); color: var(--text);
+  overflow-x: hidden; line-height: 1.85; font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 250;
+  height: 64px; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; padding: 0 28px; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-img { height: 32px; width: auto; }
+.nav-logo-sub {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .72rem; letter-spacing: .14em;
+  color: var(--orange);
+  border-left: 1px solid var(--line-strong);
+  padding-left: 10px;
+}
+@media (max-width: 700px) {
+  .nav-logo-img { height: 26px; }
+  .nav-logo-sub { font-size: .62rem; padding-left: 8px; }
+}
+.nav-links { display: flex; gap: 18px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text2); font-size: .76rem; font-weight: 800;
+  transition: color .15s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--orange); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%) !important;
+  color: #fff !important;
+  padding: 10px 20px !important;
+  font-size: .78rem !important;
+  font-weight: 900 !important;
+  border-radius: 999px;
+  letter-spacing: .04em;
+  transition: transform .15s;
+}
+.nav-cta:hover { transform: translateY(-1px); color: #fff !important; }
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-links.mobile-cta { display: flex; }
+  .nav-links.mobile-cta a:not(.nav-cta) { display: none; }
+}
+
+main { padding-top: 64px; }
+
+/* ===== Shared ===== */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+.wrap-tight { max-width: 820px; margin: 0 auto; padding: 0 28px; }
+.section { padding: 100px 0; position: relative; }
+.section-alt { background: var(--paper); }
+.section-dark { background: #0A0F22; color: #fff; }
+.section-dark .eyebrow { color: var(--orange); }
+.section-dark .section-title { color: #fff; }
+.section-dark .section-lead { color: rgba(255,255,255,0.75); }
+
+.eyebrow {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .72rem; letter-spacing: .32em;
+  color: var(--orange); text-transform: uppercase;
+  display: inline-block; margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.4;
+  letter-spacing: .02em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.section-lead {
+  font-size: 1rem; line-height: 2.0;
+  color: var(--text2); letter-spacing: .02em;
+  max-width: 680px;
+}
+.section-head { margin-bottom: 56px; }
+.section-head.center { text-align: center; }
+.section-head.center .section-lead { margin: 0 auto; }
+
+.coming-soon-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Inter', sans-serif; font-weight: 800;
+  font-size: .68rem; letter-spacing: .18em;
+  color: var(--mint-deep);
+  background: rgba(116,212,195,0.14);
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(46,189,182,0.3);
+}
+.coming-soon-tag::before {
+  content: ""; display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mint-deep);
+  animation: pulse-mint 2.2s ease-in-out infinite;
+}
+@keyframes pulse-mint {
+  0%,100% { box-shadow: 0 0 0 0 rgba(46,189,182,0.5); }
+  50%     { box-shadow: 0 0 0 6px rgba(46,189,182,0); }
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding: 140px 0 100px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #FFF 0%, #FFF8F0 70%, #FFFFFF 100%);
+}
+.hero::before {
+  content: ""; position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,139,61,0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute;
+  bottom: -300px; left: -200px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(116,212,195,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 2; text-align: center; }
+.hero-year {
+  display: inline-block;
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .82rem; letter-spacing: .3em;
+  color: var(--orange);
+  padding: 8px 20px;
+  border: 1.5px solid var(--orange);
+  border-radius: 999px;
+  margin-bottom: 32px;
+}
+.hero-title {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.hero-title .accent {
+  background: linear-gradient(90deg, var(--orange) 0%, var(--orange-deep) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.hero-sub {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  line-height: 1.6; letter-spacing: .04em;
+  color: var(--text2); margin-bottom: 36px;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 12px 28px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.hero-meta-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.hero-meta-label {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .64rem; letter-spacing: .26em; color: var(--text3);
+  text-transform: uppercase;
+}
+.hero-meta-value {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: .95rem; color: var(--text);
+}
+.hero-meta-value.tbd { color: var(--text3); font-weight: 700; font-style: normal; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: #fff; padding: 18px 44px;
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: 1rem; letter-spacing: .08em;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(242,139,61,0.35);
+  transition: transform .15s;
+}
+.hero-cta:hover { transform: translateY(-2px); color: #fff; }
+.hero-cta.disabled {
+  background: #DDD; color: #999;
+  box-shadow: none; cursor: not-allowed; pointer-events: none;
+}
+.hero-note {
+  margin-top: 16px;
+  font-size: .78rem; color: var(--text3);
+  letter-spacing: .06em;
+}
+
+/* ===== About ===== */
+.about-copy {
+  font-size: 1.05rem; line-height: 2.1;
+  color: var(--text2); letter-spacing: .03em;
+  max-width: 720px; margin: 0 auto;
+}
+.about-copy p + p { margin-top: 1.4em; }
+.about-copy strong { color: var(--text); font-weight: 900; }
+
+/* ===== Contents (program categories) ===== */
+.contents-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.content-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px 24px;
+  transition: all .2s;
+  position: relative;
+}
+.content-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  border-color: var(--orange);
+}
+.content-card-num {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .72rem; letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.content-card-title {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: 1.2rem; line-height: 1.5;
+  color: var(--text); margin-bottom: 10px;
+}
+.content-card-en {
+  font-family: 'Inter', sans-serif; font-weight: 700;
+  font-size: .72rem; letter-spacing: .18em;
+  color: var(--text3); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.content-card-desc {
+  font-size: .9rem; line-height: 1.9;
+  color: var(--text2);
+}
+
+/* ===== Timetable ===== */
+.timetable-placeholder {
+  background: #fff; border: 1px dashed var(--line-strong);
+  border-radius: 8px; padding: 60px 32px;
+  text-align: center;
+}
+.timetable-placeholder-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(242,139,61,0.1);
+  display: inline-grid; place-items: center;
+  margin-bottom: 20px;
+}
+.timetable-placeholder-icon svg { width: 28px; height: 28px; stroke: var(--orange); }
+.timetable-placeholder-text {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: 1.1rem; color: var(--text); margin-bottom: 8px;
+}
+.timetable-placeholder-sub {
+  font-size: .88rem; color: var(--text3);
+}
+
+/* ===== Speakers / Guests ===== */
+.guests-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.guest-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 24px 16px;
+  transition: all .2s;
+}
+.guest-card:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+.guest-photo {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: linear-gradient(135deg, #FFF2E0 0%, #FEE4C8 100%);
+  margin: 0 auto 16px;
+  display: grid; place-items: center;
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: 1.6rem; color: var(--orange);
+}
+.guest-name {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: .95rem; color: var(--text);
+  margin-bottom: 6px;
+}
+.guest-title-small {
+  font-size: .72rem; color: var(--text3); line-height: 1.6;
+}
+
+/* ===== Workshops ===== */
+.workshop-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.workshop-card {
+  background: linear-gradient(135deg, #FFF 0%, var(--paper) 100%);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.workshop-card::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--orange-deep) 100%);
+}
+.workshop-card.mint::before {
+  background: linear-gradient(90deg, var(--mint) 0%, var(--mint-deep) 100%);
+}
+.workshop-tag {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .66rem; letter-spacing: .22em;
+  color: var(--orange); text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.workshop-card.mint .workshop-tag { color: var(--mint-deep); }
+.workshop-title {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: 1.25rem; line-height: 1.5;
+  color: var(--text); margin-bottom: 14px;
+}
+.workshop-desc {
+  font-size: .88rem; line-height: 1.95;
+  color: var(--text2);
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 760px; margin: 0 auto;
+}
+details.faq {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin-bottom: 12px;
+  transition: border-color .2s;
+}
+details.faq[open] { border-color: var(--orange); }
+details.faq summary {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: .98rem; line-height: 1.6;
+  color: var(--text);
+  cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+details.faq summary::after {
+  content: "+"; font-family: 'Inter', sans-serif; font-weight: 900;
+  color: var(--orange); font-size: 1.4rem; flex-shrink: 0;
+  transition: transform .2s;
+}
+details.faq[open] summary::after { content: "−"; }
+details.faq p {
+  margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: .9rem; line-height: 2.0; color: var(--text2);
+}
+
+/* ===== Outline (overview table) ===== */
+.outline-table {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden;
+  max-width: 760px; margin: 0 auto;
+}
+.outline-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.outline-row:last-child { border-bottom: none; }
+.outline-row-label {
+  padding: 20px 24px;
+  background: var(--paper);
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: .85rem;
+  color: var(--text);
+}
+.outline-row-value {
+  padding: 20px 24px;
+  font-size: .9rem; line-height: 1.9;
+  color: var(--text2);
+}
+.outline-row-value.tbd { color: var(--text3); font-weight: 500; }
+@media (max-width: 640px) {
+  .outline-row { grid-template-columns: 1fr; }
+  .outline-row-label { padding: 14px 20px; font-size: .78rem; }
+  .outline-row-value { padding: 14px 20px 20px; }
+}
+
+/* ===== Entry CTA ===== */
+.entry {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 90px 0;
+  position: relative; overflow: hidden;
+}
+.entry::before {
+  content: ""; position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+.entry::after {
+  content: ""; position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(116,212,195,0.2) 0%, transparent 70%);
+}
+.entry-inner { position: relative; z-index: 2; }
+.entry-eyebrow {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: .76rem; letter-spacing: .32em;
+  color: rgba(255,255,255,0.9); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.entry-title {
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.4; margin-bottom: 20px;
+}
+.entry-desc {
+  font-size: 1rem; line-height: 2.0;
+  color: rgba(255,255,255,0.9); margin-bottom: 36px;
+  max-width: 560px; margin-left: auto; margin-right: auto;
+}
+.entry-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #fff; color: var(--orange);
+  padding: 18px 44px;
+  font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+  font-size: 1rem; letter-spacing: .08em;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform .15s;
+}
+.entry-btn:hover { transform: translateY(-2px); color: var(--orange); }
+.entry-btn.disabled {
+  background: rgba(255,255,255,0.5); color: rgba(255,255,255,0.7);
+  box-shadow: none; cursor: not-allowed; pointer-events: none;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: #0A0F22; color: rgba(255,255,255,0.65);
+  padding: 56px 0 32px; text-align: center;
+}
+.footer-brand {
+  font-family: 'Inter', sans-serif; font-weight: 900;
+  font-size: 1.1rem; letter-spacing: .08em;
+  color: #fff; margin-bottom: 10px;
+}
+.footer-tagline {
+  font-size: .82rem; margin-bottom: 24px; letter-spacing: .06em;
+}
+.footer-links {
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+  font-size: .76rem; letter-spacing: .1em;
+  margin-bottom: 24px;
+}
+.footer-links a { color: rgba(255,255,255,0.75); }
+.footer-links a:hover { color: var(--orange); }
+.footer-copy {
+  font-size: .72rem; color: rgba(255,255,255,0.4); letter-spacing: .1em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .section { padding: 72px 0; }
+  .section-head { margin-bottom: 40px; }
+  .hero { padding: 100px 0 72px; }
+  .hero-meta { gap: 20px; }
+  .wrap, .wrap-tight { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-logo">
+    <a href="/"><img src="img/site/nexy_logo_wordmark.png" alt="NEXY" class="nav-logo-img"></a>
+    <span class="nav-logo-sub">SUMMIT 2027</span>
+  </div>
+  <ul class="nav-links mobile-cta">
+    <li><a href="#about">About</a></li>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#guests">Guests</a></li>
+    <li><a href="#timetable">Timetable</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#entry" class="nav-cta">Entry →</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-year">NEXY SUMMIT · 2027</div>
+      <h1 class="hero-title">
+        <span class="accent">やりたい</span>が、<br>
+        次を創る。
+      </h1>
+      <p class="hero-sub">
+        中学生・高校生・大学生のための挑戦交差点、ふたたび。
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Date</div>
+          <div class="hero-meta-value tbd">2027年 開催予定</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Venue</div>
+          <div class="hero-meta-value tbd">準備中</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">For</div>
+          <div class="hero-meta-value">中高生・大学生</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-label">Fee</div>
+          <div class="hero-meta-value tbd">準備中</div>
+        </div>
+      </div>
+      <a href="#entry" class="hero-cta">エントリー情報を見る →</a>
+      <p class="hero-note">
+        <span class="coming-soon-tag" style="margin-top: 20px;">COMING SOON · 詳細公開準備中</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="wrap-tight">
+      <div class="section-head center">
+        <div class="eyebrow">About · コンセプト</div>
+        <h2 class="section-title">
+          「やりたい」を、<br>
+          ひとりにしない。
+        </h2>
+      </div>
+      <div class="about-copy">
+        <p>
+          <strong>NEXY Summit</strong> は、挑戦する中学生・高校生・大学生のための年次サミットです。
+          2026年、1,000名を超える参加者が集まった第1回を経て、2027年は <strong>さらに広く・深く</strong> 挑戦の交差点を広げます。
+        </p>
+        <p>
+          経営者・起業家・研究者・アーティスト、そして全国から集まる同世代の学生。
+          "やりたい" を持ち寄り、"考え途中" のまま本気で語り合う1日。
+          <strong>ここで出会ったひとが、次の挑戦の起点になる。</strong>
+        </p>
+        <p style="text-align: center; margin-top: 32px;">
+          <span class="coming-soon-tag">詳細コンセプト・ストーリーは準備中</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENTS ===== -->
+  <section class="section section-alt" id="contents">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Contents · プログラム</div>
+        <h2 class="section-title">5つのプログラム</h2>
+        <p class="section-lead">
+          "聞く・語る・つくる・ピッチする・つながる"。<br>
+          参加者の挑戦フェーズに合わせた5つの入口を用意します。
+        </p>
+      </div>
+      <div class="contents-grid">
+        <div class="content-card">
+          <div class="content-card-num">01</div>
+          <div class="content-card-en">Talk Sessions</div>
+          <div class="content-card-title">登壇セッション</div>
+          <p class="content-card-desc">経営者・起業家・研究者による登壇。学生の問いに正面から向き合うセッションを複数ステージで実施予定。</p>
+        </div>
+        <div class="content-card">
+          <div class="content-card-num">02</div>
+          <div class="content-card-en">Workshops</div>
+          <div class="content-card-title">ワークショップ</div>
+          <p class="content-card-desc">少人数制の実践型ワークショップ。アイデア設計・プロトタイピング・対話など、持ち帰れる学びを設計。</p>
+        </div>
+        <div class="content-card">
+          <div class="content-card-num">03</div>
+          <div class="content-card-en">Pitch Contest</div>
+          <div class="content-card-title">プレゼン大会</div>
+          <p class="content-card-desc">全国の高校生が、自分の "やりたい" を本気でピッチ。メンターの講評・最終審査を経て、次の一歩に繋がる舞台。</p>
+        </div>
+        <div class="content-card">
+          <div class="content-card-num">04</div>
+          <div class="content-card-en">Booths</div>
+          <div class="content-card-title">企業・団体ブース</div>
+          <p class="content-card-desc">起業・留学・学び・キャリアの相談ブース。協賛企業・連携団体と直接話せる場を一日通して開放予定。</p>
+        </div>
+        <div class="content-card">
+          <div class="content-card-num">05</div>
+          <div class="content-card-en">Networking</div>
+          <div class="content-card-title">交流エリア</div>
+          <p class="content-card-desc">参加者同士が自由に語り合えるオープンスペース。"考え途中" の相談から、新しい共創プロジェクトまで。</p>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 32px;">
+        <span class="coming-soon-tag">各プログラムの詳細は順次公開</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== GUESTS ===== -->
+  <section class="section" id="guests">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Guests · ゲスト</div>
+        <h2 class="section-title">登壇ゲスト</h2>
+        <p class="section-lead">
+          経営者・起業家・研究者・アーティスト・教育者。<br>
+          学生の挑戦を本気で受け止めるゲストが集結します。
+        </p>
+      </div>
+      <div class="guests-grid">
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 01</div></div>
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 02</div></div>
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 03</div></div>
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 04</div></div>
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 05</div></div>
+        <div class="guest-card"><div class="guest-photo">?</div><div class="guest-name">準備中</div><div class="guest-title-small">Guest 06</div></div>
+      </div>
+      <p style="text-align: center; margin-top: 32px;">
+        <span class="coming-soon-tag">ゲスト情報は順次発表</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== WORKSHOPS ===== -->
+  <section class="section section-alt" id="workshops">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Workshops · ワークショップ</div>
+        <h2 class="section-title">体験型プログラム</h2>
+      </div>
+      <div class="workshop-grid">
+        <div class="workshop-card">
+          <div class="workshop-tag">Workshop 01</div>
+          <h3 class="workshop-title">アイデア設計ワーク</h3>
+          <p class="workshop-desc">自分の"やりたい"を言語化し、具体的なプロジェクト案に落とし込むワーク。企画未経験でも参加可能。</p>
+        </div>
+        <div class="workshop-card mint">
+          <div class="workshop-tag">Workshop 02</div>
+          <h3 class="workshop-title">対話セッション</h3>
+          <p class="workshop-desc">少人数で "考え途中" の話をする対話ワーク。深夜の語り場スタイルの体験版。</p>
+        </div>
+        <div class="workshop-card">
+          <div class="workshop-tag">Workshop 03</div>
+          <h3 class="workshop-title">プロトタイピング</h3>
+          <p class="workshop-desc">1日で小さなプロトタイプまで作る実践型ワーク。手を動かしてアイデアの輪郭を掴む。</p>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 32px;">
+        <span class="coming-soon-tag">ワークショップ詳細・申込方法は準備中</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TIMETABLE ===== -->
+  <section class="section" id="timetable">
+    <div class="wrap-tight">
+      <div class="section-head center">
+        <div class="eyebrow">Timetable · タイムテーブル</div>
+        <h2 class="section-title">当日スケジュール</h2>
+      </div>
+      <div class="timetable-placeholder">
+        <div class="timetable-placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <div class="timetable-placeholder-text">タイムテーブル準備中</div>
+        <p class="timetable-placeholder-sub">10:00〜18:00前後での開催を想定しています。詳細公開までお待ちください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOTHS ===== -->
+  <section class="section section-alt" id="booths">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Booths · ブース</div>
+        <h2 class="section-title">企業・団体ブース</h2>
+        <p class="section-lead">
+          起業・留学・学び・キャリア・テクノロジーなど、学生が直接相談できる協賛企業・連携団体のブースを展開します。
+        </p>
+      </div>
+      <div style="text-align: center;">
+        <span class="coming-soon-tag">出展企業・団体一覧は順次公開</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="wrap-tight">
+      <div class="section-head center">
+        <div class="eyebrow">FAQ · よくある質問</div>
+        <h2 class="section-title">よくある質問</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq">
+          <summary>Q. 誰が参加できますか？</summary>
+          <p>中学生・高校生・大学生、および学びに関心のある社会人の方が対象です。学年・学校の種類（全日制・通信制・高専・N高など）は問いません。</p>
+        </details>
+        <details class="faq">
+          <summary>Q. 参加費はいくらですか？</summary>
+          <p>参加費は現在調整中です。NEXY Summit 2026では中学生・高校生・大学生は無料、社会人は¥1,000でした。2027の料金設定は決定次第お知らせします。</p>
+        </details>
+        <details class="faq">
+          <summary>Q. 開催日はいつですか？</summary>
+          <p>2027年の開催日程は現在調整中です。確定次第、本サイトおよび公式SNS（X: @nexy_hub / Instagram: @nexy.hub）でお知らせします。</p>
+        </details>
+        <details class="faq">
+          <summary>Q. 会場はどこですか？</summary>
+          <p>会場は現在検討中です。1,000名規模以上の参加者を想定した会場で開催する予定です。</p>
+        </details>
+        <details class="faq">
+          <summary>Q. 遠方からでも参加できますか？</summary>
+          <p>全国からの参加を歓迎します。遠方参加者向けの補助制度（宿泊・交通費等）については、詳細決定後にご案内する予定です。</p>
+        </details>
+        <details class="faq">
+          <summary>Q. 協賛・ブース出展を検討しています。</summary>
+          <p>協賛・ブース出展のご相談は、学生団体NEXY窓口（info@nexyhub.jp）までお気軽にご連絡ください。協賛プラン資料をお送りします。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OUTLINE ===== -->
+  <section class="section section-alt" id="outline">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Outline · 開催概要</div>
+        <h2 class="section-title">イベント概要</h2>
+      </div>
+      <div class="outline-table">
+        <div class="outline-row">
+          <div class="outline-row-label">名称</div>
+          <div class="outline-row-value">NEXY Summit 2027（ネクシーサミット 2027）</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">主催</div>
+          <div class="outline-row-value">学生団体NEXY</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">開催日</div>
+          <div class="outline-row-value tbd">2027年 ／ 準備中</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">時間</div>
+          <div class="outline-row-value tbd">準備中（10:00〜18:00頃を想定）</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">会場</div>
+          <div class="outline-row-value tbd">準備中</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">対象</div>
+          <div class="outline-row-value">中学生・高校生・大学生・学びに関心のある社会人</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">定員</div>
+          <div class="outline-row-value tbd">準備中</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">参加費</div>
+          <div class="outline-row-value tbd">準備中</div>
+        </div>
+        <div class="outline-row">
+          <div class="outline-row-label">お問い合わせ</div>
+          <div class="outline-row-value">info@nexyhub.jp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ENTRY ===== -->
+  <section class="entry" id="entry">
+    <div class="wrap entry-inner">
+      <div class="entry-eyebrow">Entry</div>
+      <h2 class="entry-title">
+        エントリー開始、<br>
+        お待ちください。
+      </h2>
+      <p class="entry-desc">
+        NEXY Summit 2027 のエントリー開始は、本サイトおよび公式SNSでお知らせします。<br>
+        最新情報を受け取りたい方は、ぜひ公式SNSのフォローをお願いいたします。
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+        <a href="https://x.com/nexy_hub" target="_blank" rel="noopener" class="entry-btn">X をフォロー →</a>
+        <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" class="entry-btn">Instagram をフォロー →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand">NEXY SUMMIT 2027</div>
+    <div class="footer-tagline">「やりたい」を、ひとりにしない。</div>
+    <div class="footer-links">
+      <a href="/">学生団体NEXYトップ</a>
+      <a href="/#about">団体概要</a>
+      <a href="/#recruit">メンバー募集</a>
+      <a href="/#contact">お問い合わせ</a>
+      <a href="/summit.html">Summit 2026 (前回)</a>
+    </div>
+    <div class="footer-copy">&copy; 2027 学生団体NEXY · NEXY Summit 2027</div>
+  </div>
+</footer>
+
+</body>
+</html>
