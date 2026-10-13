@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 
 <title>NEXY SUMMIT 2027｜「やりたい」を、ひとりにしない。</title>
-<meta name="description" content="学生団体NEXYが主催する、中学生・高校生・大学生のためのサミット。対話と協働を通じて、一人ひとりの「やりたい」を形にする1日です。NEXY SUMMIT 2027、参加無料。">
+<meta name="description" content="中学生・高校生・大学生のためのサミット。やりたいことがある人も、まだ見つかっていない人も、同世代と話して仲間と出会う1日。NEXY SUMMIT 2027、参加無料。">
 <link rel="canonical" href="https://www.nexyhub.jp/summit2027.html">
 <link rel="icon" href="/img/site/nexy_logo_wordmark.png" type="image/png">
 
@@ -180,6 +180,21 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .photo-grid figure:nth-child(2) figcaption { background: var(--orange-deep); }
 .photo-grid figure:nth-child(3) figcaption { background: var(--pink-deep); }
 .photo-grid figure:nth-child(4) figcaption { background: #7A5E00; }
+
+
+.kpi-row { grid-template-columns: repeat(3, 1fr) !important; margin-top: 14px; }
+@media (max-width: 560px) { .kpi-row { grid-template-columns: 1fr 1fr 1fr !important; gap: 6px; } .kpi { padding: 12px 10px; } .kpi .v { font-size: 24px; } .kpi .k { font-size: 12px; } }
+.voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+@media (max-width: 860px) { .voices { grid-template-columns: 1fr; } }
+.voice { margin: 0; background: #fff; border-radius: var(--radius-lg); padding: 18px 20px; position: relative; }
+.voice::before { content: "“"; position: absolute; top: -6px; left: 14px; font-family: Georgia, serif; font-size: 52px; line-height: 1; color: var(--teal); }
+.voice:nth-child(2)::before { color: var(--orange); } .voice:nth-child(3)::before { color: var(--pink); }
+.voice p { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.7; padding-top: 10px; }
+.voice cite { display: block; font-style: normal; font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
+.new-inline { display: inline-block; font-size: 11px; font-weight: 900; color: #fff; background: var(--pink-deep); border-radius: 4px; padding: 0 6px; vertical-align: 1px; }
+.partners-2026 { margin-top: 28px; }
+.sponsor-link { margin-top: 12px; font-size: 13px; color: var(--ink-muted); text-align: right; }
+.sponsor-link a { color: var(--teal-deep); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ===== 参加対象 ===== */
 .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -364,7 +379,7 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .org-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; font-size: 14px; }
 .org-table th, .org-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; }
 .org-table tr:last-child th, .org-table tr:last-child td { border-bottom: 0; }
-.org-table th { width: 8em; color: var(--ink-muted); font-weight: 700; font-size: 13px; background: var(--surface-2); }
+.org-table th { width: 8em; white-space: nowrap; color: var(--ink-muted); font-weight: 700; font-size: 13px; background: var(--surface-2); }
 .org-table a { color: var(--teal-deep); font-weight: 700; }
 .closing { text-align: center; margin-top: 40px; }
 .closing p { font-size: 15px; color: var(--ink-muted); }
@@ -437,40 +452,42 @@ window.SUMMIT = {
   // 2026の実績：出典は「NEXY SUMMIT 2026 開催結果報告書」。確定値のみ
   record2026: {
     kpis: [
-      { v: "357", unit: "名", k: "来場者数", n: "2026年8月6日" },
-      { v: "4.41", unit: "/5", k: "平均満足度", n: "退場時アンケート n=187" },
-      { v: "87.2", unit: "%", k: "満足度4以上", n: "n=187" },
-      { v: "69.8", unit: "%", k: "申込者に占める高校生", n: "事前申込者ベース" },
-      { v: "90", unit: "件", k: "プレゼン大会 応募", n: "うち6組が登壇" },
-      { v: "82", unit: "万回", k: "SNSインプレッション", n: "Instagram・開催前後1か月" }
+      { v: "357", unit: "人", k: "が参加" },
+      { v: "4.41", unit: "/5", k: "満足度の平均", n: "当日アンケート 187人" },
+      { v: "87", unit: "%", k: "が「満足」と回答", n: "5段階で4以上" }
     ],
-    motives: {
-      title: "参加動機（上位5項目・複数回答）", sub: "事前申込者 n=658",
-      take: "「出会い」と「仲間づくり」が、学びよりも上位でした。",
-      rows: [ ["まずは楽しみたい", 50.9, 335], ["挑戦している同世代と出会いたい", 42.4, 279], ["活動を広げたい・仲間を見つけたい", 34.0, 224], ["社会人・起業家と話したい", 30.4, 200], ["やりたいことを見つけたい", 28.4, 187] ]
-    },
+    // 参加者の声：報告書に載っている実際の声のみ（創作しない）
+    voices: [
+      { q: "自分の探求してみたい内容を実際に行動に移す勇気、知識をもらえた", who: "高校生" },
+      { q: "同年代の頑張っている姿を知って、自分も頑張ろうと思えました", who: "高校生" },
+      { q: "ブースを全部回って楽しかったです。高校生でも起業していて凄いと思いました", who: "参加者" }
+    ],
     grades: {
-      title: "参加者の学年構成", sub: "事前申込者 n=658",
-      take: "高校生が約7割。進路を考える高校3年生が最多でした。",
+      title: "どんな人が来た？", sub: "学年（事前申込者）",
+      take: "参加者の約7割が高校生でした。",
       rows: [ ["高校3年", 25.8, 170], ["高校2年", 24.2, 159], ["高校1年", 19.8, 130], ["大学生・大学院生", 12.0, 79], ["中学生以下", 8.2, 54], ["社会人・保護者", 8.0, 53] ]
+    },
+    motives: {
+      title: "みんなの参加理由", sub: "上位5つ・複数回答（事前申込者）",
+      take: "「まずは楽しみたい」が一番多い理由でした。",
+      rows: [ ["まずは楽しみたい", 50.9, 335], ["挑戦している同世代と出会いたい", 42.4, 279], ["活動を広げたい・仲間を見つけたい", 34.0, 224], ["社会人・起業家と話したい", 30.4, 200], ["やりたいことを見つけたい", 28.4, 187] ]
     }
   }
 };
 </script>
 
-<div class="draft-banner" id="draftBanner" hidden>非公開の下書き（フレームワーク）です。「準備中」の項目は情報が確定し次第差し替えます。</div>
+<div class="draft-banner" id="draftBanner" hidden>非公開の下書き（フレームワーク）です。「準備中」の項目は決まり次第差し替えます。</div>
 
 <header class="nav">
   <div class="wrap">
     <a class="nav-logo" href="/" aria-label="NEXY トップへ"><img src="img/site/nexy_logo_wordmark.png" alt="NEXY"><span>SUMMIT 2027</span></a>
     <ul class="nav-links">
-      <li class="nav-item"><a href="#record">開催実績</a></li>
+      <li class="nav-item"><a href="#record">前回の様子</a></li>
       <li class="nav-item"><a href="#program">プログラム</a></li>
       <li class="nav-item"><a href="#day">タイムテーブル</a></li>
       <li class="nav-item"><a href="#speakers">登壇者</a></li>
       <li class="nav-item"><a href="#access">アクセス</a></li>
-      <li class="nav-item"><a href="#partners">協賛</a></li>
-      <li class="nav-item"><a href="#organizer">主催者</a></li>
+      <li class="nav-item"><a href="#faq">よくある質問</a></li>
       <li><a class="btn btn-primary btn-sm js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a></li>
     </ul>
   </div>
@@ -487,7 +504,7 @@ window.SUMMIT = {
       <div class="hero-kicker"><span class="k1">第2回</span><span class="k2">TOKYO</span><span class="k3">参加無料</span></div>
       <div class="hero-logo">NEXY<br><span class="c1">SUMMIT</span> <span class="c2">2027</span></div>
       <h1>「<span class="t">やりたい</span>」を、<span class="o">ひとりにしない。</span></h1>
-      <p class="hero-sub">中高生・大学生が集い、話し、仲間と出会う学生主催のサミットです。</p>
+      <p class="hero-sub">やりたいことがある人も、まだ見つかっていない人も。<br class="pc-only">同世代と話して、仲間と出会う1日です。</p>
       <dl class="facts">
         <div class="fact"><dt>開催日</dt><dd><span data-bind="date.text"></span><span data-tbd="date"></span></dd></div>
         <div class="fact"><dt>会場</dt><dd><span data-bind="venue.text"></span><span data-tbd="venue"></span></dd></div>
@@ -496,32 +513,27 @@ window.SUMMIT = {
       </dl>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a>
-        <a class="btn btn-outline" href="#program">プログラムを見る</a>
+        <a class="btn btn-outline" href="#record">前回の様子を見る</a>
       </div>
       <p class="cta-note js-cta-note"></p>
     </div>
     <figure class="hero-photos">
       <img src="img/site/gallery_summit_stage.jpg" alt="NEXY SUMMIT 2026 メインステージ" width="1400" height="787" fetchpriority="high">
       <img src="img/site/gallery_summit_wall.jpg" alt="参加者がメッセージを貼り出す、やりたいウォール" width="1400" height="787">
-      <img src="img/site/gallery_summit_table.jpg" alt="テーブルを囲んで対話する参加者" width="1400" height="787">
-      <figcaption>写真はすべて NEXY SUMMIT 2026 開催時のものです</figcaption>
+      <img src="img/site/gallery_summit_table.jpg" alt="テーブルを囲んで話す参加者" width="1400" height="787">
+      <figcaption>写真はすべて NEXY SUMMIT 2026 のものです</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- ===== 2. 数字で見る2026 ===== -->
+<!-- ===== 2. 前回の様子 ===== -->
 <section class="section bg-teal" id="record">
   <img class="paint" src="img/summit2027/paint_rm.webp" alt="" aria-hidden="true" style="right:-50px;top:30px;width:140px;opacity:.85">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow">2026 Record</span>
-      <h2 class="h2">数字で見る、第1回 NEXY SUMMIT</h2>
-      <p class="lead">2026年8月6日、東京たま未来メッセにて開催しました。</p>
-    </div>
-    <div class="kpi-row" id="kpiRow"></div>
-    <div class="charts">
-      <figure class="chart-card" id="chartMotives"></figure>
-      <figure class="chart-card" id="chartGrades"></figure>
+      <span class="eyebrow">2026</span>
+      <h2 class="h2">前回のNEXY SUMMITは、こんな1日でした</h2>
+      <p class="lead">2026年8月6日、東京たま未来メッセで開催しました。</p>
     </div>
     <div class="scene">
       <div class="movie" id="movie">
@@ -532,29 +544,35 @@ window.SUMMIT = {
       </div>
       <div class="photo-grid">
         <figure><img src="img/summit2027/r26_pitch.webp" alt="プレゼン大会で発表する学生" loading="lazy" width="960" height="720"><figcaption>プレゼン大会</figcaption></figure>
-        <figure><img src="img/summit2027/r26_session.webp" alt="登壇セッションの会場" loading="lazy" width="960" height="720"><figcaption>登壇セッション</figcaption></figure>
+        <figure><img src="img/summit2027/r26_session.webp" alt="セッションの会場" loading="lazy" width="960" height="720"><figcaption>セッション</figcaption></figure>
         <figure><img src="img/summit2027/r26_audience.webp" alt="ステージを見つめる参加者" loading="lazy" width="960" height="720"><figcaption>メインステージ</figcaption></figure>
         <figure><img src="img/summit2027/r26_talk.webp" alt="対話型セッションの登壇者" loading="lazy" width="960" height="720"><figcaption>対話型セッション</figcaption></figure>
       </div>
     </div>
-    <p class="footnote">出典：NEXY SUMMIT 2026 開催結果報告書（学生団体NEXY）。学年構成は未回答を含むため合計が100%になりません。</p>
+    <div class="kpi-row" id="kpiRow"></div>
+    <div class="voices" id="voices"></div>
+    <div class="charts">
+      <figure class="chart-card" id="chartGrades"></figure>
+      <figure class="chart-card" id="chartMotives"></figure>
+    </div>
+    <p class="footnote">数字・声は NEXY SUMMIT 2026 開催結果報告書より。学年は事前申込者（未回答を除く）の割合です。</p>
   </div>
 </section>
 
-<!-- ===== 3. 参加対象 ===== -->
+<!-- ===== 3. こんな人へ ===== -->
 <section class="section" id="for">
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow">For You</span>
-      <h2 class="h2">このような方を対象としています</h2>
+      <h2 class="h2">こんな人に来てほしい</h2>
     </div>
     <div class="persona-grid">
-      <div class="persona"><div class="ic">挑</div><b>すでに挑戦している方</b><span>ともに取り組む仲間を探したい</span></div>
-      <div class="persona"><div class="ic">始</div><b>これから始めたい方</b><span>最初の一歩のきっかけがほしい</span></div>
-      <div class="persona"><div class="ic">探</div><b>やりたいことを探している方</b><span>話しながら見つけたい</span></div>
-      <div class="persona"><div class="ic">地</div><b>地方から挑戦する方</b><span>同じ熱量の同世代に会いたい</span></div>
+      <div class="persona"><div class="ic">挑</div><b>もう挑戦している人</b><span>一緒にやる仲間を探したい</span></div>
+      <div class="persona"><div class="ic">始</div><b>これから始めたい人</b><span>最初の一歩のきっかけがほしい</span></div>
+      <div class="persona"><div class="ic">探</div><b>やりたいことを探している人</b><span>話しながら見つけたい</span></div>
+      <div class="persona"><div class="ic">地</div><b>地方から挑戦している人</b><span>同じ熱量の同世代に会いたい</span></div>
     </div>
-    <div class="pills"><span class="pill">お一人でも参加可</span><span class="pill">聴講のみも可</span><span class="pill">途中入退場可</span></div>
+    <div class="pills"><span class="pill">一人で参加OK</span><span class="pill">聞くだけでもOK</span><span class="pill">途中参加・途中退出OK</span></div>
   </div>
 </section>
 
@@ -563,78 +581,65 @@ window.SUMMIT = {
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow">Program</span>
-      <h2 class="h2">聴くだけで終わらない、4つのフェーズ</h2>
+      <h2 class="h2">聞くだけで終わらない1日</h2>
+      <p class="lead"><span class="new-inline">NEW</span> は2027年から始まるプログラムです。</p>
     </div>
     <div class="phases">
       <div class="phase p1">
-        <div class="phase-h"><span class="when">BEFORE</span><b>開催前</b></div>
+        <div class="phase-h"><span class="when">BEFORE</span><b>当日まで</b></div>
         <ul>
-          <li><b>自己紹介ページ<span class="new">NEW</span></b><span>会いたい人を事前に探せる</span></li>
-          <li><b>参加表明カード<span class="new">NEW</span></b><span>SNSで参加を発信</span></li>
-          <li><b>プレゼン大会 応援投票<span class="new">NEW</span></b><span>オーディエンス賞を決定</span></li>
+          <li><b>自己紹介ページ<span class="new">NEW</span></b><span>会いたい人を先に探せる</span></li>
+          <li><b>参加表明カード<span class="new">NEW</span></b><span>SNSで「行くよ」を発信</span></li>
+          <li><b>プレゼン大会 応援投票<span class="new">NEW</span></b><span>応援したい人に投票</span></li>
         </ul>
       </div>
       <div class="phase p2">
         <div class="phase-h"><span class="when">STAGE</span><b>A・B会場</b></div>
         <ul>
-          <li><b>NEXYプレゼン大会</b><span>学生が自らの構想を発表</span></li>
-          <li><b>登壇セッション</b><span>総合型選抜・留学・起業 など</span></li>
-          <li><b>失敗談セッション<span class="new">NEW</span></b><span>つまずきと乗り越え方</span></li>
-          <li><b>公開収録<span class="new">NEW</span></b><span>会場の質問も番組の一部に</span></li>
+          <li><b>NEXYプレゼン大会</b><span>学生が「やりたい」を本気で発表</span></li>
+          <li><b>セッション</b><span>総合型選抜・留学・起業 など</span></li>
+          <li><b>失敗談セッション<span class="new">NEW</span></b><span>つまずいた話と、そこからの話</span></li>
+          <li><b>公開収録<span class="new">NEW</span></b><span>客席からの質問も番組に</span></li>
         </ul>
       </div>
       <div class="phase p3">
         <div class="phase-h"><span class="when">OPEN AREA</span><b>常設・ワークショップ</b></div>
         <ul>
-          <li><b>やりたいウォール<span class="new">NEW</span></b><span>参加者全員の顔と「やりたい」</span></li>
-          <li><b>登壇者ミートアップ<span class="new">NEW</span></b><span>登壇後、直接話せる</span></li>
-          <li><b>相談所<span class="new">NEW</span></b><span>総合型選抜・留学</span></li>
-          <li><b>交流ラウンジ・仲間集めブース</b><span>テーマ別に交流</span></li>
+          <li><b>やりたいウォール<span class="new">NEW</span></b><span>参加者みんなの顔と「やりたい」</span></li>
+          <li><b>登壇者ミートアップ<span class="new">NEW</span></b><span>登壇のあと、直接話せる</span></li>
+          <li><b>相談所<span class="new">NEW</span></b><span>総合型選抜・留学の相談</span></li>
+          <li><b>交流ラウンジ・仲間集めブース</b><span>テーマごとに話せる</span></li>
           <li><b>ワークショップ</b><span>やりたいを企画書1枚に</span></li>
         </ul>
       </div>
       <div class="phase p4">
-        <div class="phase-h"><span class="when">AFTER</span><b>閉会後</b></div>
+        <div class="phase-h"><span class="when">AFTER</span><b>終わったあと</b></div>
         <ul>
           <li><b>参加者交流会<span class="new">NEW</span></b><span>事前申込制・別会場</span></li>
           <li><b>仲間集めピッチ<span class="new">NEW</span></b><span>1人1分で仲間を募集</span></li>
         </ul>
       </div>
     </div>
-
-    <div class="compare-wrap">
-      <h3>2026からの主な変更点</h3>
-      <table class="compare">
-        <thead><tr><th scope="col">項目</th><th scope="col">2026年</th><th scope="col" class="y27">2027年</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">登壇者との対話</th><td class="y26">聴講のみ</td><td class="y27">登壇後のミートアップ</td></tr>
-          <tr><th scope="row">セッション中の質問</th><td class="y26">なし</td><td class="y27">リアルタイム質問</td></tr>
-          <tr><th scope="row">参加者同士の交流</th><td class="y26">時間制の交流会</td><td class="y27">やりたいウォール・自己紹介ページ</td></tr>
-          <tr><th scope="row">ワークショップ</th><td class="y26">1本</td><td class="y27">2〜3本</td></tr>
-          <tr><th scope="row">登壇者</th><td class="y26">社会人・学生</td><td class="y27">高校生〜大学2年生</td></tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </section>
 
-<!-- ===== 5. 当日の構成 ===== -->
+<!-- ===== 5. タイムテーブル ===== -->
 <section class="section" id="day">
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow c-orange">Timetable</span>
-      <h2 class="h2">会場構成とタイムテーブル</h2>
-      <p class="lead">時間枠は予定です。内容は決定次第掲載します。</p>
+      <h2 class="h2">会場マップとタイムテーブル</h2>
+      <p class="lead">時間は予定です。内容は決まり次第ここに載せます。</p>
     </div>
-    <div class="floor-map" role="img" aria-label="大展示ホールをA会場とB会場に分け、手前に常設エリアを置く会場構成">
-      <div class="zone a"><div class="tag">A AREA</div><b>A会場｜メインステージ</b><span>プレゼン大会・登壇セッション</span></div>
+    <div class="floor-map" role="img" aria-label="大展示ホールをA会場とB会場に分け、手前に常設エリアを置く会場マップ">
+      <div class="zone a"><div class="tag">A AREA</div><b>A会場｜メインステージ</b><span>プレゼン大会・セッション</span></div>
       <div class="zone b"><div class="tag">B AREA</div><b>B会場｜テーマ別セッション</b><span>失敗談セッション・公開収録</span></div>
       <div class="zone c"><span class="tag">OPEN AREA</span><b>常設エリア</b><span>交流ラウンジ／相談所／仲間集めブース／やりたいウォール</span></div>
     </div>
-    <p class="floor-note">大田区産業プラザPiO（予定）。ワークショップの実施場所は準備中です。</p>
+    <p class="floor-note">大田区産業プラザPiO（予定）。ワークショップの場所は準備中です。</p>
     <div class="tt-tabs" role="tablist" id="ttTabs"></div>
     <div class="tt" id="tt"></div>
-    <div class="tt-legend"><span class="l-fixed">決定</span><span class="l-common">全会場共通</span><span class="l-tbd">枠のみ決定</span></div>
+    <div class="tt-legend"><span class="l-fixed">決定</span><span class="l-common">全会場共通</span><span class="l-tbd">時間のみ決定</span></div>
   </div>
 </section>
 
@@ -643,17 +648,17 @@ window.SUMMIT = {
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow c-pink">Speakers</span>
-      <h2 class="h2">登壇者は、高校生〜大学2年生</h2>
-      <p class="lead">年齢の近い登壇者だからこそ、講演後も直接対話いただけます。</p>
+      <h2 class="h2">登壇者</h2>
+      <p class="lead">決まり次第、順番に発表します。登壇のあとは、直接話せる時間もあります。</p>
     </div>
     <div class="speaker-grid" id="speakerGrid"></div>
     <div class="wave-grid" id="waveGrid"></div>
-    <div class="recommend"><span>登壇者のご推薦を受け付けています（自薦・他薦可）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
+    <div class="recommend"><span>「この人の話を聞きたい」を教えてください（自薦・他薦OK）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
   </div>
 </section>
 
 <div class="band"><div class="band-inner"><div class="wrap">
-  <p>登壇者は決定次第、順次発表します。<br>ご登録の方には優先してお知らせします。</p>
+  <p>登壇者や日程が決まったら、<br>登録してくれた人に一番にお知らせします。</p>
   <div style="margin-top: 18px;"><a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a></div>
 </div></div></div>
 
@@ -671,7 +676,7 @@ window.SUMMIT = {
           <div><span>羽田空港から</span><b>10<small>分</small></b><span>京急線</span></div>
           <div><span>東京駅から</span><b>35<small>分</small></b><span>JR・京急線</span></div>
         </div>
-        <p class="footnote">※ 所要時間は目安です。会場は確定後に正式にお知らせします。</p>
+        <p class="footnote">※ 時間は目安です。会場は決まり次第、正式にお知らせします。</p>
       </div>
       <div class="map"><iframe title="大田区産業プラザPiO の地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%E5%A4%A7%E7%94%B0%E5%8C%BA%E7%94%A3%E6%A5%AD%E3%83%97%E3%83%A9%E3%82%B6PiO&output=embed"></iframe></div>
     </div>
@@ -681,30 +686,61 @@ window.SUMMIT = {
 <!-- ===== 8. FAQ ===== -->
 <section class="section bg-gray" id="faq">
   <div class="wrap-narrow">
-    <div class="head center"><span class="eyebrow">FAQ</span><h2 class="h2">よくあるご質問</h2></div>
+    <div class="head center"><span class="eyebrow">FAQ</span><h2 class="h2">よくある質問</h2></div>
     <div class="faq">
-      <details><summary>参加費はかかりますか。</summary><div class="a">無料です。交通費は各自でご負担ください。</div></details>
-      <details><summary>一人で参加しても問題ありませんか。</summary><div class="a">問題ありません。運営スタッフが交流のきっかけづくりをサポートします。</div></details>
-      <details><summary>やりたいことが決まっていなくても参加できますか。</summary><div class="a">ご参加いただけます。聴講のみのご参加も歓迎します。</div></details>
-      <details><summary>保護者の同意は必要ですか。</summary><div class="a">中学生の方は必要です。高校生の方の取り扱いは決定次第掲載します。</div></details>
-      <details><summary>途中からの参加や途中退場はできますか。</summary><div class="a">可能です。ワークショップのみ途中参加をお受けできない場合があります。</div></details>
-      <details><summary>申込の締切はいつですか。</summary><div class="a">開催日の決定後にお知らせします。</div></details>
-      <details><summary>取材・視察を希望する場合は。</summary><div class="a">info@nexyhub.jp までご連絡ください。</div></details>
+      <details><summary>お金はかかりますか？</summary><div class="a">参加費は無料です。会場までの交通費だけ自分で用意してください。</div></details>
+      <details><summary>一人で行っても大丈夫ですか？</summary><div class="a">大丈夫です。受付や交流ラウンジで、運営メンバーが話すきっかけをつくります。</div></details>
+      <details><summary>やりたいことが決まっていなくても行っていいですか？</summary><div class="a">もちろんです。話を聞くだけでも大丈夫です。やりたいことを見つけに来てください。</div></details>
+      <details><summary>保護者の同意は必要ですか？</summary><div class="a">中学生の人は必要です。高校生の人については、決まり次第ここでお知らせします。</div></details>
+      <details><summary>途中から行ったり、途中で帰ったりできますか？</summary><div class="a">できます。ワークショップだけは、途中から参加できない場合があります。</div></details>
+      <details><summary>申込の締切はいつですか？</summary><div class="a">開催日が決まったらお知らせします。</div></details>
+      <details><summary>保護者や先生も見学できますか？</summary><div class="a">準備中です。決まり次第ここでお知らせします。</div></details>
     </div>
   </div>
 </section>
 
-<!-- ===== 9. 協賛 ===== -->
-<section class="section" id="partners">
+<!-- ===== 9. 申込 ===== -->
+<section class="section bg-teal entry" id="entry">
+  <img class="paint paint-tl" src="img/summit2027/paint_tl.webp" alt="" aria-hidden="true">
+  <img class="paint paint-br" src="img/summit2027/paint_br.webp" alt="" aria-hidden="true">
   <div class="wrap">
-    <div class="head"><span class="eyebrow c-orange">Partners</span><h2 class="h2">協賛のご案内</h2><p class="lead">趣旨にご賛同いただける企業・団体の皆さまからのご協賛を募集しています。</p></div>
-    <div class="merit-grid">
-      <div class="merit"><div class="big">69.8<small>%</small></div><div class="cap">申込者に占める高校生（2026）</div><h3>自ら動く中高生・大学生との接点</h3><p>ブース出展やプレゼン大会の冠賞を通じて、直接交流いただけます。</p></div>
-      <div class="merit"><div class="big">82<small>万回</small></div><div class="cap">SNSインプレッション（2026）</div><h3>若年層への認知向上</h3><p>会場・ウェブサイト・SNSでロゴや取り組みを紹介します。</p></div>
-      <div class="merit"><div class="big">87.2<small>%</small></div><div class="cap">満足度4以上（2026・n=187）</div><h3>次世代育成への貢献</h3><p>教育分野の社会貢献活動としてご活用いただけます。</p></div>
+    <div class="entry-box">
+      <div>
+        <span class="eyebrow">Entry</span>
+        <h2 class="js-entry-title">最新情報を受け取る</h2>
+        <div class="entry-chips">
+          <div><b>30秒</b>で登録できる</div>
+          <div><b>無料</b>参加費</div>
+          <div><b>1人OK</b>一人で参加できる</div>
+          <div><b>途中OK</b>途中参加・退出できる</div>
+        </div>
+      </div>
+      <div class="slot form-slot" id="formSlot">
+        <div><p>ここに申込フォームが入ります（Googleフォームを埋め込み予定）</p>
+        <a class="btn btn-primary btn-arrow js-cta-direct" href="#"><span class="js-cta-label">最新情報を受け取る</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. 主催・協賛 ===== -->
+<section class="section" id="organizer">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Organizer</span><h2 class="h2">主催・運営</h2></div>
+    <div class="org-grid">
+      <div class="mvv">
+        <div class="mvv-item"><div class="k">MISSION</div><div class="v">「やりたい」を、ひとりにしない。</div></div>
+        <div class="mvv-item"><div class="k">VISION</div><div class="v">「やりたい」があふれる社会をつくる。</div></div>
+      </div>
+      <table class="org-table">
+        <tr><th scope="row">主催</th><td>学生団体NEXY</td></tr>
+        <tr><th scope="row">代表</th><td>小助川 晴大</td></tr>
+        <tr><th scope="row">運営</th><td>学生が企画・運営しています</td></tr>
+        <tr><th scope="row">お問い合わせ</th><td><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></td></tr>
+      </table>
     </div>
     <div class="partners-2026">
-      <div class="ttl">2026年 協賛企業・団体（敬称略）</div>
+      <div class="ttl">2026年に応援してくださった企業・団体（敬称略）</div>
       <div class="logo-row">
         <img src="img/site/partner_cheers.png" alt="CHEERS!" loading="lazy">
         <img src="img/site/partner_segasammy.png" alt="セガサミーホールディングス" loading="lazy">
@@ -716,57 +752,9 @@ window.SUMMIT = {
         <img src="img/site/partner_symenergy.png" alt="SymEnergy" loading="lazy">
       </div>
     </div>
-    <div class="sponsor-cta">
-      <p>協賛プランの詳細は資料にてご案内します<small>ロゴ掲出・ブース出展・冠賞など</small></p>
-      <a class="btn btn-primary btn-sm js-link" data-link="sponsor" href="#">協賛のご相談・資料請求</a>
-    </div>
-    <p class="footnote">※ 2026年協賛企業のロゴ掲載可否は、公開前に各社へ確認します。</p>
-  </div>
-</section>
-
-<!-- ===== 10. 申込 ===== -->
-<section class="section bg-teal entry" id="entry">
-  <img class="paint paint-tl" src="img/summit2027/paint_tl.webp" alt="" aria-hidden="true">
-  <img class="paint paint-br" src="img/summit2027/paint_br.webp" alt="" aria-hidden="true">
-  <div class="wrap">
-    <div class="entry-box">
-      <div>
-        <span class="eyebrow">Entry</span>
-        <h2 class="js-entry-title">最新情報のご登録</h2>
-        <div class="entry-chips">
-          <div><b>30秒</b>で登録完了</div>
-          <div><b>無料</b>参加費</div>
-          <div><b>1人OK</b>お一人で参加可</div>
-          <div><b>途中OK</b>途中入退場可</div>
-        </div>
-      </div>
-      <div class="slot form-slot" id="formSlot">
-        <div><p>こちらに申込フォームを掲載します（Googleフォームを埋め込み予定）</p>
-        <a class="btn btn-primary btn-arrow js-cta-direct" href="#"><span class="js-cta-label">最新情報を受け取る</span></a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 11. 主催者 ===== -->
-<section class="section" id="organizer">
-  <div class="wrap">
-    <div class="head"><span class="eyebrow">Organizer</span><h2 class="h2">主催者情報</h2></div>
-    <div class="org-grid">
-      <div class="mvv">
-        <div class="mvv-item"><div class="k">MISSION</div><div class="v">「やりたい」を、ひとりにしない。</div></div>
-        <div class="mvv-item"><div class="k">VISION</div><div class="v">「やりたい」があふれる社会をつくる。</div></div>
-      </div>
-      <table class="org-table">
-        <tr><th scope="row">主催</th><td>学生団体NEXY</td></tr>
-        <tr><th scope="row">代表</th><td>小助川 晴大</td></tr>
-        <tr><th scope="row">運営</th><td>学生が主体となって企画・運営</td></tr>
-        <tr><th scope="row">お問い合わせ</th><td><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></td></tr>
-        <tr><th scope="row">ウェブサイト</th><td><a href="/">nexyhub.jp</a></td></tr>
-      </table>
-    </div>
+    <p class="sponsor-link">協賛をご検討の企業・団体の方は <a class="js-link" data-link="sponsor" href="#">こちらからご連絡ください →</a></p>
     <div class="closing">
-      <p>皆さまのご参加を、心よりお待ちしております。</p>
+      <p>会場で会えるのを、楽しみにしています。</p>
       <div class="btns">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a>
         <a class="btn btn-outline js-link" data-link="instagram" href="#">公式Instagram</a>
@@ -806,9 +794,9 @@ window.SUMMIT = {
 
   // フェーズ別CTA
   var phases = {
-    0: { label: '最新情報を受け取る', link: S.links.notify, title: '最新情報のご登録', note: '開催日・登壇者が決定し次第、優先してお知らせします。' },
-    1: { label: '参加を申し込む（無料）', link: S.links.entry, title: '参加のお申込み', note: 'お申込みは約30秒で完了します。' },
-    2: { label: '受付は終了しました', link: '', title: 'お申込みの受付は終了しました', note: '' }
+    0: { label: '最新情報を受け取る', link: S.links.notify, title: '最新情報を受け取る', note: '日程や登壇者が決まったら、一番にお知らせします。' },
+    1: { label: '参加を申し込む（無料）', link: S.links.entry, title: '参加を申し込む', note: '30秒で申し込めます。参加費は無料です。' },
+    2: { label: '受付は終了しました', link: '', title: '申込の受付は終了しました', note: '' }
   };
   var P = phases[S.phase] || phases[0];
   document.querySelectorAll('.js-cta-label').forEach(function (el) { el.textContent = P.label; });
@@ -824,7 +812,10 @@ window.SUMMIT = {
   // 2026の実績：KPI
   var R = S.record2026;
   document.getElementById('kpiRow').innerHTML = R.kpis.map(function (r) {
-    return '<div class="kpi"><div class="v">' + esc(r.v) + '<small>' + esc(r.unit) + '</small></div><div class="k">' + esc(r.k) + '</div><div class="n">' + esc(r.n) + '</div></div>';
+    return '<div class="kpi"><div class="v">' + esc(r.v) + '<small>' + esc(r.unit) + '</small></div><div class="k">' + esc(r.k) + '</div>' + (r.n ? '<div class="n">' + esc(r.n) + '</div>' : '') + '</div>';
+  }).join('');
+  document.getElementById('voices').innerHTML = R.voices.map(function (v) {
+    return '<blockquote class="voice"><p>「' + esc(v.q) + '」</p><cite>' + esc(v.who) + '</cite></blockquote>';
   }).join('');
   // 横棒グラフ（単系列・直接ラベル・ホバーで人数）
   function barChart(id, d, color) {
