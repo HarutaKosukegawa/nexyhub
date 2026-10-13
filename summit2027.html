@@ -97,15 +97,16 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .cta-note { font-size: 13px; color: var(--ink-muted); margin-top: 10px; }
 
 /* セクション共通 */
-.section { padding: 88px 0; position: relative; overflow: hidden; }
+.section { padding: 64px 0; position: relative; overflow: hidden; }
 .bg-teal { background: var(--teal-tint); } .bg-orange { background: var(--orange-tint); } .bg-pink { background: var(--pink-tint); } .bg-gray { background: var(--surface-2); }
-@media (max-width: 600px) { .section { padding: 60px 0; } }
+@media (max-width: 600px) { .section { padding: 44px 0; } }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .26em; color: var(--teal-deep); margin-bottom: 10px; text-transform: uppercase; }
 .eyebrow::before { content: ""; width: 28px; height: 4px; border-radius: 2px; background: var(--grad); }
 .eyebrow.c-orange { color: var(--orange-deep); } .eyebrow.c-pink { color: var(--pink-deep); }
 .h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 900; line-height: 1.45; color: var(--navy); }
 .lead { font-size: 15px; color: var(--ink-muted); margin-top: 12px; max-width: 680px; }
-.head { margin-bottom: 40px; }
+.head { margin-bottom: 28px; }
+@media (max-width: 600px) { .head { margin-bottom: 20px; } }
 .head.center { text-align: center; } .head.center .eyebrow { justify-content: center; } .head.center .lead { margin-left: auto; margin-right: auto; }
 .paint { position: absolute; pointer-events: none; user-select: none; z-index: 0; }
 .section > .wrap, .section > .wrap-narrow { z-index: 1; }
@@ -204,8 +205,37 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .voice cite { display: block; font-style: normal; font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
 .new-inline { display: inline-block; font-size: 11px; font-weight: 900; color: #fff; background: var(--pink-deep); border-radius: 4px; padding: 0 6px; vertical-align: 1px; }
 .partners-2026 { margin-top: 28px; }
-.sponsor-link { margin-top: 12px; font-size: 13px; color: var(--ink-muted); text-align: right; }
-.sponsor-link a { color: var(--teal-deep); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.sp-tier { margin-bottom: 18px; }
+.sp-tier-h { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.sp-tier-h b { font-size: 15px; font-weight: 900; color: var(--navy); }
+.sp-tier-h span { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .2em; color: #fff; padding: 3px 8px; border-radius: 4px; background: var(--tc); }
+.sp-tier-h::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.sp-tier.t-premium { --tc: var(--orange); } .sp-tier.t-gold { --tc: var(--teal); } .sp-tier.t-support { --tc: var(--pink); }
+.sp-logos { display: grid; gap: 10px; }
+.t-premium .sp-logos { grid-template-columns: repeat(2, 1fr); }
+.t-gold .sp-logos { grid-template-columns: repeat(4, 1fr); }
+.t-support .sp-logos { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 640px) { .t-premium .sp-logos { grid-template-columns: 1fr 1fr; } .t-gold .sp-logos { grid-template-columns: 1fr 1fr; } .t-support .sp-logos { grid-template-columns: repeat(3, 1fr); } }
+.sp-logo { display: grid; place-items: center; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
+.t-premium .sp-logo { height: 120px; border-color: var(--orange); }
+.t-gold .sp-logo { height: 84px; }
+.t-support .sp-logo { height: 60px; padding: 6px; }
+@media (max-width: 640px) { .t-premium .sp-logo { height: 84px; } .t-gold .sp-logo { height: 60px; } .t-support .sp-logo { height: 46px; } }
+.sp-logo img { max-width: 86%; max-height: 70%; object-fit: contain; }
+.sp-logo.is-empty { border-style: dashed; background: #FAFAF7; color: #B8BDC6; font-family: Inter, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+.t-premium .sp-logo.is-empty { font-size: 13px; border-color: var(--orange-soft); }
+.t-support .sp-logo.is-empty { font-size: 9px; letter-spacing: .08em; }
+.sp-inquiry { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; background: var(--surface-2); border-radius: var(--radius-lg); padding: 14px 20px; font-size: 13px; color: var(--ink-muted); }
+.sp-inquiry a { color: var(--teal-deep); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.hero-sponsors { margin-top: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hero-sponsors .lbl { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .2em; color: var(--ink-muted); }
+.hero-sponsors .hs { height: 34px; min-width: 96px; padding: 0 10px; display: grid; place-items: center; background: #fff; border: 1px solid var(--line); border-radius: 6px; font-size: 10px; color: #B8BDC6; font-weight: 800; letter-spacing: .1em; }
+.hero-sponsors .hs img { max-height: 24px; max-width: 110px; }
+.foot-sponsors { padding: 22px 0; background: #fff; border-top: 1px solid var(--line); }
+.foot-sponsors .wrap { display: flex; align-items: center; gap: 12px 18px; flex-wrap: wrap; justify-content: center; }
+.foot-sponsors .lbl { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .2em; color: var(--ink-muted); }
+.foot-sponsors .fs { height: 30px; min-width: 84px; display: grid; place-items: center; border: 1px dashed var(--line); border-radius: 6px; font-size: 9px; color: #B8BDC6; font-weight: 800; letter-spacing: .1em; padding: 0 8px; }
+.foot-sponsors .fs img { max-height: 24px; max-width: 100px; }
 
 /* ===== 参加対象 ===== */
 .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -222,11 +252,13 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 /* ===== プログラム（フェーズ表） ===== */
 .phases { display: grid; grid-template-columns: .85fr 1.15fr 1.15fr .85fr; gap: 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: #fff; }
 @media (max-width: 900px) { .phases { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .phases { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .phases { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; } .phases > .phase { flex: 0 0 82%; scroll-snap-align: start; } }
 .phase { border-left: 1px solid var(--line); display: flex; flex-direction: column; }
 .phase:first-child { border-left: 0; }
 @media (max-width: 900px) { .phase:nth-child(3) { border-left: 0; } .phase:nth-child(n+3) { border-top: 1px solid var(--line); } }
-@media (max-width: 560px) { .phase { border-left: 0 !important; } .phase + .phase { border-top: 1px solid var(--line); } }
+@media (max-width: 560px) { .phase { border-top: 0 !important; } .phase:first-child { border-left: 0; } }
+.swipe-hint { display: none; font-size: 12px; color: var(--ink-muted); text-align: center; margin-top: 10px; }
+@media (max-width: 560px) { .swipe-hint { display: block; } }
 .phase-h { padding: 14px 16px; background: var(--c-tint); border-bottom: 4px solid var(--c); }
 .phase-h .when { font-family: Inter, sans-serif; font-size: 11px; font-weight: 900; letter-spacing: .18em; color: var(--c-deep); }
 .phase-h b { display: block; font-size: 17px; color: var(--navy); line-height: 1.4; }
@@ -267,7 +299,7 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .zone.b { background: var(--teal-tint); border: 2px solid var(--teal-soft); } .zone.b .tag { color: var(--teal-deep); }
 .zone.c { grid-column: 1 / -1; background: var(--yellow-tint); border: 2px dashed #E9D27A; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
 .zone.c .tag { color: #7A5E00; }
-@media (max-width: 600px) { .floor-map { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .floor-map .zone { padding: 10px 12px; } .floor-map .zone b { font-size: 13px; } .floor-map .zone span { font-size: 11px; } }
 .zone.c b { display: inline; font-size: 15px; }
 .floor-note { font-size: 12px; color: var(--ink-muted); margin-bottom: 28px; }
 /* タイムテーブル（2026サイトと同じ表形式） */
@@ -304,27 +336,33 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 }
 
 /* ===== 登壇者 ===== */
-.speakers-group-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
-.speakers-group-en { font-family: Inter, sans-serif; font-size: 12px; letter-spacing: .26em; color: var(--pink-deep); font-weight: 900; text-transform: uppercase; }
-.speakers-group-title { font-size: 20px; font-weight: 900; color: var(--navy); }
-.featured-speakers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
-@media (max-width: 1000px) { .featured-speakers { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 640px) { .featured-speakers { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
-.featured-card { background: #fff; border: 1.5px solid var(--orange); display: flex; flex-direction: column; overflow: hidden; transition: transform .25s, box-shadow .25s; }
-.featured-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(245,70,0,.14); }
+.speakers-group { margin-bottom: 26px; }
+.speakers-group-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--navy); }
+.speakers-group-en { font-family: Inter, sans-serif; font-size: 11px; letter-spacing: .24em; font-weight: 900; text-transform: uppercase; color: var(--gc-deep); }
+.speakers-group-title { font-size: 18px; font-weight: 900; color: var(--navy); }
+.speakers-group-count { font-size: 12px; color: var(--ink-muted); margin-left: auto; }
+.speakers-group.g-student { --gc: var(--orange); --gc-soft: var(--orange-soft); --gc-tint: var(--orange-tint); --gc-deep: var(--orange-deep); }
+.speakers-group.g-adult { --gc: var(--teal); --gc-soft: var(--teal-soft, #9FDCD9); --gc-tint: var(--teal-tint); --gc-deep: var(--teal-deep); }
+.featured-speakers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+@media (max-width: 1000px) { .featured-speakers { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 640px) { .featured-speakers { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding-bottom: 6px; -webkit-overflow-scrolling: touch; } .featured-speakers > .featured-card { flex: 0 0 40%; scroll-snap-align: start; } }
+.featured-card { background: #fff; border: 1.5px solid var(--gc); display: flex; flex-direction: column; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+.featured-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(2,16,43,.10); }
 .featured-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 22%; }
-.speaker-placeholder { width: 100%; aspect-ratio: 1; display: grid; place-items: center; background: linear-gradient(135deg, #FAFAF7, #F0EBDE); color: #A3A9B3; font-family: Inter, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .18em; border-bottom: 1px solid var(--line); }
-.featured-body { padding: 10px 12px 14px; display: flex; flex-direction: column; flex: 1; }
-.featured-name { font-size: 15px; font-weight: 900; color: var(--navy); line-height: 1.35; }
-.featured-name .kana { font-size: 10px; font-weight: 600; color: var(--ink-muted); margin-left: 6px; }
-.featured-meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+.speaker-placeholder { width: 100%; aspect-ratio: 1; display: grid; place-items: center; background: linear-gradient(135deg, #FAFAF7, var(--gc-tint)); color: #A3A9B3; font-family: Inter, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .18em; border-bottom: 1px solid var(--line); }
+.featured-body { padding: 8px 10px 10px; display: flex; flex-direction: column; flex: 1; }
+.featured-name { font-size: 14px; font-weight: 900; color: var(--navy); line-height: 1.35; }
+.featured-name .kana { font-size: 10px; font-weight: 600; color: var(--ink-muted); margin-left: 5px; }
+.featured-meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; line-height: 1.5; }
 .featured-affil { font-size: 11px; color: var(--ink); font-weight: 600; line-height: 1.5; margin-top: 2px; }
-.featured-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
-.featured-badges .fbadge { font-size: 10px; font-weight: 800; background: var(--orange-tint); color: var(--orange-deep); padding: 3px 6px; line-height: 1.35; }
-.featured-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.7; margin-top: 8px; }
-.featured-card.is-empty { border-style: dashed; border-color: var(--orange-soft); }
+.featured-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.featured-badges .fbadge { font-size: 10px; font-weight: 800; background: var(--gc-tint); color: var(--gc-deep); padding: 2px 6px; line-height: 1.35; }
+.featured-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.6; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.featured-card.is-empty { border-style: dashed; border-color: var(--gc-soft); }
 .featured-card.is-empty .featured-name, .featured-card.is-empty .featured-meta, .featured-card.is-empty .featured-desc, .featured-card.is-empty .kana { color: #B8BDC6; }
 .featured-card.is-empty .fbadge { background: var(--surface-2); color: #B8BDC6; }
+.sp-swipe { display: none; font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
+@media (max-width: 640px) { .sp-swipe { display: block; } }
 
 .wave-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 760px) { .wave-grid { grid-template-columns: 1fr; } }
@@ -356,6 +394,7 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .route b small { font-size: 13px; color: var(--ink); margin-left: 2px; }
 .map { border-radius: var(--radius-lg); overflow: hidden; min-height: 300px; border: 3px solid var(--teal-soft); background: var(--surface-2); }
 .map iframe { width: 100%; height: 100%; min-height: 300px; border: 0; display: block; }
+@media (max-width: 600px) { .map, .map iframe { min-height: 220px; } }
 
 /* ===== FAQ ===== */
 .faq { display: grid; gap: 8px; }
@@ -454,12 +493,22 @@ window.SUMMIT = {
     sponsor:   "mailto:info@nexyhub.jp?subject=NEXY%20SUMMIT%202027%20%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87",
     instagram: "https://www.instagram.com/nexy.hub/"
   },
+  // 登壇者：学生登壇者と社会人登壇者に分けて管理する。count は枠の数（未確定分は空枠で表示）
   speakers: {
-    count: 12,
-    list: [
+    students: { count: 6, list: [
       // { name: "氏名", kana: "ふりがな", role: "所属・学年", affil: "活動・肩書き", badges: ["実績1", "実績2"], desc: "紹介文", photo: "img/summit2027/xxx.jpg" }
-    ]
+    ] },
+    adults: { count: 6, list: [
+      // { name: "氏名", kana: "ふりがな", role: "会社名・役職", affil: "肩書き", badges: ["実績1"], desc: "紹介文", photo: "img/summit2027/xxx.jpg" }
+    ] }
   },
+  // 協賛：tier ごとに枠数とロゴを管理する。hero:true の区分はファーストビューにもロゴを表示する
+  sponsors: [
+    { id: "premium", name: "特別協賛", en: "PREMIUM", count: 2, hero: true,  list: [] },
+    { id: "gold",    name: "協賛",     en: "SPONSOR", count: 4, hero: false,  list: [] },
+    { id: "support", name: "協力・後援", en: "SUPPORT", count: 6, hero: false, list: [] }
+    // list の例：{ name: "株式会社〇〇", logo: "img/summit2027/sponsor_xxx.png", url: "https://..." }
+  ],
   // タイムテーブル（2026サイトと同じ表形式）
   // cols：表の列。rows：時間帯ごとの行。cells の v は列ID、v:"all" は全列共通。
   // rows:2 は下の行まで続くセル（例：90分のワークショップ）。tbd:true は内容未定。
@@ -496,6 +545,7 @@ window.SUMMIT = {
     <li><a href="#program">プログラム</a></li>
     <li><a href="#day">タイムテーブル</a></li>
     <li><a href="#speakers">登壇者</a></li>
+    <li><a href="#sponsors">協賛</a></li>
     <li><a href="#access">アクセス</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
@@ -507,6 +557,7 @@ window.SUMMIT = {
   <a href="#program">プログラム</a>
   <a href="#day">タイムテーブル</a>
   <a href="#speakers">登壇者</a>
+  <a href="#sponsors">協賛</a>
   <a href="#access">アクセス</a>
   <a href="#faq">FAQ</a>
   <a href="#entry" class="cta js-cta"><span class="js-cta-label">参加を申し込む（無料）</span></a>
@@ -540,6 +591,7 @@ window.SUMMIT = {
         <a class="btn btn-outline" href="#program">プログラムを見る</a>
       </div>
       <p class="cta-note js-cta-note"></p>
+      <div class="hero-sponsors" id="heroSponsors"></div>
     </div>
     <figure class="hero-photos">
       <img src="img/site/gallery_summit_stage.jpg" alt="NEXY SUMMIT 2026 メインステージ" width="1400" height="787" fetchpriority="high">
@@ -611,6 +663,7 @@ window.SUMMIT = {
         </ul>
       </div>
     </div>
+    <p class="swipe-hint">← 左右にスワイプして確認できます →</p>
   </div>
 </section>
 
@@ -641,14 +694,35 @@ window.SUMMIT = {
       <h2 class="h2">登壇者</h2>
       <p class="lead">登壇後には、登壇者と直接対話できる時間を設けます。</p>
     </div>
-    <div class="speakers-group-head"><span class="speakers-group-en">Speakers</span><h3 class="speakers-group-title">登壇者一覧</h3></div>
-    <div class="featured-speakers" id="speakerGrid"></div>
+    <div class="speakers-group g-student">
+      <div class="speakers-group-head"><span class="speakers-group-en">Students</span><h3 class="speakers-group-title">学生登壇者</h3><span class="speakers-group-count" id="spCountStudents"></span></div>
+      <div class="featured-speakers" id="speakerGridStudents"></div>
+      <p class="sp-swipe">← 左右にスワイプして確認できます →</p>
+    </div>
+    <div class="speakers-group g-adult">
+      <div class="speakers-group-head"><span class="speakers-group-en">Professionals</span><h3 class="speakers-group-title">社会人登壇者</h3><span class="speakers-group-count" id="spCountAdults"></span></div>
+      <div class="featured-speakers" id="speakerGridAdults"></div>
+      <p class="sp-swipe">← 左右にスワイプして確認できます →</p>
+    </div>
     <div class="recommend"><span>登壇者の推薦を受け付けています（自薦・他薦可）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
   </div>
 </section>
 
 
-<!-- ===== 7. アクセス ===== -->
+<!-- ===== 7. 協賛 ===== -->
+<section class="section" id="sponsors">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow c-teal">Sponsors</span>
+      <h2 class="h2">協賛・協力</h2>
+      <p class="lead">NEXY SUMMIT 2027は、以下の企業・団体のご支援により開催します。</p>
+    </div>
+    <div id="sponsorTiers"></div>
+    <div class="sp-inquiry"><span>協賛・協力に関するお問い合わせを受け付けています。</span><a class="js-link" data-link="sponsor" href="#">お問い合わせはこちら →</a></div>
+  </div>
+</section>
+
+<!-- ===== 8. アクセス ===== -->
 <section class="section" id="access">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Access</span><h2 class="h2">会場・アクセス</h2></div>
@@ -725,7 +799,6 @@ window.SUMMIT = {
         <tr><th scope="row">お問い合わせ</th><td><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></td></tr>
       </table>
     </div>
-    <p class="sponsor-link">協賛に関するお問い合わせは <a class="js-link" data-link="sponsor" href="#">こちら</a></p>
     <div class="closing">
       <div class="btns">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
@@ -737,6 +810,7 @@ window.SUMMIT = {
 
 </main>
 
+<div class="foot-sponsors" aria-label="協賛企業"><div class="wrap" id="footSponsors"></div></div>
 <footer class="footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -781,18 +855,47 @@ window.SUMMIT = {
   }
 
   // 登壇者（2026サイトと同じカード形式）
-  var sp = S.speakers, grid = document.getElementById('speakerGrid'), cards = '';
-  sp.list.forEach(function (p) {
-    cards += '<article class="featured-card"><div class="featured-photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '<div class="speaker-placeholder">PHOTO</div>') + '</div>' +
-      '<div class="featured-body"><h4 class="featured-name">' + esc(p.name) + (p.kana ? '<span class="kana">' + esc(p.kana) + '</span>' : '') + '</h4>' +
-      '<p class="featured-meta">' + esc(p.role || '') + '</p>' + (p.affil ? '<p class="featured-affil">' + esc(p.affil) + '</p>' : '') +
-      (p.badges ? '<div class="featured-badges">' + p.badges.map(function (b) { return '<span class="fbadge">' + esc(b) + '</span>'; }).join('') + '</div>' : '') +
-      (p.desc ? '<p class="featured-desc">' + esc(p.desc) + '</p>' : '') + '</div></article>';
-  });
-  for (var k = sp.list.length; k < sp.count; k++) {
-    cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">PHOTO</div></div><div class="featured-body"><h4 class="featured-name">登壇者名<span class="kana">ふりがな</span></h4><p class="featured-meta">所属・肩書き</p><div class="featured-badges"><span class="fbadge">実績</span><span class="fbadge">実績</span></div><p class="featured-desc">紹介文が入ります。</p></div></article>';
+  function speakerCards(g) {
+    var cards = '';
+    g.list.forEach(function (p) {
+      cards += '<article class="featured-card"><div class="featured-photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '<div class="speaker-placeholder">PHOTO</div>') + '</div>' +
+        '<div class="featured-body"><h4 class="featured-name">' + esc(p.name) + (p.kana ? '<span class="kana">' + esc(p.kana) + '</span>' : '') + '</h4>' +
+        '<p class="featured-meta">' + esc(p.role || '') + '</p>' + (p.affil ? '<p class="featured-affil">' + esc(p.affil) + '</p>' : '') +
+        (p.badges ? '<div class="featured-badges">' + p.badges.map(function (b) { return '<span class="fbadge">' + esc(b) + '</span>'; }).join('') + '</div>' : '') +
+        (p.desc ? '<p class="featured-desc">' + esc(p.desc) + '</p>' : '') + '</div></article>';
+    });
+    for (var k = g.list.length; k < g.count; k++) {
+      cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">PHOTO</div></div><div class="featured-body"><h4 class="featured-name">登壇者名<span class="kana">ふりがな</span></h4><p class="featured-meta">所属・肩書き</p><div class="featured-badges"><span class="fbadge">実績</span></div><p class="featured-desc">紹介文が入ります。</p></div></article>';
+    }
+    return cards;
   }
-  grid.innerHTML = cards;
+  document.getElementById('speakerGridStudents').innerHTML = speakerCards(S.speakers.students);
+  document.getElementById('speakerGridAdults').innerHTML = speakerCards(S.speakers.adults);
+  document.getElementById('spCountStudents').textContent = S.speakers.students.list.length + ' / ' + S.speakers.students.count + '名 決定';
+  document.getElementById('spCountAdults').textContent = S.speakers.adults.list.length + ' / ' + S.speakers.adults.count + '名 決定';
+
+  // 協賛（区分ごとの枠・ファーストビュー・フッター）
+  function logoInner(x) { return x.logo ? '<img src="' + esc(x.logo) + '" alt="' + esc(x.name) + '" loading="lazy">' : esc(x.name); }
+  var tiersHtml = '', heroHtml = '', footHtml = '';
+  S.sponsors.forEach(function (t) {
+    var logos = '';
+    t.list.forEach(function (x) {
+      logos += x.url ? '<a class="sp-logo" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + logoInner(x) + '</a>' : '<div class="sp-logo">' + logoInner(x) + '</div>';
+      if (t.hero) heroHtml += '<span class="hs">' + logoInner(x) + '</span>';
+      if (t.id !== 'support') footHtml += '<span class="fs">' + logoInner(x) + '</span>';
+    });
+    for (var k = t.list.length; k < t.count; k++) {
+      logos += '<div class="sp-logo is-empty">LOGO</div>';
+      if (t.hero && S.draft) heroHtml += '<span class="hs">LOGO</span>';
+      if (S.draft && t.id !== 'support') footHtml += '<span class="fs">LOGO</span>';
+    }
+    tiersHtml += '<div class="sp-tier t-' + t.id + '"><div class="sp-tier-h"><span>' + esc(t.en) + '</span><b>' + esc(t.name) + '</b></div><div class="sp-logos">' + logos + '</div></div>';
+  });
+  document.getElementById('sponsorTiers').innerHTML = tiersHtml;
+  var hs = document.getElementById('heroSponsors');
+  if (heroHtml) hs.innerHTML = '<span class="lbl">SUPPORTED BY</span>' + heroHtml; else hs.remove();
+  var fsEl = document.getElementById('footSponsors');
+  if (footHtml) fsEl.innerHTML = '<span class="lbl">SPONSORS</span>' + footHtml; else fsEl.parentNode.remove();
 
   // タイムテーブル（表形式）
   var tt = S.timetable, cols = tt.cols, covered = {}, th = '<thead><tr><th class="col-time">時間</th>';
