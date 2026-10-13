@@ -305,6 +305,11 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .speaker .photo img { width: 100%; height: 100%; object-fit: cover; }
 .speaker .name { font-weight: 900; color: var(--navy); margin-top: 10px; line-height: 1.4; }
 .speaker .role { font-size: 12px; color: var(--ink-muted); }
+.speaker.is-empty .photo { display: grid; place-items: center; background: #fff; border: 1.5px dashed var(--pink-soft); }
+.speaker.is-empty .photo svg { width: 42%; height: 42%; fill: var(--pink-tint); stroke: var(--pink-soft); stroke-width: 1.2; }
+.speaker.is-empty .name { color: #A3A9B3; }
+.speaker.is-empty .role { color: #B8BDC6; }
+
 .wave-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 760px) { .wave-grid { grid-template-columns: 1fr; } }
 .wave-card { --c: var(--teal); --ct: var(--teal-tint); --cd: var(--teal-deep); background: #fff; border: 2px dashed var(--c); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; gap: 16px; }
@@ -421,14 +426,13 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 <script>
 window.SUMMIT = {
   draft: true,               // true の間は上部に「非公開の下書き」バナーを出す
-  phase: 0,                  // 0 = 情報受け取り登録 / 1 = 本申込受付中 / 2 = 受付終了
+  phase: 1,                  // 1 = 申込受付中 / 2 = 受付終了
   date:   { text: "2027年3月下旬", fixed: false },
   time:   { text: "10:00〜17:00", fixed: false },
   venue:  { text: "大田区産業プラザPiO", fixed: false },
   target: { text: "中学生・高校生・大学生" },
   price:  { text: "無料" },
   links: {
-    notify:    "",           // TODO: 情報受け取り用フォーム or LINEのURL
     entry:     "",           // TODO: 本申込フォーム（Googleフォーム）のURL
     recommend: "",           // TODO: 登壇者の推薦フォーム
     sponsor:   "mailto:info@nexyhub.jp?subject=NEXY%20SUMMIT%202027%20%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87",
@@ -436,7 +440,6 @@ window.SUMMIT = {
   },
   speakers: {
     count: 12,
-    waves: [ { label: "第1弾", when: "12月中旬" }, { label: "第2弾", when: "1月中旬" }, { label: "第3弾", when: "2月中旬" } ],
     list: [
       // { name: "氏名", role: "高校2年／〇〇の活動", photo: "img/summit2027/xxx.jpg" }
     ]
@@ -487,12 +490,12 @@ window.SUMMIT = {
   <a href="#speakers">登壇者</a>
   <a href="#access">アクセス</a>
   <a href="#faq">FAQ</a>
-  <a href="#entry" class="cta js-cta"><span class="js-cta-label">最新情報を受け取る</span></a>
+  <a href="#entry" class="cta js-cta"><span class="js-cta-label">参加を申し込む（無料）</span></a>
 </nav>
 <!-- 右上の申込ボタン（2026と同じ配置） -->
 <a href="#entry" class="float-apply js-cta">
-  <span class="float-apply-main"><span class="js-cta-label">最新情報を受け取る</span> →</span>
-  <span class="float-apply-sub">中学生・高校生・大学生／参加無料</span>
+  <span class="float-apply-main"><span class="js-cta-label">参加を申し込む（無料）</span> →</span>
+  <span class="float-apply-sub">中学生・高校生・大学生 対象</span>
 </a>
 
 <main>
@@ -514,7 +517,7 @@ window.SUMMIT = {
         <div class="fact"><dt>参加費</dt><dd><span data-bind="price.text"></span></dd></div>
       </dl>
       <div class="hero-ctas">
-        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a>
+        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
         <a class="btn btn-outline" href="#program">プログラムを見る</a>
       </div>
       <p class="cta-note js-cta-note"></p>
@@ -618,18 +621,13 @@ window.SUMMIT = {
     <div class="head center">
       <span class="eyebrow c-pink">Speakers</span>
       <h2 class="h2">登壇者</h2>
-      <p class="lead">決定次第、順次発表します。登壇後には、登壇者と直接対話できる時間を設けます。</p>
+      <p class="lead">登壇後には、登壇者と直接対話できる時間を設けます。</p>
     </div>
     <div class="speaker-grid" id="speakerGrid"></div>
-    <div class="wave-grid" id="waveGrid"></div>
     <div class="recommend"><span>登壇者の推薦を受け付けています（自薦・他薦可）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
   </div>
 </section>
 
-<div class="band"><div class="band-inner"><div class="wrap">
-  <p>開催日・登壇者は決定次第お知らせします。<br>ご登録いただいた方へ優先してお知らせします。</p>
-  <div style="margin-top: 18px;"><a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a></div>
-</div></div></div>
 
 <!-- ===== 7. アクセス ===== -->
 <section class="section" id="access">
@@ -676,7 +674,7 @@ window.SUMMIT = {
     <div class="entry-box">
       <div>
         <span class="eyebrow">Entry</span>
-        <h2 class="js-entry-title">最新情報を受け取る</h2>
+        <h2 class="js-entry-title">参加を申し込む</h2>
         <div class="entry-chips">
           <div><b>30秒</b>で登録完了</div>
           <div><b>無料</b>参加費</div>
@@ -686,7 +684,7 @@ window.SUMMIT = {
       </div>
       <div class="slot form-slot" id="formSlot">
         <div><p>申込フォームを掲載予定です（Googleフォームを埋め込み）</p>
-        <a class="btn btn-primary btn-arrow js-cta-direct" href="#"><span class="js-cta-label">最新情報を受け取る</span></a></div>
+        <a class="btn btn-primary btn-arrow js-cta-direct" href="#"><span class="js-cta-label">参加を申し込む（無料）</span></a></div>
       </div>
     </div>
   </div>
@@ -711,7 +709,7 @@ window.SUMMIT = {
     <p class="sponsor-link">協賛に関するお問い合わせは <a class="js-link" data-link="sponsor" href="#">こちら</a></p>
     <div class="closing">
       <div class="btns">
-        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a>
+        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
         <a class="btn btn-outline js-link" data-link="instagram" href="#">公式Instagram</a>
       </div>
     </div>
@@ -734,7 +732,7 @@ window.SUMMIT = {
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true">
   <div class="txt"><b>NEXY SUMMIT 2027</b><span data-bind="date.text"></span>・参加費<span data-bind="price.text"></span></div>
-  <a class="btn btn-primary btn-sm js-cta" href="#entry" tabindex="-1"><span class="js-cta-label">最新情報を受け取る</span></a>
+  <a class="btn btn-primary btn-sm js-cta" href="#entry" tabindex="-1"><span class="js-cta-label">参加を申し込む（無料）</span></a>
 </div>
 
 <script>
@@ -749,11 +747,10 @@ window.SUMMIT = {
 
   // フェーズ別CTA
   var phases = {
-    0: { label: '最新情報を受け取る', link: S.links.notify, title: '最新情報を受け取る', note: '開催日・登壇者は決定次第、ご登録いただいた方へ優先してお知らせします。' },
     1: { label: '参加を申し込む（無料）', link: S.links.entry, title: '参加を申し込む', note: '申込は30秒で完了します。参加費は無料です。' },
     2: { label: '受付は終了しました', link: '', title: '申込の受付は終了しました', note: '' }
   };
-  var P = phases[S.phase] || phases[0];
+  var P = phases[S.phase] || phases[1];
   document.querySelectorAll('.js-cta-label').forEach(function (el) { el.textContent = P.label; });
   document.querySelectorAll('.js-cta-note').forEach(function (el) { el.textContent = P.note; });
   var t = document.querySelector('.js-entry-title'); if (t) t.textContent = P.title;
@@ -769,17 +766,10 @@ window.SUMMIT = {
   grid.innerHTML = sp.list.map(function (p) {
     return '<div class="speaker"><div class="photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '') + '</div><div class="name">' + esc(p.name) + '</div><div class="role">' + esc(p.role) + '</div></div>';
   }).join('');
-  if (!sp.list.length) grid.style.display = 'none';
-  var rest = Math.max(0, sp.count - sp.list.length), waveHtml = '';
-  if (rest > 0) {
-    var per = Math.ceil(rest / sp.waves.length), left = rest;
-    sp.waves.forEach(function (w) {
-      var n = Math.min(per, left); left -= n; if (n <= 0) return;
-      var faces = ''; for (var j = 0; j < Math.min(n, 4); j++) faces += '<i>?</i>';
-      waveHtml += '<div class="wave-card"><div class="faces">' + faces + '</div><div><b>' + esc(w.label) + '（' + n + '名）</b><span>' + esc(w.when) + ' 発表予定</span></div></div>';
-    });
+  // 未確定の登壇者は、写真・名前・肩書きの枠だけを表示する
+  for (var k = sp.list.length; k < sp.count; k++) {
+    grid.innerHTML += '<div class="speaker is-empty"><div class="photo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div><div class="name">登壇者名</div><div class="role">所属・肩書き</div></div>';
   }
-  document.getElementById('waveGrid').innerHTML = waveHtml;
 
   // タイムテーブル
   var tt = S.timetable, vs = tt.venues, box = document.getElementById('tt'), tabs = document.getElementById('ttTabs');
