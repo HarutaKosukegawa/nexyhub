@@ -270,45 +270,61 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 @media (max-width: 600px) { .floor-map { grid-template-columns: 1fr; } }
 .zone.c b { display: inline; font-size: 15px; }
 .floor-note { font-size: 12px; color: var(--ink-muted); margin-bottom: 28px; }
-.tt-tabs { display: none; gap: 6px; margin-bottom: 12px; overflow-x: auto; }
-.tt-tab { font-size: 13px; font-weight: 900; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; white-space: nowrap; }
-.tt-tab[aria-selected="true"] { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
-.tt { display: grid; grid-template-columns: 60px repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
-.tt-head { font-size: 13px; font-weight: 900; padding: 10px; text-align: center; line-height: 1.4; color: var(--navy); background: var(--surface-2); border-bottom: 4px solid var(--line); }
-.tt-head small { display: block; font-weight: 400; font-size: 11px; color: var(--ink-muted); }
-.tt-head[data-v="a"] { background: var(--orange-tint); border-bottom-color: var(--orange); }
-.tt-head[data-v="b"] { background: var(--teal-tint); border-bottom-color: var(--teal); }
-.tt-head[data-v="ws"] { background: var(--pink-tint); border-bottom-color: var(--pink); }
-.tt-head[data-v="lounge"] { background: var(--yellow-tint); border-bottom-color: var(--yellow); }
-.tt-time { font-family: Inter, sans-serif; font-size: 12px; font-weight: 700; color: var(--ink-muted); padding: 9px 8px; border-top: 1px solid var(--line); text-align: right; }
-.tt-cell { border-top: 1px solid var(--line); border-left: 1px solid var(--line); padding: 5px; min-height: 48px; }
-.tt-item { height: 100%; border-radius: 8px; padding: 7px 10px; font-size: 13px; line-height: 1.45; font-weight: 700; color: var(--navy); background: var(--surface-2); }
-.tt-item small { display: block; font-size: 11px; font-weight: 400; color: var(--ink-muted); }
-.tt-cell[data-v="a"] .tt-item.fixed { background: var(--orange-tint); } .tt-cell[data-v="b"] .tt-item.fixed { background: var(--teal-tint); }
-.tt-cell[data-v="ws"] .tt-item.fixed { background: var(--pink-tint); } .tt-cell[data-v="lounge"] .tt-item.fixed { background: var(--yellow-tint); }
-.tt-item.common { border: 2px solid transparent; background-image: linear-gradient(#fff, #fff), var(--grad); background-origin: border-box; background-clip: padding-box, border-box; }
-.tt-item.tbd-item { background: transparent; border: 1.5px dashed #C9CDD4; color: var(--ink-muted); }
-.tt-item.break { background: var(--surface-2); color: var(--ink-muted); }
-.tt-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; font-size: 12px; color: var(--ink-muted); }
-.tt-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
-.tt-legend .l-fixed::before { background: var(--teal-tint); border: 1px solid var(--teal-soft); } .tt-legend .l-common::before { border: 2px solid var(--orange); } .tt-legend .l-tbd::before { border: 1.5px dashed #C9CDD4; }
-@media (max-width: 760px) {
-  .tt-tabs { display: flex; } .tt { grid-template-columns: 54px 1fr; }
-  .tt-head, .tt-cell { display: none; } .tt-head.is-active, .tt-cell.is-active { display: block; } .tt-head.corner { display: block; }
+/* タイムテーブル（2026サイトと同じ表形式） */
+.sch-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); border: 1px solid var(--line); background: #fff; }
+.sch-table { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14px; }
+.sch-table th, .sch-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); vertical-align: top; text-align: left; }
+.sch-table th:first-child, .sch-table td:first-child { border-left: 0; }
+.sch-table thead th { color: #fff; font-size: 13px; font-weight: 900; letter-spacing: .04em; padding: 16px; text-align: center; vertical-align: middle; }
+.sch-table thead th.col-time { background: var(--navy); width: 120px; }
+.sch-table thead th.col-orange { background: var(--orange-deep); }
+.sch-table thead th.col-teal { background: var(--teal-deep); }
+.sch-table thead th.col-pink { background: var(--pink-deep); }
+.sch-table thead th.col-yellow { background: #8A6A00; }
+.sch-table tbody td.t-time { font-family: Inter, sans-serif; font-weight: 800; color: var(--orange-deep); white-space: nowrap; font-size: 13px; background: var(--orange-tint); }
+.sch-t-main { display: block; font-size: 15px; font-weight: 900; line-height: 1.45; color: var(--navy); }
+.sch-t-sub { display: block; font-size: 12px; font-weight: 500; line-height: 1.6; color: var(--ink-muted); margin-top: 4px; }
+.sch-t-badge { display: inline-block; font-size: 10px; font-weight: 900; color: #fff; background: var(--orange); padding: 2px 9px; border-radius: 999px; margin-left: 10px; vertical-align: 2px; }
+.cell-open { background: var(--orange-tint); }
+.cell-open .sch-t-main, .cell-presen .sch-t-main { color: var(--orange-deep); }
+.cell-presen { background: var(--orange-tint); border-left: 4px solid var(--orange) !important; }
+.cell-orange { background: #fff; } .cell-teal { background: var(--teal-tint); } .cell-pink { background: var(--pink-tint); }
+.cell-interact { background: var(--yellow-tint); border-left: 4px solid var(--yellow) !important; }
+.cell-interact .sch-t-main { color: #7A5E00; }
+.cell-tbd { background: repeating-linear-gradient(135deg, #FAFAFB 0 10px, #F4F5F7 10px 20px); }
+.cell-tbd .sch-t-main { color: var(--ink-muted); }
+.cell-break { background: var(--surface-2); text-align: center !important; }
+.cell-break .sch-t-main { color: var(--ink-muted); }
+.cell-after { background: linear-gradient(135deg, var(--teal-tint), var(--orange-tint)); border-top: 2px solid var(--orange); }
+.sch-note { margin-top: 16px; padding: 14px 18px; background: var(--teal-tint); border-left: 4px solid var(--teal); border-radius: 8px; font-size: 13px; color: var(--ink); line-height: 1.8; }
+@media (max-width: 860px) {
+  .sch-table-wrap::before { content: "← 左右にスワイプして確認できます →"; position: sticky; left: 0; display: block; text-align: center; font-size: 12px; font-weight: 800; color: var(--orange-deep); background: var(--orange-tint); padding: 8px 0; }
+  .sch-table { font-size: 13px; } .sch-t-main { font-size: 14px; } .sch-table th, .sch-table td { padding: 10px 12px; }
+}
 }
 
 /* ===== 登壇者 ===== */
-.speaker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
-@media (max-width: 900px) { .speaker-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px) { .speaker-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
-.speaker .photo { aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; background: var(--surface-2); }
-.speaker .photo img { width: 100%; height: 100%; object-fit: cover; }
-.speaker .name { font-weight: 900; color: var(--navy); margin-top: 10px; line-height: 1.4; }
-.speaker .role { font-size: 12px; color: var(--ink-muted); }
-.speaker.is-empty .photo { display: grid; place-items: center; background: #fff; border: 1.5px dashed var(--pink-soft); }
-.speaker.is-empty .photo svg { width: 42%; height: 42%; fill: var(--pink-tint); stroke: var(--pink-soft); stroke-width: 1.2; }
-.speaker.is-empty .name { color: #A3A9B3; }
-.speaker.is-empty .role { color: #B8BDC6; }
+.speakers-group-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+.speakers-group-en { font-family: Inter, sans-serif; font-size: 12px; letter-spacing: .26em; color: var(--pink-deep); font-weight: 900; text-transform: uppercase; }
+.speakers-group-title { font-size: 20px; font-weight: 900; color: var(--navy); }
+.featured-speakers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+@media (max-width: 1000px) { .featured-speakers { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .featured-speakers { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+.featured-card { background: #fff; border: 1.5px solid var(--orange); display: flex; flex-direction: column; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+.featured-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(245,70,0,.14); }
+.featured-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 22%; }
+.speaker-placeholder { width: 100%; aspect-ratio: 1; display: grid; place-items: center; background: linear-gradient(135deg, #FAFAF7, #F0EBDE); color: #A3A9B3; font-family: Inter, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .18em; border-bottom: 1px solid var(--line); }
+.featured-body { padding: 10px 12px 14px; display: flex; flex-direction: column; flex: 1; }
+.featured-name { font-size: 15px; font-weight: 900; color: var(--navy); line-height: 1.35; }
+.featured-name .kana { font-size: 10px; font-weight: 600; color: var(--ink-muted); margin-left: 6px; }
+.featured-meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+.featured-affil { font-size: 11px; color: var(--ink); font-weight: 600; line-height: 1.5; margin-top: 2px; }
+.featured-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.featured-badges .fbadge { font-size: 10px; font-weight: 800; background: var(--orange-tint); color: var(--orange-deep); padding: 3px 6px; line-height: 1.35; }
+.featured-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.7; margin-top: 8px; }
+.featured-card.is-empty { border-style: dashed; border-color: var(--orange-soft); }
+.featured-card.is-empty .featured-name, .featured-card.is-empty .featured-meta, .featured-card.is-empty .featured-desc, .featured-card.is-empty .kana { color: #B8BDC6; }
+.featured-card.is-empty .fbadge { background: var(--surface-2); color: #B8BDC6; }
 
 .wave-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 760px) { .wave-grid { grid-template-columns: 1fr; } }
@@ -441,26 +457,29 @@ window.SUMMIT = {
   speakers: {
     count: 12,
     list: [
-      // { name: "氏名", role: "高校2年／〇〇の活動", photo: "img/summit2027/xxx.jpg" }
+      // { name: "氏名", kana: "ふりがな", role: "所属・学年", affil: "活動・肩書き", badges: ["実績1", "実績2"], desc: "紹介文", photo: "img/summit2027/xxx.jpg" }
     ]
   },
+  // タイムテーブル（2026サイトと同じ表形式）
+  // cols：表の列。rows：時間帯ごとの行。cells の v は列ID、v:"all" は全列共通。
+  // rows:2 は下の行まで続くセル（例：90分のワークショップ）。tbd:true は内容未定。
   timetable: {
-    venues: [
-      { id: "a", name: "A会場", sub: "メインステージ" },
-      { id: "b", name: "B会場", sub: "テーマ別セッション" },
-      { id: "ws", name: "ワークショップ", sub: "各90分" },
-      { id: "lounge", name: "常設エリア", sub: "入退場自由" }
+    cols: [
+      { id: "a", name: "A会場（メインステージ）", color: "orange" },
+      { id: "b", name: "B会場（テーマ別セッション）", color: "teal" },
+      { id: "ws", name: "ワークショップ", color: "pink" },
+      { id: "open", name: "常設エリア", color: "yellow" }
     ],
-    slots: [
-      { time: "9:30",  items: [ { v: "all", title: "開場・受付", sub: "やりたいウォールへのご参加はこちら", kind: "common" } ] },
-      { time: "10:00", items: [ { v: "all", title: "オープニング", sub: "A会場", kind: "common" } ] },
-      { time: "10:30", items: [ { v: "a", title: "登壇セッション①", tbd: true }, { v: "b", title: "失敗談セッション", tbd: true }, { v: "ws", title: "ワークショップ①", tbd: true }, { v: "lounge", title: "相談所・仲間集めブース", sub: "終日開設" } ] },
-      { time: "11:30", items: [ { v: "a", title: "登壇セッション②", tbd: true }, { v: "b", title: "公開収録", tbd: true }, { v: "ws", title: "（ワークショップ①）", kind: "break" }, { v: "lounge", title: "交流ラウンジ①", sub: "テーマ別・30分" } ] },
-      { time: "12:30", items: [ { v: "all", title: "昼休憩", kind: "break" } ] },
-      { time: "13:30", items: [ { v: "a", title: "NEXYプレゼン大会", sub: "学生による構想発表" }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ②", tbd: true }, { v: "lounge", title: "登壇者ミートアップ", tbd: true } ] },
-      { time: "15:00", items: [ { v: "a", title: "登壇セッション③", tbd: true }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ③", tbd: true }, { v: "lounge", title: "交流ラウンジ②", sub: "テーマ別・30分" } ] },
-      { time: "16:15", items: [ { v: "all", title: "表彰・クロージング", sub: "A会場", kind: "common" } ] },
-      { time: "17:00", items: [ { v: "all", title: "閉会", sub: "18:00〜 参加者交流会（別会場・事前申込制・予定）", kind: "break" } ] }
+    rows: [
+      { time: "9:30 – 10:00",  cells: [ { v: "all", title: "開場・受付", sub: "受付時に、やりたいウォールへの掲示を行います。", kind: "open" } ] },
+      { time: "10:00 – 10:30", cells: [ { v: "all", title: "オープニング", sub: "A会場", kind: "open" } ] },
+      { time: "10:30 – 11:20", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "失敗談セッション", tbd: true }, { v: "ws", title: "ワークショップ①", tbd: true, rows: 2 }, { v: "open", title: "相談所・仲間集めブース", sub: "終日開設", kind: "interact", rows: 2 } ] },
+      { time: "11:30 – 12:20", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "公開収録", tbd: true } ] },
+      { time: "12:20 – 13:20", cells: [ { v: "all", title: "昼休憩", kind: "break" } ] },
+      { time: "13:30 – 14:50", cells: [ { v: "a", title: "NEXYプレゼン大会", sub: "学生が自らの構想を発表します。", kind: "presen" }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ②", tbd: true }, { v: "open", title: "登壇者ミートアップ", tbd: true, kind: "interact" } ] },
+      { time: "15:00 – 15:50", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ③", tbd: true }, { v: "open", title: "交流ラウンジ", sub: "テーマ別の交流（30分）", kind: "interact" } ] },
+      { time: "16:00 – 16:50", cells: [ { v: "all", title: "表彰・クロージング", sub: "A会場", kind: "open" } ] },
+      { time: "18:00 –",       cells: [ { v: "all", title: "参加者交流会", sub: "別会場・事前申込制（予定）", kind: "after", badge: "事前申込制" } ] }
     ]
   }
 
@@ -609,9 +628,8 @@ window.SUMMIT = {
       <div class="zone c"><span class="tag">OPEN AREA</span><b>常設エリア</b><span>交流ラウンジ／相談所／仲間集めブース／やりたいウォール</span></div>
     </div>
     <p class="floor-note">大田区産業プラザPiO（予定）。ワークショップの実施場所は準備中です。</p>
-    <div class="tt-tabs" role="tablist" id="ttTabs"></div>
-    <div class="tt" id="tt"></div>
-    <div class="tt-legend"><span class="l-fixed">決定</span><span class="l-common">全会場共通</span><span class="l-tbd">時間のみ決定</span></div>
+    <div class="sch-table-wrap"><table class="sch-table" id="schTable"></table></div>
+    <div class="sch-note">※ A会場・B会場・ワークショップ・常設エリアで同時に進行します。参加者は各会場を自由に行き来できます。<br>※ 「内容は準備中」の枠は、内容が決定次第掲載します。</div>
   </div>
 </section>
 
@@ -623,7 +641,8 @@ window.SUMMIT = {
       <h2 class="h2">登壇者</h2>
       <p class="lead">登壇後には、登壇者と直接対話できる時間を設けます。</p>
     </div>
-    <div class="speaker-grid" id="speakerGrid"></div>
+    <div class="speakers-group-head"><span class="speakers-group-en">Speakers</span><h3 class="speakers-group-title">登壇者一覧</h3></div>
+    <div class="featured-speakers" id="speakerGrid"></div>
     <div class="recommend"><span>登壇者の推薦を受け付けています（自薦・他薦可）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
   </div>
 </section>
@@ -761,48 +780,47 @@ window.SUMMIT = {
     document.getElementById('formSlot').outerHTML = '<iframe src="' + esc(src) + '" title="NEXY SUMMIT 2027 申込フォーム" style="width:100%;min-height:640px;border:0;border-radius:12px;background:#fff" loading="lazy"></iframe>';
   }
 
-  // 登壇者
-  var sp = S.speakers, grid = document.getElementById('speakerGrid');
-  grid.innerHTML = sp.list.map(function (p) {
-    return '<div class="speaker"><div class="photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '') + '</div><div class="name">' + esc(p.name) + '</div><div class="role">' + esc(p.role) + '</div></div>';
-  }).join('');
-  // 未確定の登壇者は、写真・名前・肩書きの枠だけを表示する
+  // 登壇者（2026サイトと同じカード形式）
+  var sp = S.speakers, grid = document.getElementById('speakerGrid'), cards = '';
+  sp.list.forEach(function (p) {
+    cards += '<article class="featured-card"><div class="featured-photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '<div class="speaker-placeholder">PHOTO</div>') + '</div>' +
+      '<div class="featured-body"><h4 class="featured-name">' + esc(p.name) + (p.kana ? '<span class="kana">' + esc(p.kana) + '</span>' : '') + '</h4>' +
+      '<p class="featured-meta">' + esc(p.role || '') + '</p>' + (p.affil ? '<p class="featured-affil">' + esc(p.affil) + '</p>' : '') +
+      (p.badges ? '<div class="featured-badges">' + p.badges.map(function (b) { return '<span class="fbadge">' + esc(b) + '</span>'; }).join('') + '</div>' : '') +
+      (p.desc ? '<p class="featured-desc">' + esc(p.desc) + '</p>' : '') + '</div></article>';
+  });
   for (var k = sp.list.length; k < sp.count; k++) {
-    grid.innerHTML += '<div class="speaker is-empty"><div class="photo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div><div class="name">登壇者名</div><div class="role">所属・肩書き</div></div>';
+    cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">PHOTO</div></div><div class="featured-body"><h4 class="featured-name">登壇者名<span class="kana">ふりがな</span></h4><p class="featured-meta">所属・肩書き</p><div class="featured-badges"><span class="fbadge">実績</span><span class="fbadge">実績</span></div><p class="featured-desc">紹介文が入ります。</p></div></article>';
   }
+  grid.innerHTML = cards;
 
-  // タイムテーブル
-  var tt = S.timetable, vs = tt.venues, box = document.getElementById('tt'), tabs = document.getElementById('ttTabs');
-  var h = '<div class="tt-head corner"></div>';
-  vs.forEach(function (v) { h += '<div class="tt-head" data-v="' + v.id + '">' + esc(v.name) + '<small>' + esc(v.sub) + '</small></div>'; });
-  tt.slots.forEach(function (s) {
-    h += '<div class="tt-time">' + esc(s.time) + '</div>';
-    var all = s.items.filter(function (it) { return it.v === 'all'; })[0];
+  // タイムテーブル（表形式）
+  var tt = S.timetable, cols = tt.cols, covered = {}, th = '<thead><tr><th class="col-time">時間</th>';
+  cols.forEach(function (c) { th += '<th class="col-' + c.color + '">' + esc(c.name) + '</th>'; });
+  var tb = '<tbody>';
+  tt.rows.forEach(function (r, ri) {
+    tb += '<tr><td class="t-time">' + esc(r.time) + '</td>';
+    var all = r.cells.filter(function (c) { return c.v === 'all'; })[0];
+    function cellHtml(c) {
+      var main = esc(c.title) + (c.badge ? '<span class="sch-t-badge">' + esc(c.badge) + '</span>' : '');
+      var sub = c.tbd ? '内容は準備中です。' : (c.sub ? esc(c.sub) : '');
+      return '<span class="sch-t-main">' + main + '</span>' + (sub ? '<span class="sch-t-sub">' + sub + '</span>' : '');
+    }
     if (all) {
-      vs.forEach(function (v, i) {
-        h += '<div class="tt-cell" data-v="' + v.id + '"' + (i === 0 ? ' data-span="1"' : ' data-dup="1"') + '><div class="tt-item ' + (all.kind || '') + '">' + esc(all.title) + (all.sub ? '<small>' + esc(all.sub) + '</small>' : '') + '</div></div>';
-      });
+      tb += '<td class="t-cell cell-' + (all.kind || 'open') + '" colspan="' + cols.length + '">' + cellHtml(all) + '</td>';
     } else {
-      vs.forEach(function (v) {
-        var it = s.items.filter(function (x) { return x.v === v.id; })[0], inner = '';
-        if (it) inner = '<div class="tt-item ' + (it.tbd ? 'tbd-item' : (it.kind || 'fixed')) + '">' + esc(it.title) + (it.tbd ? '<small>内容は準備中</small>' : (it.sub ? '<small>' + esc(it.sub) + '</small>' : '')) + '</div>';
-        h += '<div class="tt-cell" data-v="' + v.id + '">' + inner + '</div>';
+      cols.forEach(function (c) {
+        if (covered[c.id + ':' + ri]) return;
+        var it = r.cells.filter(function (x) { return x.v === c.id; })[0];
+        if (!it) { tb += '<td class="t-cell cell-empty"></td>'; return; }
+        var span = it.rows || 1; for (var k = 1; k < span; k++) covered[c.id + ':' + (ri + k)] = true;
+        var cls = it.tbd ? 'cell-tbd' : 'cell-' + (it.kind || c.color);
+        tb += '<td class="t-cell ' + cls + ' tone-' + c.color + '"' + (span > 1 ? ' rowspan="' + span + '"' : '') + '>' + cellHtml(it) + '</td>';
       });
     }
+    tb += '</tr>';
   });
-  box.innerHTML = h;
-  tabs.innerHTML = vs.map(function (v, i) { return '<button class="tt-tab" role="tab" aria-selected="' + (i === 0) + '" data-v="' + v.id + '">' + esc(v.name) + '</button>'; }).join('');
-  var mq = window.matchMedia('(max-width: 760px)');
-  function selectVenue(id) {
-    tabs.querySelectorAll('.tt-tab').forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-v') === id); });
-    box.querySelectorAll('[data-v]').forEach(function (c) { c.classList.toggle('is-active', c.getAttribute('data-v') === id); });
-  }
-  function layout() {
-    box.querySelectorAll('[data-dup]').forEach(function (c) { c.style.display = mq.matches ? '' : 'none'; });
-    box.querySelectorAll('[data-span]').forEach(function (c) { c.style.gridColumn = mq.matches ? 'auto' : 'span ' + vs.length; });
-  }
-  tabs.addEventListener('click', function (e) { var b = e.target.closest('.tt-tab'); if (b) selectVenue(b.getAttribute('data-v')); });
-  selectVenue(vs[0].id); layout(); mq.addEventListener('change', layout);
+  document.getElementById('schTable').innerHTML = th + '</tr></thead>' + tb + '</tbody>';
 
 
   // ハンバーガーメニュー
