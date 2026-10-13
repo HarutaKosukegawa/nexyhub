@@ -63,17 +63,28 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .tbd::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
 .slot { border: 1.5px dashed #C9CDD4; border-radius: var(--radius-lg); background: repeating-linear-gradient(135deg, #FAFAFB 0 10px, #F4F5F7 10px 20px); color: var(--ink-muted); }
 
-/* ナビ */
-.nav { position: sticky; top: 0; z-index: 250; height: var(--nav-h); background: rgba(255,255,255,.95); backdrop-filter: blur(12px); }
-.nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--grad); }
-.nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo img { height: 30px; width: auto; }
-.nav-logo span { font-family: Inter, sans-serif; font-weight: 900; font-size: 12px; letter-spacing: .14em; color: var(--navy); border-left: 1px solid var(--line); padding-left: 10px; }
-.nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
-.nav-links a { font-size: 13px; font-weight: 700; }
-.nav-links a:hover { color: var(--teal-deep); }
-@media (max-width: 1000px) { .nav-links .nav-item { display: none; } }
+/* ナビ（2026サイトと同じ構成：左ロゴ／区切り線付きメニュー／右上に固定の申込ボタン） */
+.nav { position: sticky; top: 0; z-index: 250; height: var(--nav-h); background: rgba(255,255,255,.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 0 270px 0 28px; }
+.nav-logo-img { height: 34px; width: auto; display: block; transition: transform .25s; }
+.nav-logo-img:hover { transform: scale(1.05); }
+.nav-links { display: flex; gap: 16px; list-style: none; align-items: center; }
+.nav-links a { color: var(--ink); font-size: 13px; font-weight: 800; white-space: nowrap; padding: 6px 0; transition: color .15s; }
+.nav-links a:hover { color: var(--orange-deep); }
+.nav-links li:not(:last-child)::after { content: ""; display: inline-block; width: 1px; height: 14px; background: rgba(0,0,0,.18); margin-left: 16px; vertical-align: middle; }
+.nav-burger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--navy); }
+.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); padding: 16px 24px 20px; flex-direction: column; gap: 4px; z-index: 249; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--navy); font-size: 15px; font-weight: 800; padding: 10px 0; }
+.mobile-nav a.cta { margin-top: 8px; background: var(--orange); color: #fff; border-radius: 999px; text-align: center; padding: 14px 18px; font-weight: 900; }
+.float-apply { position: fixed; top: 10px; right: 14px; z-index: 260; display: flex; flex-direction: column; align-items: center; background: var(--orange); color: #fff; padding: 9px 22px 10px; border: 2.5px solid #fff; border-radius: 12px; box-shadow: 0 12px 28px rgba(245,70,0,.35), 0 4px 10px rgba(0,0,0,.12); transition: transform .2s; animation: floatPulse 2.6s ease-in-out infinite; }
+.float-apply:hover { transform: translateY(-2px) scale(1.04); }
+.float-apply-main { font-size: 15px; font-weight: 900; letter-spacing: .04em; line-height: 1.4; }
+.float-apply-sub { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; opacity: .95; }
+@keyframes floatPulse { 0%,100% { box-shadow: 0 12px 28px rgba(245,70,0,.35), 0 0 0 0 rgba(245,70,0,.45); } 50% { box-shadow: 0 12px 28px rgba(245,70,0,.35), 0 0 0 12px rgba(245,70,0,0); } }
+@media (max-width: 1180px) { .nav-links { gap: 11px; } .nav-links a { font-size: 12px; } .nav-links li:not(:last-child)::after { margin-left: 11px; } }
+@media (max-width: 960px) { .nav { padding: 0 16px 0 20px; } .nav-links { display: none; } .nav-burger { display: flex; } .float-apply { display: none; } .nav-logo-img { height: 28px; } }
+@media (prefers-reduced-motion: reduce) { .float-apply { animation: none; } }
 
 /* ボタン */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 900; font-size: 16px; padding: 16px 28px; border-radius: 999px; min-height: 52px; transition: transform .15s, background .15s; }
@@ -448,50 +459,41 @@ window.SUMMIT = {
       { time: "16:15", items: [ { v: "all", title: "表彰・クロージング", sub: "A会場", kind: "common" } ] },
       { time: "17:00", items: [ { v: "all", title: "閉会", sub: "18:00〜 参加者交流会（別会場・事前申込制・予定）", kind: "break" } ] }
     ]
-  },
-  // 2026の実績：出典は「NEXY SUMMIT 2026 開催結果報告書」。確定値のみ
-  record2026: {
-    kpis: [
-      { v: "357", unit: "人", k: "参加者数" },
-      { v: "4.41", unit: "/5", k: "平均満足度", n: "当日アンケート 回答187人" },
-      { v: "87", unit: "%", k: "満足と回答した割合", n: "5段階評価で4以上" }
-    ],
-    // 参加者の声：報告書に載っている実際の声のみ（創作しない）
-    voices: [
-      { q: "自分の探求してみたい内容を実際に行動に移す勇気、知識をもらえた", who: "高校生" },
-      { q: "同年代の頑張っている姿を知って、自分も頑張ろうと思えました", who: "高校生" },
-      { q: "ブースを全部回って楽しかったです。高校生でも起業していて凄いと思いました", who: "参加者" }
-    ],
-    grades: {
-      title: "参加者の学年", sub: "事前申込者",
-      take: "参加者の約7割が高校生です。",
-      rows: [ ["高校3年", 25.8, 170], ["高校2年", 24.2, 159], ["高校1年", 19.8, 130], ["大学生・大学院生", 12.0, 79], ["中学生以下", 8.2, 54], ["社会人・保護者", 8.0, 53] ]
-    },
-    motives: {
-      title: "参加の理由", sub: "上位5項目・複数回答・事前申込者",
-      take: "最も多い理由は「まずは楽しみたい」です。",
-      rows: [ ["まずは楽しみたい", 50.9, 335], ["挑戦している同世代と出会いたい", 42.4, 279], ["活動を広げたい・仲間を見つけたい", 34.0, 224], ["社会人・起業家と話したい", 30.4, 200], ["やりたいことを見つけたい", 28.4, 187] ]
-    }
   }
+
 };
 </script>
 
 <div class="draft-banner" id="draftBanner" hidden>非公開の下書き（フレームワーク）です。「準備中」の項目は決まり次第差し替えます。</div>
 
 <header class="nav">
-  <div class="wrap">
-    <a class="nav-logo" href="/" aria-label="NEXY トップへ"><img src="img/site/nexy_logo_wordmark.png" alt="NEXY"><span>SUMMIT 2027</span></a>
-    <ul class="nav-links">
-      <li class="nav-item"><a href="#record">前回の開催</a></li>
-      <li class="nav-item"><a href="#program">プログラム</a></li>
-      <li class="nav-item"><a href="#day">タイムテーブル</a></li>
-      <li class="nav-item"><a href="#speakers">登壇者</a></li>
-      <li class="nav-item"><a href="#access">アクセス</a></li>
-      <li class="nav-item"><a href="#faq">よくある質問</a></li>
-      <li><a class="btn btn-primary btn-sm js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a></li>
-    </ul>
-  </div>
+  <a class="nav-logo" href="/" aria-label="NEXY トップへ"><img src="img/summit/nexy_logo.png" alt="NEXY SUMMIT" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="#top">TOP</a></li>
+    <li><a href="#for">参加者</a></li>
+    <li><a href="#program">プログラム</a></li>
+    <li><a href="#day">タイムテーブル</a></li>
+    <li><a href="#speakers">登壇者</a></li>
+    <li><a href="#access">アクセス</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </header>
+<nav class="mobile-nav" id="mobileNav" aria-label="メニュー">
+  <a href="#top">TOP</a>
+  <a href="#for">参加者</a>
+  <a href="#program">プログラム</a>
+  <a href="#day">タイムテーブル</a>
+  <a href="#speakers">登壇者</a>
+  <a href="#access">アクセス</a>
+  <a href="#faq">FAQ</a>
+  <a href="#entry" class="cta js-cta"><span class="js-cta-label">最新情報を受け取る</span></a>
+</nav>
+<!-- 右上の申込ボタン（2026と同じ配置） -->
+<a href="#entry" class="float-apply js-cta">
+  <span class="float-apply-main"><span class="js-cta-label">最新情報を受け取る</span> →</span>
+  <span class="float-apply-sub">中学生・高校生・大学生／参加無料</span>
+</a>
 
 <main>
 
@@ -513,7 +515,7 @@ window.SUMMIT = {
       </dl>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">最新情報を受け取る</span></a>
-        <a class="btn btn-outline" href="#record">前回の開催の様子</a>
+        <a class="btn btn-outline" href="#program">プログラムを見る</a>
       </div>
       <p class="cta-note js-cta-note"></p>
     </div>
@@ -523,39 +525,6 @@ window.SUMMIT = {
       <img src="img/site/gallery_summit_table.jpg" alt="テーブルを囲んで話す参加者" width="1400" height="787">
       <figcaption>写真はすべて NEXY SUMMIT 2026 開催時のものです</figcaption>
     </figure>
-  </div>
-</section>
-
-<!-- ===== 2. 前回の様子 ===== -->
-<section class="section bg-teal" id="record">
-  <img class="paint" src="img/summit2027/paint_rm.webp" alt="" aria-hidden="true" style="right:-50px;top:30px;width:140px;opacity:.85">
-  <div class="wrap">
-    <div class="head">
-      <span class="eyebrow">Report</span>
-      <h2 class="h2">前回の開催の様子</h2>
-      <p class="lead">NEXY SUMMIT 2026（2026年8月6日／東京たま未来メッセ）</p>
-    </div>
-    <div class="scene">
-      <div class="movie" id="movie">
-        <button type="button" aria-label="NEXY SUMMIT 2026 ダイジェストムービーを再生">
-          <img src="https://i.ytimg.com/vi/fddgorgEkJc/hqdefault.jpg" alt="" loading="lazy">
-          <span class="play"></span>
-        </button>
-      </div>
-      <div class="photo-grid">
-        <figure><img src="img/summit2027/r26_pitch.webp" alt="プレゼン大会で発表する学生" loading="lazy" width="960" height="720"><figcaption>プレゼン大会</figcaption></figure>
-        <figure><img src="img/summit2027/r26_session.webp" alt="セッションの会場" loading="lazy" width="960" height="720"><figcaption>セッション</figcaption></figure>
-        <figure><img src="img/summit2027/r26_audience.webp" alt="ステージを見つめる参加者" loading="lazy" width="960" height="720"><figcaption>メインステージ</figcaption></figure>
-        <figure><img src="img/summit2027/r26_talk.webp" alt="対話型セッションの登壇者" loading="lazy" width="960" height="720"><figcaption>対話型セッション</figcaption></figure>
-      </div>
-    </div>
-    <div class="kpi-row" id="kpiRow"></div>
-    <div class="voices" id="voices"></div>
-    <div class="charts">
-      <figure class="chart-card" id="chartGrades"></figure>
-      <figure class="chart-card" id="chartMotives"></figure>
-    </div>
-    <p class="footnote">数字・声は NEXY SUMMIT 2026 開催結果報告書より。学年は事前申込者（未回答を除く）の割合です。</p>
   </div>
 </section>
 
@@ -739,19 +708,6 @@ window.SUMMIT = {
         <tr><th scope="row">お問い合わせ</th><td><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></td></tr>
       </table>
     </div>
-    <div class="partners-2026">
-      <div class="ttl">2026年 協賛企業・団体（敬称略）</div>
-      <div class="logo-row">
-        <img src="img/site/partner_cheers.png" alt="CHEERS!" loading="lazy">
-        <img src="img/site/partner_segasammy.png" alt="セガサミーホールディングス" loading="lazy">
-        <img src="img/site/partner_smbc.png" alt="SMBC" loading="lazy">
-        <img src="img/site/partner_swimmy.png" alt="SWIMMY" loading="lazy">
-        <img src="img/site/partner_son_foundation.png" alt="孫正義育英財団" loading="lazy">
-        <img src="img/site/partner_dejiara.png" alt="デジアラホールディングス" loading="lazy">
-        <img src="img/site/partner_gaiax.png" alt="Gaiax" loading="lazy">
-        <img src="img/site/partner_symenergy.png" alt="SymEnergy" loading="lazy">
-      </div>
-    </div>
     <p class="sponsor-link">協賛に関するお問い合わせは <a class="js-link" data-link="sponsor" href="#">こちら</a></p>
     <div class="closing">
       <div class="btns">
@@ -808,27 +764,6 @@ window.SUMMIT = {
     document.getElementById('formSlot').outerHTML = '<iframe src="' + esc(src) + '" title="NEXY SUMMIT 2027 申込フォーム" style="width:100%;min-height:640px;border:0;border-radius:12px;background:#fff" loading="lazy"></iframe>';
   }
 
-  // 2026の実績：KPI
-  var R = S.record2026;
-  document.getElementById('kpiRow').innerHTML = R.kpis.map(function (r) {
-    return '<div class="kpi"><div class="v">' + esc(r.v) + '<small>' + esc(r.unit) + '</small></div><div class="k">' + esc(r.k) + '</div>' + (r.n ? '<div class="n">' + esc(r.n) + '</div>' : '') + '</div>';
-  }).join('');
-  document.getElementById('voices').innerHTML = R.voices.map(function (v) {
-    return '<blockquote class="voice"><p>「' + esc(v.q) + '」</p><cite>' + esc(v.who) + '</cite></blockquote>';
-  }).join('');
-  // 横棒グラフ（単系列・直接ラベル・ホバーで人数）
-  function barChart(id, d, color) {
-    var max = Math.max.apply(null, d.rows.map(function (r) { return r[1]; }));
-    var rows = d.rows.map(function (r) {
-      return '<div class="bar-row" tabindex="0"><span class="lbl">' + esc(r[0]) + '</span><div class="bar-track"><div class="bar" style="width:' + (r[1] / max * 100).toFixed(1) + '%;--bar:' + color + '"></div></div><span class="val">' + r[1].toFixed(1) + '%</span><span class="tip">' + esc(r[0]) + '：' + r[2] + '名（' + r[1].toFixed(1) + '%）</span></div>';
-    }).join('');
-    var table = '<table class="sr-only"><caption>' + esc(d.title) + '</caption><tr><th>項目</th><th>割合</th><th>人数</th></tr>' +
-      d.rows.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td>' + r[1] + '%</td><td>' + r[2] + '名</td></tr>'; }).join('') + '</table>';
-    document.getElementById(id).innerHTML = '<h3>' + esc(d.title) + '</h3><div class="sub">' + esc(d.sub) + '</div><div class="bars" aria-hidden="true">' + rows + '</div>' + table + '<figcaption class="take">' + esc(d.take) + '</figcaption>';
-  }
-  barChart('chartMotives', R.motives, 'var(--orange-bar)');
-  barChart('chartGrades', R.grades, 'var(--teal-bar)');
-
   // 登壇者
   var sp = S.speakers, grid = document.getElementById('speakerGrid');
   grid.innerHTML = sp.list.map(function (p) {
@@ -880,11 +815,11 @@ window.SUMMIT = {
   selectVenue(vs[0].id); layout(); mq.addEventListener('change', layout);
 
 
-  // ダイジェスト動画：クリックで初めてYouTubeを読み込む（ページを軽く保つ）
-  var mv = document.getElementById('movie');
-  mv.querySelector('button').addEventListener('click', function () {
-    mv.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/fddgorgEkJc?autoplay=1&rel=0" title="NEXY SUMMIT 2026 ダイジェストムービー" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-  });
+  // ハンバーガーメニュー
+  var burger = document.getElementById('burger'), mnav = document.getElementById('mobileNav');
+  burger.addEventListener('click', function () { mnav.style.top = document.querySelector('.nav').getBoundingClientRect().bottom + 'px'; var o = mnav.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
+  mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); burger.setAttribute('aria-expanded', false); }); });
+
   // スマホ追従CTA
   var sticky = document.getElementById('stickyCta'), heroOut = false, entryIn = false;
   function upd() { var on = heroOut && !entryIn && S.phase !== 2; sticky.classList.toggle('is-visible', on); sticky.setAttribute('aria-hidden', !on); sticky.querySelector('a').tabIndex = on ? 0 : -1; }
