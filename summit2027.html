@@ -162,6 +162,25 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .bar-row:hover .tip, .bar-row:focus-within .tip { opacity: 1; }
 .bar-row:hover .bar { filter: brightness(1.08); }
 
+
+/* 2026の様子（写真＋ダイジェスト動画） */
+.scene { display: grid; grid-template-columns: 1.25fr 1fr; gap: 14px; margin-top: 14px; }
+@media (max-width: 860px) { .scene { grid-template-columns: 1fr; } }
+.movie { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: #000; aspect-ratio: 16 / 9; }
+.movie button { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; }
+.movie img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.movie .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 72px; height: 72px; border-radius: 50%; background: var(--orange); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.movie .play::after { content: ""; border-left: 22px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 6px; }
+.movie .cap { position: absolute; left: 14px; bottom: 12px; color: #fff; font-weight: 900; font-size: 14px; text-shadow: 0 2px 8px rgba(0,0,0,.6); }
+.movie iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.photo-grid figure { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; }
+.photo-grid img { width: 100%; height: 100%; object-fit: cover; }
+.photo-grid figcaption { position: absolute; left: 8px; bottom: 8px; font-size: 11px; font-weight: 900; color: #fff; padding: 2px 8px; border-radius: 999px; background: var(--teal-deep); }
+.photo-grid figure:nth-child(2) figcaption { background: var(--orange-deep); }
+.photo-grid figure:nth-child(3) figcaption { background: var(--pink-deep); }
+.photo-grid figure:nth-child(4) figcaption { background: #7A5E00; }
+
 /* ===== 参加対象 ===== */
 .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 @media (max-width: 900px) { .persona-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -503,6 +522,20 @@ window.SUMMIT = {
     <div class="charts">
       <figure class="chart-card" id="chartMotives"></figure>
       <figure class="chart-card" id="chartGrades"></figure>
+    </div>
+    <div class="scene">
+      <div class="movie" id="movie">
+        <button type="button" aria-label="NEXY SUMMIT 2026 ダイジェストムービーを再生">
+          <img src="https://i.ytimg.com/vi/fddgorgEkJc/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play"></span>
+        </button>
+      </div>
+      <div class="photo-grid">
+        <figure><img src="img/summit2027/r26_pitch.webp" alt="プレゼン大会で発表する学生" loading="lazy" width="960" height="720"><figcaption>プレゼン大会</figcaption></figure>
+        <figure><img src="img/summit2027/r26_session.webp" alt="登壇セッションの会場" loading="lazy" width="960" height="720"><figcaption>登壇セッション</figcaption></figure>
+        <figure><img src="img/summit2027/r26_audience.webp" alt="ステージを見つめる参加者" loading="lazy" width="960" height="720"><figcaption>メインステージ</figcaption></figure>
+        <figure><img src="img/summit2027/r26_talk.webp" alt="対話型セッションの登壇者" loading="lazy" width="960" height="720"><figcaption>対話型セッション</figcaption></figure>
+      </div>
     </div>
     <p class="footnote">出典：NEXY SUMMIT 2026 開催結果報告書（学生団体NEXY）。学年構成は未回答を含むため合計が100%になりません。</p>
   </div>
@@ -856,6 +889,12 @@ window.SUMMIT = {
   tabs.addEventListener('click', function (e) { var b = e.target.closest('.tt-tab'); if (b) selectVenue(b.getAttribute('data-v')); });
   selectVenue(vs[0].id); layout(); mq.addEventListener('change', layout);
 
+
+  // ダイジェスト動画：クリックで初めてYouTubeを読み込む（ページを軽く保つ）
+  var mv = document.getElementById('movie');
+  mv.querySelector('button').addEventListener('click', function () {
+    mv.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/fddgorgEkJc?autoplay=1&rel=0" title="NEXY SUMMIT 2026 ダイジェストムービー" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  });
   // スマホ追従CTA
   var sticky = document.getElementById('stickyCta'), heroOut = false, entryIn = false;
   function upd() { var on = heroOut && !entryIn && S.phase !== 2; sticky.classList.toggle('is-visible', on); sticky.setAttribute('aria-hidden', !on); sticky.querySelector('a').tabIndex = on ? 0 : -1; }
