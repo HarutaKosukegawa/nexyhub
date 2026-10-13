@@ -304,7 +304,9 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .floor-note { font-size: 12px; color: var(--ink-muted); margin-bottom: 28px; }
 /* タイムテーブル（2026サイトと同じ表形式） */
 .sch-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); border: 1px solid var(--line); background: #fff; }
-.sch-table { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 14px; }
+.sch-table { table-layout: fixed; }
+.sch-table thead th.col-time { width: 120px; }
+.sch-table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14px; }
 .sch-table th, .sch-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); vertical-align: top; text-align: left; }
 .sch-table th:first-child, .sch-table td:first-child { border-left: 0; }
 .sch-table thead th { color: #fff; font-size: 13px; font-weight: 900; letter-spacing: .04em; padding: 16px; text-align: center; vertical-align: middle; }
@@ -483,7 +485,7 @@ window.SUMMIT = {
   draft: true,               // true の間は上部に「非公開の下書き」バナーを出す
   phase: 1,                  // 1 = 申込受付中 / 2 = 受付終了
   date:   { text: "2027年3月下旬", fixed: false },
-  time:   { text: "10:00〜17:00", fixed: false },
+  time:   { text: "10:00〜17:10", fixed: false },
   venue:  { text: "大田区産業プラザPiO", fixed: false },
   target: { text: "中学生・高校生・大学生" },
   price:  { text: "無料" },
@@ -515,22 +517,23 @@ window.SUMMIT = {
   timetable: {
     cols: [
       { id: "a", name: "A会場（メインステージ）", color: "orange" },
-      { id: "b", name: "B会場（テーマ別セッション）", color: "teal" },
-      { id: "ws", name: "ワークショップ", color: "pink" },
+      { id: "b", name: "B会場（セッション・ワークショップ）", color: "teal" },
       { id: "open", name: "常設エリア", color: "yellow" }
     ],
     rows: [
-      { time: "9:30 – 10:00",  cells: [ { v: "all", title: "開場・受付", sub: "受付時に、やりたいウォールへの掲示を行います。", kind: "open" } ] },
-      { time: "10:00 – 10:30", cells: [ { v: "all", title: "オープニング", sub: "A会場", kind: "open" } ] },
-      { time: "10:30 – 11:20", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "失敗談セッション", tbd: true }, { v: "ws", title: "ワークショップ①", tbd: true, rows: 2 }, { v: "open", title: "相談所・仲間集めブース", sub: "終日開設", kind: "interact", rows: 2 } ] },
-      { time: "11:30 – 12:20", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "公開収録", tbd: true } ] },
-      { time: "12:20 – 13:20", cells: [ { v: "all", title: "昼休憩", kind: "break" } ] },
-      { time: "13:20 – 15:10", cells: [ { v: "a", title: "NEXYプレゼン大会", sub: "学生が自らの構想を発表します（110分）。", kind: "presen" }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ②", tbd: true }, { v: "open", title: "登壇者ミートアップ", tbd: true, kind: "interact" } ] },
-      { time: "15:20 – 16:10", cells: [ { v: "a", title: "登壇セッション", tbd: true }, { v: "b", title: "テーマ別セッション", tbd: true }, { v: "ws", title: "ワークショップ③", tbd: true }, { v: "open", title: "交流ラウンジ", sub: "テーマ別の交流（30分）", kind: "interact" } ] },
-      { time: "16:20 – 17:00", cells: [ { v: "all", title: "表彰・クロージング", sub: "A会場", kind: "open" } ] },
+      { time: "10:00 – 10:15", cells: [ { v: "all", title: "開場・受付", sub: "やりたいウォールを見ながら入場します。", kind: "open" } ] },
+      { time: "10:15 – 10:20", cells: [ { v: "all", title: "オープニング", sub: "A会場", kind: "open" } ] },
+      { time: "10:30 – 11:20", cells: [ { v: "a", title: "学生起業のリアル", sub: "失敗も含めた同世代の話" }, { v: "b", title: "WS① やりたいを企画書1枚にする", sub: "10:30–12:10（100分）", kind: "pink", rows: 2 }, { v: "open", title: "常時オープン", sub: "相談所（総合型選抜・留学）／仲間集めブース／やりたいウォール／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
+      { time: "11:30 – 12:20", cells: [ { v: "a", title: "人間関係・巻き込み", sub: "応援される人がやっていること" } ] },
+      { time: "12:20 – 13:20", cells: [ { v: "a", title: "昼休憩", sub: "A・B会場共通", kind: "break", cols: 2 }, { v: "open", title: "交流ラウンジ①", sub: "テーマ別エリアで交流", kind: "interact" } ] },
+      { time: "13:20 – 14:10", cells: [ { v: "a", title: "NEXYプレゼン大会", sub: "13:20–15:10（110分）学生が自らの構想を発表します。", kind: "presen", rows: 2 }, { v: "b", title: "失敗談セッション", sub: "一番の失敗と、そこから変えたこと" }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
+      { time: "14:20 – 15:10", cells: [ { v: "b", title: "AIで何をつくる？", sub: "AIネイティブ世代の実例" } ] },
+      { time: "15:20 – 16:10", cells: [ { v: "a", title: "公開収録", sub: "会場からの質問も番組の一部に" }, { v: "b", title: "WS② 自分の活動をストーリーにする", sub: "15:20–16:50（90分）", kind: "pink", rows: 2 }, { v: "open", title: "交流ラウンジ②", sub: "テーマ別 登壇者ミートアップ", kind: "interact" } ] },
+      { time: "16:20 – 17:10", cells: [ { v: "a", title: "海外・留学", sub: "行って自分がどう変わったか" }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース", kind: "interact" } ] },
       { time: "18:00 –",       cells: [ { v: "all", title: "参加者交流会", sub: "別会場・事前申込制（予定）", kind: "after", badge: "事前申込制" } ] }
     ]
   }
+
 
 };
 </script>
@@ -640,7 +643,7 @@ window.SUMMIT = {
         <div class="phase-h"><span class="when">STAGE</span><b>A・B会場</b></div>
         <ul>
           <li><b>NEXYプレゼン大会</b><span>学生が自らの構想を発表</span></li>
-          <li><b>セッション</b><span>総合型選抜・留学・起業 など</span></li>
+          <li><b>セッション</b><span>起業・人間関係・失敗談・AI・海外留学</span></li>
           <li><b>失敗談セッション<span class="new">NEW</span></b><span>挑戦の中での失敗と、その後の変化</span></li>
           <li><b>公開収録<span class="new">NEW</span></b><span>会場からの質問も番組の一部に</span></li>
         </ul>
@@ -652,7 +655,7 @@ window.SUMMIT = {
           <li><b>登壇者ミートアップ<span class="new">NEW</span></b><span>登壇後に登壇者と直接対話できる</span></li>
           <li><b>相談所<span class="new">NEW</span></b><span>総合型選抜・留学について相談できる</span></li>
           <li><b>交流ラウンジ・仲間集めブース</b><span>テーマ別に交流できる</span></li>
-          <li><b>ワークショップ</b><span>やりたいことを企画書1枚にまとめる</span></li>
+          <li><b>ワークショップ（2本）</b><span>企画書1枚づくり／自分の活動をストーリーにする</span></li>
         </ul>
       </div>
       <div class="phase p4">
@@ -676,13 +679,13 @@ window.SUMMIT = {
       <p class="lead">時間は予定です。各プログラムの内容は、決定次第掲載します。</p>
     </div>
     <div class="floor-map" role="img" aria-label="大展示ホールをA会場とB会場に分け、手前に常設エリアを置く会場マップ">
-      <div class="zone a"><div class="tag">A AREA</div><b>A会場｜メインステージ</b><span>プレゼン大会・セッション</span></div>
-      <div class="zone b"><div class="tag">B AREA</div><b>B会場｜テーマ別セッション</b><span>失敗談セッション・公開収録</span></div>
+      <div class="zone a"><div class="tag">A AREA</div><b>A会場｜メインステージ</b><span>プレゼン大会・セッション・公開収録</span></div>
+      <div class="zone b"><div class="tag">B AREA</div><b>B会場｜セッション・WS</b><span>失敗談・AIセッション、ワークショップ</span></div>
       <div class="zone c"><span class="tag">OPEN AREA</span><b>常設エリア</b><span>交流ラウンジ／相談所／仲間集めブース／やりたいウォール</span></div>
     </div>
-    <p class="floor-note">大田区産業プラザPiO（予定）。ワークショップの実施場所は準備中です。</p>
+    <p class="floor-note">大田区産業プラザPiO 大展示ホール（予定）。ホールを仕切ってA会場・B会場・常設エリアにします。</p>
     <div class="sch-table-wrap"><table class="sch-table" id="schTable"></table></div>
-    <div class="sch-note">※ A会場・B会場・ワークショップ・常設エリアで同時に進行します。参加者は各会場を自由に行き来できます。<br>※ 「内容は準備中」の枠は、内容が決定次第掲載します。</div>
+    <div class="sch-note">※ A会場・B会場・常設エリアで同時に進行します。参加者は各会場を自由に行き来できます。<br>※ 各セッションの終了後20分間、登壇者は常設エリアのミートアップ卓で参加者と話します。<br>※ 時間・内容は予定です。登壇者は決定次第掲載します。</div>
   </div>
 </section>
 
@@ -916,9 +919,10 @@ window.SUMMIT = {
         if (covered[c.id + ':' + ri]) return;
         var it = r.cells.filter(function (x) { return x.v === c.id; })[0];
         if (!it) { tb += '<td class="t-cell cell-empty"></td>'; return; }
-        var span = it.rows || 1; for (var k = 1; k < span; k++) covered[c.id + ':' + (ri + k)] = true;
+        var span = it.rows || 1, cspan = it.cols || 1, ci = cols.indexOf(c);
+        for (var k = 0; k < span; k++) for (var m = 0; m < cspan; m++) if (k || m) covered[cols[ci + m].id + ':' + (ri + k)] = true;
         var cls = it.tbd ? 'cell-tbd' : 'cell-' + (it.kind || c.color);
-        tb += '<td class="t-cell ' + cls + ' tone-' + c.color + '"' + (span > 1 ? ' rowspan="' + span + '"' : '') + '>' + cellHtml(it) + '</td>';
+        tb += '<td class="t-cell ' + cls + ' tone-' + c.color + '"' + (span > 1 ? ' rowspan="' + span + '"' : '') + (cspan > 1 ? ' colspan="' + cspan + '"' : '') + '>' + cellHtml(it) + '</td>';
       });
     }
     tb += '</tr>';
