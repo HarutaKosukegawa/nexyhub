@@ -208,23 +208,37 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .sp-tier { margin-bottom: 18px; }
 .sp-tier-h { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .sp-tier-h b { font-size: 15px; font-weight: 900; color: var(--navy); }
-.sp-tier-h span { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .2em; color: #fff; padding: 3px 8px; border-radius: 4px; background: var(--tc); }
+.sp-tier-h span { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .2em; color: #fff; padding: 4px 10px; border-radius: 4px; background: var(--tc); }
+.t-diamond .sp-tier-h span { font-size: 12px; padding: 5px 14px; } .t-diamond .sp-tier-h b { font-size: 18px; }
 .sp-tier-h::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-.sp-tier.t-premium { --tc: var(--orange); } .sp-tier.t-gold { --tc: var(--teal); } .sp-tier.t-support { --tc: var(--pink); }
+.sp-tier.t-diamond  { --tc: linear-gradient(135deg, #40BCB8, #7B61FF 55%, #F0519B); --tb: #7B61FF; }
+.sp-tier.t-platinum { --tc: linear-gradient(135deg, #8E9AAF, #4F5B6E); --tb: #6B7689; }
+.sp-tier.t-gold     { --tc: linear-gradient(135deg, #E5B93A, #B8860B); --tb: #C99A1A; }
+.sp-tier.t-silver   { --tc: linear-gradient(135deg, #B9C0CA, #8A929D); --tb: #A3ABB5; }
+.sp-tier.t-bronze   { --tc: linear-gradient(135deg, #C98A55, #8E5A2E); --tb: #B0703C; }
 .sp-logos { display: grid; gap: 10px; }
-.t-premium .sp-logos { grid-template-columns: repeat(2, 1fr); }
-.t-gold .sp-logos { grid-template-columns: repeat(4, 1fr); }
-.t-support .sp-logos { grid-template-columns: repeat(6, 1fr); }
-@media (max-width: 640px) { .t-premium .sp-logos { grid-template-columns: 1fr 1fr; } .t-gold .sp-logos { grid-template-columns: 1fr 1fr; } .t-support .sp-logos { grid-template-columns: repeat(3, 1fr); } }
-.sp-logo { display: grid; place-items: center; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; text-align: center; }
-.t-premium .sp-logo { height: 120px; border-color: var(--orange); }
-.t-gold .sp-logo { height: 84px; }
-.t-support .sp-logo { height: 60px; padding: 6px; }
-@media (max-width: 640px) { .t-premium .sp-logo { height: 84px; } .t-gold .sp-logo { height: 60px; } .t-support .sp-logo { height: 46px; } }
+.t-diamond .sp-logos  { grid-template-columns: minmax(0, 560px); justify-content: center; }
+.t-platinum .sp-logos { grid-template-columns: repeat(2, 1fr); }
+.t-gold .sp-logos     { grid-template-columns: repeat(3, 1fr); }
+.t-silver .sp-logos   { grid-template-columns: repeat(4, 1fr); }
+.t-bronze .sp-logos   { grid-template-columns: repeat(6, 1fr); }
+.sp-logo { display: grid; place-items: center; background: #fff; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px; text-align: center; position: relative; overflow: hidden; }
+.t-diamond .sp-logo  { height: 170px; border: 2.5px solid var(--tb); box-shadow: 0 10px 30px rgba(123,97,255,.15); }
+.t-platinum .sp-logo { height: 120px; border: 2px solid var(--tb); }
+.t-gold .sp-logo     { height: 92px; border-color: var(--tb); }
+.t-silver .sp-logo   { height: 70px; }
+.t-bronze .sp-logo   { height: 54px; padding: 6px; }
+@media (max-width: 640px) {
+  .t-silver .sp-logos { grid-template-columns: repeat(4, 1fr); gap: 8px; } .t-bronze .sp-logos { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .t-silver .sp-logo.is-empty { font-size: 9px; letter-spacing: .08em; }
+  .t-diamond .sp-logo { height: 120px; } .t-platinum .sp-logo { height: 84px; } .t-gold .sp-logo { height: 64px; } .t-silver .sp-logo { height: 50px; padding: 4px; } .t-bronze .sp-logo { height: 40px; }
+}
 .sp-logo img { max-width: 86%; max-height: 70%; object-fit: contain; }
 .sp-logo.is-empty { border-style: dashed; background: #FAFAF7; color: #B8BDC6; font-family: Inter, sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .14em; }
-.t-premium .sp-logo.is-empty { font-size: 13px; border-color: var(--orange-soft); }
-.t-support .sp-logo.is-empty { font-size: 9px; letter-spacing: .08em; }
+.t-diamond .sp-logo.is-empty { font-size: 16px; color: #9C8CF0; background: linear-gradient(135deg, #F4FBFB, #F6F3FF 55%, #FFF3F8); }
+.t-bronze .sp-logo.is-empty { font-size: 9px; letter-spacing: .08em; }
+.t-diamond .sp-logo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.8) 50%, transparent 65%); transform: translateX(-100%); animation: shine 4.5s ease-in-out infinite; pointer-events: none; }
+@keyframes shine { 0%, 55% { transform: translateX(-100%); } 85%, 100% { transform: translateX(100%); } }
 .sp-inquiry { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; background: var(--surface-2); border-radius: var(--radius-lg); padding: 14px 20px; font-size: 13px; color: var(--ink-muted); }
 .sp-inquiry a { color: var(--teal-deep); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .hero-sponsors { margin-top: 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -474,6 +488,26 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .sticky-cta .txt { color: var(--ink-muted); font-size: 12px; line-height: 1.4; flex: 1; }
 .sticky-cta .txt b { display: block; font-size: 14px; color: var(--navy); }
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
+/* ===== アニメーション ===== */
+@keyframes heroUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes heroPop { from { opacity: 0; transform: translateY(30px) scale(.94) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
+@keyframes floatY { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(1.5deg); } }
+@keyframes gradMove { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+.hero-kicker, .hero-logo, .hero h1, .hero-sub, .hero .facts, .hero-ctas, .hero .cta-note, .hero-sponsors { animation: heroUp .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero-logo { animation-delay: .08s; } .hero h1 { animation-delay: .2s; } .hero-sub { animation-delay: .3s; } .hero .facts { animation-delay: .4s; } .hero-ctas { animation-delay: .5s; } .hero .cta-note, .hero-sponsors { animation-delay: .6s; }
+.hero-photos img { animation: heroPop .9s cubic-bezier(.2,.7,.2,1) both; }
+.hero-photos img:nth-child(1) { animation-delay: .25s; } .hero-photos img:nth-child(2) { animation-delay: .4s; } .hero-photos img:nth-child(3) { animation-delay: .55s; }
+.paint { animation: floatY 9s ease-in-out infinite; } .paint-bl, .paint-br { animation-duration: 11s; animation-delay: -3s; }
+.js-anim .rv { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+.js-anim .rv.in { opacity: 1; transform: none; }
+.js-anim .sch-table tbody tr { opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; transition-delay: var(--d, 0s); }
+.js-anim .sch-table.in tbody tr { opacity: 1; transform: none; }
+.persona .ic { transition: transform .3s cubic-bezier(.3,1.6,.5,1); } .persona:hover .ic { transform: scale(1.12) rotate(-6deg); }
+.sp-logo { transition: transform .25s, box-shadow .25s; } .sp-logo:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(2,16,43,.08); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-kicker, .hero-logo, .hero h1, .hero-sub, .hero .facts, .hero-ctas, .hero .cta-note, .hero-sponsors, .hero-photos img, .paint, .t-diamond .sp-logo::after { animation: none !important; }
+  .js-anim .rv, .js-anim .sch-table tbody tr { opacity: 1 !important; transform: none !important; }
+}
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
 </head>
@@ -508,9 +542,12 @@ window.SUMMIT = {
   },
   // 協賛：tier ごとに枠数とロゴを管理する。hero:true の区分はファーストビューにもロゴを表示する
   sponsors: [
-    { id: "premium", name: "特別協賛", en: "PREMIUM", count: 2, hero: true,  list: [] },
-    { id: "gold",    name: "協賛",     en: "SPONSOR", count: 4, hero: false,  list: [] },
-    { id: "support", name: "協力・後援", en: "SUPPORT", count: 6, hero: false, list: [] }
+    // hero:true はファーストビュー、foot:true はページ下部の帯にもロゴを表示する
+    { id: "diamond",  name: "ダイヤモンド", en: "DIAMOND",  count: 1, hero: true,  foot: true,  list: [] },
+    { id: "platinum", name: "プラチナ",     en: "PLATINUM", count: 2, hero: true,  foot: true,  list: [] },
+    { id: "gold",     name: "ゴールド",     en: "GOLD",     count: 3, hero: false, foot: true,  list: [] },
+    { id: "silver",   name: "シルバー",     en: "SILVER",   count: 4, hero: false, foot: false, list: [] },
+    { id: "bronze",   name: "ブロンズ",     en: "BRONZE",   count: 6, hero: false, foot: false, list: [] }
     // list の例：{ name: "株式会社〇〇", logo: "img/summit2027/sponsor_xxx.png", url: "https://..." }
   ],
   // タイムテーブル（2026サイトと同じ表形式）
@@ -526,10 +563,10 @@ window.SUMMIT = {
       { time: "10:30 – 10:45", cells: [ { v: "all", title: "開場・受付", sub: "やりたいウォールを見ながら入場します。", kind: "open" } ] },
       { time: "10:45 – 10:50", cells: [ { v: "all", title: "オープニング", sub: "A会場。1日の回り方とランチテーブルをご案内します。", kind: "open" } ] },
       { time: "11:00 – 11:50", cells: [ { v: "a", title: "人間関係・巻き込み", sub: "応援される人がやっていること" }, { v: "b", title: "WS① やりたいを企画書1枚にする", sub: "11:00–12:50（110分）", kind: "pink", rows: 2 }, { v: "open", title: "常時オープン", sub: "相談所（総合型選抜・留学）／仲間集めブース／やりたいウォール／登壇者ミートアップ卓", kind: "interact" } ] },
-      { time: "12:00 – 12:50", cells: [ { v: "a", title: "学生起業のリアル", sub: "失敗も含めた同世代の話" }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食事をとりながら、テーマ別に交流できます。", kind: "interact", rows: 3 } ] },
+      { time: "12:00 – 12:50", cells: [ { v: "a", title: "協賛セッション①", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食事をとりながら、テーマ別に交流できます。", kind: "interact", rows: 3 } ] },
       { time: "13:00 – 13:50", cells: [ { v: "a", title: "NEXYプレゼン大会", sub: "13:00–14:50（110分）。6組が自らの構想を発表します。", kind: "presen", rows: 2 }, { v: "b", title: "WS② 自分の活動をストーリーにする", sub: "13:00–14:50（110分）", kind: "pink", rows: 2 } ] },
       { time: "14:00 – 14:50", cells: [] },
-      { time: "15:00 – 15:50", cells: [ { v: "a", title: "協賛セッション①", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "b", title: "協賛セッション②", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
+      { time: "15:00 – 15:50", cells: [ { v: "a", title: "学生起業のリアル", sub: "失敗も含めた同世代の話" }, { v: "b", title: "協賛セッション②", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
       { time: "16:00 – 16:50", cells: [ { v: "a", title: "海外・留学", sub: "行って自分がどう変わったか" }, { v: "b", title: "AIで何をつくる？", sub: "AIネイティブ世代の実例" } ] },
       { time: "17:00 – 17:15", cells: [ { v: "all", title: "クロージング", sub: "A会場。表彰・抽選を行い、そのままアフターパーティーへ移ります。", kind: "open" } ] },
       { time: "17:15 – 18:30", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。仲間集めピッチ、登壇者・企業との交流を行います。", kind: "after", badge: "PiO館内" } ] }
@@ -700,17 +737,16 @@ window.SUMMIT = {
       <h2 class="h2">登壇者</h2>
       <p class="lead">登壇後には、登壇者と直接対話できる時間を設けます。</p>
     </div>
-    <div class="speakers-group g-student">
-      <div class="speakers-group-head"><span class="speakers-group-en">Students</span><h3 class="speakers-group-title">学生登壇者</h3><span class="speakers-group-count" id="spCountStudents"></span></div>
-      <div class="featured-speakers" id="speakerGridStudents"></div>
-      <p class="sp-swipe">← 左右にスワイプして確認できます →</p>
-    </div>
     <div class="speakers-group g-adult">
       <div class="speakers-group-head"><span class="speakers-group-en">Adults</span><h3 class="speakers-group-title">大人登壇者</h3><span class="speakers-group-count" id="spCountAdults"></span></div>
       <div class="featured-speakers" id="speakerGridAdults"></div>
       <p class="sp-swipe">← 左右にスワイプして確認できます →</p>
     </div>
-    <div class="recommend"><span>登壇者の推薦を受け付けています（自薦・他薦可）</span><a class="link-btn js-link" data-link="recommend" href="#">推薦フォームへ →</a></div>
+    <div class="speakers-group g-student">
+      <div class="speakers-group-head"><span class="speakers-group-en">Students</span><h3 class="speakers-group-title">学生登壇者</h3><span class="speakers-group-count" id="spCountStudents"></span></div>
+      <div class="featured-speakers" id="speakerGridStudents"></div>
+      <p class="sp-swipe">← 左右にスワイプして確認できます →</p>
+    </div>
   </div>
 </section>
 
@@ -889,12 +925,12 @@ window.SUMMIT = {
     t.list.forEach(function (x) {
       logos += x.url ? '<a class="sp-logo" href="' + esc(x.url) + '" target="_blank" rel="noopener">' + logoInner(x) + '</a>' : '<div class="sp-logo">' + logoInner(x) + '</div>';
       if (t.hero) heroHtml += '<span class="hs">' + logoInner(x) + '</span>';
-      if (t.id !== 'support') footHtml += '<span class="fs">' + logoInner(x) + '</span>';
+      if (t.foot) footHtml += '<span class="fs">' + logoInner(x) + '</span>';
     });
     for (var k = t.list.length; k < t.count; k++) {
       logos += '<div class="sp-logo is-empty">LOGO</div>';
       if (t.hero && S.draft) heroHtml += '<span class="hs">LOGO</span>';
-      if (S.draft && t.id !== 'support') footHtml += '<span class="fs">LOGO</span>';
+      if (S.draft && t.foot) footHtml += '<span class="fs">LOGO</span>';
     }
     tiersHtml += '<div class="sp-tier t-' + t.id + '"><div class="sp-tier-h"><span>' + esc(t.en) + '</span><b>' + esc(t.name) + '</b></div><div class="sp-logos">' + logos + '</div></div>';
   });
@@ -932,6 +968,24 @@ window.SUMMIT = {
     tb += '</tr>';
   });
   document.getElementById('schTable').innerHTML = th + '</tr></thead>' + tb + '</tbody>';
+
+  // スクロールに合わせて要素を表示するアニメーション
+  (function () {
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('js-anim');
+    var groups = ['.section .head', '.persona', '.pills', '.phase', '.floor-map', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    groups.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        var sib = el.parentNode ? Array.prototype.indexOf.call(el.parentNode.children, el) : 0;
+        el.classList.add('rv'); el.style.setProperty('--d', Math.min(sib, 8) * 0.07 + 's'); io.observe(el);
+      });
+    });
+    var tbl = document.getElementById('schTable');
+    if (tbl) { tbl.querySelectorAll('tbody tr').forEach(function (tr, i) { tr.style.setProperty('--d', i * 0.06 + 's'); }); io.observe(tbl); }
+  })();
 
 
   // ハンバーガーメニュー
