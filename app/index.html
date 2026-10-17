@@ -6,18 +6,12 @@
 :root{
   --on-teal:#0A2E2D; --teal:#40BCB8; --teal-deep:#0F6E6B; --teal-tint:#E3F5F4;
   --orange:#F54600; --orange-tint:#FFEFE5; --violet:#6B55C9; --violet-tint:#EEEBFA; --pink-tint:#FDE8EF;
-  --bg:#F6F7F7; --surface:#FFFFFF; --surface-2:#EEF0F0; --ink:#16191C; --muted:#5E6468; --line:#E1E4E5;
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F1F3F3; --ink:#16191C; --muted:#5E6468; --line:#E1E4E5;
   --hdr:#FFFFFF; --on-hdr:#16191C; --glass:rgba(22,25,28,.05); --glass2:rgba(22,25,28,.14); --fac:#8D9396; --pink:#E0457B;
   --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
   --display:"Outfit","Noto Sans JP",system-ui,sans-serif;
   --r:12px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --teal:#5CD0CC; --teal-deep:#7FD9D5; --teal-tint:#12302F; --orange:#FF6A2B; --orange-tint:#3A1D10; --violet:#A595F0; --violet-tint:#262033; --pink-tint:#3A1424;
-  --bg:#0F1112; --surface:#181B1D; --surface-2:#222628; --ink:#F2F3F4; --muted:#A6ACB0; --line:#2E3336; --hdr:#181B1D; --on-hdr:#F2F3F4; --glass:var(--glass); --glass2:var(--glass2); --fac:#80878B; --pink:#FF7AA6; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --teal:#5CD0CC; --teal-deep:#7FD9D5; --teal-tint:#12302F; --orange:#FF6A2B; --orange-tint:#3A1D10; --violet:#A595F0; --violet-tint:#262033; --pink-tint:#3A1424;
-  --bg:#0F1112; --surface:#181B1D; --surface-2:#222628; --ink:#F2F3F4; --muted:#A6ACB0; --line:#2E3336; --hdr:#181B1D; --on-hdr:#F2F3F4; --glass:var(--glass); --glass2:var(--glass2); --fac:#80878B; --pink:#FF7AA6; color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.65;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
@@ -332,8 +326,6 @@ main{padding:0 16px 16px}
 .sns a{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;color:#fff;background:var(--sc)}
 .sns a i{font-style:normal;font-size:10px;font-weight:900;opacity:.85}
 .s-ig{--sc:#C13584}.s-x{--sc:#111827}.s-tt{--sc:#0F6E6B}
-:root[data-theme="dark"] .s-x{--sc:#3A4864}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .s-x{--sc:#3A4864}}
 .snsf{display:grid;gap:8px}
 .snsf .srow{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:8px}
 .snsf .srow span{font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
@@ -620,7 +612,7 @@ const EVENT=new Date("2027-03-26T10:00:00+09:00");
 let tab="home",pf="time",mapView="floor",zoneSel="ent",nowT="11:00",pq="",ptag="all";
 let fav=new Set(),talk=new Set();
 let people=[],peopleState="loading"; // loading | ready | off
-let uid=null,meP=null,isAdmin=false,canWrite=null,apiOK=null,peopleCount=0,lockWants=[],myCode=null;
+let uid=null,meP=null,isAdmin=false,canWrite=null,apiOK=null,apiSetup=false,peopleCount=0,lockWants=[],myCode=null;
 const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}},lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
 try{fav=new Set(JSON.parse(localStorage.getItem("nexy27-plan")||"[]"));talk=new Set(JSON.parse(localStorage.getItem("nexy27-talk")||"[]"))}catch(e){}
 const mm=t=>{const[h,m]=t.split(":");return h*60+ +m};
@@ -877,7 +869,7 @@ function vThemes(){
       ${l.length?`<span class="stack">${l.slice(0,5).map(p=>avatar(p,"")).join("")}</span>`:`<span class="zero">まだいません</span>`}</button>`}).join("")}</div>
   <p class="note" style="margin-top:12px">テーマをタップすると、その人たちの一覧が出ます。テーマは登録時に3つまで選べます。</p>`}
 function vPeople(){
-  if(peopleState==="off")return `<div class="sec empty"><span>参加者一覧を読み込めませんでした。<br>電波の良いところで開き直してください。</span></div>`;
+  if(peopleState==="off")return `<div class="sec empty"><span>${apiSetup?"参加者一覧は受付開始後に見られるようになります。":"参加者一覧を読み込めませんでした。<br>電波の良いところで開き直してください。"}</span></div>`;
   if(peopleState==="loading")return `<div class="pgrid" style="margin-top:22px" aria-label="読み込み中">${'<div class="skel"></div>'.repeat(4)}</div>`;
   if(!isMember())return lockHTML(false)+`<p class="note" style="margin-top:12px">登録した内容は参加者と運営だけが見られます。</p>`;
   const cta="";
@@ -997,7 +989,7 @@ function openPerson(id,confirmDel){const p=people.find(q=>q.id===id);if(!p)retur
 /* register form */
 let draftPhoto="",photoChanged=false;
 function openRegister(confirmDel){
-  if(apiOK===false){openSheet(`<h3>参加者登録</h3><p class="d">いまサーバーにつながりません。電波の良いところで開き直してください。</p><div class="acts"><button class="btn s full" data-close="1">閉じる</button></div>`,"参加者登録");return}
+  if(apiOK===false){openSheet(`<h3>参加者登録</h3><p class="d">${apiSetup?"参加者登録はまだ受付前です。受付が始まったら、このページとSNSでお知らせします。":"いまサーバーにつながりません。電波の良いところで開き直してください。"}</p><div class="acts"><button class="btn s full" data-close="1">閉じる</button></div>`,"参加者登録");return}
   const p=myProfile()||{name:"",title:"",doing:"",want:"",tags:[],photo:""};
   if(!confirmDel){draftPhoto="";photoChanged=false}
   const curPh=draftPhoto||(!photoChanged&&photoURL(p));
@@ -1278,7 +1270,7 @@ async function boot(){
   try{const j=await api("me");apiOK=true;setMe(j);peopleCount=j.count||0;
     if(j.prefs){(j.prefs.plan||[]).forEach(i=>fav.add(i));(j.prefs.talk||[]).forEach(i=>talk.add(i));if(+j.prefs.seen>noticeSeen)noticeSeen=+j.prefs.seen;
       try{localStorage.setItem("nexy27-plan",JSON.stringify([...fav]));localStorage.setItem("nexy27-talk",JSON.stringify([...talk]))}catch(e){}}
-  }catch(e){apiOK=e.status===0?null:false}
+  }catch(e){apiOK=e.status===0?null:false;apiSetup=e.status===503}
   await Promise.all([loadPeople(),loadNotices()]);
   setInterval(()=>{if(!document.hidden)loadNotices()},20000);
   setInterval(()=>{if(!document.hidden&&(tab==="people"||tab==="home"||tab==="admin"))loadPeople()},60000);

@@ -1,5 +1,5 @@
 // NEXY SUMMIT 2027 当日ガイド：オフラインでも開けるようにするための保存処理
-const V = "nexy27-v1";
+const V = "nexy27-v2";
 const SHELL = ["/app/", "/app/manifest.webmanifest", "/app/icon-192.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(V).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
