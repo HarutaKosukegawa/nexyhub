@@ -511,28 +511,7 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .wall-msg { text-align: center; font-size: 12px; color: var(--ink-muted); margin-top: 10px; min-height: 1.6em; }
 .wall-msg a { color: var(--orange-deep); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 600px) { .wall-sec { padding: 40px 0 32px; } .wall-form { flex-direction: column; } .wcard { font-size: 13px; padding: 9px 14px 9px 9px; } .wcard .av { width: 28px; height: 28px; font-size: 12px; } }
-/* おすすめの回り方 */
-button.persona { font: inherit; cursor: pointer; width: 100%; transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; }
-button.persona:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(2,16,43,.08); }
-button.persona.is-active { border: 2px solid var(--pc, var(--teal)); background: var(--pc-tint, var(--teal-tint)); box-shadow: 0 8px 0 var(--pc, var(--teal)); transform: translateY(-4px); }
-button.persona:nth-child(1) { --pc: var(--teal); --pc-tint: var(--teal-tint); } button.persona:nth-child(2) { --pc: var(--orange); --pc-tint: var(--orange-tint); }
-button.persona:nth-child(3) { --pc: var(--pink); --pc-tint: var(--pink-tint); } button.persona:nth-child(4) { --pc: var(--yellow); --pc-tint: var(--yellow-tint); }
-.route-box { margin-top: 22px; background: #fff; border: 2px solid var(--line); border-radius: var(--radius-lg); padding: 20px 22px; }
-.route-title { font-size: 18px; font-weight: 900; color: var(--navy); margin-bottom: 14px; }
-.route-title small { display: block; font-family: Inter, sans-serif; font-size: 11px; letter-spacing: .2em; color: var(--ink-muted); font-weight: 800; }
-.route-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; counter-reset: st; position: relative; }
-.route-step { position: relative; background: var(--surface-2); border-radius: 12px; padding: 12px 14px; animation: stepIn .45s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * .09s); }
-.route-step::after { content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); color: var(--ink-muted); font-weight: 900; z-index: 1; }
-.route-step:last-child::after { display: none; }
-.route-step .tm { font-family: Inter, sans-serif; font-weight: 900; font-size: 18px; color: var(--rc); }
-.route-step .pl { font-size: 11px; font-weight: 800; color: #fff; background: var(--rc); border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: 3px; }
-.route-step b { display: block; font-size: 14px; color: var(--navy); line-height: 1.45; margin-top: 4px; }
-.route-step span.d { display: block; font-size: 12px; color: var(--ink-muted); line-height: 1.55; margin-top: 2px; }
-.route-note { font-size: 12px; color: var(--ink-muted); margin-top: 10px; }
-@keyframes stepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-@media (max-width: 760px) { .route-steps { grid-template-columns: 1fr 1fr; } .route-step::after { display: none; } }
-@media (max-width: 600px) { .persona-grid { gap: 8px; } button.persona { padding: 12px 8px; } button.persona .ic { width: 40px; height: 40px; font-size: 17px; margin-bottom: 6px; } button.persona b { font-size: 13px; } button.persona span { display: none; } .route-box { padding: 16px; } .route-steps { grid-template-columns: 1fr; gap: 6px; } .route-step { display: grid; grid-template-columns: 64px 1fr; column-gap: 8px; padding: 10px 12px; } .route-step .tm { font-size: 16px; grid-row: span 3; } .route-step .pl { margin-left: 0; justify-self: start; } .route-step b { margin-top: 2px; } }
-@media (prefers-reduced-motion: reduce) { .mq-row { animation: none; } .route-step, .wcard.you { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .mq-row { animation: none; } .wcard.you { animation: none; } }
 /* ===== アニメーション ===== */
 @keyframes heroUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @keyframes heroPop { from { opacity: 0; transform: translateY(30px) scale(.94) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
@@ -599,29 +578,6 @@ window.SUMMIT = {
   wallExamples: ["地元を盛り上げたい", "アプリをつくりたい", "海外の大学に行きたい", "起業したい", "仲間がほしい", "学生イベントを企画したい",
                  "社会課題を解決したい", "自分の店を持ちたい", "教育を変えたい", "まだ見つかっていない", "映像をつくりたい", "AIで何かつくりたい",
                  "地方と都市をつなぎたい", "本を出したい", "部活の外で挑戦したい", "総合型選抜で合格したい"],
-  // おすすめの回り方（For You のタブ）
-  routes: [
-    { title: "仲間を見つけて、活動を広げる", steps: [
-      { t: "11:00", p: "A会場", n: "人間関係・巻き込み", d: "応援される人がやっていることを知る" },
-      { t: "12:00", p: "常設エリア", n: "テーマ別ランチテーブル", d: "同じ分野に関心がある人と話す" },
-      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "同世代の構想から刺激を受ける" },
-      { t: "17:15", p: "会場内", n: "仲間集めピッチ", d: "1分で、探している仲間を呼びかける" } ] },
-    { title: "やりたいことを、最初の一歩にする", steps: [
-      { t: "11:00", p: "B会場", n: "WS① やりたいを企画書1枚にする", d: "頭の中のアイデアを1枚にまとめる" },
-      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "企画を形にした同世代の発表を見る" },
-      { t: "15:00", p: "A会場", n: "学生起業のリアル", d: "始めた人の失敗と工夫を聞く" },
-      { t: "16:00", p: "常設エリア", n: "相談所", d: "次に何をすればよいか相談する" } ] },
-    { title: "対話の中で、やりたいことを見つける", steps: [
-      { t: "11:00", p: "A会場", n: "人間関係・巻き込み", d: "同世代の考え方に触れる" },
-      { t: "12:00", p: "常設エリア", n: "テーマ別ランチテーブル", d: "気になるテーマの卓で話してみる" },
-      { t: "13:00", p: "B会場", n: "WS② 自分の活動をストーリーにする", d: "これまでの経験を言葉にする" },
-      { t: "16:00", p: "A・B会場", n: "海外・留学／AIで何をつくる？", d: "興味のある方を選んで聞く" } ] },
-    { title: "同じ志の仲間と、地元へ持ち帰る", steps: [
-      { t: "12:00", p: "常設エリア", n: "ランチテーブル「地域」", d: "各地で活動する同世代と話す" },
-      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "地域に関わる構想にも出会える" },
-      { t: "15:00", p: "常設エリア", n: "仲間集めブース", d: "学生団体と連携のきっかけをつくる" },
-      { t: "17:15", p: "会場内", n: "アフターパーティー", d: "その日出会った人とつながりを深める" } ] }
-  ],
   // タイムテーブル（2026サイトと同じ表形式）
   // cols：表の列。rows：時間帯ごとの行。cells の v は列ID、v:"all" は全列共通。
   // rows:2 は下の行まで続くセル（例：90分のワークショップ）。tbd:true は内容未定。
@@ -739,21 +695,19 @@ window.SUMMIT = {
   </div>
 </section>
 
-<!-- ===== 3. こんな人へ（おすすめの回り方） ===== -->
+<!-- ===== 3. こんな人へ ===== -->
 <section class="section" id="for">
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow">For You</span>
-      <h2 class="h2">あなたに合った回り方があります</h2>
-      <p class="lead">当てはまるものを選ぶと、当日のおすすめの回り方を表示します。</p>
+      <h2 class="h2">このような方におすすめです</h2>
     </div>
-    <div class="persona-grid" role="tablist" aria-label="参加者のタイプ">
-      <button class="persona is-active" role="tab" aria-selected="true" data-route="0"><div class="ic">挑</div><b>すでに活動している方</b><span>ともに取り組む仲間を探している</span></button>
-      <button class="persona" role="tab" aria-selected="false" data-route="1"><div class="ic">始</div><b>これから始めたい方</b><span>最初の一歩のきっかけを探している</span></button>
-      <button class="persona" role="tab" aria-selected="false" data-route="2"><div class="ic">探</div><b>やりたいことを探している方</b><span>対話を通じて見つけたい</span></button>
-      <button class="persona" role="tab" aria-selected="false" data-route="3"><div class="ic">地</div><b>地方で活動している方</b><span>同じ志を持つ同世代と出会いたい</span></button>
+    <div class="persona-grid">
+      <div class="persona"><div class="ic">挑</div><b>すでに活動している方</b><span>ともに取り組む仲間を探している</span></div>
+      <div class="persona"><div class="ic">始</div><b>これから始めたい方</b><span>最初の一歩のきっかけを探している</span></div>
+      <div class="persona"><div class="ic">探</div><b>やりたいことを探している方</b><span>対話を通じて見つけたい</span></div>
+      <div class="persona"><div class="ic">地</div><b>地方で活動している方</b><span>同じ志を持つ同世代と出会いたい</span></div>
     </div>
-    <div class="route-box" id="routeBox" role="tabpanel" aria-live="polite"></div>
     <div class="pills"><span class="pill">一人で参加可能</span><span class="pill">聴講のみの参加も可能</span><span class="pill">途中入退場可能</span></div>
   </div>
 </section>
@@ -1087,22 +1041,6 @@ window.SUMMIT = {
       inp.value = '';
       msg.innerHTML = 'あなたの「やりたい」を壁に追加しました。当日は会場の壁に掲示されます。<a href="#entry">参加を申し込む →</a>';
     });
-  })();
-
-  // おすすめの回り方
-  (function () {
-    var box = document.getElementById('routeBox'), tabs = document.querySelectorAll('button.persona');
-    var colors = ['var(--teal-deep)', 'var(--orange-deep)', 'var(--pink-deep)', '#8A6A00'];
-    function show(i) {
-      var r = S.routes[i]; if (!r) return;
-      tabs.forEach(function (t, k) { t.classList.toggle('is-active', k === i); t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
-      box.style.setProperty('--rc', colors[i]);
-      box.innerHTML = '<div class="route-title"><small>RECOMMENDED ROUTE</small>' + esc(r.title) + '</div><div class="route-steps">' +
-        r.steps.map(function (st, k) { return '<div class="route-step" style="--i:' + k + '"><span class="tm">' + esc(st.t) + '</span><span class="pl">' + esc(st.p) + '</span><b>' + esc(st.n) + '</b><span class="d">' + esc(st.d) + '</span></div>'; }).join('') +
-        '</div><p class="route-note">※ 回り方は一例です。当日は各会場を自由に行き来できます。</p>';
-    }
-    tabs.forEach(function (t) { t.addEventListener('click', function () { show(+t.getAttribute('data-route')); }); });
-    show(0);
   })();
 
   // スクロールに合わせて要素を表示するアニメーション
