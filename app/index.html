@@ -544,6 +544,63 @@ fieldset{border:0;margin:0;padding:0}
   .sw,.sw::after{transition-timing-function:var(--ease)}
   .chip,.btn,.card,.pcard,.tb,.prow2,.tile,.liverow,.mynext{transition:transform .12s var(--ease),background-color .2s,border-color .2s,color .2s,opacity .2s}
 }
+
+/* ===== v3 ===== */
+body{line-break:strict;word-break:auto-phrase}
+.tb .bn{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+.tb.sh{padding-top:4px;padding-bottom:3px}
+.lunchband.span2{right:calc(-100% - 6px);z-index:1}
+.prof .okb{justify-self:center}
+.toast{width:max-content;max-width:calc(100vw - 32px);text-align:center;line-height:1.5}
+@media (hover:hover){.pcard:hover,.card:hover,.tb:hover,.prow2:hover,.tile:hover{filter:brightness(.98);box-shadow:0 2px 10px rgba(16,18,20,.06)}.btn:hover{filter:brightness(.96)}}
+
+/* tablet */
+@media (min-width:640px){
+  .app,.tabs nav{max-width:760px}
+  main{padding:0 24px 24px}
+  .hero,.prof-hero{margin-inline:-24px;padding-inline:24px}
+  .bar{padding:0 16px 0 24px}.sub{padding-inline:24px}
+  .pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bene,.tgrid,.stats4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .scrim{align-items:center;padding:24px}
+  .sheet{border-radius:20px;max-width:560px;max-height:86vh;padding:8px 24px 24px}
+  .grab{visibility:hidden;margin-bottom:6px}
+  .mapwrap{max-width:640px;margin-inline:auto}
+  .go{max-width:460px}
+}
+/* PC: left navigation + wide content */
+@media (min-width:1000px){
+  :root{--side:232px}
+  .top{margin-left:calc(-1 * var(--side))}
+  .bar{height:64px;padding:0 32px 0 28px}
+  .brand{font-size:18px}
+  .sub{margin-left:var(--side);padding:12px max(32px,calc((100% - var(--side) - 1040px) / 2))}
+  .sub .seg{max-width:520px}
+  .app{max-width:none;margin:0 0 0 var(--side);padding-bottom:64px}
+  main{max-width:1104px;margin:0 auto;padding:0 32px 40px}
+  .tabs{top:65px;bottom:0;right:auto;width:var(--side);border-top:0;border-right:1px solid var(--line);padding:18px 14px}
+  .tabs nav{display:flex;flex-direction:column;gap:4px;max-width:none;margin:0}
+  .tabs button{display:flex;align-items:center;gap:12px;padding:12px 14px;font-size:14.5px;border-radius:12px;text-align:left}
+  .tabs button:hover{background:var(--surface-2)}
+  .tabs button[aria-selected="true"]{background:var(--orange-tint)}
+  .tabs button::after{display:none}
+  .tabs .badge{position:static;margin-left:auto;font-size:11px;min-width:20px;height:20px;border-radius:10px}
+  .hero{margin:24px 0 0;border-radius:28px;padding:48px 52px 44px}
+  .hb{width:420px;right:-40px;top:-40px}
+  .slog{font-size:58px}
+  .lead{font-size:15.5px}
+  .proof{font-size:14px}
+  .prof-hero{margin:24px 0 0;border-radius:28px;padding:36px 32px}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+  .tgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mapwrap{max-width:640px}
+  .prof-hero{border:1px solid var(--line)}
+  .prof-hero .oksw,.prof-hero .go{max-width:520px;margin-inline:auto}
+  .lock{max-width:720px;margin-inline:auto}
+  .toast{left:calc(50% + var(--side) / 2)}
+  .fab{right:32px;bottom:32px}
+  .sec{margin-top:32px}
+}
 </style>
 
 </head><body>
@@ -743,7 +800,7 @@ function floorSVG(){
   return `<svg viewBox="0 0 360 330" role="img" aria-label="大展示ホールのフロアマップ">
     <rect x="3" y="3" width="354" height="296" rx="8" fill="var(--surface-2)" stroke="var(--line)" stroke-width="1.5"/>
     ${R("A",10,10,164,128,"Aステージ","メイントーク・プレゼン大会")}
-    ${R("B",186,10,164,128,"Bステージ","テーマ別トーク・WS")}
+    ${R("B",186,10,164,128,"Bステージ","トーク・ワークショップ")}
     <rect x="62" y="14" width="60" height="10" rx="2" fill="var(--orange)" opacity=".55"/><rect x="238" y="14" width="60" height="10" rx="2" fill="var(--teal-deep)" opacity=".55"/>
     <line x1="180" y1="8" x2="180" y2="140" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="5 3"/>
     <text x="180" y="152" text-anchor="middle" font-size="8" fill="var(--muted)">仕切り</text>
@@ -844,16 +901,16 @@ function vProg(){
   const H=(T1-T0)*PX;
   const hrs=[];for(let t=T0;t<=T1;t+=30)hrs.push(`<div class="hr ${t%60?"half":""}" style="top:${(t-T0)*PX}px">${t%60?"":`<span>${t/60}:00</span>`}</div>`);
   const col=v=>S.filter(x=>x.v===v&&!x.all).map(x=>{const top=(mm(x.s)-T0)*PX,h=(mm(x.e)-mm(x.s))*PX-3;
-    return `<div class="tb ${VEN[v].z} ${kf!=="all"&&x.k!==kf?"off":""} ${fav.has(x.id)?"fav":""}" role="button" tabindex="0" data-open="${x.id}" style="top:${top}px;height:${h}px" aria-label="${x.s}から ${esc(x.t)}">
-      ${kTag(x.k)}<span class="bt">${x.s}–${x.e}</span><span class="bn">${esc(x.t)}</span>${vfocus&&h>70?`<span class="bd2">${esc(x.d)}</span>`:""}${fav.has(x.id)?`<svg class="bs" viewBox="0 0 24 24">${STAR.replace(/<svg[^>]*>|<\/svg>/g,"")}</svg>`:""}</div>`}).join("");
+    return `<div class="tb ${h<64?"sh":""} ${VEN[v].z} ${kf!=="all"&&x.k!==kf?"off":""} ${fav.has(x.id)?"fav":""}" role="button" tabindex="0" data-open="${x.id}" style="top:${top}px;height:${h}px" aria-label="${x.s}から ${esc(x.t)}">
+      ${h<64?"":kTag(x.k)}<span class="bt">${x.s}–${x.e}</span><span class="bn" style="-webkit-line-clamp:${vfocus?(h<64?1:2):Math.max(1,Math.floor((h-(h<64?22:38))/15.5))}">${esc(x.t)}</span>${vfocus&&h>70?`<span class="bd2">${esc(x.d)}</span>`:""}${fav.has(x.id)?`<svg class="bs" viewBox="0 0 24 24">${STAR.replace(/<svg[^>]*>|<\/svg>/g,"")}</svg>`:""}</div>`}).join("");
   const lu=S.find(x=>x.lunch);
-  const band=t=>`<div class="lunchband" style="top:${(mm(lu.s)-T0)*PX}px;height:${(mm(lu.e)-mm(lu.s))*PX-3}px">${t}</div>`;
+  const band=(t,c="")=>`<div class="lunchband ${c}" style="top:${(mm(lu.s)-T0)*PX}px;height:${(mm(lu.e)-mm(lu.s))*PX-3}px">${t}</div>`;
   const allday=S.filter(x=>x.all);
   const after=S.filter(x=>x.v==="X");
   return legend()+`<p class="note" style="margin-top:10px">${vfocus?"上の会場名をもう一度押すと、3会場の表示に戻ります。":"会場名を押すと、その会場だけ大きく表示します。枠をタップすると詳細と予定追加。"}</p><div class="allday"><small>常設エリア　終日オープン（立ち寄り）</small><div>${allday.map(x=>`<button data-open="${x.id}">${esc(x.t)}</button>`).join("")}</div></div>
   <div class="tt ${vfocus?"one":""}" style="height:${H+8}px">${hrs.join("")}
     ${dayMode()&&curMin()>=T0&&curMin()<=T1?`<div class="nowline" style="top:${(curMin()-T0)*PX}px;left:44px"><span>いま ${fmtM(curMin())}</span></div>`:""}
-    <div class="grid" ${vfocus?'style="grid-template-columns:1fr"':""}>${vfocus?`<div class="col">${band("昼休憩 12:10–13:10")}${col(vfocus)}</div>`:`<div class="col">${band("昼休憩")}${col("A")}</div><div class="col">${band("12:10–13:10")}${col("B")}</div><div class="col">${col("C")}</div>`}</div></div>
+    <div class="grid" ${vfocus?'style="grid-template-columns:1fr"':""}>${vfocus?`<div class="col">${band("昼休憩 12:10–13:10")}${col(vfocus)}</div>`:`<div class="col">${band("昼休憩 12:10–13:10","span2")}${col("A")}</div><div class="col">${col("B")}</div><div class="col">${col("C")}</div>`}</div></div>
   <div class="after"><small>イベント後</small><div class="cards">${after.map(x=>cardHTML(x)).join("")}</div></div>`+foot;
 }
 function lockHTML(compact){const n=peopleCount;const fs=people.slice(0,6);
@@ -1145,7 +1202,7 @@ function vAdmin(){
     <div class="panel adm">${admConfirm?`<div class="nprev"><small>この内容で参加者全員に送ります</small><article class="ncard new"><div class="nhead">${nChip(admKind)}<time>いま</time></div><b>${esc(admTitle)}</b>${admBody?`<p>${esc(admBody)}</p>`:""}</article>
         <div class="go"><button class="btn s" data-adm-back="1">戻って直す</button><button class="btn o" data-adm-send="1">全員に送信</button></div></div>`:
       `<div class="seg3" role="radiogroup" aria-label="種類">${Object.entries(NKIND).map(([k,v])=>`<button role="radio" aria-checked="${admKind===k}" data-adm-kind="${k}" style="--nc:${v.c}">${v.n}</button>`).join("")}</div>
-      <div class="fld"><label for="aT">タイトル<em>必須</em></label><input type="text" id="aT" maxlength="40" value="${esc(admTitle)}" placeholder="例：公開収録の開始が15:45に変わりました"></div>
+      <div class="fld"><label for="aT">タイトル<em>必須</em></label><input type="text" id="aT" maxlength="40" value="${esc(admTitle)}" placeholder="例：公開収録が15:45開始に変更"></div>
       <div class="fld"><label for="aB">本文<em>任意</em></label><textarea id="aB" rows="3" maxlength="300" placeholder="詳しい内容（300字まで）">${esc(admBody)}</textarea></div>
       <p class="err" id="aErr" role="alert"></p>
       <button class="btn p" style="width:100%;min-height:46px" data-adm-check="1">内容を確認する</button>`}</div></section>
