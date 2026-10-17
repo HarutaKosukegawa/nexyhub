@@ -103,7 +103,7 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .26em; color: var(--teal-deep); margin-bottom: 10px; text-transform: uppercase; }
 .eyebrow::before { content: ""; width: 28px; height: 4px; border-radius: 2px; background: var(--grad); }
 .eyebrow.c-orange { color: var(--orange-deep); } .eyebrow.c-pink { color: var(--pink-deep); }
-.h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 900; line-height: 1.45; color: var(--navy); }
+.h2 { text-wrap: balance; word-break: auto-phrase; font-size: clamp(26px, 4vw, 36px); font-weight: 900; line-height: 1.45; color: var(--navy); }
 .lead { font-size: 15px; color: var(--ink-muted); margin-top: 12px; max-width: 680px; }
 .head { margin-bottom: 28px; }
 @media (max-width: 600px) { .head { margin-bottom: 20px; } }
@@ -488,6 +488,51 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .sticky-cta .txt { color: var(--ink-muted); font-size: 12px; line-height: 1.4; flex: 1; }
 .sticky-cta .txt b { display: block; font-size: 14px; color: var(--navy); }
 @media (max-width: 760px) { .sticky-cta { display: flex; } }
+/* やりたいウォール */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wall-sec { padding: 56px 0 44px; background: #FFFDF7; position: relative; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.wall-head { text-align: center; margin-bottom: 22px; }
+.wall-head .lead { max-width: 620px; margin: 8px auto 0; }
+.marquee { display: grid; gap: 12px; padding: 6px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.mq-row { display: flex; gap: 12px; width: max-content; animation: mq 60s linear infinite; }
+.mq-row.rev { animation-direction: reverse; animation-duration: 70s; }
+.marquee:hover .mq-row { animation-play-state: paused; }
+@keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.wcard { flex: none; display: flex; align-items: center; gap: 10px; padding: 12px 18px 12px 12px; border-radius: 14px; background: #fff; border: 2px solid var(--wc); box-shadow: 0 4px 0 var(--wc); font-weight: 800; font-size: 15px; color: var(--navy); transform: rotate(var(--rot, 0deg)); white-space: nowrap; }
+.wcard .av { width: 34px; height: 34px; border-radius: 50%; background: var(--wc); display: grid; place-items: center; color: #fff; font-size: 14px; font-weight: 900; }
+.wcard.c0 { --wc: var(--teal); } .wcard.c1 { --wc: var(--orange); } .wcard.c2 { --wc: var(--pink); } .wcard.c3 { --wc: var(--yellow); } .wcard.c4 { --wc: #7B61FF; }
+.wcard.you { animation: pop .6s cubic-bezier(.3,1.6,.5,1) both; }
+.wcard.you .tag { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .14em; color: #fff; background: var(--navy); border-radius: 4px; padding: 2px 6px; }
+@keyframes pop { from { transform: scale(.4) rotate(-8deg); opacity: 0; } to { transform: scale(1) rotate(var(--rot, 0deg)); opacity: 1; } }
+.wall-form { margin: 24px auto 0; max-width: 560px; display: flex; gap: 10px; }
+.wall-form input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 14px 18px; border-radius: 999px; border: 2px solid var(--line); background: #fff; color: var(--navy); }
+.wall-form input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 4px var(--teal-tint); }
+.wall-form .btn { white-space: nowrap; }
+.wall-msg { text-align: center; font-size: 12px; color: var(--ink-muted); margin-top: 10px; min-height: 1.6em; }
+.wall-msg a { color: var(--orange-deep); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) { .wall-sec { padding: 40px 0 32px; } .wall-form { flex-direction: column; } .wcard { font-size: 13px; padding: 9px 14px 9px 9px; } .wcard .av { width: 28px; height: 28px; font-size: 12px; } }
+/* おすすめの回り方 */
+button.persona { font: inherit; cursor: pointer; width: 100%; transition: transform .2s, box-shadow .2s, border-color .2s, background .2s; }
+button.persona:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(2,16,43,.08); }
+button.persona.is-active { border: 2px solid var(--pc, var(--teal)); background: var(--pc-tint, var(--teal-tint)); box-shadow: 0 8px 0 var(--pc, var(--teal)); transform: translateY(-4px); }
+button.persona:nth-child(1) { --pc: var(--teal); --pc-tint: var(--teal-tint); } button.persona:nth-child(2) { --pc: var(--orange); --pc-tint: var(--orange-tint); }
+button.persona:nth-child(3) { --pc: var(--pink); --pc-tint: var(--pink-tint); } button.persona:nth-child(4) { --pc: var(--yellow); --pc-tint: var(--yellow-tint); }
+.route-box { margin-top: 22px; background: #fff; border: 2px solid var(--line); border-radius: var(--radius-lg); padding: 20px 22px; }
+.route-title { font-size: 18px; font-weight: 900; color: var(--navy); margin-bottom: 14px; }
+.route-title small { display: block; font-family: Inter, sans-serif; font-size: 11px; letter-spacing: .2em; color: var(--ink-muted); font-weight: 800; }
+.route-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; counter-reset: st; position: relative; }
+.route-step { position: relative; background: var(--surface-2); border-radius: 12px; padding: 12px 14px; animation: stepIn .45s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * .09s); }
+.route-step::after { content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); color: var(--ink-muted); font-weight: 900; z-index: 1; }
+.route-step:last-child::after { display: none; }
+.route-step .tm { font-family: Inter, sans-serif; font-weight: 900; font-size: 18px; color: var(--rc); }
+.route-step .pl { font-size: 11px; font-weight: 800; color: #fff; background: var(--rc); border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: 3px; }
+.route-step b { display: block; font-size: 14px; color: var(--navy); line-height: 1.45; margin-top: 4px; }
+.route-step span.d { display: block; font-size: 12px; color: var(--ink-muted); line-height: 1.55; margin-top: 2px; }
+.route-note { font-size: 12px; color: var(--ink-muted); margin-top: 10px; }
+@keyframes stepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .route-steps { grid-template-columns: 1fr 1fr; } .route-step::after { display: none; } }
+@media (max-width: 600px) { .persona-grid { gap: 8px; } button.persona { padding: 12px 8px; } button.persona .ic { width: 40px; height: 40px; font-size: 17px; margin-bottom: 6px; } button.persona b { font-size: 13px; } button.persona span { display: none; } .route-box { padding: 16px; } .route-steps { grid-template-columns: 1fr; gap: 6px; } .route-step { display: grid; grid-template-columns: 64px 1fr; column-gap: 8px; padding: 10px 12px; } .route-step .tm { font-size: 16px; grid-row: span 3; } .route-step .pl { margin-left: 0; justify-self: start; } .route-step b { margin-top: 2px; } }
+@media (prefers-reduced-motion: reduce) { .mq-row { animation: none; } .route-step, .wcard.you { animation: none; } }
 /* ===== アニメーション ===== */
 @keyframes heroUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @keyframes heroPop { from { opacity: 0; transform: translateY(30px) scale(.94) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
@@ -549,6 +594,33 @@ window.SUMMIT = {
     { id: "silver",   name: "シルバー",     en: "SILVER",   count: 4, hero: false, foot: false, list: [] },
     { id: "bronze",   name: "ブロンズ",     en: "BRONZE",   count: 6, hero: false, foot: false, list: [] }
     // list の例：{ name: "株式会社〇〇", logo: "img/summit2027/sponsor_xxx.png", url: "https://..." }
+  ],
+  // やりたいウォールに流れる例（参加者の実際の投稿が集まったら差し替える）
+  wallExamples: ["地元を盛り上げたい", "アプリをつくりたい", "海外の大学に行きたい", "起業したい", "仲間がほしい", "学生イベントを企画したい",
+                 "社会課題を解決したい", "自分の店を持ちたい", "教育を変えたい", "まだ見つかっていない", "映像をつくりたい", "AIで何かつくりたい",
+                 "地方と都市をつなぎたい", "本を出したい", "部活の外で挑戦したい", "総合型選抜で合格したい"],
+  // おすすめの回り方（For You のタブ）
+  routes: [
+    { title: "仲間を見つけて、活動を広げる", steps: [
+      { t: "11:00", p: "A会場", n: "人間関係・巻き込み", d: "応援される人がやっていることを知る" },
+      { t: "12:00", p: "常設エリア", n: "テーマ別ランチテーブル", d: "同じ分野に関心がある人と話す" },
+      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "同世代の構想から刺激を受ける" },
+      { t: "17:15", p: "会場内", n: "仲間集めピッチ", d: "1分で、探している仲間を呼びかける" } ] },
+    { title: "やりたいことを、最初の一歩にする", steps: [
+      { t: "11:00", p: "B会場", n: "WS① やりたいを企画書1枚にする", d: "頭の中のアイデアを1枚にまとめる" },
+      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "企画を形にした同世代の発表を見る" },
+      { t: "15:00", p: "A会場", n: "学生起業のリアル", d: "始めた人の失敗と工夫を聞く" },
+      { t: "16:00", p: "常設エリア", n: "相談所", d: "次に何をすればよいか相談する" } ] },
+    { title: "対話の中で、やりたいことを見つける", steps: [
+      { t: "11:00", p: "A会場", n: "人間関係・巻き込み", d: "同世代の考え方に触れる" },
+      { t: "12:00", p: "常設エリア", n: "テーマ別ランチテーブル", d: "気になるテーマの卓で話してみる" },
+      { t: "13:00", p: "B会場", n: "WS② 自分の活動をストーリーにする", d: "これまでの経験を言葉にする" },
+      { t: "16:00", p: "A・B会場", n: "海外・留学／AIで何をつくる？", d: "興味のある方を選んで聞く" } ] },
+    { title: "同じ志の仲間と、地元へ持ち帰る", steps: [
+      { t: "12:00", p: "常設エリア", n: "ランチテーブル「地域」", d: "各地で活動する同世代と話す" },
+      { t: "13:00", p: "A会場", n: "NEXYプレゼン大会", d: "地域に関わる構想にも出会える" },
+      { t: "15:00", p: "常設エリア", n: "仲間集めブース", d: "学生団体と連携のきっかけをつくる" },
+      { t: "17:15", p: "会場内", n: "アフターパーティー", d: "その日出会った人とつながりを深める" } ] }
   ],
   // タイムテーブル（2026サイトと同じ表形式）
   // cols：表の列。rows：時間帯ごとの行。cells の v は列ID、v:"all" は全列共通。
@@ -646,18 +718,42 @@ window.SUMMIT = {
 </section>
 
 <!-- ===== 3. こんな人へ ===== -->
+<!-- ===== やりたいウォール（体験型） ===== -->
+<section class="wall-sec" id="wall" aria-labelledby="wall-h">
+  <div class="wrap wall-head">
+    <span class="eyebrow c-pink">Yaritai Wall</span>
+    <h2 class="h2" id="wall-h">あなたの「やりたい」は何ですか。</h2>
+    <p class="lead">当日は、参加者全員の「やりたい」を会場の壁に掲示します。同じ「やりたい」を持つ人と、会場で出会えます。</p>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-row" id="mqRow1"></div>
+    <div class="mq-row rev" id="mqRow2"></div>
+  </div>
+  <div class="wrap">
+    <form class="wall-form" id="wallForm" autocomplete="off">
+      <label for="wallInput" class="sr-only">あなたのやりたいこと（20字以内）</label>
+      <input id="wallInput" maxlength="20" placeholder="例：地元で学生イベントを開きたい" required>
+      <button type="submit" class="btn btn-primary">壁に貼ってみる</button>
+    </form>
+    <p class="wall-msg" id="wallMsg" aria-live="polite">流れているカードは掲載例です。入力内容は送信・保存されません。</p>
+  </div>
+</section>
+
+<!-- ===== 3. こんな人へ（おすすめの回り方） ===== -->
 <section class="section" id="for">
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow">For You</span>
-      <h2 class="h2">このような方におすすめです</h2>
+      <h2 class="h2">あなたに合った回り方があります</h2>
+      <p class="lead">当てはまるものを選ぶと、当日のおすすめの回り方を表示します。</p>
     </div>
-    <div class="persona-grid">
-      <div class="persona"><div class="ic">挑</div><b>すでに活動している方</b><span>ともに取り組む仲間を探している</span></div>
-      <div class="persona"><div class="ic">始</div><b>これから始めたい方</b><span>最初の一歩のきっかけを探している</span></div>
-      <div class="persona"><div class="ic">探</div><b>やりたいことを探している方</b><span>対話を通じて見つけたい</span></div>
-      <div class="persona"><div class="ic">地</div><b>地方で活動している方</b><span>同じ志を持つ同世代と出会いたい</span></div>
+    <div class="persona-grid" role="tablist" aria-label="参加者のタイプ">
+      <button class="persona is-active" role="tab" aria-selected="true" data-route="0"><div class="ic">挑</div><b>すでに活動している方</b><span>ともに取り組む仲間を探している</span></button>
+      <button class="persona" role="tab" aria-selected="false" data-route="1"><div class="ic">始</div><b>これから始めたい方</b><span>最初の一歩のきっかけを探している</span></button>
+      <button class="persona" role="tab" aria-selected="false" data-route="2"><div class="ic">探</div><b>やりたいことを探している方</b><span>対話を通じて見つけたい</span></button>
+      <button class="persona" role="tab" aria-selected="false" data-route="3"><div class="ic">地</div><b>地方で活動している方</b><span>同じ志を持つ同世代と出会いたい</span></button>
     </div>
+    <div class="route-box" id="routeBox" role="tabpanel" aria-live="polite"></div>
     <div class="pills"><span class="pill">一人で参加可能</span><span class="pill">聴講のみの参加も可能</span><span class="pill">途中入退場可能</span></div>
   </div>
 </section>
@@ -968,6 +1064,46 @@ window.SUMMIT = {
     tb += '</tr>';
   });
   document.getElementById('schTable').innerHTML = th + '</tr></thead>' + tb + '</tbody>';
+
+
+  // やりたいウォール
+  (function () {
+    var ex = S.wallExamples || [], r1 = document.getElementById('mqRow1'), r2 = document.getElementById('mqRow2');
+    var initials = 'ABCDEFGHJKLMNPRSTUWY';
+    function card(txt, i, you) {
+      var rot = ((i * 37) % 7 - 3) * 0.6;
+      return '<span class="wcard c' + (i % 5) + (you ? ' you' : '') + '" style="--rot:' + rot + 'deg"><span class="av">' + (you ? 'ME' : initials[(i * 7) % initials.length]) + '</span>' + esc(txt) + (you ? '<span class="tag">YOU</span>' : '') + '</span>';
+    }
+    function fill(row, items, off) { var h = items.map(function (t, i) { return card(t, i + off); }).join(''); row.innerHTML = h + h; }
+    var half = Math.ceil(ex.length / 2);
+    fill(r1, ex.slice(0, half), 0); fill(r2, ex.slice(half), 3);
+    var form = document.getElementById('wallForm'), inp = document.getElementById('wallInput'), msg = document.getElementById('wallMsg');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = inp.value.trim(); if (!v) return;
+      var c = card(v, Math.floor(Math.random() * 5), true);
+      r1.insertAdjacentHTML('afterbegin', c);
+      var mid = r1.children.length / 2; r1.children[Math.floor(mid)].insertAdjacentHTML('beforebegin', c);
+      inp.value = '';
+      msg.innerHTML = 'あなたの「やりたい」を壁に追加しました。当日は会場の壁に掲示されます。<a href="#entry">参加を申し込む →</a>';
+    });
+  })();
+
+  // おすすめの回り方
+  (function () {
+    var box = document.getElementById('routeBox'), tabs = document.querySelectorAll('button.persona');
+    var colors = ['var(--teal-deep)', 'var(--orange-deep)', 'var(--pink-deep)', '#8A6A00'];
+    function show(i) {
+      var r = S.routes[i]; if (!r) return;
+      tabs.forEach(function (t, k) { t.classList.toggle('is-active', k === i); t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+      box.style.setProperty('--rc', colors[i]);
+      box.innerHTML = '<div class="route-title"><small>RECOMMENDED ROUTE</small>' + esc(r.title) + '</div><div class="route-steps">' +
+        r.steps.map(function (st, k) { return '<div class="route-step" style="--i:' + k + '"><span class="tm">' + esc(st.t) + '</span><span class="pl">' + esc(st.p) + '</span><b>' + esc(st.n) + '</b><span class="d">' + esc(st.d) + '</span></div>'; }).join('') +
+        '</div><p class="route-note">※ 回り方は一例です。当日は各会場を自由に行き来できます。</p>';
+    }
+    tabs.forEach(function (t) { t.addEventListener('click', function () { show(+t.getAttribute('data-route')); }); });
+    show(0);
+  })();
 
   // スクロールに合わせて要素を表示するアニメーション
   (function () {
