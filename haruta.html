@@ -168,16 +168,6 @@
   @media (max-width: 900px) { .now-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .now-grid { grid-template-columns: 1fr; } .now.big { grid-column: auto; } }
 
-  /* Awards */
-  .awards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .award { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; background: #fff; border-radius: var(--r); padding: 16px 18px; border: 1px solid var(--border); }
-  .medal { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--t); color: var(--c); font-family: var(--f-latin); font-weight: 800; font-size: 18px; border: 3px solid var(--c); line-height: 1; text-align: center; }
-  .medal small { display: block; font-size: 9px; letter-spacing: .06em; margin-top: 2px; }
-  .award b { display: block; font-family: var(--f-disp); font-weight: 900; font-size: 15px; color: var(--navy); line-height: 1.45; }
-  .award span { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.5; }
-  @media (max-width: 900px) { .awards { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .awards { grid-template-columns: 1fr; } }
-
   /* Timeline */
   .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: var(--text-2); margin-bottom: 18px; }
   .legend span { display: inline-flex; align-items: center; gap: 6px; } .legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
@@ -257,7 +247,7 @@
       <span class="brand-org-tag">学生団体</span>
     </a>
     <nav class="page-nav" aria-label="ページ内">
-      <a href="#values">大切にしていること</a><a href="#now">現在の活動</a><a href="#awards">受賞・選出</a><a href="#history">年表</a><a href="#media">掲載・登壇</a>
+      <a href="#values">大切にしていること</a><a href="#now">現在の活動</a><a href="#history">年表</a><a href="#media">掲載・登壇</a>
     </nav>
     <a href="/#members" class="back-link">← メンバー一覧へ</a>
   </div>
@@ -338,32 +328,15 @@
         <article class="now c-pink rv">
           <div class="ic">C</div>
           <div class="role">New Business</div>
-          <h3>CHEERS! 新規事業部</h3>
-          <p>イベント企画会社「CHEERS!」の新規事業部で活動しています。</p>
+          <h3>CHEERS株式会社 新規事業部</h3>
+          <p>新規事業部で、子ども向けデジタル教育の現場責任者を務めています。</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Awards -->
-  <section class="section" id="awards">
-    <div class="wrap">
-      <div class="sec-head rv"><div class="sec-eyebrow">Awards &amp; Selections</div><h2 class="sec-title">受賞・選出</h2></div>
-      <div class="awards">
-        <div class="award rv c-orange"><div class="medal">7<small>th</small></div><div><b>WRO 2017 世界大会 世界7位</b><span>オープンカテゴリー小学生部門／8歳・最年少での出場</span></div></div>
-        <div class="award rv c-orange"><div class="medal">8<small>th</small></div><div><b>WRO 2018 世界大会 世界8位</b><span>国内大会優勝を経て、2年連続で日本代表</span></div></div>
-        <div class="award rv c-gold"><div class="medal">銅</div><div><b>算数オリンピック キッズBEE</b><span>2017年 ファイナリスト・銅メダル</span></div></div>
-        <div class="award rv c-gold"><div class="medal">3<small>期</small></div><div><b>孫正義育英財団 3期生</b><span>2019年・小学5年で選抜</span></div></div>
-        <div class="award rv c-pink"><div class="medal" style="font-size:15px">大賞</div><div><b>スタートアップJr.アワード2019</b><span>ソーシャルイノベーション部門 大賞（初代）／「日本と世界の食料問題を解決するアイデア」</span></div></div>
-        <div class="award rv c-green"><div class="medal">1<small>st</small></div><div><b>N高ビジネスコンテスト 1位</b><span>応募1,600名中</span></div></div>
-        <div class="award rv c-green"><div class="medal" style="font-size:13px">最優<br>秀賞</div><div><b>リクルート地方創生インターン 最優秀賞</b><span>提案が宮古島市に採択</span></div></div>
-        <div class="award rv c-blue"><div class="medal">3<small>期</small></div><div><b>Tokyo Startup Gateway 3期生</b><span>2026年 選出</span></div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- Timeline -->
-  <section class="section alt" id="history">
+  <section class="section" id="history">
     <div class="wrap">
       <div class="sec-head rv"><div class="sec-eyebrow">History</div><h2 class="sec-title">年表</h2></div>
       <div class="legend rv">
@@ -405,6 +378,7 @@
         </div></div>
         <div class="tl-year rv"><div class="y">2025<small>高校1〜2年</small></div><div class="tl-items">
           <div class="ev k-act"><span class="m">3月</span><b>ICC（経営者向けカンファレンス）の運営スタッフを務める</b><p>ICC福岡・京都に参加し、運営スタッフを2年間務めました。</p></div>
+          <div class="ev k-act"><b>CHEERS株式会社 新規事業部で、子ども向けデジタル教育の現場責任者を務める</b></div>
           <div class="ev k-act"><b>不登校の子ども向けメンターとして、延べ50名以上をサポート</b></div>
           <div class="ev k-media"><b>LITALICO 特別ゲスト／ワンダーメイクフェス 登壇</b></div>
           <div class="ev k-act"><span class="m">12月</span><b>NEXY の活動を開始</b></div>
@@ -417,18 +391,25 @@
           <div class="ev k-select"><b>Tokyo Startup Gateway 3期生に選出</b></div>
           <div class="ev k-life"><b>神奈川県横浜市から富山県富山市へ単身で移住</b></div>
           <div class="ev k-act"><b>ネルフィン株式会社 COO に就任</b></div>
+          <div class="ev k-act"><b>ICC（Industry Co-Creation）でサブ統括を務める</b></div>
+          <div class="ev k-select"><b>ソフトバンク主催のプログラムに、高校生として史上初めて参加</b></div>
+          <div class="ev k-act"><b>岐阜市長・福島市長に政策提言</b></div>
           <div class="ev k-act"><span class="m">8月</span><b>NEXY Summit 2026 を主催（東京たま未来メッセ）</b></div>
+          <div class="ev k-media"><span class="m">9月</span><b>クエスチューブサミット2026（QuesTube Summit 2026）に登壇</b><p>9月25日、九段会館テラスにて「高校生ユニコーン枠」で発表しました。</p></div>
+          <div class="ev k-award"><span class="m">10月</span><b>富山若者サミットで北陸銀行賞・日本政策金融公庫賞を受賞</b></div>
+          <div class="ev k-act"><span class="m">12月</span><b>学生団体NEXYを法人化し、株式会社NEXYへ（予定）</b></div>
         </div></div>
       </div>
     </div>
   </section>
 
   <!-- Media -->
-  <section class="section" id="media">
+  <section class="section alt" id="media">
     <div class="wrap">
       <div class="sec-head rv"><div class="sec-eyebrow">Press &amp; Media</div><h2 class="sec-title">掲載・登壇</h2><p class="sec-lead">外部メディアに掲載された記事・動画です。</p></div>
       <div class="media-grid">
         <a class="media rv c-orange" href="https://steenz.jp/53409/" target="_blank" rel="noopener"><span class="t">2026.02 · WEB</span><b>思いが連鎖する社会を目指して。ロボット大会を原点に学生の交流の場を創出する高校生</b><span>Steenz「気になる10代名鑑」</span><span class="go">記事を読む →</span></a>
+        <a class="media rv c-pink" href="https://prtimes.jp/main/html/rd/p/000000026.000159226.html" target="_blank" rel="noopener"><span class="t">2026.09 · EVENT</span><b>クエスチューブサミット2026 登壇（高校生ユニコーン枠）</b><span>PR TIMES</span><span class="go">記事を読む →</span></a>
         <a class="media rv c-green" href="https://prtimes.jp/main/html/rd/p/000000002.000186455.html" target="_blank" rel="noopener"><span class="t">2026.07 · PRESS</span><b>高校生54人が主導する「NEXY Summit 2026」開催</b><span>PR TIMES</span><span class="go">記事を読む →</span></a>
         <a class="media rv c-blue" href="https://www.jial.or.jp/seminar-report/junior-high-school-entrepreneur-2/" target="_blank" rel="noopener"><span class="t">2023.04 · SEMINAR</span><b>子どもたちの未来を拓くプラットフォーム「ひきだしkids」</b><span>Learning Base Vol.23（アクションラーニング協会）</span><span class="go">記事を読む →</span></a>
         <a class="media rv c-gold" href="https://katekyo.mynavi.jp/juken/20492" target="_blank" rel="noopener"><span class="t">2021 · WEB</span><b>プログラミング世界大会出場をきっかけに留学を決意した小学生はどう育ったのか</b><span>マイナビ 中学受験ナビ</span><span class="go">記事を読む →</span></a>
@@ -439,7 +420,7 @@
   </section>
 
   <!-- Basic Info -->
-  <section class="section alt">
+  <section class="section">
     <div class="wrap">
       <div class="sec-head rv"><div class="sec-eyebrow">Basic Info</div><h2 class="sec-title">基本情報</h2></div>
       <dl class="info">
