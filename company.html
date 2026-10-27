@@ -37,7 +37,7 @@
   /* ---------- Header ---------- */
   .hd { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
   .hd .wrap { display: flex; align-items: center; gap: 28px; height: 72px; }
-  .hd-logo img { height: 42px; width: auto; transition: transform .3s var(--ease); }
+  .hd-logo img { height: 34px; width: auto; transition: transform .3s var(--ease); }
   .hd-logo:hover img { transform: rotate(-4deg) scale(1.06); }
   .hd-nav { display: flex; gap: 22px; font-size: 14px; font-weight: 700; }
   .hd-nav a { position: relative; padding: 4px 0; }
@@ -289,6 +289,7 @@
   @media (max-width: 560px) { .pcta { grid-template-columns: 1fr; } }
 
 
+  .ft-logo { display: block; height: 30px; width: auto; margin-bottom: 22px; }
   /* ---------- Contact form ---------- */
   .ct { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding: 110px 0; }
   .ct-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; position: relative; z-index: 1; }
@@ -372,7 +373,7 @@
 
 <header class="hd">
   <div class="wrap">
-    <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_logo_wordmark.png" alt="株式会社NEXY"></a>
+    <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_corp_logo.png" alt="株式会社NEXY"></a>
     <nav class="hd-nav" aria-label="メインメニュー">
       <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a>
     </nav>
@@ -663,6 +664,7 @@
 <footer class="ft">
   <div class="ft-stripes" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap">
+    <img class="ft-logo rv" src="/img/site/nexy_corp_logo_white.png" alt="株式会社NEXY" loading="lazy">
     <div class="ft-copy-l rv"><span class="o">「やりたい」</span>が<span class="c">あふれる</span><br>社会をつくる</div>
     <div class="ft-cols">
       <div><h4>COMPANY</h4><a href="#about">私たちについて</a><a href="#mvv">ミッション・ビジョン・バリュー</a><a href="#company">会社概要</a><a href="#news">ニュース</a></div>
