@@ -64,7 +64,9 @@
   .hd-btns { margin-left: auto; display: flex; gap: 10px; }
   .burger { display: none; margin-left: auto; width: 40px; height: 40px; border: 0; background: none; }
   .burger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px auto; }
-  @media (max-width: 960px) { .hd-nav, .hd-btns { display: none; } .burger { display: block; } }
+  .hd-nav a { white-space: nowrap; }
+  @media (max-width: 1180px) { .hd-nav { display: none; } .hd-btns { margin-left: auto; } .burger { display: block; margin-left: 8px; } }
+  @media (max-width: 960px) { .hd-btns { display: none; } .burger { margin-left: auto; } }
   .mnav { position: fixed; inset: 106px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
   .mnav.open { transform: none; }
   .mnav a { color: #fff; font-weight: 700; font-size: 18px; padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.15); }
@@ -381,7 +383,7 @@
 
 
   /* ---------- Mobile tweaks ---------- */
-  @media (min-width: 961px) { .mnav { display: none; } }
+  @media (min-width: 1181px) { .mnav { display: none; } }
   .mnav:not(.open) { visibility: hidden; }
   .h2, .hero h1, .mvv-box .t, .about-vision p, .officer p.quote { text-wrap: balance; word-break: auto-phrase; }
   @media (max-width: 640px) {
@@ -409,7 +411,7 @@
   .mbar { display: none; }
   .swipe-hint { display: none; }
   .mnav-btns { display: none; }
-  @media (max-width: 960px) {
+  @media (max-width: 1180px) {
     .mnav { overflow-y: auto; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
     .mnav a:not(.btn) { padding: 16px 4px; }
     .mnav-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
@@ -524,6 +526,47 @@
   html { scroll-padding-top: 116px; }
   .about-row { scroll-margin-top: 120px; }
   @media (max-width: 640px) { .xs-in { padding: 0 8px; } }
+
+  /* ---- 株式会社NEXYと学生団体NEXYのすみわけ ---- */
+  .sw { font-family: 'Noto Sans JP', sans-serif; }
+  .sw-head { text-align: center; max-width: 720px; margin: 0 auto 32px; }
+  .sw-label { display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: .28em; color: #F54600; }
+  .sw-title { font-size: clamp(22px, 3.4vw, 36px); font-weight: 900; color: #02102B; line-height: 1.5; margin-top: 8px; text-wrap: balance; word-break: auto-phrase; }
+  .sw-lead { font-size: 14.5px; line-height: 2; color: #4A5160; margin-top: 12px; }
+  .sw-grid { display: grid; grid-template-columns: 1fr 56px 1fr; align-items: stretch; max-width: 1040px; margin: 0 auto; }
+  .sw-card { position: relative; background: #fff; border: 2px solid #E3E6EB; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+  .sw-card.here { border-color: var(--sw-c); }
+  .sw-top { background: var(--sw-c); color: #fff; padding: 22px 24px 20px; position: relative; overflow: hidden; }
+  .sw-top::after { content: ""; position: absolute; right: -24px; top: -20px; width: 110px; height: 110px; background: rgba(255,255,255,.14); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .sw-kind { display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: .1em; background: rgba(255,255,255,.18); padding: 3px 8px; border-radius: 2px; }
+  .sw-name { display: block; font-size: 24px; font-weight: 900; margin-top: 8px; line-height: 1.3; }
+  .sw-here { position: absolute; right: 14px; top: 14px; z-index: 1; font-size: 11px; font-weight: 900; background: #fff; color: #02102B; padding: 3px 8px; border-radius: 2px; }
+  .sw-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .sw-row dt { font-size: 12px; font-weight: 900; letter-spacing: .08em; color: var(--sw-t); }
+  .sw-row dd { margin: 4px 0 0; font-size: 14.5px; line-height: 1.8; color: #1A1D24; }
+  .sw-row ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }
+  .sw-row li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.7; color: #1A1D24; }
+  .sw-row li::before { content: ""; position: absolute; left: 0; top: .62em; width: 9px; height: 7px; background: var(--sw-c); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
+  .sw-go { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 4px; font-size: 14.5px; font-weight: 900; background: var(--sw-c); color: #fff; text-decoration: none; transition: transform .2s, opacity .2s; }
+  .sw-go:hover { transform: translateY(-2px); opacity: .92; }
+  .sw-go.ghost { background: #fff; color: var(--sw-t); border: 2px solid var(--sw-c); }
+  .sw-mid { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+  .sw-mid b { writing-mode: vertical-rl; font-size: 12px; font-weight: 900; letter-spacing: .3em; color: #02102B; }
+  .sw-mid i { width: 22px; height: 22px; background: #F54600; clip-path: polygon(0 20%, 60% 20%, 60% 0, 100% 50%, 60% 100%, 60% 80%, 0 80%); }
+  .sw-route { max-width: 1040px; margin: 20px auto 0; background: #F5F6F8; border-radius: 4px; padding: 18px 22px; display: grid; grid-template-columns: auto 1fr 1fr; gap: 10px 20px; align-items: center; }
+  .sw-route > span { font-size: 13px; font-weight: 900; color: #02102B; }
+  .sw-route a { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #1A1D24; text-decoration: none; line-height: 1.6; }
+  .sw-route a b { flex: none; font-size: 11px; font-weight: 900; color: #fff; padding: 3px 8px; border-radius: 2px; }
+  .sw-route a:hover u { text-decoration: underline; }
+  .sw-route u { text-decoration: none; }
+  @media (max-width: 860px) {
+    .sw-grid { grid-template-columns: 1fr; gap: 0; }
+    .sw-mid { flex-direction: row; padding: 10px 0; }
+    .sw-mid b { writing-mode: horizontal-tb; letter-spacing: .2em; }
+    .sw-mid i { transform: rotate(90deg); }
+    .sw-route { grid-template-columns: 1fr; }
+    .sw-top { padding: 18px 18px 16px; } .sw-body { padding: 16px 18px 20px; } .sw-name { font-size: 21px; }
+  }
 </style>
 </head>
 <body>
@@ -534,7 +577,7 @@
   <div class="wrap">
     <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_corp_logo.png" alt="株式会社NEXY" width="1200" height="216"></a>
     <nav class="hd-nav" aria-label="メインメニュー">
-      <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a>
+      <a href="#about">私たちについて</a><a href="#structure">学生団体との関係</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a>
     </nav>
     <div class="hd-btns">
       <a href="/index.html#recruit" class="btn btn-line">メンバー募集</a>
@@ -544,7 +587,7 @@
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="スマートフォン用メニュー">
-  <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#faq">よくあるご質問</a>
+  <a href="#about">私たちについて</a><a href="#structure">学生団体との関係</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#faq">よくあるご質問</a>
   <div class="mnav-btns"><a href="#contact" class="btn btn-orange">お問い合わせ</a><a href="/index.html#recruit" class="btn btn-white">メンバー募集</a></div>
 </nav>
 
@@ -618,6 +661,47 @@
         <div class="value c-n rv"><div class="n">03</div><b>素直に、高め合う</b><p>指摘を素直に受け取り、上下ではなく横に並んで、仲間とともに伸びていきます。</p></div>
       </div>
       <span class="swipe-hint" aria-hidden="true">横にスワイプ →</span>
+    </div>
+  </section>
+
+  <!-- Structure -->
+  <section class="sec" id="structure">
+    <div class="wrap">
+    <div class="sw">
+      <div class="sw-head">
+        <span class="sw-label">STRUCTURE</span>
+        <h2 class="sw-title">株式会社NEXYと学生団体NEXYのちがい</h2>
+        <p class="sw-lead">学生団体NEXYは、株式会社NEXYが運営する学生団体です。イベントをつくるのは学生のメンバー、企業・自治体との窓口は会社が担います。</p>
+      </div>
+      <div class="sw-grid">
+        <div class="sw-card here" style="--sw-c:#02102B;--sw-t:#02102B">
+          <span class="sw-here">いま見ているサイト</span>
+          <div class="sw-top"><span class="sw-kind">運営会社</span><span class="sw-name">株式会社NEXY</span></div>
+          <dl class="sw-body">
+            <div class="sw-row"><dt>役割</dt><dd>学生団体NEXYを運営し、学生の活動を外から支えます。</dd></div>
+            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>協賛・連携のご相談とご契約</li><li>取材・講演のご依頼の窓口</li><li>NEXY AI（AI活用の支援）</li></ul></dd></div>
+            <div class="sw-row"><dt>こんな方はこちら</dt><dd>企業・自治体・教育機関・メディアの方</dd></div>
+            <a class="sw-go" href="#contact">お問い合わせはこちら ↓</a>
+          </dl>
+        </div>
+        <div class="sw-mid" aria-hidden="true"><b>運営</b><i></i></div>
+        <div class="sw-card" style="--sw-c:#F54600;--sw-t:#C93A00">
+          
+          <div class="sw-top"><span class="sw-kind">学生が運営する団体</span><span class="sw-name">学生団体NEXY</span></div>
+          <dl class="sw-body">
+            <div class="sw-row"><dt>役割</dt><dd>高校生・大学生のメンバーが主体となり、イベントを企画・運営します。</dd></div>
+            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>NEXY SUMMIT・深夜の語り場などのイベント</li><li>メンバーの募集と活動</li><li>参加者の受け付け</li></ul></dd></div>
+            <div class="sw-row"><dt>こんな方はこちら</dt><dd>高校生・大学生、イベントに参加したい方</dd></div>
+            <a class="sw-go" href="/index.html">学生団体NEXYのサイトへ →</a>
+          </dl>
+        </div>
+      </div>
+      <div class="sw-route">
+        <span>迷ったら</span>
+        <a href="#contact"><b style="background:#02102B">株式会社NEXY</b><u>協賛・連携・取材・AIのご相談</u></a>
+        <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener"><b style="background:#F54600">学生団体NEXY</b><u>メンバー応募・イベントへの参加</u></a>
+      </div>
+    </div>
     </div>
   </section>
 
