@@ -196,6 +196,48 @@
   .num em { display: block; font-style: normal; font-size: 12px; color: var(--muted); margin-top: 2px; }
   .note { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 14px; }
   @media (max-width: 760px) { .nums { grid-template-columns: 1fr; } }
+  .touch { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; background: #fff; border-radius: var(--r); overflow: hidden; }
+  .touch-main { position: relative; padding: 44px 40px; overflow: hidden; }
+  .touch-main::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 180px; height: 180px; background: var(--orange); opacity: .14; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .touch-main .lbl { font-size: 16px; font-weight: 900; color: var(--navy); }
+  .touch-main b { display: block; font-size: clamp(64px, 9vw, 112px); font-weight: 900; line-height: 1.05; color: var(--orange); margin-top: 10px; font-variant-numeric: tabular-nums; }
+  .touch-main b small { font-size: 26px; color: var(--navy); margin-left: 6px; }
+  .touch-main em { display: block; font-style: normal; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .touch-list { background: var(--navy-2, #0b1d40); padding: 36px 34px; display: grid; gap: 12px; align-content: center; }
+  .touch-list p { font-size: 12px; font-weight: 900; letter-spacing: .2em; color: var(--cyan); }
+  .touch-list .ti { list-style: none; display: flex; align-items: center; gap: 12px; color: #fff; font-size: 15px; font-weight: 700; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .touch-list .ti::before { content: ""; width: 14px; height: 10px; flex: none; background: var(--c); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
+  @media (max-width: 760px) { .touch { grid-template-columns: 1fr; } .touch-main { padding: 34px 24px; } .touch-list { padding: 28px 24px; } }
+  /* company (Nelfin-style about) */
+  .about-nav { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center; margin-bottom: 30px; }
+  .about-nav a { font-size: 14px; font-weight: 700; color: var(--navy); display: inline-flex; align-items: center; gap: 8px; }
+  .about-nav a::before { content: ""; width: 10px; height: 10px; background: var(--c); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
+  .about-nav a:hover { color: var(--orange); }
+  .about-card { background: #fff; border-radius: var(--r); padding: 56px 64px; position: relative; overflow: hidden; }
+  .about-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--orange) 0 33.3%, var(--cyan) 33.3% 66.6%, var(--navy) 66.6%); }
+  .about-vision { text-align: center; padding-bottom: 44px; border-bottom: 1px solid var(--line); }
+  .about-vision p { font-size: clamp(20px, 2.6vw, 28px); font-weight: 900; color: var(--navy); line-height: 1.7; }
+  .about-vision i { display: block; width: 64px; height: 4px; background: var(--orange); margin: 22px auto 0; }
+  .about-row { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 44px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 90px; }
+  .about-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .about-row > h3 { font-size: 18px; font-weight: 900; color: var(--navy); display: flex; flex-direction: column; gap: 4px; }
+  .about-row > h3 span { font-size: 11px; letter-spacing: .24em; color: var(--c); }
+  .officer { display: grid; grid-template-columns: 180px 1fr; gap: 26px; align-items: start; }
+  .officer .ph { aspect-ratio: 4/5; overflow: hidden; clip-path: polygon(0 0, 82% 0, 100% 18%, 100% 100%, 0 100%); background: var(--cyan); }
+  .officer .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .officer .role { font-size: 13px; font-weight: 700; color: var(--orange); }
+  .officer .nm { font-size: 22px; font-weight: 900; color: var(--navy); margin: 2px 0 12px; }
+  .officer .nm small { font-size: 12px; color: var(--muted); margin-left: 8px; font-weight: 700; }
+  .officer p.bio { font-size: 14.5px; line-height: 1.95; color: var(--ink-2); }
+  .officer a.more { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--cyan-deep); border-bottom: 1px solid currentColor; }
+  .base { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .base > div { border: 1px solid var(--line); border-radius: var(--r); padding: 22px 22px 20px; position: relative; overflow: hidden; }
+  .base > div::after { content: ""; position: absolute; right: -14px; top: -14px; width: 64px; height: 64px; background: var(--c); opacity: .2; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .base b { display: block; font-size: 16px; color: var(--navy); }
+  .base small { display: block; font-size: 12px; font-weight: 700; color: var(--c); letter-spacing: .1em; margin-bottom: 4px; }
+  .base p { font-size: 14px; color: var(--ink-2); margin-top: 6px; line-height: 1.8; }
+  @media (max-width: 860px) { .about-card { padding: 40px 22px; } .about-row { grid-template-columns: 1fr; gap: 18px; padding: 34px 0; } .officer { grid-template-columns: 120px 1fr; gap: 16px; } .base { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .officer { grid-template-columns: 1fr; } .officer .ph { width: 150px; } }
 
   /* ---------- Partners marquee ---------- */
   .logos { overflow: hidden; margin-top: 18px; }
@@ -224,11 +266,12 @@
   .co-photo .back { position: absolute; inset: -18px 18px 18px -18px; background: var(--cyan); clip-path: polygon(0 0, 86% 0, 100% 24%, 100% 100%, 0 100%); }
   .co-table { width: 100%; border-collapse: collapse; border-top: 3px solid var(--navy); }
   .co-table th, .co-table td { text-align: left; padding: 16px 8px; border-bottom: 1px solid var(--line); font-size: 14.5px; vertical-align: top; }
-  .co-table th { width: 140px; font-weight: 700; color: var(--navy); }
+  .co-table th { width: 140px; white-space: nowrap; font-weight: 700; color: var(--navy); }
   .co-table td { color: var(--ink-2); }
   .co-table td small { display: block; color: var(--muted); font-size: 12px; }
   .tbd { color: var(--muted); }
-  @media (max-width: 860px) { .co { grid-template-columns: 1fr; gap: 40px; } .co-table th { width: 96px; } .co-photo .back { inset: -12px 12px 12px -12px; } }
+  .tbd-num { color: #cfd5de; }
+  @media (max-width: 860px) { .co { grid-template-columns: 1fr; gap: 40px; } .co-table th { width: 104px; } .co-photo .back { inset: -12px 12px 12px -12px; } }
 
   /* ---------- Partner CTA ---------- */
   .pcta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -275,7 +318,7 @@
   /* ---------- Mobile tweaks ---------- */
   @media (min-width: 961px) { .mnav { display: none; } }
   .mnav:not(.open) { visibility: hidden; }
-  .h2, .hero h1, .mvv-box .t { text-wrap: balance; word-break: auto-phrase; }
+  .h2, .hero h1, .mvv-box .t, .about-vision p { text-wrap: balance; word-break: auto-phrase; }
   @media (max-width: 640px) {
     .shape { display: none; }
     .hero h1 { font-size: 27px; }
@@ -434,12 +477,21 @@
     <div class="shape o floaty" data-px="-0.1" style="width:60px;height:48px;left:4%;bottom:80px;animation-delay:-3s"></div>
     <div class="wrap">
       <div class="sec-head rv"><div class="label">NUMBERS</div><h2 class="h2">数字で見るNEXY</h2></div>
-      <div class="nums">
-        <div class="num rv" style="--c:var(--orange)"><b><span data-count="658">658</span><small>人</small></b><span class="lbl">NEXY SUMMIT 2026 申込者数</span><em>2026年8月6日 開催</em></div>
-        <div class="num rv" style="--c:var(--cyan-deep);--d:.1s"><b>約<span data-count="800">800</span><small>人</small></b><span class="lbl">NEXY SUMMIT 2026 累計関係人口</span><em>参加者・運営・登壇者などの合計</em></div>
-        <div class="num rv" style="--c:var(--navy);--d:.2s"><b><span data-count="3">3</span><small>地域</small></b><span class="lbl">活動拠点</span><em>東京・富山・徳島</em></div>
+      <div class="touch rv">
+        <div class="touch-main">
+          <span class="lbl">累計学生接点数</span>
+          <b><span class="tbd-num">0,000</span><small>人</small></b>
+          <em>これまでにNEXYの場で出会った学生の延べ人数</em>
+        </div>
+        <div class="touch-list">
+          <p>COUNTED FROM</p>
+          <div class="ti" style="--c:var(--orange)">NEXY SUMMIT</div>
+          <div class="ti" style="--c:var(--cyan)">深夜の語り場</div>
+          <div class="ti" style="--c:#fff">あさげの若き情熱会・ゆうげの若き熱論会</div>
+          <div class="ti" style="--c:var(--orange)">よいしょ!!シリーズ ほか</div>
+        </div>
       </div>
-      <p class="note">※ 数値は2026年10月時点。</p>
+      <p class="note">※ 数値は確認中です（参加者・運営メンバー・登壇者を含む延べ人数）。</p>
 
       <div class="rv" style="margin-top:64px;"><div class="label">PARTNERS</div><h2 class="h2" style="font-size:24px;">これまでにご協賛・ご協力いただいた企業・団体</h2></div>
       <div class="logos rv"><div class="logos-row" data-dup>
@@ -477,18 +529,49 @@
   <section class="sec alt" id="company">
     <div class="shape n floaty" data-px="0.08" style="width:70px;height:56px;right:3%;top:90px"></div>
     <div class="wrap">
-      <div class="sec-head rv"><div class="label">COMPANY</div><h2 class="h2">会社概要</h2></div>
-      <div class="co">
-        <div class="co-photo rv-l"><div class="back"></div><div class="ph"><img src="/img/site/hero_photo_6.jpg" alt="NEXYの運営メンバー" loading="lazy"></div></div>
-        <table class="co-table rv-r">
-          <tr><th>会社名</th><td>株式会社NEXY</td></tr>
-          <tr><th>設立</th><td>2026年12月9日<small>設立予定</small></td></tr>
-          <tr><th>代表</th><td>小助川 晴大</td></tr>
-          <tr><th>所在地</th><td class="tbd">準備中</td></tr>
-          <tr><th>資本金</th><td class="tbd">準備中</td></tr>
-          <tr><th>事業内容</th><td>学生団体NEXYの運営（学生向けイベントの企画・運営）<br>NEXY AI（AI活用の支援）</td></tr>
-          <tr><th>お問い合わせ</th><td>info@nexyhub.jp</td></tr>
-        </table>
+      <div class="sec-head center rv"><div class="label">COMPANY</div><h2 class="h2">会社概要</h2></div>
+      <nav class="about-nav rv">
+        <a href="#co-vision" style="--c:var(--orange)">ビジョン</a>
+        <a href="#co-officer" style="--c:var(--cyan)">代表</a>
+        <a href="#co-outline" style="--c:var(--navy)">会社概要</a>
+        <a href="#co-base" style="--c:var(--orange)">拠点</a>
+      </nav>
+      <div class="about-card rv">
+        <div class="about-vision" id="co-vision">
+          <p><span style="display:inline-block">「やりたい」があふれる</span><span style="display:inline-block">社会をつくる</span><br><span style="display:inline-block">学生の挑戦を、</span><span style="display:inline-block">ひとりにしない</span></p>
+          <i></i>
+        </div>
+        <div class="about-row" id="co-officer" style="--c:var(--cyan-deep)">
+          <h3><span>OFFICER</span>代表</h3>
+          <div class="officer">
+            <div class="ph"><img src="/img/site/rep_haruta.jpg" alt="小助川 晴大" loading="lazy"></div>
+            <div>
+              <div class="role">代表</div>
+              <div class="nm">小助川 晴大<small>Haruta Kosukegawa</small></div>
+              <p class="bio">神奈川県横浜市出身。高校2年で富山県へ単身移住。2026年2月に学生団体NEXYを立ち上げ、代表を務める。中高生が「やりたい」を口に出し、仲間と出会える場づくりに取り組んでいる。</p>
+              <a class="more" href="/haruta.html">プロフィールを見る →</a>
+            </div>
+          </div>
+        </div>
+        <div class="about-row" id="co-outline" style="--c:var(--orange)">
+          <h3><span>OUTLINE</span>会社概要</h3>
+          <table class="co-table">
+            <tr><th>会社名</th><td>株式会社NEXY</td></tr>
+            <tr><th>設立</th><td>2026年12月9日<small>設立予定</small></td></tr>
+            <tr><th>代表</th><td>小助川 晴大</td></tr>
+            <tr><th>資本金</th><td>100万円</td></tr>
+            <tr><th>所在地</th><td>神奈川県横浜市</td></tr>
+            <tr><th>事業内容</th><td>学生団体NEXYの運営（学生向けイベントの企画・運営）<br>NEXY AI（AI活用の支援）</td></tr>
+            <tr><th>お問い合わせ</th><td>info@nexyhub.jp</td></tr>
+          </table>
+        </div>
+        <div class="about-row" id="co-base" style="--c:var(--navy)">
+          <h3><span>BASE</span>拠点</h3>
+          <div class="base">
+            <div style="--c:var(--orange)"><small>HEAD OFFICE</small><b>本社</b><p>神奈川県横浜市</p></div>
+            <div style="--c:var(--cyan)"><small>ACTIVITY</small><b>主な活動地域</b><p>東京・富山・徳島</p></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
