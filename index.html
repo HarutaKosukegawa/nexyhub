@@ -44,6 +44,7 @@
   "@type": "Organization",
   "name": "学生団体NEXY",
   "alternateName": ["NEXY", "ネクシー"],
+  "parentOrganization": { "@type": "Organization", "name": "株式会社NEXY" },
   "url": "https://www.nexyhub.jp/",
   "logo": "https://www.nexyhub.jp/img/site/nexy_logo_wordmark.png",
   "email": "info@nexyhub.jp",
@@ -725,9 +726,9 @@
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.14em;
-    color: var(--navy);
-    background: rgba(20,29,58,0.06);
-    border: 1px solid rgba(20,29,58,0.12);
+    color: #fff;
+    background: var(--navy);
+    border: 1px solid var(--navy);
     border-radius: 3px;
     padding: 3px 8px;
     line-height: 1;
@@ -919,6 +920,13 @@
   @media (max-width: 720px) {
     .hero-video { aspect-ratio: 4/5; }
   }
+  /* Hero identity (学生団体であることを示す) */
+  .hero-identity { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; padding: 64px 48px 32px; background: linear-gradient(transparent, rgba(16,35,63,.82)); color: #fff; }
+  .hero-identity-tag { display: inline-block; font-family: var(--f-jp-disp); font-weight: 700; font-size: 12px; letter-spacing: .16em; background: var(--accent); color: #fff; padding: 4px 12px; border-radius: 3px; }
+  .hero-identity-name { font-family: var(--f-jp-disp); font-weight: 900; font-size: clamp(30px, 5vw, 56px); line-height: 1.2; margin-top: 10px; letter-spacing: .04em; }
+  .hero-identity-sub { font-size: 14px; line-height: 1.8; margin-top: 6px; color: rgba(255,255,255,.92); }
+  .hero-identity-sub span { display: inline-block; margin-left: 12px; font-size: 12px; color: rgba(255,255,255,.75); }
+  @media (max-width: 720px) { .hero-identity { padding: 48px 18px 18px; } .hero-identity-sub { font-size: 12.5px; } .hero-identity-sub span { display: block; margin-left: 0; } }
   /* Hero Slideshow */
   .hero-slides {
     position: absolute; inset: 0;
@@ -3313,6 +3321,26 @@
     color: var(--text-2);
     line-height: 1.9;
   }
+
+  .org-structure { display: grid; grid-template-columns: 1fr 72px 1.25fr; gap: 0; align-items: stretch; margin-top: 48px; }
+  .org-box { border-radius: 12px; padding: 28px; position: relative; }
+  .org-company { background: var(--navy); color: #fff; }
+  .org-company p, .org-company .org-meta { color: rgba(255,255,255,.85); }
+  .org-student { background: #fff; border: 2px solid var(--accent); box-shadow: 0 14px 30px rgba(234,92,31,.12); }
+  .org-label { font-family: var(--f-latin); font-weight: 800; font-size: 11px; letter-spacing: .2em; color: var(--accent); }
+  .org-company .org-label { color: var(--accent-3); }
+  .org-box h3 { font-family: var(--f-jp-disp); font-weight: 900; font-size: 26px; margin: 6px 0 10px; }
+  .org-student h3 { color: var(--navy); }
+  .org-box p { font-size: 14px; line-height: 1.9; color: var(--text-2); }
+  .org-meta { font-size: 12.5px; margin-top: 14px; }
+  .org-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .org-tags span { font-size: 12px; font-weight: 700; background: rgba(234,92,31,.08); color: var(--accent); border-radius: 999px; padding: 4px 10px; }
+  .org-arrow { display: grid; place-items: center; font-family: var(--f-jp-disp); font-weight: 700; font-size: 12px; color: var(--text-muted); position: relative; }
+  .org-arrow::before { content: ""; position: absolute; left: 10px; right: 10px; top: 50%; height: 2px; background: var(--border); }
+  .org-arrow::after { content: "▶"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 12px; }
+  .org-company p, .org-company .org-meta { color: rgba(255,255,255,.88) !important; }
+  .org-arrow { z-index: 1; } .org-arrow b { position: relative; z-index: 1; background: #fff; padding: 2px 4px; font-weight: 700; margin-top: -26px; }
+  @media (max-width: 760px) { .org-structure { grid-template-columns: 1fr; } .org-arrow { height: 48px; } .org-arrow::before { left: 50%; right: auto; top: 6px; bottom: 6px; width: 2px; height: auto; } .org-arrow::after { content: "▼"; right: auto; left: 50%; top: auto; bottom: -2px; transform: translateX(-50%); } }
 
   .about-mission {
     padding: 120px 0;
@@ -6287,6 +6315,11 @@
         <img src="img/site/hero_photo_5.jpg" alt="NEXY メンバーの活動風景" class="hero-photo" loading="lazy">
         <img src="img/site/hero_photo_6.jpg" alt="NEXY イベント参加者の集合" class="hero-photo" loading="lazy">
       </div>
+      <div class="hero-identity">
+        <div class="hero-identity-tag">学生団体 公式サイト</div>
+        <div class="hero-identity-name">学生団体NEXY</div>
+        <div class="hero-identity-sub">高校生・大学生が運営する学生団体です。<span>運営：株式会社NEXY（2026年12月設立予定）</span></div>
+      </div>
     </div>
   </div>
 
@@ -6610,7 +6643,8 @@
         <li><a href="#about-mission" data-toc="about-mission"><span class="toc-num">02</span> Mission</a></li>
         <li><a href="#about-values" data-toc="about-values"><span class="toc-num">03</span> Values</a></li>
         <li><a href="#about-message" data-toc="about-message"><span class="toc-num">04</span> Message</a></li>
-        <li><a href="#about-company" data-toc="about-company"><span class="toc-num">05</span> Company</a></li>
+        <li><a href="#about-structure" data-toc="about-structure"><span class="toc-num">05</span> Structure</a></li>
+        <li><a href="#about-company" data-toc="about-company"><span class="toc-num">06</span> Company</a></li>
       </ul>
     </div>
   </div>
@@ -6774,6 +6808,31 @@
   </section>
 
   <!-- 会社概要(団体概要) -->
+  <!-- 組織の構成（株式会社NEXYと学生団体NEXY） -->
+  <section class="section" id="about-structure" style="padding: 88px 0;">
+    <div class="wrap">
+      <div style="text-align:center;">
+        <div class="st-split-label" style="justify-content:center;">Structure</div>
+        <h2 class="st-split-title" style="text-align:center;">株式会社NEXYと、<em>学生団体NEXY</em>。</h2>
+        <p class="lead" style="max-width:680px;margin:12px auto 0;">学生団体NEXYは、株式会社NEXY（2026年12月設立予定）が運営する学生団体です。企画と運営の主役は、高校生・大学生のメンバーです。</p>
+      </div>
+      <div class="org-structure">
+        <div class="org-box org-company">
+          <div class="org-label">COMPANY</div>
+          <h3>株式会社NEXY</h3>
+          <p>学生団体NEXYの運営会社です。企業・団体とのご契約、協賛のご相談の窓口を担います。</p>
+        </div>
+        <div class="org-arrow" aria-hidden="true"><b>運営</b></div>
+        <div class="org-box org-student">
+          <div class="org-label">STUDENT ORGANIZATION</div>
+          <h3>学生団体NEXY</h3>
+          <p>高校生・大学生のメンバーが主体となり、NEXY Summit、深夜の語り場、あさげの若き情熱会などを企画・運営しています。</p>
+          <div class="org-tags"><span>NEXY Summit</span><span>深夜の語り場</span><span>あさげの若き情熱会</span><span>よいしょ!!シリーズ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-dark" id="about-company">
     <div class="wrap">
       <div class="section-head" style="margin-bottom: 48px;">
@@ -6788,11 +6847,12 @@
         <tr><th>設立</th><td>2026年2月</td></tr>
         <tr><th>代表</th><td>小助川 晴大(Haruta Kosukegawa)</td></tr>
         <tr><th>所在地</th><td><span style="color:var(--text-muted);">— 準備中 —</span></td></tr>
-        <tr><th>運営形態</th><td>学生団体</td></tr>
+        <tr><th>運営形態</th><td>学生団体（高校生・大学生のメンバーが企画・運営）</td></tr>
+        <tr><th>運営会社</th><td>株式会社NEXY<br><span style="font-size:12px;color:var(--text-muted);">2026年12月設立予定</span></td></tr>
 
         <tr class="info-group-head"><td colspan="2">Philosophy</td></tr>
         <tr><th>Mission</th><td>「やりたい」をひとりにしない</td></tr>
-        <tr><th>Vision</th><td>思いが連鎖する社会を創る</td></tr>
+        <tr><th>Vision</th><td>「やりたい」があふれる社会をつくる</td></tr>
 
         <tr class="info-group-head"><td colspan="2">Activities</td></tr>
         <tr><th>活動内容</th><td>
@@ -8341,7 +8401,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 NEXY / 学生団体NEXY. All Rights Reserved.</div>
+      <div class="footer-copy">© 2026 学生団体NEXY ／ 運営：株式会社NEXY（2026年12月設立予定）. All Rights Reserved.</div>
       <div class="footer-legal">
         <a href="#">プライバシーポリシー</a>
         <a href="#contact" data-nav="contact">お問い合わせ</a>
