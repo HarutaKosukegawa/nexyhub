@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>株式会社NEXY | 「やりたい」があふれる社会をつくる。</title>
-<meta name="description" content="株式会社NEXYは、学生の「やりたい」を、ひとりにしないための場をつくる会社です。NEXY SUMMIT、深夜の語り場、学生団体NEXYの運営などを行っています。">
+<title>株式会社NEXY | 「やりたい」があふれる社会をつくる</title>
+<meta name="description" content="株式会社NEXYは、学生の「やりたい」を、ひとりにしないための場をつくる会社です。学生団体NEXYとNEXY AIの2つの事業を運営しています。">
 <link rel="icon" type="image/png" href="/img/site/nexy_logo_wordmark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,227 +13,298 @@
 <style>
   /* =========================================================
      株式会社NEXY コーポレートサイト（下書き）
-     ブランド規定：紺 #02102B／シアン #40BCB8／オレンジ #F54600 の3色のみ。
-     グラデーション・ピンク・色付きの影は使わない。角丸は4px以下。
-     形のモチーフはロゴの斜め約60度の切り口。書体は Noto Sans JP。
+     色：紺 #02102B／シアン #40BCB8／オレンジ #F54600 を大きな面で使う。
+     形：ロゴの斜め約60度の切り口。書体：Noto Sans JP。
      ========================================================= */
   :root {
     --navy: #02102B; --cyan: #40BCB8; --orange: #F54600;
     --cyan-deep: #1D8C88; --orange-deep: #C93A00;
-    --cyan-tint: #E8F6F5; --orange-tint: #FEEDE5;
+    --cyan-tint: #E3F5F4; --orange-tint: #FFEDE4;
     --ink: #1A1D24; --ink-2: #4A5160; --muted: #7C8494; --line: #E3E6EB; --bg-2: #F5F6F8;
-    --r: 4px;
+    --r: 4px; --ease: cubic-bezier(.2,.7,.2,1);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); background: #fff; line-height: 1.8; -webkit-font-smoothing: antialiased; letter-spacing: .02em; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); background: #fff; line-height: 1.8; -webkit-font-smoothing: antialiased; letter-spacing: .02em; overflow-x: hidden; }
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
   @media (max-width: 640px) { .wrap { padding: 0 18px; } }
 
-  .draft-bar { background: var(--orange-tint); color: var(--orange-deep); font-size: 12px; font-weight: 700; text-align: center; padding: 6px 16px; }
+  .draft-bar { background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; text-align: center; padding: 6px 16px; }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; width: 100%; z-index: 300; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--cyan) 0 33.3%, var(--orange) 33.3% 66.6%, var(--navy) 66.6%); }
 
-  /* Header */
+  /* ---------- Header ---------- */
   .hd { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
   .hd .wrap { display: flex; align-items: center; gap: 28px; height: 72px; }
-  .hd-logo img { height: 42px; width: auto; }
+  .hd-logo img { height: 42px; width: auto; transition: transform .3s var(--ease); }
+  .hd-logo:hover img { transform: rotate(-4deg) scale(1.06); }
   .hd-nav { display: flex; gap: 22px; font-size: 14px; font-weight: 700; }
-  .hd-nav a:hover { color: var(--orange); }
+  .hd-nav a { position: relative; padding: 4px 0; }
+  .hd-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; background: var(--orange); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
+  .hd-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
   .hd-btns { margin-left: auto; display: flex; gap: 10px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 14px; padding: 12px 22px; border-radius: var(--r); border: 2px solid var(--navy); transition: background .15s, color .15s; white-space: nowrap; }
-  .btn-orange { background: var(--orange); border-color: var(--orange); color: #fff; }
-  .btn-orange:hover { background: var(--orange-deep); border-color: var(--orange-deep); }
-  .btn-line { background: #fff; color: var(--navy); }
-  .btn-line:hover { background: var(--navy); color: #fff; }
   .burger { display: none; margin-left: auto; width: 40px; height: 40px; border: 0; background: none; }
   .burger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px auto; }
   @media (max-width: 960px) { .hd-nav, .hd-btns { display: none; } .burger { display: block; } }
-  .mnav { display: none; position: fixed; inset: 72px 0 0 0; background: #fff; z-index: 99; padding: 24px 18px; }
-  .mnav.open { display: grid; gap: 4px; align-content: start; }
-  .mnav a { font-weight: 700; font-size: 17px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
+  .mnav { position: fixed; inset: 72px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
+  .mnav.open { transform: none; }
+  .mnav a { color: #fff; font-weight: 700; font-size: 18px; padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.15); }
 
-  /* Hero */
-  .hero { padding: 40px 0 0; }
-  .hero-photo { position: relative; height: min(52vw, 520px); overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 78%, 86% 100%, 0 100%); }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
-  .hero-photo::after { content: ""; position: absolute; right: 0; bottom: 0; width: 26%; height: 22%; background: var(--orange); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-  .hero-body { text-align: center; padding: 48px 0 40px; }
-  .hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .3em; color: var(--muted); }
-  .hero h1 { font-size: clamp(32px, 5.4vw, 60px); font-weight: 900; line-height: 1.35; color: var(--navy); margin-top: 10px; }
+  /* ---------- Buttons ---------- */
+  .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 14px; padding: 13px 24px; border-radius: var(--r); border: 2px solid var(--navy); white-space: nowrap; z-index: 0; transition: color .3s, border-color .3s; }
+  .btn::before { content: ""; position: absolute; top: 0; bottom: 0; left: -15%; width: 130%; z-index: -1; transform: translateX(-102%) skewX(-20deg); transition: transform .4s var(--ease); }
+  .btn:hover::before { transform: translateX(0) skewX(-20deg); }
+  .btn-orange { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .btn-orange::before { background: var(--navy); }
+  .btn-orange:hover { border-color: var(--navy); }
+  .btn-line { background: #fff; color: var(--navy); }
+  .btn-line::before { background: var(--cyan); }
+  .btn-white { background: #fff; color: var(--navy); border-color: #fff; }
+  .btn-white::before { background: var(--cyan); }
+  .btn .ar { display: inline-block; transition: transform .3s var(--ease); }
+  .btn:hover .ar { transform: translateX(4px); }
+
+  /* ---------- Floating shapes ---------- */
+  .shape { position: absolute; z-index: 0; pointer-events: none; clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); will-change: transform; }
+  .shape.c { background: var(--cyan); } .shape.o { background: var(--orange); } .shape.n { background: var(--navy); }
+  .floaty { animation: floaty 7s ease-in-out infinite; }
+  @keyframes floaty { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: 36px 0 0; }
+  .hero-stage { position: relative; }
+  .hero-bars { position: absolute; inset: -40px -10% auto -10%; height: 120%; z-index: 0; pointer-events: none; }
+  .hero-bars span { position: absolute; top: 0; height: 100%; width: 22%; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); transform: translateY(-110%); animation: barIn 1s var(--ease) forwards; }
+  .hero-bars span:nth-child(1) { left: -2%; background: var(--cyan); animation-delay: .05s; }
+  .hero-bars span:nth-child(2) { right: 6%; background: var(--orange); animation-delay: .18s; width: 18%; }
+  .hero-bars span:nth-child(3) { right: -6%; background: var(--navy); animation-delay: .3s; width: 14%; }
+  @keyframes barIn { to { transform: none; } }
+  .hero-photo { position: relative; z-index: 1; height: min(50vw, 520px); overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 78%, 86% 100%, 0 100%); animation: photoIn 1.2s .35s var(--ease) both; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; animation: kenburns 18s ease-in-out infinite alternate; }
+  @keyframes photoIn { from { clip-path: polygon(0 0, 0 0, 0 78%, 0 100%, 0 100%); } }
+  @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.12) translate(-1%, 1%); } }
+  .hero-body { position: relative; z-index: 1; text-align: center; padding: 52px 0 48px; }
+  .hero-eyebrow { display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: .3em; color: #fff; background: var(--navy); padding: 4px 14px; clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); }
+  .hero h1 { font-size: clamp(34px, 5.8vw, 66px); font-weight: 900; line-height: 1.3; color: var(--navy); margin-top: 14px; }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .ch { display: inline-block; transform: translateY(110%); animation: chUp .8s var(--ease) forwards; }
   .hero h1 .o { color: var(--orange); } .hero h1 .c { color: var(--cyan-deep); }
-  .hero-lead { max-width: 640px; margin: 18px auto 0; font-size: 15px; color: var(--ink-2); line-height: 2; }
+  @keyframes chUp { to { transform: none; } }
+  .hero-lead { max-width: 640px; margin: 20px auto 0; font-size: 15px; color: var(--ink-2); line-height: 2; opacity: 0; animation: fadeUp .8s 1.3s var(--ease) forwards; }
   .hero-lead strong { color: var(--navy); }
-  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; opacity: 0; animation: fadeUp .8s 1.5s var(--ease) forwards; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-  /* Marquee */
-  .band { background: var(--navy); color: #fff; overflow: hidden; padding: 16px 0; }
-  .band-row { display: flex; gap: 56px; width: max-content; animation: mq 50s linear infinite; font-size: 16px; font-weight: 700; }
-  .band-row span::before { content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 14px; vertical-align: -1px; background: var(--orange); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
-  .band-row span:nth-child(3n+2)::before { background: var(--cyan); }
+  /* ---------- Bands ---------- */
+  .bands-clip { overflow: hidden; padding: 24px 0; margin-top: -10px; }
+  .bands { position: relative; z-index: 2; transform: rotate(-2deg); margin: 10px -4% 0; }
+  .band { overflow: hidden; padding: 14px 0; }
+  .band.b1 { background: var(--orange); color: #fff; }
+  .band.b2 { background: var(--navy); color: #fff; }
+  .band-row { display: flex; gap: 56px; width: max-content; animation: mq 46s linear infinite; font-size: 17px; font-weight: 900; }
+  .band.b2 .band-row { animation-direction: reverse; animation-duration: 54s; }
+  .band-row span::before { content: ""; display: inline-block; width: 16px; height: 14px; margin-right: 14px; vertical-align: -1px; background: #fff; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .band.b2 .band-row span::before { background: var(--cyan); }
   @keyframes mq { to { transform: translateX(-50%); } }
 
-  /* Section */
-  .sec { padding: 96px 0; }
+  /* ---------- Section ---------- */
+  .sec { position: relative; overflow: hidden; padding: 110px 0; }
   .sec.alt { background: var(--bg-2); }
-  .sec-head { margin-bottom: 40px; }
+  .sec.cyan { background: var(--cyan); }
+  .sec.navy { background: var(--navy); color: #fff; }
+  .sec-head { margin-bottom: 44px; }
   .sec-head.center { text-align: center; }
   .label { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 900; letter-spacing: .28em; color: var(--orange); }
-  .label::before { content: ""; width: 22px; height: 10px; background: var(--orange); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
-  .h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 900; line-height: 1.45; color: var(--navy); margin-top: 8px; }
-  .lead { font-size: 15px; color: var(--ink-2); line-height: 2; margin-top: 12px; max-width: 720px; }
+  .label::before { content: ""; width: 26px; height: 12px; background: currentColor; clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
+  .sec.cyan .label, .sec.navy .label { color: #fff; }
+  .h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; line-height: 1.45; color: var(--navy); margin-top: 10px; }
+  .sec.navy .h2 { color: #fff; }
+  .h2 .hl { position: relative; display: inline-block; z-index: 0; }
+  .h2 .hl::after { content: ""; position: absolute; left: -4px; right: -4px; bottom: 4px; height: 38%; z-index: -1; background: var(--hl, var(--cyan)); opacity: .55; transform: scaleX(0); transform-origin: left; transition: transform .8s .3s var(--ease); }
+  .in .h2 .hl::after { transform: scaleX(1); }
+  .lead { font-size: 15px; color: var(--ink-2); line-height: 2; margin-top: 14px; max-width: 720px; }
   .sec-head.center .lead { margin-left: auto; margin-right: auto; }
-  @media (max-width: 640px) { .sec { padding: 64px 0; } }
+  @media (max-width: 640px) { .sec { padding: 72px 0; } }
 
-  /* Why */
-  .why { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  .why-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0 24%); }
-  .why-photo img { width: 100%; height: 100%; object-fit: cover; }
+  /* ---------- Why ---------- */
+  .why { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .why-photo { position: relative; }
+  .why-photo .ph { position: relative; z-index: 1; aspect-ratio: 4/3; overflow: hidden; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0 24%); }
+  .why-photo .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .why-photo:hover .ph img { transform: scale(1.06); }
+  .why-photo .back { position: absolute; inset: 22px -22px -22px 22px; background: var(--orange); clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0 24%); }
   .why p { font-size: 15.5px; line-height: 2.1; color: var(--ink-2); }
   .why p + p { margin-top: 1.2em; }
-  .why strong { color: var(--navy); }
-  @media (max-width: 860px) { .why { grid-template-columns: 1fr; gap: 28px; } }
+  .why strong { color: var(--navy); background: linear-gradient(transparent 62%, var(--cyan-tint) 62%); }
+  @media (max-width: 860px) { .why { grid-template-columns: 1fr; gap: 40px; } .why-photo .back { inset: 14px -10px -14px 14px; } }
 
-  /* MVV */
-  .mvv-top { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .mvv-box { padding: 30px; border-radius: var(--r); }
+  /* ---------- MVV ---------- */
+  .mvv-top { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mvv-box { position: relative; overflow: hidden; padding: 34px; border-radius: var(--r); }
   .mvv-box.m { background: var(--navy); color: #fff; }
-  .mvv-box.v { background: #fff; border: 2px solid var(--navy); }
-  .mvv-box .k { font-size: 12px; font-weight: 900; letter-spacing: .28em; }
-  .mvv-box.m .k { color: var(--cyan); } .mvv-box.v .k { color: var(--orange); }
-  .mvv-box .t { font-size: clamp(22px, 2.8vw, 30px); font-weight: 900; line-height: 1.5; margin-top: 8px; }
-  .mvv-box.v .t { color: var(--navy); }
-  .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
-  .value { background: #fff; border: 1px solid var(--line); border-top: 6px solid var(--c); border-radius: var(--r); padding: 24px; }
-  .value .n { font-size: 12px; font-weight: 900; letter-spacing: .2em; color: var(--c); }
-  .value b { display: block; font-size: 21px; font-weight: 900; color: var(--navy); margin-top: 6px; }
+  .mvv-box.v { background: var(--orange); color: #fff; }
+  .mvv-box::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 160px; height: 160px; background: rgba(255,255,255,.12); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); transition: transform .6s var(--ease); }
+  .mvv-box:hover::after { transform: translate(-30px, -30px); }
+  .mvv-box .k { font-size: 12px; font-weight: 900; letter-spacing: .28em; color: var(--cyan); }
+  .mvv-box.v .k { color: var(--navy); }
+  .mvv-box .t { font-size: clamp(24px, 3vw, 34px); font-weight: 900; line-height: 1.5; margin-top: 10px; }
+  .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+  .value { position: relative; background: #fff; border-radius: var(--r); padding: 28px 26px; overflow: hidden; transition: transform .3s var(--ease); }
+  .value:hover { transform: translateY(-6px); }
+  .value::before { content: ""; position: absolute; left: 0; top: 0; height: 8px; width: 100%; background: var(--c); transform: scaleX(0); transform-origin: left; transition: transform .8s .2s var(--ease); }
+  .value.in::before, html:not(.js) .value::before { transform: scaleX(1); }
+  .value .n { font-size: 40px; font-weight: 900; line-height: 1; color: var(--c); }
+  .value b { display: block; font-size: 22px; font-weight: 900; color: var(--navy); margin-top: 10px; }
   .value p { font-size: 14px; color: var(--ink-2); line-height: 1.9; margin-top: 8px; }
   .c-o { --c: var(--orange); } .c-c { --c: var(--cyan-deep); } .c-n { --c: var(--navy); }
   @media (max-width: 860px) { .mvv-top, .values { grid-template-columns: 1fr; } }
 
-  /* Service */
-  .svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, border-color .2s; }
-  .card:hover { transform: translateY(-4px); border-color: var(--navy); }
-  .card-img { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--bg-2); }
-  .card-img img { width: 100%; height: 100%; object-fit: cover; }
-  .card-img .tag { position: absolute; left: 0; top: 14px; background: var(--c); color: #fff; font-size: 11px; font-weight: 900; letter-spacing: .12em; padding: 5px 16px 5px 12px; clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
-  .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
-  .card-body h3 { font-size: 20px; font-weight: 900; color: var(--navy); line-height: 1.4; }
-  .card-body .en { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--muted); margin-top: 2px; }
-  .card-body p { font-size: 14px; color: var(--ink-2); line-height: 1.85; margin-top: 10px; }
-  .card-body .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-  .card-body .meta span { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: var(--r); background: var(--bg-2); color: var(--navy); }
-  .card-body .more { margin-top: auto; padding-top: 16px; font-size: 13px; font-weight: 900; color: var(--c); }
-  @media (max-width: 960px) { .svc { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .svc { grid-template-columns: 1fr; } }
+  /* ---------- Business ---------- */
+  .biz { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .bz { position: relative; display: flex; flex-direction: column; border-radius: var(--r); overflow: hidden; background: #fff; transition: transform .25s var(--ease), box-shadow .25s; }
+  .bz:hover { box-shadow: 0 24px 50px rgba(2,16,43,.18); }
+  .bz-top { position: relative; padding: 36px 34px 30px; color: #fff; background: var(--orange); overflow: hidden; }
+  .bz-top::after { content: ""; position: absolute; right: -30px; top: -30px; width: 200px; height: 240px; background: rgba(255,255,255,.14); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); transition: transform .8s var(--ease); }
+  .bz:hover .bz-top::after { transform: translateX(-60px); }
+  .bz-no { font-size: 13px; font-weight: 900; letter-spacing: .24em; opacity: .9; }
+  .bz h3 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 900; line-height: 1.25; margin-top: 8px; }
+  .bz .tagline { font-size: 15px; font-weight: 700; margin-top: 8px; opacity: .95; }
+  .bz-img { aspect-ratio: 16/8; overflow: hidden; }
+  .bz-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+  .bz:hover .bz-img img { transform: scale(1.07); }
+  .bz-body { padding: 26px 34px 32px; display: flex; flex-direction: column; flex: 1; }
+  .bz-body p { font-size: 14.5px; color: var(--ink-2); line-height: 1.95; }
+  .bz-list { display: grid; gap: 10px; margin-top: 18px; }
+  .bz-list li { list-style: none; display: grid; grid-template-columns: 14px 1fr; gap: 10px; align-items: start; font-size: 14px; }
+  .bz-list li::before { content: ""; width: 14px; height: 12px; margin-top: 6px; background: var(--c); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .bz-list b { color: var(--navy); }
+  .bz-list span { display: block; font-size: 12.5px; color: var(--muted); }
+  .bz-more { margin-top: auto; padding-top: 24px; }
+  .bz.n1 { --c: var(--orange); } .bz.n2 { --c: var(--cyan-deep); }
+  .bz.n2 .bz-top { background: var(--navy); }
+  .bz.n2 .bz-top .accent { color: var(--cyan); }
+  @media (max-width: 860px) { .biz { grid-template-columns: 1fr; } .bz-top, .bz-body { padding-left: 22px; padding-right: 22px; } }
 
-  /* Numbers */
-  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .num { background: #fff; border-radius: var(--r); padding: 28px 24px; border-left: 6px solid var(--c); }
-  .num b { display: block; font-size: clamp(40px, 5vw, 56px); font-weight: 900; line-height: 1; color: var(--c); }
-  .num b small { font-size: 18px; color: var(--navy); margin-left: 4px; }
-  .num span { display: block; font-size: 15px; font-weight: 700; color: var(--navy); margin-top: 12px; }
+  /* ---------- Numbers ---------- */
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .num { position: relative; overflow: hidden; background: #fff; border-radius: var(--r); padding: 30px 26px; }
+  .num::after { content: ""; position: absolute; right: -20px; bottom: -20px; width: 110px; height: 110px; background: var(--c); opacity: .16; clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
+  .num b { display: block; font-size: clamp(46px, 5.6vw, 64px); font-weight: 900; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+  .num b small { font-size: 20px; color: var(--navy); margin-left: 4px; }
+  .num span.lbl { display: block; font-size: 15px; font-weight: 700; color: var(--navy); margin-top: 14px; }
   .num em { display: block; font-style: normal; font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .note { font-size: 12px; color: var(--muted); margin-top: 14px; }
+  .note { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 14px; }
   @media (max-width: 760px) { .nums { grid-template-columns: 1fr; } }
 
-  /* Partners */
-  .partners { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
-  .partners div { background: #fff; border: 1px solid var(--line); border-radius: var(--r); height: 88px; display: grid; place-items: center; padding: 12px; }
-  .partners img { max-height: 54px; max-width: 100%; object-fit: contain; }
-  @media (max-width: 860px) { .partners { grid-template-columns: repeat(3, 1fr); } }
+  /* ---------- Partners marquee ---------- */
+  .logos { overflow: hidden; margin-top: 18px; }
+  .logos-row { display: flex; gap: 14px; width: max-content; animation: mq 40s linear infinite; }
+  .logos:hover .logos-row { animation-play-state: paused; }
+  .logos-row div { flex: none; width: 170px; height: 86px; background: #fff; border-radius: var(--r); display: grid; place-items: center; padding: 12px 16px; }
+  .logos-row img { max-height: 52px; max-width: 100%; object-fit: contain; }
 
-  /* News */
-  .news { border-top: 2px solid var(--navy); }
-  .news a { display: grid; grid-template-columns: 120px 140px 1fr 24px; gap: 16px; align-items: center; padding: 20px 4px; border-bottom: 1px solid var(--line); transition: background .15s; }
-  .news a:hover { background: var(--bg-2); }
+  /* ---------- News ---------- */
+  .news { border-top: 3px solid var(--navy); }
+  .news a { position: relative; display: grid; grid-template-columns: 120px 140px 1fr 24px; gap: 16px; align-items: center; padding: 22px 8px; border-bottom: 1px solid var(--line); overflow: hidden; z-index: 0; }
+  .news a::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--cyan-tint); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+  .news a:hover::before { transform: scaleX(1); }
   .news time { font-size: 14px; font-weight: 700; color: var(--muted); }
   .news .cat { font-size: 12px; font-weight: 700; color: #fff; background: var(--c); padding: 3px 10px; border-radius: var(--r); justify-self: start; }
   .news .ttl { font-size: 15px; font-weight: 700; color: var(--navy); }
-  .news .ar { color: var(--orange); font-weight: 900; }
+  .news .ar { color: var(--orange); font-weight: 900; transition: transform .3s var(--ease); }
+  .news a:hover .ar { transform: translateX(6px); }
   @media (max-width: 760px) { .news a { grid-template-columns: 1fr 24px; gap: 4px 12px; } .news time, .news .cat { grid-column: 1; } .news .ar { grid-row: 1 / span 3; grid-column: 2; } }
 
-  /* Company */
-  .co { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
-  .co-photo { aspect-ratio: 4/3; overflow: hidden; clip-path: polygon(0 0, 86% 0, 100% 24%, 100% 100%, 0 100%); }
-  .co-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .co-table { width: 100%; border-collapse: collapse; border-top: 2px solid var(--navy); }
+  /* ---------- Company ---------- */
+  .co { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: start; }
+  .co-photo { position: relative; }
+  .co-photo .ph { position: relative; z-index: 1; aspect-ratio: 4/3; overflow: hidden; clip-path: polygon(0 0, 86% 0, 100% 24%, 100% 100%, 0 100%); }
+  .co-photo .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .co-photo .back { position: absolute; inset: -18px 18px 18px -18px; background: var(--cyan); clip-path: polygon(0 0, 86% 0, 100% 24%, 100% 100%, 0 100%); }
+  .co-table { width: 100%; border-collapse: collapse; border-top: 3px solid var(--navy); }
   .co-table th, .co-table td { text-align: left; padding: 16px 8px; border-bottom: 1px solid var(--line); font-size: 14.5px; vertical-align: top; }
   .co-table th { width: 140px; font-weight: 700; color: var(--navy); }
   .co-table td { color: var(--ink-2); }
   .co-table td small { display: block; color: var(--muted); font-size: 12px; }
   .tbd { color: var(--muted); }
-  @media (max-width: 860px) { .co { grid-template-columns: 1fr; gap: 28px; } .co-table th { width: 96px; } }
+  @media (max-width: 860px) { .co { grid-template-columns: 1fr; gap: 40px; } .co-table th { width: 96px; } .co-photo .back { inset: -12px 12px 12px -12px; } }
 
-  /* Structure */
-  .struct { display: grid; grid-template-columns: 1fr 64px 1.3fr; align-items: stretch; margin-top: 28px; }
-  .s-box { padding: 24px; border-radius: var(--r); }
-  .s-co { background: var(--navy); color: #fff; }
-  .s-st { background: #fff; border: 2px solid var(--orange); }
-  .s-box .k { font-size: 11px; font-weight: 900; letter-spacing: .2em; color: var(--cyan); }
-  .s-st .k { color: var(--orange); }
-  .s-box b { display: block; font-size: 20px; font-weight: 900; margin-top: 4px; }
-  .s-st b { color: var(--navy); }
-  .s-box p { font-size: 13.5px; line-height: 1.85; margin-top: 6px; color: inherit; opacity: .9; }
-  .s-st p { color: var(--ink-2); }
-  .s-arrow { display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--muted); position: relative; }
-  .s-arrow::before { content: ""; position: absolute; left: 8px; right: 8px; top: 50%; height: 2px; background: var(--line); }
-  .s-arrow span { position: relative; background: #fff; padding: 0 4px; }
-  .sec.alt .s-arrow span { background: var(--bg-2); }
-  @media (max-width: 760px) { .struct { grid-template-columns: 1fr; } .s-arrow { height: 40px; } .s-arrow::before { left: 50%; right: auto; top: 4px; bottom: 4px; width: 2px; height: auto; } }
-
-  /* Partner CTA */
-  .pcta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .pc { display: flex; flex-direction: column; background: #fff; border: 2px solid var(--navy); border-radius: var(--r); padding: 22px; transition: background .15s, color .15s; }
-  .pc:hover { background: var(--navy); color: #fff; }
-  .pc .k { font-size: 11px; font-weight: 900; letter-spacing: .18em; color: var(--orange); }
-  .pc b { font-size: 17px; font-weight: 900; line-height: 1.5; margin-top: 6px; }
+  /* ---------- Partner CTA ---------- */
+  .pcta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .pc { position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg-2); border-radius: var(--r); padding: 26px 22px; z-index: 0; transition: color .35s, transform .3s var(--ease); }
+  .pc::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c); transform: translateY(101%); transition: transform .45s var(--ease); }
+  .pc:hover { color: #fff; transform: translateY(-6px); }
+  .pc:hover::before { transform: none; }
+  .pc .k { font-size: 11px; font-weight: 900; letter-spacing: .18em; color: var(--c); transition: color .35s; }
+  .pc:hover .k, .pc:hover .go { color: #fff; }
+  .pc b { font-size: 18px; font-weight: 900; line-height: 1.5; margin-top: 8px; }
   .pc p { font-size: 13px; line-height: 1.8; margin-top: 8px; opacity: .85; }
-  .pc .go { margin-top: auto; padding-top: 14px; font-weight: 900; color: var(--orange); }
+  .pc .go { margin-top: auto; padding-top: 16px; font-weight: 900; color: var(--c); transition: color .35s; }
   @media (max-width: 960px) { .pcta { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .pcta { grid-template-columns: 1fr; } }
 
-  /* Contact / Recruit */
+  /* ---------- Contact / Recruit ---------- */
   .split { display: grid; grid-template-columns: 1fr 1fr; }
-  .split > div { padding: 80px 48px; }
+  .split > div { position: relative; overflow: hidden; padding: 88px 48px; }
   .sp-contact { background: var(--navy); color: #fff; }
   .sp-recruit { background: var(--orange); color: #fff; }
-  .split h2 { font-size: 34px; font-weight: 900; letter-spacing: .12em; text-align: center; }
-  .split .sub { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-align: center; opacity: .85; margin-top: 4px; }
-  .split p { font-size: 14px; line-height: 2; text-align: center; margin: 18px auto 0; max-width: 420px; }
-  .c-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 26px auto 0; max-width: 480px; }
-  .c-links a { display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,.4); border-radius: var(--r); padding: 12px 14px; font-size: 13px; font-weight: 700; transition: background .15s, color .15s; }
-  .c-links a:hover { background: #fff; color: var(--navy); }
-  .sp-recruit .btn { display: flex; width: max-content; margin: 26px auto 0; background: #fff; color: var(--orange-deep); border-color: #fff; }
-  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split > div { padding: 56px 18px; } .c-links { grid-template-columns: 1fr; } }
+  .split h2 { position: relative; z-index: 1; font-size: clamp(34px, 4vw, 48px); font-weight: 900; letter-spacing: .12em; text-align: center; }
+  .split .sub { position: relative; z-index: 1; font-size: 12px; font-weight: 700; letter-spacing: .2em; text-align: center; opacity: .85; margin-top: 4px; }
+  .split p { position: relative; z-index: 1; font-size: 14px; line-height: 2; text-align: center; margin: 18px auto 0; max-width: 420px; }
+  .c-links { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 26px auto 0; max-width: 480px; }
+  .c-links a { display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,.4); border-radius: var(--r); padding: 12px 14px; font-size: 13px; font-weight: 700; transition: background .2s, color .2s, transform .2s; }
+  .c-links a:hover { background: var(--cyan); border-color: var(--cyan); color: var(--navy); transform: translateY(-2px); }
+  .sp-recruit .btn { position: relative; display: flex; width: max-content; margin: 26px auto 0; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split > div { padding: 64px 18px; } .c-links { grid-template-columns: 1fr; } }
 
-  /* Footer */
-  .ft { background: var(--navy); color: rgba(255,255,255,.75); padding: 64px 0 28px; border-top: 6px solid var(--cyan); }
-  .ft-copy-l { font-size: clamp(26px, 4vw, 44px); font-weight: 900; color: #fff; line-height: 1.4; }
+  /* ---------- Footer ---------- */
+  .ft { position: relative; overflow: hidden; background: var(--navy); color: rgba(255,255,255,.75); padding: 72px 0 28px; }
+  .ft-stripes { position: absolute; top: 0; left: 0; right: 0; height: 8px; display: flex; }
+  .ft-stripes span { flex: 1; } .ft-stripes span:nth-child(1) { background: var(--cyan); } .ft-stripes span:nth-child(2) { background: var(--orange); } .ft-stripes span:nth-child(3) { background: #fff; }
+  .ft-copy-l { font-size: clamp(30px, 4.6vw, 52px); font-weight: 900; color: #fff; line-height: 1.35; }
   .ft-copy-l .o { color: var(--orange); } .ft-copy-l .c { color: var(--cyan); }
-  .ft-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.15); }
+  .ft-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.15); }
   .ft-cols h4 { font-size: 11px; font-weight: 900; letter-spacing: .2em; color: var(--cyan); margin-bottom: 10px; }
-  .ft-cols a { display: block; font-size: 13.5px; padding: 3px 0; }
-  .ft-cols a:hover { color: #fff; }
+  .ft-cols a { display: block; font-size: 13.5px; padding: 3px 0; transition: color .2s, transform .2s; }
+  .ft-cols a:hover { color: #fff; transform: translateX(4px); }
   .ft-bottom { margin-top: 36px; font-size: 12px; text-align: center; }
   @media (max-width: 640px) { .ft-cols { grid-template-columns: 1fr 1fr; } }
 
-  /* Reveal */
-  .js .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
-  .js .rv.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .band-row { animation: none; } .js .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  /* ---------- Mobile tweaks ---------- */
+  @media (min-width: 961px) { .mnav { display: none; } }
+  .mnav:not(.open) { visibility: hidden; }
+  .h2, .hero h1, .mvv-box .t { text-wrap: balance; word-break: auto-phrase; }
+  @media (max-width: 640px) {
+    .shape { display: none; }
+    .hero h1 { font-size: 27px; }
+    .hero-bars { inset: -20px -14% auto -14%; }
+    .band-row { font-size: 15px; }
+  }
+
+  /* ---------- Reveal ---------- */
+  .js .rv { opacity: 0; transform: translateY(34px); transition: opacity .8s ease, transform .9s var(--ease); transition-delay: var(--d, 0s); }
+  .js .rv-l { opacity: 0; transform: translateX(-60px); transition: opacity .8s ease, transform .9s var(--ease); }
+  .js .rv-r { opacity: 0; transform: translateX(60px); transition: opacity .8s ease, transform .9s var(--ease); }
+  .js .rv.in, .js .rv-l.in, .js .rv-r.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .hero h1 .ch, .hero-lead, .hero-btns, .hero-bars span { transform: none !important; opacity: 1 !important; }
+    .value::before, .h2 .hl::after { transform: scaleX(1) !important; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
-
+<div class="progress" id="progress" aria-hidden="true"></div>
 <div class="draft-bar">非公開の下書きです（検索エンジンには表示されません）。「準備中」の項目は、決定次第差し替えます。</div>
 
 <header class="hd">
   <div class="wrap">
     <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_logo_wordmark.png" alt="株式会社NEXY"></a>
     <nav class="hd-nav" aria-label="メインメニュー">
-      <a href="#about">私たちについて</a><a href="#service">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a>
+      <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a>
     </nav>
     <div class="hd-btns">
       <a href="/index.html#recruit" class="btn btn-line">メンバー募集</a>
@@ -243,128 +314,149 @@
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="スマートフォン用メニュー">
-  <a href="#about">私たちについて</a><a href="#service">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#partners">法人・自治体の方へ</a><a href="/index.html#recruit">メンバー募集</a>
+  <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#partners">法人・自治体の方へ</a><a href="/index.html#recruit">メンバー募集</a>
 </nav>
 
 <main id="top">
 
   <!-- Hero -->
   <section class="hero">
+    <div class="shape c floaty" data-px="0.12" style="width:70px;height:56px;left:4%;top:62%;"></div>
+    <div class="shape o floaty" data-px="-0.1" style="width:48px;height:40px;right:6%;top:70%;animation-delay:-2s"></div>
+    <div class="shape n floaty" data-px="0.08" style="width:36px;height:30px;left:16%;top:88%;animation-delay:-4s"></div>
     <div class="wrap">
-      <div class="hero-photo"><img src="/img/site/hero_photo_1.jpg" alt="NEXYのイベントに集まった学生たち"></div>
+      <div class="hero-stage">
+        <div class="hero-bars" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="hero-photo"><img src="/img/site/hero_photo_1.jpg" alt="NEXYのイベントに集まった学生たち"></div>
+      </div>
       <div class="hero-body">
         <div class="hero-eyebrow">VISION</div>
-        <h1><span class="o">「やりたい」</span>が<span class="c">あふれる</span><br>社会をつくる。</h1>
-        <p class="hero-lead">株式会社NEXYは、学生の<strong>「やりたい」を、ひとりにしない</strong>ための場をつくる会社です。日本最大級の学生サミット「NEXY SUMMIT」や対話の場の運営を通じて、挑戦する学生と、社会をつなぎます。</p>
+        <h1 id="heroTitle" aria-label="「やりたい」があふれる社会をつくる"><span class="line"><span class="o" data-split>「やりたい」</span><span data-split>が</span><span class="c" data-split>あふれる</span></span><span class="line"><span data-split>社会をつくる</span></span></h1>
+        <p class="hero-lead">株式会社NEXYは、学生の<strong>「やりたい」を、ひとりにしない</strong>ための場をつくる会社です。学生団体NEXYとNEXY AIの2つの事業を通じて、挑戦する学生と社会をつなぎます。</p>
         <div class="hero-btns">
-          <a href="#partners" class="btn btn-orange">法人・自治体の方へ →</a>
-          <a href="#service" class="btn btn-line">事業を見る</a>
+          <a href="#partners" class="btn btn-orange">法人・自治体の方へ <span class="ar">→</span></a>
+          <a href="#business" class="btn btn-line">事業を見る</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Band -->
-  <div class="band" aria-hidden="true">
-    <div class="band-row" id="bandRow">
-      <span>あなたの「やりたい」は、口に出せていますか。</span><span>夢を語ると、仲間が見つかる。</span><span>自慢より、夢を語れ。</span><span>「やりたい」が、次の誰かを動かす。</span><span>挑戦を、ひとりにしない。</span>
-    </div>
-  </div>
+  <!-- Bands -->
+  <div class="bands-clip"><div class="bands" aria-hidden="true">
+    <div class="band b1"><div class="band-row" data-dup>
+      <span>「やりたい」を、ひとりにしない</span><span>夢を語ると、仲間が見つかる</span><span>自慢より、夢を語れ</span><span>挑戦が、次の挑戦を生む</span><span>背景から、わかり合う</span>
+    </div></div>
+    <div class="band b2"><div class="band-row" data-dup>
+      <span>素直に、高め合う</span><span>「やりたい」があふれる社会をつくる</span><span>学生団体NEXY</span><span>NEXY AI</span><span>考え途中のまま、語っていい</span>
+    </div></div>
+  </div></div>
 
   <!-- Why -->
   <section class="sec" id="about">
+    <div class="shape o floaty" data-px="-0.08" style="width:120px;height:96px;right:-30px;top:80px;"></div>
+    <div class="shape c floaty" data-px="0.06" style="width:60px;height:48px;left:2%;bottom:60px;animation-delay:-3s"></div>
     <div class="wrap">
       <div class="why">
-        <div class="rv">
+        <div class="rv-l">
           <div class="label">WHY</div>
-          <h2 class="h2">「やりたい」を、<br>口に出せる社会へ。</h2>
-          <div style="margin-top:22px;">
+          <h2 class="h2">「やりたい」を、<br><span class="hl">口に出せる社会へ</span></h2>
+          <div style="margin-top:24px;">
             <p>日本では、「出る杭は打たれる」と言われます。やりたいことがあっても、笑われるのが怖くて口に出せない。そんな学生は少なくありません。</p>
             <p>代表の小助川は、海外での留学中に、誰もが自由に夢を語り、それが受け止められる環境に出会いました。<strong>夢や悩みを自由に語れる場所があれば、日本はもっと変わる。</strong>NEXYは、その思いから始まりました。</p>
             <p>私たちは、学生が「やりたい」を口にし、仲間と出会い、次の一歩を踏み出せる場をつくり続けます。</p>
           </div>
         </div>
-        <div class="why-photo rv"><img src="/img/site/mission_01.jpg" alt="学生同士が対話する様子" loading="lazy"></div>
+        <div class="why-photo rv-r"><div class="back"></div><div class="ph"><img src="/img/site/mission_01.jpg" alt="学生同士が対話する様子" loading="lazy"></div></div>
       </div>
     </div>
   </section>
 
   <!-- MVV -->
-  <section class="sec alt" id="mvv">
+  <section class="sec cyan" id="mvv">
+    <div class="shape n floaty" data-px="0.1" style="width:90px;height:72px;left:-20px;top:60px"></div>
+    <div class="shape o floaty" data-px="-0.12" style="width:70px;height:56px;right:4%;bottom:50px;animation-delay:-2s"></div>
     <div class="wrap">
       <div class="sec-head rv"><div class="label">MISSION / VISION / VALUES</div><h2 class="h2">私たちが大切にしていること</h2></div>
       <div class="mvv-top">
-        <div class="mvv-box m rv"><div class="k">MISSION</div><div class="t">「やりたい」を、<br>ひとりにしない。</div></div>
-        <div class="mvv-box v rv"><div class="k">VISION</div><div class="t">「やりたい」があふれる<br>社会をつくる。</div></div>
+        <div class="mvv-box m rv-l"><div class="k">MISSION</div><div class="t">「やりたい」を、<br>ひとりにしない</div></div>
+        <div class="mvv-box v rv-r"><div class="k">VISION</div><div class="t">「やりたい」があふれる<br>社会をつくる</div></div>
       </div>
       <div class="values">
-        <div class="value c-o rv"><div class="n">VALUE 01</div><b>自慢より、夢を語れ。</b><p>今の自分のすごさではなく、つくりたい世界と、そのために今やっていることを語ります。</p></div>
-        <div class="value c-c rv"><div class="n">VALUE 02</div><b>背景から、わかり合う。</b><p>相手の言動を責める前に、その人の状況や前提を聞きます。</p></div>
-        <div class="value c-n rv"><div class="n">VALUE 03</div><b>素直に、高め合う。</b><p>指摘を素直に受け取り、上下ではなく横に並んで、仲間とともに伸びていきます。</p></div>
+        <div class="value c-o rv"><div class="n">01</div><b>自慢より、夢を語れ</b><p>今の自分のすごさではなく、つくりたい世界と、そのために今やっていることを語ります。</p></div>
+        <div class="value c-c rv"><div class="n">02</div><b>背景から、わかり合う</b><p>相手の言動を責める前に、その人の状況や前提を聞きます。</p></div>
+        <div class="value c-n rv"><div class="n">03</div><b>素直に、高め合う</b><p>指摘を素直に受け取り、上下ではなく横に並んで、仲間とともに伸びていきます。</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Service -->
-  <section class="sec" id="service">
+  <!-- Business -->
+  <section class="sec alt" id="business">
+    <div class="shape o floaty" data-px="0.1" style="width:80px;height:64px;left:3%;top:90px"></div>
+    <div class="shape c floaty" data-px="-0.08" style="width:110px;height:88px;right:-24px;bottom:100px;animation-delay:-3s"></div>
     <div class="wrap">
-      <div class="sec-head center rv"><div class="label">SERVICE</div><h2 class="h2">事業内容</h2><p class="lead">学生が出会い、語り、挑戦する場を、規模や対象に合わせて運営しています。</p></div>
-      <div class="svc">
-        <a class="card c-o rv" href="/summit.html">
-          <div class="card-img"><img src="/img/site/gallery_summit_stage.jpg" alt="NEXY SUMMITのステージ" loading="lazy"><span class="tag">EVENT</span></div>
-          <div class="card-body"><h3>NEXY SUMMIT</h3><div class="en">STUDENT SUMMIT</div><p>日本最大級の学生サミット。全国の中高生・大学生が集まり、セッション、プレゼン大会、ワークショップを通じて仲間と出会う1日です。</p><div class="meta"><span>年1回</span><span>中学生〜大学生</span><span>参加無料</span></div><span class="more">詳しく見る →</span></div>
-        </a>
-        <a class="card c-c rv" href="/yoru.html">
-          <div class="card-img"><img src="/img/site/yoru_thumb.jpg" alt="深夜の語り場" loading="lazy"><span class="tag">DIALOGUE</span></div>
-          <div class="card-body"><h3>深夜の語り場</h3><div class="en">LATE NIGHT TALK</div><p>学生同士が、夢や悩みを本音で語り合う対話の場。「考え途中」のまま参加できます。</p><div class="meta"><span>定期開催</span><span>高校生・大学生</span></div><span class="more">詳しく見る →</span></div>
-        </a>
-        <a class="card c-n rv" href="/asa.html">
-          <div class="card-img"><img src="/img/site/asa_thumb.jpg" alt="あさげの若き情熱会" loading="lazy"><span class="tag">DIALOGUE</span></div>
-          <div class="card-body"><h3>あさげの若き情熱会</h3><div class="en">BREAKFAST MEETING</div><p>高校生と経営者が、朝食をともにしながら対話する会。社会で挑戦する大人と直接話せる場です。</p><div class="meta"><span>高校生 × 経営者</span></div><span class="more">詳しく見る →</span></div>
-        </a>
-        <a class="card c-o rv" href="/yuuge-corporate.html">
-          <div class="card-img"><img src="/img/site/gallery_summit_table.jpg" alt="企業と学生の対話" loading="lazy"><span class="tag">PARTNER</span></div>
-          <div class="card-body"><h3>ゆうげの若き熱論会</h3><div class="en">FOR COMPANIES</div><p>企業と大学生が、夕食をともにしながらテーマについて議論する会。企業が学生と深く出会う機会をつくります。</p><div class="meta"><span>企業向け</span><span>大学生</span></div><span class="more">詳しく見る →</span></div>
-        </a>
-        <a class="card c-c rv" href="/yoisho.html">
-          <div class="card-img"><img src="/img/site/yoisho_thumb.jpg" alt="よいしょ!!シリーズ" loading="lazy"><span class="tag">LOCAL</span></div>
-          <div class="card-body"><h3>よいしょ!!シリーズ</h3><div class="en">LOCAL EVENTS</div><p>地域をめぐって開催する学生イベント。東京以外の学生にも、挑戦する仲間と出会う機会を届けます。</p><div class="meta"><span>地方開催</span></div><span class="more">詳しく見る →</span></div>
-        </a>
-        <a class="card c-n rv" href="/index.html">
-          <div class="card-img"><img src="/img/site/hero_photo_2.jpg" alt="学生団体NEXYのメンバー" loading="lazy"><span class="tag">COMMUNITY</span></div>
-          <div class="card-body"><h3>学生団体NEXY</h3><div class="en">STUDENT ORGANIZATION</div><p>当社が運営する学生団体。高校生・大学生のメンバーが主体となって、イベントを企画・運営しています。</p><div class="meta"><span>メンバー募集中</span></div><span class="more">学生団体のサイトへ →</span></div>
-        </a>
+      <div class="sec-head center rv"><div class="label">BUSINESS</div><h2 class="h2"><span class="hl" style="--hl:var(--orange)">2つの事業</span></h2><p class="lead">学生が出会い、挑戦する場をつくる「学生団体NEXY」と、AIで挑戦を加速する「NEXY AI」を運営しています。</p></div>
+      <div class="biz">
+        <article class="bz n1 rv" data-tilt>
+          <div class="bz-top"><div class="bz-no">BUSINESS 01</div><h3>学生団体NEXY</h3><div class="tagline">学生が出会い、語り、挑戦する場をつくる</div></div>
+          <div class="bz-img"><img src="/img/site/gallery_summit_stage.jpg" alt="NEXY SUMMITのステージ" loading="lazy"></div>
+          <div class="bz-body">
+            <p>当社が運営する学生団体です。高校生・大学生のメンバーが主体となり、学生が「やりたい」を口にし、仲間と出会えるイベントを企画・運営しています。</p>
+            <ul class="bz-list">
+              <li><div><b>NEXY SUMMIT</b><span>日本最大級の学生サミット</span></div></li>
+              <li><div><b>深夜の語り場</b><span>学生同士が本音で語り合う対話会</span></div></li>
+              <li><div><b>あさげの若き情熱会</b><span>高校生と経営者の朝食会</span></div></li>
+              <li><div><b>ゆうげの若き熱論会</b><span>企業と大学生の対話会</span></div></li>
+              <li><div><b>よいしょ!!シリーズ</b><span>地域をめぐる学生イベント</span></div></li>
+            </ul>
+            <div class="bz-more"><a href="/index.html" class="btn btn-orange">学生団体NEXYのサイトへ <span class="ar">→</span></a></div>
+          </div>
+        </article>
+        <article class="bz n2 rv" data-tilt style="--d:.12s">
+          <div class="bz-top"><div class="bz-no">BUSINESS 02</div><h3>NEXY <span class="accent">AI</span></h3><div class="tagline">AIで、挑戦をもっと速く、もっと遠くへ</div></div>
+          <div class="bz-img"><img src="/img/site/mission_03.jpg" alt="NEXY AIのイメージ" loading="lazy"></div>
+          <div class="bz-body">
+            <p>企業・自治体・教育現場のAI活用を支援する事業です。AI導入のご相談から、研修、業務への組み込みまでをご一緒します。</p>
+            <ul class="bz-list">
+              <li><div><b>AI活用のご相談</b><span>何から始めればよいかを一緒に整理します</span></div></li>
+              <li><div><b>AI研修</b><span>社員・職員・学生向けの研修を行います</span></div></li>
+              <li><div><b>業務への導入支援</b><span>日々の業務にAIを組み込むまで伴走します</span></div></li>
+            </ul>
+            <div class="bz-more"><a href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-line">NEXY AIについて相談する <span class="ar">→</span></a></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Numbers -->
-  <section class="sec alt" id="numbers">
+  <section class="sec navy" id="numbers">
+    <div class="shape c floaty" data-px="0.1" style="width:100px;height:80px;right:6%;top:70px"></div>
+    <div class="shape o floaty" data-px="-0.1" style="width:60px;height:48px;left:4%;bottom:80px;animation-delay:-3s"></div>
     <div class="wrap">
       <div class="sec-head rv"><div class="label">NUMBERS</div><h2 class="h2">数字で見るNEXY</h2></div>
       <div class="nums">
-        <div class="num rv" style="--c:var(--orange)"><b>658<small>人</small></b><span>NEXY SUMMIT 2026 申込者数</span><em>2026年8月6日 開催</em></div>
-        <div class="num rv" style="--c:var(--cyan-deep)"><b>約800<small>人</small></b><span>NEXY SUMMIT 2026 累計関係人口</span><em>参加者・運営・登壇者などの合計</em></div>
-        <div class="num rv" style="--c:var(--navy)"><b>3<small>地域</small></b><span>活動拠点</span><em>東京・富山・徳島</em></div>
+        <div class="num rv" style="--c:var(--orange)"><b><span data-count="658">658</span><small>人</small></b><span class="lbl">NEXY SUMMIT 2026 申込者数</span><em>2026年8月6日 開催</em></div>
+        <div class="num rv" style="--c:var(--cyan-deep);--d:.1s"><b>約<span data-count="800">800</span><small>人</small></b><span class="lbl">NEXY SUMMIT 2026 累計関係人口</span><em>参加者・運営・登壇者などの合計</em></div>
+        <div class="num rv" style="--c:var(--navy);--d:.2s"><b><span data-count="3">3</span><small>地域</small></b><span class="lbl">活動拠点</span><em>東京・富山・徳島</em></div>
       </div>
       <p class="note">※ 数値は2026年10月時点。</p>
 
-      <div class="sec-head rv" style="margin:64px 0 20px;"><div class="label">PARTNERS</div><h2 class="h2" style="font-size:24px;">これまでにご協賛・ご協力いただいた企業・団体</h2></div>
-      <div class="partners">
-        <div class="rv"><img src="/img/site/partner_segasammy.png" alt="セガサミーホールディングス" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_smbc.png" alt="SMBCグループ" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_son_foundation.png" alt="孫正義育英財団" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_cheers.png" alt="CHEERS!" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_swimmy.png" alt="スイミー" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_gaiax.png" alt="ガイアックス" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_dejiara.png" alt="デジアラホールディングス" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_symenergy.png" alt="シン・エナジー" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_aiesec.png" alt="AIESEC" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_etoe.png" alt="EToE" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_stitchlab.png" alt="STITCH LAB" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_seijika.png" alt="政治家に会おう" loading="lazy"></div>
-        <div class="rv"><img src="/img/site/partner_king.png" alt="Business Contest KING" loading="lazy"></div>
-      </div>
+      <div class="rv" style="margin-top:64px;"><div class="label">PARTNERS</div><h2 class="h2" style="font-size:24px;">これまでにご協賛・ご協力いただいた企業・団体</h2></div>
+      <div class="logos rv"><div class="logos-row" data-dup>
+        <div><img src="/img/site/partner_segasammy.png" alt="SEGA SAMMY HOLDINGS" loading="lazy"></div>
+        <div><img src="/img/site/partner_smbc.png" alt="SMBC" loading="lazy"></div>
+        <div><img src="/img/site/partner_son_foundation.png" alt="孫正義育英財団" loading="lazy"></div>
+        <div><img src="/img/site/partner_cheers.png" alt="CHEERS!" loading="lazy"></div>
+        <div><img src="/img/site/partner_swimmy.png" alt="SWIMMY" loading="lazy"></div>
+        <div><img src="/img/site/partner_gaiax.png" alt="Gaiax" loading="lazy"></div>
+        <div><img src="/img/site/partner_dejiara.png" alt="デジアラHOLDINGS" loading="lazy"></div>
+        <div><img src="/img/site/partner_symenergy.png" alt="SymEnergy" loading="lazy"></div>
+        <div><img src="/img/site/partner_aiesec.png" alt="AIESEC" loading="lazy"></div>
+        <div><img src="/img/site/partner_etoe.png" alt="EToE" loading="lazy"></div>
+        <div><img src="/img/site/partner_stitchlab.png" alt="STITCH LAB" loading="lazy"></div>
+        <div><img src="/img/site/partner_seijika.png" alt="政治家に会おう" loading="lazy"></div>
+        <div><img src="/img/site/partner_king.png" alt="Business Contest KING" loading="lazy"></div>
+      </div></div>
       <p class="note">※ 学生団体NEXYとしての協賛・協力を含みます（順不同）。</p>
     </div>
   </section>
@@ -374,8 +466,8 @@
     <div class="wrap">
       <div class="sec-head rv"><div class="label">NEWS</div><h2 class="h2">ニュース</h2></div>
       <div class="news rv">
-        <a href="https://prtimes.jp/main/html/rd/p/000000014.000126319.html" target="_blank" rel="noopener" style="--c:var(--cyan-deep)"><time>2026.08.03</time><span class="cat">NEXY SUMMIT</span><span class="ttl">NEXY SUMMIT 2026にて、YouTube番組『ON MUTE』の参加型公開収録を開催</span><span class="ar">→</span></a>
-        <a href="https://prtimes.jp/main/html/rd/p/000000002.000186455.html" target="_blank" rel="noopener" style="--c:var(--orange)"><time>2026.07.09</time><span class="cat">NEXY SUMMIT</span><span class="ttl">高校生が主導する学生サミット「NEXY Summit 2026」を8月6日に開催</span><span class="ar">→</span></a>
+        <a href="https://prtimes.jp/main/html/rd/p/000000014.000126319.html" target="_blank" rel="noopener" style="--c:var(--cyan-deep)"><time>2026.08.03</time><span class="cat">学生団体NEXY</span><span class="ttl">NEXY SUMMIT 2026にて、YouTube番組『ON MUTE』の参加型公開収録を開催</span><span class="ar">→</span></a>
+        <a href="https://prtimes.jp/main/html/rd/p/000000002.000186455.html" target="_blank" rel="noopener" style="--c:var(--orange)"><time>2026.07.09</time><span class="cat">学生団体NEXY</span><span class="ttl">高校生が主導する学生サミット「NEXY Summit 2026」を8月6日に開催</span><span class="ar">→</span></a>
         <a href="/news.html" style="--c:var(--navy)"><time>—</time><span class="cat">お知らせ</span><span class="ttl">これまでのお知らせ一覧</span><span class="ar">→</span></a>
       </div>
     </div>
@@ -383,24 +475,20 @@
 
   <!-- Company -->
   <section class="sec alt" id="company">
+    <div class="shape n floaty" data-px="0.08" style="width:70px;height:56px;right:3%;top:90px"></div>
     <div class="wrap">
       <div class="sec-head rv"><div class="label">COMPANY</div><h2 class="h2">会社概要</h2></div>
       <div class="co">
-        <div class="co-photo rv"><img src="/img/site/hero_photo_6.jpg" alt="NEXYの運営メンバー" loading="lazy"></div>
-        <table class="co-table rv">
+        <div class="co-photo rv-l"><div class="back"></div><div class="ph"><img src="/img/site/hero_photo_6.jpg" alt="NEXYの運営メンバー" loading="lazy"></div></div>
+        <table class="co-table rv-r">
           <tr><th>会社名</th><td>株式会社NEXY</td></tr>
           <tr><th>設立</th><td>2026年12月9日<small>設立予定</small></td></tr>
           <tr><th>代表</th><td>小助川 晴大</td></tr>
           <tr><th>所在地</th><td class="tbd">準備中</td></tr>
           <tr><th>資本金</th><td class="tbd">準備中</td></tr>
-          <tr><th>事業内容</th><td>学生向けイベントの企画・運営／企業・自治体と学生をつなぐ事業／学生団体NEXYの運営</td></tr>
+          <tr><th>事業内容</th><td>学生団体NEXYの運営（学生向けイベントの企画・運営）<br>NEXY AI（AI活用の支援）</td></tr>
           <tr><th>お問い合わせ</th><td>info@nexyhub.jp</td></tr>
         </table>
-      </div>
-      <div class="struct">
-        <div class="s-box s-co rv"><div class="k">COMPANY</div><b>株式会社NEXY</b><p>企業・自治体とのご契約、協賛のご相談の窓口を担います。</p></div>
-        <div class="s-arrow" aria-hidden="true"><span>運営</span></div>
-        <div class="s-box s-st rv"><div class="k">STUDENT ORGANIZATION</div><b>学生団体NEXY</b><p>高校生・大学生のメンバーが主体となって、イベントを企画・運営しています。</p></div>
       </div>
     </div>
   </section>
@@ -408,12 +496,12 @@
   <!-- For Partners -->
   <section class="sec" id="partners">
     <div class="wrap">
-      <div class="sec-head center rv"><div class="label">FOR PARTNERS</div><h2 class="h2">法人・自治体の方へ</h2><p class="lead">ご相談の内容に近いものをお選びください。</p></div>
+      <div class="sec-head center rv"><div class="label">FOR PARTNERS</div><h2 class="h2"><span class="hl">法人・自治体の方へ</span></h2><p class="lead">ご相談の内容に近いものをお選びください。</p></div>
       <div class="pcta">
-        <a class="pc rv" href="mailto:info@nexyhub.jp?subject=%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">SPONSOR</span><b>イベントに協賛したい</b><p>NEXY SUMMITなどへのご協賛を通じて、挑戦する学生と出会えます。</p><span class="go">相談する →</span></a>
-        <a class="pc rv" href="/yuuge-corporate.html"><span class="k">MEET STUDENTS</span><b>学生と深く対話したい</b><p>「ゆうげの若き熱論会」で、テーマに関心のある大学生と議論できます。</p><span class="go">詳しく見る →</span></a>
-        <a class="pc rv" href="mailto:info@nexyhub.jp?subject=%E8%87%AA%E6%B2%BB%E4%BD%93%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">LOCAL GOVERNMENT</span><b>地域で学生の挑戦を広げたい</b><p>地域の若者が挑戦するイベントや仕組みづくりをご一緒します。</p><span class="go">相談する →</span></a>
-        <a class="pc rv" href="mailto:info@nexyhub.jp?subject=%E5%8F%96%E6%9D%90%E3%83%BB%E8%AC%9B%E6%BC%94%E3%81%AE%E3%81%94%E4%BE%9D%E9%A0%BC"><span class="k">MEDIA</span><b>取材・講演を依頼したい</b><p>NEXYの活動や代表への取材・講演のご依頼を承ります。</p><span class="go">依頼する →</span></a>
+        <a class="pc rv" style="--c:var(--orange)" href="mailto:info@nexyhub.jp?subject=%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">SPONSOR</span><b>学生のイベントに協賛したい</b><p>NEXY SUMMITなどへのご協賛を通じて、挑戦する学生と出会えます。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--cyan-deep)" href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">NEXY AI</span><b>AIの活用を相談したい</b><p>AIの導入や研修について、何から始めればよいかを一緒に整理します。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--navy)" href="mailto:info@nexyhub.jp?subject=%E8%87%AA%E6%B2%BB%E4%BD%93%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">LOCAL GOVERNMENT</span><b>地域で学生の挑戦を広げたい</b><p>地域の若者が挑戦するイベントや仕組みづくりをご一緒します。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--orange)" href="mailto:info@nexyhub.jp?subject=%E5%8F%96%E6%9D%90%E3%83%BB%E8%AC%9B%E6%BC%94%E3%81%AE%E3%81%94%E4%BE%9D%E9%A0%BC"><span class="k">MEDIA</span><b>取材・講演を依頼したい</b><p>NEXYの活動や代表への取材・講演のご依頼を承ります。</p><span class="go">依頼する →</span></a>
       </div>
     </div>
   </section>
@@ -421,31 +509,34 @@
   <!-- Contact / Recruit -->
   <section class="split" id="contact">
     <div class="sp-contact">
-      <h2>CONTACT</h2><div class="sub">お問い合わせ</div>
+      <div class="shape c floaty" style="width:120px;height:96px;left:-30px;bottom:-20px;opacity:.5"></div>
+      <h2 class="rv">CONTACT</h2><div class="sub">お問い合わせ</div>
       <p>ご用件をお選びください。内容によって担当が変わるため、選んでいただくと回答が早くなります。</p>
       <div class="c-links">
         <a href="mailto:info@nexyhub.jp?subject=%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">協賛のご相談<span>→</span></a>
-        <a href="mailto:info@nexyhub.jp?subject=%E4%BC%81%E6%A5%AD%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">企業連携のご相談<span>→</span></a>
+        <a href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">NEXY AIのご相談<span>→</span></a>
         <a href="mailto:info@nexyhub.jp?subject=%E8%87%AA%E6%B2%BB%E4%BD%93%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">自治体・教育機関<span>→</span></a>
         <a href="mailto:info@nexyhub.jp?subject=%E5%8F%96%E6%9D%90%E3%83%BB%E8%AC%9B%E6%BC%94%E3%81%AE%E3%81%94%E4%BE%9D%E9%A0%BC">取材・講演のご依頼<span>→</span></a>
         <a href="mailto:info@nexyhub.jp?subject=%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">その他<span>→</span></a>
       </div>
     </div>
     <div class="sp-recruit">
-      <h2>RECRUIT</h2><div class="sub">メンバー募集</div>
+      <div class="shape n floaty" style="width:120px;height:96px;right:-30px;top:-20px;opacity:.35;animation-delay:-3s"></div>
+      <h2 class="rv">RECRUIT</h2><div class="sub">メンバー募集</div>
       <p>学生団体NEXYでは、イベントをともにつくる高校生・大学生のメンバーを募集しています。経験やスキルは問いません。</p>
-      <a href="/index.html#recruit" class="btn">募集内容を見る →</a>
+      <a href="/index.html#recruit" class="btn btn-white">募集内容を見る <span class="ar">→</span></a>
     </div>
   </section>
 
 </main>
 
 <footer class="ft">
+  <div class="ft-stripes" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap">
-    <div class="ft-copy-l"><span class="o">「やりたい」</span>が<span class="c">あふれる</span><br>社会をつくる。</div>
+    <div class="ft-copy-l rv"><span class="o">「やりたい」</span>が<span class="c">あふれる</span><br>社会をつくる</div>
     <div class="ft-cols">
       <div><h4>COMPANY</h4><a href="#about">私たちについて</a><a href="#mvv">ミッション・ビジョン・バリュー</a><a href="#company">会社概要</a><a href="#news">ニュース</a></div>
-      <div><h4>SERVICE</h4><a href="/summit.html">NEXY SUMMIT</a><a href="/yoru.html">深夜の語り場</a><a href="/asa.html">あさげの若き情熱会</a><a href="/yuuge-corporate.html">ゆうげの若き熱論会</a><a href="/yoisho.html">よいしょ!!シリーズ</a><a href="/index.html">学生団体NEXY</a></div>
+      <div><h4>BUSINESS</h4><a href="/index.html">学生団体NEXY</a><a href="#business">NEXY AI</a><a href="/summit.html">NEXY SUMMIT</a></div>
       <div><h4>CONTACT</h4><a href="#contact">お問い合わせ</a><a href="#partners">法人・自治体の方へ</a><a href="/index.html#recruit">メンバー募集</a></div>
     </div>
     <div class="ft-bottom">© 2026 NEXY Inc.</div>
@@ -454,14 +545,48 @@
 
 <script>
 (function () {
-  var row = document.getElementById('bandRow'); row.innerHTML += row.innerHTML;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-dup]').forEach(function (r) { r.innerHTML += r.innerHTML; });
   var b = document.getElementById('burger'), m = document.getElementById('mnav');
   b.addEventListener('click', function () { m.classList.toggle('open'); });
   m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { m.classList.remove('open'); }); });
-  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // 見出しを1文字ずつ出す
+  var i = 0;
+  document.querySelectorAll('#heroTitle [data-split]').forEach(function (el) {
+    var t = el.textContent; el.textContent = '';
+    Array.from(t).forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; s.style.animationDelay = (0.55 + i * 0.045) + 's'; s.setAttribute('aria-hidden', 'true'); el.appendChild(s); i++; });
+  });
+  if (reduce) return;
+  // 読み進めた割合のバーと、図形のパララックス
+  var prog = document.getElementById('progress'), shapes = document.querySelectorAll('[data-px]');
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight; prog.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    shapes.forEach(function (s) { var r = s.parentElement.getBoundingClientRect(); s.style.transform = 'translateY(' + (r.top * parseFloat(s.dataset.px)) + 'px)'; });
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  // 事業カードの傾き
+  document.querySelectorAll('[data-tilt]').forEach(function (c) {
+    c.addEventListener('mousemove', function (e) { var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.transform = 'perspective(900px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-6px)'; });
+    c.addEventListener('mouseleave', function () { c.style.transform = ''; });
+  });
+  if (!('IntersectionObserver' in window)) return;
   document.documentElement.classList.add('js');
-  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px', threshold: .05 });
-  document.querySelectorAll('.rv').forEach(function (el) { var i = Array.prototype.indexOf.call(el.parentNode.children, el); el.style.setProperty('--d', Math.min(i, 6) * .06 + 's'); io.observe(el); });
+  function count(el) {
+    var to = +el.dataset.count, t0 = null; el.textContent = '0';
+    function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1400, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString(); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in'); io.unobserve(e.target);
+      e.target.querySelectorAll('[data-count]').forEach(count);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  document.querySelectorAll('.rv, .rv-l, .rv-r').forEach(function (el) {
+    if (!el.style.getPropertyValue('--d')) { var k = Array.prototype.indexOf.call(el.parentNode.children, el); el.style.setProperty('--d', Math.min(k, 6) * .08 + 's'); }
+    io.observe(el);
+  });
 })();
 </script>
 </body>
