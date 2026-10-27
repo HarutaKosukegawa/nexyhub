@@ -402,6 +402,114 @@
     .value::before, .h2 .hl::after { transform: scaleX(1) !important; }
     html { scroll-behavior: auto; }
   }
+
+  /* =========================================================
+     スマートフォン最適化
+     ========================================================= */
+  .mbar { display: none; }
+  .swipe-hint { display: none; }
+  .mnav-btns { display: none; }
+  @media (max-width: 960px) {
+    .mnav { overflow-y: auto; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+    .mnav a:not(.btn) { padding: 16px 4px; }
+    .mnav-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .mnav-btns .btn { border-bottom: 0; padding: 14px 8px; font-size: 14px; }
+    .mnav-btns .btn-white { color: var(--navy); }
+    body.lock { overflow: hidden; }
+    .burger span { transition: transform .3s var(--ease), opacity .2s; }
+    .burger.x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.x span:nth-child(2) { opacity: 0; }
+    .burger.x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+  @media (max-width: 760px) {
+    /* 下部固定ボタン */
+    .mbar { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.96); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .35s var(--ease); }
+    .mbar.show { transform: none; }
+    .mbar a { display: flex; align-items: center; justify-content: center; height: 48px; border-radius: var(--r); font-weight: 900; font-size: 15px; }
+    .mb-o { background: var(--orange); color: #fff; }
+    .mb-n { border: 2px solid var(--navy); color: var(--navy); }
+    .ft { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+    /* 全体の余白・文字 */
+    .sec { padding: 64px 0; }
+    .sec-head { margin-bottom: 28px; }
+    .label { font-size: 12px; }
+    .lead { font-size: 14.5px; }
+
+    /* ヒーロー：写真を大きく */
+    .hero { padding-top: 16px; }
+    .hero-photo { height: 62vw; }
+    .hero-body { padding: 32px 0 40px; }
+    .hero-lead { font-size: 14.5px; text-align: left; }
+    .hero-btns { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .hero-btns .btn { width: 100%; padding: 15px; }
+
+    /* バリュー：横スワイプ */
+    .values { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; gap: 12px; margin: 16px -18px 0; padding: 0 18px 8px; scrollbar-width: none; }
+    .values::-webkit-scrollbar { display: none; }
+    .value { flex: 0 0 82%; scroll-snap-align: start; padding: 24px 22px; }
+    .value .n { font-size: 32px; }
+    .value b { font-size: 20px; }
+    .swipe-hint { display: block; text-align: right; font-size: 12px; font-weight: 700; color: var(--navy); margin-top: 6px; opacity: .8; }
+    .mvv-box { padding: 26px 22px; }
+
+    /* 実績：内訳をチップ状に */
+    .touch-list { grid-template-columns: 1fr 1fr; gap: 8px; padding: 22px 18px; }
+    .touch-list p { grid-column: 1 / -1; }
+    .touch-list .ti { font-size: 13px; border: 1px solid rgba(255,255,255,.18); border-radius: var(--r); padding: 10px; gap: 8px; line-height: 1.5; }
+    .touch-main b { font-size: 72px; }
+
+    /* 会社概要 */
+    .about-nav { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; gap: 8px; margin: 0 -18px 20px; padding: 0 18px 4px; scrollbar-width: none; }
+    .about-nav::-webkit-scrollbar { display: none; }
+    .about-nav a { flex: none; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 13px; min-height: 40px; }
+    .about-card { padding: 32px 18px; }
+    .about-vision { padding-bottom: 32px; }
+    .about-row { padding: 28px 0; }
+    .about-row > h3 span { font-size: 12px; }
+    .officer { grid-template-columns: 96px 1fr; gap: 14px; align-items: center; }
+    .officer > div:last-child { display: contents; }
+    .officer .ph { grid-row: 1 / span 2; width: 96px; }
+    .officer .role { grid-column: 2; align-self: end; }
+    .officer .nm { grid-column: 2; align-self: start; margin: 0; font-size: 20px; }
+    .officer .nm small { display: block; margin: 2px 0 0; }
+    .officer p.quote, .officer p.bio, .officer a.more { grid-column: 1 / -1; }
+    .officer p.quote { margin: 6px 0 0; font-size: 14.5px; }
+    .officer p.bio { font-size: 14px; }
+    .officer a.more { justify-self: start; padding: 8px 0; }
+    .co-table th, .co-table td { padding: 14px 6px; font-size: 14px; }
+    .co-table th { width: 92px; }
+    .base { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .base > div { padding: 16px 14px; }
+    .base p { font-size: 13px; }
+
+    /* 法人向け：2列のコンパクトなカードに */
+    .pcta { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .pc { padding: 18px 14px; }
+    .pc .k { font-size: 10.5px; letter-spacing: .12em; }
+    .pc b { font-size: 15px; line-height: 1.5; }
+    .pc p { display: none; }
+    .pc .go { padding-top: 10px; font-size: 13px; }
+
+    /* よくある質問 */
+    .qa summary { min-height: 56px; }
+
+    /* お問い合わせ */
+    .ct { padding: 64px 0; }
+    .ct-steps { margin-top: 18px; }
+    .ct-tags { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ct-tags li { font-size: 12.5px; padding: 10px; gap: 8px; }
+    .ct-tags li:last-child { grid-column: 1 / -1; }
+    .ct-card { padding: 30px 18px; }
+    .ct-card h3 { font-size: 21px; }
+
+    /* フッター：押しやすく */
+    .ft-cols a { display: block; padding: 8px 0; }
+  }
+  @media (max-width: 360px) {
+    .pcta { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 25px; }
+  }
 </style>
 </head>
 <body>
@@ -417,11 +525,12 @@
       <a href="/index.html#recruit" class="btn btn-line">メンバー募集</a>
       <a href="#partners" class="btn btn-orange">法人・自治体の方へ</a>
     </div>
-    <button class="burger" id="burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="スマートフォン用メニュー">
-  <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#partners">法人・自治体の方へ</a><a href="/index.html#recruit">メンバー募集</a>
+  <a href="#about">私たちについて</a><a href="#business">事業</a><a href="#numbers">実績</a><a href="#news">ニュース</a><a href="#company">会社概要</a><a href="#faq">よくあるご質問</a>
+  <div class="mnav-btns"><a href="#contact" class="btn btn-orange">お問い合わせ</a><a href="/index.html#recruit" class="btn btn-white">メンバー募集</a></div>
 </nav>
 
 <main id="top">
@@ -493,6 +602,7 @@
         <div class="value c-c rv"><div class="n">02</div><b>背景から、わかり合う</b><p>相手の言動を責める前に、その人の状況や前提を聞きます。</p></div>
         <div class="value c-n rv"><div class="n">03</div><b>素直に、高め合う</b><p>指摘を素直に受け取り、上下ではなく横に並んで、仲間とともに伸びていきます。</p></div>
       </div>
+      <span class="swipe-hint" aria-hidden="true">横にスワイプ →</span>
     </div>
   </section>
 
@@ -745,6 +855,10 @@
   </section>
 
 </main>
+<div class="mbar" id="mbar" aria-label="お問い合わせ">
+  <a href="https://forms.gle/E3rR6wXAcDzgxmmU8" target="_blank" rel="noopener" class="mb-o">お問い合わせ</a>
+  <a href="/index.html#recruit" class="mb-n">メンバー募集</a>
+</div>
 
 <footer class="ft">
   <div class="ft-stripes" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -765,8 +879,16 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-dup]').forEach(function (r) { r.innerHTML += r.innerHTML; });
   var b = document.getElementById('burger'), m = document.getElementById('mnav');
-  b.addEventListener('click', function () { m.classList.toggle('open'); });
-  m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { m.classList.remove('open'); }); });
+  b.addEventListener('click', function () { var o = m.classList.toggle('open'); b.classList.toggle('x', o); b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? 'メニューを閉じる' : 'メニューを開く'); document.body.classList.toggle('lock', o); });
+  m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { m.classList.remove('open'); b.classList.remove('x'); b.setAttribute('aria-expanded', false); document.body.classList.remove('lock'); }); });
+  // スマホ下部の固定ボタン：ヒーローを過ぎたら出し、お問い合わせ欄では隠す
+  var bar = document.getElementById('mbar'), hero = document.querySelector('.hero'), ct = document.getElementById('contact');
+  if (bar && 'IntersectionObserver' in window) {
+    var heroIn = true, ctIn = false;
+    var upd = function () { bar.classList.toggle('show', !heroIn && !ctIn); };
+    new IntersectionObserver(function (es) { heroIn = es[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function (es) { ctIn = es[0].isIntersecting; upd(); }, { rootMargin: '0px 0px -20% 0px' }).observe(ct);
+  }
   // 見出しを1文字ずつ出す
   var i = 0;
   document.querySelectorAll('#heroTitle [data-split]').forEach(function (el) {
