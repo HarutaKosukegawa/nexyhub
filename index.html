@@ -6272,47 +6272,6 @@
   .xs-tab.on .xs-k { background: #F54600; border-color: #F54600; color: #fff; opacity: 1; }
   .xs-tab:not(.on)::after { content: "→"; font-size: 12px; opacity: .7; }
   @media (max-width: 640px) { .xs-in { padding: 0 10px; } .xs-tab { padding: 0 10px; font-size: 11.5px; gap: 6px; } .xs-tab .xs-k { display: none; } }
-
-  /* ---- 株式会社NEXYと学生団体NEXYのすみわけ ---- */
-  .sw { font-family: 'Noto Sans JP', sans-serif; }
-  .sw-head { text-align: center; max-width: 720px; margin: 0 auto 32px; }
-  .sw-label { display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: .28em; color: #F54600; }
-  .sw-title { font-size: clamp(22px, 3.4vw, 36px); font-weight: 900; color: #02102B; line-height: 1.5; margin-top: 8px; text-wrap: balance; word-break: auto-phrase; }
-  .sw-lead { font-size: 14.5px; line-height: 2; color: #4A5160; margin-top: 12px; }
-  .sw-grid { display: grid; grid-template-columns: 1fr 56px 1fr; align-items: stretch; max-width: 1040px; margin: 0 auto; }
-  .sw-card { position: relative; background: #fff; border: 2px solid #E3E6EB; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
-  .sw-card.here { border-color: var(--sw-c); }
-  .sw-top { background: var(--sw-c); color: #fff; padding: 22px 24px 20px; position: relative; overflow: hidden; }
-  .sw-top::after { content: ""; position: absolute; right: -24px; top: -20px; width: 110px; height: 110px; background: rgba(255,255,255,.14); clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%); }
-  .sw-kind { display: inline-block; font-size: 11px; font-weight: 900; letter-spacing: .1em; background: rgba(255,255,255,.18); padding: 3px 8px; border-radius: 2px; }
-  .sw-name { display: block; font-size: 24px; font-weight: 900; margin-top: 8px; line-height: 1.3; }
-  .sw-here { position: absolute; right: 14px; top: 14px; z-index: 1; font-size: 11px; font-weight: 900; background: #fff; color: #02102B; padding: 3px 8px; border-radius: 2px; }
-  .sw-body { padding: 20px 24px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
-  .sw-row dt { font-size: 12px; font-weight: 900; letter-spacing: .08em; color: var(--sw-t); }
-  .sw-row dd { margin: 4px 0 0; font-size: 14.5px; line-height: 1.8; color: #1A1D24; }
-  .sw-row ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }
-  .sw-row li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.7; color: #1A1D24; }
-  .sw-row li::before { content: ""; position: absolute; left: 0; top: .62em; width: 9px; height: 7px; background: var(--sw-c); clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%); }
-  .sw-go { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 4px; font-size: 14.5px; font-weight: 900; background: var(--sw-c); color: #fff; text-decoration: none; transition: transform .2s, opacity .2s; }
-  .sw-go:hover { transform: translateY(-2px); opacity: .92; }
-  .sw-go.ghost { background: #fff; color: var(--sw-t); border: 2px solid var(--sw-c); }
-  .sw-mid { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-  .sw-mid b { writing-mode: vertical-rl; font-size: 12px; font-weight: 900; letter-spacing: .3em; color: #02102B; }
-  .sw-mid i { width: 22px; height: 22px; background: #F54600; clip-path: polygon(0 20%, 60% 20%, 60% 0, 100% 50%, 60% 100%, 60% 80%, 0 80%); }
-  .sw-route { max-width: 1040px; margin: 20px auto 0; background: #F5F6F8; border-radius: 4px; padding: 18px 22px; display: grid; grid-template-columns: auto 1fr 1fr; gap: 10px 20px; align-items: center; }
-  .sw-route > span { font-size: 13px; font-weight: 900; color: #02102B; }
-  .sw-route a { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #1A1D24; text-decoration: none; line-height: 1.6; }
-  .sw-route a b { flex: none; font-size: 11px; font-weight: 900; color: #fff; padding: 3px 8px; border-radius: 2px; }
-  .sw-route a:hover u { text-decoration: underline; }
-  .sw-route u { text-decoration: none; }
-  @media (max-width: 860px) {
-    .sw-grid { grid-template-columns: 1fr; gap: 0; }
-    .sw-mid { flex-direction: row; padding: 10px 0; }
-    .sw-mid b { writing-mode: horizontal-tb; letter-spacing: .2em; }
-    .sw-mid i { transform: rotate(90deg); }
-    .sw-route { grid-template-columns: 1fr; }
-    .sw-top { padding: 18px 18px 16px; } .sw-body { padding: 16px 18px 20px; } .sw-name { font-size: 21px; }
-  }
 </style>
 </head>
 <body>
@@ -6435,47 +6394,6 @@
     </div>
   </section>
 
-
-  <!-- 株式会社NEXYとのすみわけ -->
-  <section class="section" id="top-structure" style="padding: 80px 0;">
-    <div class="wrap">
-    <div class="sw">
-      <div class="sw-head">
-        <span class="sw-label">STRUCTURE</span>
-        <h2 class="sw-title">株式会社NEXYと学生団体NEXYのちがい</h2>
-        <p class="sw-lead">学生団体NEXYは、株式会社NEXYが運営する学生団体です。イベントをつくるのは学生のメンバー、企業・自治体との窓口は会社が担います。</p>
-      </div>
-      <div class="sw-grid">
-        <div class="sw-card" style="--sw-c:#02102B;--sw-t:#02102B">
-          
-          <div class="sw-top"><span class="sw-kind">運営会社</span><span class="sw-name">株式会社NEXY</span></div>
-          <dl class="sw-body">
-            <div class="sw-row"><dt>役割</dt><dd>学生団体NEXYを運営し、学生の活動を外から支えます。</dd></div>
-            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>協賛・連携のご相談とご契約</li><li>取材・講演のご依頼の窓口</li><li>NEXY AI（AI活用の支援）</li></ul></dd></div>
-            <div class="sw-row"><dt>こんな方はこちら</dt><dd>企業・自治体・教育機関・メディアの方</dd></div>
-            <a class="sw-go" href="/company.html">株式会社NEXYのサイトへ →</a>
-          </dl>
-        </div>
-        <div class="sw-mid" aria-hidden="true"><b>運営</b><i></i></div>
-        <div class="sw-card here" style="--sw-c:#F54600;--sw-t:#C93A00">
-          <span class="sw-here">いま見ているサイト</span>
-          <div class="sw-top"><span class="sw-kind">学生が運営する団体</span><span class="sw-name">学生団体NEXY</span></div>
-          <dl class="sw-body">
-            <div class="sw-row"><dt>役割</dt><dd>高校生・大学生のメンバーが主体となり、イベントを企画・運営します。</dd></div>
-            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>NEXY SUMMIT・深夜の語り場などのイベント</li><li>メンバーの募集と活動</li><li>参加者の受け付け</li></ul></dd></div>
-            <div class="sw-row"><dt>こんな方はこちら</dt><dd>高校生・大学生、イベントに参加したい方</dd></div>
-            <a class="sw-go" href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener">メンバーに応募する →</a>
-          </dl>
-        </div>
-      </div>
-      <div class="sw-route">
-        <span>迷ったら</span>
-        <a href="https://forms.gle/E3rR6wXAcDzgxmmU8" target="_blank" rel="noopener"><b style="background:#02102B">株式会社NEXY</b><u>協賛・連携・取材・AIのご相談</u></a>
-        <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener"><b style="background:#F54600">学生団体NEXY</b><u>メンバー応募・イベントへの参加</u></a>
-      </div>
-    </div>
-    </div>
-  </section>
 
   <!-- Numbers Section -->
   <section class="numbers-section section-mint">
@@ -6903,41 +6821,25 @@
   <!-- 組織の構成（株式会社NEXYと学生団体NEXY） -->
   <section class="section" id="about-structure" style="padding: 88px 0;">
     <div class="wrap">
-    <div class="sw">
-      <div class="sw-head">
-        <span class="sw-label">STRUCTURE</span>
-        <h2 class="sw-title">株式会社NEXYと学生団体NEXYのちがい</h2>
-        <p class="sw-lead">学生団体NEXYは、株式会社NEXYが運営する学生団体です。イベントをつくるのは学生のメンバー、企業・自治体との窓口は会社が担います。</p>
+      <div style="text-align:center;">
+        <div class="st-split-label" style="justify-content:center;">Structure</div>
+        <h2 class="st-split-title" style="text-align:center;">株式会社NEXYと、<em>学生団体NEXY</em></h2>
+        <p class="lead" style="max-width:680px;margin:12px auto 0;">学生団体NEXYは、株式会社NEXY（2026年12月設立予定）が運営する学生団体です。企画と運営の主役は、高校生・大学生のメンバーです。</p>
       </div>
-      <div class="sw-grid">
-        <div class="sw-card" style="--sw-c:#02102B;--sw-t:#02102B">
-          
-          <div class="sw-top"><span class="sw-kind">運営会社</span><span class="sw-name">株式会社NEXY</span></div>
-          <dl class="sw-body">
-            <div class="sw-row"><dt>役割</dt><dd>学生団体NEXYを運営し、学生の活動を外から支えます。</dd></div>
-            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>協賛・連携のご相談とご契約</li><li>取材・講演のご依頼の窓口</li><li>NEXY AI（AI活用の支援）</li></ul></dd></div>
-            <div class="sw-row"><dt>こんな方はこちら</dt><dd>企業・自治体・教育機関・メディアの方</dd></div>
-            <a class="sw-go" href="/company.html">株式会社NEXYのサイトへ →</a>
-          </dl>
+      <div class="org-structure">
+        <div class="org-box org-company">
+          <div class="org-label">COMPANY</div>
+          <h3>株式会社NEXY</h3>
+          <p>学生団体NEXYの運営会社です。企業・団体とのご契約、協賛のご相談の窓口を担います。</p>
         </div>
-        <div class="sw-mid" aria-hidden="true"><b>運営</b><i></i></div>
-        <div class="sw-card here" style="--sw-c:#F54600;--sw-t:#C93A00">
-          <span class="sw-here">いま見ているサイト</span>
-          <div class="sw-top"><span class="sw-kind">学生が運営する団体</span><span class="sw-name">学生団体NEXY</span></div>
-          <dl class="sw-body">
-            <div class="sw-row"><dt>役割</dt><dd>高校生・大学生のメンバーが主体となり、イベントを企画・運営します。</dd></div>
-            <div class="sw-row"><dt>担当すること</dt><dd><ul><li>NEXY SUMMIT・深夜の語り場などのイベント</li><li>メンバーの募集と活動</li><li>参加者の受け付け</li></ul></dd></div>
-            <div class="sw-row"><dt>こんな方はこちら</dt><dd>高校生・大学生、イベントに参加したい方</dd></div>
-            <a class="sw-go" href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener">メンバーに応募する →</a>
-          </dl>
+        <div class="org-arrow" aria-hidden="true"><b>運営</b></div>
+        <div class="org-box org-student">
+          <div class="org-label">STUDENT ORGANIZATION</div>
+          <h3>学生団体NEXY</h3>
+          <p>高校生・大学生のメンバーが主体となり、NEXY Summit、深夜の語り場、あさげの若き情熱会などを企画・運営しています。</p>
+          <div class="org-tags"><span>NEXY Summit</span><span>深夜の語り場</span><span>あさげの若き情熱会</span><span>よいしょ!!シリーズ</span></div>
         </div>
       </div>
-      <div class="sw-route">
-        <span>迷ったら</span>
-        <a href="https://forms.gle/E3rR6wXAcDzgxmmU8" target="_blank" rel="noopener"><b style="background:#02102B">株式会社NEXY</b><u>協賛・連携・取材・AIのご相談</u></a>
-        <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener"><b style="background:#F54600">学生団体NEXY</b><u>メンバー応募・イベントへの参加</u></a>
-      </div>
-    </div>
     </div>
   </section>
 
@@ -7826,22 +7728,11 @@
     </div>
   </div>
 
-  <!-- 窓口の案内 -->
-<section class="section" style="padding-bottom: 0;">
-  <div class="wrap">
-    <div class="sw-route" style="grid-template-columns:auto 1fr 1fr;">
-      <span>お問い合わせ先</span>
-      <a href="https://forms.gle/E3rR6wXAcDzgxmmU8" target="_blank" rel="noopener"><b style="background:#02102B">株式会社NEXY</b><u>企業・自治体・メディアの方（協賛・連携・取材・AIのご相談）は、運営会社のフォームへ</u></a>
-      <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener"><b style="background:#F54600">学生団体NEXY</b><u>学生の方のメンバー応募は応募フォームへ。イベントのご質問はこのページのフォームへ</u></a>
-    </div>
-  </div>
-</section>
-
-<!-- Lead -->
+  <!-- Lead -->
   <section class="section" style="padding-bottom: 24px;">
     <div class="wrap-tight" style="text-align: center;">
       <p class="lead">
-        学生団体NEXYの活動やイベントに関するお問い合わせを承っております。<br>協賛・連携・取材など企業・自治体の方からのご相談は、運営会社の<a href="/company.html" style="text-decoration:underline;">株式会社NEXY</a>が窓口となります。<br>
+        協賛のご相談・取材のお申し込み・共同企画のご相談などを承っております。<br>
         3営業日以内にご返信いたします。
       </p>
     </div>
