@@ -617,6 +617,17 @@ body{line-break:strict;word-break:auto-phrase}
 .fmap .z.dim text{opacity:.45}
 @media (min-width:640px){.mapwrap{max-width:none}}
 @media (min-width:1000px){.mapwrap{max-width:none}.mapbar [data-mapzoom]{display:none}}
+
+/* ===== v5 staff ===== */
+.who{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:12px;font-size:12.5px}
+.rl{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--teal-tint);color:var(--teal-deep);white-space:nowrap}
+.rl.owner{background:var(--orange-tint);color:var(--orange)}
+.slist{padding:4px 14px}
+.srow2{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.srow2:last-child{border-bottom:0}
+.srow2 b{font-size:14px}
+.srow2 div span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.fld input.tin,.fld select.tin{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px;color:var(--ink)}
 </style>
 
 </head><body>
@@ -687,6 +698,7 @@ let mapZoom=matchMedia("(min-width:900px)").matches;
 let tab="home",pf="time",mapView="floor",zoneSel="ent",nowT="11:00",pq="",ptag="all";
 let fav=new Set(),talk=new Set();
 let people=[],peopleState="loading"; // loading | ready | off
+let staffMe=null,staffList=null,stLoading=false,admSrm=null,alEmail="";
 let uid=null,meP=null,isAdmin=false,canWrite=null,apiOK=null,apiSetup=false,peopleCount=0,lockWants=[],myCode=null;
 const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}},lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
 try{fav=new Set(JSON.parse(localStorage.getItem("nexy27-plan")||"[]"));talk=new Set(JSON.parse(localStorage.getItem("nexy27-talk")||"[]"))}catch(e){}
@@ -709,7 +721,7 @@ async function api(a,payload){
   if(!r.ok){const x=new Error(j.error||"うまく処理できませんでした");x.status=r.status;throw x}
   return j;
 }
-function setMe(j){if(j.me){meP=j.me;uid=j.me.id;if(j.code){myCode=j.code;lsSet("nexy27-code",j.code)}}else{meP=null;uid=null}if(j.role)isAdmin=j.role==="admin"}
+function setMe(j){if(j.me){meP=j.me;uid=j.me.id;if(j.code){myCode=j.code;lsSet("nexy27-code",j.code)}}else{meP=null;uid=null}if(j.role)isAdmin=j.role==="admin";if("staff" in j)staffMe=j.staff||null}
 /* ---------- persistence of personal lists ---------- */
 let prefWriting=Promise.resolve();
 function savePrefs(){
@@ -1153,13 +1165,13 @@ async function onSave(e){
 document.addEventListener("click",async e=>{
   if(e.target.closest("a[href]"))return;
   if(e.target.matches(".scrim")||e.target.closest("[data-close]")){closeSheet();return}
-  const t=e.target.closest("[data-mapzoom],[data-restore],[data-showcode],[data-copycode],[data-admlogin],[data-admlogout],[data-a2hs],[data-notices],[data-adm-kind],[data-adm-check],[data-adm-back],[data-adm-send],[data-adm-ndel],[data-adm-ndel-yes],[data-adm-pdel],[data-adm-pdel-yes],[data-preview],[data-vfocus],[data-okswitch],[data-jump],[data-ai],[data-aiq],[data-tab],[data-pv],[data-theme-go],[data-pf],[data-kf],[data-show],[data-unshow],[data-mv],[data-now],[data-star],[data-star2],[data-open],[data-zone],[data-ptag],[data-talk],[data-talk2],[data-person],[data-reg],[data-rmphoto],[data-delask],[data-delme],[data-modask],[data-moddel]");if(!t)return;
+  const t=e.target.closest("[data-staff-add],[data-staff-rm],[data-staff-rm-yes],[data-mapzoom],[data-restore],[data-showcode],[data-copycode],[data-admlogin],[data-admlogout],[data-a2hs],[data-notices],[data-adm-kind],[data-adm-check],[data-adm-back],[data-adm-send],[data-adm-ndel],[data-adm-ndel-yes],[data-adm-pdel],[data-adm-pdel-yes],[data-preview],[data-vfocus],[data-okswitch],[data-jump],[data-ai],[data-aiq],[data-tab],[data-pv],[data-theme-go],[data-pf],[data-kf],[data-show],[data-unshow],[data-mv],[data-now],[data-star],[data-star2],[data-open],[data-zone],[data-ptag],[data-talk],[data-talk2],[data-person],[data-reg],[data-rmphoto],[data-delask],[data-delme],[data-modask],[data-moddel]");if(!t)return;
   const d=t.dataset;
   if(d.restore){openRestore();return}
   if(d.showcode){showCode(false);return}
   if(d.copycode){const c=myCode||"";try{await navigator.clipboard.writeText(c);toast("コードをコピーしました")}catch(x){const el=$("codeTxt");if(el){const r=document.createRange();r.selectNodeContents(el);const sl=getSelection();sl.removeAllRanges();sl.addRange(r)}toast("コードを長押ししてコピーしてください")}return}
   if(d.admlogin){openAdminLogin();return}
-  if(d.admlogout){try{await api("admin_logout",{})}catch(x){}isAdmin=false;tab="home";await loadPeople();render();toast("運営ログアウトしました");return}
+  if(d.admlogout){try{await api("admin_logout",{})}catch(x){}isAdmin=false;staffMe=null;staffList=null;tab="home";await loadPeople();render();toast("運営ログアウトしました");return}
   if(d.a2hs){if(window.__bip){window.__bip.prompt();window.__bip=null}else openA2HS();return}
   if(d.notices){openNotices();return}
   if(d.admKind){admKind=d.admKind;renderMain();return}
@@ -1172,6 +1184,10 @@ document.addEventListener("click",async e=>{
   if(d.admNdelYes){try{const r=await api("notice_delete",{id:d.admNdelYes});admNdel=null;applyNotices(r.notices);renderMain();toast("お知らせを削除しました")}catch(x){toast(x.message)}return}
   if("admPdel" in d){admPdel=d.admPdel||null;renderMain();return}
   if(d.admPdelYes){try{await api("person_delete",{id:d.admPdelYes});admPdel=null;talk.delete(d.admPdelYes);savePrefs();await loadPeople();toast("参加者カードを削除しました")}catch(x){toast(x.message)}return}
+  if(d.staffAdd){const em=$("sE").value.trim();$("sErr").textContent="";t.disabled=true;
+    try{await api("staff_add",{email:em,name:$("sN").value,role:$("sR").value});staffList=null;await loadStaff();toast("運営メンバーに追加しました")}catch(x){t.disabled=false;$("sErr").textContent=x.message}return}
+  if("staffRm" in d){admSrm=d.staffRm||null;renderMain();return}
+  if(d.staffRmYes){try{await api("staff_remove",{email:d.staffRmYes});admSrm=null;staffList=null;await loadStaff();toast("運営メンバーから外しました")}catch(x){toast(x.message)}return}
   if(d.preview){preview=d.preview==="1";render();window.scrollTo(0,0);return}
   if(d.vfocus){vfocus=vfocus===d.vfocus?null:d.vfocus;render();return}
   if(d.okswitch){const me=myProfile();if(!me)return;const nv=!me.open;t.setAttribute("aria-checked",nv);try{const r=await api("patch",{open:nv});meP=r.me;people=people.map(p=>p.id===r.me.id?r.me:p);toast(nv?"話しかけてOKをオンにしました":"話しかけてOKをオフにしました")}catch(x){t.setAttribute("aria-checked",!nv);toast("切り替えられませんでした")}return}
@@ -1235,12 +1251,26 @@ function openNotices(){
 }
 /* ---------- admin ---------- */
 let admKind="info",admTitle="",admBody="",admConfirm=false,admNdel=null,admPdel=null,admQ="";
+async function loadStaff(){stLoading=true;try{const j=await api("staff");staffList=j.staff;staffMe=j.me||staffMe}catch(x){staffList=[];if(x.status===403){isAdmin=false;staffMe=null}}stLoading=false;if(tab==="admin")renderMain()}
+function staffHTML(){const owner=staffMe&&staffMe.role==="owner";
+  if(staffList===null){if(!stLoading)loadStaff();return `<section class="sec"><div class="sec-h"><h2>運営メンバー</h2></div><div class="panel"><p class="note">読み込み中…</p></div></section>`}
+  return `<section class="sec" id="staffSec"><div class="sec-h"><h2>運営メンバー <span class="note">${staffList.length}人</span></h2></div>
+    <p class="note" style="margin-bottom:8px">ここにあるメールアドレスだけが、届いたコードで運営ログインできます。外した人はすぐに使えなくなります。</p>
+    <div class="panel slist">${staffList.length?staffList.map(m=>`<div class="srow2"><div><b>${esc(m.name||m.email.split("@")[0])}</b><span>${esc(m.email)}</span></div><span class="rl ${m.role}">${m.role==="owner"?"管理者":"運営"}</span>
+      ${!owner||m.fixed||(staffMe&&m.email===staffMe.email)?"<span></span>":admSrm===m.email?`<span class="pdc"><button class="btn s" data-staff-rm="">やめる</button><button class="btn d" data-staff-rm-yes="${esc(m.email)}">外す</button></span>`:`<button class="rm" data-staff-rm="${esc(m.email)}">外す</button>`}</div>`).join(""):'<p class="note">まだいません。</p>'}</div>
+    ${owner?`<div class="panel adm" style="margin-top:8px"><b style="font-size:14px">メンバーを追加</b>
+      <div class="fld"><label for="sE">メールアドレス<em>必須</em></label><input id="sE" type="email" autocomplete="off" autocapitalize="off" placeholder="例：taro@example.com" class="tin"></div>
+      <div class="fld"><label for="sN">名前<em>任意</em></label><input id="sN" type="text" maxlength="20" placeholder="例：たろう"></div>
+      <div class="fld"><label for="sR">役割</label><select id="sR" class="tin"><option value="staff">運営（お知らせ・参加者の管理）</option><option value="owner">管理者（運営メンバーの追加・削除もできる）</option></select></div>
+      <p class="err" id="sErr" role="alert"></p><button class="btn p" style="width:100%;min-height:46px" data-staff-add="1">運営メンバーに追加</button>
+      <p class="note">追加したら本人に「アプリのマイページ一番下『運営の方はこちら』から、このメールアドレスでログイン」と伝えてください。</p></div>`:`<p class="note" style="margin-top:8px">メンバーの追加・削除は管理者だけができます。</p>`}</section>`}
 function vAdmin(){
   if(!isAdmin)return `<div class="sec empty"><span>この画面は管理者だけが使えます。</span></div>`;
   const n=people.length,ok=people.filter(p=>p.open).length,ph=people.filter(p=>p.pv).length;
   const counts=TAGS.map(t=>[t,people.filter(p=>(p.tags||[]).includes(t)).length]);const mx=Math.max(1,...counts.map(c=>c[1]));
   const pl=people.filter(p=>!admQ||[p.name,p.title,p.doing].join(" ").includes(admQ));
-  return `<div class="stats4">
+  return `<p class="note who">ログイン中：<b>${esc(staffMe?(staffMe.name||staffMe.email||""):"")}</b>${staffMe&&staffMe.email&&staffMe.name?`（${esc(staffMe.email)}）`:""}<span class="rl ${staffMe?staffMe.role:""}">${staffMe&&staffMe.role==="owner"?"管理者":"運営"}</span></p>
+  <div class="stats4">
       <div class="stat b1"><b>${n}</b><span>参加登録</span></div><div class="stat b2"><b>${ok}</b><span>話しかけてOK</span></div>
       <div class="stat b3"><b>${ph}</b><span>写真あり</span></div><div class="stat b4"><b>${notices.length}</b><span>お知らせ</span></div></div>
   <section class="sec"><div class="sec-h"><h2>お知らせを送る</h2></div>
@@ -1259,8 +1289,9 @@ function vAdmin(){
     <div class="search" style="margin-bottom:8px">${SEARCH}<input id="aQ" type="search" placeholder="名前・肩書で探す" value="${esc(admQ)}" aria-label="参加者を検索"></div>
     <div class="panel plist">${pl.length?pl.map(p=>`<div class="prow">${avatar(p,"")}<button data-person="${esc(p.id)}"><b>${esc(p.name)}</b><span>${esc(p.title)}</span></button>
       ${admPdel===p.id?`<span class="pdc"><button class="btn s" data-adm-pdel="">やめる</button><button class="btn d" data-adm-pdel-yes="${esc(p.id)}">削除</button></span>`:`<button class="rm" data-adm-pdel="${esc(p.id)}">削除</button>`}</div>`).join(""):'<p class="note">該当する人がいません。</p>'}</div></section>
+  ${staffHTML()}
   <section class="sec"><div class="sec-h"><h2>権限</h2></div><div class="roles">
-    <div class="role r1"><b>管理者</b><ul><li>お知らせの送信・削除</li><li>参加者カードの削除</li><li>未登録でも参加者を閲覧</li><li>この管理画面</li></ul><small>運営パスワードでログインした人</small></div>
+    <div class="role r1"><b>運営・管理者</b><ul><li>お知らせの送信・削除</li><li>参加者カードの削除</li><li>未登録でも参加者を閲覧</li><li>管理者は運営メンバーの追加・削除も</li></ul><small>運営メンバーのメールアドレスでログインした人</small></div>
     <div class="role r2"><b>参加者</b><ul><li>プログラム・マップ</li><li>自分のカードの登録・編集・削除</li><li>登録後に参加者を閲覧</li><li>お知らせを受け取る</li></ul><small>アプリで参加者登録した人</small></div></div>
     <button class="btn s" style="width:100%;margin-top:10px" data-admlogout="1">運営ログアウト</button></section>`;
 }
@@ -1348,11 +1379,36 @@ function openRestore(){
     <p class="err" id="rsErr" role="alert"></p><button class="btn o" type="submit" style="width:100%">戻る</button></form>`,"引き継ぎコード");
   $("rsForm").addEventListener("submit",async e=>{e.preventDefault();$("rsErr").textContent="";try{const r=await api("restore",{code:$("rsIn").value});setMe(r);
     if(r.prefs){(r.prefs.plan||[]).forEach(i=>fav.add(i));(r.prefs.talk||[]).forEach(i=>talk.add(i))}await loadPeople();closeSheet();render();toast("おかえりなさい、"+r.me.name+"さん")}catch(x){$("rsErr").textContent=x.message}})}
-function openAdminLogin(){
-  openSheet(`<h3>運営ログイン</h3><p class="note">運営メンバーだけが使います。パスワードは運営の代表から受け取ってください。</p>
-    <form id="alForm" novalidate><div class="fld"><label for="alIn">パスワード</label><input id="alIn" type="password" autocomplete="current-password" style="font-size:16px;width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px"></div>
-    <p class="err" id="alErr" role="alert"></p><button class="btn p" type="submit" style="width:100%">ログイン</button></form>`,"運営ログイン");
-  $("alForm").addEventListener("submit",async e=>{e.preventDefault();$("alErr").textContent="";try{await api("admin_login",{password:$("alIn").value});isAdmin=true;await loadPeople();closeSheet();tab="admin";render();toast("運営としてログインしました")}catch(x){$("alErr").textContent=x.message}})}
+function afterStaffLogin(j){isAdmin=true;staffMe=j.staff||null;staffList=null;return loadPeople().then(()=>{closeSheet();tab="admin";render();window.scrollTo(0,0);toast("運営としてログインしました")})}
+function openAdminLogin(step){
+  if(step==="pw"){
+    openSheet(`<h3>緊急用パスワード</h3><p class="note">メールが届かないときだけ使います。パスワードは管理者から受け取ってください。</p>
+      <form id="alForm" novalidate><div class="fld"><label for="alIn">パスワード</label><input id="alIn" type="password" autocomplete="current-password" style="font-size:16px;width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px"></div>
+      <p class="err" id="alErr" role="alert"></p><button class="btn p" type="submit" style="width:100%">ログイン</button></form>
+      <button class="note" id="alBack" style="text-decoration:underline;margin-top:14px;min-height:36px">メールアドレスでログインに戻る</button>`,"緊急用パスワード");
+    $("alBack").onclick=()=>openAdminLogin();
+    $("alForm").addEventListener("submit",async e=>{e.preventDefault();$("alErr").textContent="";try{await afterStaffLogin(await api("admin_login",{password:$("alIn").value}))}catch(x){$("alErr").textContent=x.message}});return}
+  if(step==="code"){
+    openSheet(`<h3>コードを入力</h3><p class="note"><b>${esc(alEmail)}</b> に6桁のコードを送りました。10分間有効です。見当たらないときは迷惑メールフォルダも確認してください。</p>
+      <form id="alForm" novalidate><div class="fld"><label for="alIn">6桁のコード</label><input id="alIn" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" style="font-size:24px;letter-spacing:.4em;text-align:center;width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px;font-family:var(--display);font-weight:800"></div>
+      <p class="err" id="alErr" role="alert"></p><button class="btn p" type="submit" id="alGo" style="width:100%">ログイン</button></form>
+      <div class="acts"><button class="btn s" id="alBack">アドレスを直す</button><button class="btn s" id="alResend">コードを送り直す</button></div>`,"コードを入力");
+    const inp=$("alIn"),go=async()=>{const c=inp.value.replace(/\D/g,"");if(c.length!==6){$("alErr").textContent="6桁の数字を入れてください";return}
+      $("alErr").textContent="";$("alGo").disabled=true;$("alGo").textContent="確認中…";
+      try{await afterStaffLogin(await api("login_verify",{email:alEmail,code:c}))}catch(x){$("alErr").textContent=x.message;$("alGo").disabled=false;$("alGo").textContent="ログイン";inp.select()}};
+    setTimeout(()=>inp.focus(),250);
+    inp.addEventListener("input",()=>{inp.value=inp.value.replace(/\D/g,"").slice(0,6);if(inp.value.length===6)go()});
+    $("alForm").addEventListener("submit",e=>{e.preventDefault();go()});
+    $("alBack").onclick=()=>openAdminLogin();
+    $("alResend").onclick=async()=>{try{await api("login_start",{email:alEmail});toast("コードを送り直しました")}catch(x){$("alErr").textContent=x.message}};return}
+  openSheet(`<h3>運営ログイン</h3><p class="note">運営メンバーとして登録されたメールアドレスを入れてください。ログイン用の6桁のコードが届きます。</p>
+    <form id="alForm" novalidate><div class="fld"><label for="alIn">メールアドレス</label><input id="alIn" type="email" autocomplete="email" inputmode="email" autocapitalize="off" value="${esc(alEmail)}" placeholder="例：taro@example.com" style="font-size:16px;width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px"></div>
+    <p class="err" id="alErr" role="alert"></p><button class="btn p" type="submit" id="alGo" style="width:100%">コードを送る</button></form>
+    <p class="note" style="margin-top:12px">一度ログインすると、この端末では30日間ログインしたままになります。</p>
+    <button class="note" id="alPw" style="text-decoration:underline;margin-top:8px;min-height:36px">メールが届かないとき（緊急用パスワード）</button>`,"運営ログイン");
+  $("alPw").onclick=()=>openAdminLogin("pw");
+  $("alForm").addEventListener("submit",async e=>{e.preventDefault();const em=$("alIn").value.trim();$("alErr").textContent="";$("alGo").disabled=true;$("alGo").textContent="送信中…";
+    try{await api("login_start",{email:em});alEmail=em;openAdminLogin("code")}catch(x){if(x.status===429){alEmail=em;openAdminLogin("code");return}$("alErr").textContent=x.message;$("alGo").disabled=false;$("alGo").textContent="コードを送る"}})}
 const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent);
 function openA2HS(){openSheet(`<h3>ホーム画面に追加</h3>${isIOS?`<ol class="steps2"><li>Safariでこのページを開く</li><li>画面下の共有ボタン（四角から矢印）を押す</li><li>「ホーム画面に追加」を押す</li></ol>`:`<ol class="steps2"><li>Chromeでこのページを開く</li><li>右上の「︙」を押す</li><li>「ホーム画面に追加」または「アプリをインストール」を押す</li></ol>`}
   <div class="acts"><button class="btn s full" data-close="1">閉じる</button></div>`,"ホーム画面に追加")}
