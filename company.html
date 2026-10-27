@@ -228,6 +228,7 @@
   .officer .role { font-size: 13px; font-weight: 700; color: var(--orange); }
   .officer .nm { font-size: 22px; font-weight: 900; color: var(--navy); margin: 2px 0 12px; }
   .officer .nm small { font-size: 12px; color: var(--muted); margin-left: 8px; font-weight: 700; }
+  .officer p.quote { font-size: 15px; font-weight: 900; color: var(--navy); line-height: 1.8; padding-left: 14px; border-left: 4px solid var(--orange); margin-bottom: 14px; }
   .officer p.bio { font-size: 14.5px; line-height: 1.95; color: var(--ink-2); }
   .officer a.more { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--cyan-deep); border-bottom: 1px solid currentColor; }
   .base { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -287,7 +288,54 @@
   @media (max-width: 960px) { .pcta { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .pcta { grid-template-columns: 1fr; } }
 
-  /* ---------- Contact / Recruit ---------- */
+
+  /* ---------- Contact form ---------- */
+  .ct { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding: 110px 0; }
+  .ct-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; position: relative; z-index: 1; }
+  .ct-info > p { font-size: 14.5px; line-height: 2; color: rgba(255,255,255,.85); margin-top: 18px; }
+  .ct-steps { list-style: none; margin-top: 28px; display: grid; gap: 10px; }
+  .ct-steps li { display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 700; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+  .ct-steps b { width: 34px; height: 28px; flex: none; display: grid; place-items: center; background: var(--c); color: var(--navy); font-size: 14px; clip-path: polygon(22% 0, 100% 0, 78% 100%, 0 100%); }
+  .ct-info .ct-mail { font-size: 13px; color: rgba(255,255,255,.7); margin-top: 26px; }
+  .ct-mail a { font-size: 18px; font-weight: 900; color: var(--cyan); }
+  .ct-form, .ct-done { background: #fff; color: var(--ink); border-radius: var(--r); padding: 38px 36px; position: relative; }
+  .ct-form::before, .ct-done::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--orange) 0 33.3%, var(--cyan) 33.3% 66.6%, var(--navy) 66.6%); border-radius: var(--r) var(--r) 0 0; }
+  .f-row { display: block; margin-bottom: 18px; }
+  .f-lbl { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .f-lbl em, .f-lbl i { font-style: normal; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 2px; }
+  .f-lbl em { background: var(--orange); color: #fff; }
+  .f-lbl i { background: var(--bg-2); color: var(--muted); }
+  .f-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .ct-form input:not([type=radio]):not([type=checkbox]), .ct-form textarea { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg-2); border: 2px solid transparent; border-radius: var(--r); padding: 12px 14px; transition: border-color .2s, background .2s; }
+  .ct-form input:focus, .ct-form textarea:focus { outline: none; border-color: var(--cyan); background: #fff; }
+  .ct-form .bad { border-color: var(--orange) !important; }
+  .ct-form textarea { resize: vertical; min-height: 140px; line-height: 1.8; }
+  .f-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .f-types label { cursor: pointer; }
+  .f-types input { position: absolute; opacity: 0; pointer-events: none; }
+  .f-types span { display: block; text-align: center; font-size: 13px; font-weight: 700; padding: 11px 6px; border: 2px solid var(--line); border-radius: var(--r); color: var(--ink-2); transition: all .2s; }
+  .f-types label:hover span { border-color: var(--c); color: var(--c); }
+  .f-types input:checked + span { background: var(--c); border-color: var(--c); color: #fff; }
+  .f-types input:focus-visible + span { outline: 3px solid var(--cyan); outline-offset: 2px; }
+  .f-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .f-agree { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 1.8; color: var(--ink-2); cursor: pointer; margin-top: 4px; }
+  .f-agree input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--orange); flex: none; }
+  .f-err { display: block; min-height: 0; font-size: 12px; font-weight: 700; color: var(--orange); margin-top: 6px; }
+  .f-err:empty { display: none; }
+  .f-submit { width: 100%; margin-top: 18px; padding: 16px; font-size: 15px; }
+  .f-submit[disabled] { opacity: .6; pointer-events: none; }
+  .f-msg { font-size: 13px; font-weight: 700; color: var(--orange); margin-top: 12px; text-align: center; }
+  .f-msg:empty { display: none; }
+  .ct-done { text-align: center; padding: 64px 36px; animation: fadeUp .6s var(--ease) both; }
+  .ct-done h3 { font-size: 24px; font-weight: 900; color: var(--navy); margin-top: 10px; }
+  .ct-done p { font-size: 14.5px; line-height: 2; color: var(--ink-2); margin-top: 12px; }
+  .rc { background: var(--orange); color: #fff; padding: 56px 0; }
+  .rc-in { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+  .rc h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 900; margin-top: 6px; }
+  .rc p { font-size: 14px; margin-top: 8px; opacity: .9; }
+  @media (max-width: 900px) { .ct-grid { grid-template-columns: 1fr; gap: 36px; } .ct { padding: 80px 0; } .rc-in { flex-direction: column; align-items: flex-start; } }
+  @media (max-width: 560px) { .f-2 { grid-template-columns: 1fr; } .f-types { grid-template-columns: 1fr 1fr; } .f-types span { font-size: 12px; padding: 11px 2px; letter-spacing: -.02em; } .ct-form, .ct-done { padding: 30px 18px; } }
+  /* ---------- Contact / Recruit (old) ---------- */
   .split { display: grid; grid-template-columns: 1fr 1fr; }
   .split > div { position: relative; overflow: hidden; padding: 88px 48px; }
   .sp-contact { background: var(--navy); color: #fff; }
@@ -318,7 +366,7 @@
   /* ---------- Mobile tweaks ---------- */
   @media (min-width: 961px) { .mnav { display: none; } }
   .mnav:not(.open) { visibility: hidden; }
-  .h2, .hero h1, .mvv-box .t, .about-vision p { text-wrap: balance; word-break: auto-phrase; }
+  .h2, .hero h1, .mvv-box .t, .about-vision p, .officer p.quote { text-wrap: balance; word-break: auto-phrase; }
   @media (max-width: 640px) {
     .shape { display: none; }
     .hero h1 { font-size: 27px; }
@@ -464,7 +512,7 @@
               <li><div><b>AI研修</b><span>社員・職員・学生向けの研修を行います</span></div></li>
               <li><div><b>業務への導入支援</b><span>日々の業務にAIを組み込むまで伴走します</span></div></li>
             </ul>
-            <div class="bz-more"><a href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="btn btn-line">NEXY AIについて相談する <span class="ar">→</span></a></div>
+            <div class="bz-more"><a href="#contact" data-type="NEXY AIのご相談" class="btn btn-line">NEXY AIについて相談する <span class="ar">→</span></a></div>
           </div>
         </article>
       </div>
@@ -480,7 +528,7 @@
       <div class="touch rv">
         <div class="touch-main">
           <span class="lbl">累計学生接点数</span>
-          <b><span class="tbd-num">0,000</span><small>人</small></b>
+          <b><span data-count="1204">1,204</span><small>人</small></b>
           <em>これまでにNEXYの場で出会った学生の延べ人数</em>
         </div>
         <div class="touch-list">
@@ -491,7 +539,7 @@
           <div class="ti" style="--c:var(--orange)">よいしょ!!シリーズ ほか</div>
         </div>
       </div>
-      <p class="note">※ 数値は確認中です（参加者・運営メンバー・登壇者を含む延べ人数）。</p>
+      <p class="note">※ 2026年10月時点。</p>
 
       <div class="rv" style="margin-top:64px;"><div class="label">PARTNERS</div><h2 class="h2" style="font-size:24px;">これまでにご協賛・ご協力いただいた企業・団体</h2></div>
       <div class="logos rv"><div class="logos-row" data-dup>
@@ -548,7 +596,8 @@
             <div>
               <div class="role">代表</div>
               <div class="nm">小助川 晴大<small>Haruta Kosukegawa</small></div>
-              <p class="bio">神奈川県横浜市出身。高校2年で富山県へ単身移住。2026年2月に学生団体NEXYを立ち上げ、代表を務める。中高生が「やりたい」を口に出し、仲間と出会える場づくりに取り組んでいる。</p>
+              <p class="quote">「やりたい」を普通に口に出せて、お互いに高め合える場所があったら最高だ</p>
+              <p class="bio">神奈川県横浜市出身。中学の3年間をシンガポールで過ごし、日本では「やりたい」を口に出しにくいと感じたことが、活動の原点です。中学2年でジンベエザメ株式会社を設立し、COOとして子ども向けの学びのサービス「ひきだしkids」を立ち上げました。2026年2月に学生団体NEXYを設立し、同年8月には全国の高校生が集まる「NEXY Summit 2026」を主催しました。現在は富山県富山市を拠点に、株式会社ネルフィンのCOOとして地方企業のAI活用にも取り組んでいます。</p>
               <a class="more" href="/haruta.html">プロフィールを見る →</a>
             </div>
           </div>
@@ -581,32 +630,69 @@
     <div class="wrap">
       <div class="sec-head center rv"><div class="label">FOR PARTNERS</div><h2 class="h2"><span class="hl">法人・自治体の方へ</span></h2><p class="lead">ご相談の内容に近いものをお選びください。</p></div>
       <div class="pcta">
-        <a class="pc rv" style="--c:var(--orange)" href="mailto:info@nexyhub.jp?subject=%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">SPONSOR</span><b>学生のイベントに協賛したい</b><p>NEXY SUMMITなどへのご協賛を通じて、挑戦する学生と出会えます。</p><span class="go">相談する →</span></a>
-        <a class="pc rv" style="--c:var(--cyan-deep)" href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">NEXY AI</span><b>AIの活用を相談したい</b><p>AIの導入や研修について、何から始めればよいかを一緒に整理します。</p><span class="go">相談する →</span></a>
-        <a class="pc rv" style="--c:var(--navy)" href="mailto:info@nexyhub.jp?subject=%E8%87%AA%E6%B2%BB%E4%BD%93%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87"><span class="k">LOCAL GOVERNMENT</span><b>地域で学生の挑戦を広げたい</b><p>地域の若者が挑戦するイベントや仕組みづくりをご一緒します。</p><span class="go">相談する →</span></a>
-        <a class="pc rv" style="--c:var(--orange)" href="mailto:info@nexyhub.jp?subject=%E5%8F%96%E6%9D%90%E3%83%BB%E8%AC%9B%E6%BC%94%E3%81%AE%E3%81%94%E4%BE%9D%E9%A0%BC"><span class="k">MEDIA</span><b>取材・講演を依頼したい</b><p>NEXYの活動や代表への取材・講演のご依頼を承ります。</p><span class="go">依頼する →</span></a>
+        <a class="pc rv" style="--c:var(--orange)" href="#contact" data-type="協賛のご相談"><span class="k">SPONSOR</span><b>学生のイベントに協賛したい</b><p>NEXY SUMMITなどへのご協賛を通じて、挑戦する学生と出会えます。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--cyan-deep)" href="#contact" data-type="NEXY AIのご相談"><span class="k">NEXY AI</span><b>AIの活用を相談したい</b><p>AIの導入や研修について、何から始めればよいかを一緒に整理します。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--navy)" href="#contact" data-type="自治体・教育機関"><span class="k">LOCAL GOVERNMENT</span><b>地域で学生の挑戦を広げたい</b><p>地域の若者が挑戦するイベントや仕組みづくりをご一緒します。</p><span class="go">相談する →</span></a>
+        <a class="pc rv" style="--c:var(--orange)" href="#contact" data-type="取材・講演のご依頼"><span class="k">MEDIA</span><b>取材・講演を依頼したい</b><p>NEXYの活動や代表への取材・講演のご依頼を承ります。</p><span class="go">依頼する →</span></a>
       </div>
     </div>
   </section>
 
-  <!-- Contact / Recruit -->
-  <section class="split" id="contact">
-    <div class="sp-contact">
-      <div class="shape c floaty" style="width:120px;height:96px;left:-30px;bottom:-20px;opacity:.5"></div>
-      <h2 class="rv">CONTACT</h2><div class="sub">お問い合わせ</div>
-      <p>ご用件をお選びください。内容によって担当が変わるため、選んでいただくと回答が早くなります。</p>
-      <div class="c-links">
-        <a href="mailto:info@nexyhub.jp?subject=%E5%8D%94%E8%B3%9B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">協賛のご相談<span>→</span></a>
-        <a href="mailto:info@nexyhub.jp?subject=NEXY%20AI%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">NEXY AIのご相談<span>→</span></a>
-        <a href="mailto:info@nexyhub.jp?subject=%E8%87%AA%E6%B2%BB%E4%BD%93%E9%80%A3%E6%90%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">自治体・教育機関<span>→</span></a>
-        <a href="mailto:info@nexyhub.jp?subject=%E5%8F%96%E6%9D%90%E3%83%BB%E8%AC%9B%E6%BC%94%E3%81%AE%E3%81%94%E4%BE%9D%E9%A0%BC">取材・講演のご依頼<span>→</span></a>
-        <a href="mailto:info@nexyhub.jp?subject=%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">その他<span>→</span></a>
+  <!-- Contact -->
+  <section class="ct" id="contact">
+    <div class="shape c floaty" style="width:120px;height:96px;left:-30px;bottom:40px;opacity:.5"></div>
+    <div class="shape o floaty" style="width:70px;height:56px;right:4%;top:60px;opacity:.8;animation-delay:-2s"></div>
+    <div class="wrap ct-grid">
+      <div class="ct-info rv-l">
+        <div class="label" style="color:var(--cyan)">CONTACT</div>
+        <h2 class="h2" style="color:#fff">お問い合わせ</h2>
+        <p>協賛、NEXY AI、自治体・教育機関との連携、取材・講演のご依頼など、お気軽にご相談ください。内容を確認のうえ、担当者より3営業日以内にご連絡いたします。</p>
+        <ul class="ct-steps">
+          <li style="--c:var(--orange)"><b>1</b><span>フォームから送信</span></li>
+          <li style="--c:var(--cyan)"><b>2</b><span>担当者より3営業日以内にご連絡</span></li>
+          <li style="--c:#fff"><b>3</b><span>オンラインまたは対面でお打ち合わせ</span></li>
+        </ul>
+        <p class="ct-mail">メールでのお問い合わせ<br><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></p>
+      </div>
+      <form class="ct-form rv-r" id="contactForm" novalidate>
+        <div class="f-row">
+          <span class="f-lbl">お問い合わせ種別<em>必須</em></span>
+          <div class="f-types" role="radiogroup">
+            <label style="--c:var(--orange)"><input type="radio" name="type" value="協賛のご相談" checked><span>協賛のご相談</span></label>
+            <label style="--c:var(--cyan-deep)"><input type="radio" name="type" value="NEXY AIのご相談"><span>NEXY AIのご相談</span></label>
+            <label style="--c:var(--navy)"><input type="radio" name="type" value="自治体・教育機関"><span>自治体・教育機関</span></label>
+            <label style="--c:var(--orange)"><input type="radio" name="type" value="取材・講演のご依頼"><span>取材・講演のご依頼</span></label>
+            <label style="--c:var(--cyan-deep)"><input type="radio" name="type" value="メンバー・参加について"><span>メンバー・参加について</span></label>
+            <label style="--c:var(--navy)"><input type="radio" name="type" value="その他"><span>その他</span></label>
+          </div>
+        </div>
+        <div class="f-2">
+          <label class="f-row"><span class="f-lbl">会社・団体名<i>任意</i></span><input name="org" autocomplete="organization" maxlength="100"></label>
+          <label class="f-row"><span class="f-lbl">お名前<em>必須</em></span><input name="name" autocomplete="name" maxlength="60" required><small class="f-err" data-for="name"></small></label>
+        </div>
+        <div class="f-2">
+          <label class="f-row"><span class="f-lbl">メールアドレス<em>必須</em></span><input name="email" type="email" autocomplete="email" maxlength="200" required><small class="f-err" data-for="email"></small></label>
+          <label class="f-row"><span class="f-lbl">電話番号<i>任意</i></span><input name="tel" type="tel" autocomplete="tel" maxlength="30"></label>
+        </div>
+        <label class="f-row"><span class="f-lbl">お問い合わせ内容<em>必須</em></span><textarea name="message" rows="6" maxlength="4000" required placeholder="ご相談の内容、ご希望の時期などをご記入ください"></textarea><small class="f-err" data-for="message"></small></label>
+        <label class="f-hp" aria-hidden="true">website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="f-agree"><input type="checkbox" name="agree" value="1"><span>入力いただいた個人情報は、お問い合わせへの回答のためにのみ使用し、ご本人の同意なく第三者に提供しません。この取り扱いに同意します</span></label>
+        <small class="f-err" data-for="agree"></small>
+        <button class="btn btn-orange f-submit" type="submit">送信する <span class="ar">→</span></button>
+        <p class="f-msg" id="contactMsg" role="status"></p>
+      </form>
+      <div class="ct-done" id="contactDone" hidden>
+        <div class="label" style="color:var(--orange)">THANK YOU</div>
+        <h3>送信が完了しました</h3>
+        <p>お問い合わせいただき、ありがとうございます。担当者より3営業日以内にご連絡いたします。</p>
       </div>
     </div>
-    <div class="sp-recruit">
-      <div class="shape n floaty" style="width:120px;height:96px;right:-30px;top:-20px;opacity:.35;animation-delay:-3s"></div>
-      <h2 class="rv">RECRUIT</h2><div class="sub">メンバー募集</div>
-      <p>学生団体NEXYでは、イベントをともにつくる高校生・大学生のメンバーを募集しています。経験やスキルは問いません。</p>
+  </section>
+
+  <!-- Recruit -->
+  <section class="rc">
+    <div class="wrap rc-in">
+      <div><div class="label" style="color:#fff">RECRUIT</div><h2>学生団体NEXYのメンバー募集</h2><p>イベントをともにつくる高校生・大学生を募集しています。経験やスキルは問いません。</p></div>
       <a href="/index.html#recruit" class="btn btn-white">募集内容を見る <span class="ar">→</span></a>
     </div>
   </section>
@@ -669,6 +755,48 @@
   document.querySelectorAll('.rv, .rv-l, .rv-r').forEach(function (el) {
     if (!el.style.getPropertyValue('--d')) { var k = Array.prototype.indexOf.call(el.parentNode.children, el); el.style.setProperty('--d', Math.min(k, 6) * .08 + 's'); }
     io.observe(el);
+  });
+})();
+
+// ---- contact form ----
+(() => {
+  const f = document.getElementById('contactForm'); if (!f) return;
+  const shown = Date.now();
+  const msg = document.getElementById('contactMsg');
+  document.querySelectorAll('a[data-type]').forEach(a => a.addEventListener('click', () => {
+    const r = f.querySelector(`input[name=type][value="${a.dataset.type}"]`); if (r) r.checked = true;
+  }));
+  const setErr = (k, t) => {
+    const e = f.querySelector(`.f-err[data-for="${k}"]`); if (e) e.textContent = t || '';
+    const i = f.elements[k]; if (i && i.classList) i.classList.toggle('bad', !!t);
+  };
+  f.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    ['name','email','message','agree'].forEach(k => setErr(k, ''));
+    msg.textContent = '';
+    const d = Object.fromEntries(new FormData(f).entries());
+    d.agree = f.elements.agree.checked; d.elapsed = Date.now() - shown; d.page = location.pathname;
+    const errs = {};
+    if (!d.name.trim()) errs.name = 'お名前を入力してください';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email.trim())) errs.email = 'メールアドレスを正しく入力してください';
+    if (d.message.trim().length < 5) errs.message = 'お問い合わせ内容を入力してください';
+    if (!d.agree) errs.agree = '個人情報の取り扱いへの同意が必要です';
+    if (Object.keys(errs).length) { Object.entries(errs).forEach(([k, t]) => setErr(k, t)); const first = f.querySelector('.bad, .f-err:not(:empty)'); if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+    const btn = f.querySelector('.f-submit'); btn.disabled = true; btn.firstChild.textContent = '送信しています ';
+    try {
+      const r = await fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && j.ok) {
+        f.hidden = true; const done = document.getElementById('contactDone'); done.hidden = false;
+        done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        return;
+      }
+      if (j.errors) Object.entries(j.errors).forEach(([k, t]) => setErr(k, t));
+      else msg.innerHTML = '送信できませんでした。お手数ですが <a href="mailto:info@nexyhub.jp" style="text-decoration:underline">info@nexyhub.jp</a> までメールでご連絡ください。';
+    } catch {
+      msg.innerHTML = '通信に失敗しました。時間をおいて再度お試しいただくか、<a href="mailto:info@nexyhub.jp" style="text-decoration:underline">info@nexyhub.jp</a> までご連絡ください。';
+    }
+    btn.disabled = false; btn.firstChild.textContent = '送信する ';
   });
 })();
 </script>
