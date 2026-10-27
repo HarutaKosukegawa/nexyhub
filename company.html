@@ -65,7 +65,7 @@
   .burger { display: none; margin-left: auto; width: 40px; height: 40px; border: 0; background: none; }
   .burger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px auto; }
   @media (max-width: 960px) { .hd-nav, .hd-btns { display: none; } .burger { display: block; } }
-  .mnav { position: fixed; inset: 72px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
+  .mnav { position: fixed; inset: 106px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
   .mnav.open { transform: none; }
   .mnav a { color: #fff; font-weight: 700; font-size: 18px; padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.15); }
 
@@ -510,12 +510,27 @@
     .pcta { grid-template-columns: 1fr; }
     .hero h1 { font-size: 25px; }
   }
+
+  /* ---- NEXYサイト切り替えバー（株式会社NEXY／学生団体NEXY） ---- */
+  .xs-bar { background: #02102B; height: 34px; position: relative; z-index: 2; }
+  .xs-in { max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 32px; display: flex; align-items: flex-end; gap: 4px; }
+  .xs-tab { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 14px; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.78); border-radius: 4px 4px 0 0; text-decoration: none; transition: background .2s, color .2s; white-space: nowrap; }
+  .xs-tab:hover { color: #fff; background: rgba(255,255,255,.1); }
+  .xs-tab .xs-k { font-size: 10px; font-weight: 700; letter-spacing: .08em; padding: 1px 6px; border: 1px solid currentColor; border-radius: 2px; opacity: .8; }
+  .xs-tab.on { background: #fff; color: #02102B; }
+  .xs-tab.on .xs-k { background: #F54600; border-color: #F54600; color: #fff; opacity: 1; }
+  .xs-tab:not(.on)::after { content: "→"; font-size: 12px; opacity: .7; }
+  @media (max-width: 640px) { .xs-in { padding: 0 10px; } .xs-tab { padding: 0 10px; font-size: 11.5px; gap: 6px; } .xs-tab .xs-k { display: none; } }
+  html { scroll-padding-top: 116px; }
+  .about-row { scroll-margin-top: 120px; }
+  @media (max-width: 640px) { .xs-in { padding: 0 8px; } }
 </style>
 </head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="hd">
+  <nav class="xs-bar" aria-label="NEXYのサイト切り替え"><div class="xs-in"><a href="/company.html" class="xs-tab on" aria-current="page"><span class="xs-k">運営会社</span>株式会社NEXY</a><a href="/index.html" class="xs-tab"><span class="xs-k">学生団体</span>学生団体NEXY</a></div></nav>
   <div class="wrap">
     <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_corp_logo.png" alt="株式会社NEXY" width="1200" height="216"></a>
     <nav class="hd-nav" aria-label="メインメニュー">
