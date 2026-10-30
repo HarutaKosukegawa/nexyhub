@@ -65,7 +65,7 @@
   .burger { display: none; margin-left: auto; width: 40px; height: 40px; border: 0; background: none; }
   .burger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px auto; }
   @media (max-width: 960px) { .hd-nav, .hd-btns { display: none; } .burger { display: block; } }
-  .mnav { position: fixed; inset: 106px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
+  .mnav { position: fixed; inset: 72px 0 0 0; background: var(--navy); z-index: 99; padding: 24px 18px; display: grid; gap: 4px; align-content: start; transform: translateX(100%); transition: transform .4s var(--ease), visibility .4s; }
   .mnav.open { transform: none; }
   .mnav a { color: #fff; font-weight: 700; font-size: 18px; padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.15); }
 
@@ -521,8 +521,8 @@
   .xs-tab.on .xs-k { background: #F54600; border-color: #F54600; color: #fff; opacity: 1; }
   .xs-tab:not(.on)::after { content: "→"; font-size: 12px; opacity: .7; }
   @media (max-width: 640px) { .xs-in { padding: 0 10px; } .xs-tab { padding: 0 10px; font-size: 11.5px; gap: 6px; } .xs-tab .xs-k { display: none; } }
-  html { scroll-padding-top: 116px; }
-  .about-row { scroll-margin-top: 120px; }
+  html { scroll-padding-top: 82px; }
+  .about-row { scroll-margin-top: 90px; }
   @media (max-width: 640px) { .xs-in { padding: 0 8px; } }
 </style>
 </head>
@@ -530,7 +530,6 @@
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="hd">
-  <nav class="xs-bar" aria-label="NEXYのサイト切り替え"><div class="xs-in"><a href="/company.html" class="xs-tab on" aria-current="page"><span class="xs-k">運営会社</span>株式会社NEXY</a><a href="/index.html" class="xs-tab"><span class="xs-k">学生団体</span>学生団体NEXY</a></div></nav>
   <div class="wrap">
     <a href="#top" class="hd-logo" aria-label="株式会社NEXY トップへ"><img src="/img/site/nexy_corp_logo.png" alt="株式会社NEXY" width="1200" height="216"></a>
     <nav class="hd-nav" aria-label="メインメニュー">
@@ -639,7 +638,6 @@
               <li><div><b>ゆうげの若き熱論会</b><span>企業と大学生の対話会</span></div></li>
               <li><div><b>よいしょ!!シリーズ</b><span>地域をめぐる学生イベント</span></div></li>
             </ul>
-            <div class="bz-more"><a href="/index.html" class="btn btn-orange">学生団体NEXYのサイトへ <span class="ar">→</span></a></div>
           </div>
         </article>
         <article class="bz n2 rv" data-tilt style="--d:.12s">
@@ -708,7 +706,6 @@
       <div class="news rv">
         <a href="https://prtimes.jp/main/html/rd/p/000000014.000126319.html" target="_blank" rel="noopener" style="--c:var(--cyan-deep)"><time>2026.08.03</time><span class="cat">学生団体NEXY</span><span class="ttl">NEXY SUMMIT 2026にて、YouTube番組『ON MUTE』の参加型公開収録を開催</span><span class="ar">→</span></a>
         <a href="https://prtimes.jp/main/html/rd/p/000000002.000186455.html" target="_blank" rel="noopener" style="--c:var(--orange)"><time>2026.07.09</time><span class="cat">学生団体NEXY</span><span class="ttl">高校生が主導する学生サミット「NEXY Summit 2026」を8月6日に開催</span><span class="ar">→</span></a>
-        <a href="/news.html" style="--c:var(--navy)"><time>—</time><span class="cat">お知らせ</span><span class="ttl">これまでのお知らせ一覧</span><span class="ar">→</span></a>
       </div>
     </div>
   </section>
@@ -738,7 +735,6 @@
               <div class="nm">小助川 晴大<small>Haruta Kosukegawa</small></div>
               <p class="quote">「やりたい」を普通に口に出せて、お互いに高め合える場所があったら最高だ</p>
               <p class="bio">神奈川県横浜市出身。中学の3年間をシンガポールで過ごし、日本では「やりたい」を口に出しにくいと感じたことが、活動の原点です。中学2年でジンベエザメ株式会社を設立し、COOとして子ども向けの学びのサービス「ひきだしkids」を立ち上げました。2026年2月に学生団体NEXYを設立し、同年8月には全国の高校生が集まる「NEXY Summit 2026」を主催しました。現在は富山県富山市を拠点に、株式会社ネルフィンのCOOとして地方企業のAI活用にも取り組んでいます。</p>
-              <a class="more" href="/haruta.html">プロフィールを見る →</a>
             </div>
           </div>
         </div>
@@ -869,7 +865,7 @@
     <div class="ft-copy-l rv"><span class="o">「やりたい」</span>が<span class="c">あふれる</span><br>社会をつくる</div>
     <div class="ft-cols">
       <div><h4>COMPANY</h4><a href="#about">私たちについて</a><a href="#mvv">ミッション・ビジョン・バリュー</a><a href="#company">会社概要</a><a href="#news">ニュース</a></div>
-      <div><h4>BUSINESS</h4><a href="/index.html">学生団体NEXY</a><a href="#business">NEXY AI</a><a href="/summit.html">NEXY SUMMIT</a></div>
+      <div><h4>BUSINESS</h4><a href="#business">学生団体NEXY</a><a href="#business">NEXY AI</a></div>
       <div><h4>CONTACT</h4><a href="#faq">よくあるご質問</a><a href="#contact">お問い合わせ</a><a href="#partners">法人・自治体の方へ</a></div>
     </div>
     <div class="ft-bottom">© 2026 NEXY Inc.</div>
