@@ -6272,6 +6272,41 @@
   .xs-tab.on .xs-k { background: #F54600; border-color: #F54600; color: #fff; opacity: 1; }
   .xs-tab:not(.on)::after { content: "→"; font-size: 12px; opacity: .7; }
   @media (max-width: 640px) { .xs-in { padding: 0 10px; } .xs-tab { padding: 0 10px; font-size: 11.5px; gap: 6px; } .xs-tab .xs-k { display: none; } }
+
+  /* ---- 運営チームのご案内 ビューア ---- */
+  .rd { max-width: 960px; margin: 0 auto; outline: none; }
+  .rd-stage { position: relative; aspect-ratio: 16/9; background: #02102B; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(2,16,43,.12); touch-action: pan-y; user-select: none; }
+  .rd-track { list-style: none; margin: 0; padding: 0; display: flex; height: 100%; transition: transform .45s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+  .rd-slide { flex: 0 0 100%; height: 100%; }
+  .rd-slide img { width: 100%; height: 100%; object-fit: contain; display: block; background: #fff; pointer-events: none; }
+  .rd-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(2,16,43,.72); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, opacity .2s; z-index: 2; }
+  .rd-nav:hover { background: #F54600; }
+  .rd-nav[disabled] { opacity: 0; pointer-events: none; }
+  .rd-prev { left: 12px; } .rd-next { right: 12px; }
+  .rd-full { position: absolute; right: 12px; top: 12px; width: 38px; height: 38px; border-radius: 4px; border: 0; background: rgba(2,16,43,.6); color: #fff; font-size: 18px; cursor: pointer; z-index: 2; }
+  .rd-full:hover { background: #F54600; }
+  .rd-bar { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+  .rd-prog { flex: 1; height: 4px; background: #E3E6EB; border-radius: 2px; overflow: hidden; }
+  .rd-prog span { display: block; height: 100%; width: 0; background: #F54600; transition: width .3s; }
+  .rd-count { font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rd-count b { color: #02102B; font-size: 15px; }
+  .rd-thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 12px 2px 6px; scrollbar-width: thin; }
+  .rd-th { flex: 0 0 96px; aspect-ratio: 16/9; padding: 0; border: 2px solid transparent; border-radius: 3px; background: #fff; cursor: pointer; opacity: .6; transition: opacity .2s, border-color .2s; overflow: hidden; }
+  .rd-th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rd-th:hover { opacity: 1; }
+  .rd-th.on { opacity: 1; border-color: #F54600; }
+  .rd-dl { text-align: center; margin-top: 12px; }
+  .rd-dl a { font-size: 13px; font-weight: 700; color: #02102B; text-decoration: underline; text-underline-offset: 3px; }
+  .rd.is-full { position: fixed; inset: 0; z-index: 1000; max-width: none; background: #02102B; display: flex; flex-direction: column; justify-content: center; padding: 16px; }
+  .rd.is-full .rd-stage { width: min(100%, calc((100vh - 120px) * 16 / 9)); margin: 0 auto; box-shadow: none; }
+  .rd.is-full .rd-count, .rd.is-full .rd-count b, .rd.is-full .rd-dl a { color: #fff; }
+  .rd.is-full .rd-thumbs { display: none; }
+  @media (max-width: 640px) {
+    .rd-nav { width: 38px; height: 38px; font-size: 24px; }
+    .rd-prev { left: 6px; } .rd-next { right: 6px; }
+    .rd-th { flex-basis: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .rd-track { transition: none; } }
 </style>
 </head>
 <body>
@@ -7550,6 +7585,32 @@
     </div>
   </section>
 
+
+  <!-- 運営チームのご案内（資料ビューア） -->
+  <section class="section" id="recruit-deck" style="padding-top: 24px; padding-bottom: 48px;">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom: 24px;">
+        <div class="eyebrow" style="color: var(--accent); margin-bottom: 10px;">Guide</div>
+        <h2 class="heading-l" style="font-size: 24px; line-height: 1.6; text-wrap: balance; word-break: auto-phrase;">NEXY SUMMIT 2027 運営チームのご案内</h2>
+        <p style="font-size: 14px; color: var(--text-2); margin-top: 8px;">ボタンやスワイプで、ページをめくって読めます。</p>
+      </div>
+      <div class="rd" tabindex="0" role="region" aria-roledescription="スライド" aria-label="運営チームのご案内">
+        <div class="rd-stage">
+          <ul class="rd-track"><li class="rd-slide"><img src="/img/recruit-deck/p01.webp" alt="1ページ：運営チームのご案内（表紙）" width="1600" height="900" loading="eager" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p02.webp" alt="2ページ：目次" width="1600" height="900" loading="eager" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p03.webp" alt="3ページ：NEXY SUMMITとは" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p04.webp" alt="4ページ：当日、何が起きるか" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p05.webp" alt="5ページ：会場は大田区産業プラザPiO" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p06.webp" alt="6ページ：写真で見る2026" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p07.webp" alt="7ページ：どんな仲間がいるか" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p08.webp" alt="8ページ：ミッション・ビジョン・バリュー" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p09.webp" alt="9ページ：運営で大事にしていること" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p10.webp" alt="10ページ：運営で得られるもの" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p11.webp" alt="11ページ：6つのチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p12.webp" alt="12ページ：メディアチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p13.webp" alt="13ページ：A会場チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p14.webp" alt="14ページ：B会場チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p15.webp" alt="15ページ：常設チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p16.webp" alt="16ページ：レセプションチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p17.webp" alt="17ページ：誘導チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p18.webp" alt="18ページ：運営のスケジュール" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p19.webp" alt="19ページ：もっと知りたい人へ" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p20.webp" alt="20ページ：よくある質問" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p21.webp" alt="21ページ：これからの流れ" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li></ul>
+          <button type="button" class="rd-nav rd-prev" aria-label="前のページ">‹</button>
+          <button type="button" class="rd-nav rd-next" aria-label="次のページ">›</button>
+          <button type="button" class="rd-full" aria-label="全画面で見る">⤢</button>
+        </div>
+        <div class="rd-bar">
+          <div class="rd-prog"><span></span></div>
+          <div class="rd-count" aria-live="polite"><b>1</b> / 21</div>
+        </div>
+        <div class="rd-thumbs" aria-label="ページ一覧"><button type="button" class="rd-th" data-i="0" aria-label="1ページ目へ：運営チームのご案内（表紙）"><img src="/img/recruit-deck/p01.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="1" aria-label="2ページ目へ：目次"><img src="/img/recruit-deck/p02.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="2" aria-label="3ページ目へ：NEXY SUMMITとは"><img src="/img/recruit-deck/p03.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="3" aria-label="4ページ目へ：当日、何が起きるか"><img src="/img/recruit-deck/p04.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="4" aria-label="5ページ目へ：会場は大田区産業プラザPiO"><img src="/img/recruit-deck/p05.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="5" aria-label="6ページ目へ：写真で見る2026"><img src="/img/recruit-deck/p06.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="6" aria-label="7ページ目へ：どんな仲間がいるか"><img src="/img/recruit-deck/p07.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="7" aria-label="8ページ目へ：ミッション・ビジョン・バリュー"><img src="/img/recruit-deck/p08.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="8" aria-label="9ページ目へ：運営で大事にしていること"><img src="/img/recruit-deck/p09.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="9" aria-label="10ページ目へ：運営で得られるもの"><img src="/img/recruit-deck/p10.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="10" aria-label="11ページ目へ：6つのチーム"><img src="/img/recruit-deck/p11.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="11" aria-label="12ページ目へ：メディアチーム"><img src="/img/recruit-deck/p12.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="12" aria-label="13ページ目へ：A会場チーム"><img src="/img/recruit-deck/p13.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="13" aria-label="14ページ目へ：B会場チーム"><img src="/img/recruit-deck/p14.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="14" aria-label="15ページ目へ：常設チーム"><img src="/img/recruit-deck/p15.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="15" aria-label="16ページ目へ：レセプションチーム"><img src="/img/recruit-deck/p16.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="16" aria-label="17ページ目へ：誘導チーム"><img src="/img/recruit-deck/p17.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="17" aria-label="18ページ目へ：運営のスケジュール"><img src="/img/recruit-deck/p18.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="18" aria-label="19ページ目へ：もっと知りたい人へ"><img src="/img/recruit-deck/p19.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="19" aria-label="20ページ目へ：よくある質問"><img src="/img/recruit-deck/p20.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="20" aria-label="21ページ目へ：これからの流れ"><img src="/img/recruit-deck/p21.webp" alt="" loading="lazy"></button></div>
+        <div class="rd-dl"><a href="/img/recruit-deck/NEXY_SUMMIT_2027_運営チームのご案内.pdf" target="_blank" rel="noopener">PDFで開く・保存する（約13MB）</a></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 応募の流れ + Google Form CTA -->
   <section class="section" style="padding-top: 24px; padding-bottom: 40px;">
     <div class="wrap-tight">
@@ -8773,5 +8834,40 @@
   })();
 </script>
 
+
+<script>
+(function(){
+  var rd=document.querySelector('#recruit-deck .rd'); if(!rd) return;
+  var track=rd.querySelector('.rd-track'), n=track.children.length, i=0;
+  var prev=rd.querySelector('.rd-prev'), next=rd.querySelector('.rd-next');
+  var cnt=rd.querySelector('.rd-count b'), bar=rd.querySelector('.rd-prog span'), ths=rd.querySelectorAll('.rd-th');
+  function go(k){
+    i=Math.max(0,Math.min(n-1,k));
+    track.style.transform='translateX('+(-100*i)+'%)';
+    cnt.textContent=i+1; bar.style.width=((i+1)/n*100)+'%';
+    prev.disabled=i===0; next.disabled=i===n-1;
+    ths.forEach(function(t,j){t.classList.toggle('on',j===i);});
+    var t=ths[i]; if(t){var c=t.parentNode; c.scrollTo({left:t.offsetLeft-c.clientWidth/2+t.clientWidth/2,behavior:'smooth'});}
+    var nx=track.children[i+1]; if(nx){var im=nx.querySelector('img'); if(im) im.loading='eager';}
+  }
+  prev.onclick=function(){go(i-1);}; next.onclick=function(){go(i+1);};
+  ths.forEach(function(t){t.onclick=function(){go(+t.dataset.i);};});
+  rd.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){go(i+1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){go(i-1);e.preventDefault();}
+    else if(e.key==='Escape'&&rd.classList.contains('is-full')){toggleFull(false);}
+  });
+  var stage=rd.querySelector('.rd-stage'), x0=null, y0=0, dx=0, w=1;
+  stage.addEventListener('pointerdown',function(e){ if(e.target.closest('button')) return; x0=e.clientX; y0=e.clientY; dx=0; w=stage.clientWidth; track.style.transition='none'; });
+  stage.addEventListener('pointermove',function(e){ if(x0===null) return; dx=e.clientX-x0; if(Math.abs(e.clientY-y0)>Math.abs(dx)&&Math.abs(dx)<10) return; track.style.transform='translateX(calc('+(-100*i)+'% + '+dx+'px))'; });
+  function end(){ if(x0===null) return; track.style.transition=''; var th=Math.min(80,w*0.15); if(dx<-th) go(i+1); else if(dx>th) go(i-1); else go(i); x0=null; }
+  stage.addEventListener('pointerup',end); stage.addEventListener('pointercancel',end); stage.addEventListener('pointerleave',end);
+  stage.addEventListener('click',function(e){ if(e.target.closest('button')||Math.abs(dx)>5) return; var r=stage.getBoundingClientRect(); go(e.clientX-r.left<r.width/2?i-1:i+1); });
+  var fb=rd.querySelector('.rd-full');
+  function toggleFull(on){ rd.classList.toggle('is-full',on); document.body.style.overflow=on?'hidden':''; fb.textContent=on?'×':'⤢'; fb.setAttribute('aria-label',on?'全画面を閉じる':'全画面で見る'); if(on) rd.focus(); }
+  fb.onclick=function(){toggleFull(!rd.classList.contains('is-full'));};
+  go(0);
+})();
+</script>
 </body>
 </html>
