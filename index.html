@@ -6307,6 +6307,23 @@
     .rd-th { flex-basis: 72px; }
   }
   @media (prefers-reduced-motion: reduce) { .rd-track { transition: none; } }
+
+  /* ---- 募集：2つの応募フォーム ---- */
+  .rf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
+  .rf-card { position: relative; background: #fff; border: 2px solid var(--rf-c); border-radius: 6px; padding: 32px 28px 28px; display: flex; flex-direction: column; overflow: hidden; }
+  .rf-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 6px; background: var(--rf-c); }
+  .rf-summit { --rf-c: #F54600; } .rf-org { --rf-c: #02102B; }
+  .rf-tag { align-self: flex-start; font-size: 12px; font-weight: 700; color: #fff; background: var(--rf-c); padding: 4px 10px; border-radius: 3px; }
+  .rf-card h3 { font-family: var(--f-jp-disp); font-size: 21px; font-weight: 900; line-height: 1.5; color: #02102B; margin: 14px 0 12px; }
+  .rf-card p { font-size: 14px; line-height: 1.9; color: var(--text-2); }
+  .rf-card ul { list-style: none; padding: 0; margin: 14px 0 22px; display: grid; gap: 6px; }
+  .rf-card li { position: relative; padding-left: 16px; font-size: 13px; color: var(--text); line-height: 1.7; }
+  .rf-card li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; background: var(--rf-c); border-radius: 2px; }
+  .rf-btn { margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 16px; background: var(--rf-c); color: #fff !important; border-radius: 4px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform .2s, opacity .2s; }
+  .rf-btn:hover { transform: translateY(-2px); opacity: .92; }
+  .rf-sub { margin-top: 12px; text-align: center; font-size: 13px; font-weight: 700; color: #F54600; text-decoration: underline; text-underline-offset: 3px; }
+  .rf-note { max-width: 680px; margin: 20px auto 0; text-align: center; font-size: 13px; color: var(--text-2); line-height: 1.9; }
+  @media (max-width: 720px) { .rf-grid { grid-template-columns: 1fr; } .rf-card { padding: 28px 20px 22px; } .rf-card h3 { font-size: 19px; } }
 </style>
 </head>
 <body>
@@ -7633,23 +7650,34 @@
         </div>
       </div>
 
-      <div style="max-width: 640px; margin: 0 auto; padding: 40px 32px; background: linear-gradient(135deg, #FFF9F0 0%, #FFF4E5 100%); border-radius: 8px; border: 1px solid rgba(234,92,31,0.2); text-align: center;">
-        <div class="eyebrow" style="margin-bottom: 16px; color: var(--accent);">Apply Now</div>
-        <h3 class="heading-l" style="font-size: 22px; margin-bottom: 16px; line-height: 1.6;">
-          まずはお気軽に、ご連絡ください
-        </h3>
-        <p style="font-size: 14px; color: var(--text-2); line-height: 1.9; margin-bottom: 28px;">
-          応募後、代表・小助川(ハルタ)から後日メールまたはSNSでご連絡します。<br>
-          「話を聞いてみたい」だけの段階でも歓迎です。
-        </p>
-        <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--accent); color:#fff; border-radius:4px; font-family:var(--f-jp-disp); font-weight:800; font-size:15px; letter-spacing:0.06em; text-decoration:none; box-shadow: 0 6px 16px rgba(234,92,31,0.35); transition: transform .15s;">
-          応募フォームへ進む →
-        </a>
-        <div style="margin-top: 20px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size: 12px; color: var(--text-muted);">
-          <a href="https://x.com/nexy_hub" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">X で近況を見る</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">Instagram を見る</a>
+      <div class="rf-grid">
+        <div class="rf-card rf-summit">
+          <div class="rf-tag">2027年3月26日（金）開催</div>
+          <h3>NEXY SUMMIT 2027<br>運営メンバーに応募する</h3>
+          <p>大田区産業プラザPiOで開くNEXY SUMMIT 2027を、一緒につくる運営メンバーを募集しています。メディア・会場・常設・レセプション・誘導など6つのチームから選べます。</p>
+          <ul>
+            <li>活動期間：11月〜2027年3月</li>
+            <li>経験・スキルは問いません</li>
+          </ul>
+          <a class="rf-btn" href="https://forms.gle/ipZUh5ZhNJN9TwDR6" target="_blank" rel="noopener">サミット運営に応募する →</a>
+          <a class="rf-sub" href="#recruit" onclick="event.preventDefault();event.stopPropagation();var d=document.getElementById('recruit-deck');if(d){window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'});}">運営チームのご案内を読む</a>
         </div>
+        <div class="rf-card rf-org">
+          <div class="rf-tag">通年で募集</div>
+          <h3>学生団体NEXYの<br>メンバーに応募する</h3>
+          <p>深夜の語り場、あさげの若き情熱会、よいしょ!!シリーズなど、サミット以外も含めたNEXYの活動全体に関わるメンバーを募集しています。</p>
+          <ul>
+            <li>関わり方は相談して決められます</li>
+            <li>「話を聞いてみたい」だけでも歓迎</li>
+          </ul>
+          <a class="rf-btn" href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener">NEXYのメンバーに応募する →</a>
+        </div>
+      </div>
+      <p class="rf-note">どちらに応募するか迷ったら、まずはサミット運営がおすすめです。応募後、代表・小助川（ハルタ）から数日以内にご連絡します。</p>
+      <div style="margin-top: 16px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size: 12px; color: var(--text-muted);">
+        <a href="https://x.com/nexy_hub" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">X で近況を見る</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">Instagram を見る</a>
       </div>
     </div>
   </section>
