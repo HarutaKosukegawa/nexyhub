@@ -373,6 +373,20 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .featured-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .featured-badges .fbadge { font-size: 10px; font-weight: 800; background: var(--gc-tint); color: var(--gc-deep); padding: 2px 6px; line-height: 1.35; }
 .featured-desc { font-size: 11px; color: var(--ink-muted); line-height: 1.6; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.featured-more { margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 900; color: #fff; background: var(--gc-deep); border-radius: 4px; padding: 6px 12px; margin-top: 10px; transition: background .2s; }
+.featured-more::after { content: " →"; }
+.featured-more:hover { background: var(--navy); }
+.featured-desc { flex: 1; }
+.spm .pm-vis img { object-position: center 25%; }
+.spm .pm-tags span { color: var(--teal-deep); }
+.spm h3 small { font-size: 12px; font-weight: 600; color: var(--ink-muted); margin-left: 8px; }
+.spm-role { font-size: 13px; font-weight: 800; color: var(--navy); margin-top: 4px; }
+.spm-bio { margin-top: 12px; display: grid; gap: 8px; font-size: 13px; line-height: 1.85; }
+.spm-talks { list-style: none; margin-top: 6px; display: grid; gap: 6px; }
+.spm-talks li { background: var(--orange-tint); border-left: 4px solid var(--orange); border-radius: 4px; padding: 8px 10px; font-size: 12px; display: grid; grid-template-columns: auto auto 1fr; gap: 2px 10px; align-items: baseline; }
+.spm-talks li span { font-weight: 900; color: var(--orange-deep); } .spm-talks li em { font-style: normal; color: var(--ink-muted); }
+.spm-talks li b { font-size: 13px; color: var(--navy); }
+@media (max-width: 760px) { .spm .pm-vis { aspect-ratio: 1 / 1; max-height: 46svh; } .spm-talks li { grid-template-columns: auto 1fr; } .spm-talks li b { grid-column: 1 / -1; } }
 .featured-card.is-empty { border-style: dashed; border-color: var(--gc-soft); }
 .featured-card.is-empty .featured-name, .featured-card.is-empty .featured-meta, .featured-card.is-empty .featured-desc, .featured-card.is-empty .kana { color: #B8BDC6; }
 .featured-card.is-empty .fbadge { background: var(--surface-2); color: #B8BDC6; }
@@ -661,7 +675,10 @@ window.SUMMIT = {
       // { name: "氏名", kana: "ふりがな", role: "所属・学年", affil: "活動・肩書き", badges: ["実績1", "実績2"], desc: "紹介文", photo: "img/summit2027/xxx.jpg" }
     ] },
     adults: { count: 3, list: [
-      { name: "森本 千賀子", kana: "もりもと ちかこ", role: "株式会社morich 代表取締役", affil: "元リクルート 転職エージェント", badges: ["AIセッション登壇", "NEXY PITCH 審査員"], desc: "リクルートで経営幹部層の転職支援に携わり、約2,000人の転職を支援。2017年に株式会社morichを設立。NHK「プロフェッショナル 仕事の流儀」出演。著書に『本気の転職』『後悔しない社会人1年目の働き方』など。" },
+      { name: "森本 千賀子", kana: "もりもと ちかこ", role: "株式会社morich 代表取締役", affil: "元リクルート 転職エージェント", badges: ["AIセッション登壇", "NEXY PITCH 審査員"], photo: "img/summit2027/speaker_morimoto.webp",
+        desc: "リクルートで経営幹部層の転職支援に携わり、約2,000人の転職を支援。2017年に株式会社morichを設立。",
+        bio: ["1993年、リクルート人材センター（現リクルートキャリア）に入社。転職エージェントとして、経営幹部・管理職層の転職支援を手がける。", "約3万人の転職希望者と出会い、約2,000人の転職を支援。入社1年目で営業成績1位・全社MVP。社内表彰は30回以上。", "2017年に株式会社morichを設立し、代表取締役に就任。放課後NPOアフタースクールの理事なども務める。", "2012年、NHK「プロフェッショナル 仕事の流儀」に出演。著書に『本気の転職』『後悔しない社会人1年目の働き方』など。"],
+        talks: [{ time: "13:00–14:50", place: "A会場", title: "NEXY PITCH 2027（審査員）" }, { time: "15:00–15:50", place: "A会場", title: "AIによって、Z世代の就職／生き方はどう変わる？" }] },
       // { name: "氏名", kana: "ふりがな", role: "会社名・役職", affil: "肩書き", badges: ["実績1"], desc: "紹介文", photo: "img/summit2027/xxx.jpg" }
     ] }
   },
@@ -998,6 +1015,19 @@ window.SUMMIT = {
     </div>
   </div>
 </div>
+<div class="pm spm" id="spm" role="dialog" aria-modal="true" aria-labelledby="spmTitle" aria-hidden="true">
+  <div class="pm-box">
+    <button class="pm-close" type="button" aria-label="閉じる">×</button>
+    <figure class="pm-vis" id="spmVis"></figure>
+    <div class="pm-body">
+      <div class="pm-tags" id="spmTags"></div>
+      <h3 id="spmTitle"></h3>
+      <p class="spm-role" id="spmRole"></p>
+      <div class="spm-bio" id="spmBio"></div>
+      <div id="spmTalksWrap"><p class="pm-sub">登壇するプログラム</p><ul class="spm-talks" id="spmTalks"></ul></div>
+    </div>
+  </div>
+</div>
 </main>
 
 <div class="foot-sponsors" aria-label="協賛企業"><div class="wrap" id="footSponsors"></div></div>
@@ -1047,22 +1077,44 @@ window.SUMMIT = {
   // 登壇者（2026サイトと同じカード形式）
   function speakerCards(g) {
     var cards = '';
-    g.list.forEach(function (p) {
+    g.list.forEach(function (p, i) {
       cards += '<article class="featured-card"><div class="featured-photo">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">' : '<div class="speaker-placeholder">PHOTO</div>') + '</div>' +
         '<div class="featured-body"><h4 class="featured-name">' + esc(p.name) + (p.kana ? '<span class="kana">' + esc(p.kana) + '</span>' : '') + '</h4>' +
         '<p class="featured-meta">' + esc(p.role || '') + '</p>' + (p.affil ? '<p class="featured-affil">' + esc(p.affil) + '</p>' : '') +
         (p.badges ? '<div class="featured-badges">' + p.badges.map(function (b) { return '<span class="fbadge">' + esc(b) + '</span>'; }).join('') + '</div>' : '') +
-        (p.desc ? '<p class="featured-desc">' + esc(p.desc) + '</p>' : '') + '</div></article>';
+        (p.desc ? '<p class="featured-desc">' + esc(p.desc) + '</p>' : '') +
+        '<button type="button" class="featured-more" data-sp="' + g.key + ':' + i + '">詳細を見る</button></div></article>';
     });
     for (var k = g.list.length; k < g.count; k++) {
       cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">PHOTO</div></div><div class="featured-body"><h4 class="featured-name">登壇者名<span class="kana">ふりがな</span></h4><p class="featured-meta">所属・肩書き</p><div class="featured-badges"><span class="fbadge">実績</span></div><p class="featured-desc">紹介文が入ります。</p></div></article>';
     }
     return cards;
   }
+  S.speakers.students.key = 'students'; S.speakers.adults.key = 'adults';
   document.getElementById('speakerGridStudents').innerHTML = speakerCards(S.speakers.students);
   document.getElementById('speakerGridAdults').innerHTML = speakerCards(S.speakers.adults);
   document.getElementById('spCountStudents').textContent = S.speakers.students.list.length + ' / ' + S.speakers.students.count + '名 決定';
   document.getElementById('spCountAdults').textContent = S.speakers.adults.list.length + ' / ' + S.speakers.adults.count + '名 決定';
+  // 登壇者の詳細モーダル
+  (function () {
+    var m = document.getElementById('spm'), last = null;
+    function close() { m.classList.remove('open'); m.setAttribute('aria-hidden', 'true'); document.body.classList.remove('pm-lock'); if (last) last.focus(); }
+    document.getElementById('speakers').addEventListener('click', function (e) {
+      var b = e.target.closest('.featured-more'); if (!b) return;
+      var k = b.getAttribute('data-sp').split(':'), p = S.speakers[k[0]].list[+k[1]]; last = b;
+      document.getElementById('spmVis').innerHTML = p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '">' : '<div class="speaker-placeholder">PHOTO</div>';
+      document.getElementById('spmTags').innerHTML = (p.badges || []).map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('');
+      document.getElementById('spmTitle').innerHTML = esc(p.name) + (p.kana ? '<small>' + esc(p.kana) + '</small>' : '');
+      document.getElementById('spmRole').textContent = [p.role, p.affil].filter(Boolean).join('／');
+      document.getElementById('spmBio').innerHTML = (p.bio || [p.desc || '']).map(function (x) { return '<p>' + esc(x) + '</p>'; }).join('');
+      var t = p.talks || [];
+      document.getElementById('spmTalksWrap').hidden = !t.length;
+      document.getElementById('spmTalks').innerHTML = t.map(function (x) { return '<li><span class="num-font">' + esc(x.time) + '</span><em>' + esc(x.place) + '</em><b>' + esc(x.title) + '</b></li>'; }).join('');
+      m.classList.add('open'); m.setAttribute('aria-hidden', 'false'); document.body.classList.add('pm-lock'); m.querySelector('.pm-close').focus();
+    });
+    m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('.pm-close')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
+  })();
 
   // 協賛（区分ごとの枠・ファーストビュー・フッター）
   function logoInner(x) { return x.logo ? '<img src="' + esc(x.logo) + '" alt="' + esc(x.name) + '" loading="lazy">' : esc(x.name); }
