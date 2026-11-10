@@ -134,25 +134,24 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .hero-side { display: grid; gap: 12px; align-content: center; }
 .hero-side .btn { width: 100%; }
 .hero-side .cta-note { margin-top: 0; text-align: center; }
-.hero-do { padding: 40px 0 8px; }
-.hero-do-h { font-size: 15px; font-weight: 900; color: var(--navy); margin-bottom: 14px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.hero-do-h small { font-size: 11px; font-weight: 500; color: var(--ink-muted); }
-.do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.do-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
-.do-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-.do-card div { padding: 14px 16px 16px; border-top: 4px solid var(--c, var(--teal)); }
-.do-card:nth-child(2) { --c: var(--orange); } .do-card:nth-child(3) { --c: var(--yellow); }
-.do-card .n { font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; color: var(--ink-muted); letter-spacing: .12em; }
-.do-card b { display: block; font-size: 20px; font-weight: 900; color: var(--navy); line-height: 1.35; }
-.do-card p { font-size: 13px; color: var(--ink-muted); line-height: 1.7; margin-top: 4px; }
+.hero-do { padding: 28px 0 8px; }
+.hero-do-h { font-size: 14px; font-weight: 900; color: var(--navy); margin-bottom: 10px; }
+.do-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.do-card { display: block; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--c, var(--teal)); border-radius: 4px; padding: 12px 14px 14px; transition: transform .2s, box-shadow .2s; }
+.do-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(2,16,43,.08); }
+.do-card:nth-child(2) { --c: var(--orange); } .do-card:nth-child(3) { --c: #E8B800; } .do-card:nth-child(4) { --c: var(--navy); }
+.do-card .n { font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; color: var(--ink-muted); letter-spacing: .14em; }
+.do-card b { display: block; font-size: 17px; font-weight: 900; color: var(--navy); line-height: 1.4; }
+.do-card b::after { content: " →"; color: var(--orange-deep); }
+.do-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
 @media (max-width: 900px) {
   .hero-photo { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
   .hero-photo img { object-position: 50% 70%; }
   .hero-band { padding-top: 14px; }
   .hero-card { margin-top: -28px; grid-template-columns: 1fr; padding: 22px 18px 20px; gap: 18px; box-shadow: 0 10px 30px rgba(2,16,43,.12); }
   .hero-do { padding-top: 28px; }
-  .do-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 10px; padding-bottom: 6px; }
-  .do-card { flex: 0 0 74%; scroll-snap-align: start; }
+  .do-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .do-card { padding: 10px 12px 12px; } .do-card b { font-size: 15px; }
 }
 @media (max-width: 600px) { .hero-when span { font-size: 11px; padding: 4px 8px; } .hero-photo-cap { display: none; } }
 
@@ -264,9 +263,10 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 /* ===== 参加対象 ===== */
 .persona-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 @media (max-width: 900px) { .persona-grid { grid-template-columns: repeat(2, 1fr); } }
-.persona { background: var(--pc, #5EF2E4); border-radius: 4px; padding: 22px 20px 20px; text-align: left; border: 0; }
-.persona:nth-child(2) { --pc: #D4FF4F; } .persona:nth-child(3) { --pc: #FFE94A; } .persona:nth-child(4) { --pc: #FFB16B; }
-.persona .ic { width: 48px; height: 48px; border-radius: 50%; margin: 0 0 12px; display: grid; place-items: center; font-weight: 900; font-size: 20px; color: var(--navy); background: #fff; }
+@media (max-width: 600px) { .persona-grid { grid-template-columns: 1fr; gap: 8px; } .persona-grid .persona { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center; padding: 12px 14px; } .persona-grid .persona .ic { grid-row: span 2; width: 40px; height: 40px; font-size: 17px; margin: 0; } .persona-grid .persona b { font-size: 15px; } .persona-grid .persona span { margin-top: 0; } }
+.persona { background: var(--pc, #DDF6F4); border-radius: 4px; padding: 20px 18px 18px; text-align: left; border: 0; border-left: 5px solid var(--pa, var(--teal)); }
+.persona:nth-child(2) { --pc: #FFE9DC; --pa: var(--orange); } .persona:nth-child(3) { --pc: #FFF5CC; --pa: #E8B800; } .persona:nth-child(4) { --pc: #EDF7DD; --pa: #7DBB2E; }
+.persona .ic { width: 44px; height: 44px; border-radius: 50%; margin: 0 0 12px; display: grid; place-items: center; font-weight: 900; font-size: 20px; color: var(--navy); background: #fff; }
 .persona b { display: block; font-size: 16px; color: var(--navy); line-height: 1.4; }
 .persona span { font-size: 13px; color: #2A3140; line-height: 1.6; display: block; margin-top: 4px; }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
@@ -313,12 +313,6 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 @media (max-width: 600px) { .compare { font-size: 13px; } .compare th, .compare td { padding: 10px; } .compare tbody th { width: auto; white-space: normal; } }
 
 /* ===== 当日の構成（会場＋タイムテーブル） ===== */
-.venue-plan { margin: 0 0 10px; border: 1px solid var(--line); border-radius: 4px; background: #fff; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.venue-plan a { display: block; min-width: 760px; }
-.venue-plan img { width: 100%; height: auto; }
-.floor-note { font-size: 12px; color: var(--ink-muted); margin-bottom: 28px; }
-.floor-note a { color: var(--teal-deep); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
-@media (min-width: 761px) { .floor-note .sp { display: none; } }
 /* タイムテーブル（2026サイトと同じ表形式） */
 .sch-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius-lg); border: 1px solid var(--line); background: #fff; }
 .sch-table { table-layout: fixed; }
@@ -513,7 +507,18 @@ h1, h2, h3 { font-feature-settings: "palt"; }
 .prog .bd span { font-size: 12px; color: var(--ink-muted); line-height: 1.6; flex: 1; }
 .prog .more { margin-top: 8px; font-size: 12px; font-weight: 900; color: var(--orange-deep); }
 .prog .more::after { content: " →"; }
-@media (max-width: 760px) { .prog .bd { padding: 10px 11px 12px; } .prog .bd b { font-size: 14px; } }
+@media (max-width: 760px) {
+  .prog-grid { grid-template-columns: 1fr; gap: 8px; }
+  .prog { flex-direction: row; align-items: stretch; }
+  .prog:hover { transform: none; }
+  .prog .vis { flex: 0 0 104px; aspect-ratio: auto; min-height: 78px; }
+  .prog .ph { display: none; }
+  .prog .nw { right: auto; left: 6px; top: 6px; }
+  .prog .bd { padding: 10px 12px; gap: 2px; justify-content: center; }
+  .prog .bd b { font-size: 14px; } .prog .bd span { flex: 0; }
+  .prog .more { margin-top: 2px; }
+  .prog .mock .m-mic { font-size: 15px; } .prog .mock .m-mic small { display: none; } .prog .mock .m-board { width: 76%; gap: 4px; }
+}
 /* 写真がない新プログラムのイメージ図 */
 .mock { width: 100%; height: 100%; display: grid; place-items: center; background: var(--mk, var(--teal-tint)); }
 .mock .m-card { width: 62%; background: #fff; border-radius: 4px; padding: 10% 8%; box-shadow: 0 6px 16px rgba(2,16,43,.10); display: grid; gap: 7px; }
@@ -562,7 +567,7 @@ body.pm-lock { overflow: hidden; }
 .hero-band, .hero-card > *, .do-card { animation: heroUp .8s cubic-bezier(.2,.7,.2,1) both; }
 .hero-photo img { animation: heroZoom 1.6s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes heroZoom { from { transform: scale(1.06); } to { transform: none; } }
-.hero-band { animation-delay: .1s; } .hero-card > :nth-child(2) { animation-delay: .25s; } .do-card:nth-child(1) { animation-delay: .4s; } .do-card:nth-child(2) { animation-delay: .5s; } .do-card:nth-child(3) { animation-delay: .6s; }
+.hero-band { animation-delay: .1s; } .hero-card > :nth-child(2) { animation-delay: .25s; } .do-card:nth-child(1) { animation-delay: .4s; } .do-card:nth-child(2) { animation-delay: .46s; } .do-card:nth-child(3) { animation-delay: .52s; } .do-card:nth-child(4) { animation-delay: .58s; }
 .paint { animation: floatY 9s ease-in-out infinite; } .paint-bl, .paint-br { animation-duration: 11s; animation-delay: -3s; }
 .js-anim .rv { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
 .js-anim .rv.in { opacity: 1; transform: none; }
@@ -629,13 +634,13 @@ window.SUMMIT = {
       { time: "10:30 – 10:45", cells: [ { v: "all", title: "開場・受付", sub: "やりたいウォールを見ながら入場します。", kind: "open" } ] },
       { time: "10:45 – 10:50", cells: [ { v: "all", title: "オープニング", sub: "A会場。1日の回り方とランチテーブルをご案内します。", kind: "open" } ] },
       { time: "11:00 – 11:50", cells: [ { v: "a", title: "人間関係・巻き込み", sub: "応援される人がやっていること" }, { v: "b", title: "WS① やりたいを企画書1枚にする", sub: "11:00–12:50（110分）", kind: "pink", rows: 2 }, { v: "open", title: "常時オープン", sub: "相談所（総合型選抜・留学）／仲間集めブース／やりたいウォール／登壇者ミートアップ卓", kind: "interact" } ] },
-      { time: "12:00 – 12:50", cells: [ { v: "a", title: "協賛セッション①", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食事をとりながら、テーマ別に交流できます。", kind: "interact", rows: 3 } ] },
+      { time: "12:00 – 12:50", cells: [ { v: "a", title: "セッション", sub: "内容は準備中です。", tbd: true }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食事をとりながら、テーマ別に交流できます。", kind: "interact", rows: 3 } ] },
       { time: "13:00 – 13:50", cells: [ { v: "a", title: "NEXYプレゼン大会", sub: "13:00–14:50（110分）。6組が自らの構想を発表します。", kind: "presen", rows: 2 }, { v: "b", title: "WS② 自分の活動をストーリーにする", sub: "13:00–14:50（110分）", kind: "pink", rows: 2 } ] },
       { time: "14:00 – 14:50", cells: [] },
-      { time: "15:00 – 15:50", cells: [ { v: "a", title: "学生起業のリアル", sub: "失敗も含めた同世代の話" }, { v: "b", title: "協賛セッション②", sub: "内容は準備中です。", kind: "sponsor", badge: "協賛枠" }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
+      { time: "15:00 – 15:50", cells: [ { v: "a", title: "学生起業のリアル", sub: "失敗も含めた同世代の話" }, { v: "b", title: "セッション", sub: "内容は準備中です。", tbd: true }, { v: "open", title: "常時オープン", sub: "相談所／仲間集めブース／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
       { time: "16:00 – 16:50", cells: [ { v: "a", title: "海外・留学", sub: "行って自分がどう変わったか" }, { v: "b", title: "AIで何をつくる？", sub: "AIネイティブ世代の実例" } ] },
       { time: "17:00 – 17:15", cells: [ { v: "all", title: "クロージング", sub: "A会場。表彰・抽選を行い、そのままアフターパーティーへ移ります。", kind: "open" } ] },
-      { time: "17:15 – 18:30", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。仲間集めピッチ、登壇者・企業との交流を行います。", kind: "after", badge: "PiO館内" } ] }
+      { time: "17:15 – 18:30", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。登壇者・企業・参加者と話せます。", kind: "after", badge: "PiO館内" } ] }
     ]
   }
 
@@ -682,38 +687,39 @@ window.SUMMIT = {
 <!-- ===== 1. ファーストビュー ===== -->
 <section class="hero" id="top">
   <div class="hero-photo">
-    <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026 に集まった参加者と運営メンバーの集合写真" width="1600" height="1066" fetchpriority="high">
+    <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026 に集まった参加者と運営メンバーの集合写真" width="811" height="538" fetchpriority="high">
     <div class="hero-band">
       <div class="wrap">
         <div class="hero-logo">NEXY <span class="c1">SUMMIT</span> <span class="c2">2027</span></div>
         <div class="hero-when"><span data-bind="date.text"></span><span data-bind="venue.text"></span><span class="free">参加無料</span></div>
       </div>
     </div>
-    <span class="hero-photo-cap">NEXY SUMMIT 2026 の集合写真</span>
+    <span class="hero-photo-cap">NEXY SUMMIT 2026</span>
   </div>
   <div class="wrap">
     <div class="hero-card">
       <div>
         <p class="hero-eyebrow">中学生・高校生・大学生のための1日</p>
         <h1>やりたいこと、<br><span class="o">まだなくていい。</span></h1>
-        <p class="hero-sub">同世代と話して、誰かの挑戦を聞いて、<br class="pc-only">気づいたら一緒に何かしたい人ができている。<br class="pc-only">NEXY SUMMIT は、そんな出会いのためのイベントです。</p>
+        <p class="hero-sub">同世代と話す。誰かの挑戦を聞く。<br>一緒に何かしたい人に出会う。</p>
         <div class="hero-ok"><span>ひとりで参加OK</span><span>聴くだけでもOK</span><span>途中の入退場OK</span></div>
       </div>
       <div class="hero-side">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
-        <a class="btn btn-outline" href="#program">どんな1日か見る</a>
+        <a class="btn btn-outline" href="#program">プログラムを見る</a>
         <p class="cta-note js-cta-note"></p>
         <div class="hero-sponsors" id="heroSponsors"></div>
       </div>
     </div>
-    <div class="hero-do">
-      <p class="hero-do-h">この日、あなたがすること<small>写真は NEXY SUMMIT 2026 のものです</small></p>
+    <nav class="hero-do" aria-label="当日起きること">
+      <p class="hero-do-h">当日起きること</p>
       <div class="do-grid">
-        <div class="do-card"><img src="img/summit2027/r26_table.webp" alt="テーブルを囲んで話す参加者" width="960" height="540" loading="lazy"><div><span class="n">01</span><b>話す</b><p>テーブルを囲んで、初対面の同世代と。テーマ別のランチテーブルもあります。</p></div></div>
-        <div class="do-card"><img src="img/summit2027/r26_session.webp" alt="セッションを聞く参加者" width="960" height="720" loading="lazy"><div><span class="n">02</span><b>聞く</b><p>同世代のプレゼンや、大人の本音のセッションを客席から。</p></div></div>
-        <div class="do-card"><img src="img/summit2027/r26_wall.webp" alt="掲示を見て回る参加者" width="960" height="540" loading="lazy"><div><span class="n">03</span><b>出会う</b><p>気になった人に、その場で声をかける。登壇者とも直接話せます。</p></div></div>
+        <a class="do-card" href="#program"><span class="n">PROGRAM</span><b>プログラム</b><p>話す。聞く。つくる。</p></a>
+        <a class="do-card" href="#for"><span class="n">PARTICIPANTS</span><b>参加者</b><p>中高大生。ひとりでも。</p></a>
+        <a class="do-card" href="#day"><span class="n">TIMETABLE</span><b>タイムテーブル</b><p>10:30〜18:30</p></a>
+        <a class="do-card" href="#speakers"><span class="n">SPEAKERS</span><b>登壇者</b><p>同世代と大人。</p></a>
       </div>
-    </div>
+    </nav>
   </div>
 </section>
 
@@ -722,13 +728,14 @@ window.SUMMIT = {
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow">For You</span>
-      <h2 class="h2">このような方におすすめです</h2>
+      <h2 class="h2">参加者</h2>
+      <p class="lead">こんな人が来ています。</p>
     </div>
     <div class="persona-grid">
-      <div class="persona"><div class="ic">探</div><b>やりたいことを探している方</b><span>人と話しながら、自分の興味を見つけたい</span></div>
-      <div class="persona"><div class="ic">始</div><b>何か始めてみたい方</b><span>最初の一歩のきっかけがほしい</span></div>
-      <div class="persona"><div class="ic">話</div><b>ちょっとモヤモヤしている方</b><span>学校の外で、同世代と本音で話してみたい</span></div>
-      <div class="persona"><div class="ic">仲</div><b>仲間を探している方</b><span>地元や学校に、同じ志の人がまだいない</span></div>
+      <div class="persona"><div class="ic">探</div><b>やりたいことを探している</b><span>話しながら見つけたい。</span></div>
+      <div class="persona"><div class="ic">始</div><b>何か始めてみたい</b><span>最初の一歩がほしい。</span></div>
+      <div class="persona"><div class="ic">話</div><b>ちょっとモヤモヤしている</b><span>学校の外で話してみたい。</span></div>
+      <div class="persona"><div class="ic">仲</div><b>仲間を探している</b><span>近くに同じ志の人がいない。</span></div>
     </div>
     <div class="pills"><span class="pill">一人で参加可能</span><span class="pill">聴講のみの参加も可能</span><span class="pill">途中入退場可能</span></div>
   </div>
@@ -740,13 +747,7 @@ window.SUMMIT = {
     <div class="head center">
       <span class="eyebrow">Program</span>
       <h2 class="h2">プログラム</h2>
-      <p class="lead">カードを押すと、内容を写真つきで確認できます。<span class="new-inline">NEW</span> は2027年からの新しいプログラムです。</p>
-    </div>
-    <div class="prog-filter" role="group" aria-label="プログラムの絞り込み">
-      <button type="button" data-f="all" aria-pressed="true">すべて</button>
-      <button type="button" data-f="talk" aria-pressed="false">話す・出会う</button>
-      <button type="button" data-f="listen" aria-pressed="false">聞く</button>
-      <button type="button" data-f="make" aria-pressed="false">つくる・相談する</button>
+      <p class="lead">押すと詳細が見られます。<span class="new-inline">NEW</span> は2027年から。</p>
     </div>
     <div class="prog-grid" id="progGrid"></div>
   </div>
@@ -757,11 +758,9 @@ window.SUMMIT = {
   <div class="wrap">
     <div class="head center">
       <span class="eyebrow c-orange">Timetable</span>
-      <h2 class="h2">会場図・タイムテーブル</h2>
-      <p class="lead">時間は予定です。各プログラムの内容は、決定次第掲載します。</p>
+      <h2 class="h2">タイムテーブル</h2>
+      <p class="lead">時間は予定です。内容は決まり次第掲載します。</p>
     </div>
-    <figure class="venue-plan"><a href="img/summit2027/venue_plan.webp" target="_blank" rel="noopener"><img src="img/summit2027/venue_plan.webp" alt="大田区産業プラザPiO 大展示ホールの会場図。西側にB会場、中央に常設エリア、東側にA会場。入口はアトリウム側の3か所" width="2084" height="974" loading="lazy"></a></figure>
-    <p class="floor-note">大田区産業プラザPiO 大展示ホールの会場図（予定）。入口はアトリウム側の3か所です。<span class="sp">横にスクロールできます。</span><a href="img/summit2027/venue_plan.webp" target="_blank" rel="noopener">会場図を拡大して見る</a></p>
     <div class="sch-table-wrap"><table class="sch-table" id="schTable"></table></div>
     <div class="sch-note">※ A会場・B会場・常設エリアで同時に進行します。参加者は各会場を自由に行き来できます。<br>※ 各セッションの終了後20分間、登壇者は常設エリアのミートアップ卓で参加者と話します。<br>※ 全体の昼休憩はありません。食事は常設エリアのランチテーブル（12:00〜14:50）で、好きな時間にとれます。<br>※ 時間・内容は予定です。登壇者は決定次第掲載します。</div>
   </div>
@@ -773,7 +772,7 @@ window.SUMMIT = {
     <div class="head center">
       <span class="eyebrow c-pink">Speakers</span>
       <h2 class="h2">登壇者</h2>
-      <p class="lead">登壇後には、登壇者と直接対話できる時間を設けます。</p>
+      <p class="lead">登壇のあと、直接話せます。</p>
     </div>
     <div class="speakers-group g-adult">
       <div class="speakers-group-head"><span class="speakers-group-en">Adults</span><h3 class="speakers-group-title">大人登壇者</h3><span class="speakers-group-count" id="spCountAdults"></span></div>
@@ -1027,82 +1026,57 @@ window.SUMMIT = {
     var R = '写真は NEXY SUMMIT 2026 のものです', I = '画面はイメージです';
     var mocks = {
       profile: '<div class="mock"><div class="m-card"><div class="m-av"></div><div class="m-l"></div><div class="m-l s"></div><div class="m-tags"><i></i><i></i><i></i></div></div></div>',
-      card: '<div class="mock" style="--mk:var(--orange-tint)"><div class="m-card"><div class="m-l o"></div><div class="m-l"></div><div class="m-l s"></div><div class="m-av" style="background:var(--orange)"></div></div></div>',
-      vote: '<div class="mock" style="--mk:#FFFBD6"><div class="m-bars"><i style="width:92%"></i><i style="width:70%;background:var(--teal)"></i><i style="width:54%;background:#FFB16B"></i><i style="width:38%;background:var(--teal-soft)"></i></div></div>',
       board: '<div class="mock" style="--mk:#F5F6F8"><div class="m-board"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>',
-      pitch: '<div class="mock" style="--mk:#D4FF4F"><div class="m-mic">1 MIN<small>仲間集めピッチ</small></div></div>',
       consult: '<div class="mock" style="--mk:var(--teal-tint)"><div class="m-mic">相談所<small>総合型選抜・留学</small></div></div>'
     };
     var P = [
-      { f: 'talk', ph: 'BEFORE', nw: 1, t: '自己紹介ページ', s: '会いたい参加者を事前に探せる', mock: 'profile', place: '開催前・オンライン',
-        lead: '申込後、自分のやりたいことや興味を書いた自己紹介ページをつくれます。当日を待たずに、話してみたい人を探しておけます。',
-        flow: ['申込後に届く案内から、自己紹介を書く', '他の参加者のページを見て、気になる人を見つける', '当日、会場でその人に声をかける'],
-        who: 'ひとりで参加するのが不安な方。会場で「誰と話そう」と迷わずにすみます。' },
-      { f: 'talk', ph: 'BEFORE', nw: 1, t: '参加表明カード', s: 'SNSで参加を発信できる', mock: 'card', place: '開催前・オンライン',
-        lead: '「NEXY SUMMIT に行きます」を伝える画像カードをつくれます。SNSに投稿すると、同じ日に来る人とつながるきっかけになります。',
-        flow: ['名前とひとことを入力してカードをつくる', 'SNSに投稿する', '同じカードを投稿した人と、当日会う'],
-        who: '友だちを誘いたい方、来る前から知り合いをつくりたい方。' },
-      { f: 'listen', ph: 'BEFORE', nw: 1, t: 'プレゼン大会 応援投票', s: '出場者への応援をオンラインで投票', mock: 'vote', place: '開催前・オンライン',
-        lead: 'プレゼン大会の出場者の構想を事前に読み、応援したい人に投票できます。当日は、自分が応援した人の発表を客席で見届けられます。',
-        flow: ['出場者の構想を読む', '応援したい人に投票する', '当日のプレゼン大会で発表を聞く'],
-        who: '同世代がどんな挑戦をしているのか知りたい方。' },
-      { f: 'listen', ph: 'STAGE', t: 'NEXYプレゼン大会', s: '学生が自らの構想を発表', img: 'img/summit2027/r26_pitch.webp', cap: R, place: 'A会場・13:00〜14:50',
-        lead: '中学生・高校生・大学生の6組が、自分の構想をステージで発表します。完成した活動だけでなく、「これからやりたいこと」の発表もあります。',
-        flow: ['6組が順に発表する', '審査員が講評する', 'クロージングで表彰する'],
-        who: '「自分と同じ年でこんなことを考えている人がいるのか」を体感したい方。' },
-      { f: 'listen', ph: 'STAGE', t: 'セッション（4本）', s: '人間関係・学生起業・海外留学・AI', img: 'img/summit2027/r26_session.webp', cap: R, place: 'A会場・B会場',
-        lead: '人間関係・学生起業・海外留学・AIの4テーマで、登壇者が自分の経験を話します。成功談だけでなく、迷ったことや失敗も扱います。',
-        flow: ['気になるテーマの会場に入る（出入り自由）', '登壇者の話を聞く', '終了後20分間、常設エリアで登壇者と直接話せる'],
-        who: '進路や挑戦に迷っていて、実際の経験談を聞きたい方。' },
-      { f: 'listen', ph: 'STAGE', nw: 1, t: '協賛セッション（2本）', s: '協賛企業と学生がともに登壇', img: 'img/summit2027/r26_talk.webp', cap: R, place: 'A会場・B会場',
-        lead: '協賛企業の方と学生が同じステージに立ち、一つのテーマについて話します。内容は決まり次第掲載します。',
-        flow: ['企業と学生が登壇する', 'テーマについて対話する', '会場からの質問に答える'],
-        who: '社会で働く大人の考え方に触れてみたい方。' },
-      { f: 'make', ph: 'STAGE', t: 'ワークショップ（2本）', s: '企画書1枚づくり／活動をストーリーにする', img: 'img/summit2027/r26_table.webp', cap: R, place: 'B会場・各110分',
-        lead: '少人数のテーブルで手を動かします。「やりたいを企画書1枚にする」と「自分の活動をストーリーにする」の2本です。',
-        flow: ['テーブルごとに自己紹介する', 'ワークシートに書き出す', '同じテーブルの人と見せ合い、意見をもらう'],
-        who: 'やりたいことがぼんやりしている方。書き出すと形が見えてきます。' },
-      { f: 'talk', ph: 'OPEN AREA', nw: 1, t: 'やりたいウォール', s: '参加者の顔写真と「やりたいこと」を掲示', img: 'img/summit2027/r26_wall.webp', cap: R, place: '常設エリア・終日',
-        lead: '参加者の顔写真と「やりたいこと」を会場の壁に掲示します。壁を見て回るだけで、同じ興味を持つ人が見つかります。',
-        flow: ['申込時に「やりたいこと」を書く', '当日、壁に自分のカードが貼られる', '気になるカードの人を探して話しかける'],
-        who: '自分から話しかけるのが苦手な方。話題が最初から壁に書いてあります。' },
-      { f: 'talk', ph: 'OPEN AREA', nw: 1, t: '登壇者ミートアップ', s: '登壇後に登壇者と直接対話できる', img: 'img/summit2027/r26_audience.webp', cap: R, place: '常設エリア・各セッション後20分',
-        lead: '各セッションの終了後20分間、登壇者が常設エリアの卓に来ます。客席では聞けなかった質問を、直接できます。',
-        flow: ['セッションを聞く', '常設エリアのミートアップ卓へ移動する', '登壇者と少人数で話す'],
-        who: 'セッションで気になった話を、もう一歩聞いてみたい方。' },
-      { f: 'make', ph: 'OPEN AREA', nw: 1, t: '相談所', s: '総合型選抜・留学について相談できる', mock: 'consult', place: '常設エリア',
-        lead: '総合型選抜や留学を経験した先輩に、個別に相談できます。活動をどう進路につなげるかも相談できます。',
-        flow: ['相談所の卓に行く', '先輩に聞きたいことを話す', '次に何をすればいいかを一緒に整理する'],
-        who: '進路と活動のつなげ方に迷っている方。' },
-      { f: 'talk', ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '12:00〜14:50、食事をしながら交流', img: 'img/summit2027/r26_food.webp', cap: R, place: '常設エリア・12:00〜14:50',
-        lead: '全体の昼休憩はありません。テーマごとのテーブルで、好きな時間に食事をとりながら同世代と話せます。',
-        flow: ['気になるテーマのテーブルを選ぶ', '同じテーブルの人と食事をする', 'テーマについて話す'],
-        who: 'ひとりで参加する方。座るだけで会話が始まるようにしています。' },
-      { f: 'talk', ph: 'OPEN AREA', t: '仲間集めブース', s: '学生団体がメンバーを募集', mock: 'board', place: '常設エリア',
-        lead: '学生団体がブースを出し、活動の紹介とメンバー募集をします。その場で話を聞いて、参加を決めることもできます。',
-        flow: ['ブースを見て回る', '気になる団体の話を聞く', '連絡先を交換する'],
-        who: '何か始めたいけれど、何から入ればいいかわからない方。' },
-      { f: 'talk', ph: 'AFTER', nw: 1, t: 'アフターパーティー', s: '17:15〜18:30、会場内で移動なし', img: 'img/summit2027/hero_group.webp', cap: R, place: '会場内・17:15〜18:30',
-        lead: 'クロージングのあと、そのまま会場で交流の時間を設けます。登壇者や協賛企業の方とも話せます。',
-        flow: ['クロージングのあと、そのまま会場に残る', '登壇者・企業・参加者と話す', '仲間集めピッチを聞く'],
-        who: '1日で話しきれなかった人と、もう少し話したい方。' },
-      { f: 'talk', ph: 'AFTER', nw: 1, t: '仲間集めピッチ', s: '1人1分で仲間を募集', mock: 'pitch', place: 'アフターパーティー内',
-        lead: '「こんなことをやりたい、一緒にやる人を探している」を1人1分で話します。話す人も、聞いて声をかける人も歓迎です。',
-        flow: ['やりたいことを1分で話す', '興味を持った人が声をかける', 'その場で連絡先を交換する'],
-        who: '一緒に動く仲間がほしい方。聞くだけの参加もできます。' }
+      { ph: 'BEFORE', nw: 1, t: '自己紹介ページ', s: '会いたい人を事前に探せる', mock: 'profile', place: '開催前・オンライン',
+        lead: '申込後、自己紹介ページをつくれます。話したい人を、当日より前に探せます。',
+        flow: ['自己紹介を書く', '他の参加者のページを見る', '当日、会場で声をかける'],
+        who: 'ひとりで参加するのが不安な人。' },
+      { ph: 'STAGE', t: 'NEXYプレゼン大会', s: '同世代6組が構想を発表', img: 'img/summit2027/r26_pitch.webp', cap: R, place: 'A会場・13:00〜14:50',
+        lead: '中高大生の6組が、ステージで構想を発表します。「これからやりたいこと」の発表もあります。',
+        flow: ['6組が発表する', '講評を聞く', 'クロージングで表彰'],
+        who: '同世代の挑戦を見てみたい人。' },
+      { ph: 'STAGE', t: 'セッション（6本）', s: '人間関係・学生起業・留学・AIほか', img: 'img/summit2027/r26_session.webp', cap: R, place: 'A会場・B会場',
+        lead: '登壇者が自分の経験を話します。うまくいったことも、失敗も。協賛企業の方が登壇する回もあります。',
+        flow: ['気になる会場に入る（出入り自由）', '話を聞く', '終了後20分、登壇者と直接話せる'],
+        who: '進路や挑戦に迷っている人。' },
+      { ph: 'STAGE', t: 'ワークショップ（2本）', s: '企画書1枚づくり／活動をストーリーに', img: 'img/summit2027/r26_table.webp', cap: R, place: 'B会場・各110分',
+        lead: '少人数のテーブルで、手を動かします。書き出すと、やりたいことの形が見えてきます。',
+        flow: ['テーブルで自己紹介', 'ワークシートに書く', '見せ合って意見をもらう'],
+        who: 'やりたいことがぼんやりしている人。' },
+      { ph: 'OPEN AREA', nw: 1, t: 'やりたいウォール', s: '参加者の「やりたいこと」を掲示', img: 'img/summit2027/r26_wall.webp', cap: R, place: '常設エリア・終日',
+        lead: '参加者の顔写真と「やりたいこと」を壁に貼ります。見て回るだけで、話したい人が見つかります。',
+        flow: ['申込時に「やりたいこと」を書く', '当日、壁に貼られる', '気になる人に話しかける'],
+        who: '自分から話しかけるのが苦手な人。' },
+      { ph: 'OPEN AREA', nw: 1, t: '登壇者ミートアップ', s: '登壇後、登壇者と直接話せる', img: 'img/summit2027/r26_audience.webp', cap: R, place: '常設エリア・各セッション後20分',
+        lead: 'セッションのあと20分、登壇者が常設エリアに来ます。客席で聞けなかったことを、直接聞けます。',
+        flow: ['セッションを聞く', 'ミートアップ卓へ行く', '少人数で話す'],
+        who: 'もう一歩、話を聞きたい人。' },
+      { ph: 'OPEN AREA', nw: 1, t: '相談所', s: '総合型選抜・留学の相談', mock: 'consult', place: '常設エリア',
+        lead: '総合型選抜や留学について、個別に相談できます。',
+        flow: ['相談所の卓へ行く', '聞きたいことを話す', '次にやることを整理する'],
+        who: '進路と活動のつなげ方に迷っている人。' },
+      { ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '食べながら同世代と話す', img: 'img/summit2027/r26_food.webp', cap: R, place: '常設エリア・12:00〜14:50',
+        lead: '全体の昼休憩はありません。テーマごとのテーブルで、好きな時間に食べながら話せます。',
+        flow: ['テーマを選んで座る', '一緒に食べる', 'テーマについて話す'],
+        who: 'ひとりで来た人。座れば会話が始まります。' },
+      { ph: 'OPEN AREA', t: '仲間集めブース', s: '学生団体がメンバー募集', mock: 'board', place: '常設エリア',
+        lead: '学生団体がブースを出し、メンバーを募集します。その場で話を聞けます。',
+        flow: ['ブースを回る', '気になる団体の話を聞く', '連絡先を交換する'],
+        who: '何から始めればいいかわからない人。' },
+      { ph: 'AFTER', nw: 1, t: 'アフターパーティー', s: '17:15〜18:30、会場内', img: 'img/summit2027/hero_group.webp', cap: R, place: '会場内・17:15〜18:30',
+        lead: 'クロージングのあと、そのまま会場で話せます。登壇者や企業の方もいます。',
+        flow: ['そのまま会場に残る', '登壇者・企業・参加者と話す', '連絡先を交換する'],
+        who: '話し足りなかった人。' }
     ];
     var grid = document.getElementById('progGrid');
     function vis(x) { return x.img ? '<img src="' + x.img + '" alt="' + esc(x.t) + 'の様子" loading="lazy">' : mocks[x.mock]; }
     grid.innerHTML = P.map(function (x, i) {
-      return '<button type="button" class="prog" data-i="' + i + '" data-f="' + x.f + '"><span class="vis">' + vis(x) + '<span class="ph">' + x.ph + '</span>' + (x.nw ? '<span class="nw">NEW</span>' : '') + '</span>' +
+      return '<button type="button" class="prog" data-i="' + i + '"><span class="vis">' + vis(x) + '<span class="ph">' + x.ph + '</span>' + (x.nw ? '<span class="nw">NEW</span>' : '') + '</span>' +
         '<span class="bd"><b>' + esc(x.t) + '</b><span>' + esc(x.s) + '</span><span class="more">詳細を見る</span></span></button>';
     }).join('');
-    var fb = document.querySelectorAll('.prog-filter button');
-    fb.forEach(function (b) { b.addEventListener('click', function () {
-      fb.forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
-      var f = b.getAttribute('data-f');
-      grid.querySelectorAll('.prog').forEach(function (c) { c.hidden = !(f === 'all' || c.getAttribute('data-f') === f); });
-    }); });
     var pm = document.getElementById('pm'), last = null;
     function open(i) {
       var x = P[i]; last = document.activeElement;
@@ -1111,7 +1085,7 @@ window.SUMMIT = {
       document.getElementById('pmTitle').textContent = x.t;
       document.getElementById('pmLead').textContent = x.lead;
       document.getElementById('pmFlow').innerHTML = x.flow.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('');
-      document.getElementById('pmFor').innerHTML = '<b>こんな方に：</b>' + esc(x.who);
+      document.getElementById('pmFor').innerHTML = '<b>こんな人に：</b>' + esc(x.who);
       pm.classList.add('open'); pm.setAttribute('aria-hidden', 'false'); document.body.classList.add('pm-lock');
       pm.querySelector('.pm-close').focus();
     }
@@ -1125,7 +1099,7 @@ window.SUMMIT = {
   (function () {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.documentElement.classList.add('js-anim');
-    var groups = ['.section .head', '.persona', '.pills', '.prog', '.venue-plan', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var groups = ['.section .head', '.persona', '.pills', '.prog', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
