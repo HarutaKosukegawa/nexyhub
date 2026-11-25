@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 process.env.SUMMIT_FS_DIR = "/tmp/stafftest" + Date.now(); process.env.STAFF_DEV_LOGIN = "1";
-process.env.OWNER_EMAILS = "rep@example.com"; process.env.AUTH_SECRET = "test-secret";
+process.env.OWNER_EMAILS = "rep@example.com"; process.env.AUTH_SECRET = "test-secret"; process.env.STAFF_SYNC_TOKEN = "sync-token-for-tests-0123456789";
 const mod = await import(process.argv[2] || new URL("../api/staff.js", import.meta.url).href);
 const B = "https://x/api/staff?a=";
 const call = async (m, a, body, ck) => {
@@ -144,6 +144,25 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   await call(POST, "bootstrap", { members: [{ name: "新人E", team: "b", role: "メンバー", status: "confirmed", email: "new@example.com" }] }, rep);
   assert.equal(typeof (await dev("new@example.com")), "string", "付け直しても入れない");
   assert.equal((await call(GET, "all", null, rep)).j.roster.length, ros.length);
+}
+// 応募フォームからの自動連携：合言葉が必要。チーム・確定は変えず、メールを付け直し、新しい人は保留で入る
+{
+  const sync = async (tok, body) => { const r = await mod.POST({ url: B + "sync", method: "POST", headers: { get: (n) => (n === "authorization" ? "Bearer " + tok : null) }, text: async () => JSON.stringify(body) }); return { s: r.status, j: await r.json() }; };
+  assert.equal((await sync("wrong", { members: [] })).s, 401);
+  const ros = (await call(GET, "all", null, rep)).j.roster;
+  const lead = ros.find((m) => m.name === "統括A");
+  await call(POST, "roster_upsert", { id: lead.id, name: lead.name, team: lead.team, role: lead.role, status: "confirmed", email: "old-lead@example.com" }, rep);
+  const r = await sync("sync-token-for-tests-0123456789", { members: [
+    { name: "統括 A", team: "a", role: "メンバー", status: "pending", email: "lead2@example.com", page: { f: { reason: { v: "志望動機" } } } },
+    { name: "応募F", team: "rec", email: "f@example.com", page: { f: { strength: { v: "笑顔" } } } }] });
+  assert.equal(r.s, 200); assert.equal(r.j.added, 1); assert.equal(r.j.updated, 1);
+  const after = (await call(GET, "all", null, rep)).j.roster;
+  const l2 = after.find((m) => m.id === lead.id);
+  assert.equal(l2.team, lead.team); assert.equal(l2.role, lead.role); assert.equal(l2.status, "confirmed");
+  assert.equal(typeof (await dev("lead2@example.com")), "string", "フォームのメールで入れない");
+  assert.equal(after.find((m) => m.name === "応募F").status, "pending");
+  assert.notEqual(typeof (await dev("f@example.com")), "string");
+  assert.ok((await call(GET, "settings", null, rep)).j.lastSync > 0);
 }
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);

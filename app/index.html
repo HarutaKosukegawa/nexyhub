@@ -1847,7 +1847,7 @@ async function load(){
     const [all,meJ,st]=await Promise.all([sapi("all"),sapi("me"),sapi("settings").catch(()=>({certOpen:false}))]);
     VIEWER=all.viewer;NEEDS_PHOTO=!!meJ.needsPhoto;
     const list=all.roster.map(r=>{const p=all.pages[r.id]||{};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],updated:p.updated||r.updated||0}});
-    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen};loadErr="";
+    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0};loadErr="";
   }catch(e){if(e.status===401){VIEWER=null}else loadErr=e.message}
   loaded=true;
 }
@@ -2316,9 +2316,12 @@ function stSettings(){
     <select id="amTeam">${TEAM_KEYS.map(k=>`<option value="${k}">${TEAMS[k].n}</option>`).join("")}</select><select id="amRole">${ROLES.map(r=>`<option>${r}</option>`).join("")}</select>
     <input type="email" id="amMail" placeholder="応募フォームのメールアドレス"><label class="note"><input type="checkbox" id="amRet"> 2026から続けて参加</label><label class="note"><input type="checkbox" id="amConf" checked> 確定</label></div>
     <button class="btn o" style="width:100%;margin-top:8px" data-st="addmember">追加する</button></section>
-  <section class="panel" style="margin-top:12px"><b style="font-size:14px">応募フォームから取り込む</b>
-    <p class="note" style="margin:2px 0 8px">応募フォームとチーム編成から作った取り込み用ファイル（JSON）を選びます。何度でも使えます。すでにいる人は重複せず、チーム・役職・確定かどうかだけ更新します。本人が書いた文章は上書きしません。メールアドレスはサーバーで暗号化してから保存されます。</p>
-    <label class="btn s filebtn" style="width:100%">ファイルを選んで取り込む<input type="file" accept="application/json,.json" data-st-boot="1"></label></section>`;
+  <section class="panel" style="margin-top:12px"><b style="font-size:14px">応募フォームとの自動連携</b>
+    <p class="note" style="margin:2px 0 6px">${STD.lastSync?`つながっています。最後にフォームから受け取ったのは ${new Date(STD.lastSync).toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})} です。`:"まだつながっていません。スプレッドシートに連携の設定をすると、ここに日時が出ます。"}</p>
+    <ul class="st-list"><li>運営応募フォームに回答が届いたときと、毎朝6時に、自動で名簿に入ります</li><li>新しく応募した人は「保留」で入ります。確定にしてチームを選ぶと、フォームに書いたメールアドレスでログインできます</li><li>すでにいる人は重複しません。チーム・役職・確定かどうかは変えず、メールアドレスと空欄の項目だけを埋めます</li><li>メールアドレスはサーバーで暗号化して保存され、この画面にも出ません</li></ul>
+    <details style="margin-top:8px"><summary class="note">ファイルからまとめて取り込む（Claudeが作った取り込み用ファイルを使うとき）</summary>
+    <p class="note" style="margin:6px 0 8px">Claudeに「運営メンバーを登録して」と頼むと、チーム・確定かどうか・2026のありがとうまで入った取り込み用ファイルが届きます。そのファイルをここで選びます。</p>
+    <label class="btn s filebtn" style="width:100%">ファイルを選んで取り込む<input type="file" accept="application/json,.json" data-st-boot="1"></label></details></section>`;
 }
 
 /* ---- 操作 ---- */

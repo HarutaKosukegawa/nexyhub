@@ -260,12 +260,80 @@ ${transcript}`;
   return { fields, excluded: strList(o.excluded, 10, 80), consent: ["yes", "no"].includes(o.consent) ? o.consent : "unknown", note: str(o.note, 200) };
 }
 
+/* ---------------- 名簿の取り込み（ファイル・フォーム連携の共通） ---------------- */
+// ・同じ人（メールアドレス、なければ名前で照合）は重複させない。メールがつながっていなければ付け直す
+// ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
+// ・formOnly（フォームからの自動連携）のときは、チーム・役職・確定/保留は変えない。新しい人は「保留」で入る
+async function mergeMembers(s, list, formOnly) {
+    list = Array.isArray(list) ? list.slice(0, 300) : [];
+    const ids = {}, made = new Set();
+    let added = 0, updated = 0;
+    await updateJSON(ROSTER, (d) => {
+      const all = Object.values(d.members);
+      for (const x of list) {
+        const name = str(x.name, 20).replace(/\s+/g, "");
+        if (!name || !TEAMS.includes(x.team)) continue;
+        const key = x.ref || name;
+        const email = normEmail(x.email), eh = validEmail(email) ? emailHash(email) : "";
+        let m = x.role === "代表" ? all.find((q) => q.role === "代表") : null;
+        if (!m && eh) m = all.find((q) => q.eh === eh);
+        // メールで見つからないときは名前で照合する（前回の取り込みでメールがつながらなかった人も、ここで付け直せる）
+        if (!m) m = all.find((q) => q.name === name && q.role !== "代表");
+        if (m) {
+          if (x.role !== "代表" && !formOnly) Object.assign(m, { team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
+          if (str(x.kana, 30)) Object.assign(m, { kana: str(x.kana, 30), kanaOk: !!x.kanaOk });
+          if (str(x.nick, 20) && !m.nick) m.nick = str(x.nick, 20);
+          // すでにパスワードを作ってログインできている人のメールは変えない（代表が直したメールを戻さないため）
+          if (eh && m.eh !== eh && !m.pw && !all.some((q) => q !== m && q.eh === eh)) m.eh = eh;
+          if (!formOnly) { m.ret = !!x.ret; m.name = name; }
+          m.updated = Date.now();
+          ids[key] = m.id; updated++;
+          continue;
+        }
+        if (eh && all.some((q) => q.eh === eh)) continue;
+        const id = newId(); ids[key] = id; made.add(id); added++;
+        m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: !formOnly && STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
+        d.members[id] = m; all.push(m);
+      }
+    }, EMPTY_ROSTER);
+    for (const x of list) {
+      const id = ids[x.ref || str(x.name, 20).replace(/\s+/g, "")];
+      if (!id || !x.page) continue;
+      const fresh = made.has(id);
+      await updateJSON(pageKey(id), (p) => {
+        for (const [k, fx] of Object.entries(x.page.f || {})) {
+          if (!(k in FIELDS) || !str(fx && fx.v, 300) || (p.f[k] && p.f[k].v)) continue;
+          p.f[k] = { v: str(fx.v, 300), s: FIELDS[k], src: fx.src === "1on1" ? "1on1" : "form" };
+        }
+        if (fresh || !Object.keys((p.x && p.x.skills) || {}).length) p.x = cleanX(x.page.x || {});
+        if (!(p.kw || []).length) p.kw = strList(x.page.kw, 8, 30);
+        if (!(p.gkw || []).length) p.gkw = strList(x.page.gkw, 8, 30);
+        if (!(p.thanks || []).length) p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: true })).filter((t) => t.t);
+        if (!(p.excluded || []).length) p.excluded = strList(x.page.excluded, 10, 80);
+        p.updated = Date.now();
+      }, EMPTY_PAGE);
+    }
+  return { added, updated };
+}
+
 /* ---------------- routes ---------------- */
 async function route(req) {
   const url = new URL(req.url);
   const a = url.searchParams.get("a") || "";
   const s = await getStore();
   if (!s.ready) return err("保存先がまだ設定されていません", 503);
+
+  // 応募フォーム（Googleスプレッドシート）からの自動連携。Apps Script が合言葉つきで送ってくる
+  if (req.method === "POST" && a === "sync") {
+    const tok = process.env.STAFF_SYNC_TOKEN || "";
+    const got = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
+    const A = Buffer.from(hmac("sync:" + got)), B = Buffer.from(hmac("sync:" + tok));
+    if (tok.length < 24 || !crypto.timingSafeEqual(A, B)) { await new Promise((r) => setTimeout(r, 400)); return err("not allowed", 401); }
+    const b = await body(req, 2_000_000);
+    const r = await mergeMembers(s, b.members, true);
+    await updateJSON(SETTINGS, (d) => { d.lastSync = Date.now(); d.lastSyncCount = Array.isArray(b.members) ? b.members.length : 0; }, EMPTY_SETTINGS);
+    return json({ ok: true, ...r });
+  }
 
   if (req.method === "POST" && a === "dev_login") {
     // ローカル検証専用。本番（Blob保存）では使えない
@@ -508,53 +576,8 @@ async function route(req) {
   // ・同じ人（メールアドレス、なければ名前で照合）は名簿の項目（チーム・役職・確定/保留）だけ更新し、重複させない
   // ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
   if (a === "bootstrap") {
-    const list = Array.isArray(b.members) ? b.members.slice(0, 300) : [];
-    const ids = {}, made = new Set();
-    let added = 0, updated = 0;
-    await updateJSON(ROSTER, (d) => {
-      const all = Object.values(d.members);
-      for (const x of list) {
-        const name = str(x.name, 20);
-        if (!name || !TEAMS.includes(x.team)) continue;
-        const key = x.ref || name;
-        const email = normEmail(x.email), eh = validEmail(email) ? emailHash(email) : "";
-        let m = x.role === "代表" ? all.find((q) => q.role === "代表") : null;
-        if (!m && eh) m = all.find((q) => q.eh === eh);
-        // メールで見つからないときは名前で照合する（前回の取り込みでメールがつながらなかった人も、ここで付け直せる）
-        if (!m) m = all.find((q) => q.name === name && q.role !== "代表");
-        if (m) {
-          if (x.role !== "代表") Object.assign(m, { team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
-          if (str(x.kana, 30)) Object.assign(m, { kana: str(x.kana, 30), kanaOk: !!x.kanaOk });
-          if (str(x.nick, 20) && !m.nick) m.nick = str(x.nick, 20);
-          if (eh && m.eh !== eh && !all.some((q) => q !== m && q.eh === eh)) { m.eh = eh; delete m.pw; }
-          m.ret = !!x.ret; m.name = name; m.updated = Date.now();
-          ids[key] = m.id; updated++;
-          continue;
-        }
-        if (eh && all.some((q) => q.eh === eh)) continue;
-        const id = newId(); ids[key] = id; made.add(id); added++;
-        m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
-        d.members[id] = m; all.push(m);
-      }
-    }, EMPTY_ROSTER);
-    for (const x of list) {
-      const id = ids[x.ref || str(x.name, 20)];
-      if (!id || !x.page) continue;
-      const fresh = made.has(id);
-      await updateJSON(pageKey(id), (p) => {
-        for (const [k, fx] of Object.entries(x.page.f || {})) {
-          if (!(k in FIELDS) || !str(fx && fx.v, 300) || (p.f[k] && p.f[k].v)) continue;
-          p.f[k] = { v: str(fx.v, 300), s: FIELDS[k], src: fx.src === "1on1" ? "1on1" : "form" };
-        }
-        if (fresh || !Object.keys((p.x && p.x.skills) || {}).length) p.x = cleanX(x.page.x || {});
-        if (!(p.kw || []).length) p.kw = strList(x.page.kw, 8, 30);
-        if (!(p.gkw || []).length) p.gkw = strList(x.page.gkw, 8, 30);
-        if (!(p.thanks || []).length) p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: true })).filter((t) => t.t);
-        if (!(p.excluded || []).length) p.excluded = strList(x.page.excluded, 10, 80);
-        p.updated = Date.now();
-      }, EMPTY_PAGE);
-    }
-    return json({ ok: true, count: added + updated, added, updated });
+    const r = await mergeMembers(s, b.members, false);
+    return json({ ok: true, count: r.added + r.updated, ...r });
   }
   return err("not found", 404);
 }
