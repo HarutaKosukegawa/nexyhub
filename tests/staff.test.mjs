@@ -1,86 +1,104 @@
-import crypto from "node:crypto";
+// 運営メンバー取扱説明書API（api/staff.js）のテスト：node tests/staff.test.mjs
 import assert from "node:assert/strict";
-process.env.SUMMIT_FS_DIR="/tmp/stafftest"+Date.now(); process.env.STAFF_DEV_LOGIN="1";
-process.env.OWNER_EMAILS="rep@example.com"; process.env.GOOGLE_CLIENT_ID="cid.apps.googleusercontent.com";
-// Google公開鍵をテスト用に差し替え
-const {publicKey,privateKey}=crypto.generateKeyPairSync("rsa",{modulusLength:2048});
-const jwk={...publicKey.export({format:"jwk"}),kid:"k1",alg:"RS256",use:"sig"};
-globalThis.fetch=async(u)=>({ok:true,json:async()=>({keys:[jwk]})});
-const mk=(claims)=>{const h=Buffer.from(JSON.stringify({alg:"RS256",kid:"k1"})).toString("base64url");const p=Buffer.from(JSON.stringify(claims)).toString("base64url");
-  return h+"."+p+"."+crypto.sign("RSA-SHA256",Buffer.from(h+"."+p),privateKey).toString("base64url")};
-const mod=await import(process.argv[2]||new URL("../api/staff.js",import.meta.url).href);const GET="GET",POST="POST";
-const B="https://x/api/staff?a=";
-const call=async(fn,a,body,ck)=>{const r=await mod[fn]({url:B+a,method:fn,headers:{get:(n)=>n==="cookie"?(ck||""):null},text:async()=>fn===GET?"":JSON.stringify(body||{})});
-  return {s:r.status,j:await r.json(),c:(r.headers.get("set-cookie")||"").split(";")[0]}};
-const login=async(email)=>{const r=await call(POST,"dev_login",{email});return r.s===200?r.c:r};
+import fs from "node:fs";
+process.env.SUMMIT_FS_DIR = "/tmp/stafftest" + Date.now(); process.env.STAFF_DEV_LOGIN = "1";
+process.env.OWNER_EMAILS = "rep@example.com"; process.env.AUTH_SECRET = "test-secret";
+const mod = await import(process.argv[2] || new URL("../api/staff.js", import.meta.url).href);
+const B = "https://x/api/staff?a=";
+const call = async (m, a, body, ck) => {
+  const r = await mod[m]({ url: B + a, method: m, headers: { get: (n) => (n === "cookie" ? ck || "" : null) }, text: async () => (m === "GET" ? "" : JSON.stringify(body || {})) });
+  return { s: r.status, j: await r.json().catch(() => ({})), c: (r.headers.get("set-cookie") || "").split(";")[0] };
+};
+const GET = "GET", POST = "POST";
+const dev = async (email) => { const r = await call(POST, "dev_login", { email }); return r.s === 200 ? r.c : r; };
+const allFiles = (d) => fs.readdirSync(d, { recursive: true }).filter((f) => fs.statSync(d + "/" + f).isFile()).map((f) => fs.readFileSync(d + "/" + f, "utf8")).join("\n");
 
-// 未ログイン
-assert.equal((await call(GET,"all")).s,401);
-const rep=await login("rep@example.com");
-const boot=await call(POST,"bootstrap",{members:[
- {ref:"L",name:"統括A",team:"media",role:"統括",status:"confirmed",email:"lead@example.com",page:{f:{strength:{v:"段取り"},weak:{v:"人前で話す"},contact:{v:"21時まで"}},kw:["段取り"],thanks:[{t:"ありがとう1"},{t:"ありがとう2"}]}},
- {ref:"M",name:"メンバーB",team:"media",role:"メンバー",status:"confirmed",email:"mem@example.com",page:{f:{strength:{v:"編集"},weak:{v:"朝"}}}},
- {ref:"O",name:"別チームC",team:"a",role:"メンバー",status:"confirmed",email:"other@example.com",page:{f:{strength:{v:"企画"}}}},
- {ref:"P",name:"保留D",team:"media",role:"メンバー",status:"pending",email:"pend@example.com"}]},rep);
-assert.equal(boot.j.count,4);
-// 保留の人はログインできない／未登録も
-assert.equal((await login("pend@example.com")).s,403);
-assert.equal((await login("nobody@example.com")).s,403);
-const lead=await login("lead@example.com"),mem=await login("mem@example.com"),oth=await login("other@example.com");
-// 名簿：保留とGmailは代表だけ
-let r=await call(GET,"all",null,rep);assert.equal(r.j.roster.length,4);assert.ok("email" in r.j.roster[0]);
-r=await call(GET,"all",null,mem);assert.equal(r.j.roster.length,3);assert.ok(!("email" in r.j.roster[0]));
-const R0=r.j.roster;const id=n=>R0.find(m=>m.name===n).id;const L=id("統括A"),M=id("メンバーB");
-r=await call(GET,"page&id="+L,null,rep);assert.equal(r.j.f.weak.v,"人前で話す");assert.equal(r.j.thanks.length,2);
+assert.equal((await call(GET, "all")).s, 401);
+const rep = await dev("rep@example.com");
+const boot = await call(POST, "bootstrap", { members: [
+  { ref: "L", name: "統括A", team: "media", role: "統括", status: "confirmed", email: "Lead@Example.com", page: { f: { strength: { v: "段取り" }, weak: { v: "人前で話す" } }, kw: ["段取り"], thanks: [{ t: "ありがとう1" }, { t: "ありがとう2" }] } },
+  { ref: "M", name: "メンバーB", team: "media", role: "メンバー", status: "confirmed", email: "mem@example.com", page: { f: { strength: { v: "編集" }, weak: { v: "朝" } } } },
+  { ref: "O", name: "別チームC", team: "a", role: "メンバー", status: "confirmed", email: "other@example.com", page: { f: { strength: { v: "企画" } } } },
+  { ref: "P", name: "保留D", team: "media", role: "メンバー", status: "pending", email: "pend@example.com" }] }, rep);
+assert.equal(boot.j.count, 4);
+// メールアドレスは保存されない（ハッシュだけ）。代表にも返さない
+assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).includes("example.com"), "メールアドレスが保存されている");
+let r = await call(GET, "all", null, rep);
+assert.equal(r.j.roster.length, 5);
+assert.ok(r.j.roster.every((m) => !("email" in m)) && r.j.roster.find((m) => m.name === "統括A").hasEmail === true);
+
+// 初回ログイン：メール → 確認コード → パスワード作成
+r = await call(POST, "login_start", { email: "mem@example.com" }); assert.equal(r.j.next, "code");
+const mail = fs.readdirSync(process.env.SUMMIT_FS_DIR + "/mail").map((f) => fs.readFileSync(process.env.SUMMIT_FS_DIR + "/mail/" + f, "utf8")).join();
+const code = mail.match(/\b(\d{6})\b/)[1];
+assert.equal((await call(POST, "code_verify", { email: "mem@example.com", code: code === "000000" ? "111111" : "000000" })).s, 400);
+r = await call(POST, "code_verify", { email: "MEM@example.com ", code }); assert.ok(r.j.setup);
+assert.equal((await call(POST, "password_set", { setup: r.j.setup, password: "1234" })).s, 400);
+assert.equal((await call(POST, "password_set", { setup: r.j.setup, password: "aaaaaaaaa" })).s, 400);
+r = await call(POST, "password_set", { setup: r.j.setup, password: "nexy-summit-27" }); assert.equal(r.s, 200);
+const mem = r.c;
+// 2回目からはパスワード
+assert.equal((await call(POST, "login_start", { email: "mem@example.com" })).j.next, "password");
+assert.equal((await call(POST, "login_password", { email: "mem@example.com", password: "wrong-pass" })).s, 401);
+r = await call(POST, "login_password", { email: "mem@example.com", password: "nexy-summit-27" }); assert.equal(r.s, 200);
+// 8回続けて間違えたら止まる
+for (let i = 0; i < 8; i++) await call(POST, "login_password", { email: "mem@example.com", password: "x" + i + "xxxxxxx" });
+assert.equal((await call(POST, "login_password", { email: "mem@example.com", password: "nexy-summit-27" })).s, 429);
+// 保留・未登録は入れない
+assert.equal((await call(POST, "login_start", { email: "pend@example.com" })).s, 403);
+assert.equal((await call(POST, "login_start", { email: "nobody@example.com" })).s, 403);
+// 写真がない人は needsPhoto
+assert.equal((await call(GET, "me", null, mem)).j.needsPhoto, true);
+
+const lead = await dev("lead@example.com"), oth = await dev("other@example.com");
+r = await call(GET, "all", null, mem);
+assert.equal(r.j.roster.length, 4); // 保留の人は見えない（代表を含む確定4人）
+assert.ok(r.j.roster.every((m) => !("hasEmail" in m)));
+const R0 = r.j.roster, id = (n) => R0.find((m) => m.name === n).id, L = id("統括A"), M = id("メンバーB");
+// 最初から公開：同じチームのメンバーにすぐ見える。管理職までの項目は見えない
+r = await call(GET, "page&id=" + L, null, mem);
+assert.equal(r.j.open, true); assert.equal(r.j.f.strength.v, "段取り"); assert.ok(!r.j.f.weak); assert.equal(r.j.thanks.length, 2);
+assert.ok(!r.j.excluded && !r.j.consent && !r.j.cert);
 // 本人以外は編集できない
-assert.equal((await call(POST,"page_save",{id:L,f:{strength:{v:"x"}}},mem)).s,403);
-// 最初から公開：同じチームのメンバーにすぐ見える
-assert.equal((await call(GET,"page&id="+L,null,mem)).j.open,true);
-r=await call(POST,"page_save",{id:L,publish:true,consent:true,thanksPub:[true,false],x:{skills:{"段取り":"good","ハッキング":"good"},from:19,to:22}},lead);
-assert.equal(r.s,200);assert.deepEqual(r.j.x.skills,{"段取り":"good"});
-// メンバー（同じチーム）：全員とチーム内は見える、管理職までは見えない、ありがとうは選ばれた1件だけ
-r=await call(GET,"page&id="+L,null,mem);assert.equal(r.j.f.strength.v,"段取り");assert.equal(r.j.f.contact.v,"21時まで");assert.ok(!r.j.f.weak);assert.equal(r.j.thanks.length,1);assert.ok(!r.j.excluded&&!r.j.consent&&!r.j.f.strength.q);
-// 別チーム：チーム内も見えない
-r=await call(GET,"page&id="+L,null,oth);assert.ok(r.j.f.strength&&!r.j.f.contact&&!r.j.f.weak);
-// 管理職：自分のチームのメンバーの「管理職まで」は見える（公開後）
-await call(POST,"page_save",{id:M,publish:true,consent:true},mem);
-r=await call(GET,"page&id="+M,null,lead);assert.equal(r.j.f.weak.v,"朝");
-r=await call(GET,"page&id="+M,null,oth);assert.ok(!r.j.f.weak);
-// 1on1の下書き：管理職は自分のチームの人だけ、別チームと本人は不可
-assert.equal((await call(POST,"draft_save",{id:id("別チームC"),fields:{dream:{text:"x"}}},lead)).s,403);
-assert.equal((await call(POST,"draft_save",{id:L,fields:{dream:{text:"x"}}},lead)).s,403);
-r=await call(POST,"draft_save",{id:M,fields:{dream:{text:"映像の仕事",quote:"映像の仕事がしたい",check:true}},consent:"yes"},lead);assert.equal(r.s,200);
-assert.equal(r.j.status,"pub");
+assert.equal((await call(POST, "page_save", { id: L, f: { strength: { v: "x" } } }, mem)).s, 403);
+// 見られる範囲は本人が送っても変わらない
+r = await call(POST, "page_save", { id: L, f: { weak: { v: "人前で話す", s: "all" } }, thanksPub: [true, false], x: { skills: { "段取り": "good", "ハッキング": "good" } } }, lead);
+assert.equal(r.j.f.weak.s, "lead"); assert.deepEqual(r.j.x.skills, { "段取り": "good" });
+r = await call(GET, "page&id=" + L, null, mem); assert.ok(!r.j.f.weak); assert.equal(r.j.thanks.length, 1);
+r = await call(GET, "page&id=" + L, null, oth); assert.ok(r.j.f.strength && !r.j.f.weak);
+// 管理職：自分のチームのメンバーの「管理職まで」は見える
+r = await call(GET, "page&id=" + M, null, lead); assert.equal(r.j.f.weak.v, "朝");
+// 1on1の下書き：管理職は自分のチームのほかの人だけ
+assert.equal((await call(POST, "draft_save", { id: id("別チームC"), fields: { dream: { text: "x" } } }, lead)).s, 403);
+assert.equal((await call(POST, "draft_save", { id: L, fields: { dream: { text: "x" } } }, lead)).s, 403);
+r = await call(POST, "draft_save", { id: M, fields: { dream: { text: "映像の仕事", quote: "映像の仕事がしたい", check: true } }, consent: "yes" }, lead);
+assert.equal(r.s, 200); assert.equal(r.j.status, "pub");
 // 非公開にすると本人と代表だけ
-await call(POST,"page_save",{id:M,unpublish:true},mem);assert.equal((await call(GET,"page&id="+M,null,lead)).j.open,false);
-await call(POST,"page_save",{id:M,publish:true},mem);
-// プロフィール・証明書
-r=await call(POST,"profile_save",{name:"メンバーB",kana:"めんばー びー",nick:"びー"},mem);assert.equal(r.j.member.kana,"めんばー びー");
-await call(POST,"page_save",{id:M,cert:{duty:"撮影を担当"}},mem);
-r=await call(GET,"page&id="+M,null,lead);assert.ok(!r.j.cert);
-r=await call(POST,"certificate",{},mem);assert.equal(r.j.sample,true);assert.equal(r.j.duty,"撮影を担当");
-assert.equal((await call(POST,"settings",{certOpen:true},mem)).s,403);
-await call(POST,"settings",{certOpen:true},rep);assert.equal((await call(POST,"certificate",{},mem)).j.sample,false);
-// メンバーは名簿を変えられない／代表は保留→確定にできる
-const P=(await call(GET,"all",null,rep)).j.roster.find(m=>m.name==="保留D");
-assert.equal((await call(POST,"roster_upsert",{...P,status:"confirmed"},mem)).s,403);
-assert.equal((await call(POST,"roster_upsert",{...P,status:"confirmed"},rep)).s,200);
-assert.ok(typeof (await login("pend@example.com"))==="string");
+await call(POST, "page_save", { id: M, unpublish: true }, mem); assert.equal((await call(GET, "page&id=" + M, null, lead)).j.open, false);
+await call(POST, "page_save", { id: M, publish: true }, mem);
+// プロフィール・写真・証明書
+const png = "data:image/jpeg;base64," + Buffer.from("fakejpeg").toString("base64");
+r = await call(POST, "profile_save", { name: "メンバーB", kana: "めんばー びー", nick: "びー", photo: png }, mem); assert.equal(r.j.member.kana, "めんばー びー");
+assert.equal((await call(GET, "me", null, mem)).j.needsPhoto, false);
+await call(POST, "page_save", { id: M, cert: { duty: "撮影を担当" } }, mem);
+r = await call(POST, "certificate", {}, mem); assert.equal(r.j.sample, true); assert.equal(r.j.duty, "撮影を担当");
+assert.equal((await call(POST, "settings", { certOpen: true }, mem)).s, 403);
+await call(POST, "settings", { certOpen: true }, rep); assert.equal((await call(POST, "certificate", {}, mem)).j.sample, false);
+// 代表：保留→確定。メールを入れ直すとパスワードは消える
+const P = (await call(GET, "all", null, rep)).j.roster.find((m) => m.name === "保留D");
+assert.equal((await call(POST, "roster_upsert", { ...P, status: "confirmed" }, mem)).s, 403);
+assert.equal((await call(POST, "roster_upsert", { ...P, status: "confirmed" }, rep)).s, 200);
+assert.equal((await call(POST, "login_start", { email: "pend@example.com" })).j.next, "code");
 // 確定→保留に戻すと、その場で入れなくなる
-await call(POST,"roster_upsert",{...(await call(GET,"all",null,rep)).j.roster.find(m=>m.id===M),email:"mem@example.com",status:"pending"},rep);
-assert.equal((await call(GET,"all",null,mem)).s,401);
-// Gmailの重複は登録できない
-assert.equal((await call(POST,"roster_upsert",{name:"重複",team:"a",email:"lead@example.com"},rep)).s,409);
+const Mrow = (await call(GET, "all", null, rep)).j.roster.find((m) => m.id === M);
+await call(POST, "roster_upsert", { ...Mrow, status: "pending" }, rep);
+assert.equal((await call(GET, "all", null, mem)).s, 401);
+// 同じメールアドレスは2人に登録できない
+assert.equal((await call(POST, "roster_upsert", { name: "重複", team: "a", email: "lead@example.com" }, rep)).s, 409);
 // 外すとページも消える
-await call(POST,"roster_remove",{id:id("別チームC")},rep);
-assert.equal((await call(GET,"page&id="+id("別チームC"),null,rep)).s,404);
-// Googleログイン：正しいトークンだけ通る
-const now=Math.floor(Date.now()/1000);
-const good=mk({iss:"https://accounts.google.com",aud:"cid.apps.googleusercontent.com",email:"Lead@Example.com",email_verified:true,exp:now+600});
-assert.equal((await call(POST,"login",{credential:good})).s,200);
-assert.equal((await call(POST,"login",{credential:mk({iss:"https://accounts.google.com",aud:"other",email:"lead@example.com",email_verified:true,exp:now+600})})).s,401);
-assert.equal((await call(POST,"login",{credential:mk({iss:"https://accounts.google.com",aud:"cid.apps.googleusercontent.com",email:"lead@example.com",email_verified:true,exp:now-1})})).s,401);
-assert.equal((await call(POST,"login",{credential:good.slice(0,-4)+"AAAA"})).s,401);
+await call(POST, "roster_remove", { id: id("別チームC") }, rep);
+assert.equal((await call(GET, "page&id=" + id("別チームC"), null, rep)).s, 404);
+assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").includes("@example.com"), "メールアドレスが保存されている");
 // 本番（Blob）では dev_login は使えない
-delete process.env.STAFF_DEV_LOGIN;assert.equal((await call(POST,"dev_login",{email:"rep@example.com"})).s,404);
+delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");

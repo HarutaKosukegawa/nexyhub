@@ -2,14 +2,16 @@
 // データはVercel Blob（private）に保存する。公開リポジトリなので、メンバーの情報はコードに書かない。
 //   staff/roster.json      運営メンバー名簿（確定・保留）。代表だけが書き換える
 //   staff/pages/<id>.json  一人ひとりの取扱説明書（最初から運営メンバーに公開。本人がいつでも書き換え・非公開にできる）
-//   staff/photos/<id>.jpg  顔写真（任意）
+//   staff/photos/<id>.jpg  顔写真（必須。運営メンバーだけが見られる）
+//   staff/auth/<hash>.json ログイン用の確認コード・失敗回数
 //   staff/settings.json    証明書の発行を始めたか（代表が切り替える）
-// ログイン：Googleアカウント（Gmail）。名簿で「確定」になっている人と、OWNER_EMAILS の代表だけが入れる。
-//   ログイン後は署名付きCookie(nxs)を30日保存。権限は毎回名簿から引き直すので、名簿を変えるとすぐ反映される。
-// 権限は3つ：代表（rep）／管理職＝統括・サブ統括（mgr）／メンバー（mem）。
-// 見せる範囲の判定はすべてサーバーで行う。画面に送るのは、その人が見てよい項目だけ。
-// 環境変数：GOOGLE_CLIENT_ID（必須）、OWNER_EMAILS（代表のGmail、カンマ区切り）、AUTH_SECRET（Cookieの署名）、
-//   ANTHROPIC_API_KEY（1on1の文字起こしから下書きを作るときだけ）、ANTHROPIC_MODEL（任意）
+// ログイン：応募フォームに書いたメールアドレス＋自分で作るパスワード。
+//   初回とパスワードを忘れたときは、そのアドレスに届く6桁のコードで本人確認してからパスワードを作る。
+//   メールアドレスは名簿に「ハッシュ」でしか保存しない。代表も含めて、誰も画面やAPIでアドレスを見られない。
+//   パスワードは scrypt でハッシュ化して保存。Cookie(nxs)にはメンバーIDとパスワードの版だけを入れて署名する。
+// 権限は3つ：代表（rep）／管理職＝統括・サブ統括（mgr）／メンバー（mem）。見せる範囲の判定はすべてサーバーで行う。
+// 環境変数：AUTH_SECRET（必須・一度決めたら変えない。メールのハッシュにも使う）、OWNER_EMAILS（代表のアドレス）、
+//   RESEND_API_KEY・MAIL_FROM（コードのメール送信）、ANTHROPIC_API_KEY・ANTHROPIC_MODEL（1on1の下書き。任意）
 import crypto from "node:crypto";
 
 /* ---------------- 保存先（summit.js と同じ仕組み） ---------------- */
@@ -72,15 +74,14 @@ const ROLES = ["統括", "サブ統括", "メンバー", "代表"];
 const STATUS = ["confirmed", "pending"]; // 確定／保留。保留の人はログインできず、ページも代表にしか見えない
 const SCOPES = ["all", "team", "lead"];   // 全員／チーム内／管理職まで
 // key → 公開範囲の初期設定
+// 見られる範囲は項目ごとに固定（本人も代表も変えられない）
 const FIELDS = { dream: "all", reason: "all", gain: "all", future: "all", strength: "all", weak: "lead", challenge: "lead", history: "all",
-  contact: "team", talkstyle: "team", moves: "team", busy: "team", please: "all", ng: "all", praise: "all", before: "all", after: "all" };
+  please: "all", ng: "all", before: "all", after: "all" };
 const SKILLS = ["企画", "段取り", "デザイン", "写真・動画", "SNS発信", "文章", "人前で話す", "話を聞く", "数字・お金", "IT・ツール"];
-const MONTHS = ["12", "1", "2", "3", "4"];
-const REPLY = ["h1", "half", "day", "slow"], PRAISE = ["pub", "dm", "text"];
 const ROSTER = "staff/roster.json", EMPTY_ROSTER = { members: {} };
 const SETTINGS = "staff/settings.json", EMPTY_SETTINGS = { certOpen: false };
 const pageKey = (id) => `staff/pages/${id}.json`;
-const EMPTY_PAGE = { status: "pub", cert: { duty: "" }, consent: "unknown", f: {}, x: { skills: {}, busy: [] }, kw: [], gkw: [], tips: { v: ["", "", ""], pub: false }, thanks: [], excluded: [], updated: 0 };
+const EMPTY_PAGE = { status: "pub", cert: { duty: "" }, consent: "unknown", f: {}, x: { skills: {} }, kw: [], gkw: [], thanks: [], excluded: [], updated: 0 };
 const isMgr = (r) => r === "統括" || r === "サブ統括";
 const str = (v, n) => String(v ?? "").replace(/[\u0000-\u001f\u007f]/g, (c) => (c === "\n" ? c : "")).trim().slice(0, n);
 const newId = () => crypto.randomBytes(6).toString("base64url");
@@ -116,49 +117,63 @@ function verifyCookie(tok) {
 const normEmail = (e) => String(e || "").trim().toLowerCase();
 const owners = () => (process.env.OWNER_EMAILS || "").split(",").map(normEmail).filter(Boolean);
 
-// GoogleのIDトークン（JWT）を、Googleの公開鍵で検証する
-let jwks = { t: 0, keys: [] };
-async function googleKeys() {
-  if (Date.now() - jwks.t < 3600e3 && jwks.keys.length) return jwks.keys;
-  const r = await fetch("https://www.googleapis.com/oauth2/v3/certs");
-  if (!r.ok) throw new Error("jwks");
-  jwks = { t: Date.now(), keys: (await r.json()).keys || [] };
-  return jwks.keys;
+// メールアドレスは保存しない。秘密の鍵でハッシュにしたものだけを名簿に持つ
+const emailHash = (email) => hmac("email:" + normEmail(email));
+const validEmail = (e) => e.length <= 254 && /^[^\s@,;<>]{1,64}@[^\s@,;<>]+\.[a-z]{2,}$/i.test(e);
+// パスワード（scrypt）
+const PW_MIN = 8;
+function hashPw(pw) { const salt = crypto.randomBytes(16); return salt.toString("base64") + "." + crypto.scryptSync(pw, salt, 32, { N: 16384, r: 8, p: 1 }).toString("base64"); }
+function checkPw(pw, stored) {
+  const [salt, h] = String(stored || "").split(".");
+  if (!salt || !h) return false;
+  const a = crypto.scryptSync(String(pw), Buffer.from(salt, "base64"), 32, { N: 16384, r: 8, p: 1 }), b = Buffer.from(h, "base64");
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
-async function verifyGoogle(cred) {
-  const [h, p, s] = String(cred || "").split(".");
-  if (!h || !p || !s) return null;
-  const head = JSON.parse(Buffer.from(h, "base64url").toString("utf8"));
-  if (head.alg !== "RS256") return null;
-  const jwk = (await googleKeys()).find((k) => k.kid === head.kid);
-  if (!jwk) return null;
-  const ok = crypto.verify("RSA-SHA256", Buffer.from(h + "." + p), crypto.createPublicKey({ key: jwk, format: "jwk" }), Buffer.from(s, "base64url"));
-  if (!ok) return null;
-  const c = JSON.parse(Buffer.from(p, "base64url").toString("utf8"));
-  const now = Date.now() / 1000;
-  if (!["accounts.google.com", "https://accounts.google.com"].includes(c.iss)) return null;
-  if (!process.env.GOOGLE_CLIENT_ID || c.aud !== process.env.GOOGLE_CLIENT_ID) return null;
-  if (!(c.exp > now) || !c.email || c.email_verified !== true) return null;
-  return normEmail(c.email);
+function pwProblem(pw) {
+  pw = String(pw || "");
+  if (pw.length < PW_MIN) return `パスワードは${PW_MIN}文字以上にしてください`;
+  if (pw.length > 200) return "パスワードが長すぎます";
+  if (/^(.)\1+$/.test(pw) || /^(0123|1234|abcd|pass)/i.test(pw)) return "推測されやすいパスワードです。別のものにしてください";
+  return "";
 }
+// メール送信（summit.js と同じ Resend）。ローカル検証ではファイルに書く
+async function sendMail(to, subject, text) {
+  if (process.env.SUMMIT_FS_DIR && !process.env.RESEND_API_KEY) { await (await getStore()).write(`mail/${emailHash(to)}.txt`, subject + "\n" + text); return; }
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST", headers: { authorization: "Bearer " + process.env.RESEND_API_KEY, "content-type": "application/json" },
+    body: JSON.stringify({ from: process.env.MAIL_FROM || "NEXY <noreply@nexyhub.jp>", to: [to], subject, text }),
+  });
+  if (!r.ok) throw Object.assign(new Error("mail"), { status: 502, msg: "メールを送れませんでした。少し待ってもう一度お試しください" });
+}
+const mailReady = () => !!(process.env.RESEND_API_KEY || process.env.SUMMIT_FS_DIR);
+const authKey = (eh) => `staff/auth/${eh.slice(0, 40)}.json`;
+const LOCK = { max: 8, ms: 15 * 60000 };
 
-// ログイン中の人。名簿から毎回引き直す（保留に戻された人・外された人はその場で入れなくなる）
+// 名簿からメールアドレスの人を探す。代表（OWNER_EMAILS）は名簿にいなければここで作る
+async function findByEmail(email) {
+  const eh = emailHash(email);
+  let roster = await readJSON(ROSTER, EMPTY_ROSTER);
+  let m = Object.values(roster.members).find((x) => x.eh === eh);
+  if (!m && owners().includes(normEmail(email))) {
+    roster = await updateJSON(ROSTER, (d) => {
+      if (Object.values(d.members).some((x) => x.eh === eh)) return false;
+      const id = newId();
+      d.members[id] = { id, name: "代表", team: "hq", role: "代表", status: "confirmed", eh, updated: Date.now() };
+    }, EMPTY_ROSTER);
+    m = Object.values(roster.members).find((x) => x.eh === eh);
+  }
+  return { m, eh };
+}
+const cookieFor = (m) => setCookie(sign({ i: m.id, pv: m.pwv || 0, x: Date.now() + AGE * 1000 }));
+// ログイン中の人。名簿から毎回引き直す（保留に戻された・外された・パスワードを変えた場合は、その場で無効）
 async function viewerOf(req, roster) {
   const o = verifyCookie(cookies(req).nxs);
   if (!o) return null;
-  return resolve(normEmail(o.e), roster);
+  const m = roster.members[o.i];
+  if (!m || m.status !== "confirmed" || (m.pwv || 0) !== o.pv) return null;
+  return { k: m.role === "代表" ? "rep" : isMgr(m.role) ? "mgr" : "mem", id: m.id, team: m.team, name: m.name };
 }
-function resolve(email, roster) {
-  if (!email) return null;
-  if (owners().includes(email)) {
-    const m = Object.values(roster.members).find((x) => x.role === "代表" && normEmail(x.email) === email);
-    return { k: "rep", id: m ? m.id : "rep", team: "hq", email, name: m ? m.name : "代表" };
-  }
-  const m = Object.values(roster.members).find((x) => x.email && normEmail(x.email) === email);
-  if (!m) return { none: "notfound" };
-  if (m.status !== "confirmed") return { none: "pending" };
-  return { k: m.role === "代表" ? "rep" : isMgr(m.role) ? "mgr" : "mem", id: m.id, team: m.team, email, name: m.name };
-}
+const NOPE = "このメールアドレスでは入れません。応募フォームに書いたメールアドレスか確かめてください。わからないときは代表に連絡してください";
 
 /* ---------------- 見せる範囲（サーバーで判定） ---------------- */
 const own = (v, m) => v.k === "rep" || v.id === m.id;
@@ -183,16 +198,9 @@ function viewPage(v, m, page) {
     if (!x || !x.v || !see(k)) continue;
     out.f[k] = me ? { v: x.v, s: x.s, q: x.q, src: x.src, chk: !!x.chk } : { v: x.v, s: x.s };
   }
-  const x = page.x || {};
-  out.x = {};
-  if (see("strength")) out.x.skills = x.skills || {};
-  if (see("contact")) Object.assign(out.x, { from: x.from, to: x.to, reply: x.reply });
-  if (see("talkstyle")) out.x.style = x.style;
-  if (see("praise")) out.x.praise = x.praise;
-  if (see("busy")) out.x.busy = x.busy || [];
+  out.x = { skills: see("strength") ? (page.x && page.x.skills) || {} : {} };
   out.kw = see("strength") ? page.kw || [] : [];
   out.gkw = see("gain") ? page.gkw || [] : [];
-  out.tips = me || page.tips.pub ? page.tips : { v: [], pub: false };
   out.thanks = (page.thanks || []).filter((t) => me || t.pub).map((t) => ({ t: t.t, from: t.from, pub: !!t.pub }));
   if (me || (v.k === "mgr" && v.team === m.team)) out.consent = page.consent;
   if (v.k === "rep") out.excluded = page.excluded || [];
@@ -203,27 +211,20 @@ function viewPage(v, m, page) {
 function viewRoster(v, roster) {
   return Object.values(roster.members)
     .filter((m) => v.k === "rep" || m.status === "confirmed")
-    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { email: m.email || "" } : {}) }));
+    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { hasEmail: !!m.eh, hasPassword: !!m.pw } : {}) }));
 }
 
 /* ---------------- 入力のチェック ---------------- */
 function cleanField(k, x, prev) {
   const v = str(x && x.v, 300);
-  const s = SCOPES.includes(x && x.s) ? x.s : (prev && prev.s) || FIELDS[k];
+  const s = (prev && prev.s) || FIELDS[k]; // 見られる範囲は変えさせない
   const out = { v, s };
   if (prev && prev.v === v) { if (prev.q) out.q = prev.q; if (prev.src) out.src = prev.src; if (prev.chk) out.chk = prev.chk; }
   return out;
 }
 function cleanX(x) {
-  const out = { skills: {}, busy: [] };
-  if (x && typeof x.skills === "object") for (const [s, val] of Object.entries(x.skills)) if (SKILLS.includes(s) && (val === "good" || val === "try")) out.skills[s] = val;
-  const h = (n) => (Number.isInteger(n) && n >= 6 && n <= 24 ? n : undefined);
-  out.from = h(x && x.from); out.to = h(x && x.to);
-  if (out.from !== undefined && out.to !== undefined && out.to <= out.from) out.to = Math.min(24, out.from + 1);
-  if (REPLY.includes(x && x.reply)) out.reply = x.reply;
-  if ([1, 2, 3, 4, 5].includes(x && x.style)) out.style = x.style;
-  if (PRAISE.includes(x && x.praise)) out.praise = x.praise;
-  if (x && Array.isArray(x.busy)) out.busy = [...new Set(x.busy.filter((b) => MONTHS.includes(b)))];
+  const out = { skills: {} };
+  if (x && typeof x.skills === "object") for (const [k, val] of Object.entries(x.skills)) if (SKILLS.includes(k) && (val === "good" || val === "try")) out.skills[k] = val;
   return out;
 }
 const strList = (a, n, len) => (Array.isArray(a) ? a.map((t) => str(t, len)).filter(Boolean).slice(0, n) : []);
@@ -261,30 +262,83 @@ async function route(req) {
   const s = await getStore();
   if (!s.ready) return err("保存先がまだ設定されていません", 503);
 
-  if (a === "config") return json({ googleClientId: process.env.GOOGLE_CLIENT_ID || "" });
-
-  if (req.method === "POST" && (a === "login" || a === "dev_login")) {
+  if (req.method === "POST" && a === "dev_login") {
+    // ローカル検証専用。本番（Blob保存）では使えない
+    if (!process.env.SUMMIT_FS_DIR || process.env.STAFF_DEV_LOGIN !== "1") return err("not found", 404);
+    const { m } = await findByEmail((await body(req, 10000)).email);
+    if (!m || m.status !== "confirmed") return err(NOPE, 403);
+    return json({ ok: true }, 200, { "set-cookie": cookieFor(m) });
+  }
+  // ① メールアドレスを入れる → パスワードがあれば「パスワード」、まだなら「確認コード」へ
+  if (req.method === "POST" && (a === "login_start" || a === "reset_start")) {
+    const email = normEmail((await body(req, 10000)).email);
+    if (!validEmail(email)) return err("メールアドレスの形を確かめてください");
+    const { m, eh } = await findByEmail(email);
+    if (!m || m.status !== "confirmed") { await new Promise((r) => setTimeout(r, 500)); return err(NOPE, 403); }
+    if (a === "login_start" && m.pw) return json({ next: "password" });
+    if (!mailReady()) return err("メール送信の設定がまだです。代表に連絡してください", 503);
+    const cur = await s.read(authKey(eh));
+    const old = cur ? JSON.parse(cur.body.toString("utf8")) : {};
+    if (old.sentAt && Date.now() - old.sentAt < 60000) return json({ next: "code", resent: false });
+    const c = String(crypto.randomInt(0, 1000000)).padStart(6, "0");
+    await s.write(authKey(eh), JSON.stringify({ ...old, h: hmac("code:" + eh + ":" + c), exp: Date.now() + 10 * 60000, tries: 0, sentAt: Date.now() }));
+    await sendMail(email, `NEXY 運営ログインの確認コード ${c}`,
+      `NEXY 運営メンバーの確認コードです。\n\n${c}\n\n画面にこの6桁を入れて、パスワードを作ってください。10分間有効です。\n心当たりがない場合は、このメールは無視してください。\n\n学生団体NEXY`);
+    return json({ next: "code" });
+  }
+  // ② 確認コード → パスワードを作るための15分だけ有効な札を返す
+  if (req.method === "POST" && a === "code_verify") {
     const b = await body(req, 10000);
-    let email = null;
-    if (a === "dev_login") {
-      // ローカル検証専用。本番（Blob保存）では使えない
-      if (!process.env.SUMMIT_FS_DIR || process.env.STAFF_DEV_LOGIN !== "1") return err("not found", 404);
-      email = normEmail(b.email);
-    } else email = await verifyGoogle(b.credential).catch(() => null);
-    if (!email) return err("Googleアカウントを確認できませんでした", 401);
-    const v = resolve(email, await readJSON(ROSTER, EMPTY_ROSTER));
-    if (!v || v.none === "notfound") return err("このGmailは運営メンバーに登録されていません。運営に応募したときのGmailでログインするか、代表に連絡してください", 403);
-    if (v.none === "pending") return err("まだ運営メンバーとして確定していません。確定したら入れるようになります", 403);
-    return json({ ok: true, viewer: v }, 200, { "set-cookie": setCookie(sign({ e: email, x: Date.now() + AGE * 1000 })) });
+    const email = normEmail(b.email), c = String(b.code || "").replace(/\D/g, "");
+    const { m, eh } = await findByEmail(email);
+    if (!m || m.status !== "confirmed") return err(NOPE, 403);
+    const cur = await s.read(authKey(eh));
+    const st = cur ? JSON.parse(cur.body.toString("utf8")) : null;
+    if (!st || !st.h || st.exp < Date.now()) return err("コードの期限が切れました。もう一度送ってください", 400);
+    if (st.tries >= 5) return err("間違いが多すぎます。コードを送り直してください", 429);
+    const ok = st.h === hmac("code:" + eh + ":" + c);
+    await s.write(authKey(eh), JSON.stringify(ok ? { ...st, h: null } : { ...st, tries: st.tries + 1 }));
+    if (!ok) return err("コードが違います", 400);
+    return json({ setup: sign({ k: "setup", i: m.id, x: Date.now() + 15 * 60000 }) });
+  }
+  // ③ パスワードを作る（初回・忘れたとき）→ ログイン
+  if (req.method === "POST" && a === "password_set") {
+    const b = await body(req, 10000);
+    const t = verifyCookie(b.setup);
+    if (!t || t.k !== "setup") return err("時間が経ちすぎました。最初からやり直してください", 400);
+    const bad = pwProblem(b.password);
+    if (bad) return err(bad);
+    const h = hashPw(String(b.password));
+    const r = await updateJSON(ROSTER, (d) => { const m = d.members[t.i]; if (!m || m.status !== "confirmed") return false; m.pw = h; m.pwv = (m.pwv || 0) + 1; }, EMPTY_ROSTER);
+    const m = r.members[t.i];
+    if (!m || m.pw !== h) return err(NOPE, 403);
+    if (m.eh) await s.del(authKey(m.eh));
+    return json({ ok: true }, 200, { "set-cookie": cookieFor(m) });
+  }
+  // ④ 2回目からはメールアドレス＋パスワード。8回続けて間違えたら15分止める
+  if (req.method === "POST" && a === "login_password") {
+    const b = await body(req, 10000);
+    const { m, eh } = await findByEmail(b.email);
+    if (!m || m.status !== "confirmed" || !m.pw) { await new Promise((r) => setTimeout(r, 500)); return err("メールアドレスかパスワードが違います", 401); }
+    const cur = await s.read(authKey(eh));
+    const st = cur ? JSON.parse(cur.body.toString("utf8")) : {};
+    if (st.lockUntil && st.lockUntil > Date.now()) return err("間違いが続いたため、15分ほど入れません。パスワードを忘れたときは「パスワードを忘れた」から作り直してください", 429);
+    if (!checkPw(b.password, m.pw)) {
+      const fails = (st.fails || 0) + 1;
+      await s.write(authKey(eh), JSON.stringify({ ...st, fails: fails >= LOCK.max ? 0 : fails, lockUntil: fails >= LOCK.max ? Date.now() + LOCK.ms : 0 }));
+      return err("メールアドレスかパスワードが違います", 401);
+    }
+    if (st.fails || st.lockUntil) await s.write(authKey(eh), JSON.stringify({ ...st, fails: 0, lockUntil: 0 }));
+    return json({ ok: true }, 200, { "set-cookie": cookieFor(m) });
   }
   if (a === "logout") return json({ ok: true }, 200, { "set-cookie": setCookie("", 0) });
 
   const roster = await readJSON(ROSTER, EMPTY_ROSTER);
   const v = await viewerOf(req, roster);
-  if (!v || v.none) return err("ログインしてください", 401);
+  if (!v) return err("ログインしてください", 401);
 
   if (req.method === "GET") {
-    if (a === "me") return json({ viewer: v });
+    if (a === "me") return json({ viewer: v, needsPhoto: !(roster.members[v.id] || {}).pv });
     if (a === "all") {
       // 名簿と、見てよい範囲に削った全員分のページ
       const list = viewRoster(v, roster);
@@ -323,11 +377,10 @@ async function route(req) {
       }
       p.f = f;
       if (b.x) p.x = cleanX(b.x);
-      if (b.tips) p.tips = { v: [0, 1, 2].map((i) => str(b.tips.v && b.tips.v[i], 50)), pub: p.tips.pub };
       if (Array.isArray(b.thanksPub)) p.thanks.forEach((t, i) => { t.pub = !!b.thanksPub[i]; });
       if (b.cert) p.cert = { duty: str(b.cert.duty, 160) };
       if (b.publish) {
-        p.status = "pub"; p.tips.pub = p.tips.v.some(Boolean);
+        p.status = "pub";
         Object.values(p.f).forEach((x) => { delete x.chk; delete x.src; });
       }
       if (b.unpublish) p.status = "draft";
@@ -409,16 +462,19 @@ async function route(req) {
     if (!TEAMS.includes(b.team)) return err("チームを選んでください");
     const role = ROLES.includes(b.role) ? b.role : "メンバー";
     const status = STATUS.includes(b.status) ? b.status : "pending";
-    const email = normEmail(b.email);
-    if (email && !/^[^\s@]{1,64}@[^\s@]+\.[a-z]{2,}$/i.test(email)) return err("Gmailの形が正しくありません");
+    const email = normEmail(b.email); // 入れたときだけ更新。保存するのはハッシュだけ
+    if (email && !validEmail(email)) return err("メールアドレスの形が正しくありません");
+    const eh = email ? emailHash(email) : null;
     let warn = "";
     const r = await updateJSON(ROSTER, (d) => {
-      if (email && Object.values(d.members).some((x) => x.id !== id && normEmail(x.email) === email)) throw Object.assign(new Error("dup"), { status: 409, msg: "このGmailは、もう別の人に登録されています" });
+      if (eh && Object.values(d.members).some((x) => x.id !== id && x.eh === eh)) throw Object.assign(new Error("dup"), { status: 409, msg: "このメールアドレスは、もう別の人に登録されています" });
       if (status === "confirmed" && isMgr(role) && Object.values(d.members).some((x) => x.id !== id && x.status === "confirmed" && x.team === b.team && x.role === role)) warn = `${role}がすでにいます。2人にする場合はこのままで大丈夫です`;
       const prev = d.members[id] || {};
-      d.members[id] = { ...prev, id, name, kana: b.kana !== undefined ? str(b.kana, 30) : prev.kana || "", team: b.team, role, status, email, ret: !!b.ret, updated: Date.now() };
+      d.members[id] = { ...prev, id, name, kana: b.kana !== undefined ? str(b.kana, 30) : prev.kana || "", team: b.team, role, status, ret: !!b.ret, updated: Date.now() };
+      delete d.members[id].email;
+      if (eh) { if (d.members[id].eh !== eh) { delete d.members[id].pw; d.members[id].pwv = (prev.pwv || 0) + 1; } d.members[id].eh = eh; }
     }, EMPTY_ROSTER);
-    return json({ ok: true, member: r.members[id], warn });
+    return json({ ok: true, member: viewRoster(v, { members: { [id]: r.members[id] } })[0], warn });
   }
   // 名簿から外す（運営を抜けた）：ページも消す
   if (a === "roster_remove") {
@@ -429,7 +485,7 @@ async function route(req) {
   }
   // 最初の取り込み：応募フォームなどから作った下書きを、名簿が空のときに一度だけ入れる
   if (a === "bootstrap") {
-    if (Object.keys(roster.members).length) return err("名簿がすでにあります。1人ずつ追加してください", 409);
+    if (Object.values(roster.members).some((m) => m.role !== "代表")) return err("名簿がすでにあります。1人ずつ追加してください", 409);
     const list = Array.isArray(b.members) ? b.members.slice(0, 200) : [];
     const ids = {};
     await updateJSON(ROSTER, (d) => {
@@ -437,7 +493,7 @@ async function route(req) {
         const name = str(x.name, 20);
         if (!name || !TEAMS.includes(x.team)) continue;
         const id = newId(); ids[x.ref || name] = id;
-        d.members[id] = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", email: normEmail(x.email), ret: !!x.ret, updated: Date.now() };
+        d.members[id] = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(validEmail(normEmail(x.email)) ? { eh: emailHash(x.email) } : {}), ret: !!x.ret, updated: Date.now() };
       }
     }, EMPTY_ROSTER);
     for (const x of list) {
