@@ -102,6 +102,26 @@ assert.equal((await call(POST, "roster_upsert", { name: "重複", team: "a", ema
 await call(POST, "roster_remove", { id: id("別チームC") }, rep);
 assert.equal((await call(GET, "page&id=" + id("別チームC"), null, rep)).s, 404);
 assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").includes("@example.com"), "メールアドレスが保存されている");
+// 追加の取り込み（週1など）：同じ人は重複せず更新、本人が書いた文章は上書きしない、新しい人は追加
+{
+  const before = (await call(GET, "all", null, rep)).j.roster;
+  const lead = before.find((m) => m.name === "統括A");
+  const leadCk = await dev("lead@example.com");
+  await call(POST, "page_save", { id: lead.id, f: { strength: { v: "本人が書いた強み" } } }, leadCk);
+  const r2 = await call(POST, "bootstrap", { members: [
+    { name: "統括A", team: "media", role: "統括", status: "confirmed", email: "LEAD@example.com", page: { f: { strength: { v: "フォームの強み" }, dream: { v: "フォームの夢" } } } },
+    { name: "新人E", team: "b", role: "メンバー", status: "confirmed", email: "new@example.com", page: { f: { reason: { v: "参加理由" } } } }] }, rep);
+  assert.equal(r2.s, 200); assert.equal(r2.j.added, 1); assert.equal(r2.j.updated, 1);
+  const after = (await call(GET, "all", null, rep)).j.roster;
+  assert.equal(after.length, before.length + 1);
+  const pg = (await call(GET, "page&id=" + lead.id, null, rep)).j;
+  assert.equal(pg.f.strength.v, "本人が書いた強み");
+  assert.equal(pg.f.dream.v, "フォームの夢");
+  const nc = await dev("new@example.com"); assert.equal(typeof nc, "string", "新人Eがログインできない");
+  // 保留→確定も取り込みで反映
+  await call(POST, "bootstrap", { members: [{ name: "新人E", team: "b", role: "メンバー", status: "pending", email: "new@example.com" }] }, rep);
+  assert.equal((await call(GET, "all", null, rep)).j.roster.find((m) => m.name === "新人E").status, "pending");
+}
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");

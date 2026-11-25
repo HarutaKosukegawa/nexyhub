@@ -186,12 +186,14 @@ const handle = (v) => {
   v = String(v || "").trim().replace(/^https?:\/\/(www\.)?(instagram\.com|x\.com|twitter\.com|tiktok\.com)\/@?/i, "").replace(/^@/, "").replace(/[/?#].*$/, "");
   return /^[A-Za-z0-9._]{1,30}$/.test(v) ? v : "";
 };
+const GRADES = ["中学生", "高校生", "大学生", "大人"];
 const TAG_OLD = { 起業: "起業・ビジネス", 国際: "国際・留学", 地域: "地域・まちづくり", 教育: "教育・学び", AI: "AI・テック" };
 function cleanProfile(b) {
   const p = {
     name: str(b.name, 20), title: str(b.title, 30), doing: str(b.doing, 100), want: str(b.want, 40),
     tags: [...new Set((Array.isArray(b.tags) ? b.tags : []).map((t) => TAG_OLD[t] || t).filter((t) => TAGS.includes(t)))].slice(0, 3),
     ig: handle(b.ig), x: handle(b.x), tt: handle(b.tt), open: b.open !== false,
+    grade: GRADES.includes(b.grade) ? b.grade : "",
   };
   if (!p.name || !p.title || !p.doing) return null;
   return p;
@@ -201,7 +203,7 @@ async function body(req, max = 400000) {
   if (t.length > max) throw Object.assign(new Error("too large"), { status: 413 });
   try { return JSON.parse(t || "{}"); } catch { return {}; }
 }
-const publicPerson = (id, p) => ({ id, name: p.name, title: p.title, doing: p.doing, want: p.want, tags: p.tags, ig: p.ig, x: p.x, tt: p.tt, open: !!p.open, pv: p.pv || 0, updatedAt: p.updatedAt });
+const publicPerson = (id, p) => ({ id, name: p.name, title: p.title, doing: p.doing, want: p.want, grade: p.grade || "", tags: p.tags, ig: p.ig, x: p.x, tt: p.tt, open: !!p.open, pv: p.pv || 0, updatedAt: p.updatedAt });
 
 const PEOPLE = "db/people.json", NOTICES = "db/notices.json";
 const EMPTY_PEOPLE = { people: {} }, EMPTY_NOTICES = { notices: [] };

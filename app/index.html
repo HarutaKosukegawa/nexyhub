@@ -331,16 +331,39 @@ main{padding:0 16px 16px}
 .snsf .srow span{font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
 .snsf .srow span i{width:10px;height:10px;border-radius:3px;background:var(--sc)}
 .snsf input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px}
-.show{position:fixed;inset:0;z-index:40;background:radial-gradient(120% 70% at 100% 0%,#7FDAD6,transparent 60%),var(--teal);color:var(--on-teal);display:grid;place-content:center;justify-items:center;text-align:center;gap:10px;padding:24px}
-.show .av{width:min(56vw,220px);height:min(56vw,220px);font-size:72px;box-shadow:0 0 0 4px #fff}
-.show h2{font-size:clamp(28px,9vw,40px);font-weight:900;margin-top:8px}
-.show .ti{font-size:15px;color:var(--on-teal);opacity:.8;font-weight:700}
-.show .dg{font-size:15px;opacity:.85;max-width:22em}
-.show .wn{margin-top:8px;background:var(--orange);color:#fff;font-weight:900;font-size:17px;padding:12px 18px;border-radius:18px;max-width:20em}
-.show .tags{justify-content:center}
-.show .tg{background:rgba(10,46,45,.12);color:var(--on-teal)}
-.show button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:44px;height:44px;border-radius:50%;background:rgba(10,46,45,.12);color:var(--on-teal);font-size:20px}
-.show .hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:0;right:0;font-size:11px;opacity:.6}
+.show{position:fixed;inset:0;z-index:40;background:radial-gradient(90% 55% at 100% 0%,rgba(64,188,184,.55),transparent 60%),radial-gradient(70% 45% at 0% 100%,rgba(245,70,0,.35),transparent 60%),#02102B;display:grid;place-items:center;padding:56px 16px 48px;overflow-y:auto}
+.mcard{width:min(100%,420px);background:#fff;color:var(--ink);border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);padding-bottom:18px}
+.nc-top{position:relative;height:96px;background:var(--teal);overflow:hidden;display:flex;justify-content:space-between;align-items:flex-start;padding:14px 18px;color:#02102B}
+.nc-top .nc-ev{font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.04em;position:relative;z-index:1}
+.nc-top .nc-dt{font-weight:900;font-size:12px;background:#02102B;color:#fff;border-radius:999px;padding:3px 10px;position:relative;z-index:1}
+.nc-top i{position:absolute;border-radius:50%}
+.nc-top .b1{width:140px;height:140px;background:var(--orange);right:-40px;bottom:-90px}
+.nc-top .b2{width:70px;height:70px;background:var(--violet);right:90px;bottom:-40px}
+.nc-top .b3{width:44px;height:44px;background:var(--pink);left:46%;top:-18px}
+.nc-id{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:end;padding:0 18px;margin-top:-44px;position:relative}
+.nc-id .av{width:104px;height:104px;font-size:40px;box-shadow:0 0 0 5px #fff;background:var(--teal-tint);color:var(--teal-deep)}
+.nc-nm{display:grid;justify-items:start;gap:2px;padding-bottom:2px;min-width:0}
+.nc-nm h2{font-size:clamp(24px,7vw,32px);font-weight:900;line-height:1.15;margin:2px 0 0;overflow-wrap:anywhere}
+.nc-nm .ti{font-size:13px;font-weight:700;color:var(--teal-deep)}
+.nc-box{margin:12px 18px 0;border-radius:16px;padding:12px 14px;text-align:left}
+.nc-box small{display:block;font-size:11px;font-weight:900;letter-spacing:.04em;margin-bottom:2px}
+.nc-box p{margin:0;font-size:15px;font-weight:700;line-height:1.55}
+.nc-doing{background:var(--teal-tint)}.nc-doing small{color:var(--teal-deep)}
+.nc-want{background:var(--orange)}.nc-want small{color:rgba(255,255,255,.85)}.nc-want p{color:#fff;font-size:16px;font-weight:900}
+.nc-tags{margin:12px 18px 0;justify-content:flex-start}
+.nc-sns{margin:12px 18px 0}.nc-sns .sns{justify-content:flex-start}
+.show .shx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:20px}
+.show .hint{position:static;margin-top:14px;font-size:12px;color:rgba(255,255,255,.7);text-align:center}
+.show{grid-auto-flow:row;align-content:center}
+.gr{display:inline-flex;align-items:center;font-size:11px;font-weight:900;color:#fff;background:var(--gc);border-radius:999px;padding:2px 10px;line-height:1.6}
+.pcard .gr{justify-self:start}
+.prof .gr,.prof-hero .gr{margin-top:6px;position:relative}
+.grpick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.grpick label{position:relative}
+.grpick input{position:absolute;opacity:0;pointer-events:none}
+.grpick span{display:grid;place-items:center;min-height:44px;border-radius:12px;border:2px solid color-mix(in srgb,var(--gc) 35%,transparent);color:var(--gc);font-weight:900;font-size:13px;cursor:pointer;background:#fff}
+.grpick input:checked+span{background:var(--gc);border-color:var(--gc);color:#fff}
+.grpick input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
 .star,.heart{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;color:var(--muted);flex:none}
 .star svg,.heart svg{width:22px;height:22px}
 .star[aria-pressed="true"]{color:var(--orange)}
@@ -528,7 +551,7 @@ fieldset{border:0;margin:0;padding:0}
   @keyframes fade{from{opacity:0}}@keyframes fadeOut{to{opacity:0}}
   @keyframes sheetUp{from{transform:translateY(100%)}}@keyframes sheetDown{to{transform:translateY(100%)}}
   .show{animation:showIn .34s var(--ease) both}.show.out{animation:fadeOut .18s var(--ease-in) both}
-  .show .av{animation:showAv .5s var(--ease) .05s both}
+  .show .mcard{animation:showAv .5s var(--ease) .05s both}
   @keyframes showIn{from{opacity:0;transform:scale(.97)}}@keyframes showAv{from{opacity:0;transform:scale(.8)}}
   .pop svg{animation:pop .36s var(--ease)}
   @keyframes pop{40%{transform:scale(1.35)}}
@@ -1171,9 +1194,11 @@ function pcardHTML(p){const me=p.id===uid;
     ${p.open?'<span class="okb">話しかけてOK</span>':""}
     ${me?"":`<button class="heart" aria-label="話したい人に追加" aria-pressed="${talk.has(p.id)}" data-talk="${esc(p.id)}">${HEART}</button>`}
     ${avatar(p,"m")}${me?'<span class="mebadge">あなた</span>':""}
-    <span class="nm">${esc(p.name)}</span><span class="ti">${esc(p.title)}</span><span class="dg">${esc(p.doing)}</span>
+    ${gradeChip(p.grade)}<span class="nm">${esc(p.name)}</span><span class="ti">${esc(p.title)}</span><span class="dg">${esc(p.doing)}</span>
     ${(p.tags||[]).length?`<div class="tags">${p.tags.slice(0,3).map(tagChip).join("")}</div>`:""}
     ${p.ig||p.x||p.tt?`<div class="psns">${p.ig?`<a class="s-ig" href="https://www.instagram.com/${encodeURIComponent(p.ig)}/" target="_blank" rel="noopener" aria-label="${esc(p.name)}のInstagramを開く">IG</a>`:""}${p.x?`<a class="s-x" href="https://x.com/${encodeURIComponent(p.x)}" target="_blank" rel="noopener" aria-label="${esc(p.name)}のXを開く">X</a>`:""}${p.tt?`<a class="s-tt" href="https://www.tiktok.com/@${encodeURIComponent(p.tt)}" target="_blank" rel="noopener" aria-label="${esc(p.name)}のTikTokを開く">TT</a>`:""}</div>`:""}</div>`}
+const GRADES=[["中学生","var(--pink)"],["高校生","var(--teal-deep)"],["大学生","var(--violet)"],["大人","var(--orange)"]];
+const gradeChip=g=>{const x=GRADES.find(q=>q[0]===g);return x?`<span class="gr" style="--gc:${x[1]}">${x[0]}</span>`:""};
 const tagChip=t=>`<span class="tg" data-t="1" style="--tc:${TCOL[t]||"var(--fac)"}">${esc(t)}</span>`;
 const ICO={eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 20c.6-3.6 3-5.6 6-5.6s5.4 2 6 5.6"/><path d="M16 6.5h5M18.5 4v5"/></svg>',
  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.3a4.3 4.3 0 017.5 2.5C19.5 15.4 12 20 12 20z"/></svg>',
@@ -1200,9 +1225,15 @@ const snsHTML=p=>{const l=[];if(p.ig)l.push(`<a class="s-ig" href="https://www.i
   return l.length?`<div class="sns">${l.join("")}</div>`:""};
 const cleanHandle=v=>{v=String(v||"").trim().replace(/^https?:\/\/(www\.)?(instagram\.com|x\.com|twitter\.com|tiktok\.com)\/@?/i,"").replace(/^@/,"").replace(/[/?#].*$/,"");return /^[A-Za-z0-9._]{1,30}$/.test(v)?v:""};
 function showCard(){const p=myProfile();if(!p)return openRegister();
-  $("showRoot").innerHTML=`<div class="show" role="dialog" aria-modal="true" aria-label="自分のカード"><button data-unshow="1" aria-label="閉じる">×</button>
-    ${avatar(p,"")}<h2>${esc(p.name)}</h2><span class="ti">${esc(p.title)}</span><p class="dg">${esc(p.doing)}</p>
-    ${p.want?`<p class="wn">${esc(p.want)}</p>`:""}${snsHTML(p)}${(p.tags||[]).length?`<div class="tags">${p.tags.map(t=>`<span class="tg">${esc(t)}</span>`).join("")}</div>`:""}
+  $("showRoot").innerHTML=`<div class="show" role="dialog" aria-modal="true" aria-label="自分のカード"><button class="shx" data-unshow="1" aria-label="閉じる">×</button>
+    <div class="mcard">
+      <div class="nc-top"><span class="nc-ev">NEXY SUMMIT 2027</span><span class="nc-dt">2027.3.26</span><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="nc-id">${avatar(p,"")}<div class="nc-nm">${gradeChip(p.grade)}<h2>${esc(p.name)}</h2><span class="ti">${esc(p.title)}</span></div></div>
+      <div class="nc-box nc-doing"><small>やっていること</small><p>${esc(p.doing)}</p></div>
+      ${p.want?`<div class="nc-box nc-want"><small>やりたいこと・話したいテーマ</small><p>${esc(p.want)}</p></div>`:""}
+      ${(p.tags||[]).length?`<div class="tags nc-tags">${p.tags.map(tagChip).join("")}</div>`:""}
+      ${snsHTML(p)?`<div class="nc-sns">${snsHTML(p)}</div>`:""}
+    </div>
     <span class="hint">話している相手にこの画面を見せてください</span></div>`;
   $("showRoot").querySelector("button").focus()}
 function registerCTA(){
@@ -1409,7 +1440,7 @@ function vMy(){
   const tl=people.filter(p=>talk.has(p.id));
   const c=clashSet(plan);
   const Q=FAQ;
-  const hero=mine?`<section class="prof-hero">${avatar(mine,"")}<h2>${esc(mine.name)}</h2><span class="ti">${esc(mine.title)}</span>
+  const hero=mine?`<section class="prof-hero">${avatar(mine,"")}${gradeChip(mine.grade)}<h2>${esc(mine.name)}</h2><span class="ti">${esc(mine.title)}</span>
       ${(mine.tags||[]).length?`<div class="tags">${mine.tags.map(tagChip).join("")}</div>`:""}
       <p class="dg">${esc(mine.doing)}</p>${mine.want?`<p class="wn">${esc(mine.want)}</p>`:""}${snsHTML(mine)}
       <div class="go"><button class="btn o" data-show="1">カードを見せる</button><button class="btn s" data-reg="1">編集する</button></div>
@@ -1483,7 +1514,7 @@ function openSession(id){const x=S.find(s=>s.id===id);if(!x||x.lunch)return;cons
       ${x.zone?`<button class="btn s" data-tab="map" data-zone-go="${x.zone}">マップで見る</button>`:""}
       ${x.q?'<button class="btn s full" disabled>質問を送る（当日ここから送れます）</button>':x.ws?'<button class="btn s full" disabled>予約（告知時に公開）</button>':""}</div>`,x.t)}
 function openPerson(id,confirmDel){const p=people.find(q=>q.id===id);if(!p)return;if(!isMember()&&p.id!==uid){openRegister();return}const me=p.id===uid;
-  openSheet(`<div class="prof">${avatar(p,"l")}<h3>${esc(p.name)}</h3>${p.open?'<span class="okb">話しかけてOK</span>':""}<span class="ti">${esc(p.title)}</span>
+  openSheet(`<div class="prof">${avatar(p,"l")}${gradeChip(p.grade)}<h3>${esc(p.name)}</h3>${p.open?'<span class="okb">話しかけてOK</span>':""}<span class="ti">${esc(p.title)}</span>
       ${(p.tags||[]).length?`<div class="tags" style="justify-content:center">${p.tags.map(tagChip).join("")}</div>`:""}</div>
     <div class="blk"><small>やっていること</small><p>${esc(p.doing)}</p></div>
     ${p.want?`<div class="blk"><small>やりたいこと</small><p class="want">${esc(p.want)}</p></div>`:""}
@@ -1498,7 +1529,7 @@ function openPerson(id,confirmDel){const p=people.find(q=>q.id===id);if(!p)retur
 let draftPhoto="",photoChanged=false;
 function openRegister(confirmDel){
   if(apiOK===false){openSheet(`<h3>参加者登録</h3><p class="d">${apiSetup?"参加者登録はまだ受付前です。受付が始まったら、このページとSNSでお知らせします。":"いまサーバーにつながりません。電波の良いところで開き直してください。"}</p><div class="acts"><button class="btn s full" data-close="1">閉じる</button></div>`,"参加者登録");return}
-  const p=myProfile()||{name:"",title:"",doing:"",want:"",tags:[],photo:""};
+  const p=myProfile()||{name:"",title:"",doing:"",want:"",grade:"",tags:[],photo:""};
   if(!confirmDel){draftPhoto="";photoChanged=false}
   const curPh=draftPhoto||(!photoChanged&&photoURL(p));
   const prev=curPh?`<img class="av m" id="phPrev" src="${curPh}" alt="選んだ写真">`:`<span class="av m" id="phPrev" aria-hidden="true">${esc((p.name||"?").charAt(0)||"?")}</span>`;
@@ -1510,8 +1541,9 @@ function openRegister(confirmDel){
       <div class="photo">${prev}<div class="ctl"><span class="btn s filebtn">写真を選ぶ<input id="phIn" type="file" accept="image/*" aria-label="顔写真を選ぶ"></span>
       ${curPh?'<button type="button" class="note" data-rmphoto="1" style="text-decoration:underline">写真を外す</button>':'<span class="hp">顔がわかると当日見つけてもらいやすい</span>'}</div></div></div>
     <div class="fld"><label for="fName">名前<em>必須</em></label><input type="text" id="fName" maxlength="20" value="${esc(p.name)}" placeholder="例：こすけ　（ニックネームでもOK）"></div>
+    <fieldset class="fld"><legend>いまの立場<em>必須</em></legend><div class="grpick">${GRADES.map(([g,c],i)=>`<label style="--gc:${c}"><input type="radio" name="fGrade" id="gr${i}" value="${g}" ${p.grade===g?"checked":""}><span>${g}</span></label>`).join("")}</div><span class="hp">年齢ではなく、いまの立場を選んでください。カードと参加者一覧に表示されます</span></fieldset>
     <div class="fld"><label for="fTitle">肩書<em>必須</em></label><input type="text" id="fTitle" maxlength="30" value="${esc(p.title)}" placeholder="例：高校2年／学生団体〇〇 代表"><span class="hp">学校名は書かなくてOK</span></div>
-    <div class="fld"><label for="fDoing">何をしているか<em>必須</em></label><textarea id="fDoing" rows="3" maxlength="100" placeholder="例：地元の商店街でイベントを企画しています。">${esc(p.doing)}</textarea></div>
+    <div class="fld"><label for="fDoing">何をしているか<em>必須</em></label><textarea id="fDoing" rows="4" maxlength="100" placeholder="例：地元の商店街で、高校生が企画するお祭りを運営しています。&#10;例：中高生向けに、無料のプログラミング教室を開いています。&#10;例：会社で、地方の工場にAIを導入する仕事をしています。">${esc(p.doing)}</textarea><span class="hp">会社名や役職だけだと伝わりにくいので、「誰に・何を」しているかを書くと話しかけてもらいやすくなります</span></div>
     <div class="fld"><label for="fWant">やりたいこと・話したいテーマ<em>任意</em></label><input type="text" id="fWant" maxlength="40" value="${esc(p.want)}" placeholder="例：一緒にPodcastをやる仲間がほしい"></div>
     <fieldset class="fld"><legend>SNS<em>任意</em></legend><div class="snsf">
       <label class="srow s-ig" for="fIg"><span><i></i>Instagram</span><input type="text" id="fIg" value="${esc(p.ig||"")}" placeholder="@なしのID" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="60"></label>
@@ -1542,9 +1574,10 @@ function onPhoto(e){
 }
 async function onSave(e){
   e.preventDefault();const err=$("fErr");err.textContent="";
-  const v={name:$("fName").value.trim(),title:$("fTitle").value.trim(),doing:$("fDoing").value.trim(),want:$("fWant").value.trim(),ig:cleanHandle($("fIg").value),x:cleanHandle($("fX").value),tt:cleanHandle($("fTt").value),
+  const v={name:$("fName").value.trim(),title:$("fTitle").value.trim(),doing:$("fDoing").value.trim(),want:$("fWant").value.trim(),grade:(document.querySelector('input[name="fGrade"]:checked')||{}).value||"",ig:cleanHandle($("fIg").value),x:cleanHandle($("fX").value),tt:cleanHandle($("fTt").value),
     tags:[...document.querySelectorAll(".tagpick input:checked")].map(i=>i.value).slice(0,3)};
   if(!v.name||!v.title||!v.doing){err.textContent="名前・肩書・何をしているかを入力してください";return}
+  if(!v.grade){err.textContent="いまの立場（中学生・高校生・大学生・大人）を選んでください";return}
   for(const [id,nm] of [["fIg","Instagram"],["fX","X"],["fTt","TikTok"]]){const raw=$(id).value.trim();if(raw&&!cleanHandle(raw)){err.textContent=nm+"のIDは英数字・ピリオド・アンダーバーで入力してください";return}}
   if(!$("fOk").checked){err.textContent="公開への同意にチェックを入れてください";return}
   const btn=$("fSave");btn.disabled=true;btn.textContent="保存中…";
@@ -2225,9 +2258,9 @@ function stSettings(){
     <select id="amTeam">${TEAM_KEYS.map(k=>`<option value="${k}">${TEAMS[k].n}</option>`).join("")}</select><select id="amRole">${ROLES.map(r=>`<option>${r}</option>`).join("")}</select>
     <input type="email" id="amMail" placeholder="応募フォームのメールアドレス"><label class="note"><input type="checkbox" id="amRet"> 2026から続けて参加</label><label class="note"><input type="checkbox" id="amConf" checked> 確定</label></div>
     <button class="btn o" style="width:100%;margin-top:8px" data-st="addmember">追加する</button></section>
-  ${members().filter(m=>m.role!=="代表").length?"":`<section class="panel" style="margin-top:12px"><b style="font-size:14px">最初の取り込み（一度だけ）</b>
-    <p class="note" style="margin:2px 0 8px">応募フォームから作った取り込み用ファイル（JSON）を選ぶと、名簿と取扱説明書の下書きをまとめて入れます。ファイルの中のメールアドレスは、サーバーで暗号化してから保存されます。</p>
-    <label class="btn s filebtn" style="width:100%">ファイルを選んで取り込む<input type="file" accept="application/json,.json" data-st-boot="1"></label></section>`}`;
+  <section class="panel" style="margin-top:12px"><b style="font-size:14px">応募フォームから取り込む</b>
+    <p class="note" style="margin:2px 0 8px">応募フォームとチーム編成から作った取り込み用ファイル（JSON）を選びます。何度でも使えます。すでにいる人は重複せず、チーム・役職・確定かどうかだけ更新します。本人が書いた文章は上書きしません。メールアドレスはサーバーで暗号化してから保存されます。</p>
+    <label class="btn s filebtn" style="width:100%">ファイルを選んで取り込む<input type="file" accept="application/json,.json" data-st-boot="1"></label></section>`;
 }
 
 /* ---- 操作 ---- */
@@ -2281,7 +2314,7 @@ document.addEventListener("change",async e=>{if(tab!=="staff")return;const el=e.
   if(ds.stPhoto){const f=el.files&&el.files[0];if(!f)return;const w=me();if(!w)return;
     act(async()=>{const u=await resizePhoto(f);await sapi("profile_save",{name:w.m.name,kana:w.m.kana||"",nick:w.m.nick||"",photo:u});NEEDS_PHOTO=false;sv.auth.step="email"},"顔写真を登録しました")}
   if(ds.stBoot){const f=el.files&&el.files[0];if(!f)return;
-    act(async()=>{const j=JSON.parse(await f.text());const r=await sapi("bootstrap",j);toast(`${r.count}人を取り込みました`)},"")}
+    act(async()=>{const j=JSON.parse(await f.text());const r=await sapi("bootstrap",j);el.value="";toast(`新しく${r.added}人を追加、${r.updated}人を更新しました`)},"")}
 });
 return vStaffMain;
 })();

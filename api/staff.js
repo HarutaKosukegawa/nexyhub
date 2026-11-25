@@ -485,36 +485,56 @@ async function route(req) {
     await s.del(pageKey(b.id));
     return json({ ok: true });
   }
-  // 最初の取り込み：応募フォームなどから作った下書きを、名簿が空のときに一度だけ入れる
+  // 取り込み：応募フォームとチーム編成から作ったファイルを入れる。何度でも使える（週1などで追加分を入れる）。
+  // ・同じ人（メールアドレス、なければ名前で照合）は名簿の項目（チーム・役職・確定/保留）だけ更新し、重複させない
+  // ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
   if (a === "bootstrap") {
-    if (Object.values(roster.members).some((m) => m.role !== "代表")) return err("名簿がすでにあります。1人ずつ追加してください", 409);
-    const list = Array.isArray(b.members) ? b.members.slice(0, 200) : [];
-    const ids = {};
+    const list = Array.isArray(b.members) ? b.members.slice(0, 300) : [];
+    const ids = {}, made = new Set();
+    let added = 0, updated = 0;
     await updateJSON(ROSTER, (d) => {
+      const all = Object.values(d.members);
       for (const x of list) {
         const name = str(x.name, 20);
         if (!name || !TEAMS.includes(x.team)) continue;
-        if (x.role === "代表") {
-          const rep = Object.values(d.members).find((m) => m.role === "代表");
-          if (rep) { Object.assign(rep, { name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), ret: !!x.ret, updated: Date.now() }); ids[x.ref || name] = rep.id; continue; }
+        const key = x.ref || name;
+        const email = normEmail(x.email), eh = validEmail(email) ? emailHash(email) : "";
+        let m = x.role === "代表" ? all.find((q) => q.role === "代表") : null;
+        if (!m && eh) m = all.find((q) => q.eh === eh);
+        if (!m) m = all.find((q) => q.name === name && q.role !== "代表" && (!eh || !q.eh));
+        if (m) {
+          if (x.role !== "代表") Object.assign(m, { team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
+          if (str(x.kana, 30)) Object.assign(m, { kana: str(x.kana, 30), kanaOk: !!x.kanaOk });
+          if (str(x.nick, 20) && !m.nick) m.nick = str(x.nick, 20);
+          if (eh && !m.eh && !all.some((q) => q !== m && q.eh === eh)) m.eh = eh;
+          m.ret = !!x.ret; m.name = name; m.updated = Date.now();
+          ids[key] = m.id; updated++;
+          continue;
         }
-        const id = newId(); ids[x.ref || name] = id;
-        d.members[id] = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(validEmail(normEmail(x.email)) ? { eh: emailHash(x.email) } : {}), ret: !!x.ret, updated: Date.now() };
+        if (eh && all.some((q) => q.eh === eh)) continue;
+        const id = newId(); ids[key] = id; made.add(id); added++;
+        m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
+        d.members[id] = m; all.push(m);
       }
     }, EMPTY_ROSTER);
     for (const x of list) {
       const id = ids[x.ref || str(x.name, 20)];
       if (!id || !x.page) continue;
-      const p = structuredClone(EMPTY_PAGE);
-      for (const [k, fx] of Object.entries(x.page.f || {})) if (k in FIELDS && str(fx && fx.v, 300)) p.f[k] = { v: str(fx.v, 300), s: SCOPES.includes(fx.s) ? fx.s : FIELDS[k], src: fx.src === "1on1" ? "1on1" : "form" };
-      p.x = cleanX(x.page.x || {});
-      p.kw = strList(x.page.kw, 8, 30); p.gkw = strList(x.page.gkw, 8, 30);
-      p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: true })).filter((t) => t.t);
-      p.excluded = strList(x.page.excluded, 10, 80);
-      p.updated = Date.now();
-      await s.write(pageKey(id), JSON.stringify(p));
+      const fresh = made.has(id);
+      await updateJSON(pageKey(id), (p) => {
+        for (const [k, fx] of Object.entries(x.page.f || {})) {
+          if (!(k in FIELDS) || !str(fx && fx.v, 300) || (p.f[k] && p.f[k].v)) continue;
+          p.f[k] = { v: str(fx.v, 300), s: FIELDS[k], src: fx.src === "1on1" ? "1on1" : "form" };
+        }
+        if (fresh || !Object.keys((p.x && p.x.skills) || {}).length) p.x = cleanX(x.page.x || {});
+        if (!(p.kw || []).length) p.kw = strList(x.page.kw, 8, 30);
+        if (!(p.gkw || []).length) p.gkw = strList(x.page.gkw, 8, 30);
+        if (!(p.thanks || []).length) p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: true })).filter((t) => t.t);
+        if (!(p.excluded || []).length) p.excluded = strList(x.page.excluded, 10, 80);
+        p.updated = Date.now();
+      }, EMPTY_PAGE);
     }
-    return json({ ok: true, count: Object.keys(ids).length });
+    return json({ ok: true, count: added + updated, added, updated });
   }
   return err("not found", 404);
 }
