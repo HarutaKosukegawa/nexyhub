@@ -122,6 +122,19 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   await call(POST, "bootstrap", { members: [{ name: "新人E", team: "b", role: "メンバー", status: "pending", email: "new@example.com" }] }, rep);
   assert.equal((await call(GET, "all", null, rep)).j.roster.find((m) => m.name === "新人E").status, "pending");
 }
+// 証明書の所見：代表か同じチームの管理職だけが書ける。本人の証明書に載る
+{
+  const ros = (await call(GET, "all", null, rep)).j.roster;
+  const L2 = ros.find((m) => m.name === "統括A");
+  const leadCk2 = await dev("lead@example.com");
+  assert.equal((await call(POST, "cert_comment", { id: L2.id, comment: "自分で書く" }, leadCk2)).s, 403);
+  assert.equal((await call(POST, "cert_comment", { id: L2.id, comment: "毎週の定例に参加した" }, rep)).s, 200);
+  await call(POST, "page_save", { id: L2.id, cert: { duty: "広報", items: ["投稿を企画", "", "撮影"], result: "表示4万回", comment: "書き換え" } }, leadCk2);
+  const c = (await call(POST, "certificate", {}, leadCk2)).j;
+  assert.equal(c.comment, "毎週の定例に参加した");
+  assert.deepEqual(c.items, ["投稿を企画", "撮影"]);
+  assert.equal(c.result, "表示4万回");
+}
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");

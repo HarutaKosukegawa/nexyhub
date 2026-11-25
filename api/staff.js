@@ -81,7 +81,7 @@ const SKILLS = ["企画", "段取り", "デザイン", "写真・動画", "SNS�
 const ROSTER = "staff/roster.json", EMPTY_ROSTER = { members: {} };
 const SETTINGS = "staff/settings.json", EMPTY_SETTINGS = { certOpen: false };
 const pageKey = (id) => `staff/pages/${id}.json`;
-const EMPTY_PAGE = { status: "pub", cert: { duty: "" }, consent: "unknown", f: {}, x: { skills: {} }, kw: [], gkw: [], thanks: [], excluded: [], updated: 0 };
+const EMPTY_PAGE = { status: "pub", cert: { duty: "", items: [], result: "", comment: "", by: null }, consent: "unknown", f: {}, x: { skills: {} }, kw: [], gkw: [], thanks: [], excluded: [], updated: 0 };
 const isMgr = (r) => r === "統括" || r === "サブ統括";
 const str = (v, n) => String(v ?? "").replace(/[\u0000-\u001f\u007f]/g, (c) => (c === "\n" ? c : "")).trim().slice(0, n);
 const newId = () => crypto.randomBytes(6).toString("base64url");
@@ -206,7 +206,10 @@ function viewPage(v, m, page) {
   out.thanks = (page.thanks || []).filter((t) => me || t.pub).map((t) => ({ t: t.t, from: t.from, pub: !!t.pub }));
   if (me || (v.k === "mgr" && v.team === m.team)) out.consent = page.consent;
   if (v.k === "rep") out.excluded = page.excluded || [];
-  if (me) out.cert = page.cert || { duty: "" };
+  const c = page.cert || {};
+  if (me) out.cert = { duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null };
+  // 証明書の所見を書く人（代表・同じチームの管理職）には、本人が書いた活動内容と所見を見せる
+  else if (m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team))) out.cert = { duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null };
   return out;
 }
 // 名簿の見せ方：保留の人とGmailは代表だけ
@@ -380,7 +383,7 @@ async function route(req) {
       p.f = f;
       if (b.x) p.x = cleanX(b.x);
       if (Array.isArray(b.thanksPub)) p.thanks.forEach((t, i) => { t.pub = !!b.thanksPub[i]; });
-      if (b.cert) p.cert = { duty: str(b.cert.duty, 160) };
+      if (b.cert) p.cert = { ...(p.cert || {}), duty: str(b.cert.duty, 160), items: strList(b.cert.items, 5, 60), result: str(b.cert.result, 120) };
       if (b.publish) {
         p.status = "pub";
         Object.values(p.f).forEach((x) => { delete x.chk; delete x.src; });
@@ -439,13 +442,29 @@ async function route(req) {
     return json({ ok: true, member: r.members[v.id] ? viewRoster(v, { members: { [v.id]: r.members[v.id] } })[0] : null });
   }
   // 本人：運営参加証明書の中身（発行は代表が始めたあとだけ）
+  // 証明書の所見：代表か、同じチームの統括・サブ統括が書く（本人は書けない）
+  if (a === "cert_comment") {
+    const m = roster.members[b.id];
+    if (!canDraft(m)) return err("この人の所見は書けません", 403);
+    const w = roster.members[v.id];
+    await updateJSON(pageKey(m.id), (p) => {
+      const t = str(b.comment, 300);
+      p.cert = { ...(p.cert || {}), comment: t, by: t ? { name: w ? w.name : "", role: w ? w.role : "", team: w ? w.team : "" } : null };
+    }, EMPTY_PAGE);
+    return json({ ok: true });
+  }
+
   if (a === "certificate") {
     const m = roster.members[v.id];
     if (!m || v.k === "rep") return err("証明書は運営メンバー本人が発行します", 403);
     const st = await readJSON(SETTINGS, EMPTY_SETTINGS);
     const page = await readJSON(pageKey(m.id), EMPTY_PAGE);
     const no = "NEXY27-" + String(parseInt(crypto.createHash("sha256").update("cert:" + m.id).digest("hex").slice(0, 8), 16) % 100000).padStart(5, "0");
-    return json({ sample: !st.certOpen, no, name: m.name, kana: m.kana || "", team: m.team, role: m.role, ret: !!m.ret, duty: (page.cert && page.cert.duty) || "", issuedAt: Date.now() });
+    const c = page.cert || {};
+    const good = Object.entries((page.x && page.x.skills) || {}).filter(([, l]) => l === "good").map(([k]) => k);
+    return json({ sample: !st.certOpen, no, name: m.name, kana: m.kana || "", team: m.team, role: m.role, ret: !!m.ret,
+      duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null,
+      skills: good, kw: page.kw || [], strength: (page.f && page.f.strength && page.f.strength.v) || "", issuedAt: Date.now() });
   }
 
   // ここから下は代表だけ
