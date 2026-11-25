@@ -27,6 +27,9 @@ const TEAM_SHEET = "配属案"; // 「氏名」と「第1候補」の列。新�
 // 統括・サブ統括（名前：[チーム, 役職]）。チームは "a" "b" "perm" "media" "rec" "guide"
 const LEADERS = {
 };
+// 同じ人の別の呼び方（フォームの名前やニックネーム → 本名）。2件に分かれていたら1件にまとめます
+const ALIASES = {
+};
 const TEAM_KEYS = { "A会場": "a", "B会場": "b", "常設": "perm", "メディア": "media", "レセプション": "rec", "誘導": "guide" };
 
 function onOpen() {
@@ -80,7 +83,8 @@ function syncNow() {
   const seen = {};
   const members = [];
   v.slice(1).forEach((r) => {
-    const name = clean(r[C.name]);
+    const raw = clean(r[C.name]);
+    const name = ALIASES[raw] || raw;
     const email = String(r[C.email] || "").trim().toLowerCase();
     if (!name) return;
     const mark = iStatus >= 0 ? clean(r[iStatus]) : "";
@@ -96,8 +100,10 @@ function syncNow() {
     seen[name] = L ? { name: name, email: email, team: L[0], role: L[1], status: "confirmed", page: { f: f } }
                    : { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
   });
+  // 別名があれば、まとめるように伝える
+  Object.keys(seen).forEach((n) => { const aka = Object.keys(ALIASES).filter((a) => ALIASES[a] === n); if (aka.length) seen[n].aka = aka; });
   // フォームに回答していない統括・サブ統括も、役職だけは送る
-  Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed" }; });
+  Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed", aka: Object.keys(ALIASES).filter((a) => ALIASES[a] === n) }; });
   Object.keys(seen).forEach((k) => members.push(seen[k]));
 
   const res = UrlFetchApp.fetch(API_URL, {

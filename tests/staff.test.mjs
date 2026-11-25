@@ -187,6 +187,21 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   const g3 = (await call(GET, "all", null, rep)).j.roster.find((m) => m.id === g.id);
   assert.equal(g3.role, "サブ統括"); assert.equal(g3.team, "guide");
 }
+// 同じ人が2件（フォームのニックネームと本名）になっていても、別名を送ると1件にまとまる
+{
+  const sync = async (body) => { const r = await mod.POST({ url: B + "sync", method: "POST", headers: { get: (n) => (n === "authorization" ? "Bearer sync-token-for-tests-0123456789" : null) }, text: async () => JSON.stringify(body) }); return r.json(); };
+  await sync({ members: [{ name: "はやて", team: "perm", status: "confirmed", email: "hayate@example.com", page: { f: { reason: { v: "フォームの志望動機" } } } }, { name: "三ツ谷テスト", team: "a", role: "サブ統括", status: "confirmed", email: "" }] });
+  const n0 = (await call(GET, "all", null, rep)).j.roster.length;
+  const r = await sync({ members: [{ name: "三ツ谷テスト", aka: ["はやて"], team: "a", role: "サブ統括", status: "confirmed", email: "hayate@example.com" }] });
+  assert.equal(r.merged, 1);
+  const ros = (await call(GET, "all", null, rep)).j.roster;
+  assert.equal(ros.length, n0 - 1);
+  const m = ros.find((x) => x.name === "三ツ谷テスト");
+  assert.equal(m.role, "サブ統括"); assert.equal(m.team, "a"); assert.equal(m.nick, "はやて");
+  assert.ok(!ros.some((x) => x.name === "はやて"));
+  assert.equal((await call(GET, "page&id=" + m.id, null, rep)).j.f.reason.v, "フォームの志望動機");
+  const hc = await dev("hayate@example.com"); assert.equal(typeof hc, "string");
+}
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");

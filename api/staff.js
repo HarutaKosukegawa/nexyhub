@@ -260,12 +260,63 @@ ${transcript}`;
   return { fields, excluded: strList(o.excluded, 10, 80), consent: ["yes", "no"].includes(o.consent) ? o.consent : "unknown", note: str(o.note, 200) };
 }
 
+// 同じ人が別の名前で2件になっているとき（フォームのニックネームと本名など）に1件にまとめる。
+// x.aka に別名を書くと、x.name の人に寄せる。ログインできている方・メールがある方・役職が上の方を残す
+const RANK = { "代表": 3, "統括": 2, "サブ統括": 1, "メンバー": 0 };
+async function mergeAliases(s, list) {
+  let merged = 0;
+  for (const x of list) {
+    const canon = str(x.name, 20).replace(/\s+/g, "");
+    const akas = strList(x.aka, 5, 20).map((n) => n.replace(/\s+/g, "")).filter((n) => n && n !== canon);
+    if (!canon || !akas.length) continue;
+    const roster = await readJSON(ROSTER, EMPTY_ROSTER);
+    const group = Object.values(roster.members).filter((m) => m.role !== "代表" && (m.name === canon || akas.includes(m.name)));
+    if (group.length < 2) {
+      if (group.length === 1 && group[0].name !== canon) await updateJSON(ROSTER, (d) => { const m = d.members[group[0].id]; m.nick = m.nick || m.name; m.name = canon; }, EMPTY_ROSTER);
+      continue;
+    }
+    const score = (m) => (m.pw ? 8 : 0) + (m.eh ? 4 : 0) + (RANK[m.role] || 0);
+    group.sort((a, b) => score(b) - score(a) || (a.updated || 0) - (b.updated || 0));
+    const keep = group[0], drop = group.slice(1);
+    const pages = {};
+    for (const m of group) { const f = await s.read(pageKey(m.id)); pages[m.id] = f ? JSON.parse(f.body.toString("utf8")) : structuredClone(EMPTY_PAGE); }
+    const kp = pages[keep.id];
+    for (const m of drop) {
+      const op = pages[m.id];
+      for (const [k, fx] of Object.entries(op.f || {})) if (fx && fx.v && !(kp.f[k] && kp.f[k].v)) kp.f[k] = fx;
+      if (!Object.keys((kp.x && kp.x.skills) || {}).length && op.x) kp.x = op.x;
+      for (const k of ["kw", "gkw", "thanks", "excluded"]) if (!(kp[k] || []).length && (op[k] || []).length) kp[k] = op[k];
+      if (op.cert && !((kp.cert || {}).items || []).length && !(kp.cert || {}).duty) kp.cert = op.cert;
+      if (!keep.pv && m.pv) { const ph = await s.read(`staff/photos/${m.id}.jpg`); if (ph) { await s.write(`staff/photos/${keep.id}.jpg`, ph.body); keep.pv = m.pv; } }
+    }
+    kp.updated = Date.now();
+    await s.write(pageKey(keep.id), JSON.stringify(kp));
+    await updateJSON(ROSTER, (d) => {
+      const k = d.members[keep.id];
+      const best = group.reduce((a, b) => ((RANK[b.role] || 0) > (RANK[a.role] || 0) ? b : a));
+      k.name = canon; k.nick = k.nick || akas[0];
+      if ((RANK[best.role] || 0) > (RANK[k.role] || 0)) { k.role = best.role; k.team = best.team; k.teamSet = true; }
+      if (group.some((m) => m.status === "confirmed")) k.status = "confirmed";
+      if (!k.eh) { const e = drop.find((m) => m.eh); if (e) k.eh = e.eh; }
+      if (!k.kana) { const e = drop.find((m) => m.kana); if (e) { k.kana = e.kana; k.kanaOk = e.kanaOk; } }
+      if (keep.pv) k.pv = keep.pv;
+      k.ret = group.some((m) => m.ret);
+      k.updated = Date.now();
+      for (const m of drop) delete d.members[m.id];
+    }, EMPTY_ROSTER);
+    for (const m of drop) { await s.del(pageKey(m.id)); await s.del(`staff/photos/${m.id}.jpg`); }
+    merged += drop.length;
+  }
+  return merged;
+}
+
 /* ---------------- 名簿の取り込み（ファイル・フォーム連携の共通） ---------------- */
 // ・同じ人（メールアドレス、なければ名前で照合）は重複させない。メールがつながっていなければ付け直す
 // ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
 // ・formOnly（フォームからの自動連携）のときは、チーム・役職は変えない。確定/保留は「保留→確定」にだけ動かす（確定の人を自動で保留に戻さない）
 async function mergeMembers(s, list, formOnly) {
     list = Array.isArray(list) ? list.slice(0, 300) : [];
+    const merged = await mergeAliases(s, list);
     const ids = {}, made = new Set();
     let added = 0, updated = 0;
     await updateJSON(ROSTER, (d) => {
@@ -319,7 +370,7 @@ async function mergeMembers(s, list, formOnly) {
         p.updated = Date.now();
       }, EMPTY_PAGE);
     }
-  return { added, updated };
+  return { added, updated, merged };
 }
 
 /* ---------------- routes ---------------- */
@@ -430,7 +481,7 @@ async function route(req) {
       if (!m || (m.status !== "confirmed" && v.k !== "rep")) return err("見つかりません", 404);
       const f = await s.read(`staff/photos/${m.id}.jpg`);
       if (!f) return err("見つかりません", 404);
-      return new Response(f.body, { headers: { "content-type": "image/jpeg", "cache-control": "private, max-age=300" } });
+      return new Response(f.body, { headers: { "content-type": "image/jpeg", "cache-control": "private, max-age=2592000, immutable" } });
     }
     if (a === "settings") return json(await readJSON(SETTINGS, EMPTY_SETTINGS));
     if (a === "page") {

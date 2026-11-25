@@ -2005,20 +2005,6 @@ function stTeamDash(team){
   const skill=`<div class="panel st-chart"><h4>チームの得意と挑戦したいこと</h4><p class="note">本人が選んだもの。点数ではありません</p>
     <div class="bars">${rows.filter(r=>r[1].length||r[2].length).map(([s,g,t])=>`<div class="br"><span class="bl">${s}</span><span class="bt">${g.length?`<i class="g" style="width:${g.length/mx*100}%" title="${esc(g.map(m=>m.name).join("、"))}">${g.length}</i>`:""}${t.length?`<i class="t" style="width:${t.length/mx*100}%" title="${esc(t.map(m=>m.name).join("、"))}">${t.length}</i>`:""}${!g.length&&!t.length?'<em>まだいない</em>':""}</span></div>`).join("")}</div>
     <div class="lg"><span><i class="g"></i>得意</span><span><i class="t"></i>挑戦したい</span></div></div>`;
-  // 連絡がつく時間の重なり
-  const cm=ms.filter(m=>xs(m,"contact")&&m.x.from!=null&&m.x.to!=null);
-  let hours="";const cnt=[];for(let h=H0;h<H1;h++)cnt.push(cm.filter(m=>h>=m.x.from&&h<m.x.to).length);
-  const cmx=Math.max(1,...cnt);
-  const best=cnt.map((c,i)=>c===cm.length&&c>0?i+H0:null).filter(x=>x!=null);
-  hours=`<div class="panel st-chart"><h4>連絡がつく時間の重なり</h4><p class="note">${cm.length?(best.length?`${cm.length}人全員がつながりやすい：<b>${best[0]}時〜${best[best.length-1]+1}時</b>`:"全員がそろう時間はありません"):"見られる人がまだいません"}</p>
-    <div class="cols">${cnt.map((c,i)=>`<i style="height:${c/cmx*100}%" class="${c===cm.length&&c>0?"all":""}" title="${i+H0}時：${c}人"></i>`).join("")}</div>
-    <div class="hax">${[6,9,12,15,18,21,24].map(h=>`<span style="left:${(h-H0)/(H1-H0)*100}%">${h}</span>`).join("")}</div></div>`;
-  // 動けない時期
-  const bm=ms.filter(m=>xs(m,"busy"));
-  const busy=`<div class="panel st-chart"><h4>動けない時期</h4><p class="note">テストや行事の期間だけ。理由は載せません</p>
-    <div class="hm" style="grid-template-columns:5.5em repeat(${MONTHS.length},1fr)"><span></span>${MONTHS.map(([,l])=>`<b>${l}</b>`).join("")}
-    ${bm.map(m=>`<span class="hn">${esc(m.name)}</span>${MONTHS.map(([k])=>`<i class="${(m.x.busy||[]).includes(k)?"on":""}"></i>`).join("")}`).join("")}
-    <span class="hn" style="font-weight:900">動ける人</span>${MONTHS.map(([k])=>{const n=bm.filter(m=>!(m.x.busy||[]).includes(k)).length;return `<b class="ok">${n}/${bm.length}</b>`}).join("")}</div></div>`;
   const kwm=ms.filter(m=>kwOf(m).length),gm=ms.filter(m=>gkwOf(m).length);
   const cloud=(list,fn,cls)=>list.length?`<div class="cloud">${list.map(m=>`<button class="cw ${cls}" data-st="open" data-id="${m.id}"><b>${esc(m.name)}</b>${fn(m).map(x=>`<span>${esc(x)}</span>`).join("")}</button>`).join("")}</div>`:'<p class="note" style="margin-top:8px">見られる人がまだいません</p>';
   const kwc=`<div class="panel st-chart wide2"><h4>チームの強み（本人の言葉から）</h4>${cloud(kwm,kwOf,"g")}</div>`;
