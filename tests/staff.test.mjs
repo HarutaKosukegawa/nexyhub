@@ -19,12 +19,15 @@ const boot = await call(POST, "bootstrap", { members: [
   { ref: "L", name: "統括A", team: "media", role: "統括", status: "confirmed", email: "Lead@Example.com", page: { f: { strength: { v: "段取り" }, weak: { v: "人前で話す" } }, kw: ["段取り"], thanks: [{ t: "ありがとう1" }, { t: "ありがとう2" }] } },
   { ref: "M", name: "メンバーB", team: "media", role: "メンバー", status: "confirmed", email: "mem@example.com", page: { f: { strength: { v: "編集" }, weak: { v: "朝" } } } },
   { ref: "O", name: "別チームC", team: "a", role: "メンバー", status: "confirmed", email: "other@example.com", page: { f: { strength: { v: "企画" } } } },
-  { ref: "P", name: "保留D", team: "media", role: "メンバー", status: "pending", email: "pend@example.com" }] }, rep);
-assert.equal(boot.j.count, 4);
+  { ref: "P", name: "保留D", team: "media", role: "メンバー", status: "pending", email: "pend@example.com" },
+  { ref: "rep", name: "代表太郎", kana: "だいひょう たろう", team: "hq", role: "代表", status: "confirmed", page: { f: { dream: { v: "夢" } } } }] }, rep);
+assert.equal(boot.j.count, 5);
 // メールアドレスは保存されない（ハッシュだけ）。代表にも返さない
 assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).includes("example.com"), "メールアドレスが保存されている");
 let r = await call(GET, "all", null, rep);
 assert.equal(r.j.roster.length, 5);
+assert.equal(r.j.roster.filter((m) => m.role === "代表").length, 1);
+assert.equal(r.j.roster.find((m) => m.role === "代表").name, "代表太郎");
 assert.ok(r.j.roster.every((m) => !("email" in m)) && r.j.roster.find((m) => m.name === "統括A").hasEmail === true);
 
 // 初回ログイン：メール → 確認コード → パスワード作成

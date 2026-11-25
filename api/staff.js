@@ -157,6 +157,8 @@ async function findByEmail(email) {
   if (!m && owners().includes(normEmail(email))) {
     roster = await updateJSON(ROSTER, (d) => {
       if (Object.values(d.members).some((x) => x.eh === eh)) return false;
+      const rep = Object.values(d.members).find((x) => x.role === "代表" && !x.eh);
+      if (rep) { rep.eh = eh; return; }
       const id = newId();
       d.members[id] = { id, name: "代表", team: "hq", role: "代表", status: "confirmed", eh, updated: Date.now() };
     }, EMPTY_ROSTER);
@@ -492,6 +494,10 @@ async function route(req) {
       for (const x of list) {
         const name = str(x.name, 20);
         if (!name || !TEAMS.includes(x.team)) continue;
+        if (x.role === "代表") {
+          const rep = Object.values(d.members).find((m) => m.role === "代表");
+          if (rep) { Object.assign(rep, { name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), ret: !!x.ret, updated: Date.now() }); ids[x.ref || name] = rep.id; continue; }
+        }
         const id = newId(); ids[x.ref || name] = id;
         d.members[id] = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(validEmail(normEmail(x.email)) ? { eh: emailHash(x.email) } : {}), ret: !!x.ret, updated: Date.now() };
       }
