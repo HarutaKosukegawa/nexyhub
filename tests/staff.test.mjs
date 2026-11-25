@@ -31,13 +31,11 @@ const lead=await login("lead@example.com"),mem=await login("mem@example.com"),ot
 let r=await call(GET,"all",null,rep);assert.equal(r.j.roster.length,4);assert.ok("email" in r.j.roster[0]);
 r=await call(GET,"all",null,mem);assert.equal(r.j.roster.length,3);assert.ok(!("email" in r.j.roster[0]));
 const R0=r.j.roster;const id=n=>R0.find(m=>m.name===n).id;const L=id("統括A"),M=id("メンバーB");
-// 公開前は本人と代表だけ
-assert.equal(r.j.pages[L].open,false);
 r=await call(GET,"page&id="+L,null,rep);assert.equal(r.j.f.weak.v,"人前で話す");assert.equal(r.j.thanks.length,2);
 // 本人以外は編集できない
 assert.equal((await call(POST,"page_save",{id:L,f:{strength:{v:"x"}}},mem)).s,403);
-// 同意なしでは公開できない
-assert.equal((await call(POST,"page_save",{id:L,publish:true},lead)).s,400);
+// 最初から公開：同じチームのメンバーにすぐ見える
+assert.equal((await call(GET,"page&id="+L,null,mem)).j.open,true);
 r=await call(POST,"page_save",{id:L,publish:true,consent:true,thanksPub:[true,false],x:{skills:{"段取り":"good","ハッキング":"good"},from:19,to:22}},lead);
 assert.equal(r.s,200);assert.deepEqual(r.j.x.skills,{"段取り":"good"});
 // メンバー（同じチーム）：全員とチーム内は見える、管理職までは見えない、ありがとうは選ばれた1件だけ
@@ -52,7 +50,17 @@ r=await call(GET,"page&id="+M,null,oth);assert.ok(!r.j.f.weak);
 assert.equal((await call(POST,"draft_save",{id:id("別チームC"),fields:{dream:{text:"x"}}},lead)).s,403);
 assert.equal((await call(POST,"draft_save",{id:L,fields:{dream:{text:"x"}}},lead)).s,403);
 r=await call(POST,"draft_save",{id:M,fields:{dream:{text:"映像の仕事",quote:"映像の仕事がしたい",check:true}},consent:"yes"},lead);assert.equal(r.s,200);
-assert.equal(r.j.status,"draft");
+assert.equal(r.j.status,"pub");
+// 非公開にすると本人と代表だけ
+await call(POST,"page_save",{id:M,unpublish:true},mem);assert.equal((await call(GET,"page&id="+M,null,lead)).j.open,false);
+await call(POST,"page_save",{id:M,publish:true},mem);
+// プロフィール・証明書
+r=await call(POST,"profile_save",{name:"メンバーB",kana:"めんばー びー",nick:"びー"},mem);assert.equal(r.j.member.kana,"めんばー びー");
+await call(POST,"page_save",{id:M,cert:{duty:"撮影を担当"}},mem);
+r=await call(GET,"page&id="+M,null,lead);assert.ok(!r.j.cert);
+r=await call(POST,"certificate",{},mem);assert.equal(r.j.sample,true);assert.equal(r.j.duty,"撮影を担当");
+assert.equal((await call(POST,"settings",{certOpen:true},mem)).s,403);
+await call(POST,"settings",{certOpen:true},rep);assert.equal((await call(POST,"certificate",{},mem)).j.sample,false);
 // メンバーは名簿を変えられない／代表は保留→確定にできる
 const P=(await call(GET,"all",null,rep)).j.roster.find(m=>m.name==="保留D");
 assert.equal((await call(POST,"roster_upsert",{...P,status:"confirmed"},mem)).s,403);

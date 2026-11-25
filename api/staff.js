@@ -1,7 +1,9 @@
 // NEXY 運営メンバー取扱説明書のAPI（/api/staff?a=...）
 // データはVercel Blob（private）に保存する。公開リポジトリなので、メンバーの情報はコードに書かない。
 //   staff/roster.json      運営メンバー名簿（確定・保留）。代表だけが書き換える
-//   staff/pages/<id>.json  一人ひとりの取扱説明書（下書き・公開）
+//   staff/pages/<id>.json  一人ひとりの取扱説明書（最初から運営メンバーに公開。本人がいつでも書き換え・非公開にできる）
+//   staff/photos/<id>.jpg  顔写真（任意）
+//   staff/settings.json    証明書の発行を始めたか（代表が切り替える）
 // ログイン：Googleアカウント（Gmail）。名簿で「確定」になっている人と、OWNER_EMAILS の代表だけが入れる。
 //   ログイン後は署名付きCookie(nxs)を30日保存。権限は毎回名簿から引き直すので、名簿を変えるとすぐ反映される。
 // 権限は3つ：代表（rep）／管理職＝統括・サブ統括（mgr）／メンバー（mem）。
@@ -65,8 +67,8 @@ async function updateJSON(key, fn, empty) {
 }
 
 /* ---------------- 決まりごと ---------------- */
-const TEAMS = ["a", "b", "perm", "media", "rec", "guide"];
-const ROLES = ["統括", "サブ統括", "メンバー"];
+const TEAMS = ["a", "b", "perm", "media", "rec", "guide", "hq"]; // hq＝代表
+const ROLES = ["統括", "サブ統括", "メンバー", "代表"];
 const STATUS = ["confirmed", "pending"]; // 確定／保留。保留の人はログインできず、ページも代表にしか見えない
 const SCOPES = ["all", "team", "lead"];   // 全員／チーム内／管理職まで
 // key → 公開範囲の初期設定
@@ -76,8 +78,9 @@ const SKILLS = ["企画", "段取り", "デザイン", "写真・動画", "SNS�
 const MONTHS = ["12", "1", "2", "3", "4"];
 const REPLY = ["h1", "half", "day", "slow"], PRAISE = ["pub", "dm", "text"];
 const ROSTER = "staff/roster.json", EMPTY_ROSTER = { members: {} };
+const SETTINGS = "staff/settings.json", EMPTY_SETTINGS = { certOpen: false };
 const pageKey = (id) => `staff/pages/${id}.json`;
-const EMPTY_PAGE = { status: "draft", consent: "unknown", f: {}, x: { skills: {}, busy: [] }, kw: [], gkw: [], tips: { v: ["", "", ""], pub: false }, thanks: [], excluded: [], updated: 0 };
+const EMPTY_PAGE = { status: "pub", cert: { duty: "" }, consent: "unknown", f: {}, x: { skills: {}, busy: [] }, kw: [], gkw: [], tips: { v: ["", "", ""], pub: false }, thanks: [], excluded: [], updated: 0 };
 const isMgr = (r) => r === "統括" || r === "サブ統括";
 const str = (v, n) => String(v ?? "").replace(/[\u0000-\u001f\u007f]/g, (c) => (c === "\n" ? c : "")).trim().slice(0, n);
 const newId = () => crypto.randomBytes(6).toString("base64url");
@@ -147,11 +150,14 @@ async function viewerOf(req, roster) {
 }
 function resolve(email, roster) {
   if (!email) return null;
-  if (owners().includes(email)) return { k: "rep", id: "rep", email, name: "代表" };
+  if (owners().includes(email)) {
+    const m = Object.values(roster.members).find((x) => x.role === "代表" && normEmail(x.email) === email);
+    return { k: "rep", id: m ? m.id : "rep", team: "hq", email, name: m ? m.name : "代表" };
+  }
   const m = Object.values(roster.members).find((x) => x.email && normEmail(x.email) === email);
   if (!m) return { none: "notfound" };
   if (m.status !== "confirmed") return { none: "pending" };
-  return { k: isMgr(m.role) ? "mgr" : "mem", id: m.id, team: m.team, email, name: m.name };
+  return { k: m.role === "代表" ? "rep" : isMgr(m.role) ? "mgr" : "mem", id: m.id, team: m.team, email, name: m.name };
 }
 
 /* ---------------- 見せる範囲（サーバーで判定） ---------------- */
@@ -190,13 +196,14 @@ function viewPage(v, m, page) {
   out.thanks = (page.thanks || []).filter((t) => me || t.pub).map((t) => ({ t: t.t, from: t.from, pub: !!t.pub }));
   if (me || (v.k === "mgr" && v.team === m.team)) out.consent = page.consent;
   if (v.k === "rep") out.excluded = page.excluded || [];
+  if (me) out.cert = page.cert || { duty: "" };
   return out;
 }
 // 名簿の見せ方：保留の人とGmailは代表だけ
 function viewRoster(v, roster) {
   return Object.values(roster.members)
     .filter((m) => v.k === "rep" || m.status === "confirmed")
-    .map((m) => ({ id: m.id, name: m.name, team: m.team, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { email: m.email || "" } : {}) }));
+    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { email: m.email || "" } : {}) }));
 }
 
 /* ---------------- 入力のチェック ---------------- */
@@ -285,6 +292,14 @@ async function route(req) {
       await Promise.all(list.map(async (m) => { pages[m.id] = viewPage(v, roster.members[m.id], await readJSON(pageKey(m.id), EMPTY_PAGE)); }));
       return json({ viewer: v, roster: list, pages });
     }
+    if (a === "photo") {
+      const m = roster.members[url.searchParams.get("id") || ""];
+      if (!m || (m.status !== "confirmed" && v.k !== "rep")) return err("見つかりません", 404);
+      const f = await s.read(`staff/photos/${m.id}.jpg`);
+      if (!f) return err("見つかりません", 404);
+      return new Response(f.body, { headers: { "content-type": "image/jpeg", "cache-control": "private, max-age=300" } });
+    }
+    if (a === "settings") return json(await readJSON(SETTINGS, EMPTY_SETTINGS));
     if (a === "page") {
       const m = roster.members[url.searchParams.get("id") || ""];
       if (!m || (m.status !== "confirmed" && v.k !== "rep")) return err("見つかりません", 404);
@@ -310,9 +325,9 @@ async function route(req) {
       if (b.x) p.x = cleanX(b.x);
       if (b.tips) p.tips = { v: [0, 1, 2].map((i) => str(b.tips.v && b.tips.v[i], 50)), pub: p.tips.pub };
       if (Array.isArray(b.thanksPub)) p.thanks.forEach((t, i) => { t.pub = !!b.thanksPub[i]; });
+      if (b.cert) p.cert = { duty: str(b.cert.duty, 160) };
       if (b.publish) {
-        if (b.consent !== true) throw Object.assign(new Error("consent"), { status: 400, msg: "公開するには、運営チーム内に載せることへの同意が必要です" });
-        p.consent = "yes"; p.status = "pub"; p.tips.pub = p.tips.v.some(Boolean);
+        p.status = "pub"; p.tips.pub = p.tips.v.some(Boolean);
         Object.values(p.f).forEach((x) => { delete x.chk; delete x.src; });
       }
       if (b.unpublish) p.status = "draft";
@@ -340,14 +355,51 @@ async function route(req) {
       }
       if (["yes", "no", "unknown"].includes(b.consent)) p.consent = b.consent;
       p.excluded = strList(b.excluded, 10, 80);
-      p.status = "draft"; // 本人がもう一度確認して公開する
+      // 公開の状態は変えない。本人がいつでも書き換えられる
       p.updated = Date.now();
     }, EMPTY_PAGE);
     return json(viewPage(v, m, page));
   }
 
+  // 本人：名前・ふりがな・呼び名・顔写真
+  if (a === "profile_save") {
+    const name = str(b.name, 20);
+    if (!name) return err("名前を入れてください");
+    let photo = null;
+    if (b.photo === null) photo = "";
+    else if (typeof b.photo === "string") {
+      const mm = /^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(b.photo);
+      if (!mm) return err("この画像は使えません");
+      photo = Buffer.from(mm[2], "base64");
+      if (photo.length > 300000) return err("画像が大きすぎます");
+    }
+    if (photo && photo.length) await s.write(`staff/photos/${v.id}.jpg`, photo);
+    if (photo === "") await s.del(`staff/photos/${v.id}.jpg`);
+    const r = await updateJSON(ROSTER, (d) => {
+      const m = d.members[v.id]; if (!m) return false;
+      m.name = name; m.kana = str(b.kana, 30); m.kanaOk = !!m.kana; m.nick = str(b.nick, 20);
+      if (photo !== null) m.pv = photo.length ? (m.pv || 0) + 1 : 0;
+      m.updated = Date.now();
+    }, EMPTY_ROSTER);
+    return json({ ok: true, member: r.members[v.id] ? viewRoster(v, { members: { [v.id]: r.members[v.id] } })[0] : null });
+  }
+  // 本人：運営参加証明書の中身（発行は代表が始めたあとだけ）
+  if (a === "certificate") {
+    const m = roster.members[v.id];
+    if (!m || v.k === "rep") return err("証明書は運営メンバー本人が発行します", 403);
+    const st = await readJSON(SETTINGS, EMPTY_SETTINGS);
+    const page = await readJSON(pageKey(m.id), EMPTY_PAGE);
+    const no = "NEXY27-" + String(parseInt(crypto.createHash("sha256").update("cert:" + m.id).digest("hex").slice(0, 8), 16) % 100000).padStart(5, "0");
+    return json({ sample: !st.certOpen, no, name: m.name, kana: m.kana || "", team: m.team, role: m.role, ret: !!m.ret, duty: (page.cert && page.cert.duty) || "", issuedAt: Date.now() });
+  }
+
   // ここから下は代表だけ
   if (v.k !== "rep") return err("代表だけが使えます", 403);
+
+  if (a === "settings") {
+    const st = await updateJSON(SETTINGS, (d) => { if (typeof b.certOpen === "boolean") d.certOpen = b.certOpen; }, EMPTY_SETTINGS);
+    return json(st);
+  }
 
   // 名簿の追加・変更（確定⇄保留、チーム・役職・Gmail）
   if (a === "roster_upsert") {
@@ -363,7 +415,8 @@ async function route(req) {
     const r = await updateJSON(ROSTER, (d) => {
       if (email && Object.values(d.members).some((x) => x.id !== id && normEmail(x.email) === email)) throw Object.assign(new Error("dup"), { status: 409, msg: "このGmailは、もう別の人に登録されています" });
       if (status === "confirmed" && isMgr(role) && Object.values(d.members).some((x) => x.id !== id && x.status === "confirmed" && x.team === b.team && x.role === role)) warn = `${role}がすでにいます。2人にする場合はこのままで大丈夫です`;
-      d.members[id] = { id, name, team: b.team, role, status, email, ret: !!b.ret, updated: Date.now() };
+      const prev = d.members[id] || {};
+      d.members[id] = { ...prev, id, name, kana: b.kana !== undefined ? str(b.kana, 30) : prev.kana || "", team: b.team, role, status, email, ret: !!b.ret, updated: Date.now() };
     }, EMPTY_ROSTER);
     return json({ ok: true, member: r.members[id], warn });
   }
@@ -384,7 +437,7 @@ async function route(req) {
         const name = str(x.name, 20);
         if (!name || !TEAMS.includes(x.team)) continue;
         const id = newId(); ids[x.ref || name] = id;
-        d.members[id] = { id, name, team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", email: normEmail(x.email), ret: !!x.ret, updated: Date.now() };
+        d.members[id] = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", email: normEmail(x.email), ret: !!x.ret, updated: Date.now() };
       }
     }, EMPTY_ROSTER);
     for (const x of list) {
@@ -394,7 +447,7 @@ async function route(req) {
       for (const [k, fx] of Object.entries(x.page.f || {})) if (k in FIELDS && str(fx && fx.v, 300)) p.f[k] = { v: str(fx.v, 300), s: SCOPES.includes(fx.s) ? fx.s : FIELDS[k], src: fx.src === "1on1" ? "1on1" : "form" };
       p.x = cleanX(x.page.x || {});
       p.kw = strList(x.page.kw, 8, 30); p.gkw = strList(x.page.gkw, 8, 30);
-      p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: false })).filter((t) => t.t);
+      p.thanks = (Array.isArray(x.page.thanks) ? x.page.thanks : []).slice(0, 12).map((t) => ({ t: str(t.t || t, 400), from: "2026 運営の仲間より", pub: true })).filter((t) => t.t);
       p.excluded = strList(x.page.excluded, 10, 80);
       p.updated = Date.now();
       await s.write(pageKey(id), JSON.stringify(p));
