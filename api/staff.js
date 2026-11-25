@@ -520,12 +520,13 @@ async function route(req) {
         const email = normEmail(x.email), eh = validEmail(email) ? emailHash(email) : "";
         let m = x.role === "代表" ? all.find((q) => q.role === "代表") : null;
         if (!m && eh) m = all.find((q) => q.eh === eh);
-        if (!m) m = all.find((q) => q.name === name && q.role !== "代表" && (!eh || !q.eh));
+        // メールで見つからないときは名前で照合する（前回の取り込みでメールがつながらなかった人も、ここで付け直せる）
+        if (!m) m = all.find((q) => q.name === name && q.role !== "代表");
         if (m) {
           if (x.role !== "代表") Object.assign(m, { team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
           if (str(x.kana, 30)) Object.assign(m, { kana: str(x.kana, 30), kanaOk: !!x.kanaOk });
           if (str(x.nick, 20) && !m.nick) m.nick = str(x.nick, 20);
-          if (eh && !m.eh && !all.some((q) => q !== m && q.eh === eh)) m.eh = eh;
+          if (eh && m.eh !== eh && !all.some((q) => q !== m && q.eh === eh)) { m.eh = eh; delete m.pw; }
           m.ret = !!x.ret; m.name = name; m.updated = Date.now();
           ids[key] = m.id; updated++;
           continue;

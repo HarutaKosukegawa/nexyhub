@@ -135,6 +135,16 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   assert.deepEqual(c.items, ["投稿を企画", "撮影"]);
   assert.equal(c.result, "表示4万回");
 }
+// メールが正しくつながっていない人も、もう一度取り込むと名前で照合して付け直せる（重複しない）
+{
+  const ros = (await call(GET, "all", null, rep)).j.roster;
+  const e = ros.find((m) => m.name === "新人E");
+  await call(POST, "roster_upsert", { id: e.id, name: e.name, team: e.team, role: e.role, status: "confirmed", email: "wrong@example.com" }, rep);
+  assert.notEqual(typeof (await dev("new@example.com")), "string");
+  await call(POST, "bootstrap", { members: [{ name: "新人E", team: "b", role: "メンバー", status: "confirmed", email: "new@example.com" }] }, rep);
+  assert.equal(typeof (await dev("new@example.com")), "string", "付け直しても入れない");
+  assert.equal((await call(GET, "all", null, rep)).j.roster.length, ros.length);
+}
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");
