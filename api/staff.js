@@ -216,7 +216,7 @@ function viewPage(v, m, page) {
 function viewRoster(v, roster) {
   return Object.values(roster.members)
     .filter((m) => v.k === "rep" || m.status === "confirmed")
-    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { hasEmail: !!m.eh, hasPassword: !!m.pw } : {}) }));
+    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, teamSet: m.teamSet !== false, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { hasEmail: !!m.eh, hasPassword: !!m.pw } : {}) }));
 }
 
 /* ---------------- 入力のチェック ---------------- */
@@ -280,13 +280,17 @@ async function mergeMembers(s, list, formOnly) {
         // メールで見つからないときは名前で照合する（前回の取り込みでメールがつながらなかった人も、ここで付け直せる）
         if (!m) m = all.find((q) => q.name === name && q.role !== "代表");
         if (m) {
-          if (x.role !== "代表" && !formOnly) Object.assign(m, { team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
+          if (x.role !== "代表" && !formOnly) Object.assign(m, { team: m.teamSet && m.role === "メンバー" && (x.role || "メンバー") === "メンバー" ? m.team : x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : m.status });
           if (str(x.kana, 30)) Object.assign(m, { kana: str(x.kana, 30), kanaOk: !!x.kanaOk });
           if (str(x.nick, 20) && !m.nick) m.nick = str(x.nick, 20);
           // すでにパスワードを作ってログインできている人のメールは変えない（代表が直したメールを戻さないため）
           if (eh && m.eh !== eh && !m.pw && !all.some((q) => q !== m && q.eh === eh)) m.eh = eh;
           if (!formOnly) { m.ret = !!x.ret; m.name = name; }
-          else if (x.status === "confirmed" && m.status === "pending" && m.role !== "代表") m.status = "confirmed";
+          else if (m.role !== "代表") {
+            if (x.status === "confirmed" && m.status === "pending") m.status = "confirmed";
+            // 統括・サブ統括は、連携スクリプトに書いた人だけに最初から付ける（チームもそのチームに固定）
+            if (x.role === "統括" || x.role === "サブ統括") { m.role = x.role; m.team = x.team; m.teamSet = true; m.status = "confirmed"; }
+          }
           m.updated = Date.now();
           ids[key] = m.id; updated++;
           continue;
@@ -294,6 +298,7 @@ async function mergeMembers(s, list, formOnly) {
         if (eh && all.some((q) => q.eh === eh)) continue;
         const id = newId(); ids[key] = id; made.add(id); added++;
         m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
+        if (formOnly && m.role === "メンバー") m.teamSet = false;
         d.members[id] = m; all.push(m);
       }
     }, EMPTY_ROSTER);
@@ -505,6 +510,8 @@ async function route(req) {
     const r = await updateJSON(ROSTER, (d) => {
       const m = d.members[v.id]; if (!m) return false;
       m.name = name; m.kana = str(b.kana, 30); m.kanaOk = !!m.kana; m.nick = str(b.nick, 20);
+      // チームは本人が選ぶ（メンバーだけ）。統括・サブ統括・代表のチームは代表が決める
+      if (b.team !== undefined && m.role === "メンバー" && TEAMS.includes(b.team) && b.team !== "hq") { m.team = b.team; m.teamSet = true; }
       if (photo !== null) m.pv = photo.length ? (m.pv || 0) + 1 : 0;
       m.updated = Date.now();
     }, EMPTY_ROSTER);

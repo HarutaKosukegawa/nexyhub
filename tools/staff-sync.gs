@@ -12,7 +12,8 @@
  *     「NOTメンバー」→ 送らない
  * ・すでにいる人は重複しません。チーム・役職は変えません（アプリのメンバー管理で決めます）。
  *   確定の人を自動で保留に戻すことはしません。外すときはアプリのメンバー管理で外してください。
- * ・新しい人のチームは、「配属案」の第1候補を仮に入れます（なければ常設）。
+ * ・チームは本人がアプリのマイページで選びます（新しい人には「配属案」の第1候補が仮に入ります）。
+ * ・統括・サブ統括は、下の LEADERS に書いた人だけに最初から付けます（チームもそのチームに固定）。
  * ・本人が書いた取扱説明書は上書きしません。空欄だけを埋めます。
  * ・メールアドレスはアプリのサーバーで暗号化してから保存されます。
  *
@@ -23,6 +24,9 @@
 const API_URL = "https://www.nexyhub.jp/api/staff?a=sync";
 const FORM_SHEET = "フォームの回答 1";
 const TEAM_SHEET = "配属案"; // 「氏名」と「第1候補」の列。新しい人の仮のチームに使うだけ
+// 統括・サブ統括（名前：[チーム, 役職]）。チームは "a" "b" "perm" "media" "rec" "guide"
+const LEADERS = {
+};
 const TEAM_KEYS = { "A会場": "a", "B会場": "b", "常設": "perm", "メディア": "media", "レセプション": "rec", "誘導": "guide" };
 
 function onOpen() {
@@ -88,8 +92,12 @@ function syncNow() {
       if (t) f[k] = { v: t.slice(0, 300), src: "form" };
     });
     // 同じ人が2回答えていたら、あとの回答を使う
-    seen[name] = { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
+    const L = LEADERS[name];
+    seen[name] = L ? { name: name, email: email, team: L[0], role: L[1], status: "confirmed", page: { f: f } }
+                   : { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
   });
+  // フォームに回答していない統括・サブ統括も、役職だけは送る
+  Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed" }; });
   Object.keys(seen).forEach((k) => members.push(seen[k]));
 
   const res = UrlFetchApp.fetch(API_URL, {

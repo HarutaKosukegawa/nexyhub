@@ -373,6 +373,11 @@ main{padding:0 16px 16px}
 .gr{display:inline-flex;align-items:center;font-size:11px;font-weight:900;color:#fff;background:var(--gc);border-radius:999px;padding:2px 10px;line-height:1.6}
 .pcard .gr{justify-self:start}
 .prof .gr{margin-top:6px}
+.tmpick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.tmpick label{position:relative}.tmpick input{position:absolute;opacity:0;pointer-events:none}
+.tmpick span{display:grid;place-items:center;min-height:44px;border-radius:12px;border:2px solid var(--tt);background:var(--tt);color:var(--tc);font-weight:900;font-size:13px;cursor:pointer}
+.tmpick input:checked+span{background:var(--tc);border-color:var(--tc);color:#fff}
+.tmpick input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
 .grpick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .grpick label{position:relative}
 .grpick input{position:absolute;opacity:0;pointer-events:none}
@@ -2220,12 +2225,15 @@ function stMine(){const w=me();const m=w.m;const c=m.cert||{duty:""};
   const th=(m.thanks||[]).length,thp=(m.thanks||[]).filter(t=>t.pub).length;
   const filled=TF.filter(f=>f[2]!=="grow"&&m.f[f[0]]&&m.f[f[0]].v).length,all=TF.filter(f=>f[2]!=="grow").length;
   return `<section class="my-head">${stAv(m,"")}<div class="my-id">${nameHTML(m,"big")}<span class="rw">${teamPill(m)}${gen(m)}</span><small>ログイン中</small></div></section>
+  ${m.role==="メンバー"&&m.teamSet===false?`<div class="panel" style="margin-bottom:12px;background:var(--orange-tint);border-color:transparent"><b style="color:var(--orange)">チームを選んでください</b><p class="note" style="margin:2px 0 0">下の「プロフィール」で、自分がやりたいチームを選んで保存してください。</p></div>`:""}
   <div class="my-grid">
   <section class="panel my-card"><h3><i style="background:var(--teal)"></i>プロフィール</h3>
     <div class="photo">${stAv(m,"l")}<div class="ctl"><label class="btn s filebtn">写真を変える<input type="file" accept="image/*" data-st-photo="1"></label><span class="hp">顔写真は必須です。運営メンバーだけが見られます。</span></div></div>
     <div class="fld" style="margin-top:12px"><label for="myName">名前（漢字）</label><input type="text" id="myName" maxlength="20" value="${esc(m.name)}"></div>
     <div class="fld" style="margin-top:8px"><label for="myKana">ふりがな（ひらがな・カタカナ）</label><input type="text" id="myKana" maxlength="30" value="${esc(m.kana||"")}" placeholder="例：おの あやな"></div>
     <div class="fld" style="margin-top:8px"><label for="myNick">呼ばれたい名前</label><input type="text" id="myNick" maxlength="20" value="${esc(m.nick||"")}" placeholder="例：あやな"></div>
+    ${m.role==="メンバー"?`<fieldset class="fld" style="margin-top:12px"><legend>チーム${m.teamSet===false?'<em>選んでください</em>':""}</legend><div class="tmpick">${Object.entries(TEAMS).filter(([k])=>k!=="hq").map(([k,t])=>`<label style="--tc:${t.c};--tt:${t.t}"><input type="radio" name="myTeam" value="${k}" ${m.team===k&&m.teamSet!==false?"checked":""}><span>${esc(t.n)}</span></label>`).join("")}</div><span class="hp">自分がやりたいチームを選んでください。あとから変えることもできます。</span></fieldset>`
+      :`<div class="fld" style="margin-top:12px"><label>チーム</label><p class="note" style="margin:0">${esc((TEAMS[m.team]||{}).n||"")}　${esc(m.role)}（チームは代表が決めます）</p></div>`}
     <button class="btn o${sv.busy?" st-busy":""}" style="width:100%;margin-top:12px" data-st="mysave">保存する</button></section>
   <section class="panel my-card"><h3><i style="background:var(--orange)"></i>自分の取扱説明書</h3>
     <div class="my-stats"><div class="b1"><b>${filled}<small>/${all}</small></b><span>書いた項目</span></div><div class="b2"><b>${thp}<small>/${th}</small></b><span>載せているありがとう</span></div><div class="b3"><b>${Object.keys(m.x.skills||{}).length}<small>/10</small></b><span>得意・挑戦を選んだ数</span></div></div>
@@ -2346,7 +2354,8 @@ document.addEventListener("click",e=>{
     case "publish":stCollect(m);act(()=>savePage(m,{publish:true}),"保存しました。運営メンバーのページに反映されています").then(()=>stGo("person",m.id));break;
     case "unpub":stCollect(m);act(()=>savePage(m,{unpublish:true}),"非公開にしました。マイページからいつでも公開に戻せます").then(()=>stGo("person",m.id));break;
     case "mysave":{const n=($("myName").value||"").trim();if(!n){toast("名前を入れてください");return}
-      act(()=>sapi("profile_save",{name:n,kana:($("myKana").value||"").trim(),nick:($("myNick").value||"").trim()}),"プロフィールを保存しました");break}
+      const tm=(document.querySelector('input[name="myTeam"]:checked')||{}).value;
+      act(()=>sapi("profile_save",{name:n,kana:($("myKana").value||"").trim(),nick:($("myNick").value||"").trim(),...(tm?{team:tm}:{})}),"プロフィールを保存しました");break}
     case "mydutysave":{const w=me();act(()=>savePage(w.m,{cert:myCertVals()}),"保存しました");break}
     case "certcomment":{const t2=($("certCm")||{}).value||"";act(()=>sapi("cert_comment",{id:d.id,comment:t2.trim()}),"所見を保存しました");break}
     case "cert":{const w=me();const has=!!$("myDuty");act(async()=>{if(has)await savePage(w.m,{cert:myCertVals()});const c=await sapi("certificate",{});

@@ -170,6 +170,22 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   assert.equal(r3.find((m) => m.id === lead.id).status, "confirmed");
   assert.equal(r3.find((m) => m.name === "新人G").status, "confirmed");
   assert.equal(typeof (await dev("g@example.com")), "string");
+  // フォームから入った人は「チーム未選択」。本人がマイページで選ぶ。管理職は自分でチームを変えられない
+  const g = r3.find((m) => m.name === "新人G");
+  assert.equal(g.teamSet, false);
+  const gck = await dev("g@example.com");
+  await call(POST, "profile_save", { name: "新人G", team: "media" }, gck);
+  const g2 = (await call(GET, "all", null, rep)).j.roster.find((m) => m.id === g.id);
+  assert.equal(g2.team, "media"); assert.equal(g2.teamSet, true);
+  await call(POST, "profile_save", { name: "新人G", team: "hq" }, gck);
+  assert.equal((await call(GET, "all", null, rep)).j.roster.find((m) => m.id === g.id).team, "media");
+  const lck = await dev("lead2@example.com");
+  await call(POST, "profile_save", { name: "統括A", team: "rec" }, lck);
+  assert.equal((await call(GET, "all", null, rep)).j.roster.find((m) => m.id === lead.id).team, lead.team);
+  // 連携スクリプトに書いた統括・サブ統括は、最初から管理職になる
+  await sync("sync-token-for-tests-0123456789", { members: [{ name: "新人G", team: "guide", role: "サブ統括", status: "confirmed", email: "g@example.com" }] });
+  const g3 = (await call(GET, "all", null, rep)).j.roster.find((m) => m.id === g.id);
+  assert.equal(g3.role, "サブ統括"); assert.equal(g3.team, "guide");
 }
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
