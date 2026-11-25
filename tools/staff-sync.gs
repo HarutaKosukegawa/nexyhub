@@ -5,9 +5,14 @@
  * 運営応募フォームの回答（名前・メールアドレス・志望動機・強み など）を、
  * 参加者アプリの「運営」タブに自動で送ります。
  *
- * ・回答が届いたとき と 毎日朝6時 に自動で送ります。
- * ・すでにいる人は重複しません。チーム・役職・確定/保留は変えません（アプリのメンバー管理で決めます）。
- * ・新しく応募した人は「保留」で入ります。確定にするとログインできるようになります。
+ * ・毎日朝6時 と 回答が届いたとき に自動で送ります。メニューの「今すぐアプリに送る」でもすぐ送れます。
+ * ・「フォームの回答 1」のB列（見出し「メンバー」）で、
+ *     「メンバー」→ 確定（フォームのメールアドレスでログインできる）
+ *     「検討中」・空欄 → 保留（名簿には入るが、ログインはできない）
+ *     「NOTメンバー」→ 送らない
+ * ・すでにいる人は重複しません。チーム・役職は変えません（アプリのメンバー管理で決めます）。
+ *   確定の人を自動で保留に戻すことはしません。外すときはアプリのメンバー管理で外してください。
+ * ・新しい人のチームは、「配属案」の第1候補を仮に入れます（なければ常設）。
  * ・本人が書いた取扱説明書は上書きしません。空欄だけを埋めます。
  * ・メールアドレスはアプリのサーバーで暗号化してから保存されます。
  *
@@ -64,6 +69,7 @@ function syncNow() {
   const v = fs.getDataRange().getValues();
   const h = v[0].map(String);
   const col = (word) => h.findIndex((x) => x.indexOf(word) >= 0);
+  const iStatus = h.findIndex((x) => x.trim() === "メンバー");
   const C = { name: col("氏名"), email: col("メールアドレス"), reason: col("志望動機"), history: col("これまで"), strength: col("強み"), weak: col("弱み"), gain: col("得たい") };
   if (C.name < 0 || C.email < 0) throw new Error("「氏名」か「メールアドレス」の列が見つかりません");
 
@@ -73,13 +79,16 @@ function syncNow() {
     const name = clean(r[C.name]);
     const email = String(r[C.email] || "").trim().toLowerCase();
     if (!name) return;
+    const mark = iStatus >= 0 ? clean(r[iStatus]) : "";
+    if (/NOT|不参加|辞退/i.test(mark)) return;
+    const status = mark === "メンバー" ? "confirmed" : "pending";
     const f = {};
     ["reason", "history", "strength", "weak", "gain"].forEach((k) => {
       const t = C[k] >= 0 ? String(r[C[k]] || "").trim() : "";
       if (t) f[k] = { v: t.slice(0, 300), src: "form" };
     });
     // 同じ人が2回答えていたら、あとの回答を使う
-    seen[name] = { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: "pending", page: { f: f } };
+    seen[name] = { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
   });
   Object.keys(seen).forEach((k) => members.push(seen[k]));
 

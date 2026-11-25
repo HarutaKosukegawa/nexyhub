@@ -263,7 +263,7 @@ ${transcript}`;
 /* ---------------- 名簿の取り込み（ファイル・フォーム連携の共通） ---------------- */
 // ・同じ人（メールアドレス、なければ名前で照合）は重複させない。メールがつながっていなければ付け直す
 // ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
-// ・formOnly（フォームからの自動連携）のときは、チーム・役職・確定/保留は変えない。新しい人は「保留」で入る
+// ・formOnly（フォームからの自動連携）のときは、チーム・役職は変えない。確定/保留は「保留→確定」にだけ動かす（確定の人を自動で保留に戻さない）
 async function mergeMembers(s, list, formOnly) {
     list = Array.isArray(list) ? list.slice(0, 300) : [];
     const ids = {}, made = new Set();
@@ -286,13 +286,14 @@ async function mergeMembers(s, list, formOnly) {
           // すでにパスワードを作ってログインできている人のメールは変えない（代表が直したメールを戻さないため）
           if (eh && m.eh !== eh && !m.pw && !all.some((q) => q !== m && q.eh === eh)) m.eh = eh;
           if (!formOnly) { m.ret = !!x.ret; m.name = name; }
+          else if (x.status === "confirmed" && m.status === "pending" && m.role !== "代表") m.status = "confirmed";
           m.updated = Date.now();
           ids[key] = m.id; updated++;
           continue;
         }
         if (eh && all.some((q) => q.eh === eh)) continue;
         const id = newId(); ids[key] = id; made.add(id); added++;
-        m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: !formOnly && STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
+        m = { id, name, kana: str(x.kana, 30), kanaOk: !!x.kanaOk, nick: str(x.nick, 20), team: x.team, role: ROLES.includes(x.role) && x.role !== "代表" ? x.role : "メンバー", status: STATUS.includes(x.status) ? x.status : "pending", ...(eh ? { eh } : {}), ret: !!x.ret, updated: Date.now() };
         d.members[id] = m; all.push(m);
       }
     }, EMPTY_ROSTER);

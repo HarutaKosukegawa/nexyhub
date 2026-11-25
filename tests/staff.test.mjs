@@ -163,6 +163,13 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   assert.equal(after.find((m) => m.name === "応募F").status, "pending");
   assert.notEqual(typeof (await dev("f@example.com")), "string");
   assert.ok((await call(GET, "settings", null, rep)).j.lastSync > 0);
+  // 「メンバー」になった人は確定に上がり、ログインできる。確定の人は「検討中」でも保留に戻さない
+  await sync("sync-token-for-tests-0123456789", { members: [{ name: "応募F", team: "rec", status: "confirmed", email: "f@example.com" }, { name: "統括A", team: "a", status: "pending", email: "lead2@example.com" }, { name: "新人G", team: "a", status: "confirmed", email: "g@example.com" }] });
+  const r3 = (await call(GET, "all", null, rep)).j.roster;
+  assert.equal(r3.find((m) => m.name === "応募F").status, "confirmed");
+  assert.equal(r3.find((m) => m.id === lead.id).status, "confirmed");
+  assert.equal(r3.find((m) => m.name === "新人G").status, "confirmed");
+  assert.equal(typeof (await dev("g@example.com")), "string");
 }
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
