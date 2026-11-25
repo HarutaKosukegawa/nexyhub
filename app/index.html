@@ -1541,7 +1541,7 @@ function openRegister(confirmDel){
       <div class="photo">${prev}<div class="ctl"><span class="btn s filebtn">写真を選ぶ<input id="phIn" type="file" accept="image/*" aria-label="顔写真を選ぶ"></span>
       ${curPh?'<button type="button" class="note" data-rmphoto="1" style="text-decoration:underline">写真を外す</button>':'<span class="hp">顔がわかると当日見つけてもらいやすい</span>'}</div></div></div>
     <div class="fld"><label for="fName">名前<em>必須</em></label><input type="text" id="fName" maxlength="20" value="${esc(p.name)}" placeholder="例：こすけ　（ニックネームでもOK）"></div>
-    <fieldset class="fld"><legend>いまの立場<em>必須</em></legend><div class="grpick">${GRADES.map(([g,c],i)=>`<label style="--gc:${c}"><input type="radio" name="fGrade" id="gr${i}" value="${g}" ${p.grade===g?"checked":""}><span>${g}</span></label>`).join("")}</div><span class="hp">年齢ではなく、いまの立場を選んでください。カードと参加者一覧に表示されます</span></fieldset>
+    <fieldset class="fld"><legend>年齢<em>必須</em></legend><div class="grpick">${GRADES.map(([g,c],i)=>`<label style="--gc:${c}"><input type="radio" name="fGrade" id="gr${i}" value="${g}" ${p.grade===g?"checked":""}><span>${g}</span></label>`).join("")}</div><span class="hp">カードと参加者一覧に表示されます</span></fieldset>
     <div class="fld"><label for="fTitle">肩書<em>必須</em></label><input type="text" id="fTitle" maxlength="30" value="${esc(p.title)}" placeholder="例：高校2年／学生団体〇〇 代表"><span class="hp">学校名は書かなくてOK</span></div>
     <div class="fld"><label for="fDoing">何をしているか<em>必須</em></label><textarea id="fDoing" rows="4" maxlength="100" placeholder="例：地元の商店街で、高校生が企画するお祭りを運営しています。&#10;例：中高生向けに、無料のプログラミング教室を開いています。&#10;例：会社で、地方の工場にAIを導入する仕事をしています。">${esc(p.doing)}</textarea><span class="hp">会社名や役職だけだと伝わりにくいので、「誰に・何を」しているかを書くと話しかけてもらいやすくなります</span></div>
     <div class="fld"><label for="fWant">やりたいこと・話したいテーマ<em>任意</em></label><input type="text" id="fWant" maxlength="40" value="${esc(p.want)}" placeholder="例：一緒にPodcastをやる仲間がほしい"></div>
@@ -1577,7 +1577,7 @@ async function onSave(e){
   const v={name:$("fName").value.trim(),title:$("fTitle").value.trim(),doing:$("fDoing").value.trim(),want:$("fWant").value.trim(),grade:(document.querySelector('input[name="fGrade"]:checked')||{}).value||"",ig:cleanHandle($("fIg").value),x:cleanHandle($("fX").value),tt:cleanHandle($("fTt").value),
     tags:[...document.querySelectorAll(".tagpick input:checked")].map(i=>i.value).slice(0,3)};
   if(!v.name||!v.title||!v.doing){err.textContent="名前・肩書・何をしているかを入力してください";return}
-  if(!v.grade){err.textContent="いまの立場（中学生・高校生・大学生・大人）を選んでください";return}
+  if(!v.grade){err.textContent="年齢（中学生・高校生・大学生・大人）を選んでください";return}
   for(const [id,nm] of [["fIg","Instagram"],["fX","X"],["fTt","TikTok"]]){const raw=$(id).value.trim();if(raw&&!cleanHandle(raw)){err.textContent=nm+"のIDは英数字・ピリオド・アンダーバーで入力してください";return}}
   if(!$("fOk").checked){err.textContent="公開への同意にチェックを入れてください";return}
   const btn=$("fSave");btn.disabled=true;btn.textContent="保存中…";
