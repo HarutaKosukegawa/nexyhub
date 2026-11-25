@@ -35,19 +35,27 @@ async function getStore() {
     return store;
   }
   const blob = await import("@vercel/blob");
+  const mem = new Map();
   store = {
     ready: !!(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID),
+    // 同じ処理の中で書いた直後に読むと、保存先の反映待ちで古い内容が返ることがある。
+    // 直前に自分で書いた内容は手元の控えを使う（10秒だけ）
     async read(k) {
+      const c = mem.get(k);
+      if (c && Date.now() - c.at < 10000) return { body: c.body, etag: c.etag };
       const r = await blob.get(k, { access: "private", useCache: false }).catch((e) => { if (e instanceof blob.BlobNotFoundError) return null; throw e; });
       if (!r || r.statusCode !== 200) return null;
       return { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: r.blob.etag };
     },
     async write(k, body, { ifMatch } = {}) {
-      const opt = { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json", cacheControlMaxAge: 60 };
+      const opt = { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: k.endsWith(".jpg") ? "image/jpeg" : "application/json", cacheControlMaxAge: 60 };
       if (ifMatch) opt.ifMatch = ifMatch;
-      try { await blob.put(k, body, opt); } catch (e) { if (e instanceof blob.BlobPreconditionFailedError) throw Object.assign(new Error("precondition"), { precondition: true }); throw e; }
+      try {
+        const r = await blob.put(k, body, opt);
+        if (!k.endsWith(".jpg")) mem.set(k, { body: Buffer.isBuffer(body) ? body : Buffer.from(body), etag: r && r.etag, at: Date.now() });
+      } catch (e) { mem.delete(k); if (e instanceof blob.BlobPreconditionFailedError) throw Object.assign(new Error("precondition"), { precondition: true }); throw e; }
     },
-    async del(k) { try { await blob.del(k); } catch {} },
+    async del(k) { mem.delete(k); try { await blob.del(k); } catch {} },
   };
   return store;
 }
@@ -57,13 +65,15 @@ async function readJSON(key, empty) {
 }
 async function updateJSON(key, fn, empty) {
   const s = await getStore();
-  for (let i = 0; i < 6; i++) {
+  // ほかの人と同時に書いたときは読み直してやり直す。何度も合わないときは、最後は上書きで保存する（止まらないことを優先）
+  for (let i = 0; i < 8; i++) {
     const cur = await s.read(key);
     const data = cur ? JSON.parse(cur.body.toString("utf8")) : structuredClone(empty);
     const out = fn(data);
     if (out === false) return data;
-    try { await s.write(key, JSON.stringify(data), { ifMatch: cur ? cur.etag : undefined }); return data; }
-    catch (e) { if (!e.precondition) throw e; await new Promise((r) => setTimeout(r, 40 + Math.random() * 120)); }
+    const last = i === 7;
+    try { await s.write(key, JSON.stringify(data), { ifMatch: cur && !last ? cur.etag : undefined }); return data; }
+    catch (e) { if (!e.precondition) throw e; console.warn("staff retry", key, i); await new Promise((r) => setTimeout(r, Math.min(1000, 80 * 2 ** i) + Math.random() * 100)); }
   }
   throw new Error("busy");
 }
