@@ -1851,7 +1851,7 @@ async function load(){
   try{
     const [all,meJ,st]=await Promise.all([sapi("all"),sapi("me"),sapi("settings").catch(()=>({certOpen:false}))]);
     VIEWER=all.viewer;NEEDS_PHOTO=!!meJ.needsPhoto;
-    const list=all.roster.map(r=>{const p=all.pages[r.id]||{};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],updated:p.updated||r.updated||0}});
+    const list=all.roster.map(r=>{const p=all.pages[r.id]||{};if(r.role==="メンバー"&&r.teamSet===false)r={...r,team:"none"};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],updated:p.updated||r.updated||0}});
     STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0};loadErr="";
   }catch(e){if(e.status===401){VIEWER=null}else loadErr=e.message}
   loaded=true;
@@ -1879,7 +1879,7 @@ const thanksOf=m=>m.thanks||[];
 const pageOpen=m=>m.open!==false;
 const visibleMembers=()=>members();
 const ymd=t=>{const d=new Date(t||Date.now());return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`};
-const teamPill=m=>`<span class="rl" style="--tc:${TEAMS[m.team].c};--tt:${TEAMS[m.team].t}">${m.team==="hq"?"代表":TEAMS[m.team].n+"・"+esc(m.role)}</span>`;
+const teamPill=m=>`<span class="rl" style="--tc:${TEAMS[m.team].c};--tt:${TEAMS[m.team].t}">${m.team==="hq"?"代表":m.team==="none"?"チーム未定":TEAMS[m.team].n+"・"+esc(m.role)}</span>`;
 const nameHTML=(m,cls="")=>`<span class="nmk ${cls}"><b>${esc(m.name)}</b>${m.kana?`<small>${esc(m.kana)}${!m.kanaOk&&isRep()?'<em>読み未確認</em>':""}</small>`:""}</span>`;
 const gen=m=>m.ret?'<span class="gen r">2026から</span>':'<span class="gen n">2027から</span>';
 function stAv(m,size){const ini=esc((m.name||"?").trim().charAt(0)||"?");
@@ -1889,7 +1889,7 @@ const certNo=m=>m.certNo||"NEXY27-見本";
 const TEAMS={a:{n:"A会場",c:"var(--orange)",t:"var(--orange-tint)"},b:{n:"B会場",c:"var(--teal-deep)",t:"var(--teal-tint)"},perm:{n:"常設",c:"var(--violet)",t:"var(--violet-tint)"},
   media:{n:"メディア",c:"var(--pink)",t:"var(--pink-tint)"},rec:{n:"レセプション",c:"var(--teal)",t:"var(--teal-tint)"},guide:{n:"誘導",c:"#5E6468",t:"var(--surface-2)"}};
 
-const TEAM_KEYS=Object.keys(TEAMS);TEAMS.hq={n:"代表",c:"var(--teal-deep)",t:"var(--teal-tint)"};
+const TEAM_KEYS=Object.keys(TEAMS);TEAMS.hq={n:"代表",c:"var(--teal-deep)",t:"var(--teal-tint)"};TEAMS.none={n:"チーム未定",c:"#8D9396",t:"#F0F1F2"};
 
 const ROLES=["統括","サブ統括","メンバー"];
 
@@ -1941,7 +1941,7 @@ function stListBody(){
   const hit=m=>!q||[m.name,TEAMS[m.team].n,m.role,...TF.map(f=>fv(m,f[0])),...kwOf(m),...gkwOf(m),...(xs(m,"strength")?Object.keys(m.x.skills||{}):[])].join(" ").includes(q);
   const list=visibleMembers().filter(m=>(sv.team==="all"||m.team===sv.team)&&hit(m));
   const order=m=>ROLES.indexOf(m.role);
-  const groups=["hq",...TEAM_KEYS].map(k=>[k,list.filter(m=>m.team===k).sort((a,b)=>order(a)-order(b))]).filter(g=>g[1].length);
+  const groups=["hq",...TEAM_KEYS,"none"].map(k=>[k,list.filter(m=>m.team===k).sort((a,b)=>order(a)-order(b))]).filter(g=>g[1].length);
   const dash=sv.team!=="all"&&!q?stTeamDash(sv.team):"";
   return `${dash}
   ${groups.length?groups.map(([k,ms])=>`<section class="st-team" style="--tc:${TEAMS[k].c}"><h3><i></i>${TEAMS[k].n}のメンバー<span>${ms.length}人</span></h3><div class="pgrid st-grid">${ms.map(stCard).join("")}</div></section>`).join(""):`<div class="sec empty"><span>条件に合う人がいません。</span></div>`}`;
@@ -1960,7 +1960,8 @@ function stOverview(){
     return `<article class="ov-team" style="--tc:${T.c};--tt:${T.t}"><header><h3>${T.n}</h3><span>${tm.length}人</span></header>
       <div class="ov-leads">${slot("統括",tm.find(m=>m.role==="統括"))}${slot("サブ統括",tm.find(m=>m.role==="サブ統括"))}</div>
       <ul>${mem.map(m=>`<li><button data-st="open" data-id="${m.id}">${stAv(m,"s")}${nameHTML(m)}${gen(m)}</button></li>`).join("")||'<li class="none">まだいない</li>'}</ul>
-      <button class="ov-go" data-st="team" data-k="${k}">チームのようすを見る →</button></article>`}).join("")}</div>`;
+      <button class="ov-go" data-st="team" data-k="${k}">チームのようすを見る →</button></article>`}).join("")}</div>
+  ${(()=>{const un=ms.filter(m=>m.team==="none");return un.length?`<article class="ov-team ov-none" style="--tc:#8D9396;--tt:#F0F1F2;margin-top:12px"><header><h3>チーム未定</h3><span>${un.length}人</span></header><p class="note" style="margin:0 0 6px">本人がマイページでチームを選ぶと、そのチームに入ります。</p><ul>${un.map(m=>`<li><button data-st="open" data-id="${m.id}">${stAv(m,"s")}${nameHTML(m)}${gen(m)}</button></li>`).join("")}</ul></article>`:""})()}`;
 }
 
 function stCard(m){const g=fv(m,"gain");const kw=kwOf(m).slice(0,3);
@@ -2178,6 +2179,7 @@ function vStaffMain(){
   if(loadErr)return `<div class="lock" style="margin-top:22px">${SHIELD}<b>読み込めませんでした</b><p>${esc(loadErr)}</p><button class="btn o" data-st="reload">もう一度読み込む</button></div>`;
   if(!me())return stAuth();
   if(NEEDS_PHOTO&&!me().m.pv){sv.auth.step="photo";return stAuth()}
+  if(me().m.team==="none"&&!sv.skipTeam)return stTeamGate();
   if(sv.view==="edit"&&document.querySelector("[data-ek]")&&stM(sv.id))stCollect(stM(sv.id));
   const w=me();
   const nav=[["list","チーム"],...(w.k!=="mem"?[["import","1on1から作る"]]:[]),["perm","できること"],...(w.k==="rep"?[["settings","メンバー管理"]]:[])];
@@ -2288,11 +2290,17 @@ function stImport(){const im=sv.imp;const ts=impTargets();if(!ts.length)return `
 }
 
 /* ---- メンバー管理（代表だけ） ---- */
+function stTeamGate(){const m=me().m;
+  return `<div class="au-wrap"><div class="panel au-card" style="max-width:520px;margin:12px auto"><h2 style="font-size:20px;font-weight:900;margin:0 0 6px">チームを選んでください</h2>
+    <p class="note" style="margin:0 0 12px">NEXY SUMMIT 2027で、自分がやりたいチームを1つ選んでください。あとからマイページで変えられます。</p>
+    <div class="tmpick">${TEAM_KEYS.filter(k=>k!=="hq").map(k=>`<label style="--tc:${TEAMS[k].c};--tt:${TEAMS[k].t}"><input type="radio" name="gateTeam" value="${k}"><span>${esc(TEAMS[k].n)}</span></label>`).join("")}</div>
+    <button class="btn o${sv.busy?" st-busy":""}" style="width:100%;margin-top:14px" data-st="gateteam">このチームにする</button>
+    <button class="au-link" data-st="gateskip" style="margin-top:6px">あとで決める</button></div></div>`}
 function stSettings(){
   const row=m=>{const n=TF.filter(f=>f[2]!=="grow"&&!(m.f[f[0]]&&m.f[f[0]].v)).length;
     return `<div class="st-row">${stAv(m,"s")}<div><b>${esc(m.name)}</b> <span class="lyr lyr-${isMgrRole(m.role)?"mgr":"mem"}">${LAYER[isMgrRole(m.role)?"mgr":"mem"]}</span> ${m.conf?"":'<span class="dr">保留</span>'}
       <div class="note">${m.hasEmail?"メール登録済み":"メール未登録"}・${m.hasPassword?"ログイン済み":"まだログインしていません"}${m.pv?"":"・顔写真なし"}${m.conf?`・未記入 ${n}項目`:""}</div>
-      <div class="ctl"><select data-st-team="${m.id}" aria-label="${esc(m.name)}のチーム">${TEAM_KEYS.map(k=>`<option value="${k}" ${m.team===k?"selected":""}>${TEAMS[k].n}</option>`).join("")}</select>
+      <div class="ctl"><select data-st-team="${m.id}" aria-label="${esc(m.name)}のチーム">${m.role==="メンバー"?`<option value="none" ${m.team==="none"?"selected":""}>チーム未定（本人が選ぶ）</option>`:""}${TEAM_KEYS.map(k=>`<option value="${k}" ${m.team===k?"selected":""}>${TEAMS[k].n}</option>`).join("")}</select>
       <select data-st-role="${m.id}" aria-label="${esc(m.name)}の役職">${ROLES.map(r=>`<option ${m.role===r?"selected":""}>${r}</option>`).join("")}</select>
       <input type="email" data-st-mail="${m.id}" placeholder="${m.hasEmail?"メールを登録し直すときだけ入力":"応募フォームのメールアドレス"}" aria-label="${esc(m.name)}のメールアドレス" style="grid-column:1/-1">
       <button class="btn s" data-st="${m.conf?"topend":"confirm"}" data-id="${m.id}">${m.conf?"保留に戻す":"確定にする"}</button><button class="btn d" data-st="rmmember" data-id="${m.id}">名簿から外す</button></div></div></div>`};
@@ -2320,6 +2328,16 @@ function stSettings(){
 
 /* ---- 操作 ---- */
 function stGo(view,id){sv.view=view;if(id!==undefined)sv.id=id;renderMain();window.scrollTo(0,0)}
+// メンバー管理の変更は、画面を先に変えて、保存は裏で順番に送る（1件ずつ全体を読み直さない）
+let rq=Promise.resolve();
+function quickRoster(m,patch,msg){
+  const before={team:m.team,role:m.role,conf:m.conf};
+  Object.assign(m,patch);if(patch.team!==undefined)m.teamSet=patch.team!=="none";
+  if(patch.conf!==undefined){STD.members=STD.members.filter(x=>x!==m);STD.pending=STD.pending.filter(x=>x!==m);(m.conf?STD.members:STD.pending).push(m)}
+  const y=window.scrollY;renderMain();window.scrollTo(0,y);
+  const body={id:m.id,name:m.name,team:m.team,role:m.role,status:m.conf?"confirmed":"pending",ret:m.ret};
+  rq=rq.then(()=>sapi("roster_upsert",body)).then(r=>{toast(r.warn||msg)}).catch(e=>{Object.assign(m,before);toast("保存できませんでした："+e.message);reload()});
+}
 async function act(fn,okMsg){if(sv.busy)return;sv.busy=true;try{await fn();await load();if(okMsg)toast(okMsg)}catch(e){toast(e.message)}finally{sv.busy=false;if(tab==="staff")renderMain()}}
 document.addEventListener("submit",e=>{const f=e.target.closest&&e.target.closest("[data-stform]");if(!f||tab!=="staff")return;e.preventDefault();authSubmit(f.dataset.stform)});
 document.addEventListener("click",e=>{
@@ -2334,6 +2352,9 @@ document.addEventListener("click",e=>{
     case "team":sv.team=d.k;renderMain();break;
     case "open":stGo("person",d.id);break;
     case "back":stGo("list");break;
+    case "gateteam":{const tm=(document.querySelector('input[name="gateTeam"]:checked')||{}).value;if(!tm){toast("チームを1つ選んでください");return}const w=me();
+      act(()=>sapi("profile_save",{name:w.m.name,kana:w.m.kana||"",nick:w.m.nick||"",team:tm}),`${TEAMS[tm].n}チームに入りました`);break}
+    case "gateskip":sv.skipTeam=true;renderMain();break;
     case "edit":stGo("edit",d.id);break;
     case "toimport":if(d.id){sv.imp.target=d.id;sv.imp.res=null}stGo("import");break;
     case "skill":{const cur=stM(sv.id);stCollect(cur);const v=cur.x.skills[d.k];if(!v)cur.x.skills[d.k]="good";else if(v==="good")cur.x.skills[d.k]="try";else delete cur.x.skills[d.k];renderMain();break}
@@ -2353,7 +2374,7 @@ document.addEventListener("click",e=>{
     case "imprun":stRunImport();break;
     case "impsave":{const tm=stM(sv.imp.target);const r=sv.imp.res;if(!r||!canImport(tm))return;
       act(()=>sapi("draft_save",{id:tm.id,fields:r.fields,excluded:r.excluded||[],consent:r.consent}),"下書きを入れました").then(()=>{sv.imp.res=null;sv.imp.text="";stGo("person",tm.id)});break}
-    case "confirm":case "topend":{const st=d.st==="confirm"?"confirmed":"pending";act(()=>sapi("roster_upsert",{id:m.id,name:m.name,team:m.team,role:m.role,status:st,ret:m.ret}),st==="confirmed"?`${m.name}さんを確定にしました`:`${m.name}さんを保留に戻しました`);break}
+    case "confirm":case "topend":{const st=d.st==="confirm"?"confirmed":"pending";quickRoster(m,{conf:st==="confirmed"},st==="confirmed"?`${m.name}さんを確定にしました`:`${m.name}さんを保留に戻しました`);break}
     case "rmmember":if(!confirm(`${m.name}さんを名簿から外しますか？取扱説明書も消えて、元に戻せません。`))return;act(()=>sapi("roster_remove",{id:m.id}),"名簿から外しました");break;
     case "addmember":{const n=($("amName").value||"").trim();if(!n){toast("名前を入れてください");return}
       act(()=>sapi("roster_upsert",{name:n,kana:($("amKana").value||"").trim(),team:$("amTeam").value,role:$("amRole").value,email:($("amMail").value||"").trim(),ret:$("amRet").checked,status:$("amConf").checked?"confirmed":"pending"}),`${n}さんを追加しました`);break}
@@ -2366,7 +2387,9 @@ document.addEventListener("input",e=>{if(tab!=="staff")return;
   if(e.target.dataset&&e.target.dataset.ek){const t=e.target;t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px"}});
 document.addEventListener("change",async e=>{if(tab!=="staff")return;const el=e.target;const ds=el.dataset||{};
   if(el.id==="stTarget"){sv.imp.target=el.value;sv.imp.res=null;renderMain()}
-  if(ds.stTeam||ds.stRole){const m=stM(ds.stTeam||ds.stRole);act(()=>sapi("roster_upsert",{id:m.id,name:m.name,team:ds.stTeam?el.value:m.team,role:ds.stRole?el.value:m.role,status:m.conf?"confirmed":"pending",ret:m.ret}),"変更しました")}
+  if(ds.stTeam||ds.stRole){const m=stM(ds.stTeam||ds.stRole);if(!m)return;
+    let team=ds.stTeam?el.value:m.team;const role=ds.stRole?el.value:m.role;if(role!=="メンバー"&&team==="none")team="perm";
+    quickRoster(m,{team,role},`${m.name}さんを${team==="none"?"チーム未定":TEAMS[team].n}・${role}にしました`)}
   if(ds.stMail){const m=stM(ds.stMail);const v=el.value.trim();if(!v)return;act(()=>sapi("roster_upsert",{id:m.id,name:m.name,team:m.team,role:m.role,status:m.conf?"confirmed":"pending",ret:m.ret,email:v}),"メールアドレスを登録しました（画面には表示されません）")}
   if(ds.stPhoto){const f=el.files&&el.files[0];if(!f)return;const w=me();if(!w)return;
     act(async()=>{const u=await resizePhoto(f);await sapi("profile_save",{name:w.m.name,kana:w.m.kana||"",nick:w.m.nick||"",photo:u});NEEDS_PHOTO=false;sv.auth.step="email"},"顔写真を登録しました")}

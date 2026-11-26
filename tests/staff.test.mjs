@@ -202,6 +202,15 @@ assert.ok(!allFiles(process.env.SUMMIT_FS_DIR).replace(/mail\/[^\n]*/g, "").incl
   assert.equal((await call(GET, "page&id=" + m.id, null, rep)).j.f.reason.v, "フォームの志望動機");
   const hc = await dev("hayate@example.com"); assert.equal(typeof hc, "string");
 }
+// 代表が「チーム未定」にすると、本人がマイページで選ぶ状態になる。未定の人の弱みは、どのチームの管理職にも見えない
+{
+  const ros = (await call(GET, "all", null, rep)).j.roster;
+  const m = ros.find((x) => x.name === "新人E");
+  const r = await call(POST, "roster_upsert", { id: m.id, name: m.name, team: "none", role: "メンバー", status: "confirmed" }, rep);
+  assert.equal(r.s, 200); assert.equal(r.j.member.teamSet, false);
+  const r2 = await call(POST, "roster_upsert", { id: m.id, name: m.name, team: "a", role: "メンバー", status: "confirmed" }, rep);
+  assert.equal(r2.j.member.teamSet, true); assert.equal(r2.j.member.team, "a");
+}
 // 本番（Blob）では dev_login は使えない
 delete process.env.STAFF_DEV_LOGIN; assert.equal((await call(POST, "dev_login", { email: "rep@example.com" })).s, 404);
 console.log("all tests passed");

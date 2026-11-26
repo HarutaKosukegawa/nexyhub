@@ -193,8 +193,9 @@ function canSee(v, m, page, scope) {
   if (own(v, m)) return true;
   if (m.status !== "confirmed" || page.status !== "pub") return false;
   if (scope === "all") return true;
-  if (scope === "team") return v.team === m.team;
-  if (scope === "lead") return v.k === "mgr" && v.team === m.team;
+  const same = v.team === m.team && m.teamSet !== false; // チーム未定の人は、どのチームにも入っていない扱い
+  if (scope === "team") return same;
+  if (scope === "lead") return v.k === "mgr" && same;
   return false;
 }
 const scopeOf = (page, k) => (page.f[k] && page.f[k].s) || FIELDS[k];
@@ -214,12 +215,12 @@ function viewPage(v, m, page) {
   out.kw = see("strength") ? page.kw || [] : [];
   out.gkw = see("gain") ? page.gkw || [] : [];
   out.thanks = (page.thanks || []).filter((t) => me || t.pub).map((t) => ({ t: t.t, from: t.from, pub: !!t.pub }));
-  if (me || (v.k === "mgr" && v.team === m.team)) out.consent = page.consent;
+  if (me || (v.k === "mgr" && v.team === m.team && m.teamSet !== false)) out.consent = page.consent;
   if (v.k === "rep") out.excluded = page.excluded || [];
   const c = page.cert || {};
   if (me) out.cert = { duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null };
   // 証明書の所見を書く人（代表・同じチームの管理職）には、本人が書いた活動内容と所見を見せる
-  else if (m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team))) out.cert = { duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null };
+  else if (m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team && m.teamSet !== false))) out.cert = { duty: c.duty || "", items: c.items || [], result: c.result || "", comment: c.comment || "", by: c.by || null };
   return out;
 }
 // 名簿の見せ方：保留の人とGmailは代表だけ
@@ -349,6 +350,8 @@ async function mergeMembers(s, list, formOnly) {
           if (!formOnly) { m.ret = !!x.ret; m.name = name; }
           else if (m.role !== "代表") {
             if (x.status === "confirmed" && m.status === "pending") m.status = "confirmed";
+            // 前の連携で「常設」に仮で入ったままの人（ふりがなもない＝ファイル取り込みではない人）は、チーム未定に戻す
+            if (m.teamSet === undefined && m.role === "メンバー" && !m.kana) m.teamSet = false;
             // 統括・サブ統括は、連携スクリプトに書いた人だけに最初から付ける（チームもそのチームに固定）
             if (x.role === "統括" || x.role === "サブ統括") { m.role = x.role; m.team = x.team; m.teamSet = true; m.status = "confirmed"; }
           }
@@ -530,7 +533,7 @@ async function route(req) {
   }
 
   // 代表・管理職（自分のチームのほかの人）：1on1の文字起こしから下書きを作る。文字起こしは保存しない
-  const canDraft = (m) => m && m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team && v.id !== m.id));
+  const canDraft = (m) => m && m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team && m.teamSet !== false && v.id !== m.id));
   if (a === "draft_ai") {
     const m = roster.members[b.id];
     if (!canDraft(m)) return err("この人の下書きは作れません", 403);
@@ -617,7 +620,8 @@ async function route(req) {
     const id = b.id && roster.members[b.id] ? b.id : newId();
     const name = str(b.name, 20);
     if (!name) return err("名前を入れてください");
-    if (!TEAMS.includes(b.team)) return err("チームを選んでください");
+    const unset = b.team === "none"; // 「チーム未定」：本人がマイページで選ぶ
+    if (!unset && !TEAMS.includes(b.team)) return err("チームを選んでください");
     const role = ROLES.includes(b.role) ? b.role : "メンバー";
     const status = STATUS.includes(b.status) ? b.status : "pending";
     const email = normEmail(b.email); // 入れたときだけ更新。保存するのはハッシュだけ
@@ -626,9 +630,10 @@ async function route(req) {
     let warn = "";
     const r = await updateJSON(ROSTER, (d) => {
       if (eh && Object.values(d.members).some((x) => x.id !== id && x.eh === eh)) throw Object.assign(new Error("dup"), { status: 409, msg: "このメールアドレスは、もう別の人に登録されています" });
-      if (status === "confirmed" && isMgr(role) && Object.values(d.members).some((x) => x.id !== id && x.status === "confirmed" && x.team === b.team && x.role === role)) warn = `${role}がすでにいます。2人にする場合はこのままで大丈夫です`;
+      if (status === "confirmed" && isMgr(role) && Object.values(d.members).some((x) => x.id !== id && x.status === "confirmed" && x.team === b.team && x.role === role && !unset)) warn = `${role}がすでにいます。2人にする場合はこのままで大丈夫です`;
       const prev = d.members[id] || {};
-      d.members[id] = { ...prev, id, name, kana: b.kana !== undefined ? str(b.kana, 30) : prev.kana || "", team: b.team, role, status, ret: !!b.ret, updated: Date.now() };
+      const team = unset ? (prev.team && prev.team !== "hq" ? prev.team : "perm") : b.team;
+      d.members[id] = { ...prev, id, name, kana: b.kana !== undefined ? str(b.kana, 30) : prev.kana || "", team, teamSet: !(unset && role === "メンバー"), role, status, ret: !!b.ret, updated: Date.now() };
       delete d.members[id].email;
       if (eh) { if (d.members[id].eh !== eh) { delete d.members[id].pw; d.members[id].pwv = (prev.pwv || 0) + 1; } d.members[id].eh = eh; }
     }, EMPTY_ROSTER);
