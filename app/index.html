@@ -2308,6 +2308,7 @@ function stSettings(){
       <div class="note">${m.hasEmail?"メール登録済み":"メール未登録"}・${m.hasPassword?"ログイン済み":"まだログインしていません"}${m.pv?"":"・顔写真なし"}${m.conf?`・未記入 ${n}項目`:""}</div>
       <div class="ctl"><select data-st-team="${m.id}" aria-label="${esc(m.name)}のチーム">${m.role==="メンバー"?`<option value="none" ${m.team==="none"?"selected":""}>チーム未定（本人が選ぶ）</option>`:""}${TEAM_KEYS.map(k=>`<option value="${k}" ${m.team===k?"selected":""}>${TEAMS[k].n}</option>`).join("")}</select>
       <select data-st-role="${m.id}" aria-label="${esc(m.name)}の役職">${ROLES.map(r=>`<option ${m.role===r?"selected":""}>${r}</option>`).join("")}</select>
+      <label class="note" style="display:flex;align-items:center;gap:6px;min-height:40px"><input type="checkbox" data-st-ret="${m.id}" ${m.ret?"checked":""}> 2026から続けて参加</label>
       <input type="email" data-st-mail="${m.id}" placeholder="${m.hasEmail?"メールを登録し直すときだけ入力":"応募フォームのメールアドレス"}" aria-label="${esc(m.name)}のメールアドレス" style="grid-column:1/-1">
       <button class="btn s" data-st="${m.conf?"topend":"confirm"}" data-id="${m.id}">${m.conf?"保留に戻す":"確定にする"}</button><button class="btn d" data-st="rmmember" data-id="${m.id}">名簿から外す</button></div></div></div>`};
   const list=members().filter(m=>m.role!=="代表");
@@ -2396,6 +2397,7 @@ document.addEventListener("change",async e=>{if(tab!=="staff")return;const el=e.
   if(ds.stTeam||ds.stRole){const m=stM(ds.stTeam||ds.stRole);if(!m)return;
     let team=ds.stTeam?el.value:m.team;const role=ds.stRole?el.value:m.role;if(role!=="メンバー"&&team==="none")team="perm";
     quickRoster(m,{team,role},`${m.name}さんを${team==="none"?"チーム未定":TEAMS[team].n}・${role}にしました`)}
+  if(ds.stRet){const m=stM(ds.stRet);if(!m)return;quickRoster(m,{ret:el.checked},`${m.name}さんを「${el.checked?"2026から":"2027から"}」にしました`)}
   if(ds.stMail){const m=stM(ds.stMail);const v=el.value.trim();if(!v)return;act(()=>sapi("roster_upsert",{id:m.id,name:m.name,team:m.team,role:m.role,status:m.conf?"confirmed":"pending",ret:m.ret,email:v}),"メールアドレスを登録しました（画面には表示されません）")}
   if(ds.stPhoto){const f=el.files&&el.files[0];if(!f)return;const w=me();if(!w)return;
     act(async()=>{const u=await resizePhoto(f);await sapi("profile_save",{name:w.m.name,kana:w.m.kana||"",nick:w.m.nick||"",photo:u});NEEDS_PHOTO=false;sv.auth.step="email"},"顔写真を登録しました")}

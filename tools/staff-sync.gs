@@ -27,6 +27,9 @@ const TEAM_SHEET = "配属案"; // 「氏名」と「第1候補」の列。新�
 // 統括・サブ統括（名前：[チーム, 役職]）。チームは "a" "b" "perm" "media" "rec" "guide"
 const LEADERS = {
 };
+// NEXY SUMMIT 2026 から続けて参加している人（「2026から」と表示されます）
+const RETURNING = [
+];
 // 同じ人の別の呼び方（フォームの名前やニックネーム → 本名）。2件に分かれていたら1件にまとめます
 const ALIASES = {
 };
@@ -100,10 +103,11 @@ function syncNow() {
     seen[name] = L ? { name: name, email: email, team: L[0], role: L[1], status: "confirmed", page: { f: f } }
                    : { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
   });
+  Object.keys(seen).forEach((n) => { if (RETURNING.indexOf(n) >= 0) seen[n].ret = true; });
   // 別名があれば、まとめるように伝える
   Object.keys(seen).forEach((n) => { const aka = Object.keys(ALIASES).filter((a) => ALIASES[a] === n); if (aka.length) seen[n].aka = aka; });
   // フォームに回答していない統括・サブ統括も、役職だけは送る
-  Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed", aka: Object.keys(ALIASES).filter((a) => ALIASES[a] === n) }; });
+  Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed", ret: RETURNING.indexOf(n) >= 0, aka: Object.keys(ALIASES).filter((a) => ALIASES[a] === n) }; });
   Object.keys(seen).forEach((k) => members.push(seen[k]));
 
   const res = UrlFetchApp.fetch(API_URL, {

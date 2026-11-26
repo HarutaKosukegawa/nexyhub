@@ -47,6 +47,16 @@ async function getStore() {
       if (!r || r.statusCode !== 200) return null;
       return { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: r.blob.etag };
     },
+    // 書き換え用の読み込み：ETag は保存先のAPI（head）から取る。ファイルを読んだときのETagは書き込みの条件に使えない形のため
+    async readForUpdate(k) {
+      const c = mem.get(k);
+      if (c && Date.now() - c.at < 10000) return { body: c.body, etag: c.etag };
+      const h = await blob.head(k).catch(() => null);
+      if (!h) return null;
+      const r = await blob.get(k, { access: "private", useCache: false }).catch((e) => { if (e instanceof blob.BlobNotFoundError) return null; throw e; });
+      if (!r || r.statusCode !== 200) return null;
+      return { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: h.etag };
+    },
     async write(k, body, { ifMatch } = {}) {
       const opt = { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: k.endsWith(".jpg") ? "image/jpeg" : "application/json", cacheControlMaxAge: 60 };
       if (ifMatch) opt.ifMatch = ifMatch;
@@ -66,14 +76,14 @@ async function readJSON(key, empty) {
 async function updateJSON(key, fn, empty) {
   const s = await getStore();
   // ほかの人と同時に書いたときは読み直してやり直す。何度も合わないときは、最後は上書きで保存する（止まらないことを優先）
-  for (let i = 0; i < 8; i++) {
-    const cur = await s.read(key);
+  for (let i = 0; i < 5; i++) {
+    const cur = await (s.readForUpdate ? s.readForUpdate(key) : s.read(key));
     const data = cur ? JSON.parse(cur.body.toString("utf8")) : structuredClone(empty);
     const out = fn(data);
     if (out === false) return data;
-    const last = i === 7;
+    const last = i === 4;
     try { await s.write(key, JSON.stringify(data), { ifMatch: cur && !last ? cur.etag : undefined }); return data; }
-    catch (e) { if (!e.precondition) throw e; console.warn("staff retry", key, i); await new Promise((r) => setTimeout(r, Math.min(1000, 80 * 2 ** i) + Math.random() * 100)); }
+    catch (e) { if (!e.precondition) throw e; console.warn("staff retry", key, i); await new Promise((r) => setTimeout(r, 60 * 2 ** i + Math.random() * 80)); }
   }
   throw new Error("busy");
 }
@@ -361,6 +371,7 @@ async function mergeMembers(s, list, formOnly) {
           if (!formOnly) { m.ret = !!x.ret; m.name = name; }
           else if (m.role !== "代表") {
             if (x.status === "confirmed" && m.status === "pending") m.status = "confirmed";
+            if (x.ret === true) m.ret = true; // 2026から続けて参加（付けるだけ。外すのはメンバー管理で）
             // 前の連携で「常設」に仮で入ったままの人（ふりがなもない＝ファイル取り込みではない人）は、チーム未定に戻す
             if (m.teamSet === undefined && m.role === "メンバー" && !m.kana) m.teamSet = false;
             // 統括・サブ統括は、連携スクリプトに書いた人だけに最初から付ける（チームもそのチームに固定）
