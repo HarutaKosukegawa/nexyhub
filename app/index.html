@@ -672,7 +672,7 @@ body{line-break:strict;word-break:auto-phrase}
 .srow2 div span{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
 .fld input.tin,.fld select.tin{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px;color:var(--ink)}
 
-/* ---------- 運営タブ：メンバー取扱説明書 ---------- */
+/* ---------- 運営タブ：メンバー紹介ページ ---------- */
 .tabs nav.n6{grid-template-columns:repeat(6,1fr)}
 .st-demo{margin-top:14px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:10px 12px;display:grid;gap:8px}
 .st-demo small{font-size:11px;color:var(--muted);font-weight:700}
@@ -1837,7 +1837,7 @@ async function aiAsk(q){
   }finally{aiBusy=false;out.removeAttribute("id");const b=$("aiSend");if(b){b.textContent="送信";b.classList.remove("stop")}log.scrollTop=log.scrollHeight}
 }
 
-/* ---------- 運営タブ：メンバー取扱説明書（/api/staff とつなぐ） ---------- */
+/* ---------- 運営タブ：メンバー紹介ページ（/api/staff とつなぐ） ---------- */
 I.staff='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="8.5" cy="8.5" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19.5c.6-3.3 2.8-5.2 5.5-5.2s4.9 1.9 5.5 5.2M14.5 14.6c2.6-.3 5 1.3 5.6 4.9"/></svg>';
 const vStaff=(()=>{
 /* ---- サーバーとのやりとり ---- */
@@ -1855,7 +1855,7 @@ async function load(){
     const [all,meJ,st]=await Promise.all([sapi("all"),sapi("me"),sapi("settings").catch(()=>({certOpen:false}))]);
     VIEWER=all.viewer;NEEDS_PHOTO=!!meJ.needsPhoto;
     const list=all.roster.map(r=>{const p=all.pages[r.id]||{};if(r.role==="メンバー"&&r.teamSet===false)r={...r,team:"none"};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],updated:p.updated||r.updated||0}});
-    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0};loadErr="";
+    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0,aiReady:!!st.aiReady};loadErr="";
   }catch(e){if(e.status===401){VIEWER=null}else loadErr=e.message}
   loaded=true;
 }
@@ -1935,7 +1935,7 @@ function stList(){
   return `<div class="st-filter"><div class="search">${SEARCH}<input id="stq" type="search" placeholder="名前・強み・キーワードで探す（例：動画）" value="${esc(sv.q)}" aria-label="運営メンバーを検索"></div>
   <div class="chips">${[["all","すべて"],...TEAM_KEYS.map(k=>[k,TEAMS[k]]).map(([k,v])=>[k,v.n])].map(([k,l])=>`<button class="chip" aria-pressed="${sv.team===k}" data-st="team" data-k="${k}">${l}</button>`).join("")}</div></div>
   <div id="stRes">${stListBody()}</div>
-  <p class="note" style="margin-top:16px">取扱説明書は、関わる前に相手の背景を知るためのものです。評価や配属の判断には使いません。</p>`;
+  <p class="note" style="margin-top:16px">紹介ページは、関わる前に相手の背景を知るためのものです。評価や配属の判断には使いません。</p>`;
 }
 
 function stListBody(){
@@ -2025,7 +2025,7 @@ function stVisual(m){
 }
 
 function stPerson(m){if(!m)return stList();
-  if(!pageOpen(m))return `<button class="st-back" data-st="back">← 一覧にもどる</button><section class="prof-hero" style="margin-top:4px">${stAv(m,"")}<h2>${nameHTML(m,"big")}</h2>${teamPill(m)}</section><div class="sec empty"><span>${esc(m.name)}さんの取扱説明書は、まだ公開されていません。</span></div>`;
+  if(!pageOpen(m))return `<button class="st-back" data-st="back">← 一覧にもどる</button><section class="prof-hero" style="margin-top:4px">${stAv(m,"")}<h2>${nameHTML(m,"big")}</h2>${teamPill(m)}</section><div class="sec empty"><span>${esc(m.name)}さんの紹介ページは、まだ公開されていません。</span></div>`;
   const own=isRep()||isSelf(m);
   const secs=Object.entries(TSEC).map(([sk,sn])=>{
     const items=TF.filter(f=>f[2]===sk&&f[0]!=="dream").map(f=>{const x=m.f[f[0]];const v=fv(m,f[0]);
@@ -2035,8 +2035,8 @@ function stPerson(m){if(!m)return stList();
   const dream=fv(m,"dream"),gain=fv(m,"gain");
   const left=`<section class="prof-hero">${stAv(m,"")}<h2>${nameHTML(m,"big")}</h2><span class="rw">${teamPill(m)}${gen(m)}</span>${m.pref?`<span class="note">${esc(m.pref)}</span>`:""}
     ${gain?`<span class="ti">得たいこと：${esc(gain)}</span>`:""}${dream?`<p class="wn">${esc(dream)}</p>`:""}
-    ${isSelf(m)?`<div class="go" style="grid-template-columns:1fr"><button class="btn o" data-st="edit" data-id="${m.id}">${PEN}自分の取扱説明書を編集する</button></div>`:""}
-    ${canImport(m)?`<div class="go" style="grid-template-columns:1fr"><button class="btn s" data-st="toimport" data-id="${m.id}">1on1の文字起こしから下書きを作る</button></div>`:""}</section>
+    ${isSelf(m)?`<div class="go" style="grid-template-columns:1fr"><button class="btn o" data-st="edit" data-id="${m.id}">${PEN}自分の紹介ページを編集する</button></div>`:""}
+    ${canImport(m)&&STD.aiReady?`<div class="go" style="grid-template-columns:1fr"><button class="btn s" data-st="toimport" data-id="${m.id}">1on1の文字起こしから下書きを作る</button></div>`:""}</section>
   ${isSelf(m)?`<p class="st-selfnote">これはあなたのページです。運営メンバーに公開されています。書き換えると、すぐに反映されます。</p>`:""}
   ${m.status!=="pub"&&own?`<p class="note" style="margin-top:12px">いまは非公開です。本人と代表だけが見られます。</p>`:""}
 `;
@@ -2080,7 +2080,7 @@ function stEdit(m){if(!m||!isSelf(m))return `<div class="sec empty"><span>編集
       ${f[0]==="strength"?skill:""}</div>`}).join("")+`</section>`).join("");
   return `<button class="st-back" data-st="open" data-id="${m.id}">← 自分のページにもどる</button>
   <div class="st-edit2">
-  <section class="ed-head"><div><h2>自分の取扱説明書を書く</h2><p>応募フォームと1on1で話した内容が入っています。違うところは直して、載せたくないところは消してください。「保存する」を押すと、すぐにページに反映されます。</p></div>
+  <section class="ed-head"><div><h2>自分の紹介ページを書く</h2><p>応募フォームと1on1で話した内容が入っています。違うところは直して、載せたくないところは消してください。「保存する」を押すと、すぐにページに反映されます。</p></div>
     <div class="ed-prog"><b>${done}<small>/${keys.length}</small></b><span>書いた項目</span><i style="--p:${done/keys.length*100}%"></i></div></section>
   <div class="ed-grid">${cards}
   ${(m.thanks||[]).length?`<section class="ed-sec sec-thx"><h3><i></i>仲間からのありがとう<small>チェックを外したものは、ページに載りません</small></h3>
@@ -2108,14 +2108,14 @@ function certHTML(m,sample){const today=new Date();const d=`${today.getFullYear(
       ${m.ret?'<dt>これまでの参加</dt><dd>NEXY SUMMIT 2026 運営メンバー</dd>':""}
     </dl>
     <div class="c-sec"><h2>活動内容</h2>${items.length?`<ul>${items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:blank("本人がマイページで記入します")}${c.result?`<p class="c-res"><b>成果</b>${esc(c.result)}</p>`:""}</div>
-    <div class="c-sec"><h2>活動で発揮した強み</h2>${str.length?`<div class="c-chips">${str.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:blank("取扱説明書の「得意」から載ります")}</div>
+    <div class="c-sec"><h2>活動で発揮した強み</h2>${str.length?`<div class="c-chips">${str.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:blank("紹介ページの「得意」から載ります")}</div>
     <div class="c-sec c-cm"><h2>所見</h2>${c.comment?`<p>${esc(c.comment)}</p><small>${esc((c.by&&c.by.name)||"")}（${esc(c.by&&TEAMS[c.by.team]&&c.by.team!=="hq"?TEAMS[c.by.team].n+"チーム ":"")}${esc((c.by&&c.by.role)||"")}）</small>`:blank("チームの統括・サブ統括または代表が記入します")}</div>
     <div class="c-sign"><div><small>発行日</small><b>${d}</b></div><div class="c-org"><small>株式会社NEXY</small><b>代表取締役　小助川晴大</b><i>印</i></div></div>
     <div class="c-foot"><span>株式会社NEXY　nexyhub.jp</span><span>この証明書の内容は、株式会社NEXYが確認しています。</span></div>
   </div>`}
 
 function stPerm(){const w=me();
-  const P=[["rep","代表","はるた",["全員の取扱説明書（「管理職まで」と下書きも）","全チームのようす","1on1で聞いたが載せなかったもの"],["全員の所属チーム・役職、確定と保留の切り替え（メールアドレスは見られない）","全員の1on1の文字起こしから下書きを作る","自分のページ"]],
+  const P=[["rep","代表","はるた",["全員の紹介ページ（「管理職まで」と下書きも）","全チームのようす","1on1で聞いたが載せなかったもの"],["全員の所属チーム・役職、確定と保留の切り替え（メールアドレスは見られない）","全員の1on1の文字起こしから下書きを作る","自分のページ"]],
     ["mgr","管理職","統括・サブ統括",["全員の「全員」の項目","自分のチームの「チーム内」「管理職まで」の項目","自分のチームのようす"],["自分のチームのメンバーの1on1から下書きを作る","自分のページ（本人として）"]],
     ["mem","メンバー","",["全員の「全員」の項目","自分のチームの「チーム内」の項目","チームのようす（見られる人の分だけ）"],["自分のページの中身と、項目ごとの公開範囲","公開・非公開の切り替え"]]];
   return `<div class="st-perm">${P.map(([k,n,sub,see,edit])=>`<div class="panel pc ${w.k===k?"cur":""}"><div class="ph"><span class="lyr lyr-${k}">${n}</span>${sub?`<small>${sub}</small>`:""}${w.k===k?'<span class="mebadge" style="position:static">あなた</span>':""}</div>
@@ -2188,7 +2188,7 @@ function vStaffMain(){
   if(me().m.team==="none"&&!sv.skipTeam)return stTeamGate();
   if(sv.view==="edit"&&document.querySelector("[data-ek]")&&stM(sv.id))stCollect(stM(sv.id));
   const w=me();
-  const nav=[["list","チーム"],...(w.k!=="mem"?[["import","1on1から作る"]]:[]),["perm","できること"],...(w.k==="rep"?[["settings","メンバー管理"]]:[])];
+  const nav=[["list","チーム"],...(w.k!=="mem"&&STD.aiReady?[["import","1on1から作る"]]:[]),["perm","できること"],...(w.k==="rep"?[["settings","メンバー管理"]]:[])];
   const cur=sv.view==="person"||sv.view==="edit"?(sv.id===w.id?"mine":"list"):sv.view;
   const top=`<div class="st-top">${stLoginBar()}<button class="btn o st-mine" data-st="go" data-k="mine">${stAv(w.m,"s")}マイページ</button></div>
   <div class="st-nav" role="tablist">${nav.map(([k,l])=>`<button role="tab" aria-selected="${cur===k}" data-st="go" data-k="${k}">${l}</button>`).join("")}</div>`;
@@ -2229,7 +2229,7 @@ function stMine(){const w=me();const m=w.m;const c=m.cert||{duty:""};
     ${m.role==="メンバー"?`<fieldset class="fld" style="margin-top:12px"><legend>チーム${m.teamSet===false?'<em>選んでください</em>':""}</legend><div class="tmpick">${Object.entries(TEAMS).filter(([k])=>k!=="hq").map(([k,t])=>`<label style="--tc:${t.c};--tt:${t.t}"><input type="radio" name="myTeam" value="${k}" ${m.team===k&&m.teamSet!==false?"checked":""}><span>${esc(t.n)}</span></label>`).join("")}</div><span class="hp">自分がやりたいチームを選んでください。あとから変えることもできます。</span></fieldset>`
       :`<div class="fld" style="margin-top:12px"><label>チーム</label><p class="note" style="margin:0">${esc((TEAMS[m.team]||{}).n||"")}　${esc(m.role)}（チームは代表が決めます）</p></div>`}
     <button class="btn o${sv.busy?" st-busy":""}" style="width:100%;margin-top:12px" data-st="mysave">保存する</button></section>
-  <section class="panel my-card"><h3><i style="background:var(--orange)"></i>自分の取扱説明書</h3>
+  <section class="panel my-card"><h3><i style="background:var(--orange)"></i>自分の紹介ページ</h3>
     <div class="my-stats"><div class="b1"><b>${filled}<small>/${all}</small></b><span>書いた項目</span></div><div class="b2"><b>${thp}<small>/${th}</small></b><span>載せているありがとう</span></div><div class="b3"><b>${Object.keys(m.x.skills||{}).length}<small>/10</small></b><span>得意・挑戦を選んだ数</span></div></div>
     <p class="note" style="margin-top:8px">${m.status==="pub"?"運営メンバーに公開中です。":"いまは非公開です。"}更新日：${ymd(m.updated)}</p>
     <div class="go"><button class="btn s" data-st="open" data-id="${m.id}">ページを見る</button><button class="btn o" data-st="edit" data-id="${m.id}">${PEN}編集する</button></div></section>
@@ -2276,10 +2276,10 @@ function stImport(){const im=sv.imp;const ts=impTargets();if(!ts.length)return `
   if(!ts.some(x=>x.id===im.target))im.target=ts[0].id;
   const m=stM(im.target);const r=im.res;
   const empty=r?AI_KEYS.filter(k=>!r.fields[k]):[];
-  return `<div class="st-imp"><section class="panel" style="margin-top:12px"><div class="fld"><label for="stTarget">だれの取扱説明書か</label>
+  return `<div class="st-imp"><section class="panel" style="margin-top:12px"><div class="fld"><label for="stTarget">だれの紹介ページか</label>
     <select id="stTarget" class="st-sel">${ts.map(x=>`<option value="${x.id}" ${x.id===im.target?"selected":""}>${esc(x.name)}（${TEAMS[x.team].n}・${esc(x.role)}）</option>`).join("")}</select>
     ${isRep()?"":`<span class="hp">管理職は、自分のチームのメンバーの分だけ作れます。</span>`}</div>
-  <details style="margin-top:12px"><summary>1on1で聞くこと（全員この順で聞く）</summary><ol class="st-list" style="padding:0 14px 14px 32px">${TF.filter(f=>f[4]).map(f=>`<li>${esc(f[4])}<span class="note">（${f[1]}）</span></li>`).join("")}<li>最後に「今日話したことを、運営チーム内の取扱説明書に載せても大丈夫？」</li></ol><p class="note" style="padding:0 14px 14px">聞いても載せないもの：家庭の事情、体調や健康、受験の志望校や合否、学校名</p></details>
+  <details style="margin-top:12px"><summary>1on1で聞くこと（全員この順で聞く）</summary><ol class="st-list" style="padding:0 14px 14px 32px">${TF.filter(f=>f[4]).map(f=>`<li>${esc(f[4])}<span class="note">（${f[1]}）</span></li>`).join("")}<li>最後に「今日話したことを、運営チーム内の紹介ページに載せても大丈夫？」</li></ol><p class="note" style="padding:0 14px 14px">聞いても載せないもの：家庭の事情、体調や健康、受験の志望校や合否、学校名</p></details>
   <div class="fld" style="margin-top:12px"><label for="stImpText">1on1の文字起こし（Nottaからそのまま貼り付け）</label>
     <textarea id="stImpText" rows="8" placeholder="ここに貼り付け">${esc(im.text)}</textarea>
     <span class="hp">文字起こしは保存しません。下書きを作るためにだけ使います。</span></div>
@@ -2318,7 +2318,7 @@ function stSettings(){
     <p class="note" style="margin:2px 0 6px">ログインには、応募フォームに書いたメールアドレスを使います。アドレスは暗号化して保存するので、代表もここで見ることはできません。メールを入れ直すと、その人のパスワードは消えて、次のログインで作り直しになります。</p>
     ${list.map(row).join("")||'<p class="note">まだいません。</p>'}</section>
   <section class="panel" style="margin-top:12px"><b style="font-size:14px">保留中のメンバー（${STD.pending.length}人）</b>
-    <p class="note" style="margin:2px 0 6px">確定するまで、ログインできず、取扱説明書も代表以外には見えません。</p>
+    <p class="note" style="margin:2px 0 6px">確定するまで、ログインできず、紹介ページも代表以外には見えません。</p>
     ${STD.pending.map(row).join("")||'<p class="note">いません。</p>'}</section>
   <section class="panel" style="margin-top:12px"><b style="font-size:14px">メンバーを1人追加</b>
     <div class="st-addm"><input type="text" id="amName" maxlength="20" placeholder="名前（漢字）"><input type="text" id="amKana" maxlength="30" placeholder="ふりがな">
@@ -2382,7 +2382,7 @@ document.addEventListener("click",e=>{
     case "impsave":{const tm=stM(sv.imp.target);const r=sv.imp.res;if(!r||!canImport(tm))return;
       act(()=>sapi("draft_save",{id:tm.id,fields:r.fields,excluded:r.excluded||[],consent:r.consent}),"下書きを入れました").then(()=>{sv.imp.res=null;sv.imp.text="";stGo("person",tm.id)});break}
     case "confirm":case "topend":{const st=d.st==="confirm"?"confirmed":"pending";quickRoster(m,{conf:st==="confirmed"},st==="confirmed"?`${m.name}さんを確定にしました`:`${m.name}さんを保留に戻しました`);break}
-    case "rmmember":if(!confirm(`${m.name}さんを名簿から外しますか？取扱説明書も消えて、元に戻せません。`))return;act(()=>sapi("roster_remove",{id:m.id}),"名簿から外しました");break;
+    case "rmmember":if(!confirm(`${m.name}さんを名簿から外しますか？紹介ページも消えて、元に戻せません。`))return;act(()=>sapi("roster_remove",{id:m.id}),"名簿から外しました");break;
     case "addmember":{const n=($("amName").value||"").trim();if(!n){toast("名前を入れてください");return}
       act(()=>sapi("roster_upsert",{name:n,kana:($("amKana").value||"").trim(),team:$("amTeam").value,role:$("amRole").value,email:($("amMail").value||"").trim(),ret:$("amRet").checked,status:$("amConf").checked?"confirmed":"pending"}),`${n}さんを追加しました`);break}
   }

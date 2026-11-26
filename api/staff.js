@@ -1,7 +1,7 @@
-// NEXY 運営メンバー取扱説明書のAPI（/api/staff?a=...）
+// NEXY 運営メンバー紹介ページのAPI（/api/staff?a=...）
 // データはVercel Blob（private）に保存する。公開リポジトリなので、メンバーの情報はコードに書かない。
 //   staff/roster.json      運営メンバー名簿（確定・保留）。代表だけが書き換える
-//   staff/pages/<id>.json  一人ひとりの取扱説明書（最初から運営メンバーに公開。本人がいつでも書き換え・非公開にできる）
+//   staff/pages/<id>.json  一人ひとりの紹介ページ（最初から運営メンバーに公開。本人がいつでも書き換え・非公開にできる）
 //   staff/photos/<id>.jpg  顔写真（必須。運営メンバーだけが見られる）
 //   staff/auth/<hash>.json ログイン用の確認コード・失敗回数
 //   staff/settings.json    証明書の発行を始めたか（代表が切り替える）
@@ -270,7 +270,7 @@ const strList = (a, n, len) => (Array.isArray(a) ? a.map((t) => str(t, len)).fil
 const AI_KEYS = Object.keys(FIELDS).filter((k) => k !== "before" && k !== "after");
 async function aiDraft(name, transcript) {
   if (!process.env.ANTHROPIC_API_KEY) throw Object.assign(new Error("ai off"), { status: 503, msg: "AIの設定（ANTHROPIC_API_KEY）がまだです" });
-  const prompt = `あなたは学生団体NEXYの運営メンバー「取扱説明書」の下書きを作る係です。下の1on1の文字起こしから、本人（${name}さん）が自分について話したことだけを、決まった項目に振り分けてください。
+  const prompt = `あなたは学生団体NEXYの運営メンバー「紹介ページ」の下書きを作る係です。下の1on1の文字起こしから、本人（${name}さん）が自分について話したことだけを、決まった項目に振り分けてください。
 ルール：話者の名前は当てにならないので、質問している側か答えている側かを文脈で判断する（自信がない項目は check を true）。質問している側の自己開示は使わない。本人の言い回しを残す。quote には根拠の元の発言を1文入れる。
 外すもの：恋愛や交友、その場にいない人の名前と噂、家庭のこと、体調や健康、学校名、外見、他のメンバーについての話、受験の志望校や合否。外したものは excluded に何を外したかだけ短く書く。話していない項目は出さない。推測で埋めない。
 「運営チーム内に載せて大丈夫？」への答えを consent（yes/no/unknown）に入れる。
@@ -344,7 +344,7 @@ async function mergeAliases(s, list) {
 
 /* ---------------- 名簿の取り込み（ファイル・フォーム連携の共通） ---------------- */
 // ・同じ人（メールアドレス、なければ名前で照合）は重複させない。メールがつながっていなければ付け直す
-// ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
+// ・紹介ページは、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
 // ・formOnly（フォームからの自動連携）のときは、チーム・役職は変えない。確定/保留は「保留→確定」にだけ動かす（確定の人を自動で保留に戻さない）
 async function mergeMembers(s, list, formOnly) {
     list = Array.isArray(list) ? list.slice(0, 300) : [];
@@ -519,7 +519,7 @@ async function route(req) {
       if (!f) return err("見つかりません", 404);
       return new Response(f.body, { headers: { "content-type": "image/jpeg", "cache-control": "private, max-age=2592000, immutable" } });
     }
-    if (a === "settings") return json(await readJSON(SETTINGS, EMPTY_SETTINGS));
+    if (a === "settings") return json({ ...(await readJSON(SETTINGS, EMPTY_SETTINGS)), aiReady: !!process.env.ANTHROPIC_API_KEY });
     if (a === "page") {
       const m = roster.members[url.searchParams.get("id") || ""];
       if (!m || (m.status !== "confirmed" && v.k !== "rep")) return err("見つかりません", 404);
@@ -678,7 +678,7 @@ async function route(req) {
   }
   // 取り込み：応募フォームとチーム編成から作ったファイルを入れる。何度でも使える（週1などで追加分を入れる）。
   // ・同じ人（メールアドレス、なければ名前で照合）は名簿の項目（チーム・役職・確定/保留）だけ更新し、重複させない
-  // ・取扱説明書は、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
+  // ・紹介ページは、本人がまだ書いていない項目だけを埋める。本人が書いた文章は上書きしない
   if (a === "bootstrap") {
     const r = await mergeMembers(s, b.members, false);
     return json({ ok: true, count: r.added + r.updated, ...r });

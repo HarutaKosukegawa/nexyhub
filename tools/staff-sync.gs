@@ -14,7 +14,7 @@
  *   確定の人を自動で保留に戻すことはしません。外すときはアプリのメンバー管理で外してください。
  * ・チームは本人がアプリのマイページで選びます（新しい人には「配属案」の第1候補が仮に入ります）。
  * ・統括・サブ統括は、下の LEADERS に書いた人だけに最初から付けます（チームもそのチームに固定）。
- * ・本人が書いた取扱説明書は上書きしません。空欄だけを埋めます。
+ * ・本人が書いた紹介ページは上書きしません。空欄だけを埋めます。
  * ・メールアドレスはアプリのサーバーで暗号化してから保存されます。
  *
  * 合言葉（STAFF_SYNC_TOKEN）は、初期設定のときにこのスクリプトが作ります。
@@ -30,6 +30,8 @@ const LEADERS = {
 // NEXY SUMMIT 2026 から続けて参加している人（「2026から」と表示されます）
 const RETURNING = [
 ];
+// NEXY SUMMIT 2026 のMVP投票でもらった「ありがとう」の言葉と、ふりがな・強みのことば（名前ごと）
+const EXTRA = {};
 // 同じ人の別の呼び方（フォームの名前やニックネーム → 本名）。2件に分かれていたら1件にまとめます
 const ALIASES = {
 };
@@ -104,11 +106,13 @@ function syncNow() {
                    : { name: name, email: email, team: teamOf[name] || "perm", role: "メンバー", status: status, page: { f: f } };
   });
   Object.keys(seen).forEach((n) => { if (RETURNING.indexOf(n) >= 0) seen[n].ret = true; });
+  const addExtra = (x) => { const e = EXTRA[x.name]; if (!e) return; if (e.kana) { x.kana = e.kana; x.kanaOk = true; } x.page = x.page || { f: {} };
+    if (e.thanks) x.page.thanks = e.thanks.map((t) => ({ t: t })); if (e.kw) x.page.kw = e.kw; if (e.gkw) x.page.gkw = e.gkw; };
   // 別名があれば、まとめるように伝える
   Object.keys(seen).forEach((n) => { const aka = Object.keys(ALIASES).filter((a) => ALIASES[a] === n); if (aka.length) seen[n].aka = aka; });
   // フォームに回答していない統括・サブ統括も、役職だけは送る
   Object.keys(LEADERS).forEach((n) => { if (!seen[n]) seen[n] = { name: n, email: "", team: LEADERS[n][0], role: LEADERS[n][1], status: "confirmed", ret: RETURNING.indexOf(n) >= 0, aka: Object.keys(ALIASES).filter((a) => ALIASES[a] === n) }; });
-  Object.keys(seen).forEach((k) => members.push(seen[k]));
+  Object.keys(seen).forEach((k) => { addExtra(seen[k]); members.push(seen[k]); });
 
   const res = UrlFetchApp.fetch(API_URL, {
     method: "post",
