@@ -1491,7 +1491,9 @@ function vMy(){
     `<section class="prof-hero prof-empty"><span class="av" aria-hidden="true">？</span><h2>プロフィールを作ろう</h2><p class="dg">写真・名前・やっていることを載せると、話しかけてもらいやすくなります</p>
       <div class="go" style="grid-template-columns:1fr"><button class="btn o" data-reg="1" style="min-height:48px">プロフィールを作る（1分）</button></div></section>`;
   const stats=`<div class="stats"><button class="stat b3" data-jump="mPlan"><b>${plan.length}</b><span>予定</span></button><button class="stat b2" data-jump="mTalk"><b>${tl.length}</b><span>話したい人</span></button><button class="stat b1" data-tab="people"><b>${people.length}</b><span>参加者</span></button></div>`;
-  return hero+stats+`
+  const stLink=pcLinked?`<p class="note" style="margin:8px 2px 0">運営アカウントに保存されています。ほかの端末でも「運営」タブでログインすると、このカードがそのまま出ます。</p>`
+    :`<section class="panel" style="margin-top:10px;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--teal-tint);border-color:transparent"><div><b style="font-size:13px;color:var(--teal-deep)">運営メンバーの方</b><p class="note" style="margin:2px 0 0">応募フォームのメールアドレスでログインすると、このカードが運営アカウントに保存され、ほかの端末でも使えます。</p></div><button class="btn s" data-pclogin="1" style="flex:none">ログイン</button></section>`;
+  return hero+stLink+stats+`
   <section class="sec" id="mTalk"><div class="sec-h"><h2>話したい人 <span class="note">${tl.length}人</span></h2>${tl.length?'<button data-tab="people" data-ptag="talk">一覧で見る</button>':""}</div>
     ${tl.length?`<div class="panel plist">${tl.map(p=>`<div class="prow">${avatar(p,"")}<button data-person="${esc(p.id)}"><b>${esc(p.name)}</b><span>${esc(p.title)}</span></button>
       <button class="heart" aria-label="話したい人から外す" aria-pressed="true" data-talk="${esc(p.id)}">${HEART}</button></div>`).join("")}</div>`:
@@ -1624,7 +1626,7 @@ async function onSave(e){
   const isNew=!myProfile();
   if(myProfile())v.open=!!myProfile().open;
   const payload={profile:v,prefs:{plan:[...fav],talk:[...talk],seen:noticeSeen}};if(photoChanged)payload.photo=draftPhoto||"";
-  try{const r=await api("register",payload);setMe(r);photoChanged=false;await loadPeople();
+  try{const r=await api("register",payload);setMe(r);photoChanged=false;await loadPeople();pcardLink();
     closeSheet();tab="people";render();if(r.created)setTimeout(()=>showCode(true),260);else toast(isNew?"登録しました":"保存しました");}
   catch(x){btn.disabled=false;btn.textContent="もう一度保存する";err.textContent=x.message}
 }
@@ -1633,8 +1635,9 @@ async function onSave(e){
 document.addEventListener("click",async e=>{
   if(e.target.closest("a[href]"))return;
   if(e.target.matches(".scrim")||e.target.closest("[data-close]")){closeSheet();return}
-  const t=e.target.closest("[data-staff-add],[data-staff-rm],[data-staff-rm-yes],[data-mapzoom],[data-restore],[data-showcode],[data-copycode],[data-admlogin],[data-admlogout],[data-a2hs],[data-notices],[data-adm-kind],[data-adm-check],[data-adm-back],[data-adm-send],[data-adm-ndel],[data-adm-ndel-yes],[data-adm-pdel],[data-adm-pdel-yes],[data-preview],[data-vfocus],[data-okswitch],[data-jump],[data-ai],[data-aiq],[data-tab],[data-pv],[data-theme-go],[data-pf],[data-kf],[data-show],[data-unshow],[data-mv],[data-now],[data-star],[data-star2],[data-open],[data-zone],[data-ptag],[data-talk],[data-talk2],[data-person],[data-reg],[data-rmphoto],[data-delask],[data-delme],[data-modask],[data-moddel]");if(!t)return;
+  const t=e.target.closest("[data-staff-add],[data-staff-rm],[data-staff-rm-yes],[data-mapzoom],[data-restore],[data-showcode],[data-copycode],[data-admlogin],[data-admlogout],[data-a2hs],[data-notices],[data-adm-kind],[data-adm-check],[data-adm-back],[data-adm-send],[data-adm-ndel],[data-adm-ndel-yes],[data-adm-pdel],[data-adm-pdel-yes],[data-preview],[data-vfocus],[data-okswitch],[data-jump],[data-ai],[data-aiq],[data-tab],[data-pv],[data-theme-go],[data-pf],[data-kf],[data-show],[data-unshow],[data-mv],[data-now],[data-star],[data-star2],[data-open],[data-zone],[data-ptag],[data-talk],[data-talk2],[data-person],[data-reg],[data-rmphoto],[data-delask],[data-delme],[data-modask],[data-moddel],[data-pclogin]");if(!t)return;
   const d=t.dataset;
+  if(d.pclogin){pcFromMy=true;closeSheet();tab="staff";render();window.scrollTo(0,0);return}
   if(d.restore){openRestore();return}
   if(d.showcode){showCode(false);return}
   if(d.copycode){const c=myCode||"";try{await navigator.clipboard.writeText(c);toast("コードをコピーしました")}catch(x){const el=$("codeTxt");if(el){const r=document.createRange();r.selectNodeContents(el);const sl=getSelection();sl.removeAllRanges();sl.addRange(r)}toast("コードを長押ししてコピーしてください")}return}
@@ -2166,7 +2169,10 @@ async function authSubmit(kind){const a=sv.auth;if(a.busy)return;a.err="";
       set({busy:true});await sapi("login_password",{email:a.email,password:p});await afterLogin()}
   }catch(x){set({busy:false,err:x.message})}
 }
-async function afterLogin(){sv.auth={step:"email",email:sv.auth.email,setup:"",err:"",busy:false};await load();sv.view="list";sv.team="all";renderMain();window.scrollTo(0,0);if(VIEWER)toast("ログインしました")}
+async function afterLogin(){sv.auth={step:"email",email:sv.auth.email,setup:"",err:"",busy:false};await load();sv.view="list";sv.team="all";
+  if(VIEWER)await pcardSync();
+  if(VIEWER&&pcFromMy&&!NEEDS_PHOTO){pcFromMy=false;tab="my";render()}else renderMain();
+  window.scrollTo(0,0);if(VIEWER)toast(pcLinked&&meP?"ログインしました。マイページのカードも保存されています":"ログインしました")}
 
 function stLoginBar(){const w=me();
   return `<div class="st-login">${stAv(w.m,"s")}
@@ -2344,7 +2350,7 @@ document.addEventListener("click",e=>{
   const t=e.target.closest("[data-st]");if(!t||(tab!=="staff"&&!t.closest(".cert-wrap")))return;const d=t.dataset;const m=d.id?stM(d.id):null;
   switch(d.st){
     case "reload":loaded=false;loadErr="";reload();renderMain();break;
-    case "logout":sapi("logout",{}).catch(()=>{}).then(()=>{VIEWER=null;STD={members:[],pending:[],certOpen:false};sv.auth={step:"email",email:"",setup:"",err:"",busy:false};renderMain();toast("ログアウトしました")});break;
+    case "logout":sapi("logout",{}).catch(()=>{}).then(()=>{VIEWER=null;pcLinked=false;STD={members:[],pending:[],certOpen:false};sv.auth={step:"email",email:"",setup:"",err:"",busy:false};renderMain();toast("ログアウトしました")});break;
     case "au_resend":sapi("reset_start",{email:sv.auth.email}).then(()=>toast("コードを送り直しました")).catch(x=>{sv.auth.err=x.message;renderMain()});break;
     case "au_forgot":sv.auth.busy=true;renderMain();sapi("reset_start",{email:sv.auth.email}).then(()=>{sv.auth={...sv.auth,step:"code",busy:false,err:""};renderMain();toast("確認コードを送りました")}).catch(x=>{sv.auth.busy=false;sv.auth.err=x.message;renderMain()});break;
     case "au_back":sv.auth={step:"email",email:sv.auth.email,setup:"",err:"",busy:false};renderMain();break;
@@ -2456,6 +2462,17 @@ async function loadPeople(){try{const j=await api("people");peopleCount=j.count;
   if(meP){const f=people.find(p=>p.id===meP.id);if(f)meP=f}peopleState="ready"}catch(e){if(!people.length)peopleState="off"}
   const lk="r"+isMember();if(lk!==window.__lk&&tab==="people"){window.__lk=lk;render()}else{window.__lk=lk;renderMain()}}
 async function loadNotices(){try{const j=await api("notices");applyNotices(j.notices)}catch(e){}}
+// 運営メンバーは、マイページのカードを運営アカウント（メールアドレス）に保存して、どの端末でも同じカードを使える
+let pcLinked=false,pcFromMy=false;
+const normPc=c=>String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+async function pcardSync(){
+  try{const r=await fetch("/api/staff?a=pcard",{credentials:"same-origin",cache:"no-store"});if(!r.ok){pcLinked=false;return false}
+    const j=await r.json();
+    if(j.code&&normPc(j.code)!==normPc(myCode)){const x=await api("restore",{code:j.code});setMe(x);
+      if(x.prefs){(x.prefs.plan||[]).forEach(i=>fav.add(i));(x.prefs.talk||[]).forEach(i=>talk.add(i))}await loadPeople()}
+    else if(!j.code&&myCode){await pcardLink()}
+    pcLinked=!!(j.code||myCode);return true}catch(e){return false}}
+async function pcardLink(){if(!myCode)return;try{const r=await fetch("/api/staff?a=pcard_link",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({code:myCode})});if(r.ok)pcLinked=true}catch(e){}}
 async function boot(){
   inAppBanner();
   try{const j=await api("me");apiOK=true;setMe(j);peopleCount=j.count||0;
@@ -2463,6 +2480,7 @@ async function boot(){
       try{localStorage.setItem("nexy27-plan",JSON.stringify([...fav]));localStorage.setItem("nexy27-talk",JSON.stringify([...talk]))}catch(e){}}
   }catch(e){apiOK=e.status===0?null:false;apiSetup=e.status===503}
   await Promise.all([loadPeople(),loadNotices()]);
+  pcardSync().then(ok=>{if(ok&&tab==="my")render()});
   setInterval(()=>{if(!document.hidden)loadNotices()},20000);
   setInterval(()=>{if(!document.hidden&&(tab==="people"||tab==="home"||tab==="admin"))loadPeople()},60000);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden){loadNotices();loadPeople()}});

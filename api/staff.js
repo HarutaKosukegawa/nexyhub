@@ -114,6 +114,17 @@ async function body(req, max = 200000) {
 }
 
 /* ---------------- ログイン ---------------- */
+// 参加者カードの引き継ぎコードは、運営アカウントにだけ暗号化して保存する（その人がほかの端末でも同じカードを使えるように）
+function sealPc(code) {
+  const iv = crypto.randomBytes(12), k = crypto.createHash("sha256").update("pc:").update(key()).digest();
+  const c = crypto.createCipheriv("aes-256-gcm", k, iv), ct = Buffer.concat([c.update(code, "utf8"), c.final()]);
+  return Buffer.concat([iv, c.getAuthTag(), ct]).toString("base64url");
+}
+function openPc(t) {
+  try { const b = Buffer.from(t, "base64url"), k = crypto.createHash("sha256").update("pc:").update(key()).digest();
+    const d = crypto.createDecipheriv("aes-256-gcm", k, b.subarray(0, 12)); d.setAuthTag(b.subarray(12, 28));
+    return Buffer.concat([d.update(b.subarray(28)), d.final()]).toString("utf8"); } catch { return null; }
+}
 const key = () => crypto.createHash("sha256").update("nx-staff:" + (process.env.AUTH_SECRET || process.env.BLOB_READ_WRITE_TOKEN || process.env.SUMMIT_FS_DIR || "")).digest();
 const hmac = (t) => crypto.createHmac("sha256", key()).update(t).digest("base64url");
 const sign = (o) => { const t = Buffer.from(JSON.stringify(o)).toString("base64url"); return t + "." + hmac(t); };
@@ -482,6 +493,7 @@ async function route(req) {
 
   if (req.method === "GET") {
     if (a === "me") return json({ viewer: v, needsPhoto: !(roster.members[v.id] || {}).pv });
+    if (a === "pcard") { const m = roster.members[v.id] || {}; return json({ code: m.pc ? openPc(m.pc) : null }); }
     if (a === "all") {
       // 名簿と、見てよい範囲に削った全員分のページ
       const list = viewRoster(v, roster);
@@ -558,6 +570,13 @@ async function route(req) {
   }
 
   // 本人：名前・ふりがな・呼び名・顔写真
+  // 参加者アプリのマイページのカードを、自分の運営アカウントにつなぐ
+  if (a === "pcard_link") {
+    const code = String(b.code || "").toUpperCase().replace(/[^A-Z0-9-]/g, "").slice(0, 24);
+    if (code.replace(/-/g, "").length < 10) return err("カードのコードが読み取れませんでした");
+    await updateJSON(ROSTER, (d) => { const m = d.members[v.id]; if (!m) return false; m.pc = sealPc(code); }, EMPTY_ROSTER);
+    return json({ ok: true });
+  }
   if (a === "profile_save") {
     const name = str(b.name, 20);
     if (!name) return err("名前を入れてください");
