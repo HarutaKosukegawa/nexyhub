@@ -251,7 +251,15 @@ function viewPage(v, m, page) {
 function viewRoster(v, roster) {
   return Object.values(roster.members)
     .filter((m) => v.k === "rep" || m.status === "confirmed")
-    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, teamSet: m.teamSet !== false, role: m.role, ret: !!m.ret, status: m.status, ...(v.k === "rep" ? { hasEmail: !!m.eh, hasPassword: !!m.pw } : {}) }));
+    .map((m) => ({ id: m.id, name: m.name, kana: m.kana || "", kanaOk: !!m.kanaOk, nick: m.nick || "", pv: m.pv || 0, team: m.team, teamSet: m.teamSet !== false, role: m.role, ret: !!m.ret, status: m.status,
+      // ログインできているか：代表は全員分、統括・サブ統括は自分のチームの人の分だけ
+      ...(v.k === "rep" || (v.k === "mgr" && m.team === v.team && m.teamSet !== false) ? { hasEmail: !!m.eh, hasPassword: !!m.pw } : {}) }));
+}
+// ログインの進み具合（人数だけ。代表と統括・サブ統括に見せる）
+function progressOf(roster) {
+  const ms = Object.values(roster.members).filter((m) => m.status === "confirmed" && m.role !== "代表");
+  const c = (f) => ms.filter(f).length;
+  return { total: ms.length, login: c((m) => m.pw), photo: c((m) => m.pv), team: c((m) => m.teamSet !== false), email: c((m) => m.eh) };
 }
 
 /* ---------------- 入力のチェック ---------------- */
@@ -522,7 +530,7 @@ async function route(req) {
       const list = viewRoster(v, roster);
       const pages = {};
       await Promise.all(list.map(async (m) => { pages[m.id] = viewPage(v, roster.members[m.id], await readJSON(pageKey(m.id), EMPTY_PAGE)); }));
-      return json({ viewer: v, roster: list, pages });
+      return json({ viewer: v, roster: list, pages, ...(v.k !== "mem" ? { progress: progressOf(roster) } : {}) });
     }
     if (a === "photo") {
       const m = roster.members[url.searchParams.get("id") || ""];

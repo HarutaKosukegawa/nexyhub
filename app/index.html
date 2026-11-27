@@ -1901,7 +1901,7 @@ async function load(){
     const [all,meJ,st]=await Promise.all([sapi("all"),sapi("me"),sapi("settings").catch(()=>({certOpen:false}))]);
     VIEWER=all.viewer;NEEDS_PHOTO=!!meJ.needsPhoto;
     const list=all.roster.map(r=>{const p=all.pages[r.id]||{};if(r.role==="メンバー"&&r.teamSet===false)r={...r,team:"none"};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],last1on1:p.last1on1||null,updated:p.updated||r.updated||0}});
-    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0,aiReady:!!st.aiReady};loadErr="";
+    STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0,aiReady:!!st.aiReady,progress:all.progress||null};loadErr="";
   }catch(e){if(e.status===401){VIEWER=null}else loadErr=e.message}
   loaded=true;
 }
@@ -2001,6 +2001,7 @@ function stOverview(){
   const pub=ms.filter(m=>m.status==="pub").length,ret=ms.filter(m=>m.ret).length,th=ms.reduce((a,m)=>a+(m.thanks||[]).length,0);
   const slot=(r,m)=>`<div class="ov-slot"><span>${r}</span>${m?`<button class="who" data-st="open" data-id="${m.id}">${stAv(m,"s")}<span>${nameHTML(m)}${gen(m)}</span></button>`:'<div class="who e">調整中</div>'}</div>`;
   return `<div class="st-hero"><i></i><i></i><i></i><b>NEXY SUMMIT 2027 運営チーム</b><span>「やりたい」を、ひとりにしない。${ms.length}人で、3月26日をつくります。</span></div>
+  ${stLeadProgress()}
   <div class="ov-kpi"><div class="b1"><b>${leads.filter(Boolean).length}<small>/12</small></b><span>決まった統括・サブ統括</span></div><div class="b3"><b>${ms.length}<small>人</small></b><span>確定した運営メンバー</span></div>
     <div class="b2"><b>${ms.length-ret}<small>人</small></b><span>2027からの新メンバー</span></div><div class="b4"><b>${ret}<small>人</small></b><span>2026から続けて参加</span></div></div>
   ${isRep()&&(STD.pending||[]).length?`<p class="note" style="margin-top:8px">確定したメンバーだけを載せています。保留中の${STD.pending.length}人は「メンバー管理」にあります。</p>`:""}
@@ -2371,6 +2372,14 @@ function stTeamGate(){const m=me().m;
     <button class="btn o${sv.busy?" st-busy":""}" style="width:100%;margin-top:14px" data-st="gateteam">このチームにする</button>
     <button class="au-link" data-st="gateskip" style="margin-top:6px">あとで決める</button></div></div>`}
 const RANKC={"統括":2,"サブ統括":1,"メンバー":0};
+function mgBars(P){const N=P.total||0;const st=[["ログイン済み",P.login,"var(--teal)"],["顔写真あり",P.photo,"var(--orange)"],["チーム決定",P.team,"var(--violet)"],["メール登録済み",P.email,"var(--pink)"]];
+  return `<div class="mg-grid">${st.map(([l,v,c])=>`<div class="mg-st" style="--c:${c}"><div class="mg-num"><b>${v}</b><small>/${N}人</small></div><div class="mg-bar"><i style="width:${N?Math.round(v/N*100):0}%"></i></div><span>${l}（${N?Math.round(v/N*100):0}%）</span></div>`).join("")}</div>`}
+// 統括・サブ統括向け：全体の進み具合と、自分のチームでまだログインしていない人
+function stLeadProgress(){const w=me();if(!w||w.k!=="mgr"||!STD.progress)return"";
+  const T=TEAMS[w.m.team]||{n:""};const mine=members().filter(m=>m.team===w.m.team&&m.id!==w.m.id);const notIn=mine.filter(m=>m.hasPassword===false);
+  return `<section class="panel mg-stats" style="margin-top:12px"><div class="mg-head"><b style="font-size:14px">ログインの進み具合</b><span class="note">運営全体（確定した${STD.progress.total}人）</span></div>${mgBars(STD.progress)}
+    <p class="note" style="margin:10px 0 0"><b>${esc(T.n)}チーム</b>：${mine.length}人中 ${mine.filter(m=>m.hasPassword).length}人がログイン済み</p>
+    ${notIn.length?`<details class="mg-not"><summary>${esc(T.n)}チームで、まだログインしていない人（${notIn.length}人）</summary><p>${notIn.map(m=>`<button data-st="open" data-id="${m.id}">${esc(m.name)}</button>`).join("")}</p><p class="note">個別に声をかけてあげてください。メールアドレスが違うなどでログインできないときは、代表に伝えてください。</p></details>`:""}</section>`}
 function stSettings(){
   const row=m=>{const n=TF.filter(f=>f[2]!=="grow"&&!(m.f[f[0]]&&m.f[f[0]].v)).length;
     return `<div class="st-row" id="mg-${m.id}">${stAv(m,"s")}<div><b>${esc(m.name)}</b> <span class="lyr lyr-${isMgrRole(m.role)?"mgr":"mem"}">${LAYER[isMgrRole(m.role)?"mgr":"mem"]}</span> ${m.conf?"":'<span class="dr">保留</span>'}
@@ -2383,7 +2392,7 @@ function stSettings(){
   const list=members().filter(m=>m.role!=="代表");
   // ログインの進み具合（確定した人の中で）
   const N=list.length,cnt=f=>list.filter(f).length;
-  const stats=[["ログイン済み",cnt(m=>m.hasPassword),"var(--teal)"],["顔写真あり",cnt(m=>m.pv),"var(--orange)"],["チーム決定",cnt(m=>m.team!=="none"),"var(--violet)"],["メール登録済み",cnt(m=>m.hasEmail),"var(--pink)"]];
+  const P={total:N,login:cnt(m=>m.hasPassword),photo:cnt(m=>m.pv),team:cnt(m=>m.team!=="none"),email:cnt(m=>m.hasEmail)};
   const notIn=list.filter(m=>!m.hasPassword);
   const sort=sv.mgSort||"team";
   const byName=(a,b)=>(a.kana||a.name).localeCompare(b.kana||b.name,"ja");
@@ -2393,7 +2402,7 @@ function stSettings(){
       return `<div class="mg-team" style="--tc:${T.c};--tt:${T.t}"><h3>${esc(T.n)}<span>${ms.length}人・ログイン済み ${ms.filter(m=>m.hasPassword).length}人</span></h3>${ms.map(row).join("")}</div>`}).join("");}
   else{const ms=[...list].sort(sort==="login"?(a,b)=>(a.hasPassword?1:0)-(b.hasPassword?1:0)||byName(a,b):byName);confHTML=ms.map(row).join("")}
   return `<section class="panel mg-stats" style="margin-top:12px"><div class="mg-head"><b style="font-size:14px">ログインの進み具合</b><span class="note">確定した${N}人の中で</span></div>
-    <div class="mg-grid">${stats.map(([l,v,c])=>`<div class="mg-st" style="--c:${c}"><div class="mg-num"><b>${v}</b><small>/${N}人</small></div><div class="mg-bar"><i style="width:${N?Math.round(v/N*100):0}%"></i></div><span>${l}（${N?Math.round(v/N*100):0}%）</span></div>`).join("")}</div>
+    ${mgBars(P)}
     ${notIn.length?`<details class="mg-not"><summary>まだログインしていない人（${notIn.length}人）</summary><p>${notIn.sort(byName).map(m=>`<button data-st="mgjump" data-id="${m.id}">${esc(m.name)}${m.hasEmail?"":"（メール未登録）"}</button>`).join("")}</p><p class="note">メール未登録の人は、下の一覧でその人の行にアドレスを入れると、ログインできるようになります。</p></details>`:`<p class="note" style="margin-top:8px">確定した全員がログインしています。</p>`}</section>
   <section class="panel" style="margin-top:12px;display:flex;gap:12px;align-items:center;justify-content:space-between"><div><b style="font-size:14px">運営参加証明書の発行</b><p class="note">${STD.certOpen?"メンバーがマイページから発行できます":"いまは見本だけ。3月26日の本番のあとに始めます"}</p></div>
     <button class="oksw" role="switch" aria-checked="${!!STD.certOpen}" data-st="certopen" style="width:auto;padding:0"><i class="sw" aria-hidden="true"></i></button></section>
