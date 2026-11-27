@@ -1024,6 +1024,72 @@ body.pm-lock { overflow: hidden; }
 /* カードの立体的な傾き */
 .tilt { transform-style: preserve-3d; will-change: transform; }
 
+
+/* ===== 運営メンバー ===== */
+.crew { position: relative; margin: 0 0 28px; overflow: hidden; background: var(--navy); min-height: 460px; display: flex; align-items: flex-end; }
+.crew > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; transform: scale(1.06); transition: transform 6s ease-out; }
+.crew.in > img, .crew:hover > img { transform: scale(1); }
+.crew::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,16,43,.92) 0%, rgba(2,16,43,.72) 42%, rgba(2,16,43,.1) 75%); z-index: 1; }
+.crew::after { content: ""; position: absolute; right: 8%; top: -10%; width: 70px; height: 120%; background: var(--orange); transform: skewX(-30deg); z-index: 1; opacity: .9; }
+.crew-cap { position: relative; z-index: 2; color: #fff; padding: 40px 40px 34px; max-width: 700px; }
+.crew-k { display: inline-block; font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; background: var(--teal); color: var(--navy); padding: 3px 10px; }
+.crew-cap b { display: block; margin-top: 14px; font-size: clamp(24px, 3.2vw, 38px); font-weight: 900; line-height: 1.35; }
+.crew-cap b em { font-style: normal; font-size: 1.6em; color: var(--orange); margin: 0 .05em; line-height: 1; }
+.crew-cap p { margin-top: 12px; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.88); }
+.crew-teams { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.crew-teams li { font-size: 12px; font-weight: 800; border: 1.5px solid rgba(255,255,255,.7); padding: 3px 10px; }
+.crew-note { position: absolute; right: 10px; bottom: 8px; z-index: 2; font-size: 10px; color: rgba(255,255,255,.8); }
+@media (max-width: 760px) {
+  .crew { min-height: 0; display: block; }
+  .crew > img { position: relative; height: auto; aspect-ratio: 3 / 2; }
+  .crew::before { background: linear-gradient(180deg, rgba(2,16,43,0) 20%, rgba(2,16,43,1) 46%); }
+  .crew::after { display: none; }
+  .crew-cap { margin-top: -70px; padding: 0 18px 26px; }
+  .crew-cap b { font-size: 22px; }
+  .crew-note { top: 8px; bottom: auto; }
+}
+
+/* ===== スマホ：長さを詰める ===== */
+.sch-m { display: none; }
+.to-top { position: fixed; right: 14px; bottom: 88px; z-index: 250; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 18px; font-weight: 900; display: grid; place-items: center; box-shadow: 0 6px 18px rgba(2,16,43,.3); opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s, transform .25s; }
+.to-top.on { opacity: 1; transform: none; pointer-events: auto; }
+@media (min-width: 761px) { .to-top { bottom: 24px; } }
+@media (max-width: 760px) {
+  .sch-table-wrap { display: none; }
+  .sch-m { display: block; }
+  .sch-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; position: sticky; top: calc(var(--nav-h) + 4px); z-index: 5; background: #fff; padding: 6px 0; }
+  .sch-tabs button { font-size: 13px; font-weight: 900; padding: 10px 4px; border: 2px solid var(--navy); color: var(--navy); background: #fff; }
+  .sch-tabs button[aria-selected="true"] { background: var(--navy); color: #fff; }
+  .sch-tabs button.c-orange[aria-selected="true"] { background: var(--orange); border-color: var(--orange); }
+  .sch-tabs button.c-teal[aria-selected="true"] { background: var(--teal); border-color: var(--teal); color: var(--navy); }
+  .sch-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+  .sch-list li { display: grid; grid-template-columns: 62px 1fr; gap: 10px; align-items: start; background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--c, var(--navy)); padding: 12px; animation: schIn .35s both; }
+  .sch-list li.all { --c: var(--line); background: var(--surface-2); }
+  .sch-list li.tbd { opacity: .7; }
+  .sch-list li.has-d { cursor: pointer; }
+  .sch-list .tm { font-family: Inter, sans-serif; font-size: 13px; font-weight: 900; color: var(--navy); line-height: 1.3; }
+  .sch-list .tm small { display: block; font-size: 11px; font-weight: 700; color: var(--ink-muted); }
+  .sch-list b { display: block; font-size: 15px; font-weight: 900; color: var(--navy); line-height: 1.45; }
+  .sch-list span { display: block; font-size: 12px; color: var(--ink-muted); margin-top: 2px; line-height: 1.6; }
+  .sch-list .sch-more { margin-top: 6px; }
+  .featured-card.is-empty ~ .featured-card.is-empty { display: none; }
+  .sp-tier.is-vacant .sp-logos { display: none; }
+  .sp-tier.is-vacant { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .sp-tier.is-vacant::after { content: "募集中"; font-size: 12px; font-weight: 800; color: var(--orange-deep); }
+  .sp-tier.is-vacant .sp-tier-h { margin: 0; }
+  .ab-movie-t p { display: none; }
+  .soft-band li span small { font-size: 11px; }
+  .section { padding: 48px 0; }
+  .head[data-wm]::before { font-size: 13vw; top: -.2em; }
+  .sch-list li { padding: 10px 12px; }
+  .sch-list li.all div > span { display: none; }
+  .h2-marquee { display: none; }
+  .featured-card.is-empty .featured-photo { aspect-ratio: auto; height: 96px; min-height: 0; }
+  .featured-card.is-empty .speaker-placeholder { height: 100%; }
+  .sch-note { font-size: 11px; }
+}
+@keyframes schIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
 /* ===== どんなイベント？（写真カード） ===== */
 .about .head .h2, .about .head .eyebrow { color: #fff; } .about .head .lead { color: rgba(255,255,255,.82); }
 .ab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
@@ -1228,7 +1294,7 @@ window.SUMMIT = {
           flow: [["0分", "会場投票：人に言える「好き」がある？"], ["5分", "山場：一人ずつの年表"], ["20分", "登壇者と会場に同時にYES／NO質問"], ["42分", "リアルタイム質問"]],
           who: "好きなことはあるけど、続けていいか迷っている人", after: "17:15からのアフターパーティーで、登壇者と話せます" } }, { v: "b", title: "セッション", sub: "内容は準備中です", tbd: true } ] },
       { time: "17:00 – 17:15", cells: [ { v: "all", title: "クロージング", sub: "A会場。表彰・抽選。そのままアフターパーティーへ", kind: "open" } ] },
-      { time: "17:15 – 19:00", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。登壇者・企業・参加者と話せます", kind: "after", badge: "PiO館内" , d: { img: "img/summit2027/hero_group.webp", catch: "話し足りなかったことは、ここで",
+      { time: "17:15 – 19:00", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。登壇者・企業・参加者と話せます", kind: "after", badge: "PiO館内" , d: { img: "img/summit2027/r26_audience.webp", catch: "話し足りなかったことは、ここで",
           lead: "クロージングのあと、会場を移動せずにそのまま続けます。登壇者・企業の方・参加者と話せます",
           pts: ["仲間集めピッチ：1人1分で「こういう仲間を探しています」", "登壇者・企業の方との交流", "19:00に解散"],
           who: "もっと話したい人。仲間を見つけたい人" } } ] }
@@ -1278,12 +1344,6 @@ window.SUMMIT = {
 <!-- ===== 1. ファーストビュー ===== -->
 <section class="hero4" id="top">
   <div class="h4-stage">
-    <div class="h4-slides" aria-hidden="true">
-      <img class="on" src="img/summit2027/hero_group.webp" alt="" fetchpriority="high">
-      <img src="img/summit2027/r26_stage.webp" alt="" loading="lazy">
-      <img src="img/summit2027/r26_session.webp" alt="" loading="lazy">
-      <img src="img/summit2027/r26_table.webp" alt="" loading="lazy">
-    </div>
     <div class="h4-wall" aria-hidden="true"><div class="wc"><div class="wt"><img src="img/summit2027/r26_stage.webp" alt="" fetchpriority="high"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"></div></div><div class="wc"><div class="wt"><img src="img/summit2027/r26_pitch.webp" alt="" fetchpriority="high"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"><img src="img/summit2027/r26_session.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"><img src="img/summit2027/r26_session.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"></div></div><div class="wc"><div class="wt"><img src="img/summit2027/r26_session.webp" alt="" fetchpriority="high"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_session.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"></div></div><div class="wc"><div class="wt"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"></div></div><div class="wc"><div class="wt"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"><img src="img/summit2027/r26_session.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_table.webp" alt="" loading="lazy"><img src="img/summit2027/r26_audience.webp" alt="" loading="lazy"><img src="img/summit2027/r26_session.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"></div></div><div class="wc"><div class="wt"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"><img src="img/summit2027/r26_wall.webp" alt="" loading="lazy"><img src="img/summit2027/r26_stage.webp" alt="" loading="lazy"><img src="img/summit2027/r26_talk.webp" alt="" loading="lazy"><img src="img/summit2027/hero_group.webp" alt="" loading="lazy"><img src="img/summit2027/r26_pitch.webp" alt="" loading="lazy"></div></div></div>
     <div class="h4-shade" aria-hidden="true"></div>
     <div class="h4-slash" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -1431,6 +1491,7 @@ window.SUMMIT = {
       <p class="lead">時間は予定です。内容は決まり次第掲載します</p>
     </div>
     <div class="sch-table-wrap"><table class="sch-table" id="schTable"></table></div>
+    <div class="sch-m" id="schM"></div>
     <div class="sch-note">※ A会場・B会場・常設エリアで同時に進行します。参加者は各会場を自由に行き来できます<br>※ 各セッションの終了後20分間、登壇者は常設エリアのミートアップ卓で参加者と話します<br>※ 全体の昼休憩はありません。食事は常設エリアのランチテーブル（12:00〜14:50）で、好きな時間にとれます<br>※ 時間・内容は予定です。登壇者は決定次第掲載します</div>
   </div>
 </section>
@@ -1536,6 +1597,16 @@ window.SUMMIT = {
 <section class="section" id="organizer">
   <div class="wrap">
     <div class="head"><span class="eyebrow">Organizer</span><h2 class="h2">主催・運営</h2></div>
+    <figure class="crew">
+      <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026 の運営メンバー" loading="lazy">
+      <figcaption class="crew-cap">
+        <span class="crew-k">MADE BY STUDENTS</span>
+        <b>このイベントは、<br>中学生・高校生・大学生<br><em class="num-font">約50</em>人でつくっています</b>
+        <p>企画も、会場づくりも、当日の運営も。全部、同世代の学生の手でつくっています</p>
+        <ul class="crew-teams"><li>メディア</li><li>誘導</li><li>レセプション</li><li>A会場</li><li>B会場</li><li>常設</li></ul>
+      </figcaption>
+      <small class="crew-note">写真は NEXY SUMMIT 2026 の運営メンバー</small>
+    </figure>
     <div class="org-grid">
       <div class="mvv">
         <div class="mvv-item"><div class="k">MISSION</div><div class="v">「やりたい」を、ひとりにしない</div></div>
@@ -1544,7 +1615,7 @@ window.SUMMIT = {
       <table class="org-table">
         <tr><th scope="row">主催</th><td>学生団体NEXY</td></tr>
         <tr><th scope="row">代表</th><td>小助川 晴大</td></tr>
-        <tr><th scope="row">運営</th><td>学生による企画・運営</td></tr>
+        <tr><th scope="row">運営</th><td>中学生・高校生・大学生 約50人の運営チーム（6チーム）</td></tr>
         <tr><th scope="row">お問い合わせ</th><td><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></td></tr>
       </table>
     </div>
@@ -1658,7 +1729,7 @@ window.SUMMIT = {
         '<button type="button" class="featured-more" data-sp="' + g.key + ':' + i + '">詳細を見る</button></div></article>';
     });
     for (var k = g.list.length; k < g.count; k++) {
-      cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">PHOTO</div></div><div class="featured-body"><h4 class="featured-name">登壇者名<span class="kana">ふりがな</span></h4><p class="featured-meta">所属・肩書き</p><div class="featured-badges"><span class="fbadge">実績</span></div><p class="featured-desc">紹介文が入ります</p></div></article>';
+      cards += '<article class="featured-card is-empty"><div class="featured-photo"><div class="speaker-placeholder">COMING SOON</div></div><div class="featured-body"><h4 class="featured-name">近日公開</h4><p class="featured-meta">決まり次第お知らせします</p></div></article>';
     }
     return cards;
   }
@@ -1703,7 +1774,7 @@ window.SUMMIT = {
       if (t.hero && S.draft) heroHtml += '<span class="hs">LOGO</span>';
       if (S.draft && t.foot) footHtml += '<span class="fs">LOGO</span>';
     }
-    tiersHtml += '<div class="sp-tier t-' + t.id + '"><div class="sp-tier-h"><span>' + esc(t.en) + '</span><b>' + esc(t.name) + '</b></div><div class="sp-logos">' + logos + '</div></div>';
+    tiersHtml += '<div class="sp-tier t-' + t.id + (t.list.length ? '' : ' is-vacant') + '"><div class="sp-tier-h"><span>' + esc(t.en) + '</span><b>' + esc(t.name) + '</b></div><div class="sp-logos">' + logos + '</div></div>';
   });
   document.getElementById('sponsorTiers').innerHTML = tiersHtml;
   var hs = document.getElementById('heroSponsors');
@@ -1760,7 +1831,7 @@ window.SUMMIT = {
       var pt = x.pts || []; show('ttmPtW', pt.length);
       document.getElementById('ttmPt').innerHTML = pt.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('');
       var fl = x.flow || []; show('ttmFlW', fl.length);
-      document.getElementById('ttmFl').innerHTML = fl.map(function (l) { return '<li><b>' + esc(l[0]) + '</b>' + esc(l[1]) + '</li>'; }).join('');
+      document.getElementById('ttmFl').innerHTML = fl.map(function (l) { return '<li>' + (/^\d+$/.test(l[0]) ? '' : '<b>' + esc(l[0]) + '</b>') + esc(l[1]) + '</li>'; }).join('');
       var f = document.getElementById('ttmFor');
       f.innerHTML = (x.who ? '<b>こんな人に：</b>' + esc(x.who) : '') + (x.after ? '<br><b>終わったあと：</b>' + esc(x.after) : ''); f.hidden = !x.who && !x.after;
       m.classList.add('open'); m.setAttribute('aria-hidden', 'false'); document.body.classList.add('pm-lock'); m.querySelector('.pm-close').focus();
@@ -1770,6 +1841,31 @@ window.SUMMIT = {
       var td = e.target.closest('.has-d'); if (!td) return;
       var row = td.parentNode.querySelector('.t-time'); open(TD[+td.getAttribute('data-d')], row ? row.textContent : '');
     });
+    // スマホ：会場ごとのタブで見る
+    var sm = document.getElementById('schM');
+    if (sm) {
+      var tone = { orange: 'var(--orange)', teal: 'var(--teal)', navy: 'var(--navy)' };
+      sm.innerHTML = '<div class="sch-tabs" role="tablist">' + cols.map(function (c, i) { return '<button type="button" role="tab" class="c-' + c.color + '" aria-selected="' + (i ? 'false' : 'true') + '" data-c="' + c.id + '">' + esc(c.name.split('（')[0]) + '</button>'; }).join('') + '</div><ul class="sch-list" id="schList"></ul>';
+      function rowEnd(ri, span) { var a = tt.rows[ri].time.split('–')[0].trim(), z = tt.rows[ri + span - 1].time.split('–')[1]; return [a, z ? z.trim() : '']; }
+      function draw(cid) {
+        var col = cols.filter(function (c) { return c.id === cid; })[0], html = '';
+        tt.rows.forEach(function (r, ri) {
+          r.cells.forEach(function (c) {
+            if (c.v !== 'all' && c.v !== cid) return;
+            var tm = rowEnd(ri, c.rows || 1), k = c.d ? TD.indexOf(c) : -1;
+            html += '<li class="' + (c.v === 'all' ? 'all ' : '') + (c.tbd ? 'tbd ' : '') + (k > -1 ? 'has-d' : '') + '" style="--c:' + (c.v === 'all' ? '' : tone[col.color]) + '"' + (k > -1 ? ' data-d="' + k + '"' : '') + '>' +
+              '<span class="tm">' + esc(tm[0]) + '<small>〜' + esc(tm[1]) + '</small></span><div><b>' + esc(c.title) + '</b>' + (c.sub && !c.tbd ? '<span>' + esc(c.sub) + '</span>' : '') + (c.tbd ? '<span>内容は準備中です</span>' : '') + (k > -1 ? '<button type="button" class="sch-more">詳細</button>' : '') + '</div></li>';
+          });
+        });
+        document.getElementById('schList').innerHTML = html;
+      }
+      draw(cols[0].id);
+      sm.addEventListener('click', function (e) {
+        var b = e.target.closest('.sch-tabs button');
+        if (b) { sm.querySelectorAll('.sch-tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); }); draw(b.getAttribute('data-c')); return; }
+        var li = e.target.closest('.has-d'); if (li) open(TD[+li.getAttribute('data-d')], li.querySelector('.tm').textContent.replace('〜', '–'));
+      });
+    }
     m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('.pm-close')) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
   })();
@@ -1817,7 +1913,7 @@ window.SUMMIT = {
         lead: '留学支援・企業・学生団体など、15〜20団体がブースを出します。同世代のいろいろな挑戦にふれられます',
         flow: ['ブースを回る', '気になる団体の話を聞く', '連絡先を交換する'],
         who: '何から始めればいいかわからない人' },
-      { ph: 'AFTER', nw: 1, t: 'アフターパーティー', s: '17:15〜19:00、会場内', img: 'img/summit2027/hero_group.webp', cap: R, place: '会場内・17:15〜19:00',
+      { ph: 'AFTER', nw: 1, t: 'アフターパーティー', s: '17:15〜19:00、会場内', img: 'img/summit2027/r26_talk.webp', cap: R, place: '会場内・17:15〜19:00',
         lead: 'クロージングのあと、そのまま会場で話せます。登壇者や企業の方もいます',
         flow: ['そのまま会場に残る', '登壇者・企業・参加者と話す', '連絡先を交換する'],
         who: '話し足りなかった人' }
@@ -1864,7 +1960,7 @@ window.SUMMIT = {
   (function () {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.documentElement.classList.add('js-anim');
-    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.soft-band', '.ab-card', '.ab-movie', '.pills', '.prog', '.oa-map', '.pg-h', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-photo', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.soft-band', '.ab-card', '.ab-movie', '.pills', '.prog', '.oa-map', '.pg-h', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-photo', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.crew', '.closing'];
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
@@ -1881,7 +1977,6 @@ window.SUMMIT = {
 
 
   // ヒーローの背景：写真の壁（標準）／1枚ずつ切り替え（?hero=slide）
-  if (/[?&]hero=slide/.test(location.search)) document.querySelector('.hero4').classList.add('is-slide');
   // 開催までの日数（カウントアップ）
   (function () { var el = document.getElementById('cdDays'); if (!el) return;
     var d = Math.ceil((new Date('2027-03-26T10:30:00+09:00') - new Date()) / 86400000);
@@ -1965,6 +2060,11 @@ window.SUMMIT = {
     addEventListener('scroll', par, { passive: true }); par();
   })();
 
+  // ページの先頭へ
+  (function () {
+    var b = document.createElement('a'); b.href = '#top'; b.className = 'to-top'; b.setAttribute('aria-label', 'ページの先頭へ'); b.textContent = '↑'; document.body.appendChild(b);
+    addEventListener('scroll', function () { b.classList.toggle('on', scrollY > innerHeight * 1.5); }, { passive: true });
+  })();
   // ハンバーガーメニュー
   var burger = document.getElementById('burger'), mnav = document.getElementById('mobileNav');
   burger.addEventListener('click', function () { mnav.style.top = document.querySelector('.nav').getBoundingClientRect().bottom + 'px'; var o = mnav.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
