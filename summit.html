@@ -820,6 +820,127 @@ body.pm-lock { overflow: hidden; }
 .entry-list li::before { content: ""; position: absolute; left: 6px; top: 3px; width: 8px; height: 14px; border: solid var(--teal-deep); border-width: 0 4px 4px 0; transform: rotate(45deg); }
 .entry-lead { font-size: 14px; color: var(--ink-muted); margin-top: 6px; }
 
+
+/* ===== ファーストビュー v4：1枚写真の上にスローガン ===== */
+.hero4 { position: relative; background: var(--navy); overflow: hidden; }
+.h4-stage { position: relative; height: calc(100svh - var(--nav-h)); min-height: 560px; max-height: 900px; overflow: hidden; display: flex; align-items: flex-end; }
+.h4-slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; opacity: 0; transform: scale(1.08); transition: opacity 1.4s ease, transform 7s ease-out; }
+.h4-slides img.on { opacity: 1; transform: scale(1); }
+.h4-shade { position: absolute; inset: 0; background: rgba(2,16,43,.42); }
+.h4-shade::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 58%; background: rgba(2,16,43,.38); clip-path: polygon(0 28%, 100% 0, 100% 100%, 0 100%); }
+.h4-slash i { position: absolute; top: -10%; height: 120%; transform: skewX(-30deg) translateX(var(--sx, 0)); animation: slash4 1.2s cubic-bezier(.2,.7,.2,1) both; }
+.h4-slash i:nth-child(1) { right: 15%; width: 90px; background: var(--orange); animation-delay: .2s; }
+.h4-slash i:nth-child(2) { right: calc(15% + 104px); width: 26px; background: var(--teal); animation-delay: .32s; }
+.h4-slash i:nth-child(3) { right: -60px; width: 120px; background: var(--teal); opacity: .9; animation-delay: .44s; }
+@keyframes slash4 { from { transform: skewX(-30deg) translateY(110%); } to { transform: skewX(-30deg) translateY(0); } }
+.hero4 .h3-logo { z-index: 3; }
+.h4-in { position: relative; z-index: 2; padding-bottom: 72px; color: #fff; }
+.h4-in .h3-tag { animation: heroUp .7s .5s both; }
+.h4-title { font-size: clamp(40px, 7.2vw, 104px); font-weight: 900; line-height: 1.12; margin-top: 10px; letter-spacing: -.02em; }
+.h4-title .ln { display: block; animation: lineIn 1s cubic-bezier(.7,0,.2,1) both; }
+.h4-title .ln:nth-child(1) { animation-delay: .6s; } .h4-title .ln:nth-child(2) { animation-delay: .8s; }
+@keyframes lineIn { from { clip-path: inset(0 100% 0 0); transform: translateX(-30px); } to { clip-path: inset(0 0 0 0); transform: none; } }
+.h4-title .box { display: inline-block; background: var(--orange); padding: 0 .1em .04em; margin-right: .04em; }
+.h4-meta { display: flex; align-items: baseline; gap: 10px 16px; flex-wrap: wrap; margin-top: 18px; font-weight: 800; font-size: 16px; animation: heroUp .7s 1.05s both; }
+.h4-meta b { font-size: 28px; font-weight: 900; } .h4-meta b small { font-size: 14px; }
+.h4-meta .free { background: var(--orange); padding: 2px 10px; font-size: 14px; }
+.h4-in .hero-side { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; animation: heroUp .7s 1.2s both; }
+.h4-in .hero-side .btn { width: auto; min-width: 240px; }
+.h4-ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.h4-ghost:hover { background: #fff; color: var(--navy); }
+.h4-in .cta-note { color: rgba(255,255,255,.8); }
+.h4-in .hero-sponsors .lbl { color: rgba(255,255,255,.7); }
+.h4-count { position: absolute; right: 24px; top: 24px; z-index: 3; background: #fff; color: var(--navy); font-weight: 800; font-size: 13px; padding: 8px 14px; border-left: 5px solid var(--orange); animation: heroUp .7s 1.3s both; }
+.h4-count b { font-size: 28px; color: var(--orange-deep); margin: 0 3px; }
+.h4-dots { position: absolute; right: 24px; bottom: 30px; z-index: 3; display: flex; gap: 6px; }
+.h4-dots i { width: 22px; height: 4px; background: rgba(255,255,255,.4); transition: background .3s, width .3s; }
+.h4-dots i.on { background: var(--orange); width: 40px; }
+.h4-scroll { position: absolute; left: 50%; bottom: 14px; z-index: 3; transform: translateX(-50%); font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .3em; color: #fff; padding-bottom: 22px; }
+.h4-scroll::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 2px; height: 18px; background: #fff; animation: scrollCue 1.6s ease-in-out infinite; transform-origin: top; }
+@keyframes scrollCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 900px) {
+  .h4-stage { min-height: 520px; height: calc(100svh - var(--nav-h) - 70px); }
+  .h4-title { font-size: clamp(36px, 11vw, 52px); }
+  .h4-in { padding-bottom: 48px; }
+  .h4-meta { font-size: 13px; gap: 6px 10px; } .h4-meta b { font-size: 22px; }
+  .h4-in .hero-side .btn { flex: 1 1 100%; }
+  .h4-count { top: auto; bottom: auto; right: 12px; top: 12px; font-size: 11px; padding: 6px 10px; } .h4-count b { font-size: 20px; }
+  .h4-slash i:nth-child(1) { width: 50px; right: 8%; } .h4-slash i:nth-child(2) { width: 14px; right: calc(8% + 60px); } .h4-slash i:nth-child(3) { width: 60px; right: -30px; }
+  .h4-dots, .h4-scroll { display: none; }
+  .h4-stage { height: auto; min-height: calc(100svh - var(--nav-h) - 60px); max-height: none; padding-top: 130px; }
+  .h4-in .cta-note { display: none; }
+}
+@media (max-width: 760px) {
+  #for::before, #for::after { display: none; }
+  #for .head { position: relative; z-index: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .h4-slides img { transition: none; } .h4-title .ln, .h4-slash i { animation: none !important; } }
+
+/* ===== どんなイベント？（写真カード） ===== */
+.about .head .h2, .about .head .eyebrow { color: #fff; } .about .head .lead { color: rgba(255,255,255,.82); }
+.ab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+.ab-card { background: #fff; color: var(--navy); overflow: hidden; --c: var(--teal); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s; }
+.ab-card.c2 { --c: var(--orange); } .ab-card.c3 { --c: var(--teal-deep); }
+.ab-card:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 18px 36px rgba(0,0,0,.3); }
+.ab-ph { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.ab-ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.ab-card:hover .ab-ph img { transform: scale(1.07); }
+.ab-ph::after { content: ""; position: absolute; left: -10px; bottom: -1px; width: 55%; height: 22px; background: #fff; clip-path: polygon(0 100%, 100% 100%, 92% 0, 0 0); }
+.ab-no { position: absolute; left: 0; top: 0; background: var(--c); color: #fff; font-size: 22px; font-weight: 900; padding: 6px 18px 6px 12px; clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%); }
+.ab-bd { padding: 4px 18px 18px; }
+.ab-bd b { display: block; font-size: 30px; font-weight: 900; color: var(--c); line-height: 1.2; }
+.ab-bd p { font-size: 14px; font-weight: 700; margin-top: 4px; line-height: 1.6; }
+.ab-bd ul { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.ab-bd li { font-size: 12px; font-weight: 800; background: var(--navy-tint); padding: 3px 8px; }
+.ab-movie { display: grid; grid-template-columns: 1.3fr .7fr; gap: 24px; align-items: center; margin-top: 26px; }
+.ab-movie .about-movie { margin: 0; }
+.ab-movie-t b { display: block; font-size: 24px; font-weight: 900; margin-top: 10px; }
+.ab-movie-t p { color: rgba(255,255,255,.8); margin-top: 4px; }
+@media (max-width: 860px) {
+  .ab-cards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; margin: 0 -16px; padding: 0 16px 8px; -webkit-overflow-scrolling: touch; }
+  .ab-card { flex: 0 0 78%; scroll-snap-align: start; }
+  .ab-movie { grid-template-columns: 1fr; gap: 12px; }
+  .ab-movie-t { order: -1; }
+}
+
+/* ===== 参加者：横6 ===== */
+.illo-grid { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.illo-card p { font-size: 13px; padding: 10px 10px 12px 30px; }
+.illo-card p::before { left: 11px; top: 12px; width: 6px; height: 11px; border-width: 0 3px 3px 0; }
+.illo-card svg { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.illo-card:hover svg { transform: scale(1.08) rotate(-1deg); }
+.illo-card.in svg { animation: pop .7s cubic-bezier(.2,1.4,.4,1) both; animation-delay: calc(var(--d, 0s) + .15s); }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (max-width: 1000px) { .illo-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) {
+  .illo-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin: 12px -16px 0; padding: 0 16px 8px; -webkit-overflow-scrolling: touch; }
+  .illo-card { flex: 0 0 44%; scroll-snap-align: start; }
+}
+
+/* ===== プログラム：横スライド ===== */
+.rail { position: relative; }
+#program .prog-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding: 6px 2px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+#program .prog-grid::-webkit-scrollbar { display: none; }
+#program .prog { flex: 0 0 270px; flex-direction: column; scroll-snap-align: start; }
+#program .prog .vis { flex: none; aspect-ratio: 16 / 10; min-height: 0; }
+#program .prog .ph { display: block; }
+#program .prog .bd { padding: 12px 14px 14px; justify-content: flex-start; }
+#program .prog .bd b { font-size: 16px; }
+#program .prog:hover { transform: translateY(-6px) rotate(-.5deg); }
+.rail-btn { position: absolute; top: 40%; z-index: 2; width: 46px; height: 46px; border-radius: 4px; background: var(--orange); color: #fff; font-size: 20px; font-weight: 900; box-shadow: 0 8px 20px rgba(0,0,0,.25); transition: transform .2s, opacity .2s; }
+.rail-btn:hover { transform: scale(1.08); }
+.rail-btn.prev { left: -18px; } .rail-btn.next { right: -18px; }
+.rail-btn[disabled] { opacity: 0; pointer-events: none; }
+.rail-bar { height: 4px; background: rgba(255,255,255,.25); margin-top: 6px; }
+.rail-bar i { display: block; height: 100%; width: 20%; background: var(--orange); transition: width .2s; }
+@media (max-width: 760px) { #program .prog { flex: 0 0 72%; } .rail-btn { display: none; } #program .prog .vis { flex: none; } }
+
+/* ===== 見出しの出方・セクションの帯の動き ===== */
+.js-anim .head.rv .h2 { clip-path: inset(0 100% 0 0); transition: clip-path .9s cubic-bezier(.7,0,.2,1) .15s; }
+.js-anim .head.in .h2 { clip-path: inset(0 0 -10% 0); }
+#for::before, #for::after, #program::before, #program::after, #day::before, #day::after, #speakers::before, .entry::before, .entry::after { translate: 0 var(--py, 0px); transition: translate .1s linear; }
+.btn-primary:hover { transform: translateY(-2px); }
+
 /* ===== 追加アニメーション ===== */
 .scroll-bar { position: fixed; top: 0; left: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--orange); z-index: 300; pointer-events: none; }
 .js-anim .head .eyebrow::before { transform: scaleX(0); transform-origin: left; transition: transform .8s .2s cubic-bezier(.2,.7,.2,1); }
@@ -970,31 +1091,31 @@ window.SUMMIT = {
 <main>
 
 <!-- ===== 1. ファーストビュー ===== -->
-<section class="hero3" id="top">
-  <div class="h3-photo">
-    <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026に集まった中高大生" width="1622" height="1076" fetchpriority="high">
-    <div class="h3-logo"><img src="img/summit2027/logo_2027.png" alt="NEXY SUMMIT 2027" width="1200" height="565"></div>
-    <span class="h3-cap">NEXY SUMMIT 2026</span>
-  </div>
-  <div class="h3-band">
-    <div class="wrap h3-grid">
-      <div>
-        <p class="h3-tag">日本最大級の学生サミット</p>
-        <h1 class="h3-title"><span class="box">「やりたい」</span>は、<br>ここで見つかる</h1>
-        <p class="h3-sub">中学生・高校生・大学生のための1日。<br>話して、聞いて、仲間に出会う。</p>
-      </div>
-      <div class="h3-card">
-        <div class="h3-date"><b class="num-font">2027.3.26</b><span>（金）</span><em class="h3-count">あと<b class="num-font" id="cdDays">--</b>日</em></div>
-        <p class="h3-venue"><span data-bind="venue.text"></span>　京急蒲田駅 徒歩3分</p>
-        <div class="h2-chips"><span class="free">参加無料</span><span>ひとりで参加OK</span><span>当日参加OK</span><span>出入り自由</span></div>
-        <div class="hero-side">
-          <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
-          <a class="btn btn-outline" href="#program">プログラムを見る</a>
-        </div>
-        <p class="cta-note js-cta-note"></p>
-        <div class="hero-sponsors" id="heroSponsors"></div>
-      </div>
+<section class="hero4" id="top">
+  <div class="h4-stage">
+    <div class="h4-slides" aria-hidden="true">
+      <img class="on" src="img/summit2027/hero_group.webp" alt="" fetchpriority="high">
+      <img src="img/summit2027/r26_stage.webp" alt="" loading="lazy">
+      <img src="img/summit2027/r26_session.webp" alt="" loading="lazy">
+      <img src="img/summit2027/r26_table.webp" alt="" loading="lazy">
     </div>
+    <div class="h4-shade" aria-hidden="true"></div>
+    <div class="h4-slash" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="h3-logo"><img src="img/summit2027/logo_2027.png" alt="NEXY SUMMIT 2027" width="1200" height="565"></div>
+    <div class="wrap h4-in">
+      <p class="h3-tag">日本最大級の学生サミット</p>
+      <h1 class="h4-title"><span class="ln"><span class="box">「やりたい」</span>は、</span><span class="ln">ここで見つかる</span></h1>
+      <p class="h4-meta"><b class="num-font">2027.3.26<small>（金）</small></b><span data-bind="venue.text"></span><span class="free">参加無料</span></p>
+      <div class="hero-side">
+        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
+        <a class="btn h4-ghost" href="#about">どんなイベント？</a>
+      </div>
+      <p class="cta-note js-cta-note"></p>
+      <div class="hero-sponsors" id="heroSponsors"></div>
+    </div>
+    <div class="h4-count" aria-label="開催までの日数">開催まで<b class="num-font" id="cdDays">--</b>日</div>
+    <div class="h4-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+    <a class="h4-scroll" href="#about" aria-label="下へ">SCROLL</a>
   </div>
   <div class="h2-marquee" aria-hidden="true"><div class="mq-track">
     <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_pitch.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
@@ -1015,21 +1136,26 @@ window.SUMMIT = {
 
 <!-- ===== どんなイベント？ ===== -->
 <section class="section about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy">
+  <div class="wrap">
+    <div class="head center">
       <span class="eyebrow">About</span>
       <h2 class="h2">どんなイベント？</h2>
-      <p class="about-lead">NEXY SUMMITは、中学生・高校生・大学生のための、日本最大級の学生サミットです。<br>聞くだけで終わらせず、話して、相談して、仲間と出会えるように1日をつくっています。</p>
-      <div class="about-points">
-        <div><b>聞く</b><span>同世代や大人のセッション、プレゼン大会</span></div>
-        <div><b>話す</b><span>ワークショップ、テーマ別ランチテーブル</span></div>
-        <div><b>出会う</b><span>15〜20団体のブース、相談所、アフターパーティー</span></div>
-      </div>
+      <p class="lead">中学生・高校生・大学生が、1日で「聞く・話す・出会う」をぜんぶ体験できるサミットです</p>
     </div>
-    <figure class="about-movie">
-      <video id="aboutMovie" src="img/site/summit_movie.mp4" poster="img/summit2027/r26_stage.webp" muted loop playsinline preload="none" controls></video>
-      <figcaption>NEXY SUMMIT 2026 の1日（60秒）</figcaption>
-    </figure>
+    <div class="ab-cards">
+      <article class="ab-card"><div class="ab-ph"><img src="img/summit2027/r26_stage.webp" alt="ステージのセッション" loading="lazy"><span class="ab-no num-font">01</span></div>
+        <div class="ab-bd"><b>聞く</b><p>同世代や大人の挑戦を、セッションとプレゼン大会で</p><ul><li>セッション 6本</li><li>NEXY PITCH 2027</li></ul></div></article>
+      <article class="ab-card c2"><div class="ab-ph"><img src="img/summit2027/r26_table.webp" alt="テーブルで話す参加者" loading="lazy"><span class="ab-no num-font">02</span></div>
+        <div class="ab-bd"><b>話す</b><p>少人数のテーブルで、初めて会う同世代と</p><ul><li>ワークショップ 2本</li><li>テーマ別ランチテーブル</li></ul></div></article>
+      <article class="ab-card c3"><div class="ab-ph"><img src="img/summit2027/r26_wall.webp" alt="ブースを回る参加者" loading="lazy"><span class="ab-no num-font">03</span></div>
+        <div class="ab-bd"><b>出会う</b><p>気になる団体や先輩に、その場で声をかける</p><ul><li>ブース 15〜20団体</li><li>相談所・アフターパーティー</li></ul></div></article>
+    </div>
+    <div class="ab-movie">
+      <figure class="about-movie">
+        <video id="aboutMovie" src="img/site/summit_movie.mp4" poster="img/summit2027/r26_stage.webp" muted loop playsinline preload="none" controls></video>
+      </figure>
+      <div class="ab-movie-t"><span class="tab-label">60秒でわかる</span><b>NEXY SUMMIT 2026 の1日</b><p>前回の会場の空気を、動画で見てみてください</p></div>
+    </div>
   </div>
 </section>
 
@@ -1060,9 +1186,14 @@ window.SUMMIT = {
     <div class="head center">
       <span class="eyebrow">Program</span>
       <h2 class="h2">プログラム</h2>
-      <p class="lead">押すと詳細が見られます。<span class="new-inline">NEW</span> は2027年から。</p>
+      <p class="lead">横にスライドして見られます。押すと詳細が出ます。<span class="new-inline">NEW</span> は2027年から。</p>
     </div>
-    <div class="prog-grid" id="progGrid"></div>
+    <div class="rail">
+      <button class="rail-btn prev" type="button" aria-label="前へ">←</button>
+      <div class="prog-grid" id="progGrid"></div>
+      <button class="rail-btn next" type="button" aria-label="次へ">→</button>
+    </div>
+    <div class="rail-bar" aria-hidden="true"><i id="progBar"></i></div>
   </div>
 </section>
 
@@ -1447,7 +1578,7 @@ window.SUMMIT = {
   (function () {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.documentElement.classList.add('js-anim');
-    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.about-points div', '.pills', '.prog', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.ab-card', '.ab-movie', '.pills', '.prog', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
@@ -1495,6 +1626,33 @@ window.SUMMIT = {
     document.querySelectorAll('[data-count], .hall-box').forEach(function (el) { io.observe(el); });
     var v = document.getElementById('aboutMovie');
     if (v && !reduce) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }); }, { threshold: 0.5 }).observe(v);
+  })();
+
+
+  // ヒーローのスライド／プログラムのレール／帯のパララックス
+  (function () {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var imgs = document.querySelectorAll('.h4-slides img'), dots = document.querySelectorAll('.h4-dots i'), k = 0;
+    if (imgs.length > 1 && !reduce) setInterval(function () {
+      imgs[k].classList.remove('on'); if (dots[k]) dots[k].classList.remove('on');
+      k = (k + 1) % imgs.length; imgs[k].classList.add('on'); if (dots[k]) dots[k].classList.add('on');
+    }, 5000);
+    var g = document.getElementById('progGrid'), bar = document.getElementById('progBar');
+    if (g) {
+      var prev = document.querySelector('.rail-btn.prev'), next = document.querySelector('.rail-btn.next');
+      function upd() { var max = g.scrollWidth - g.clientWidth; var r = max > 0 ? g.scrollLeft / max : 1;
+        if (bar) bar.style.width = (g.clientWidth / g.scrollWidth * 100 + r * (100 - g.clientWidth / g.scrollWidth * 100)) + '%';
+        if (prev) prev.disabled = g.scrollLeft < 8; if (next) next.disabled = g.scrollLeft > max - 8; }
+      function step(d) { var c = g.querySelector('.prog'); g.scrollBy({ left: d * ((c ? c.offsetWidth : 270) + 14) * 2, behavior: 'smooth' }); }
+      if (prev) prev.addEventListener('click', function () { step(-1); }); if (next) next.addEventListener('click', function () { step(1); });
+      g.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); setTimeout(upd, 300);
+    }
+    if (reduce) return;
+    var secs = document.querySelectorAll('#for, #program, #day, #speakers, .entry'), tk = false;
+    function par() { if (tk) return; tk = true; requestAnimationFrame(function () {
+      secs.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; el.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.12).toFixed(1) + 'px'); });
+      tk = false; }); }
+    addEventListener('scroll', par, { passive: true }); par();
   })();
 
   // ハンバーガーメニュー
