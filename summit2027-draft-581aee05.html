@@ -1090,6 +1090,45 @@ body.pm-lock { overflow: hidden; }
 }
 @keyframes schIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
+
+/* ===== よくある質問（紺背景） ===== */
+#faq { background: var(--navy); color: #fff; }
+#faq::before { content: ""; position: absolute; left: -80px; bottom: -10%; width: 110px; height: 130%; background: var(--teal); transform: skewX(-30deg) translateY(var(--py, 0px)); opacity: .9; }
+#faq::after { content: ""; position: absolute; left: 70px; bottom: -10%; width: 34px; height: 130%; background: var(--orange); transform: skewX(-30deg) translateY(var(--py, 0px)); }
+.faq-wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: start; }
+.faq-side { position: sticky; top: calc(var(--nav-h) + 24px); }
+#faq .head { text-align: left; margin-bottom: 12px; } #faq .h2 { color: #fff; } #faq .eyebrow { color: var(--teal); }
+#faq .head[data-wm] { --wmc: #fff; }
+.faq-illo { width: 100%; max-width: 260px; display: block; margin: 8px 0 14px; }
+.faq-illo text { animation: qa 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.faq-illo text:last-of-type { animation-delay: 1.5s; }
+@keyframes qa { 0%, 100% { transform: none; } 50% { transform: translateY(-4px) rotate(-6deg); } }
+.faq-ask { border-left: 4px solid var(--orange); padding: 4px 0 4px 14px; }
+.faq-ask b { font-size: 16px; } .faq-ask p { font-size: 13px; color: rgba(255,255,255,.75); margin: 4px 0 6px; }
+.faq-ask a { font-weight: 900; color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+#faq .faq { counter-reset: q; gap: 10px; }
+#faq .faq details { counter-increment: q; background: #fff; border: 0; border-radius: 4px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+#faq .faq details:hover { transform: translateX(4px); box-shadow: -4px 0 0 var(--orange); }
+#faq .faq details[open] { box-shadow: -6px 0 0 var(--teal); }
+#faq .faq summary { padding: 16px 52px 16px 64px; }
+#faq .faq summary::before { content: counter(q, decimal-leading-zero); position: absolute; left: 0; top: 0; bottom: 0; width: 48px; display: grid; place-items: center; margin: 0; background: var(--teal); color: var(--navy); font-size: 14px; }
+#faq .faq details[open] summary::before { background: var(--orange); color: #fff; }
+#faq .faq summary::after { width: 28px; height: 28px; border-radius: 50%; background: var(--teal-tint); display: grid; place-items: center; font-size: 18px; line-height: 1; transition: transform .3s; }
+#faq .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); background: var(--orange-tint); color: var(--orange-deep); }
+#faq .faq .a { padding: 0 20px 18px 64px; color: var(--ink); line-height: 1.85; }
+#faq .faq details[open] .a { animation: faqIn .35s ease both; }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+/* 主催・運営 */
+#organizer { background: var(--teal-tint); }
+@media (max-width: 860px) {
+  .faq-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .faq-side { position: static; display: grid; grid-template-columns: 1fr 120px; align-items: center; gap: 0 12px; }
+  .faq-side .head { grid-column: 1; } .faq-illo { grid-column: 2; grid-row: 1; margin: 0; }
+  .faq-ask { grid-column: 1 / -1; margin-top: 6px; }
+  #faq::before { left: auto; right: -60px; width: 70px; } #faq::after { left: auto; right: 30px; width: 20px; }
+  #faq .faq summary { padding: 14px 48px 14px 56px; font-size: 14px; } #faq .faq summary::before { width: 42px; } #faq .faq .a { padding: 0 16px 16px 56px; font-size: 13px; }
+}
+
 /* ===== どんなイベント？（写真カード） ===== */
 .about .head .h2, .about .head .eyebrow { color: #fff; } .about .head .lead { color: rgba(255,255,255,.82); }
 .ab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
@@ -1576,9 +1615,20 @@ window.SUMMIT = {
 </section>
 
 <!-- ===== 8. FAQ ===== -->
-<section class="section bg-gray" id="faq">
-  <div class="wrap-narrow">
-    <div class="head center"><span class="eyebrow">FAQ</span><h2 class="h2">よくある質問</h2></div>
+<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="faq-side">
+      <div class="head"><span class="eyebrow">FAQ</span><h2 class="h2">よくある質問</h2></div>
+      <svg class="faq-illo" viewBox="0 0 220 150" aria-hidden="true">
+        <rect x="18" y="14" width="96" height="58" rx="4" fill="#fff"/><path d="M40 72l-6 16 22-16z" fill="#fff"/>
+        <text x="66" y="54" text-anchor="middle" font-family="Inter,sans-serif" font-size="38" font-weight="900" fill="#F54600">Q</text>
+        <rect x="112" y="40" width="90" height="54" rx="4" fill="#40BCB8"/><path d="M182 94l6 15-22-15z" fill="#40BCB8"/>
+        <text x="157" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="34" font-weight="900" fill="#02102B">A</text>
+        <rect x="58" y="112" width="26" height="24" rx="12" fill="#40BCB8"/><circle cx="71" cy="102" r="10" fill="#F3D2B5"/><path d="M61 102a10 10 0 0 1 20 0z" fill="#02102B"/>
+        <rect x="136" y="116" width="24" height="22" rx="11" fill="#F54600"/><circle cx="148" cy="107" r="9" fill="#F3D2B5"/><path d="M139 107a9 9 0 0 1 18 0z" fill="#02102B"/>
+      </svg>
+      <div class="faq-ask"><b>ほかに聞きたいことは？</b><p>気軽に送ってください。運営メンバーが答えます</p><a href="mailto:info@nexyhub.jp">info@nexyhub.jp</a></div>
+    </div>
     <div class="faq">
       <details><summary>参加費はかかりますか？</summary><div class="a">参加費は無料です。会場までの交通費は各自で負担してください</div></details>
       <details><summary>一人で参加できますか？</summary><div class="a">参加できます。受付やランチテーブルで、運営メンバーが交流のきっかけをつくります</div></details>
@@ -1598,7 +1648,7 @@ window.SUMMIT = {
   <div class="wrap">
     <div class="head"><span class="eyebrow">Organizer</span><h2 class="h2">主催・運営</h2></div>
     <figure class="crew">
-      <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026 の運営メンバー" loading="lazy">
+      <img src="img/summit2027/staff_2026.webp" alt="NEXY SUMMIT 2026 の運営メンバー" loading="lazy">
       <figcaption class="crew-cap">
         <span class="crew-k">MADE BY STUDENTS</span>
         <b>このイベントは、<br>中学生・高校生・大学生<br><em class="num-font">約50</em>人でつくっています</b>
@@ -2053,7 +2103,7 @@ window.SUMMIT = {
       g.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); setTimeout(upd, 300);
     }
     if (reduce) return;
-    var secs = document.querySelectorAll('#for, #program, #day, #speakers, .entry'), tk = false;
+    var secs = document.querySelectorAll('#for, #program, #day, #speakers, .entry, #faq'), tk = false;
     function par() { if (tk) return; tk = true; requestAnimationFrame(function () {
       secs.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; el.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.12).toFixed(1) + 'px'); });
       tk = false; }); }
