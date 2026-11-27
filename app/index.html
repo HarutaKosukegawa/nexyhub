@@ -711,6 +711,15 @@ body{line-break:strict;word-break:auto-phrase}
 .st-agree input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--teal-deep)}
 .st-sel{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px;color:var(--ink)}
 .st-res{display:grid;gap:8px;margin-top:12px}
+.up-row{display:grid;gap:5px;padding:10px 0;border-top:1px solid var(--line)}
+.up-row:first-of-type{border-top:0}
+.up-h{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.up-h b{font-size:13px}
+.up-lead{font-style:normal;font-size:10px;font-weight:900;background:var(--violet);color:#fff;padding:1px 7px;border-radius:999px}
+.up-tag{font-size:10px;font-weight:900;background:var(--orange);color:#fff;padding:1px 8px;border-radius:999px}
+.up-new textarea{border-color:var(--orange);background:var(--orange-tint)}
+.up-before{margin:0;font-size:12px;color:var(--muted);background:var(--bg);border-radius:8px;padding:6px 8px}.up-before span{font-weight:900}
+.up-q{margin:0;font-size:11.5px;color:var(--muted)}
+.up-form textarea,.up-form input[type=text]{width:100%;font:inherit;font-size:14px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface)}
 .st-res .panel b{font-size:12px}
 .st-list{margin:4px 0 0;padding-left:18px;font-size:13px}
 .st-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
@@ -1877,7 +1886,7 @@ async function load(){
   try{
     const [all,meJ,st]=await Promise.all([sapi("all"),sapi("me"),sapi("settings").catch(()=>({certOpen:false}))]);
     VIEWER=all.viewer;NEEDS_PHOTO=!!meJ.needsPhoto;
-    const list=all.roster.map(r=>{const p=all.pages[r.id]||{};if(r.role==="メンバー"&&r.teamSet===false)r={...r,team:"none"};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],updated:p.updated||r.updated||0}});
+    const list=all.roster.map(r=>{const p=all.pages[r.id]||{};if(r.role==="メンバー"&&r.teamSet===false)r={...r,team:"none"};return {...r,conf:r.status==="confirmed",status:p.status||"pub",open:p.open!==false,f:p.f||{},x:p.x||{skills:{}},kw:p.kw||[],gkw:p.gkw||[],thanks:p.thanks||[],cert:p.cert,consent:p.consent,excluded:p.excluded||[],last1on1:p.last1on1||null,updated:p.updated||r.updated||0}});
     STD={members:list.filter(m=>m.conf),pending:list.filter(m=>!m.conf),certOpen:!!st.certOpen,lastSync:st.lastSync||0,aiReady:!!st.aiReady};loadErr="";
   }catch(e){if(e.status===401){VIEWER=null}else loadErr=e.message}
   loaded=true;
@@ -2060,7 +2069,7 @@ function stPerson(m){if(!m)return stList();
   const left=`<section class="prof-hero">${stAv(m,"")}<h2>${nameHTML(m,"big")}</h2><span class="rw">${teamPill(m)}${gen(m)}</span>${m.pref?`<span class="note">${esc(m.pref)}</span>`:""}
     ${gain?`<span class="ti">得たいこと：${esc(gain)}</span>`:""}${dream?`<p class="wn">${esc(dream)}</p>`:""}
     ${isSelf(m)?`<div class="go" style="grid-template-columns:1fr"><button class="btn o" data-st="edit" data-id="${m.id}">${PEN}自分の紹介ページを編集する</button></div>`:""}
-    ${canImport(m)&&STD.aiReady?`<div class="go" style="grid-template-columns:1fr"><button class="btn s" data-st="toimport" data-id="${m.id}">1on1の文字起こしから下書きを作る</button></div>`:""}</section>
+    ${canImport(m)?`<div class="go" style="grid-template-columns:1fr"><button class="btn s" data-st="toimport" data-id="${m.id}">1on1の内容で更新する</button></div>${m.last1on1?`<p class="note" style="margin-top:6px">最後の1on1での更新：${new Date(m.last1on1.at).toLocaleDateString("ja-JP")}（${esc(m.last1on1.by)}）</p>`:""}`:""}</section>
   ${isSelf(m)?`<p class="st-selfnote">これはあなたのページです。運営メンバーに公開されています。書き換えると、すぐに反映されます。</p>`:""}
   ${m.status!=="pub"&&own?`<p class="note" style="margin-top:12px">いまは非公開です。本人と代表だけが見られます。</p>`:""}
 `;
@@ -2212,7 +2221,7 @@ function vStaffMain(){
   if(me().m.team==="none"&&!sv.skipTeam)return stTeamGate();
   if(sv.view==="edit"&&document.querySelector("[data-ek]")&&stM(sv.id))stCollect(stM(sv.id));
   const w=me();
-  const nav=[["list","チーム"],...(w.k!=="mem"&&STD.aiReady?[["import","1on1から作る"]]:[]),["perm","できること"],...(w.k==="rep"?[["settings","メンバー管理"]]:[])];
+  const nav=[["list","チーム"],...(w.k!=="mem"?[["import","1on1で更新"]]:[]),["perm","できること"],...(w.k==="rep"?[["settings","メンバー管理"]]:[])];
   const cur=sv.view==="person"||sv.view==="edit"?(sv.id===w.id?"mine":"list"):sv.view;
   const top=`<div class="st-top">${stLoginBar()}<button class="btn o st-mine" data-st="go" data-k="mine">${stAv(w.m,"s")}マイページ</button></div>
   <div class="st-nav" role="tablist">${nav.map(([k,l])=>`<button role="tab" aria-selected="${cur===k}" data-st="go" data-k="${k}">${l}</button>`).join("")}</div>`;
@@ -2307,27 +2316,37 @@ async function stRunImport(){
   try{sv.imp.res=await sapi("draft_ai",{id:m.id,transcript:text})}catch(e){sv.imp.err=e.message}
   finally{sv.imp.busy=false;renderMain()}
 }
-function stImport(){const im=sv.imp;const ts=impTargets();if(!ts.length)return `<div class="sec empty"><span>下書きを作れる人がいません。</span></div>`;
-  if(!ts.some(x=>x.id===im.target))im.target=ts[0].id;
-  const m=stM(im.target);const r=im.res;
-  const empty=r?AI_KEYS.filter(k=>!r.fields[k]):[];
-  return `<div class="st-imp"><section class="panel" style="margin-top:12px"><div class="fld"><label for="stTarget">だれの紹介ページか</label>
-    <select id="stTarget" class="st-sel">${ts.map(x=>`<option value="${x.id}" ${x.id===im.target?"selected":""}>${esc(x.name)}（${TEAMS[x.team].n}・${esc(x.role)}）</option>`).join("")}</select>
-    ${isRep()?"":`<span class="hp">管理職は、自分のチームのメンバーの分だけ作れます。</span>`}</div>
-  <details style="margin-top:12px"><summary>1on1で聞くこと（全員この順で聞く）</summary><ol class="st-list" style="padding:0 14px 14px 32px">${TF.filter(f=>f[4]).map(f=>`<li>${esc(f[4])}<span class="note">（${f[1]}）</span></li>`).join("")}<li>最後に「今日話したことを、運営チーム内の紹介ページに載せても大丈夫？」</li></ol><p class="note" style="padding:0 14px 14px">聞いても載せないもの：家庭の事情、体調や健康、受験の志望校や合否、学校名</p></details>
-  <div class="fld" style="margin-top:12px"><label for="stImpText">1on1の文字起こし（Nottaからそのまま貼り付け）</label>
-    <textarea id="stImpText" rows="8" placeholder="ここに貼り付け">${esc(im.text)}</textarea>
-    <span class="hp">文字起こしは保存しません。下書きを作るためにだけ使います。</span></div>
-  <div class="go" style="grid-template-columns:1fr"><button class="btn o ${im.busy?"st-busy":""}" data-st="imprun">${im.busy?"下書きを作っています…":"下書きを作る"}</button></div>
-  ${im.err?`<p class="note" style="margin-top:8px;color:var(--orange)">${esc(im.err)}</p>`:""}</section>
-  ${r?`<div class="st-res"><h2 style="font-size:16px;font-weight:900;margin-top:10px">下書き（${esc(m.name)}さん）</h2>
-    <div class="panel">${Object.entries(r.fields).map(([k,v])=>`<div class="st-item"><span class="k">${TFK[k][1]}${v.check?'<span class="chk">要確認</span>':""}</span><span class="v">${esc(v.text)}</span>${v.quote?`<span class="q">元の発言：${esc(v.quote)}</span>`:""}</div>`).join("")||'<p class="note">取り出せる内容がありませんでした。</p>'}</div>
-    <div class="panel"><b>公開の同意</b><p style="font-size:13px">${r.consent==="yes"?"運営チーム内に載せることに「はい」":r.consent==="no"?"載せないでほしい":"確認できていません。次の1on1で本人に確認します"}</p></div>
-    ${(r.excluded||[]).length?`<div class="panel"><b>抽出しなかったもの</b><ul class="st-list">${r.excluded.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
-    ${empty.length?`<div class="panel"><b>次の1on1で聞くこと（話していない項目）</b><ul class="st-list">${empty.map(k=>`<li>${TFK[k][1]}：「${esc(TFK[k][4])}」</li>`).join("")}</ul></div>`:""}
-    ${r.note?`<p class="note">${esc(r.note)}</p>`:""}
-    <button class="btn o" style="width:100%;min-height:48px" data-st="impsave">${esc(m.name)}さんのページに入れる</button>
-    <p class="note">入れた内容は本人のページに「1on1から」の印つきで入ります。本人がいつでも直せます。</p></div>`:""}</div>`;
+function stImport(){const im=sv.imp;const ts=impTargets();if(!ts.length)return `<div class="sec empty"><span>1on1で更新できる人がいません。</span></div>`;
+  if(!ts.some(x=>x.id===im.target)){im.target=ts[0].id;im.res=null}
+  const m=stM(im.target);const r=im.res;const cv=k=>(m.f[k]&&m.f[k].v)||"";
+  const rows=AI_KEYS.map(k=>{const f=TFK[k];const p=r&&r.fields[k];const val=p?p.text:cv(k);const changed=p&&p.text!==cv(k);
+    return `<div class="up-row${changed?" up-new":""}"><div class="up-h"><b>${f[1]}</b>${f[3]==="lead"?'<em class="up-lead">管理職まで</em>':""}${changed?'<span class="up-tag">1on1の案</span>':""}${p&&p.check?'<span class="chk">要確認</span>':""}</div>
+      ${changed&&cv(k)?`<p class="up-before"><span>今：</span>${esc(cv(k))}</p>`:""}
+      <textarea data-up="${k}" rows="${val.length>60?4:2}" maxlength="300" placeholder="${esc(f[4]||"")}">${esc(val)}</textarea>
+      ${p&&p.quote?`<p class="up-q">元の発言：${esc(p.quote)}</p>`:""}</div>`}).join("");
+  const kwv=(r&&r.kw)||m.kw||[],gkwv=(r&&r.gkw)||m.gkw||[];
+  return `<div class="st-imp">
+  <section class="panel" style="margin-top:12px"><div class="fld"><label for="stTarget">だれの紹介ページを更新するか</label>
+    <select id="stTarget" class="st-sel">${ts.map(x=>`<option value="${x.id}" ${x.id===im.target?"selected":""}>${esc(x.name)}（${(TEAMS[x.team]||{}).n||""}・${esc(x.role)}）</option>`).join("")}</select>
+    ${isRep()?"":`<span class="hp">統括・サブ統括は、自分のチームのメンバーの分だけ更新できます。</span>`}</div>
+    ${m.last1on1?`<p class="note" style="margin-top:6px">前回の1on1での更新：${new Date(m.last1on1.at).toLocaleDateString("ja-JP")}（${esc(m.last1on1.by)}）</p>`:""}
+    <details style="margin-top:10px"><summary>1on1で聞くこと</summary><ol class="st-list" style="padding:0 14px 14px 32px">${TF.filter(f=>f[4]).map(f=>`<li>${esc(f[4])}<span class="note">（${f[1]}）</span></li>`).join("")}<li>最後に「今日話したことを、運営チーム内の紹介ページに載せても大丈夫？」</li></ol></details></section>
+  ${STD.aiReady?`<section class="panel" style="margin-top:10px"><b style="font-size:14px">文字起こしから更新案を作る</b>
+    <p class="note" style="margin:2px 0 8px">Nottaなどの文字起こしを貼ると、今の紹介ページに1on1で分かったことを足した案を、AIが下に入れます。文字起こしは保存しません。</p>
+    <textarea id="stImpText" rows="6" placeholder="ここに貼り付け">${esc(im.text)}</textarea>
+    <button class="btn s ${im.busy?"st-busy":""}" style="width:100%;margin-top:8px" data-st="imprun">${im.busy?"更新案を作っています…":"更新案を作る"}</button>
+    ${im.err?`<p class="note" style="margin-top:8px;color:var(--orange)">${esc(im.err)}</p>`:""}</section>`
+    :`<p class="note" style="margin-top:10px">1on1で聞いたことをもとに、下の項目を直接書き足してください。（文字起こしから自動で案を作る機能は、AIの設定をすると使えます）</p>`}
+  ${r&&(r.excluded||[]).length?`<div class="panel" style="margin-top:10px"><b style="font-size:12px">入れなかったもの</b><ul class="st-list">${r.excluded.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+  <section class="panel up-form" style="margin-top:10px"><h2 style="font-size:16px;font-weight:900;margin:0 0 4px">${esc(m.name)}さんの紹介ページ</h2>
+    <p class="note" style="margin:0 0 10px">書き足したり直したりした項目だけが更新されます。本人もあとから自由に直せます。</p>
+    ${rows}
+    <div class="up-row"><div class="up-h"><b>強みのことば</b><span class="note">「、」で区切る・8個まで</span></div><input type="text" data-upkw="kw" value="${esc(kwv.join("、"))}" placeholder="例：段取り、周りを見る力"></div>
+    <div class="up-row"><div class="up-h"><b>得たいことのことば</b><span class="note">「、」で区切る・8個まで</span></div><input type="text" data-upkw="gkw" value="${esc(gkwv.join("、"))}" placeholder="例：人前で話す力、企画力"></div>
+    <div class="up-row"><div class="up-h"><b>運営チーム内に載せていいか、本人に確認した？</b></div>
+      <select id="upConsent" class="st-sel"><option value="yes" ${(r?r.consent:m.consent)==="yes"?"selected":""}>はい、確認した</option><option value="unknown" ${(r?r.consent:m.consent)!=="yes"&&(r?r.consent:m.consent)!=="no"?"selected":""}>まだ確認していない</option><option value="no" ${(r?r.consent:m.consent)==="no"?"selected":""}>載せないでほしいと言われた</option></select></div>
+    <button class="btn o" style="width:100%;min-height:48px;margin-top:6px" data-st="impsave">${esc(m.name)}さんの紹介ページを更新する</button>
+    <p class="note" style="margin-top:6px">更新した項目には「1on1から」の印がつきます。人を評価する言葉ではなく、本人が話したことをそのまま書いてください。</p></section></div>`;
 }
 
 /* ---- メンバー管理（代表だけ） ---- */
@@ -2414,8 +2433,14 @@ document.addEventListener("click",e=>{
     case "certprint":try{window.print()}catch(x){toast("この画面では印刷できません")}break;
     case "certopen":act(()=>sapi("settings",{certOpen:!STD.certOpen}),STD.certOpen?"証明書を見本に戻しました":"証明書の発行を始めました");break;
     case "imprun":stRunImport();break;
-    case "impsave":{const tm=stM(sv.imp.target);const r=sv.imp.res;if(!r||!canImport(tm))return;
-      act(()=>sapi("draft_save",{id:tm.id,fields:r.fields,excluded:r.excluded||[],consent:r.consent}),"下書きを入れました").then(()=>{sv.imp.res=null;sv.imp.text="";stGo("person",tm.id)});break}
+    case "impsave":{const tm=stM(sv.imp.target);if(!tm||!canImport(tm))return;const r=sv.imp.res;
+      const fields={};document.querySelectorAll("[data-up]").forEach(el=>{const k=el.dataset.up,v=el.value.trim(),cur=(tm.f[k]&&tm.f[k].v)||"";if(v&&v!==cur)fields[k]={text:v,quote:(r&&r.fields[k]&&r.fields[k].quote)||"",check:false}});
+      const kwl=k=>(document.querySelector(`[data-upkw="${k}"]`).value||"").split(/[、,，\s]+/).map(x=>x.trim()).filter(Boolean).slice(0,8);
+      const kw=kwl("kw"),gkw=kwl("gkw");const body={id:tm.id,fields,consent:$("upConsent").value};
+      if(kw.join("、")!==(tm.kw||[]).join("、"))body.kw=kw;if(gkw.join("、")!==(tm.gkw||[]).join("、"))body.gkw=gkw;
+      if(r&&r.excluded)body.excluded=r.excluded;
+      if(!Object.keys(fields).length&&!body.kw&&!body.gkw&&body.consent===tm.consent){toast("変わったところがありません");return}
+      act(()=>sapi("draft_save",body),`${tm.name}さんの紹介ページを更新しました`).then(()=>{sv.imp.res=null;sv.imp.text="";stGo("person",tm.id)});break}
     case "confirm":case "topend":{const st=d.st==="confirm"?"confirmed":"pending";quickRoster(m,{conf:st==="confirmed"},st==="confirmed"?`${m.name}さんを確定にしました`:`${m.name}さんを保留に戻しました`);break}
     case "rmmember":if(!confirm(`${m.name}さんを名簿から外しますか？紹介ページも消えて、元に戻せません。`))return;act(()=>sapi("roster_remove",{id:m.id}),"名簿から外しました");break;
     case "addmember":{const n=($("amName").value||"").trim();if(!n){toast("名前を入れてください");return}

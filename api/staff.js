@@ -227,11 +227,14 @@ function viewPage(v, m, page) {
   const out = { id: m.id, status: page.status, updated: page.updated, open };
   if (!open) return out;
   const see = (k) => canSee(v, m, page, scopeOf(page, k));
+  // 1on1で更新できる人（代表・同じチームの統括とサブ統括）
+  const drafter = m.status === "confirmed" && (v.k === "rep" || (v.k === "mgr" && v.team === m.team && m.teamSet !== false && v.id !== m.id));
   out.f = {};
   for (const [k, x] of Object.entries(page.f || {})) {
     if (!x || !x.v || !see(k)) continue;
-    out.f[k] = me ? { v: x.v, s: x.s, q: x.q, src: x.src, chk: !!x.chk } : { v: x.v, s: x.s };
+    out.f[k] = me ? { v: x.v, s: x.s, q: x.q, src: x.src, chk: !!x.chk } : { v: x.v, s: x.s, ...(drafter ? { src: x.src } : {}) };
   }
+  if (me || drafter) out.last1on1 = page.last1on1 || null;
   out.x = { skills: see("strength") ? (page.x && page.x.skills) || {} : {} };
   out.kw = see("strength") ? page.kw || [] : [];
   out.gkw = see("gain") ? page.gkw || [] : [];
@@ -268,16 +271,24 @@ const strList = (a, n, len) => (Array.isArray(a) ? a.map((t) => str(t, len)).fil
 
 /* ---------------- 1on1の文字起こし → 下書き（AI） ---------------- */
 const AI_KEYS = Object.keys(FIELDS).filter((k) => k !== "before" && k !== "after");
-async function aiDraft(name, transcript) {
+async function aiDraft(name, transcript, cur) {
   if (!process.env.ANTHROPIC_API_KEY) throw Object.assign(new Error("ai off"), { status: 503, msg: "AIの設定（ANTHROPIC_API_KEY）がまだです" });
-  const prompt = `あなたは学生団体NEXYの運営メンバー「紹介ページ」の下書きを作る係です。下の1on1の文字起こしから、本人（${name}さん）が自分について話したことだけを、決まった項目に振り分けてください。
+  const now = AI_KEYS.filter((k) => cur.f[k] && cur.f[k].v).map((k) => `${k}: ${cur.f[k].v}`).join("\n") || "（まだ何も書かれていません）";
+  const prompt = `あなたは学生団体NEXYの運営メンバー「紹介ページ」を、1on1の内容で更新する係です。今の紹介ページを土台にして、下の1on1の文字起こしで本人（${name}さん）が自分について話したことを足したり、より具体的にしたりした「更新案」を作ってください。
 ルール：話者の名前は当てにならないので、質問している側か答えている側かを文脈で判断する（自信がない項目は check を true）。質問している側の自己開示は使わない。本人の言い回しを残す。quote には根拠の元の発言を1文入れる。
-外すもの：恋愛や交友、その場にいない人の名前と噂、家庭のこと、体調や健康、学校名、外見、他のメンバーについての話、受験の志望校や合否。外したものは excluded に何を外したかだけ短く書く。話していない項目は出さない。推測で埋めない。
+今の内容は消さずに生かす。1on1で新しく分かったことを足して、1つの文章にまとめる（300字以内）。今の内容と食い違うときは1on1の発言を優先し、check を true にする。1on1で話していない項目は出さない。推測で埋めない。人を評価する言葉（できる・できない、優秀など）は使わない。
+外すもの：恋愛や交友、その場にいない人の名前と噂、家庭のこと、体調や健康、学校名、外見、他のメンバーについての話、受験の志望校や合否。外したものは excluded に何を外したかだけ短く書く。
+kw は強みを表す短いことば（1つ12字以内）、gkw は得たいことを表す短いことば。今あるものに1on1で分かったものを足した完成形を、それぞれ8個まで。1on1で分からなければ出さない。
 「運営チーム内に載せて大丈夫？」への答えを consent（yes/no/unknown）に入れる。
 項目：${AI_KEYS.join(", ")}
-出力はJSONだけ：{"fields":{"key":{"text":"...","quote":"...","check":false}},"excluded":["..."],"consent":"unknown","note":"..."}
+出力はJSONだけ：{"fields":{"key":{"text":"...","quote":"...","check":false}},"kw":["..."],"gkw":["..."],"excluded":["..."],"consent":"unknown","note":"..."}
 
-【文字起こし】
+【今の紹介ページ】
+${now}
+今の強みのことば：${(cur.kw || []).join("、") || "なし"}
+今の得たいことのことば：${(cur.gkw || []).join("、") || "なし"}
+
+【1on1の文字起こし】
 ${transcript}`;
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -289,7 +300,8 @@ ${transcript}`;
   const o = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
   const fields = {};
   for (const [k, v] of Object.entries(o.fields || {})) if (AI_KEYS.includes(k) && v && str(v.text, 300)) fields[k] = { text: str(v.text, 300), quote: str(v.quote, 200), check: !!v.check };
-  return { fields, excluded: strList(o.excluded, 10, 80), consent: ["yes", "no"].includes(o.consent) ? o.consent : "unknown", note: str(o.note, 200) };
+  const kw = Array.isArray(o.kw) ? strList(o.kw, 8, 30) : null, gkw = Array.isArray(o.gkw) ? strList(o.gkw, 8, 30) : null;
+  return { fields, kw, gkw, excluded: strList(o.excluded, 10, 80), consent: ["yes", "no"].includes(o.consent) ? o.consent : "unknown", note: str(o.note, 200) };
 }
 
 // 同じ人が別の名前で2件になっているとき（フォームのニックネームと本名など）に1件にまとめる。
@@ -562,18 +574,23 @@ async function route(req) {
     if (!canDraft(m)) return err("この人の下書きは作れません", 403);
     const t = str(b.transcript, 60000);
     if (!t) return err("文字起こしを貼り付けてください");
-    return json(await aiDraft(m.name, t));
+    const cur = await readJSON(pageKey(m.id), EMPTY_PAGE);
+    return json(await aiDraft(m.name, t, cur));
   }
   if (a === "draft_save") {
     const m = roster.members[b.id];
     if (!canDraft(m)) return err("この人の下書きは作れません", 403);
+    const w = roster.members[v.id] || {};
     const page = await updateJSON(pageKey(m.id), (p) => {
       for (const [k, x] of Object.entries(b.fields || {})) {
         if (!(k in FIELDS) || !str(x && x.text, 300)) continue;
-        p.f[k] = { v: str(x.text, 300), s: (p.f[k] && p.f[k].s) || FIELDS[k], q: str(x.quote, 200), src: "1on1", chk: !!x.check };
+        p.f[k] = { v: str(x.text, 300), s: FIELDS[k], q: str(x.quote, 200), src: "1on1", chk: !!x.check, by: str(w.name, 20), at: Date.now() };
       }
+      if (Array.isArray(b.kw)) p.kw = strList(b.kw, 8, 30);
+      if (Array.isArray(b.gkw)) p.gkw = strList(b.gkw, 8, 30);
       if (["yes", "no", "unknown"].includes(b.consent)) p.consent = b.consent;
-      p.excluded = strList(b.excluded, 10, 80);
+      if (Array.isArray(b.excluded)) p.excluded = strList(b.excluded, 10, 80);
+      p.last1on1 = { by: str(w.name, 20), role: w.role || "", at: Date.now() };
       // 公開の状態は変えない。本人がいつでも書き換えられる
       p.updated = Date.now();
     }, EMPTY_PAGE);
