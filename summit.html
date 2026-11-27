@@ -595,7 +595,7 @@ body.pm-lock { overflow: hidden; }
 .about .eyebrow { color: var(--teal-soft); }
 .about .h2 { color: #fff; }
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: center; }
-.about-lead { font-size: clamp(18px, 2.2vw, 22px); font-weight: 900; line-height: 1.8; margin-top: 14px; }
+.about-lead { font-size: clamp(16px, 1.9vw, 19px); font-weight: 800; line-height: 1.9; margin-top: 14px; }
 .about-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
 .about-nums div { border-top: 3px solid var(--teal); padding-top: 8px; }
 .about-nums div:nth-child(2) { border-color: var(--orange); } .about-nums div:nth-child(3) { border-color: #fff; }
@@ -749,10 +749,76 @@ body.pm-lock { overflow: hidden; }
 .entry::after { content: ""; position: absolute; right: -60px; bottom: -40px; width: 260px; height: 160px; background: var(--orange); transform: skewX(-30deg); }
 .entry .wrap { position: relative; z-index: 1; }
 .entry-box { border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
-.entry-box .eyebrow { color: var(--orange-deep); }
+.entry-box .eyebrow { color: var(--teal-deep); }
 .entry-chips div { border-radius: 4px; border-left: 4px solid var(--teal); background: var(--teal-tint); }
 .entry-chips div:nth-child(2) { border-color: var(--orange); background: var(--orange-tint); } .entry-chips div:nth-child(3) { border-color: var(--navy); background: var(--navy-tint); } .entry-chips div:nth-child(4) { border-color: var(--teal-deep); }
 .entry .slot { border-radius: 4px; background: var(--surface-2); border: 0; }
+
+
+/* ===== ファーストビュー（写真を大きく・ポスター準拠） ===== */
+.hero3 { position: relative; background: var(--teal); overflow: hidden; }
+.h3-photo { position: relative; height: clamp(320px, 50svh, 560px); overflow: hidden; background: var(--navy); }
+.h3-photo > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; animation: kb 18s ease-in-out infinite alternate; }
+.h3-logo { position: absolute; left: 0; top: 0; background: #fff; padding: 18px 70px 18px 28px; clip-path: polygon(0 0, 100% 0, calc(100% - 56px) 100%, 0 100%); animation: logoIn .8s .1s cubic-bezier(.2,.7,.2,1) both; }
+.h3-logo img { width: clamp(170px, 18vw, 260px); height: auto; display: block; }
+@keyframes logoIn { from { transform: translateX(-100%); } to { transform: none; } }
+.h3-cap { position: absolute; right: 14px; top: 12px; font-size: 11px; color: #fff; background: rgba(2,16,43,.55); padding: 2px 8px; }
+.h3-band { position: relative; margin-top: -90px; padding: 100px 0 30px; background: var(--teal); clip-path: polygon(0 90px, 100% 0, 100% 100%, 0 100%); }
+.h3-band::before { content: ""; position: absolute; right: 8%; top: -10px; width: 70px; height: 140px; background: var(--orange); transform: skewX(-30deg); }
+.h3-band::after { content: ""; position: absolute; right: calc(8% + 84px); top: 30px; width: 24px; height: 100px; background: var(--navy); transform: skewX(-30deg); }
+.h3-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: end; }
+.h3-tag { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-weight: 900; font-size: 16px; }
+.h3-tag::before { content: ""; width: 28px; height: 4px; background: var(--orange); }
+.h3-title { font-size: clamp(34px, 5vw, 64px); font-weight: 900; line-height: 1.22; color: #fff; margin-top: 10px; letter-spacing: -.01em; }
+.h3-title .box { display: inline-block; background: var(--orange); padding: 0 .12em; margin-right: .06em; }
+.h3-sub { color: var(--navy); font-weight: 800; font-size: 17px; line-height: 1.8; margin-top: 12px; }
+.h3-title, .h3-tag, .h3-sub { animation: heroUp .8s .3s cubic-bezier(.2,.7,.2,1) both; }
+.h3-card { background: #fff; padding: 20px 22px; box-shadow: 0 18px 40px rgba(2,16,43,.22); animation: heroUp .8s .45s cubic-bezier(.2,.7,.2,1) both; }
+.h3-date { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; color: var(--navy); }
+.h3-date > b { font-size: 36px; font-weight: 900; line-height: 1; }
+.h3-date > span { font-weight: 900; }
+.h3-count { margin-left: auto; font-style: normal; font-size: 12px; font-weight: 800; background: var(--orange); color: #fff; padding: 4px 10px; }
+.h3-count b { font-size: 20px; margin: 0 2px; }
+.h3-venue { font-size: 14px; font-weight: 800; color: var(--navy); margin-top: 6px; }
+.h3-card .hero-side { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 14px; }
+.h3-card .hero-side .btn { width: 100%; padding: 14px 10px; font-size: 15px; }
+.h3-card .cta-note { margin-top: 6px; }
+.hero3 .h2-marquee { margin-top: 0; }
+@media (max-width: 900px) {
+  .h3-photo { height: auto; aspect-ratio: 4 / 3; }
+  .h3-logo { padding: 10px 44px 10px 14px; clip-path: polygon(0 0, 100% 0, calc(100% - 34px) 100%, 0 100%); }
+  .h3-logo img { width: 140px; }
+  .h3-band { margin-top: -50px; padding: 66px 0 24px; clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 100%); }
+  .h3-band::before { width: 40px; height: 80px; right: 6%; } .h3-band::after { width: 14px; height: 60px; right: calc(6% + 48px); top: 20px; }
+  .h3-grid { grid-template-columns: 1fr; gap: 16px; }
+  .h3-title { font-size: clamp(30px, 9vw, 42px); }
+  .h3-sub { font-size: 15px; }
+  .h3-card { padding: 16px; }
+  .h3-date > b { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .h3-photo > img, .h3-logo { animation: none !important; } }
+
+/* ===== イラストカード（参加者・どんなイベント？） ===== */
+.illo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.illo-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 20px rgba(2,16,43,.12); transition: transform .25s; }
+.illo-card:hover { transform: translateY(-4px); }
+.illo-card svg { display: block; width: 100%; height: auto; }
+.illo-card p { padding: 12px 14px 14px; font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.5; position: relative; padding-left: 40px; }
+.illo-card p::before { content: ""; position: absolute; left: 16px; top: 15px; width: 8px; height: 14px; border: solid var(--teal-deep); border-width: 0 4px 4px 0; transform: rotate(45deg); }
+@media (max-width: 760px) { .illo-grid { grid-template-columns: 1fr 1fr; gap: 8px; } .illo-card p { font-size: 13px; padding: 8px 10px 10px 30px; } .illo-card p::before { left: 11px; top: 10px; width: 6px; height: 11px; border-width: 0 3px 3px 0; } }
+.about-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; }
+.about-points div { background: rgba(255,255,255,.06); border-top: 4px solid var(--teal); padding: 12px 14px; }
+.about-points div:nth-child(2) { border-color: var(--orange); } .about-points div:nth-child(3) { border-color: #fff; }
+.about-points b { display: block; font-size: 17px; font-weight: 900; white-space: nowrap; }
+.about-points span { font-size: 12px; color: rgba(255,255,255,.78); line-height: 1.6; display: block; margin-top: 2px; }
+@media (max-width: 600px) { .about-points { grid-template-columns: 1fr; gap: 6px; } .about-points div { display: flex; gap: 10px; align-items: baseline; padding: 8px 12px; } .about-points b { flex: 0 0 3.2em; } }
+
+.mock-svg { display: block; } .mock-svg svg { width: 100%; height: 100%; display: block; }
+/* ===== 申込（1色でまとめる） ===== */
+.entry-list { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 8px; }
+.entry-list li { position: relative; padding-left: 30px; font-size: 16px; font-weight: 800; color: var(--navy); }
+.entry-list li::before { content: ""; position: absolute; left: 6px; top: 3px; width: 8px; height: 14px; border: solid var(--teal-deep); border-width: 0 4px 4px 0; transform: rotate(45deg); }
+.entry-lead { font-size: 14px; color: var(--ink-muted); margin-top: 6px; }
 
 /* ===== 追加アニメーション ===== */
 .scroll-bar { position: fixed; top: 0; left: 0; height: 3px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--orange); z-index: 300; pointer-events: none; }
@@ -904,35 +970,35 @@ window.SUMMIT = {
 <main>
 
 <!-- ===== 1. ファーストビュー ===== -->
-<section class="hero2" id="top">
-  <div class="h2-slashes" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div class="wrap hero2-grid">
-    <div class="h2-top">
-      <img class="h2-logo" src="img/summit2027/logo_2027.png" alt="NEXY SUMMIT 2027" width="1200" height="565">
-      <div class="h2-when"><span data-bind="date.text"></span><span data-bind="venue.text"></span></div>
-      <h1 class="h2-title">同世代って、<br><em>こんなに面白かったんだ</em></h1>
-    </div>
-    <div class="h2-vis" aria-hidden="true">
-      <figure class="pv p1"><img src="img/summit2027/hero_group.webp" alt="" fetchpriority="high"></figure>
-      <figure class="pv p2"><img src="img/summit2027/r26_pitch.webp" alt=""></figure>
-      <figure class="pv p3"><img src="img/summit2027/r26_table.webp" alt=""></figure>
-      <div class="h2-words"><span>話す</span><span>聞く</span><span>出会う</span></div>
-      <div class="h2-count"><small>開催まで</small><b class="num-font" id="cdDays">--</b><small>日</small></div>
-    </div>
-    <div class="h2-bot">
-      <p class="h2-sub">中学生・高校生・大学生、<b>来場1,000人</b>を目指す1日。<br>話して、聞いて、仲間に出会う。</p>
-      <div class="h2-chips"><span class="free">参加無料</span><span>ひとりで参加OK</span><span>途中の入退場OK</span></div>
-      <div class="hero-side">
-        <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
-        <a class="btn btn-outline" href="#program">プログラムを見る</a>
+<section class="hero3" id="top">
+  <div class="h3-photo">
+    <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026に集まった中高大生" width="1622" height="1076" fetchpriority="high">
+    <div class="h3-logo"><img src="img/summit2027/logo_2027.png" alt="NEXY SUMMIT 2027" width="1200" height="565"></div>
+    <span class="h3-cap">NEXY SUMMIT 2026</span>
+  </div>
+  <div class="h3-band">
+    <div class="wrap h3-grid">
+      <div>
+        <p class="h3-tag">日本最大級の学生サミット</p>
+        <h1 class="h3-title"><span class="box">「やりたい」</span>は、<br>ここで見つかる</h1>
+        <p class="h3-sub">中学生・高校生・大学生のための1日。<br>話して、聞いて、仲間に出会う。</p>
       </div>
-      <p class="cta-note js-cta-note"></p>
-      <div class="hero-sponsors" id="heroSponsors"></div>
+      <div class="h3-card">
+        <div class="h3-date"><b class="num-font">2027.3.26</b><span>（金）</span><em class="h3-count">あと<b class="num-font" id="cdDays">--</b>日</em></div>
+        <p class="h3-venue"><span data-bind="venue.text"></span>　京急蒲田駅 徒歩3分</p>
+        <div class="h2-chips"><span class="free">参加無料</span><span>ひとりで参加OK</span><span>当日参加OK</span><span>出入り自由</span></div>
+        <div class="hero-side">
+          <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
+          <a class="btn btn-outline" href="#program">プログラムを見る</a>
+        </div>
+        <p class="cta-note js-cta-note"></p>
+        <div class="hero-sponsors" id="heroSponsors"></div>
+      </div>
     </div>
   </div>
   <div class="h2-marquee" aria-hidden="true"><div class="mq-track">
-    <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_food.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
-    <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_food.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
+    <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_pitch.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
+    <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_pitch.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
   </div></div>
   <div class="wrap">
     <nav class="hero-do" aria-label="当日起きること">
@@ -953,11 +1019,11 @@ window.SUMMIT = {
     <div class="about-copy">
       <span class="eyebrow">About</span>
       <h2 class="h2">どんなイベント？</h2>
-      <p class="about-lead">中高大生が、1日だけ同じ場所に集まる。<br>話す。聞く。出会う。<br>帰るころには、知り合いが何人もいる。</p>
-      <div class="about-nums">
-        <div><b class="num-font" data-count="1000">1,000</b><span>来場目標（人）</span></div>
-        <div><b class="num-font" data-count="6">6</b><span>セッション（本）</span></div>
-        <div><b class="num-font">0<small style="font-size:.5em">円</small></b><span>参加費</span></div>
+      <p class="about-lead">NEXY SUMMITは、中学生・高校生・大学生のための、日本最大級の学生サミットです。<br>聞くだけで終わらせず、話して、相談して、仲間と出会えるように1日をつくっています。</p>
+      <div class="about-points">
+        <div><b>聞く</b><span>同世代や大人のセッション、プレゼン大会</span></div>
+        <div><b>話す</b><span>ワークショップ、テーマ別ランチテーブル</span></div>
+        <div><b>出会う</b><span>15〜20団体のブース、相談所、アフターパーティー</span></div>
       </div>
     </div>
     <figure class="about-movie">
@@ -976,14 +1042,14 @@ window.SUMMIT = {
       <p class="lead">中学生・高校生・大学生なら、誰でも参加できます。</p>
     </div>
     <p class="tab-label">こんな人に来てほしい！</p>
-    <ul class="checks">
-      <li>やりたいことが、まだ見つかっていない</li>
-      <li>学校の外に、同じ熱量で話せる仲間がほしい</li>
-      <li>将来、自分の「好き」を仕事にしたい</li>
-      <li>挑戦したいけど、一歩目が踏み出せない</li>
-      <li>同世代や先輩の挑戦の話を聞いてみたい</li>
-      <li>留学や起業のことを、先輩や大人に相談したい</li>
-    </ul>
+    <div class="illo-grid">
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><rect x="34.3" y="44.4" width="23.4" height="20.8" rx="10.4" fill="#40BCB8"/><circle cx="46" cy="34" r="9.1" fill="#F3D2B5"/><path d="M36.9 34.0a9.1 9.1 0 0 1 18.2 0z" fill="#02102B"/><circle cx="80" cy="30" r="13" fill="#fff" stroke="#02102B" stroke-width="4"/><path d="M89 39l10 10" stroke="#02102B" stroke-width="5" stroke-linecap="round"/><text x="80" y="36" font-size="16" font-weight="900" text-anchor="middle" fill="#F54600" font-family="sans-serif">?</text></svg><p>やりたいことが、まだ見つかっていない</p></div>
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><rect x="26.1" y="44.8" width="19.8" height="17.6" rx="8.8" fill="#40BCB8"/><circle cx="36" cy="36" r="7.7" fill="#F3D2B5"/><path d="M28.3 36.0a7.7 7.7 0 0 1 15.4 0z" fill="#02102B"/><rect x="48.8" y="40.0" width="22.5" height="20.0" rx="10.0" fill="#F54600"/><circle cx="60" cy="30" r="8.8" fill="#F3D2B5"/><path d="M51.2 30.0a8.8 8.8 0 0 1 17.5 0z" fill="#02102B"/><rect x="74.1" y="44.8" width="19.8" height="17.6" rx="8.8" fill="#02102B"/><circle cx="84" cy="36" r="7.7" fill="#F3D2B5"/><path d="M76.3 36.0a7.7 7.7 0 0 1 15.4 0z" fill="#3a2a1a"/><path d="M50 14l4 -6M60 11v-7M70 14l-4 -6" stroke="#F54600" stroke-width="3" stroke-linecap="round"/></svg><p>学校の外に、同じ熱量で話せる仲間がほしい</p></div>
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><rect x="32.3" y="44.4" width="23.4" height="20.8" rx="10.4" fill="#F54600"/><circle cx="44" cy="34" r="9.1" fill="#F3D2B5"/><path d="M34.9 34.0a9.1 9.1 0 0 1 18.2 0z" fill="#02102B"/><rect x="70" y="36" width="30" height="22" rx="3" fill="#02102B"/><rect x="79" y="31" width="12" height="7" rx="2" fill="none" stroke="#02102B" stroke-width="3"/><path d="M85 18c-4-6-12-1-7 5l7 6 7-6c5-6-3-11-7-5z" fill="#F54600"/></svg><p>将来、自分の「好き」を仕事にしたい</p></div>
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><path d="M20 66h22v-12h22v-12h22v-12h18v36z" fill="#fff"/><path d="M20 66h22v-12h22v-12h22v-12h18" fill="none" stroke="#02102B" stroke-width="3"/><path d="M96 30v-20" stroke="#02102B" stroke-width="3"/><path d="M96 10h16l-5 5 5 5h-16z" fill="#F54600"/><rect x="22.5" y="44.4" width="18.9" height="16.8" rx="8.4" fill="#40BCB8"/><circle cx="32" cy="36" r="7.4" fill="#F3D2B5"/><path d="M24.6 36.0a7.4 7.4 0 0 1 14.7 0z" fill="#02102B"/></svg><p>挑戦したいけど、一歩目が踏み出せない</p></div>
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><rect x="28" y="8" width="64" height="30" rx="2" fill="#02102B"/><rect x="36" y="15" width="26" height="4" fill="#40BCB8"/><rect x="36" y="23" width="40" height="3" fill="#fff" opacity=".6"/><rect x="36" y="29" width="30" height="3" fill="#fff" opacity=".6"/><rect x="26.4" y="60.8" width="15.3" height="13.6" rx="6.8" fill="#F54600"/><circle cx="34" cy="54" r="6.0" fill="#F3D2B5"/><path d="M28.1 54.0a6.0 6.0 0 0 1 11.9 0z" fill="#02102B"/><rect x="52.4" y="60.8" width="15.3" height="13.6" rx="6.8" fill="#40BCB8"/><circle cx="60" cy="54" r="6.0" fill="#F3D2B5"/><path d="M54.0 54.0a6.0 6.0 0 0 1 11.9 0z" fill="#02102B"/><rect x="78.3" y="60.8" width="15.3" height="13.6" rx="6.8" fill="#02102B"/><circle cx="86" cy="54" r="6.0" fill="#F3D2B5"/><path d="M80.0 54.0a6.0 6.0 0 0 1 11.9 0z" fill="#3a2a1a"/></svg><p>同世代や先輩の挑戦の話を聞いてみたい</p></div>
+      <div class="illo-card"><svg viewBox="0 0 120 80" role="img" aria-hidden="true"><rect width="120" height="80" fill="#E6F6F5"/><rect x="27.2" y="49.6" width="21.6" height="19.2" rx="9.6" fill="#40BCB8"/><circle cx="38" cy="40" r="8.4" fill="#F3D2B5"/><path d="M29.6 40.0a8.4 8.4 0 0 1 16.8 0z" fill="#02102B"/><rect x="71.2" y="49.6" width="21.6" height="19.2" rx="9.6" fill="#F54600"/><circle cx="82" cy="40" r="8.4" fill="#F3D2B5"/><path d="M73.6 40.0a8.4 8.4 0 0 1 16.8 0z" fill="#3a2a1a"/><rect x="18" y="8" width="34" height="18" rx="3" fill="#fff"/><path d="M30 26l-2 6 8-6z" fill="#fff"/><rect x="24" y="14" width="22" height="3" fill="#02102B"/><rect x="24" y="19" width="14" height="3" fill="#02102B"/><rect x="68" y="8" width="34" height="18" rx="3" fill="#02102B"/><path d="M90 26l2 6-8-6z" fill="#02102B"/><rect x="74" y="14" width="22" height="3" fill="#40BCB8"/><rect x="74" y="19" width="14" height="3" fill="#40BCB8"/></svg><p>留学や起業のことを、先輩や大人に相談したい</p></div>
+    </div>
     <div class="pills"><span class="pill">一人で参加OK</span><span class="pill">当日参加OK</span><span class="pill">出入り自由</span><span class="pill">参加無料</span></div>
   </div>
 </section>
@@ -1070,27 +1136,18 @@ window.SUMMIT = {
 </section>
 
 <!-- ===== 9. 申込 ===== -->
-<section class="crew" aria-label="運営メンバー">
-  <img src="img/summit2027/hero_group.webp" alt="NEXY SUMMIT 2026の運営メンバー" loading="lazy">
-  <div class="wrap crew-in">
-    <p class="tab-label">学生がつくる、学生のための一日</p>
-    <h2>この一日をつくるのは、<br>中高大生の運営メンバー</h2>
-    <p>NEXY SUMMITは、約50人の中高大生が、企画から当日の運営まで、すべてを担っています。</p>
-  </div>
-</section>
-
 <section class="section entry" id="entry">
   <div class="wrap">
     <div class="entry-box">
       <div>
         <span class="eyebrow">Entry</span>
         <h2 class="js-entry-title">参加を申し込む</h2>
-        <div class="entry-chips">
-          <div><b>30秒</b>で登録完了</div>
-          <div><b>無料</b>参加費</div>
-          <div><b>一人</b>で参加可能</div>
-          <div><b>途中</b>入退場可能</div>
-        </div>
+        <p class="entry-lead">申込は30秒で終わります。</p>
+        <ul class="entry-list">
+          <li>参加費は無料</li>
+          <li>ひとりでも参加できます</li>
+          <li>当日参加・途中の出入りもOK</li>
+        </ul>
       </div>
       <div class="slot form-slot" id="formSlot">
         <div><p>申込フォームを掲載予定です（Googleフォームを埋め込み）</p>
@@ -1317,6 +1374,7 @@ window.SUMMIT = {
     var mocks = {
       profile: '<div class="mock"><div class="m-card"><div class="m-av"></div><div class="m-l"></div><div class="m-l s"></div><div class="m-tags"><i></i><i></i><i></i></div></div></div>',
       board: '<div class="mock" style="--mk:var(--navy-tint)"><div class="m-board"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>',
+      lunch: '<div class="mock mock-svg"><svg viewBox=\"0 0 120 80\" role=\"img\" aria-hidden=\"true\"><rect width=\"120\" height=\"80\" fill=\"#E6F6F5\"/><ellipse cx=\"60\" cy=\"58\" rx=\"44\" ry=\"10\" fill=\"#fff\"/><rect x=\"21.0\" y=\"38.0\" width=\"18.0\" height=\"16.0\" rx=\"8.0\" fill=\"#40BCB8\"/><circle cx=\"30\" cy=\"30\" r=\"7.0\" fill=\"#F3D2B5\"/><path d=\"M23.0 30.0a7.0 7.0 0 0 1 14.0 0z\" fill=\"#02102B\"/><rect x=\"50.5\" y=\"34.4\" width=\"18.9\" height=\"16.8\" rx=\"8.4\" fill=\"#F54600\"/><circle cx=\"60\" cy=\"26\" r=\"7.4\" fill=\"#F3D2B5\"/><path d=\"M52.6 26.0a7.4 7.4 0 0 1 14.7 0z\" fill=\"#02102B\"/><rect x=\"81.0\" y=\"38.0\" width=\"18.0\" height=\"16.0\" rx=\"8.0\" fill=\"#02102B\"/><circle cx=\"90\" cy=\"30\" r=\"7.0\" fill=\"#F3D2B5\"/><path d=\"M83.0 30.0a7.0 7.0 0 0 1 14.0 0z\" fill=\"#3a2a1a\"/><ellipse cx=\"60\" cy=\"56\" rx=\"40\" ry=\"8\" fill=\"#fff\" stroke=\"#02102B\" stroke-width=\"2\"/><rect x=\"40\" y=\"50\" width=\"12\" height=\"6\" rx=\"2\" fill=\"#F54600\"/><rect x=\"66\" y=\"50\" width=\"12\" height=\"6\" rx=\"2\" fill=\"#40BCB8\"/></svg></div>',
       consult: '<div class="mock" style="--mk:var(--teal-tint)"><div class="m-mic">相談所<small>留学・起業・進学</small></div></div>'
     };
     var P = [
@@ -1348,7 +1406,7 @@ window.SUMMIT = {
         lead: '留学・起業・進学など、気になることを先輩や大人に1対1で相談できます。',
         flow: ['相談所の卓へ行く', '聞きたいことを話す', '次の一歩を一緒に決める'],
         who: '進路や挑戦のことを、誰かに相談してみたい人。' },
-      { ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '食べながら同世代と話す', img: 'img/summit2027/r26_food.webp', cap: R, place: '常設エリア・12:00〜14:50',
+      { ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '食べながら同世代と話す', mock: 'lunch', place: '常設エリア・12:00〜14:50',
         lead: '全体の昼休憩はありません。テーマごとのテーブルで、好きな時間に食べながら話せます。',
         flow: ['テーマを選んで座る', '一緒に食べる', 'テーマについて話す'],
         who: 'ひとりで来た人。座れば会話が始まります。' },
@@ -1389,7 +1447,7 @@ window.SUMMIT = {
   (function () {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.documentElement.classList.add('js-anim');
-    var groups = ['.section .head', '.about-copy', '.about-movie', '.checks li', '.pills', '.prog', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.about-points div', '.pills', '.prog', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
