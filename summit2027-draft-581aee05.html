@@ -871,12 +871,36 @@ body.pm-lock { overflow: hidden; }
 .venue-photo::after { content: ""; position: absolute; left: -20px; bottom: 0; width: 120px; height: 10px; background: var(--orange); transform: skewX(-30deg); }
 .venue-photo figcaption { position: absolute; right: 0; top: 0; background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; padding: 6px 12px; }
 .venue-photo small { position: absolute; right: 8px; bottom: 6px; font-size: 10px; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.h4-big { display: flex; flex-wrap: wrap; gap: 0 .25em; font-size: clamp(22px, 3vw, 40px); font-weight: 900; line-height: 1.25; color: #fff; animation: heroUp .7s .45s both; }
+.h4-big span { display: inline-block; background: var(--navy); padding: .08em .35em .12em; }
+.h4-big span:last-child { background: var(--teal); color: var(--navy); }
+.h4-title .ln:nth-child(2) { padding-left: 4em; }
+.hero4 .h4-title { font-size: clamp(40px, 6.4vw, 92px); }
+.hero4 .h4-in { padding-bottom: 44px; }
+@media (min-width: 901px) { .hero4 .h4-stage { height: auto; min-height: calc(100svh - var(--nav-h)); max-height: none; padding-top: 200px; } .h4-in .cta-note { display: none; } }
+.h4-what { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 118px)); gap: 10px; }
+.h4-what li { animation: whatIn .6s cubic-bezier(.2,1.3,.4,1) both; animation-delay: calc(1.35s + var(--i, 0) * .08s); }
+.h4-what li:nth-child(2) { --i: 1; } .h4-what li:nth-child(3) { --i: 2; } .h4-what li:nth-child(4) { --i: 3; } .h4-what li:nth-child(5) { --i: 4; } .h4-what li:nth-child(6) { --i: 5; }
+@keyframes whatIn { from { opacity: 0; transform: translateY(18px) scale(.9); } to { opacity: 1; transform: none; } }
+.h4-what a { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; border: 2px solid #fff; background: var(--navy); color: #fff; transition: transform .25s, border-color .25s; }
+.h4-what a:hover { transform: translateY(-4px); border-color: var(--orange); }
+.h4-what img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.h4-what a:hover img { transform: scale(1.1); }
+.h4-what b { position: absolute; left: 0; right: 0; bottom: 0; font-size: 12px; font-weight: 900; padding: 14px 6px 5px; background: linear-gradient(to top, rgba(2,16,43,.92), rgba(2,16,43,0)); line-height: 1.3; }
+@media (max-width: 900px) {
+  .h4-title .ln:nth-child(2) { padding-left: 1.6em; }
+  .h4-big { font-size: clamp(20px, 6vw, 28px); }
+  .h4-what { display: flex; overflow-x: auto; gap: 8px; margin: 18px -16px 0; padding: 0 16px 4px; scrollbar-width: none; }
+  .h4-what::-webkit-scrollbar { display: none; }
+  .h4-what li { flex: 0 0 31%; }
+  .h4-what b { font-size: 11px; }
+}
 .h4-count { position: absolute; right: 24px; top: 24px; z-index: 3; background: #fff; color: var(--navy); font-weight: 800; font-size: 13px; padding: 8px 14px; border-left: 5px solid var(--orange); animation: heroUp .7s 1.3s both; }
 .h4-count b { font-size: 28px; color: var(--orange-deep); margin: 0 3px; }
 .h4-dots { position: absolute; right: 24px; bottom: 30px; z-index: 3; display: flex; gap: 6px; }
 .h4-dots i { width: 22px; height: 4px; background: rgba(255,255,255,.4); transition: background .3s, width .3s; }
 .h4-dots i.on { background: var(--orange); width: 40px; }
-.h4-scroll { position: absolute; left: 50%; bottom: 14px; z-index: 3; transform: translateX(-50%); font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .3em; color: #fff; padding-bottom: 22px; }
+.h4-scroll { display: none; position: absolute; left: 50%; bottom: 14px; z-index: 3; transform: translateX(-50%); font-family: Inter, sans-serif; font-size: 10px; font-weight: 900; letter-spacing: .3em; color: #fff; padding-bottom: 22px; }
 .h4-scroll::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 2px; height: 18px; background: #fff; animation: scrollCue 1.6s ease-in-out infinite; transform-origin: top; }
 @keyframes scrollCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
 @media (max-width: 900px) {
@@ -896,6 +920,63 @@ body.pm-lock { overflow: hidden; }
   #for .head { position: relative; z-index: 2; }
 }
 @media (prefers-reduced-motion: reduce) { .h4-slides img { transition: none; } .h4-title .ln, .h4-slash i { animation: none !important; } }
+
+
+/* ===== プログラム：一覧＋常設エリアの地図 ===== */
+.pg-h { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 8px 0 14px; color: #fff; }
+.pg-h span { font-size: 12px; font-weight: 900; letter-spacing: .2em; background: var(--orange); color: #fff; padding: 3px 10px; }
+.pg-h b { font-size: 24px; font-weight: 900; }
+.pg-h em { font-style: normal; font-size: 13px; font-weight: 700; opacity: .85; }
+#open-area { margin-top: 40px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+.stg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.stg-grid .prog .vis { aspect-ratio: 16 / 10; flex: none; min-height: 0; }
+.stg-grid .prog .ph { display: block; }
+.stg-grid .prog .nw { left: auto; right: 8px; top: 8px; }
+.stg-grid .prog:hover { transform: translateY(-6px) rotate(-.5deg); }
+.stg-grid .prog .bd b { font-size: 16px; }
+.oa { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; align-items: stretch; }
+.oa-map { margin: 0; background: #fff; padding: 14px; position: relative; }
+.oa-map svg { display: block; width: 100%; height: auto; }
+.oa-map figcaption { font-size: 11px; color: var(--ink-muted); margin-top: 6px; text-align: right; }
+.oa-z { transition: opacity .3s, filter .3s; }
+.oa.hl .oa-z { opacity: .18; }
+.oa.hl .oa-z.on { opacity: 1; filter: drop-shadow(0 0 6px rgba(245,70,0,.6)); }
+.oa-pins .pin { transform-box: fill-box; transform-origin: center; transition: transform .25s; }
+.oa-pins .pin.on circle { fill: #F54600; }
+.oa-pins .pin.on { transform: scale(1.25); }
+.js-anim .oa-map.rv:not(.in) .pin { opacity: 0; }
+.oa-map.in .pin { animation: pinIn .55s cubic-bezier(.2,1.5,.4,1) both; }
+.oa-map.in .pin:nth-child(2) { animation-delay: .12s; } .oa-map.in .pin:nth-child(3) { animation-delay: .24s; } .oa-map.in .pin:nth-child(4) { animation-delay: .36s; } .oa-map.in .pin:nth-child(5) { animation-delay: .48s; }
+@keyframes pinIn { from { opacity: 0; transform: translateY(-14px) scale(.4); } to { opacity: 1; transform: none; } }
+.oa-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
+.oa-item { display: grid; grid-template-columns: 34px 1fr; gap: 0 10px; align-items: center; text-align: left; background: #fff; padding: 12px; border-left: 5px solid var(--teal); transition: transform .2s, border-color .2s, box-shadow .2s; }
+.oa-item:hover, .oa-item.on { transform: translateX(4px); border-color: var(--orange); box-shadow: 0 10px 22px rgba(2,16,43,.18); }
+.oa-item .no { grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 900; display: grid; place-items: center; font-size: 14px; }
+.oa-item.on .no, .oa-item:hover .no { background: var(--orange); }
+.oa-item b { font-size: 15px; color: var(--navy); line-height: 1.35; }
+.oa-item span { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+.oa-item .nw { display: inline-block; margin-left: 6px; font-size: 10px; font-weight: 900; color: #fff; background: var(--orange); padding: 1px 6px; vertical-align: 2px; }
+.oa-item.wide { grid-column: 1 / -1; }
+@media (max-width: 1000px) { .stg-grid { grid-template-columns: repeat(2, 1fr); } .oa { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .stg-grid { gap: 8px; } .stg-grid .prog .bd { padding: 10px; } .stg-grid .prog .bd b { font-size: 14px; } .stg-grid .prog .more { display: none; } .oa-map { padding: 8px; } .oa-list { grid-template-columns: 1fr; } }
+
+/* ===== タイムテーブルの詳細 ===== */
+.t-cell.has-d { cursor: pointer; transition: filter .2s, transform .2s; }
+.t-cell.has-d:hover { filter: brightness(.96); }
+.sch-more { display: inline-flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 12px; font-weight: 900; color: var(--orange-deep); background: #fff; border: 1.5px solid currentColor; padding: 3px 10px; border-radius: 3px; }
+.sch-more::after { content: "+"; font-size: 14px; line-height: 1; }
+.cell-presen .sch-more, .cell-pink .sch-more, .cell-after .sch-more { color: var(--navy); border-color: #fff; }
+.ttm .pm-box { display: block; width: min(680px, 100%); }
+.ttm .pm-vis { display: block; margin: 0; aspect-ratio: 21 / 9; min-height: 0; }
+.ttm-catch { margin-top: 10px; font-size: 18px; font-weight: 900; color: var(--navy); border-left: 5px solid var(--orange); padding: 2px 0 2px 12px; }
+.ttm-sp { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 8px; }
+.ttm-sp li { display: grid; grid-template-columns: 52px 1fr; gap: 2px 12px; align-items: center; background: var(--surface-2); padding: 8px 10px; }
+.ttm-sp .av { grid-row: span 2; width: 52px; height: 52px; border-radius: 50%; overflow: hidden; background: var(--teal-tint); display: grid; place-items: center; color: var(--teal-deep); font-weight: 900; font-size: 11px; }
+.ttm-sp .av img { width: 100%; height: 100%; object-fit: cover; }
+.ttm-sp b { font-size: 15px; color: var(--navy); align-self: end; } .ttm-sp em { font-style: normal; font-size: 12px; color: var(--ink-muted); align-self: start; }
+.ttm-sp li.is-tbd b { color: var(--ink-muted); }
+.ttm-pts { margin: 6px 0 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: 14px; line-height: 1.7; }
+.ttm .pm-flow li b { color: var(--orange-deep); margin-right: 6px; font-family: Inter, sans-serif; }
 
 /* ===== どんなイベント？（写真カード） ===== */
 .about .head .h2, .about .head .eyebrow { color: #fff; } .about .head .lead { color: rgba(255,255,255,.82); }
@@ -1060,14 +1141,51 @@ window.SUMMIT = {
     rows: [
       { time: "10:30 – 10:45", cells: [ { v: "all", title: "開場・受付", sub: "やりたいウォールを見ながら入場します。", kind: "open" } ] },
       { time: "10:45 – 10:50", cells: [ { v: "all", title: "オープニング", sub: "A会場。1日の回り方とランチテーブルを案内します。", kind: "open" } ] },
-      { time: "11:00 – 11:50", cells: [ { v: "a", title: "学生起業の光と闇", sub: "失敗した人ほど、次が早い。" }, { v: "b", title: "WS①「やりたいこと」がない人のための、やりたい発見ワークショップ", sub: "11:00–12:50（110分）", kind: "pink", rows: 2 }, { v: "open", title: "常時オープン", sub: "相談所／ブース（15〜20団体）／やりたいウォール／登壇者ミートアップ卓", kind: "interact" } ] },
-      { time: "12:00 – 12:50", cells: [ { v: "a", title: "なんであの人の周りには、仲間が集まるんだろう？", sub: "仲間のつくり方を、同世代と大人が話します。" }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食べながら話せます。", kind: "interact", rows: 3 } ] },
-      { time: "13:00 – 13:50", cells: [ { v: "a", title: "NEXY PITCH 2027", sub: "13:00–14:50（110分）。同世代6組の「やりたい」本気プレゼン。", kind: "presen", rows: 2 }, { v: "b", title: "WS②「自分の話」で仲間が集まる、自分の語り方ワークショップ", sub: "13:00–14:50（110分）", kind: "pink", rows: 2 } ] },
+      { time: "11:00 – 11:50", cells: [ { v: "a", title: "学生起業の光と闇", sub: "失敗した人ほど、次が早い。" , d: { img: "img/summit2027/r26_stage.webp", catch: "失敗した人ほど、次が早い",
+          lead: "起業に興味はあるけど、失敗が怖い。何から始めればいいかわからない。そんな人のためのセッションです。会社や事業を続けている人、たたんだ人、始めて1年以内の人が、成功談ではなく「失敗」を数字で話します。",
+          sp: [{ tbd: "学生登壇者 3名", role: "事業を続けている人／たたんだ人／始めて1年以内の人" }],
+          pts: ["始めたきっかけと、最初の30日でやったこと", "一番大きな失敗と、どう立て直したか（またはやめたか）", "会場投票「起業で一番怖いことは？」に、自分の失敗をもとに答える"],
+          flow: [["0分", "会場投票：起業で一番怖いことは？"], ["5分", "3人のきっかけと最初の30日"], ["15分", "山場：一人ずつの失敗年表"], ["42分", "匿名のリアルタイム質問"]],
+          who: "起業を目指している人。失敗が怖くて一歩目が出ない人。", after: "終了後20分、登壇者が常設エリアのミートアップ卓に来ます" } }, { v: "b", title: "WS①「やりたいこと」がない人のための、やりたい発見ワークショップ", sub: "11:00–12:50（110分）", kind: "pink", rows: 2 , d: { img: "img/summit2027/r26_table.webp", catch: "やりたいことは、書き出すと見つかる",
+          lead: "少人数のテーブルで手を動かすワークショップです。これまでの経験を書き出し、問いにして、1枚の企画書にまとめます。",
+          sp: [{ tbd: "進行・テーブルホスト", role: "決定次第掲載します" }],
+          flow: [["1", "これまでの経験を書き出す"], ["2", "気になったことを「問い」にする"], ["3", "企画書1枚にまとめる"], ["4", "ペアで壁打ちして直す"]],
+          who: "やりたいことがぼんやりしている人。何から始めればいいかわからない人。" } }, { v: "open", title: "常時オープン", sub: "相談所／ブース（15〜20団体）／やりたいウォール／登壇者ミートアップ卓", kind: "interact" } ] },
+      { time: "12:00 – 12:50", cells: [ { v: "a", title: "なんであの人の周りには、仲間が集まるんだろう？", sub: "仲間のつくり方を、同世代と大人が話します。" , d: { img: "img/summit2027/r26_talk.webp", catch: "仲間は、自分から集めていい",
+          lead: "やりたいことはあるけど、一緒にやる人がいない。仲間を巻き込んで活動してきた同世代が、どうやって人が集まったのかを話します。",
+          sp: [{ tbd: "学生登壇者 2名＋モデレーター", role: "決定次第掲載します" }],
+          pts: ["最初の1人目に、どう声をかけたか", "人が離れていったとき、何が起きていたか", "大人を巻き込むときにしたこと"],
+          who: "1人で来た人。やりたいことはあるけど仲間がいない人。", after: "そのまま常設エリアのブースやアフターパーティーの仲間集めへ" } }, { v: "open", title: "テーマ別ランチテーブル", sub: "12:00–14:50。好きな時間に食べながら話せます。", kind: "interact", rows: 3 , d: { img: "img/summit2027/r26_talk.webp", catch: "座れば、会話が始まる",
+          lead: "全体の昼休憩はありません。12:00〜14:50の好きな時間に、テーマごとのテーブルで食べながら話せます。各テーブルにホストがいます。",
+          pts: ["テーマは「起業」「国際」「地域」「なんでも」など", "ひとりで来ても、座れば話せます"],
+          who: "ひとりで来た人。同世代と気軽に話したい人。" } } ] },
+      { time: "13:00 – 13:50", cells: [ { v: "a", title: "NEXY PITCH 2027", sub: "13:00–14:50（110分）。同世代6組の「やりたい」本気プレゼン。", kind: "presen", rows: 2 , d: { img: "img/summit2027/r26_pitch.webp", catch: "同世代6組の「やりたい」本気プレゼン",
+          lead: "中高大生の6組が、ステージで「これからやりたいこと」を発表します。審査員の講評のあと、クロージングで表彰します。",
+          sp: [{ name: "森本 千賀子", role: "審査員／株式会社morich 代表取締役", photo: "img/summit2027/speaker_morimoto.webp" }, { tbd: "出場者 6組", role: "決定次第掲載します" }],
+          flow: [["13:00", "開会"], ["13:05", "6組が発表（各5分＋質疑・講評5分）"], ["14:20", "審査・総評"], ["17:00", "クロージングで表彰"]],
+          who: "同世代の挑戦を見てみたい人。いつか自分も発表したい人。" } }, { v: "b", title: "WS②「自分の話」で仲間が集まる、自分の語り方ワークショップ", sub: "13:00–14:50（110分）", kind: "pink", rows: 2 , d: { img: "img/summit2027/r26_table.webp", catch: "1分で、自分の話ができるようになる",
+          lead: "自分の経験を「経験 → 気づき → 行動 → これから」の型で、1分で話せるようにします。3人組で話す・質問される・話し直すを繰り返します。",
+          sp: [{ tbd: "進行・テーブルホスト", role: "決定次第掲載します" }],
+          flow: [["1", "型にそって自分の話を書く"], ["2", "3人組で話す"], ["3", "質問をもらって話し直す"], ["4", "アフターパーティーの仲間集めで使う"]],
+          who: "自己紹介が苦手な人。仲間を集めたい人。" } } ] },
       { time: "14:00 – 14:50", cells: [] },
-      { time: "15:00 – 15:50", cells: [ { v: "a", title: "AIによって、Z世代の就職／生き方はどう変わる？", sub: "森本千賀子さん×学生登壇者" }, { v: "b", title: "セッション", sub: "内容は準備中です。", tbd: true }, { v: "open", title: "常時オープン", sub: "相談所／ブース（15〜20団体）／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
-      { time: "16:00 – 16:50", cells: [ { v: "a", title: "好きを突き詰めたら、何が見えた？", sub: "好きなことを続けてきた同世代の話。" }, { v: "b", title: "セッション", sub: "内容は準備中です。", tbd: true } ] },
+      { time: "15:00 – 15:50", cells: [ { v: "a", title: "AIによって、Z世代の就職／生き方はどう変わる？", sub: "森本千賀子さん×学生登壇者" , d: { img: "img/summit2027/r26_session.webp", catch: "同じ高校生が、AIで大人1人分の仕事をしている",
+          lead: "AIで事業・研究・作品づくりをしている同世代が、自分の1日のAIの使い方を画面ごと見せます。会場から出たお題を、その場でAIを使って形にする実演もあります。",
+          sp: [{ name: "森本 千賀子", role: "株式会社morich 代表取締役", photo: "img/summit2027/speaker_morimoto.webp" }, { tbd: "学生登壇者 3名", role: "AIで事業・研究・発信をしている人" }],
+          pts: ["登壇者の1日のAIの使い方（何時間、いくつのツールを、何に）", "ライブ実演：会場のお題を5分で形にする", "AIを使う同世代と使わない同世代で、もう差が開いている話"],
+          flow: [["0分", "会場投票：AIをどのくらい使っている？"], ["5分", "3人の1日のAIの使い方"], ["20分", "山場：ライブ実演"], ["42分", "リアルタイム質問と「今夜これだけやって」"]],
+          who: "AIは調べものに使う程度の人。将来の働き方が気になる人。", after: "ミートアップ卓で、登壇者が使っているツールを直接見せます" } }, { v: "b", title: "セッション", sub: "内容は準備中です。", tbd: true }, { v: "open", title: "常時オープン", sub: "相談所／ブース（15〜20団体）／登壇者ミートアップ卓", kind: "interact", rows: 2 } ] },
+      { time: "16:00 – 16:50", cells: [ { v: "a", title: "好きを突き詰めたら、何が見えた？", sub: "好きなことを続けてきた同世代の話。" , d: { img: "img/summit2027/r26_stage.webp", catch: "最初は全員、ただ好きだっただけ",
+          lead: "研究、ものづくり、アートなど、分野の違う同世代が、何歳で何にハマり、どう深めてきたかを年表で話します。挫折したことや、理解されなかったことも話します。",
+          sp: [{ tbd: "学生登壇者 3名", role: "分野の違う同世代（決定次第掲載）" }],
+          pts: ["小学生のころから今まで、何にハマってどう深めたか", "好きなことを続けるために、捨てたもの", "「普通の高校生」と、本当に違いはあるのか"],
+          flow: [["0分", "会場投票：人に言える「好き」がある？"], ["5分", "山場：一人ずつの年表"], ["20分", "登壇者と会場に同時にYES／NO質問"], ["42分", "リアルタイム質問"]],
+          who: "好きなことはあるけど、続けていいか迷っている人。", after: "17:15からのアフターパーティーで、登壇者と話せます" } }, { v: "b", title: "セッション", sub: "内容は準備中です。", tbd: true } ] },
       { time: "17:00 – 17:15", cells: [ { v: "all", title: "クロージング", sub: "A会場。表彰・抽選。そのままアフターパーティーへ。", kind: "open" } ] },
-      { time: "17:15 – 19:00", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。登壇者・企業・参加者と話せます。", kind: "after", badge: "PiO館内" } ] }
+      { time: "17:15 – 19:00", cells: [ { v: "all", title: "アフターパーティー", sub: "会場内（移動なし）。登壇者・企業・参加者と話せます。", kind: "after", badge: "PiO館内" , d: { img: "img/summit2027/hero_group.webp", catch: "話し足りなかったことは、ここで",
+          lead: "クロージングのあと、会場を移動せずにそのまま続けます。登壇者・企業の方・参加者と話せます。",
+          pts: ["仲間集めピッチ：1人1分で「こういう仲間を探しています」", "登壇者・企業の方との交流", "19:00に解散"],
+          who: "もっと話したい人。仲間を見つけたい人。" } } ] }
     ]
   }
 
@@ -1124,15 +1242,8 @@ window.SUMMIT = {
     <div class="h4-slash" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="h3-logo"><img src="img/summit2027/logo_2027.png" alt="NEXY SUMMIT 2027" width="1200" height="565"></div>
     <div class="wrap h4-in">
-      <p class="h3-tag">日本最大級の学生サミット</p>
+      <p class="h4-big"><span>日本最大級の</span><span>学生サミット</span></p>
       <h1 class="h4-title"><span class="ln"><span class="box">「やりたい」</span>は、</span><span class="ln">ここで見つかる</span></h1>
-      <p class="h4-lead">中学生・高校生・大学生が集まり、セッション・ピッチ・ワークショップ・ブースを1日で体験できる学生サミット</p>
-      <ul class="h4-facts">
-        <li><span>対象</span><b>中学生〜大学生</b></li>
-        <li><span>セッション</span><b>6<small>本</small></b></li>
-        <li><span>ピッチ大会</span><b>NEXY PITCH</b></li>
-        <li><span>ブース</span><b>15〜20<small>団体</small></b></li>
-      </ul>
       <p class="h4-meta"><b class="num-font">2027.3.26<small>（金）</small></b><span data-bind="venue.text"></span><span class="free">参加無料</span></p>
       <div class="hero-side">
         <a class="btn btn-primary btn-arrow js-cta" href="#entry"><span class="js-cta-label">参加を申し込む（無料）</span></a>
@@ -1140,6 +1251,14 @@ window.SUMMIT = {
       </div>
       <p class="cta-note js-cta-note"></p>
       <div class="hero-sponsors" id="heroSponsors"></div>
+      <ul class="h4-what" aria-label="当日あること">
+        <li><a href="#program"><img src="img/summit2027/r26_session.webp" alt=""><b>セッション</b></a></li>
+        <li><a href="#program"><img src="img/summit2027/r26_pitch.webp" alt=""><b>NEXY PITCH</b></a></li>
+        <li><a href="#program"><img src="img/summit2027/r26_table.webp" alt=""><b>ワークショップ</b></a></li>
+        <li><a href="#open-area"><img src="img/summit2027/r26_wall.webp" alt=""><b>ブース</b></a></li>
+        <li><a href="#open-area"><img src="img/summit2027/r26_audience.webp" alt=""><b>登壇者と話す</b></a></li>
+        <li><a href="#program"><img src="img/summit2027/r26_talk.webp" alt=""><b>アフターパーティー</b></a></li>
+      </ul>
     </div>
     <div class="h4-count" aria-label="開催までの日数">開催まで<b class="num-font" id="cdDays">--</b>日</div>
     <div class="h4-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
@@ -1149,17 +1268,6 @@ window.SUMMIT = {
     <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_pitch.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
     <img src="img/summit2027/r26_stage.webp" alt=""><img src="img/summit2027/r26_session.webp" alt=""><img src="img/summit2027/r26_wall.webp" alt=""><img src="img/summit2027/r26_talk.webp" alt=""><img src="img/summit2027/r26_pitch.webp" alt=""><img src="img/summit2027/r26_audience.webp" alt="">
   </div></div>
-  <div class="wrap">
-    <nav class="hero-do" aria-label="当日起きること">
-      <p class="hero-do-h">当日起きること</p>
-      <div class="do-grid">
-        <a class="do-card" href="#program"><span class="n">PROGRAM</span><b>プログラム</b><p>話す。聞く。つくる。</p></a>
-        <a class="do-card" href="#for"><span class="n">PARTICIPANTS</span><b>参加者</b><p>中高大生。ひとりでも。</p></a>
-        <a class="do-card" href="#day"><span class="n">TIMETABLE</span><b>タイムテーブル</b><p>10:30〜19:00</p></a>
-        <a class="do-card" href="#speakers"><span class="n">SPEAKERS</span><b>登壇者</b><p>同世代と大人。</p></a>
-      </div>
-    </nav>
-  </div>
 </section>
 
 <!-- ===== どんなイベント？ ===== -->
@@ -1214,14 +1322,46 @@ window.SUMMIT = {
     <div class="head center">
       <span class="eyebrow">Program</span>
       <h2 class="h2">プログラム</h2>
-      <p class="lead">横にスライドして見られます。押すと詳細が出ます。<span class="new-inline">NEW</span> は2027年から。</p>
+      <p class="lead">押すと詳細が出ます。<span class="new-inline">NEW</span> は2027年から。</p>
     </div>
-    <div class="rail">
-      <button class="rail-btn prev" type="button" aria-label="前へ">←</button>
-      <div class="prog-grid" id="progGrid"></div>
-      <button class="rail-btn next" type="button" aria-label="次へ">→</button>
+    <div class="pg-h"><span class="num-font">STAGE</span><b>ステージ</b><em>A会場・B会場</em></div>
+    <div class="stg-grid" id="progGrid"></div>
+    <div class="pg-h" id="open-area"><span class="num-font">OPEN AREA</span><b>常設エリア</b><em>10:30〜17:00・出入り自由</em></div>
+    <div class="oa">
+      <figure class="oa-map" aria-label="常設エリアの配置イメージ">
+        <svg viewBox="0 0 600 270" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="596" height="266" rx="4" fill="#fff" stroke="#02102B" stroke-width="3"/>
+          <rect x="8" y="8" width="125" height="254" fill="#E6F6F5"/>
+          <rect x="16" y="40" width="12" height="190" fill="#40BCB8"/>
+          <g fill="#02102B" opacity=".25"><rect x="44" y="60" width="70" height="6"/><rect x="44" y="80" width="70" height="6"/><rect x="44" y="100" width="70" height="6"/><rect x="44" y="160" width="70" height="6"/><rect x="44" y="180" width="70" height="6"/><rect x="44" y="200" width="70" height="6"/></g>
+          <text x="70" y="140" text-anchor="middle" font-size="15" font-weight="900" fill="#0F6E6B">B会場</text>
+          <rect x="400" y="8" width="150" height="254" fill="#02102B"/>
+          <rect x="534" y="40" width="10" height="190" fill="#F54600"/>
+          <g fill="#fff" opacity=".28"><rect x="412" y="50" width="100" height="6"/><rect x="412" y="72" width="100" height="6"/><rect x="412" y="94" width="100" height="6"/><rect x="412" y="116" width="100" height="6"/><rect x="412" y="160" width="100" height="6"/><rect x="412" y="182" width="100" height="6"/><rect x="412" y="204" width="100" height="6"/></g>
+          <text x="465" y="143" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">A会場</text>
+          <rect x="555" y="8" width="37" height="254" fill="#F3F4F6"/>
+          <g class="oa-z" data-z="1"><rect x="134" y="20" width="8" height="230" fill="#F54600"/></g>
+          <g class="oa-z" data-z="2"><g fill="#40BCB8">
+            <rect x="160" y="18" width="20" height="20"/><rect x="186" y="18" width="20" height="20"/><rect x="212" y="18" width="20" height="20"/><rect x="238" y="18" width="20" height="20"/><rect x="264" y="18" width="20" height="20"/><rect x="290" y="18" width="20" height="20"/>
+            <rect x="160" y="44" width="20" height="20"/><rect x="186" y="44" width="20" height="20"/><rect x="212" y="44" width="20" height="20"/><rect x="238" y="44" width="20" height="20"/><rect x="264" y="44" width="20" height="20"/><rect x="290" y="44" width="20" height="20"/></g>
+            <g fill="#02102B"><rect x="160" y="226" width="30" height="30"/><rect x="196" y="226" width="30" height="30"/><rect x="318" y="226" width="30" height="30"/><rect x="354" y="226" width="30" height="30"/></g></g>
+          <g class="oa-z" data-z="3"><g fill="#F54600"><rect x="322" y="18" width="20" height="20"/><rect x="348" y="18" width="20" height="20"/><rect x="322" y="44" width="20" height="20"/></g></g>
+          <g class="oa-z" data-z="4"><g fill="#0F6E6B"><circle cx="374" cy="120" r="12"/><circle cx="374" cy="160" r="12"/></g></g>
+          <g class="oa-z" data-z="5"><g fill="#fff" stroke="#02102B" stroke-width="3"><circle cx="190" cy="110" r="15"/><circle cx="240" cy="110" r="15"/><circle cx="290" cy="110" r="15"/><circle cx="190" cy="170" r="15"/><circle cx="240" cy="170" r="15"/><circle cx="290" cy="170" r="15"/></g></g>
+          <g fill="#02102B"><path d="M262 268v-18h-8l12-12 12 12h-8v18z"/></g>
+          <text x="300" y="215" text-anchor="middle" font-size="11" font-weight="800" fill="#5F6672">入口（アトリウム側）</text>
+          <g class="oa-pins" font-size="13" font-weight="900" text-anchor="middle">
+            <g class="pin" data-z="1"><circle cx="138" cy="20" r="13" fill="#02102B"/><text x="138" y="25" fill="#fff">1</text></g>
+            <g class="pin" data-z="2"><circle cx="235" cy="76" r="13" fill="#02102B"/><text x="235" y="81" fill="#fff">2</text></g>
+            <g class="pin" data-z="3"><circle cx="372" cy="56" r="13" fill="#02102B"/><text x="372" y="61" fill="#fff">3</text></g>
+            <g class="pin" data-z="4"><circle cx="374" cy="196" r="13" fill="#02102B"/><text x="374" y="201" fill="#fff">4</text></g>
+            <g class="pin" data-z="5"><circle cx="240" cy="140" r="13" fill="#02102B"/><text x="240" y="145" fill="#fff">5</text></g>
+          </g>
+        </svg>
+        <figcaption>配置はイメージです</figcaption>
+      </figure>
+      <div class="oa-list" id="oaList"></div>
     </div>
-    <div class="rail-bar" aria-hidden="true"><i id="progBar"></i></div>
   </div>
 </section>
 
@@ -1374,6 +1514,22 @@ window.SUMMIT = {
     </div>
   </div>
 </div>
+<div class="pm ttm" id="ttm" role="dialog" aria-modal="true" aria-labelledby="ttmTitle" aria-hidden="true">
+  <div class="pm-box">
+    <button class="pm-close" type="button" aria-label="閉じる">×</button>
+    <figure class="pm-vis" id="ttmVis"></figure>
+    <div class="pm-body">
+      <div class="pm-tags" id="ttmTags"></div>
+      <h3 id="ttmTitle"></h3>
+      <p class="ttm-catch" id="ttmCatch"></p>
+      <p class="pm-lead" id="ttmLead"></p>
+      <div id="ttmSpW"><p class="pm-sub">登壇者</p><ul class="ttm-sp" id="ttmSp"></ul></div>
+      <div id="ttmPtW"><p class="pm-sub">こんな話をします</p><ul class="ttm-pts" id="ttmPt"></ul></div>
+      <div id="ttmFlW"><p class="pm-sub">当日の流れ</p><ol class="pm-flow" id="ttmFl"></ol></div>
+      <p class="pm-for" id="ttmFor"></p>
+    </div>
+  </div>
+</div>
 <div class="pm spm" id="spm" role="dialog" aria-modal="true" aria-labelledby="spmTitle" aria-hidden="true">
   <div class="pm-box">
     <button class="pm-close" type="button" aria-label="閉じる">×</button>
@@ -1499,6 +1655,7 @@ window.SUMMIT = {
   if (footHtml) fsEl.innerHTML = '<span class="lbl">SPONSORS</span>' + footHtml; else fsEl.parentNode.remove();
 
   // タイムテーブル（表形式）
+  var TD = [];
   var tt = S.timetable, cols = tt.cols, covered = {}, th = '<thead><tr><th class="col-time">時間</th>';
   cols.forEach(function (c) { th += '<th class="col-' + c.color + '">' + esc(c.name) + '</th>'; });
   var tb = '<tbody>';
@@ -1508,10 +1665,11 @@ window.SUMMIT = {
     function cellHtml(c) {
       var main = esc(c.title) + (c.badge ? '<span class="sch-t-badge">' + esc(c.badge) + '</span>' : '');
       var sub = c.tbd ? '内容は準備中です。' : (c.sub ? esc(c.sub) : '');
-      return '<span class="sch-t-main">' + main + '</span>' + (sub ? '<span class="sch-t-sub">' + sub + '</span>' : '');
+      return '<span class="sch-t-main">' + main + '</span>' + (sub ? '<span class="sch-t-sub">' + sub + '</span>' : '') + (c.d ? '<button type="button" class="sch-more">詳細</button>' : '');
     }
     if (all) {
-      tb += '<td class="t-cell cell-' + (all.kind || 'open') + '" colspan="' + cols.length + '">' + cellHtml(all) + '</td>';
+      if (all.d) { TD.push(all); }
+      tb += '<td class="t-cell cell-' + (all.kind || 'open') + (all.d ? ' has-d" data-d="' + (TD.length - 1) : '') + '" colspan="' + cols.length + '">' + cellHtml(all) + '</td>';
     } else {
       cols.forEach(function (c) {
         if (covered[c.id + ':' + ri]) return;
@@ -1520,12 +1678,44 @@ window.SUMMIT = {
         var span = it.rows || 1, cspan = it.cols || 1, ci = cols.indexOf(c);
         for (var k = 0; k < span; k++) for (var m = 0; m < cspan; m++) if (k || m) covered[cols[ci + m].id + ':' + (ri + k)] = true;
         var cls = it.tbd ? 'cell-tbd' : 'cell-' + (it.kind || c.color);
-        tb += '<td class="t-cell ' + cls + ' tone-' + c.color + '"' + (span > 1 ? ' rowspan="' + span + '"' : '') + (cspan > 1 ? ' colspan="' + cspan + '"' : '') + '>' + cellHtml(it) + '</td>';
+        if (it.d) TD.push(it);
+        tb += '<td class="t-cell ' + cls + ' tone-' + c.color + (it.d ? ' has-d" data-d="' + (TD.length - 1) : '') + '"' + (span > 1 ? ' rowspan="' + span + '"' : '') + (cspan > 1 ? ' colspan="' + cspan + '"' : '') + '>' + cellHtml(it) + '</td>';
       });
     }
     tb += '</tr>';
   });
   document.getElementById('schTable').innerHTML = th + '</tr></thead>' + tb + '</tbody>';
+  (function () {
+    var m = document.getElementById('ttm'), last = null;
+    function show(id, on) { document.getElementById(id).hidden = !on; }
+    function open(c, row) {
+      var x = c.d; last = document.activeElement;
+      document.getElementById('ttmVis').innerHTML = '<img src="' + esc(x.img) + '" alt=""><figcaption>写真は NEXY SUMMIT 2026 のものです</figcaption>';
+      var place = c.v === 'all' ? '全体' : (cols.filter(function (k) { return k.id === c.v; })[0] || {}).name || '';
+      document.getElementById('ttmTags').innerHTML = '<span>' + esc(c.sub && /^\d{1,2}:\d{2}/.test(c.sub) ? c.sub.split('（')[0].split('。')[0] : row) + '</span><span>' + esc(place) + '</span>';
+      document.getElementById('ttmTitle').textContent = c.title;
+      document.getElementById('ttmCatch').textContent = x.catch || '';
+      document.getElementById('ttmLead').textContent = x.lead || '';
+      var sp = x.sp || []; show('ttmSpW', sp.length);
+      document.getElementById('ttmSp').innerHTML = sp.map(function (p) {
+        return '<li class="' + (p.tbd ? 'is-tbd' : '') + '"><span class="av">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="">' : '未定') + '</span><b>' + esc(p.name || p.tbd) + '</b><em>' + esc(p.role || '') + '</em></li>';
+      }).join('');
+      var pt = x.pts || []; show('ttmPtW', pt.length);
+      document.getElementById('ttmPt').innerHTML = pt.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('');
+      var fl = x.flow || []; show('ttmFlW', fl.length);
+      document.getElementById('ttmFl').innerHTML = fl.map(function (l) { return '<li><b>' + esc(l[0]) + '</b>' + esc(l[1]) + '</li>'; }).join('');
+      var f = document.getElementById('ttmFor');
+      f.innerHTML = (x.who ? '<b>こんな人に：</b>' + esc(x.who) : '') + (x.after ? '<br><b>終わったあと：</b>' + esc(x.after) : ''); f.hidden = !x.who && !x.after;
+      m.classList.add('open'); m.setAttribute('aria-hidden', 'false'); document.body.classList.add('pm-lock'); m.querySelector('.pm-close').focus();
+    }
+    function close() { m.classList.remove('open'); m.setAttribute('aria-hidden', 'true'); document.body.classList.remove('pm-lock'); if (last) last.focus(); }
+    document.getElementById('schTable').addEventListener('click', function (e) {
+      var td = e.target.closest('.has-d'); if (!td) return;
+      var row = td.parentNode.querySelector('.t-time'); open(TD[+td.getAttribute('data-d')], row ? row.textContent : '');
+    });
+    m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('.pm-close')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
+  })();
 
 
   // プログラム（カード＋詳細モーダル）
@@ -1538,10 +1728,6 @@ window.SUMMIT = {
       consult: '<div class="mock" style="--mk:var(--teal-tint)"><div class="m-mic">相談所<small>留学・起業・進学</small></div></div>'
     };
     var P = [
-      { ph: 'BEFORE', nw: 1, t: '自己紹介ページ', s: '会いたい人を事前に探せる', mock: 'profile', place: '開催前・オンライン',
-        lead: '申込後、自己紹介ページをつくれます。話したい人を、当日より前に探せます。',
-        flow: ['自己紹介を書く', '他の参加者のページを見る', '当日、会場で声をかける'],
-        who: 'ひとりで参加するのが不安な人。' },
       { ph: 'STAGE', t: 'NEXY PITCH 2027', s: '同世代6組の本気プレゼン', img: 'img/summit2027/r26_pitch.webp', cap: R, place: 'A会場・13:00〜14:50',
         lead: '中高大生の6組が、ステージで構想を発表します。「これからやりたいこと」の発表もあります。',
         flow: ['6組が発表する（各5分）', '質疑と講評。審査員に森本千賀子さん', 'クロージングで表彰'],
@@ -1554,23 +1740,23 @@ window.SUMMIT = {
         lead: '①「やりたいこと」がない人のための、やりたい発見WS。②「自分の話」で仲間が集まる、語り方WS。少人数のテーブルで手を動かします。',
         flow: ['テーブルで自己紹介', 'ワークシートに書く', '見せ合って意見をもらう'],
         who: 'やりたいことがぼんやりしている人。' },
-      { ph: 'OPEN AREA', nw: 1, t: 'やりたいウォール', s: '参加者の「やりたいこと」を掲示', img: 'img/summit2027/r26_wall.webp', cap: R, place: '常設エリア・終日',
+      { z: 1, ph: 'OPEN AREA', nw: 1, t: 'やりたいウォール', s: '参加者の「やりたいこと」を掲示', img: 'img/summit2027/r26_wall.webp', cap: R, place: '常設エリア・終日',
         lead: '参加者の顔写真と「やりたいこと」を壁に貼ります。見て回るだけで、話したい人が見つかります。',
         flow: ['申込時に「やりたいこと」を書く', '当日、壁に貼られる', '気になる人に話しかける'],
         who: '自分から話しかけるのが苦手な人。' },
-      { ph: 'OPEN AREA', nw: 1, t: '登壇者ミートアップ', s: '登壇後、登壇者と直接話せる', img: 'img/summit2027/r26_audience.webp', cap: R, place: '常設エリア・各セッション後20分',
+      { z: 4, ph: 'OPEN AREA', nw: 1, t: '登壇者ミートアップ', s: '登壇後、登壇者と直接話せる', img: 'img/summit2027/r26_audience.webp', cap: R, place: '常設エリア・各セッション後20分',
         lead: 'セッションのあと20分、登壇者が常設エリアに来ます。客席で聞けなかったことを、直接聞けます。',
         flow: ['セッションを聞く', 'ミートアップ卓へ行く', '少人数で話す'],
         who: 'もう一歩、話を聞きたい人。' },
-      { ph: 'OPEN AREA', nw: 1, t: '相談所', s: '留学・起業・進学などを1対1で相談', mock: 'consult', place: '常設エリア',
+      { z: 3, ph: 'OPEN AREA', nw: 1, t: '相談所', s: '留学・起業・進学などを1対1で相談', mock: 'consult', place: '常設エリア',
         lead: '留学・起業・進学など、気になることを先輩や大人に1対1で相談できます。',
         flow: ['相談所の卓へ行く', '聞きたいことを話す', '次の一歩を一緒に決める'],
         who: '進路や挑戦のことを、誰かに相談してみたい人。' },
-      { ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '食べながら同世代と話す', mock: 'lunch', place: '常設エリア・12:00〜14:50',
+      { z: 5, ph: 'OPEN AREA', nw: 1, t: 'テーマ別ランチテーブル', s: '食べながら同世代と話す', mock: 'lunch', place: '常設エリア・12:00〜14:50',
         lead: '全体の昼休憩はありません。テーマごとのテーブルで、好きな時間に食べながら話せます。',
         flow: ['テーマを選んで座る', '一緒に食べる', 'テーマについて話す'],
         who: 'ひとりで来た人。座れば会話が始まります。' },
-      { ph: 'OPEN AREA', t: 'ブース', s: '留学支援・企業・学生団体など15〜20団体', mock: 'board', place: '常設エリア',
+      { z: 2, ph: 'OPEN AREA', t: 'ブース', s: '留学支援・企業・学生団体など15〜20団体', mock: 'board', place: '常設エリア',
         lead: '留学支援・企業・学生団体など、15〜20団体がブースを出します。同世代のいろいろな挑戦にふれられます。',
         flow: ['ブースを回る', '気になる団体の話を聞く', '連絡先を交換する'],
         who: '何から始めればいいかわからない人。' },
@@ -1582,9 +1768,23 @@ window.SUMMIT = {
     var grid = document.getElementById('progGrid');
     function vis(x) { return x.img ? '<img src="' + x.img + '" alt="' + esc(x.t) + 'の様子" loading="lazy">' : mocks[x.mock]; }
     grid.innerHTML = P.map(function (x, i) {
+      if (x.ph === 'OPEN AREA') return '';
       return '<button type="button" class="prog" data-i="' + i + '"><span class="vis">' + vis(x) + '<span class="ph">' + x.ph + '</span>' + (x.nw ? '<span class="nw">NEW</span>' : '') + '</span>' +
         '<span class="bd"><b>' + esc(x.t) + '</b><span>' + esc(x.s) + '</span><span class="more">詳細を見る</span></span></button>';
     }).join('');
+    var oa = document.getElementById('oaList'), oaw = document.querySelector('.oa');
+    var oaItems = P.map(function (x, i) { return x.z ? { x: x, i: i } : null; }).filter(Boolean).sort(function (a, b) { return a.x.z - b.x.z; });
+    oa.innerHTML = oaItems.map(function (o, k) {
+      return '<button type="button" class="prog oa-item' + (k === oaItems.length - 1 && oaItems.length % 2 ? ' wide' : '') + '" data-i="' + o.i + '" data-z="' + o.x.z + '"><span class="no num-font">' + o.x.z + '</span><b>' + esc(o.x.t) + (o.x.nw ? '<span class="nw">NEW</span>' : '') + '</b><span>' + esc(o.x.s) + '</span></button>';
+    }).join('');
+    function hl(z) {
+      oaw.classList.toggle('hl', !!z);
+      oaw.querySelectorAll('[data-z]').forEach(function (el) { el.classList.toggle('on', el.getAttribute('data-z') === z); });
+    }
+    oaw.addEventListener('mouseover', function (e) { var t = e.target.closest('[data-z]'); hl(t ? t.getAttribute('data-z') : null); });
+    oaw.addEventListener('mouseleave', function () { hl(null); });
+    oaw.addEventListener('focusin', function (e) { var t = e.target.closest('[data-z]'); hl(t ? t.getAttribute('data-z') : null); });
+    oaw.querySelectorAll('.pin').forEach(function (p) { p.style.cursor = 'pointer'; p.addEventListener('click', function () { var b = oa.querySelector('[data-z="' + p.getAttribute('data-z') + '"]'); if (b) b.click(); }); });
     var pm = document.getElementById('pm'), last = null;
     function open(i) {
       var x = P[i]; last = document.activeElement;
@@ -1598,7 +1798,7 @@ window.SUMMIT = {
       pm.querySelector('.pm-close').focus();
     }
     function close() { pm.classList.remove('open'); pm.setAttribute('aria-hidden', 'true'); document.body.classList.remove('pm-lock'); if (last) last.focus(); }
-    grid.addEventListener('click', function (e) { var c = e.target.closest('.prog'); if (c) open(+c.getAttribute('data-i')); });
+    [grid, oa].forEach(function (g) { g.addEventListener('click', function (e) { var c = e.target.closest('.prog'); if (c) open(+c.getAttribute('data-i')); }); });
     pm.addEventListener('click', function (e) { if (e.target === pm || e.target.closest('.pm-close')) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pm.classList.contains('open')) close(); });
   })();
@@ -1607,7 +1807,7 @@ window.SUMMIT = {
   (function () {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.documentElement.classList.add('js-anim');
-    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.ab-card', '.ab-movie', '.pills', '.prog', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-photo', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
+    var groups = ['.section .head', '.about-copy', '.about-movie', '.illo-card', '.ab-card', '.ab-movie', '.pills', '.prog', '.oa-map', '.pg-h', '.crew-in', '.sch-note', '.speakers-group-head', '.featured-card', '.sp-tier-h', '.sp-logo', '.sp-inquiry', '.venue-photo', '.venue-name', '.route > div', '.map', '.faq details', '.entry-box', '.mvv-item', '.org-table', '.closing'];
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); if (t.classList.contains('rv')) setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--d'); }, 1500); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
