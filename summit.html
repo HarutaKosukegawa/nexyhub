@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- 公開前フレームワーク：公開時に noindex を外す（CONFIG.draft も false にする） -->
-<meta name="robots" content="noindex, nofollow">
 
 <title>NEXY SUMMIT 2027｜「やりたい」を、ひとりにしない。</title>
 <meta name="description" content="学生団体NEXYが主催する、中学生・高校生・大学生のためのイベント。対話と交流を通じて仲間と出会う1日です。NEXY SUMMIT 2027、参加無料。">
@@ -803,7 +801,7 @@ body.pm-lock { overflow: hidden; }
      ========================================================= -->
 <script>
 window.SUMMIT = {
-  draft: true,               // true の間は上部に「非公開の下書き」バナーを出す
+  draft: false,              // true の間は上部に「非公開の下書き」バナーを出す
   phase: 1,                  // 1 = 申込受付中 / 2 = 受付終了
   date:   { text: "2027年3月26日（金）", fixed: true },
   time:   { text: "10:30〜19:00", fixed: false },
