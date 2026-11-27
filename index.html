@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="color-scheme" content="light only">
 
-<title>学生団体NEXY | 高校生向けプログラム・アントレプレナーシップコミュニティ「やりたい」を、ひとりにしない。</title>
+<title>学生団体NEXY | 高校生向けプログラム・アントレプレナーシップコミュニティ「やりたい」を、ひとりにしない</title>
 <meta name="description" content="学生団体NEXY公式サイト。高校生・大学生向けの起業家教育プログラム、アントレプレナーシップコミュニティ。日本最大級の高校生サミット「NEXY Summit」、月次対話会「深夜の語り場」、経営者との朝食会「あさげの若き情熱会」など全国で開催。挑戦する高校生の「やりたい」をひとりにしない場を提供。">
 <meta name="keywords" content="高校生向けプログラム,高校生 アントレ,高校生 アントレプレナー,高校生 起業,高校生 起業家,起業家教育,アントレプレナーシップ教育,高校生 コミュニティ,学生起業,若手起業家,高校生 ビジネスコンテスト,高校生 ピッチ,挑戦する高校生,リーダーシップ教育,若者エンパワーメント,学生団体,NEXY,深夜の語り場,NEXY Summit,あさげの若き情熱会,よいしょ徳島,ネクシー,高校生 交流会,高校生 対話,高校生 経営者,高校生サミット,若者 挑戦,挑戦 場所,高校生 学び,高校生 プログラム,BLP,N高 起業部">
 <meta name="author" content="学生団体NEXY">
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nexyhub.jp/">
 <meta property="og:title" content="学生団体NEXY | 高校生向けアントレプレナーシップコミュニティ">
-<meta property="og:description" content="高校生・大学生向けの起業家教育プログラム、アントレプレナーシップコミュニティ。日本最大級の高校生サミット、月次対話会、経営者との朝食会などを全国で開催。挑戦する高校生の「やりたい」を、ひとりにしない。">
+<meta property="og:description" content="高校生・大学生向けの起業家教育プログラム、アントレプレナーシップコミュニティ。日本最大級の高校生サミット、月次対話会、経営者との朝食会などを全国で開催。挑戦する高校生の「やりたい」を、ひとりにしない">
 <meta property="og:image" content="https://www.nexyhub.jp/img/site/hero_photo_1.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -44,12 +44,13 @@
   "@type": "Organization",
   "name": "学生団体NEXY",
   "alternateName": ["NEXY", "ネクシー"],
+  "parentOrganization": { "@type": "Organization", "name": "株式会社NEXY", "url": "https://www.nexyhub.jp/company.html" },
   "url": "https://www.nexyhub.jp/",
   "logo": "https://www.nexyhub.jp/img/site/nexy_logo_wordmark.png",
   "email": "info@nexyhub.jp",
   "foundingDate": "2026-02",
   "description": "「やりたい」を、ひとりにしない。挑戦する高校生・大学生が本気で語り合える場を全国に届けるコミュニティ。",
-  "slogan": "「やりたい」を、ひとりにしない。",
+  "slogan": "「やりたい」を、ひとりにしない",
   "sameAs": [
     "https://x.com/nexy_hub",
     "https://www.instagram.com/nexy.hub/",
@@ -695,8 +696,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.92);
     border-bottom: 1px solid var(--border);
-    height: 76px;
-    display: flex; align-items: center;
+    display: block;
     backdrop-filter: saturate(180%) blur(20px);
   }
   .site-header::after {
@@ -705,7 +705,7 @@
     background: var(--rainbow);
     opacity: .6;
   }
-  .site-header .wrap { display: flex; align-items: center; gap: 40px; width: 100%; }
+  .site-header .wrap { display: flex; align-items: center; gap: 40px; width: 100%; height: 76px; }
   .brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-latin); font-weight: 800; font-size: 22px; letter-spacing: 0.06em; color: var(--navy); }
   .brand-mark {
     width: 34px; height: 34px; border-radius: 50%;
@@ -716,7 +716,7 @@
   }
   .brand-logo-img {
     display: block;
-    height: 40px; width: auto;
+    height: 46px; width: auto;
     max-width: 200px;
   }
   .brand-org-tag {
@@ -725,9 +725,9 @@
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.14em;
-    color: var(--navy);
-    background: rgba(20,29,58,0.06);
-    border: 1px solid rgba(20,29,58,0.12);
+    color: #fff;
+    background: var(--navy);
+    border: 1px solid var(--navy);
     border-radius: 3px;
     padding: 3px 8px;
     line-height: 1;
@@ -735,7 +735,7 @@
     margin-left: 2px;
   }
   @media (max-width: 720px) {
-    .brand-logo-img { height: 32px; }
+    .brand-logo-img { height: 38px; }
     .brand-org-tag { font-size: 10px; padding: 2px 6px; letter-spacing: 0.1em; }
   }
   @media (max-width: 380px) {
@@ -919,6 +919,13 @@
   @media (max-width: 720px) {
     .hero-video { aspect-ratio: 4/5; }
   }
+  /* Hero identity (学生団体であることを示す) */
+  .hero-identity { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; padding: 64px 48px 32px; background: linear-gradient(transparent, rgba(16,35,63,.82)); color: #fff; }
+  .hero-identity-tag { display: inline-block; font-family: var(--f-jp-disp); font-weight: 700; font-size: 12px; letter-spacing: .16em; background: var(--accent); color: #fff; padding: 4px 12px; border-radius: 3px; }
+  .hero-identity-name { font-family: var(--f-jp-disp); font-weight: 900; font-size: clamp(30px, 5vw, 56px); line-height: 1.2; margin-top: 10px; letter-spacing: .04em; }
+  .hero-identity-sub { font-size: 14px; line-height: 1.8; margin-top: 6px; color: rgba(255,255,255,.92); }
+  .hero-identity-sub span { display: inline-block; margin-left: 12px; font-size: 12px; color: rgba(255,255,255,.75); }
+  @media (max-width: 720px) { .hero-identity { padding: 48px 18px 18px; } .hero-identity-sub { font-size: 12.5px; } .hero-identity-sub span { display: block; margin-left: 0; } }
   /* Hero Slideshow */
   .hero-slides {
     position: absolute; inset: 0;
@@ -3313,6 +3320,26 @@
     color: var(--text-2);
     line-height: 1.9;
   }
+
+  .org-structure { display: grid; grid-template-columns: 1fr 72px 1.25fr; gap: 0; align-items: stretch; margin-top: 48px; }
+  .org-box { border-radius: 12px; padding: 28px; position: relative; }
+  .org-company { background: var(--navy); color: #fff; }
+  .org-company p, .org-company .org-meta { color: rgba(255,255,255,.85); }
+  .org-student { background: #fff; border: 2px solid var(--accent); box-shadow: 0 14px 30px rgba(234,92,31,.12); }
+  .org-label { font-family: var(--f-latin); font-weight: 800; font-size: 11px; letter-spacing: .2em; color: var(--accent); }
+  .org-company .org-label { color: var(--accent-3); }
+  .org-box h3 { font-family: var(--f-jp-disp); font-weight: 900; font-size: 26px; margin: 6px 0 10px; }
+  .org-student h3 { color: var(--navy); }
+  .org-box p { font-size: 14px; line-height: 1.9; color: var(--text-2); }
+  .org-meta { font-size: 12.5px; margin-top: 14px; }
+  .org-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .org-tags span { font-size: 12px; font-weight: 700; background: rgba(234,92,31,.08); color: var(--accent); border-radius: 999px; padding: 4px 10px; }
+  .org-arrow { display: grid; place-items: center; font-family: var(--f-jp-disp); font-weight: 700; font-size: 12px; color: var(--text-muted); position: relative; }
+  .org-arrow::before { content: ""; position: absolute; left: 10px; right: 10px; top: 50%; height: 2px; background: var(--border); }
+  .org-arrow::after { content: "▶"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 12px; }
+  .org-company p, .org-company .org-meta { color: rgba(255,255,255,.88) !important; }
+  .org-arrow { z-index: 1; } .org-arrow b { position: relative; z-index: 1; background: #fff; padding: 2px 4px; font-weight: 700; margin-top: -26px; }
+  @media (max-width: 760px) { .org-structure { grid-template-columns: 1fr; } .org-arrow { height: 48px; } .org-arrow::before { left: 50%; right: auto; top: 6px; bottom: 6px; width: 2px; height: auto; } .org-arrow::after { content: "▼"; right: auto; left: 50%; top: auto; bottom: -2px; transform: translateX(-50%); } }
 
   .about-mission {
     padding: 120px 0;
@@ -6234,6 +6261,69 @@
     iframe { max-width: 100%; }
     .gform-iframe { width: 100% !important; }
   }
+
+  /* ---- NEXYサイト切り替えバー（株式会社NEXY／学生団体NEXY） ---- */
+  .xs-bar { background: #02102B; height: 34px; position: relative; z-index: 2; }
+  .xs-in { max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 32px; display: flex; align-items: flex-end; gap: 4px; }
+  .xs-tab { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 14px; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.78); border-radius: 4px 4px 0 0; text-decoration: none; transition: background .2s, color .2s; white-space: nowrap; }
+  .xs-tab:hover { color: #fff; background: rgba(255,255,255,.1); }
+  .xs-tab .xs-k { font-size: 10px; font-weight: 700; letter-spacing: .08em; padding: 1px 6px; border: 1px solid currentColor; border-radius: 2px; opacity: .8; }
+  .xs-tab.on { background: #fff; color: #02102B; }
+  .xs-tab.on .xs-k { background: #F54600; border-color: #F54600; color: #fff; opacity: 1; }
+  .xs-tab:not(.on)::after { content: "→"; font-size: 12px; opacity: .7; }
+  @media (max-width: 640px) { .xs-in { padding: 0 10px; } .xs-tab { padding: 0 10px; font-size: 11.5px; gap: 6px; } .xs-tab .xs-k { display: none; } }
+
+  /* ---- 運営チームのご案内 ビューア ---- */
+  .rd { max-width: 960px; margin: 0 auto; outline: none; }
+  .rd-stage { position: relative; aspect-ratio: 16/9; background: #02102B; border-radius: 6px; overflow: hidden; box-shadow: 0 10px 30px rgba(2,16,43,.12); touch-action: pan-y; user-select: none; }
+  .rd-track { list-style: none; margin: 0; padding: 0; display: flex; height: 100%; transition: transform .45s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+  .rd-slide { flex: 0 0 100%; height: 100%; }
+  .rd-slide img { width: 100%; height: 100%; object-fit: contain; display: block; background: #fff; pointer-events: none; }
+  .rd-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(2,16,43,.72); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, opacity .2s; z-index: 2; }
+  .rd-nav:hover { background: #F54600; }
+  .rd-nav[disabled] { opacity: 0; pointer-events: none; }
+  .rd-prev { left: 12px; } .rd-next { right: 12px; }
+  .rd-full { position: absolute; right: 12px; top: 12px; width: 38px; height: 38px; border-radius: 4px; border: 0; background: rgba(2,16,43,.6); color: #fff; font-size: 18px; cursor: pointer; z-index: 2; }
+  .rd-full:hover { background: #F54600; }
+  .rd-bar { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+  .rd-prog { flex: 1; height: 4px; background: #E3E6EB; border-radius: 2px; overflow: hidden; }
+  .rd-prog span { display: block; height: 100%; width: 0; background: #F54600; transition: width .3s; }
+  .rd-count { font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rd-count b { color: #02102B; font-size: 15px; }
+  .rd-thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 12px 2px 6px; scrollbar-width: thin; }
+  .rd-th { flex: 0 0 96px; aspect-ratio: 16/9; padding: 0; border: 2px solid transparent; border-radius: 3px; background: #fff; cursor: pointer; opacity: .6; transition: opacity .2s, border-color .2s; overflow: hidden; }
+  .rd-th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rd-th:hover { opacity: 1; }
+  .rd-th.on { opacity: 1; border-color: #F54600; }
+  .rd-dl { text-align: center; margin-top: 12px; }
+  .rd-dl a { font-size: 13px; font-weight: 700; color: #02102B; text-decoration: underline; text-underline-offset: 3px; }
+  .rd.is-full { position: fixed; inset: 0; z-index: 1000; max-width: none; background: #02102B; display: flex; flex-direction: column; justify-content: center; padding: 16px; }
+  .rd.is-full .rd-stage { width: min(100%, calc((100vh - 120px) * 16 / 9)); margin: 0 auto; box-shadow: none; }
+  .rd.is-full .rd-count, .rd.is-full .rd-count b, .rd.is-full .rd-dl a { color: #fff; }
+  .rd.is-full .rd-thumbs { display: none; }
+  @media (max-width: 640px) {
+    .rd-nav { width: 38px; height: 38px; font-size: 24px; }
+    .rd-prev { left: 6px; } .rd-next { right: 6px; }
+    .rd-th { flex-basis: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .rd-track { transition: none; } }
+
+  /* ---- 募集：2つの応募フォーム ---- */
+  .rf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
+  .rf-card { position: relative; background: #fff; border: 2px solid var(--rf-c); border-radius: 6px; padding: 32px 28px 28px; display: flex; flex-direction: column; overflow: hidden; }
+  .rf-card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 6px; background: var(--rf-c); }
+  .rf-summit { --rf-c: #F54600; } .rf-org { --rf-c: #02102B; }
+  .rf-tag { align-self: flex-start; font-size: 12px; font-weight: 700; color: #fff; background: var(--rf-c); padding: 4px 10px; border-radius: 3px; }
+  .rf-card h3 { font-family: var(--f-jp-disp); font-size: 21px; font-weight: 900; line-height: 1.5; color: #02102B; margin: 14px 0 12px; }
+  .rf-card p { font-size: 14px; line-height: 1.9; color: var(--text-2); }
+  .rf-card ul { list-style: none; padding: 0; margin: 14px 0 22px; display: grid; gap: 6px; }
+  .rf-card li { position: relative; padding-left: 16px; font-size: 13px; color: var(--text); line-height: 1.7; }
+  .rf-card li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; background: var(--rf-c); border-radius: 2px; }
+  .rf-btn { margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 16px; background: var(--rf-c); color: #fff !important; border-radius: 4px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform .2s, opacity .2s; }
+  .rf-btn:hover { transform: translateY(-2px); opacity: .92; }
+  .rf-sub { margin-top: 12px; text-align: center; font-size: 13px; font-weight: 700; color: #F54600; text-decoration: underline; text-underline-offset: 3px; }
+  .rf-note { max-width: 680px; margin: 20px auto 0; text-align: center; font-size: 13px; color: var(--text-2); line-height: 1.9; }
+  @media (max-width: 720px) { .rf-grid { grid-template-columns: 1fr; } .rf-card { padding: 28px 20px 22px; } .rf-card h3 { font-size: 19px; } }
 </style>
 </head>
 <body>
@@ -6244,8 +6334,7 @@
 <header class="site-header">
   <div class="wrap">
     <a href="#top" class="brand" data-nav="top" aria-label="学生団体NEXY トップへ">
-      <img src="img/site/nexy_logo_wordmark.png" alt="学生団体NEXY" class="brand-logo-img">
-      <span class="brand-org-tag">学生団体</span>
+      <img src="/img/site/nexy_logo_student.png" alt="学生団体NEXY" class="brand-logo-img">
     </a>
     <nav class="nav" id="nav">
       <a href="#top" data-nav="top">トップ</a>
@@ -6287,6 +6376,11 @@
         <img src="img/site/hero_photo_5.jpg" alt="NEXY メンバーの活動風景" class="hero-photo" loading="lazy">
         <img src="img/site/hero_photo_6.jpg" alt="NEXY イベント参加者の集合" class="hero-photo" loading="lazy">
       </div>
+      <div class="hero-identity">
+        <div class="hero-identity-tag">学生団体 公式サイト</div>
+        <div class="hero-identity-name">学生団体NEXY</div>
+        <div class="hero-identity-sub">高校生・大学生が運営する学生団体です。<span>運営：株式会社NEXY（2026年12月設立予定）</span></div>
+      </div>
     </div>
   </div>
 
@@ -6296,7 +6390,7 @@
       <div class="mission-en">About NEXY</div>
       <h2 class="mission-title">
         <em>「やりたい」</em>を、<br>
-        ひとりにしない。
+        ひとりにしない
       </h2>
       <p class="mission-lead">
         挑戦する高校生・大学生が本気で語り合える場を、<br>
@@ -6308,7 +6402,7 @@
         <div class="about-step">
           <div class="about-step-num">01</div>
           <div class="about-step-tag">PROBLEM</div>
-          <h3 class="about-step-title">挑戦は、<br>ひとりでは続かない。</h3>
+          <h3 class="about-step-title">挑戦は、<br>ひとりでは続かない</h3>
           <p class="about-step-body">
             挑戦したい気持ちはあっても、<strong>同じ熱量で語り合える仲間</strong>と出会う機会は限られている。<br>
             意欲的な学生同士が本気でつながり、刺激し合える場は、まだ十分にありません。
@@ -6321,7 +6415,7 @@
         <div class="about-step">
           <div class="about-step-num">02</div>
           <div class="about-step-tag about-step-tag-accent">APPROACH</div>
-          <h3 class="about-step-title">"考え途中"を、<br>そのまま話せる場所。</h3>
+          <h3 class="about-step-title">"考え途中"を、<br>そのまま話せる場所</h3>
           <p class="about-step-body">
             NEXYは、挑戦する学生が集まり、<strong>活動・悩み・葛藤・未来</strong>について本音で語り合うコミュニティ。<br>
             未完成のまま、集まっていい。答えを持たなくていい。
@@ -6334,7 +6428,7 @@
         <div class="about-step">
           <div class="about-step-num">03</div>
           <div class="about-step-tag">VISION</div>
-          <h3 class="about-step-title">思いが連鎖する<br>社会へ。</h3>
+          <h3 class="about-step-title">「やりたい」が<br>あふれる社会へ</h3>
           <p class="about-step-body">
             NEXYで生まれた出会いが、次の挑戦へつながる。<br>
             <strong>「思いの連鎖」</strong>を当たり前に。挑戦が挑戦を生む社会を、学生から。
@@ -6357,7 +6451,7 @@
     <div class="wrap">
       <div class="numbers-head">
         <div class="numbers-label">Track Record</div>
-        <h2 class="numbers-title">半年間の歩み。</h2>
+        <h2 class="numbers-title">半年間の歩み</h2>
         <p class="numbers-sub">2026年2月の設立から、半年間で積み上げてきた実績。</p>
       </div>
       <div class="numbers-grid">
@@ -6608,8 +6702,10 @@
       <ul class="about-toc">
         <li><a href="#about-vision" data-toc="about-vision"><span class="toc-num">01</span> Vision</a></li>
         <li><a href="#about-mission" data-toc="about-mission"><span class="toc-num">02</span> Mission</a></li>
-        <li><a href="#about-message" data-toc="about-message"><span class="toc-num">03</span> Message</a></li>
-        <li><a href="#about-company" data-toc="about-company"><span class="toc-num">04</span> Company</a></li>
+        <li><a href="#about-values" data-toc="about-values"><span class="toc-num">03</span> Values</a></li>
+        <li><a href="#about-message" data-toc="about-message"><span class="toc-num">04</span> Message</a></li>
+        <li><a href="#about-structure" data-toc="about-structure"><span class="toc-num">05</span> Structure</a></li>
+        <li><a href="#about-company" data-toc="about-company"><span class="toc-num">06</span> Company</a></li>
       </ul>
     </div>
   </div>
@@ -6641,7 +6737,7 @@
       </div>
       <div class="st-split-body" data-collapse="vision">
         <div class="st-split-label">Vision</div>
-        <h2 class="st-split-title">思いが<em>連鎖する</em>社会をつくる。</h2>
+        <h2 class="st-split-title">「やりたい」が<em>あふれる</em>社会をつくる</h2>
 
         <p>誰かが本気で語る「やりたい」に触れて、自分の心まで動き出したことはありませんか。</p>
 
@@ -6672,7 +6768,7 @@
     <div class="st-split reverse">
       <div class="st-split-body" data-collapse="mission">
         <div class="st-split-label">Mission</div>
-        <h2 class="st-split-title">「やりたい」を、<em>ひとりにしない</em>。</h2>
+        <h2 class="st-split-title">「やりたい」を、<em>ひとりにしない</em></h2>
 
         <p class="quote">「これ、やってみたいんだよね」</p>
 
@@ -6711,6 +6807,33 @@
     </div>
   </section>
 
+  <!-- Values -->
+  <section class="section" id="about-values" style="padding: 96px 0;">
+    <div class="wrap">
+      <div style="text-align:center;">
+        <div class="st-split-label" style="justify-content:center;">Values</div>
+        <h2 class="st-split-title" style="text-align:center;">NEXYが大切にしている<em>3つの価値観</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-num">VALUE 01</div>
+          <h3 class="value-title">自慢より、夢を語れ</h3>
+          <p class="value-body">今の自分のすごさではなく、つくりたい世界と、そのために今やっていることを語ります。自己紹介で実績を並べるよりも、「何をつくりたいのか」を伝え合う場でありたいと考えています。</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">VALUE 02</div>
+          <h3 class="value-title">背景から、わかり合う</h3>
+          <p class="value-body">相手の言動を責める前に、その人の状況や前提を聞きます。学校や家庭など、一人ひとりが置かれている背景を理解することから、信頼関係をつくります。</p>
+        </div>
+        <div class="value-card">
+          <div class="value-num">VALUE 03</div>
+          <h3 class="value-title">素直に、高め合う</h3>
+          <p class="value-body">指摘を素直に受け取り、仲間とともに伸びていきます。年齢や立場の上下ではなく、横に並んで互いを高め合う関係を大切にしています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 代表からのメッセージ (SOZOW風 左右分割) -->
   <section class="msg-split-section" id="about-message">
     <div class="msg-split">
@@ -6720,7 +6843,7 @@
       <div class="msg-split-body">
         <div class="msg-split-label">Message</div>
         <h3 class="msg-split-title">
-          挑戦は、<br>人との出会いによって加速する。
+          挑戦は、<br>人との出会いによって加速する
         </h3>
         <p>
           私はこれまで、ロボット、起業、教育など多分野で挑戦を重ねてまいりました。その中で確信したのは、「挑戦は人との出会いによって加速する」ということです。
@@ -6746,6 +6869,31 @@
   </section>
 
   <!-- 会社概要(団体概要) -->
+  <!-- 組織の構成（株式会社NEXYと学生団体NEXY） -->
+  <section class="section" id="about-structure" style="padding: 88px 0;">
+    <div class="wrap">
+      <div style="text-align:center;">
+        <div class="st-split-label" style="justify-content:center;">Structure</div>
+        <h2 class="st-split-title" style="text-align:center;">株式会社NEXYと、<em>学生団体NEXY</em></h2>
+        <p class="lead" style="max-width:680px;margin:12px auto 0;">学生団体NEXYは、株式会社NEXY（2026年12月設立予定）が運営する学生団体です。企画と運営の主役は、高校生・大学生のメンバーです。</p>
+      </div>
+      <div class="org-structure">
+        <div class="org-box org-company">
+          <div class="org-label">COMPANY</div>
+          <h3>株式会社NEXY</h3>
+          <p>学生団体NEXYの運営会社です。企業・団体とのご契約、協賛のご相談の窓口を担います。</p>
+        </div>
+        <div class="org-arrow" aria-hidden="true"><b>運営</b></div>
+        <div class="org-box org-student">
+          <div class="org-label">STUDENT ORGANIZATION</div>
+          <h3>学生団体NEXY</h3>
+          <p>高校生・大学生のメンバーが主体となり、NEXY Summit、深夜の語り場、あさげの若き情熱会などを企画・運営しています。</p>
+          <div class="org-tags"><span>NEXY Summit</span><span>深夜の語り場</span><span>あさげの若き情熱会</span><span>よいしょ!!シリーズ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-dark" id="about-company">
     <div class="wrap">
       <div class="section-head" style="margin-bottom: 48px;">
@@ -6760,11 +6908,12 @@
         <tr><th>設立</th><td>2026年2月</td></tr>
         <tr><th>代表</th><td>小助川 晴大(Haruta Kosukegawa)</td></tr>
         <tr><th>所在地</th><td><span style="color:var(--text-muted);">— 準備中 —</span></td></tr>
-        <tr><th>運営形態</th><td>学生団体</td></tr>
+        <tr><th>運営形態</th><td>学生団体（高校生・大学生のメンバーが企画・運営）</td></tr>
+        <tr><th>運営会社</th><td>株式会社NEXY<br><span style="font-size:12px;color:var(--text-muted);">2026年12月設立予定</span></td></tr>
 
         <tr class="info-group-head"><td colspan="2">Philosophy</td></tr>
         <tr><th>Mission</th><td>「やりたい」をひとりにしない</td></tr>
-        <tr><th>Vision</th><td>思いが連鎖する社会を創る</td></tr>
+        <tr><th>Vision</th><td>「やりたい」があふれる社会をつくる</td></tr>
 
         <tr class="info-group-head"><td colspan="2">Activities</td></tr>
         <tr><th>活動内容</th><td>
@@ -6785,7 +6934,7 @@
   <section class="about-bottom-cta">
     <div class="about-bottom-cta-inner">
       <div class="about-bottom-cta-label">Get In Touch</div>
-      <h3 class="about-bottom-cta-title">協賛・取材のご相談は、<br>お気軽にお問い合わせください。</h3>
+      <h3 class="about-bottom-cta-title">協賛・取材のご相談は、<br>お気軽にお問い合わせください</h3>
       <p class="about-bottom-cta-desc">
         NEXYの活動へのご協賛、メディア掲載、その他のご相談を承っております。<br>
         3営業日以内にご返信いたします。
@@ -6878,7 +7027,7 @@
     <div class="wrap">
       <div class="biz-header">
         <div class="biz-header-badge biz-header-badge-orange">Activity 01 · Events</div>
-        <h2 class="biz-header-title">学生・若者が集う 5つの場。</h2>
+        <h2 class="biz-header-title">学生・若者が集う 5つの場</h2>
         <p class="biz-header-desc">大型サミットから月次の少人数対話会まで、"やりたい"に火をつける場を全国で展開しています。</p>
       </div>
 
@@ -6939,7 +7088,7 @@
     <div class="wrap">
       <div class="biz-header">
         <div class="biz-header-badge biz-header-badge-mint">Activity 02 · Partnership</div>
-        <h2 class="biz-header-title">共に活動を育てる、企業パートナーシップ。</h2>
+        <h2 class="biz-header-title">共に活動を育てる、企業パートナーシップ</h2>
         <p class="biz-header-desc">私たち学生団体の活動は、応援いただく企業のみなさまに支えられています。参画いただく2つの入口をご用意しています。</p>
       </div>
 
@@ -7203,7 +7352,7 @@
   <section class="about-bottom-cta">
     <div class="about-bottom-cta-inner">
       <div class="about-bottom-cta-label">Get In Touch</div>
-      <h3 class="about-bottom-cta-title">取材・登壇・共同企画などの<br>ご相談はこちらから。</h3>
+      <h3 class="about-bottom-cta-title">取材・登壇・共同企画などの<br>ご相談はこちらから</h3>
       <p class="about-bottom-cta-desc">
         代表・メンバーへの取材、講演・登壇のご依頼、共同企画のご相談などを承っております。<br>
         3営業日以内にご返信いたします。
@@ -7379,7 +7528,7 @@
   <section class="about-bottom-cta">
     <div class="about-bottom-cta-inner">
       <div class="about-bottom-cta-label">Get In Touch</div>
-      <h3 class="about-bottom-cta-title">実績にご興味をお持ちいただけましたら、<br>お気軽にご相談ください。</h3>
+      <h3 class="about-bottom-cta-title">実績にご興味をお持ちいただけましたら、<br>お気軽にご相談ください</h3>
       <p class="about-bottom-cta-desc">
         協賛のご検討、取材のお申し込み、共同企画のご相談などを承っております。<br>
         3営業日以内にご返信いたします。
@@ -7440,7 +7589,7 @@
         NOW RECRUITING
       </div>
       <h2 class="mission-title" style="margin-bottom: 28px;">
-        <em>新規メンバー、</em><br>募集しています。
+        <em>新規メンバー、</em><br>募集しています
       </h2>
       <p class="lead" style="max-width: 680px; margin: 0 auto 20px; font-size: 15.5px; line-height: 2.0;">
         「何かに挑戦したい」「本気で語り合える仲間が欲しい」——<br>
@@ -7450,6 +7599,32 @@
         経験・スキルは問いません。まずはフォームからお気軽にご連絡ください。<br>
         <strong style="color:var(--text);">後日、代表・小助川(ハルタ)から直接ご連絡いたします。</strong>
       </p>
+    </div>
+  </section>
+
+
+  <!-- 運営チームのご案内（資料ビューア） -->
+  <section class="section" id="recruit-deck" style="padding-top: 24px; padding-bottom: 48px;">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom: 24px;">
+        <div class="eyebrow" style="color: var(--accent); margin-bottom: 10px;">Guide</div>
+        <h2 class="heading-l" style="font-size: 24px; line-height: 1.6; text-wrap: balance; word-break: auto-phrase;">NEXY SUMMIT 2027 運営チームのご案内</h2>
+        <p style="font-size: 14px; color: var(--text-2); margin-top: 8px;">ボタンやスワイプで、ページをめくって読めます。</p>
+      </div>
+      <div class="rd" tabindex="0" role="region" aria-roledescription="スライド" aria-label="運営チームのご案内">
+        <div class="rd-stage">
+          <ul class="rd-track"><li class="rd-slide"><img src="/img/recruit-deck/p01.webp" alt="1ページ：運営チームのご案内（表紙）" width="1600" height="900" loading="eager" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p02.webp" alt="2ページ：目次" width="1600" height="900" loading="eager" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p03.webp" alt="3ページ：NEXY SUMMITとは" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p04.webp" alt="4ページ：当日、何が起きるか" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p05.webp" alt="5ページ：会場は大田区産業プラザPiO" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p06.webp" alt="6ページ：写真で見る2026" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p07.webp" alt="7ページ：どんな仲間がいるか" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p08.webp" alt="8ページ：ミッション・ビジョン・バリュー" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p09.webp" alt="9ページ：運営で大事にしていること" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p10.webp" alt="10ページ：運営で得られるもの" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p11.webp" alt="11ページ：6つのチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p12.webp" alt="12ページ：メディアチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p13.webp" alt="13ページ：A会場チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p14.webp" alt="14ページ：B会場チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p15.webp" alt="15ページ：常設チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p16.webp" alt="16ページ：レセプションチーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p17.webp" alt="17ページ：誘導チーム" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p18.webp" alt="18ページ：運営のスケジュール" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p19.webp" alt="19ページ：もっと知りたい人へ" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p20.webp" alt="20ページ：よくある質問" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li><li class="rd-slide"><img src="/img/recruit-deck/p21.webp" alt="21ページ：これからの流れ" width="1600" height="900" loading="lazy" decoding="async" draggable="false"></li></ul>
+          <button type="button" class="rd-nav rd-prev" aria-label="前のページ">‹</button>
+          <button type="button" class="rd-nav rd-next" aria-label="次のページ">›</button>
+          <button type="button" class="rd-full" aria-label="全画面で見る">⤢</button>
+        </div>
+        <div class="rd-bar">
+          <div class="rd-prog"><span></span></div>
+          <div class="rd-count" aria-live="polite"><b>1</b> / 21</div>
+        </div>
+        <div class="rd-thumbs" aria-label="ページ一覧"><button type="button" class="rd-th" data-i="0" aria-label="1ページ目へ：運営チームのご案内（表紙）"><img src="/img/recruit-deck/p01.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="1" aria-label="2ページ目へ：目次"><img src="/img/recruit-deck/p02.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="2" aria-label="3ページ目へ：NEXY SUMMITとは"><img src="/img/recruit-deck/p03.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="3" aria-label="4ページ目へ：当日、何が起きるか"><img src="/img/recruit-deck/p04.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="4" aria-label="5ページ目へ：会場は大田区産業プラザPiO"><img src="/img/recruit-deck/p05.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="5" aria-label="6ページ目へ：写真で見る2026"><img src="/img/recruit-deck/p06.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="6" aria-label="7ページ目へ：どんな仲間がいるか"><img src="/img/recruit-deck/p07.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="7" aria-label="8ページ目へ：ミッション・ビジョン・バリュー"><img src="/img/recruit-deck/p08.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="8" aria-label="9ページ目へ：運営で大事にしていること"><img src="/img/recruit-deck/p09.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="9" aria-label="10ページ目へ：運営で得られるもの"><img src="/img/recruit-deck/p10.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="10" aria-label="11ページ目へ：6つのチーム"><img src="/img/recruit-deck/p11.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="11" aria-label="12ページ目へ：メディアチーム"><img src="/img/recruit-deck/p12.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="12" aria-label="13ページ目へ：A会場チーム"><img src="/img/recruit-deck/p13.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="13" aria-label="14ページ目へ：B会場チーム"><img src="/img/recruit-deck/p14.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="14" aria-label="15ページ目へ：常設チーム"><img src="/img/recruit-deck/p15.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="15" aria-label="16ページ目へ：レセプションチーム"><img src="/img/recruit-deck/p16.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="16" aria-label="17ページ目へ：誘導チーム"><img src="/img/recruit-deck/p17.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="17" aria-label="18ページ目へ：運営のスケジュール"><img src="/img/recruit-deck/p18.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="18" aria-label="19ページ目へ：もっと知りたい人へ"><img src="/img/recruit-deck/p19.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="19" aria-label="20ページ目へ：よくある質問"><img src="/img/recruit-deck/p20.webp" alt="" loading="lazy"></button><button type="button" class="rd-th" data-i="20" aria-label="21ページ目へ：これからの流れ"><img src="/img/recruit-deck/p21.webp" alt="" loading="lazy"></button></div>
+        <div class="rd-dl"><a href="/img/recruit-deck/NEXY_SUMMIT_2027_運営チームのご案内.pdf" target="_blank" rel="noopener">PDFで開く・保存する（約13MB）</a></div>
+      </div>
     </div>
   </section>
 
@@ -7475,23 +7650,34 @@
         </div>
       </div>
 
-      <div style="max-width: 640px; margin: 0 auto; padding: 40px 32px; background: linear-gradient(135deg, #FFF9F0 0%, #FFF4E5 100%); border-radius: 8px; border: 1px solid rgba(234,92,31,0.2); text-align: center;">
-        <div class="eyebrow" style="margin-bottom: 16px; color: var(--accent);">Apply Now</div>
-        <h3 class="heading-l" style="font-size: 22px; margin-bottom: 16px; line-height: 1.6;">
-          まずはお気軽に、ご連絡ください。
-        </h3>
-        <p style="font-size: 14px; color: var(--text-2); line-height: 1.9; margin-bottom: 28px;">
-          応募後、代表・小助川(ハルタ)から後日メールまたはSNSでご連絡します。<br>
-          「話を聞いてみたい」だけの段階でも歓迎です。
-        </p>
-        <a href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:16px 36px; background:var(--accent); color:#fff; border-radius:4px; font-family:var(--f-jp-disp); font-weight:800; font-size:15px; letter-spacing:0.06em; text-decoration:none; box-shadow: 0 6px 16px rgba(234,92,31,0.35); transition: transform .15s;">
-          応募フォームへ進む →
-        </a>
-        <div style="margin-top: 20px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size: 12px; color: var(--text-muted);">
-          <a href="https://x.com/nexy_hub" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">X で近況を見る</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">Instagram を見る</a>
+      <div class="rf-grid">
+        <div class="rf-card rf-summit">
+          <div class="rf-tag">2027年3月26日（金）開催</div>
+          <h3>NEXY SUMMIT 2027<br>運営メンバーに応募する</h3>
+          <p>大田区産業プラザPiOで開くNEXY SUMMIT 2027を、一緒につくる運営メンバーを募集しています。メディア・会場・常設・レセプション・誘導など6つのチームから選べます。</p>
+          <ul>
+            <li>活動期間：11月〜2027年3月</li>
+            <li>経験・スキルは問いません</li>
+          </ul>
+          <a class="rf-btn" href="https://forms.gle/ipZUh5ZhNJN9TwDR6" target="_blank" rel="noopener">サミット運営に応募する →</a>
+          <a class="rf-sub" href="#recruit" onclick="event.preventDefault();event.stopPropagation();var d=document.getElementById('recruit-deck');if(d){window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'});}">運営チームのご案内を読む</a>
         </div>
+        <div class="rf-card rf-org">
+          <div class="rf-tag">お問い合わせ</div>
+          <h3>学生団体NEXYへ<br>問い合わせる</h3>
+          <p>NEXYの活動について聞いてみたいこと、イベントへの参加、登壇・取材・連携のご相談などは、こちらからご連絡ください。</p>
+          <ul>
+            <li>内容を確認のうえ、2〜3日以内にご返信します</li>
+            <li>「話を聞いてみたい」だけでも歓迎です</li>
+          </ul>
+          <a class="rf-btn" href="https://forms.gle/tSeLox8Ni6fPxZEr8" target="_blank" rel="noopener">学生団体NEXYへ問い合わせる →</a>
+        </div>
+      </div>
+      <p class="rf-note">サミットの運営に応募した方には、代表・小助川（ハルタ）から数日以内にご連絡します。</p>
+      <div style="margin-top: 16px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size: 12px; color: var(--text-muted);">
+        <a href="https://x.com/nexy_hub" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">X で近況を見る</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.instagram.com/nexy.hub/" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:underline;">Instagram を見る</a>
       </div>
     </div>
   </section>
@@ -8282,7 +8468,7 @@
     <div class="footer-main">
       <div>
         <div class="footer-brand-mission">
-          やりたいを、<br>ひとりにしない。
+          やりたいを、<br>ひとりにしない
         </div>
       </div>
       <div class="footer-nav">
@@ -8313,7 +8499,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 NEXY / 学生団体NEXY. All Rights Reserved.</div>
+      <div class="footer-copy">© 2026 学生団体NEXY ／ 運営：株式会社NEXY（2026年12月設立予定）. All Rights Reserved.</div>
       <div class="footer-legal">
         <a href="#">プライバシーポリシー</a>
         <a href="#contact" data-nav="contact">お問い合わせ</a>
@@ -8676,5 +8862,40 @@
   })();
 </script>
 
+
+<script>
+(function(){
+  var rd=document.querySelector('#recruit-deck .rd'); if(!rd) return;
+  var track=rd.querySelector('.rd-track'), n=track.children.length, i=0;
+  var prev=rd.querySelector('.rd-prev'), next=rd.querySelector('.rd-next');
+  var cnt=rd.querySelector('.rd-count b'), bar=rd.querySelector('.rd-prog span'), ths=rd.querySelectorAll('.rd-th');
+  function go(k){
+    i=Math.max(0,Math.min(n-1,k));
+    track.style.transform='translateX('+(-100*i)+'%)';
+    cnt.textContent=i+1; bar.style.width=((i+1)/n*100)+'%';
+    prev.disabled=i===0; next.disabled=i===n-1;
+    ths.forEach(function(t,j){t.classList.toggle('on',j===i);});
+    var t=ths[i]; if(t){var c=t.parentNode; c.scrollTo({left:t.offsetLeft-c.clientWidth/2+t.clientWidth/2,behavior:'smooth'});}
+    var nx=track.children[i+1]; if(nx){var im=nx.querySelector('img'); if(im) im.loading='eager';}
+  }
+  prev.onclick=function(){go(i-1);}; next.onclick=function(){go(i+1);};
+  ths.forEach(function(t){t.onclick=function(){go(+t.dataset.i);};});
+  rd.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){go(i+1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'){go(i-1);e.preventDefault();}
+    else if(e.key==='Escape'&&rd.classList.contains('is-full')){toggleFull(false);}
+  });
+  var stage=rd.querySelector('.rd-stage'), x0=null, y0=0, dx=0, w=1;
+  stage.addEventListener('pointerdown',function(e){ if(e.target.closest('button')) return; x0=e.clientX; y0=e.clientY; dx=0; w=stage.clientWidth; track.style.transition='none'; });
+  stage.addEventListener('pointermove',function(e){ if(x0===null) return; dx=e.clientX-x0; if(Math.abs(e.clientY-y0)>Math.abs(dx)&&Math.abs(dx)<10) return; track.style.transform='translateX(calc('+(-100*i)+'% + '+dx+'px))'; });
+  function end(){ if(x0===null) return; track.style.transition=''; var th=Math.min(80,w*0.15); if(dx<-th) go(i+1); else if(dx>th) go(i-1); else go(i); x0=null; }
+  stage.addEventListener('pointerup',end); stage.addEventListener('pointercancel',end); stage.addEventListener('pointerleave',end);
+  stage.addEventListener('click',function(e){ if(e.target.closest('button')||Math.abs(dx)>5) return; var r=stage.getBoundingClientRect(); go(e.clientX-r.left<r.width/2?i-1:i+1); });
+  var fb=rd.querySelector('.rd-full');
+  function toggleFull(on){ rd.classList.toggle('is-full',on); document.body.style.overflow=on?'hidden':''; fb.textContent=on?'×':'⤢'; fb.setAttribute('aria-label',on?'全画面を閉じる':'全画面で見る'); if(on) rd.focus(); }
+  fb.onclick=function(){toggleFull(!rd.classList.contains('is-full'));};
+  go(0);
+})();
+</script>
 </body>
 </html>
