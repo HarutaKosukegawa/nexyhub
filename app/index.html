@@ -711,6 +711,20 @@ body{line-break:strict;word-break:auto-phrase}
 .st-agree input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--teal-deep)}
 .st-sel{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;font-size:16px;color:var(--ink)}
 .st-res{display:grid;gap:8px;margin-top:12px}
+.mg-head{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.mg-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+@media (max-width:700px){.mg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mg-st{border-radius:12px;padding:10px 12px;background:color-mix(in srgb,var(--c) 12%,#fff);display:grid;gap:6px}
+.mg-num b{font-size:26px;font-weight:900;color:var(--c);font-variant-numeric:tabular-nums}.mg-num small{font-size:12px;font-weight:700;color:var(--muted);margin-left:2px}
+.mg-bar{height:8px;border-radius:99px;background:rgba(2,16,43,.08);overflow:hidden}.mg-bar i{display:block;height:100%;border-radius:99px;background:var(--c);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.mg-st span{font-size:12px;font-weight:700}
+.mg-not{margin-top:10px}.mg-not summary{font-size:13px;font-weight:900;cursor:pointer;color:var(--orange)}
+.mg-not p{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}.mg-not button{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--orange-tint);color:var(--ink)}
+.mg-sort{display:flex;gap:4px;flex-wrap:wrap}.mg-sort button{font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;border:1.5px solid var(--line);background:#fff}
+.mg-sort button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mg-team{margin-top:12px}.mg-team h3{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;font-weight:900;color:var(--tc);background:var(--tt);border-radius:10px;padding:8px 12px;margin:0 0 4px}
+.mg-team h3 span{font-size:11.5px;font-weight:700;color:var(--muted)}
+@keyframes mgFlash{0%,100%{background:transparent}30%{background:var(--orange-tint)}}.mg-flash{animation:mgFlash 1.4s ease}
 .up-row{display:grid;gap:5px;padding:10px 0;border-top:1px solid var(--line)}
 .up-row:first-of-type{border-top:0}
 .up-h{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.up-h b{font-size:13px}
@@ -2356,9 +2370,10 @@ function stTeamGate(){const m=me().m;
     <div class="tmpick">${TEAM_KEYS.filter(k=>k!=="hq").map(k=>`<label style="--tc:${TEAMS[k].c};--tt:${TEAMS[k].t}"><input type="radio" name="gateTeam" value="${k}"><span>${esc(TEAMS[k].n)}</span></label>`).join("")}</div>
     <button class="btn o${sv.busy?" st-busy":""}" style="width:100%;margin-top:14px" data-st="gateteam">このチームにする</button>
     <button class="au-link" data-st="gateskip" style="margin-top:6px">あとで決める</button></div></div>`}
+const RANKC={"統括":2,"サブ統括":1,"メンバー":0};
 function stSettings(){
   const row=m=>{const n=TF.filter(f=>f[2]!=="grow"&&!(m.f[f[0]]&&m.f[f[0]].v)).length;
-    return `<div class="st-row">${stAv(m,"s")}<div><b>${esc(m.name)}</b> <span class="lyr lyr-${isMgrRole(m.role)?"mgr":"mem"}">${LAYER[isMgrRole(m.role)?"mgr":"mem"]}</span> ${m.conf?"":'<span class="dr">保留</span>'}
+    return `<div class="st-row" id="mg-${m.id}">${stAv(m,"s")}<div><b>${esc(m.name)}</b> <span class="lyr lyr-${isMgrRole(m.role)?"mgr":"mem"}">${LAYER[isMgrRole(m.role)?"mgr":"mem"]}</span> ${m.conf?"":'<span class="dr">保留</span>'}
       <div class="note">${m.hasEmail?"メール登録済み":"メール未登録"}・${m.hasPassword?"ログイン済み":"まだログインしていません"}${m.pv?"":"・顔写真なし"}${m.conf?`・未記入 ${n}項目`:""}</div>
       <div class="ctl"><select data-st-team="${m.id}" aria-label="${esc(m.name)}のチーム">${m.role==="メンバー"?`<option value="none" ${m.team==="none"?"selected":""}>チーム未定（本人が選ぶ）</option>`:""}${TEAM_KEYS.map(k=>`<option value="${k}" ${m.team===k?"selected":""}>${TEAMS[k].n}</option>`).join("")}</select>
       <select data-st-role="${m.id}" aria-label="${esc(m.name)}の役職">${ROLES.map(r=>`<option ${m.role===r?"selected":""}>${r}</option>`).join("")}</select>
@@ -2366,11 +2381,26 @@ function stSettings(){
       <input type="email" data-st-mail="${m.id}" placeholder="${m.hasEmail?"メールを登録し直すときだけ入力":"応募フォームのメールアドレス"}" aria-label="${esc(m.name)}のメールアドレス" style="grid-column:1/-1">
       <button class="btn s" data-st="${m.conf?"topend":"confirm"}" data-id="${m.id}">${m.conf?"保留に戻す":"確定にする"}</button><button class="btn d" data-st="rmmember" data-id="${m.id}">名簿から外す</button></div></div></div>`};
   const list=members().filter(m=>m.role!=="代表");
-  return `<section class="panel" style="margin-top:12px;display:flex;gap:12px;align-items:center;justify-content:space-between"><div><b style="font-size:14px">運営参加証明書の発行</b><p class="note">${STD.certOpen?"メンバーがマイページから発行できます":"いまは見本だけ。3月26日の本番のあとに始めます"}</p></div>
+  // ログインの進み具合（確定した人の中で）
+  const N=list.length,cnt=f=>list.filter(f).length;
+  const stats=[["ログイン済み",cnt(m=>m.hasPassword),"var(--teal)"],["顔写真あり",cnt(m=>m.pv),"var(--orange)"],["チーム決定",cnt(m=>m.team!=="none"),"var(--violet)"],["メール登録済み",cnt(m=>m.hasEmail),"var(--pink)"]];
+  const notIn=list.filter(m=>!m.hasPassword);
+  const sort=sv.mgSort||"team";
+  const byName=(a,b)=>(a.kana||a.name).localeCompare(b.kana||b.name,"ja");
+  let confHTML;
+  if(sort==="team"){const keys=[...TEAM_KEYS,"none"];
+    confHTML=keys.map(k=>{const ms=list.filter(m=>m.team===k).sort((a,b)=>(RANKC[b.role]||0)-(RANKC[a.role]||0)||byName(a,b));if(!ms.length)return"";const T=TEAMS[k];
+      return `<div class="mg-team" style="--tc:${T.c};--tt:${T.t}"><h3>${esc(T.n)}<span>${ms.length}人・ログイン済み ${ms.filter(m=>m.hasPassword).length}人</span></h3>${ms.map(row).join("")}</div>`}).join("");}
+  else{const ms=[...list].sort(sort==="login"?(a,b)=>(a.hasPassword?1:0)-(b.hasPassword?1:0)||byName(a,b):byName);confHTML=ms.map(row).join("")}
+  return `<section class="panel mg-stats" style="margin-top:12px"><div class="mg-head"><b style="font-size:14px">ログインの進み具合</b><span class="note">確定した${N}人の中で</span></div>
+    <div class="mg-grid">${stats.map(([l,v,c])=>`<div class="mg-st" style="--c:${c}"><div class="mg-num"><b>${v}</b><small>/${N}人</small></div><div class="mg-bar"><i style="width:${N?Math.round(v/N*100):0}%"></i></div><span>${l}（${N?Math.round(v/N*100):0}%）</span></div>`).join("")}</div>
+    ${notIn.length?`<details class="mg-not"><summary>まだログインしていない人（${notIn.length}人）</summary><p>${notIn.sort(byName).map(m=>`<button data-st="mgjump" data-id="${m.id}">${esc(m.name)}${m.hasEmail?"":"（メール未登録）"}</button>`).join("")}</p><p class="note">メール未登録の人は、下の一覧でその人の行にアドレスを入れると、ログインできるようになります。</p></details>`:`<p class="note" style="margin-top:8px">確定した全員がログインしています。</p>`}</section>
+  <section class="panel" style="margin-top:12px;display:flex;gap:12px;align-items:center;justify-content:space-between"><div><b style="font-size:14px">運営参加証明書の発行</b><p class="note">${STD.certOpen?"メンバーがマイページから発行できます":"いまは見本だけ。3月26日の本番のあとに始めます"}</p></div>
     <button class="oksw" role="switch" aria-checked="${!!STD.certOpen}" data-st="certopen" style="width:auto;padding:0"><i class="sw" aria-hidden="true"></i></button></section>
-  <section class="panel" style="margin-top:12px"><b style="font-size:14px">確定したメンバー（${list.length}人）</b>
+  <section class="panel" style="margin-top:12px"><div class="mg-head"><b style="font-size:14px">確定したメンバー（${list.length}人）</b>
+    <div class="mg-sort" role="group" aria-label="並び替え">${[["team","チーム別"],["login","ログインしていない人から"],["name","名前順"]].map(([k,l])=>`<button data-st="mgsort" data-k="${k}" aria-pressed="${sort===k}">${l}</button>`).join("")}</div></div>
     <p class="note" style="margin:2px 0 6px">ログインには、応募フォームに書いたメールアドレスを使います。アドレスは暗号化して保存するので、代表もここで見ることはできません。メールを入れ直すと、その人のパスワードは消えて、次のログインで作り直しになります。</p>
-    ${list.map(row).join("")||'<p class="note">まだいません。</p>'}</section>
+    ${confHTML||'<p class="note">まだいません。</p>'}</section>
   <section class="panel" style="margin-top:12px"><b style="font-size:14px">保留中のメンバー（${STD.pending.length}人）</b>
     <p class="note" style="margin:2px 0 6px">確定するまで、ログインできず、紹介ページも代表以外には見えません。</p>
     ${STD.pending.map(row).join("")||'<p class="note">いません。</p>'}</section>
@@ -2416,6 +2446,8 @@ document.addEventListener("click",e=>{
     case "gateteam":{const tm=(document.querySelector('input[name="gateTeam"]:checked')||{}).value;if(!tm){toast("チームを1つ選んでください");return}const w=me();
       act(()=>sapi("profile_save",{name:w.m.name,kana:w.m.kana||"",nick:w.m.nick||"",team:tm}),`${TEAMS[tm].n}チームに入りました`);break}
     case "gateskip":sv.skipTeam=true;renderMain();break;
+    case "mgsort":{sv.mgSort=d.k;const y=window.scrollY;renderMain();window.scrollTo(0,y);break}
+    case "mgjump":{const el=document.getElementById("mg-"+d.id);if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.remove("mg-flash");void el.offsetWidth;el.classList.add("mg-flash")}break}
     case "edit":stGo("edit",d.id);break;
     case "toimport":if(d.id){sv.imp.target=d.id;sv.imp.res=null}stGo("import");break;
     case "skill":{const cur=stM(sv.id);stCollect(cur);const v=cur.x.skills[d.k];if(!v)cur.x.skills[d.k]="good";else if(v==="good")cur.x.skills[d.k]="try";else delete cur.x.skills[d.k];renderMain();break}
