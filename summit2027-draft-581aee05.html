@@ -1025,26 +1025,25 @@ body.pm-lock { overflow: hidden; }
 .tilt { transform-style: preserve-3d; will-change: transform; }
 
 
-/* ===== 運営メンバー ===== */
-.crew { position: relative; margin: 0 0 28px; overflow: hidden; background: var(--navy); min-height: 460px; display: flex; align-items: flex-end; }
-.crew > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; transform: scale(1.06); transition: transform 6s ease-out; }
-.crew.in > img, .crew:hover > img { transform: scale(1); }
-.crew::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,16,43,.92) 0%, rgba(2,16,43,.72) 42%, rgba(2,16,43,.1) 75%); z-index: 1; }
-.crew::after { content: ""; position: absolute; right: 8%; top: -10%; width: 70px; height: 120%; background: var(--orange); transform: skewX(-30deg); z-index: 1; opacity: .9; }
-.crew-cap { position: relative; z-index: 2; color: #fff; padding: 40px 40px 34px; max-width: 700px; }
-.crew-k { display: inline-block; font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; background: var(--teal); color: var(--navy); padding: 3px 10px; }
-.crew-cap b { display: block; margin-top: 14px; font-size: clamp(24px, 3.2vw, 38px); font-weight: 900; line-height: 1.35; }
+/* ===== 運営メンバー（写真と文字を分ける） ===== */
+.crew { position: relative; margin: 0 0 28px; background: var(--navy); display: grid; grid-template-columns: 1.35fr 1fr; align-items: stretch; overflow: hidden; }
+.crew > img { position: relative; inset: auto; width: 100%; height: 100%; min-height: 380px; object-fit: cover; object-position: 50% 55%; display: block; transition: transform 6s ease-out; }
+.crew:hover > img { transform: scale(1.03); }
+.crew::after { content: ""; position: absolute; left: calc(57.4% - 40px); top: -10%; width: 60px; height: 120%; background: var(--orange); transform: skewX(-12deg); z-index: 1; }
+.crew::before { content: ""; position: absolute; left: calc(57.4% - 4px); top: -10%; width: 18px; height: 120%; background: var(--teal); transform: skewX(-12deg); z-index: 1; }
+.crew-cap { position: relative; z-index: 2; color: #fff; padding: 36px 34px 30px 40px; display: flex; flex-direction: column; justify-content: center; }
+.crew-k { align-self: flex-start; font-family: Inter, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: .2em; background: var(--teal); color: var(--navy); padding: 3px 10px; }
+.crew-cap b { display: block; margin-top: 14px; font-size: clamp(22px, 2.3vw, 32px); font-weight: 900; line-height: 1.4; }
 .crew-cap b em { font-style: normal; font-size: 1.6em; color: var(--orange); margin: 0 .05em; line-height: 1; }
 .crew-cap p { margin-top: 12px; font-size: 14px; line-height: 1.8; color: rgba(255,255,255,.88); }
 .crew-teams { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .crew-teams li { font-size: 12px; font-weight: 800; border: 1.5px solid rgba(255,255,255,.7); padding: 3px 10px; }
-.crew-note { position: absolute; right: 10px; bottom: 8px; z-index: 2; font-size: 10px; color: rgba(255,255,255,.8); }
-@media (max-width: 760px) {
-  .crew { min-height: 0; display: block; }
-  .crew > img { position: relative; height: auto; aspect-ratio: 3 / 2; }
-  .crew::before { background: linear-gradient(180deg, rgba(2,16,43,0) 20%, rgba(2,16,43,1) 46%); }
-  .crew::after { display: none; }
-  .crew-cap { margin-top: -70px; padding: 0 18px 26px; }
+.crew-note { position: absolute; left: 10px; bottom: 8px; z-index: 2; font-size: 10px; color: #fff; background: rgba(2,16,43,.6); padding: 2px 8px; }
+@media (max-width: 860px) {
+  .crew { grid-template-columns: 1fr; }
+  .crew > img { min-height: 0; height: auto; aspect-ratio: 3 / 2; }
+  .crew::before, .crew::after { display: none; }
+  .crew-cap { padding: 22px 18px 24px; border-top: 6px solid var(--orange); }
   .crew-cap b { font-size: 22px; }
   .crew-note { top: 8px; bottom: auto; }
 }
@@ -1633,11 +1632,10 @@ window.SUMMIT = {
       <details><summary>参加費はかかりますか？</summary><div class="a">参加費は無料です。会場までの交通費は各自で負担してください</div></details>
       <details><summary>一人で参加できますか？</summary><div class="a">参加できます。受付やランチテーブルで、運営メンバーが交流のきっかけをつくります</div></details>
       <details><summary>やりたいことが決まっていなくても参加できますか？</summary><div class="a">参加できます。聴講のみの参加も可能です</div></details>
-      <details><summary>保護者の同意は必要ですか？</summary><div class="a">中学生は必要です。高校生の取り扱いは、決定次第掲載します</div></details>
       <details><summary>昼食はどこでとればよいですか？</summary><div class="a">全体の昼休憩はありません。12:00〜14:50に常設エリアでテーマ別ランチテーブルを開きますので、好きな時間に食事をとれます</div></details>
       <details><summary>途中からの参加や途中退場はできますか？</summary><div class="a">可能です。ワークショップのみ、途中から参加できない場合があります</div></details>
-      <details><summary>申込の締切はいつですか？</summary><div class="a">決まり次第お知らせします</div></details>
-      <details><summary>保護者や教員も見学できますか？</summary><div class="a">現在準備中です。決定次第掲載します</div></details>
+      <details><summary>申込の締切はいつですか？</summary><div class="a">事前申込は前日の3月25日（木）まで受け付けています。当日参加もできます</div></details>
+      <details><summary>保護者や教員も見学できますか？</summary><div class="a">見学できます。保護者の方や先生も、ぜひお越しください</div></details>
     </div>
   </div>
 </section>
@@ -1651,7 +1649,7 @@ window.SUMMIT = {
       <img src="img/summit2027/staff_2026.webp" alt="NEXY SUMMIT 2026 の運営メンバー" loading="lazy">
       <figcaption class="crew-cap">
         <span class="crew-k">MADE BY STUDENTS</span>
-        <b>このイベントは、<br>中学生・高校生・大学生<br><em class="num-font">約50</em>人でつくっています</b>
+        <b>このイベントは、<br>中学生・高校生・大学生<br><em class="num-font">約50</em>人で<br>つくっています</b>
         <p>企画も、会場づくりも、当日の運営も。全部、同世代の学生の手でつくっています</p>
         <ul class="crew-teams"><li>メディア</li><li>誘導</li><li>レセプション</li><li>A会場</li><li>B会場</li><li>常設</li></ul>
       </figcaption>
