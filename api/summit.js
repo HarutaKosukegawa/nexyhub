@@ -93,7 +93,7 @@ async function updateJSON(key, fn, empty) {
 }
 
 const cache = new Map(); // 同じ関数インスタンス内で数秒だけ使い回し、保存先への読み込み回数を減らす
-async function readJSON(key, empty, ttl = 8000) {
+async function readJSON(key, empty, ttl = 30000) { // 保存先の読み込み回数を減らすため30秒使い回す（自分で書いたら消す）
   const c = cache.get(key);
   if (c && Date.now() - c.t < ttl) return c.v;
   const s = await getStore();
@@ -149,7 +149,7 @@ async function staffOf(req) {
   if (!o) return null;
   if (o.k === "pw") return o.v && o.v === pwVer() ? { email: "", name: "緊急用パスワード", role: "owner" } : null;
   const email = normEmail(o.e);
-  const db = await readJSON(STAFF, EMPTY_STAFF, 5000);
+  const db = await readJSON(STAFF, EMPTY_STAFF, 60000);
   const m = db.staff[email];
   if (ownerEmails().includes(email)) return { email, name: (m && m.name) || "", role: "owner" };
   return m ? { email, name: m.name || "", role: m.role === "owner" ? "owner" : "staff" } : null;
@@ -221,7 +221,7 @@ async function route(req) {
 
   if (req.method === "GET") {
     if (a === "me") {
-      const db = await readJSON(PEOPLE, EMPTY_PEOPLE, 3000);
+      const db = await readJSON(PEOPLE, EMPTY_PEOPLE, 10000);
       const mine = id && db.people[id] ? publicPerson(id, db.people[id]) : null;
       let prefs = null;
       if (mine) { const r = await s.read(`prefs/${id}.json`); prefs = r ? JSON.parse(r.body.toString("utf8")) : null; }
@@ -247,8 +247,8 @@ async function route(req) {
       return new Response(r.body, { headers: { "content-type": "image/jpeg", "cache-control": "private, max-age=2592000, immutable", "x-content-type-options": "nosniff" } });
     }
     if (a === "notices") {
-      const n = await readJSON(NOTICES, EMPTY_NOTICES);
-      return json({ notices: n.notices }, 200, { "cache-control": "public, max-age=0, s-maxage=10, stale-while-revalidate=30" });
+      const n = await readJSON(NOTICES, EMPTY_NOTICES, 60000);
+      return json({ notices: n.notices }, 200, { "cache-control": "public, max-age=0, s-maxage=60, stale-while-revalidate=600" });
     }
     if (a === "staff") {
       if (!staff) return err("運営だけが使えます", 403);

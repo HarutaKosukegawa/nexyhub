@@ -2584,8 +2584,8 @@ async function boot(){
   }catch(e){apiOK=e.status===0?null:false;apiSetup=e.status===503}
   await Promise.all([loadPeople(),loadNotices()]);
   pcardSync().then(ok=>{if(ok&&tab==="my")render()});
-  setInterval(()=>{if(!document.hidden)loadNotices()},20000);
-  setInterval(()=>{if(!document.hidden&&(tab==="people"||tab==="home"||tab==="admin"))loadPeople()},60000);
+  setInterval(()=>{if(!document.hidden)loadNotices()},90000);
+  setInterval(()=>{if(!document.hidden&&(tab==="people"||tab==="admin"))loadPeople()},180000);
   document.addEventListener("visibilitychange",()=>{if(!document.hidden){loadNotices();loadPeople()}});
 }
 boot();

@@ -24,7 +24,7 @@ async function getStore() {
     const p = (k) => path.join(process.env.SUMMIT_FS_DIR, k);
     const etagOf = (b) => crypto.createHash("md5").update(b).digest("hex");
     store = {
-      ready: true,
+      ready: true, local: true,
       async read(k) { try { const b = await fs.readFile(p(k)); return { body: b, etag: etagOf(b) }; } catch { return null; } },
       async write(k, body, { ifMatch } = {}) {
         if (ifMatch !== undefined) { const c = await this.read(k); if ((c ? c.etag : "") !== ifMatch) throw Object.assign(new Error("precondition"), { precondition: true }); }
@@ -40,29 +40,23 @@ async function getStore() {
     ready: !!(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID),
     // 同じ処理の中で書いた直後に読むと、保存先の反映待ちで古い内容が返ることがある。
     // 直前に自分で書いた内容は手元の控えを使う（10秒だけ）
+    // 保存先の読み込み回数を減らすため、読んだ内容と書いた内容は20秒だけ手元で使い回す（写真も同じ）
     async read(k) {
       const c = mem.get(k);
-      if (c && Date.now() - c.at < 10000) return { body: c.body, etag: c.etag };
+      if (c && Date.now() - c.at < 20000) return c.body === null ? null : { body: c.body, etag: c.etag };
       const r = await blob.get(k, { access: "private", useCache: false }).catch((e) => { if (e instanceof blob.BlobNotFoundError) return null; throw e; });
-      if (!r || r.statusCode !== 200) return null;
-      return { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: r.blob.etag };
-    },
-    // 書き換え用の読み込み：ETag は保存先のAPI（head）から取る。ファイルを読んだときのETagは書き込みの条件に使えない形のため
-    async readForUpdate(k) {
-      const c = mem.get(k);
-      if (c && Date.now() - c.at < 10000) return { body: c.body, etag: c.etag };
-      const h = await blob.head(k).catch(() => null);
-      if (!h) return null;
-      const r = await blob.get(k, { access: "private", useCache: false }).catch((e) => { if (e instanceof blob.BlobNotFoundError) return null; throw e; });
-      if (!r || r.statusCode !== 200) return null;
-      return { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: h.etag };
+      if (!r || r.statusCode !== 200) { mem.set(k, { body: null, at: Date.now() }); return null; }
+      const out = { body: Buffer.from(await new Response(r.stream).arrayBuffer()), etag: r.blob.etag };
+      if (mem.size > 400) mem.clear();
+      mem.set(k, { ...out, at: Date.now() });
+      return out;
     },
     async write(k, body, { ifMatch } = {}) {
       const opt = { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: k.endsWith(".jpg") ? "image/jpeg" : "application/json", cacheControlMaxAge: 60 };
       if (ifMatch) opt.ifMatch = ifMatch;
       try {
         const r = await blob.put(k, body, opt);
-        if (!k.endsWith(".jpg")) mem.set(k, { body: Buffer.isBuffer(body) ? body : Buffer.from(body), etag: r && r.etag, at: Date.now() });
+        mem.set(k, { body: Buffer.isBuffer(body) ? body : Buffer.from(body), etag: r && r.etag, at: Date.now() });
       } catch (e) { mem.delete(k); if (e instanceof blob.BlobPreconditionFailedError) throw Object.assign(new Error("precondition"), { precondition: true }); throw e; }
     },
     async del(k) { mem.delete(k); try { await blob.del(k); } catch {} },
@@ -77,12 +71,13 @@ async function updateJSON(key, fn, empty) {
   const s = await getStore();
   // ほかの人と同時に書いたときは読み直してやり直す。何度も合わないときは、最後は上書きで保存する（止まらないことを優先）
   for (let i = 0; i < 5; i++) {
-    const cur = await (s.readForUpdate ? s.readForUpdate(key) : s.read(key));
+    const cur = await s.read(key);
     const data = cur ? JSON.parse(cur.body.toString("utf8")) : structuredClone(empty);
     const out = fn(data);
     if (out === false) return data;
     const last = i === 4;
-    try { await s.write(key, JSON.stringify(data), { ifMatch: cur && !last ? cur.etag : undefined }); return data; }
+    // 保存先のETagは書き込みの条件に使えなかったため、上書きで保存する（同時に書く人はほぼいない）
+    try { await s.write(key, JSON.stringify(data), { ifMatch: s.local && cur && !last ? cur.etag : undefined }); return data; }
     catch (e) { if (!e.precondition) throw e; console.warn("staff retry", key, i); await new Promise((r) => setTimeout(r, 60 * 2 ** i + Math.random() * 80)); }
   }
   throw new Error("busy");
